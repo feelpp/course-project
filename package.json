@@ -1,0 +1,27 @@
+{
+  "name": "github",
+  "version": "1.0.0",
+  "description": "",
+  "main": "reveal.js",
+  "scripts": {
+    "clean": "rm -rf html",
+    "build": "npx asciidoctor-revealjs -D html slides/index.adoc ",
+    "preview:build": "node_modules/.bin/antora --stacktrace --fetch site-dev.yml ; node-srv -p 8010 build/site"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feelpp/github.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/feelpp/github/issues"
+  },
+  "homepage": "https://github.com/feelpp/github#readme",
+  "dependencies": {
+    "@asciidoctor/reveal.js": "^4.0.1",
+    "asciidoctor": "^2.2.0",
+    "node-srv": "^3.0.2"
+  }
+}
