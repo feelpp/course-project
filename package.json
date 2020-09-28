@@ -5,7 +5,7 @@
   "main": "reveal.js",
   "scripts": {
     "clean": "rm -rf html",
-    "build": "npx asciidoctor-revealjs -D html -a revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@4.0.2  slides/index.adoc ",
+    "build": "npx asciidoctor-revealjs -D html -a revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@3.9.2  slides/index.adoc ",
     "preview:build": "node_modules/.bin/antora --stacktrace --fetch site-dev.yml ; node-srv -p 8010 build/site"
   },
   "repository": {
