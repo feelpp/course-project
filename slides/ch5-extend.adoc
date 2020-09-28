@@ -1,0 +1,91 @@
+[.lightbg,background-image="extend-pipeline.jpeg",background-opacity=".7"]
+== Extending our Pipelines
+
+[.notes]
+--
+Once we have the basics in place, we can take our pipelines further.
+
+Won't dive too deep, as each of these things could be a talk of their own!
+--
+
+=== Blue-Green Deployments
+
+[%step]
+* Run multiple production environments/servers
+** Some active (blue), some idle (green)
+* Deploy to green
+* Once ready, route traffic to green
+** Blue becomes idle
+* In case of issues, re-route to blue
+
+[.notes]
+--
+This is a more advanced deployment scheme, wherein we have multiple production environments.
+
+Simple example: two servers (blue and green) and a load balancer.
+* All traffic is currently going to blue.
+
+* Deploy + test in green environment.
+* When ready, route traffic to green.
+* Next deployment works the same, but goes to blue instead.
+* If something went wrong, re-route from green to blue.
+--
+
+=== Blue-Green Deployments
+
+![Krusty the Clown and Homer Simpson (dressed as Krusty) swapping places repeatedly like a shell game](resources/krusty.gif)
+
+[.notes]
+--
+In summary, your load balancer is basically playing a shell game.
+--
+
+=== Building a Docker Image
+
+[%step]
+* Final product: a Docker image of your app
+* Great for Docker-powered production clusters!
+
+[.notes]
+--
+If you're using something like Docker Swarm or Kubernetes, you could also use the CI pipeline to literally build a Docker image of your app.
+
+Also makes it easier to do "canary" releases, where maybe only 20% of traffic gets sent to the latest version of the app.
+--
+
+=== Generate Documentation
+
+Automatically parse + release documentation!
+
+[.notes]
+--
+Another idea might be to automatically run JSDoc, PHPdocumentor, or anything else you might use to generate documentation from your codebase and publish it.
+
+Anything you can script can be run as part of the pipeline!
+--
+
+=== Code Coverage Reports
+
+[%step]
+* Generate code coverage as part of the CI pipeline
+* Help identify branches that reduce code coverage
+
+[.notes]
+--
+You may also calculate code coverage reports as part of the CI pipeline.
+
+Not only can these be turned into badges (useful for READMEs), but it can also help identify branches that *reduce* coverage.
+--
+
+=== Notifications
+
+[%step]
+* GitLab CI/CD supports webhooks
+* Can be used to post to Slack, send emails, and more!
+
+[.notes]
+--
+GitLab's CI/CD tooling supports webhooks, which means you can tie into different events.
+
+Maybe you want to post to a Slack channel any time a deployment goes out, or tag a release in your analytics tool. We can script all sorts of extra actions depending on the success or failure of different jobs and stages.
+--

@@ -1,0 +1,121 @@
+[.lightbg,background-image="deployments.jpeg",background-opacity=".7"]
+== Simple Deployments
+
+[.notes]
+--
+Now we have an understanding of how GitLab's pipelines work, so let's look at what it takes to deploy with our pipeline.
+--
+
+=== What does our deployment process look like right now?
+
+[%step]
+* (S)FTP?
+* SSH + `git pull`?
+* Docker?
+
+[.notes]
+--
+When you're moving towards continuous delivery, it's important to consider how you're deploying today.
+
+Are you simply SFTP-ing files? SSH-ing into the target server(s) and running `git pull`? Are you compiling CSS and JavaScript there, too?
+
+Maybe you're using Docker containers and better orchestration, but how are those containers being built?
+--
+
+=== A drop-dead simple deployment:
+
+[%step]
+1. Build the app
+2. `scp` a tarball to production
+3. `rsync` the files into the web root
+
+
+[.notes]
+--
+Let's imagine a bare-bones deployment: we do anything necessary to build the app, then we need to get it to prod, right? Let's try scp ("secure copy") to copy it to prod.
+
+Then, on prod, we'll unarchive the tarball and use rsync to copy any changed files.
+--
+
+=== A drop-dead simple deployment:
+
+[source,yaml]
+--
+ship_to_production:
+    stage: deploy
+    script:
+        - tar -czf release.tgz dist/*
+        - scp release.tgz "${SSH_USER}@${PRODUCTION_ADDR}:/tmp"
+        - ssh "${SSH_USER}@${PRODUCTION_ADDR}" "cd /tmp \
+          && tar -xzf release.tgz \
+          && rsync release/ /var/www/html/ \
+          ""
+--
+
+=== Atomic Deployments
+
+Releases/:: Contains multiple, timestamped deployments
+shared/:: Data that should persist between deployments
+current:: Symlink to the current release in `releases/`
+
+
+[.notes]
+--
+I learned from Capistrano in the Ruby community.
+
+General idea is zero-downtime deployments by keeping multiple copies of the app on the server in the releases directory.
+
+Common elements — configuration, logs, user uploads, etc. — will live in a shared directory, and those things will be symlinked in.
+
+When we make a release, we'll update the `current` symlink to point to the new release. This symlink is treated as our web root.
+--
+
+=== Atomic Deployments
+
+[source,sh]
+--
+# /var/www
+releases/
+  + 1563759801/ # Oldest
+  + 1563759802/
+  + 1563759803/ # Newest
+shared/
+  + logs/
+  - config.json
+--
+
+[source]
+--
+current => /var/www/releases/1563759803 # Point to the latest
+current => /var/www/releases/1563759802 # Point to the previous
+--
+
+[.notes]
+--
+For atomic deployments, our setup will look something like this: we have the last few releases stored in the `releases` directory, and anything that's shared is in `shared`.
+
+We symlink the logs directory and config.json to each release as it's made, so they're all talking to a single copy of each file.
+
+Then we update the `current` symlink to point to the release we want to make current. Our web root within nginx would be `/var/www/current`. If we needed to roll-back, we could update this symlink and be back to a previous release.
+--
+
+=== Atomic Deployments
+
+[source,yml]
+--
+ship_to_production:
+    stage: deploy
+    script:
+        # 1. Create + scp tarball
+        # 2. Extract to /var/www/releases/{TIMESTAMP}
+        # 3. Symlink shared assets
+        # 4. Update the `current` symlink
+        # 5. Reload the web server
+        # 6. (Optional) Roll off older releases
+--
+
+
+[.notes]
+--
+Deployment script is more complicated, probably a good idea to break it into a separate shell script in the repo.
+--

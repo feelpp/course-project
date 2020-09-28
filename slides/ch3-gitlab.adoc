@@ -1,0 +1,173 @@
+[.lightbg,background-image="pipeline.png",background-opacity="0.7"]
+==  Setting up a CI/CD Pipeline
+
+[.notes]
+--
+Now that we have a sense of what continuous integration and delivery are, let's see how we can incorporate it to our projects:
+--
+
+=== What is a Pipeline?
+
+[%step]
+* A route from development to production
+* Different branches may take different paths
+
+[.notes]
+--
+A pipeline, not unlike the internet, is a series of tubes.
+
+Pipelines define the route from a developer's local machine to production. Which steps does it need to take? What gates are in place?
+
+Different branches may also take different routes — maybe the "staging" branch never goes to prod, but only represents an internal staging server?
+--
+
+=== CI/CD Providers
+
+[%step]
+* Jenkins
+* Travis CI
+* Circle CI
+* Codeship
+* DeployBot
+
+[.notes]
+--
+There are a bunch of CI/CD providers, and they offer varying sets of features.
+
+Many developers may be familiar or already using Jenkins.
+
+Travis CI is well-known among GitHub users.
+
+Some platforms even provide their own tools, including Bitbucket and what we're going to be using today: GitLab.
+--
+
+=== image:gitlab.png[GitLab,link=https://gitlab.com]
+
+[%step]
+* Source code management tool
+* Hosted platform or available for private installation
+* Includes CI/CD tools!
+
+[.notes]
+--
+At its core, GitLab is a source code management tool like GitHub or Bitbucket. They've also built a series of tools around it to create an integrated platform for software development.
+
+It's available at GitLab.com or you can download its source and run your own GitLab instance.
+
+Great CI/CD tools available for free!
+--
+
+=== GitLab CI/CD Tools
+
+[%step]
+* Define multiple **stages** (build, test, deploy, etc.)
+* Each stage has one or more **jobs**
+* Multiple runners == run jobs in parallel!
+
+[.notes]
+--
+Some terminology: GitLab lets us define one or more *stages* in our pipelines. Typically, these will be something like: "install dependencies and build the app", "run our tests", then "deploy to target servers" (totally flexible)
+
+Each stage is comprised of one or more "jobs" (e.g. "run unit tests")
+
+Jobs are carried out by runners, and we can run multiple jobs in the same stage in parallel if we have multiple runners, which speeds up the pipeline.
+<!-- .slide: data-background-color="#fafafa" -->
+--
+
+=== A Typical Pipeline
+
+image::pipeline-gitlab.png[A GitLab pipeline, describing 8 jobs across three stages (build, test, and deploy)]
+
+[.notes]
+--
+Pretty typical pipeline for a Laravel app:
+
+- Build stage where we install npm and composer dependencies
+- Test stage: check coding standards, Jest for JS tests, PHPUnit for PHP unit and integration tests, and static code analysis via PHPStan
+- Deploy stage: continuous deployment for staging, continuous delivery for production
+--
+
+=== A Typical Pipeline
+
+image::pipeline-gitlab.png[A GitLab pipeline, describing 8 jobs across three stages (build, test, and deploy)]
+
+[.notes]
+--
+Pretty typical pipeline for a Laravel app:
+
+- Build stage where we install npm and composer dependencies
+- Test stage: check coding standards, Jest for JS tests, PHPUnit for PHP unit and integration tests, and static code analysis via PHPStan
+- Deploy stage: continuous deployment for staging, continuous delivery for production
+--
+
+=== Pipeline configuration
+
+`.gitlab-ci.yml`
+
+[.notes]
+--
+By default, GitLab keeps is configuration in .gitlab-ci.yml. Other providers will typically have similar files.
+
+By keeping the configuration as code, you're able to version it and it's kept along with the repository.
+--
+
+=== A simple job
+
+[source,yaml]
+--
+Install npm dependencies: 
+    stage: build 
+    script:
+        - npm install --no-progress
+        - npm run prod 
+    artifacts:
+        paths:
+            - public 
+    cache:
+        key: ${CI_COMMIT_REF_SLUG}-npm
+        paths:
+            - node_modules
+--
+
+[.notes]
+--
+A common task: installing dependencies. This will typically fall under the "build" stage.
+
+We'll install the dependencies, then run an npm script that calls webpack to build everything, just as we would locally.
+
+We're telling GitLab that we want to hold onto what's generated into the public/ directory, since Webpack just built all of it.
+
+We can also cache node_modules with the current commit, so if we need to re-run this it'll go faster for us.
+--
+
+=== &hellip;And So much more!
+
+[%step]
+* `image`
+* `only` + `except`
+* `dependencies`
+https://docs.gitlab.com/ee/ci/yaml/[docs.gitlab.com/ee/ci/yaml]
+
+[.notes]
+--
+There are a ton of different parameters available to streamline your build.
+
+`image` lets us use pre-built Docker images, so you can build exactly what you need to test.
+
+`only` and `except` let us control the creation of jobs, making sure we're not wasting time and resources. Example: only run E2E tests on master.
+
+`dependencies` lets us say "this job depends on that one passing" to help order things and prevent duplication.
+--
+
+=== Environment Variables
+
+image::environment-variables.png[The "Environment Variables" configuration for GitLab's CI/CD pipelines]
+
+[.notes]
+--
+Storing pipeline configs in repo is great, but we don't want our secrets (API keys, database passwords, SSH keys, etc.) exposed there.
+
+Instead, store them as environment variables for the CI/CD pipeline within GitLab.
+
+Can also mask keys to keep them out of logs and/or only make them available to protected branches (e.g. master)
+--
