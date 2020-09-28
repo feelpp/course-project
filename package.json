@@ -1,7 +1,7 @@
 {
   "name": "github",
   "version": "1.0.0",
-  "description": "",
+  "description": "Introduction to Github and CI/CD",
   "main": "reveal.js",
   "scripts": {
     "clean": "rm -rf html",
@@ -14,7 +14,7 @@
     "url": "git+https://github.com/feelpp/github.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Christophe Prud'homme",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/feelpp/github/issues"

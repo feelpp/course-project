@@ -38,6 +38,25 @@
 :iconfont-name: fonts/fontawesome/css/all
 
 [.lightbg,background-opacity="1"] 
-== CI/CD
+== What is CI/CD?
 
-toto
+
+[.notes]
+--
+At a high level, let's take a look at what we mean by "Continuous Integration" and "Continuous Delivery":
+--
+
+=== Continuous Integration
+
+[%step]
+* Run a series of scripts automatically, any time changes are pushed
+* **Continuously integrate** our changes
+
+[.note]
+--
+The idea of continuous integration is being able to check at any time that the code we're working on fits (or "integrates") with the larger codebase.
+
+We do this by defining a number of scripts and the scenarios under which they should run.
+
+Especially important on multi-developer teams!
+--
