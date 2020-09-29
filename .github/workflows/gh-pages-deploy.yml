@@ -17,6 +17,7 @@ jobs:
     - name: Install 
       run: |
         sudo apt install ruby ruby-bundler
+        bundle install
         npm install
     - name: Build
       run: npm run build
