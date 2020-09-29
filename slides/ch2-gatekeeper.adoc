@@ -83,7 +83,8 @@ Still uneasy? Figure out why => good indicator of what needs attention.
 
 === Deploy with Confidence!
 
-In order to deploy confidently,<br>we must have confidence in our tools.
+In order to deploy confidently,{nbsp} +
+we must have confidence in our tools.
 
 [.notes]
 --

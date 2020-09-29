@@ -46,6 +46,7 @@
 * Steve Grunwell,Senior Software Engineer, Liquid Web
 * Benjamin Schmid with asciidoctor-reveal.js
 
+include::ch-agenda.adoc[]
 
 include::ch2-ci-cd.adoc[]
 

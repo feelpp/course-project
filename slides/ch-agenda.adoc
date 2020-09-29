@@ -1,0 +1,15 @@
+[.lightbg,background-video="videos/relaxing.mp4",background-video-loop="true",background-opacity="0.7"]
+== Agenda
+
+1. Project
+2. Github
+3. CI/CD
+
+
+// {nbsp} +
+// [.decent]#icon:hand-point-right[] v12+ & Preview Features:# [version]#12# [version]#13# [preview]#preview#
+
+[.notes]
+--
+
+--
