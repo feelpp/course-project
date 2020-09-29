@@ -7,7 +7,8 @@ SRCFILES=(index.adoc)
 for SRCFILE in "${SRCFILES[@]}"; do
 
 echo "Rendering $SRCFILE"
-bundle exec asciidoctor-revealjs -r asciidoctor-diagram  -a revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@3.9.2  slides/$SRCFILE
+#bundle exec asciidoctor-revealjs -r asciidoctor-diagram  -a revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@3.9.2  slides/$SRCFILE
+bundle exec asciidoctor-revealjs -r asciidoctor-diagram  -D html  slides/$SRCFILE
 base=`basename $SRCFILE .adoc`
 #echo "Starting Webserver on :8000"
 #python -m SimpleHTTPServer >/dev/null 2>&1 & 

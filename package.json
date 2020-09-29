@@ -5,8 +5,8 @@
   "main": "reveal.js",
   "scripts": {
     "clean": "rm -rf html",
-    "copy": "cp -r css fonts images html",
-    "build": "npx asciidoctor-revealjs -D html -a revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@3.9.2  slides/index.adoc;npm run copy",
+    "copy": "cp -r css fonts images reveal.js html",
+    "build": "./render;npm run copy",
     "preview:build": "node_modules/.bin/antora --stacktrace --fetch site-dev.yml ; node-srv -p 8010 build/site"
   },
   "repository": {
