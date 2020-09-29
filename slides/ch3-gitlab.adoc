@@ -43,6 +43,156 @@ Travis CI is well-known among GitHub users.
 Some platforms even provide their own tools, including Bitbucket and what we're going to be using today: GitLab.
 --
 
+=== image:github.png[Github,link=https://gitlab.com]
+
+[.small]
+--
+[%step]
+* Source code management tool
+* Hosted platform (60 millions dev)
+* Includes CI/CD tools!
+** Travis
+** Circle-CI
+** Buildkite
+* Github Actions
+--
+
+[.notes]
+--
+
+--
+
+=== What is Github Actions ?
+
+image::head-scratch.gif[What is Github Actions]
+
+[.refs]
+--
+https://github.com/features/actions
+--
+
+[.notes]
+--
+GitHub Actions is an API for cause and effect on GitHub: orchestrate any workflow, based on any event, while GitHub manages the execution, provides rich feedback, and secures every step along the way
+--
+
+=== Workflow
+
+1. Event 
+2. Trigger
+3. Do something
+
+=== What kind of Triggers?
+
+[.small]
+--
+* Push
+* Pull request
+* create tag
+* create branch
+* Issue comment created
+* Issue labeled applied
+* Issue is opened
+* Make private repo public
+* Scheduled 
+--
+
+[.refs]
+--
+https://help.github.com/en/github/automating-your-workflow-with-github-actions/events-that-trigger-workflows[Events]
+--
+
+=== Pipeline configuration
+
+
+`.github/workflows/ci.yml`
+
+[.notes]
+--
+Github keeps its configuration in `.github` Other providers will typically have similar files.
+
+By keeping the configuration as code, you're able to version it and it's kept along with the repository.
+--
+
+=== Pipeline configuration
+
+[.x-small]
+--
+[source,yml]
+----
+name: ci
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        python-version: [2.7, 3.6, 3.7, 3.8]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    steps:
+
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Test
+      run: |
+        echo run the tests here
+----
+--
+
+[.refs]
+--
+https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests[About Pull Requests]
+--
+[.notes]
+--
+* This workflow fires on two kinds of events: pushes to the master branch and PRs to the master branch. Each PR will have an automatic CI run for each change (every new commit pushed).
+* It runs in multiple configurations: the cartesian-product of Python versions and OSes, as specified.
+* The run: entry is the command the runs the tests.
+* While the code may not have any dependencies, it's easy to have those too by adding pip install $whatever lines to run: before the actual test execution line.
+--
+
+=== Demo Time
+
+image::demotime.gif[Demo Time]
+
+https://github.com/feelpp[Feel++ Github,window="_blank"]
+
+=== Assigning issues
+
+[source,yaml]
+----
+name: Assign
+on:
+  issues:
+    types: [opened]
+jobs:
+  assignTroy:
+    name: Assign Prudhomm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Label issue
+        uses: actions/github@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: assign prudhomm
+----
+
+
+
 === image:gitlab.png[GitLab,link=https://gitlab.com]
 
 [%step]
