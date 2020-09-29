@@ -53,9 +53,16 @@ If you're using something like Docker Swarm or Kubernetes, you could also use th
 Also makes it easier to do "canary" releases, where maybe only 20% of traffic gets sent to the latest version of the app.
 --
 
+[background-image="manuscript.jpg"]
 === Generate Documentation
 
 Automatically parse + release documentation!
+
+[.refs]
+--
+* https://docs.antora.org[Antora] and many other static site generators
+* Photo by https://de.freeimages.com/photographer/bjearwicke-46112[Benjamin Earwicker]
+--
 
 [.notes]
 --
@@ -64,14 +71,28 @@ Another idea might be to automatically run JSDoc, PHPdocumentor, or anything els
 Anything you can script can be run as part of the pipeline!
 --
 
+[.decentlightbg,background-video="videos/fog-hands.mp4",background-video-loop="true",background-opacity="0.6"]
 === Code Coverage Reports
+
+In software engineering, code coverage is a measure used to describe the rate of executed source code of a program when a test suite is run.
 
 [%step]
 * Generate code coverage as part of the CI pipeline
 * Help identify branches that reduce code coverage
 
+
+
+[.refs]
+--
+* https://fr.wikipedia.org/wiki/Couverture_de_code[Couverture de code]
+* https://www.atlassian.com/continuous-delivery/software-testing/code-coverage[Introduction to code coverage]
+* https://gcc.gnu.org/onlinedocs/gcc/Gcov.html[gcov]
+--
+
 [.notes]
 --
+
+
 You may also calculate code coverage reports as part of the CI pipeline.
 
 Not only can these be turned into badges (useful for READMEs), but it can also help identify branches that *reduce* coverage.
@@ -80,12 +101,20 @@ Not only can these be turned into badges (useful for READMEs), but it can also h
 === Notifications
 
 [%step]
-* GitLab CI/CD supports webhooks
+* Github and GitLab CI/CD supports webhooks
 * Can be used to post to Slack, send emails, and more!
+
+[.refs]
+--
+* https://fr.wikipedia.org/wiki/Webhook[Wikipedia webhook]
+* https://docs.github.com/en/free-pro-team@latest/developers/webhooks-and-events/about-webhooks[Github  webhooks]
+* https://docs.gitlab.com/ee/user/project/integrations/webhooks.html[Gitlab webhooks]
+--
 
 [.notes]
 --
-GitLab's CI/CD tooling supports webhooks, which means you can tie into different events.
+Github and GitLab's CI/CD tooling supports webhooks, which means you can tie into different events.
 
 Maybe you want to post to a Slack channel any time a deployment goes out, or tag a release in your analytics tool. We can script all sorts of extra actions depending on the success or failure of different jobs and stages.
 --
+

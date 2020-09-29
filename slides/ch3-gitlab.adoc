@@ -29,6 +29,8 @@ Different branches may also take different routes — maybe the "staging" branc
 * Circle CI
 * Codeship
 * DeployBot
+* Github (Github Actions)
+* Gitlab
 
 [.notes]
 --
