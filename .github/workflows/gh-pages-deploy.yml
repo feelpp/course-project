@@ -19,6 +19,7 @@ jobs:
         sudo apt install ruby ruby-bundler
         bundle install
         npm install
+        git clone -b 3.9.2 --depth 1 https://github.com/hakimel/reveal.js.git
     - name: Build
       run: npm run build
     - name: Deploy
