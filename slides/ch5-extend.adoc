@@ -33,7 +33,7 @@ Simple example: two servers (blue and green) and a load balancer.
 
 === Blue-Green Deployments
 
-![Krusty the Clown and Homer Simpson (dressed as Krusty) swapping places repeatedly like a shell game](resources/krusty.gif)
+image::krusty.gif[Krusty the Clown and Homer Simpson (dressed as Krusty) swapping places repeatedly like a shell game]
 
 [.notes]
 --
@@ -53,7 +53,7 @@ If you're using something like Docker Swarm or Kubernetes, you could also use th
 Also makes it easier to do "canary" releases, where maybe only 20% of traffic gets sent to the latest version of the app.
 --
 
-[background-image="manuscript.jpg"]
+[.lightbg,background-image="manuscript.jpg"]
 === Generate Documentation
 
 Automatically parse + release documentation!

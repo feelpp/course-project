@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Inital Setup see:
 #    https://asciidoctor.org/docs/asciidoctor-revealjs/
