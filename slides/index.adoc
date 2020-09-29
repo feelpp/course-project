@@ -38,7 +38,19 @@
 :iconfont-remote!:
 :iconfont-name: fonts/fontawesome/css/all
 
-== Overview 
+include::ch2-ci-cd.adoc[]
 
-1. link:ch1-github.html[Github]
-2. link:ch2-ci-cd.html[CI/CD]
+include::ch3-gitlab.adoc[]
+
+include::ch3-cd.adoc[]
+
+include::ch5-extend.adoc[]
+
+== Remember: This Isn't Magic!
+
+image::burgundy-its-science.gif[Ron Burgundy (Will Ferrell) stating "It's science"]
+
+[.notes]
+--
+Remember: nothing we're doing here is magic, we're just scripting processes and telling GitLab when they should be run.
+--
