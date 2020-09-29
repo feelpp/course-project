@@ -8,7 +8,7 @@
 :key: .topic,background-color="black"
 :revealjs_slidenumber: true
 :customcss: slides.css
-:author: Christophe Prud'homme <christophe.prudhomme@cemosis.fr>
+:author: Christophe Prud'homme @prudhomm <christophe.prudhomme@cemosis.fr>
 :date: 2020-09-29
 :icons: font
 // we want local served fonts. Therefore patched sky.css
@@ -38,7 +38,18 @@
 :iconfont-remote!:
 :iconfont-name: fonts/fontawesome/css/all
 
+[.lightbg,background-image="ack.jpg",background-opacity=".5",%notitle]
+== Acknowledgements
+
+
+
+* Steve Grunwell,Senior Software Engineer, Liquid Web
+* Benjamin Schmid with asciidoctor-reveal.js
+
+
 include::ch2-ci-cd.adoc[]
+
+include::ch2-gatekeeper.adoc[]
 
 include::ch3-gitlab.adoc[]
 
