@@ -22,7 +22,7 @@
   "homepage": "https://github.com/feelpp/github#readme",
   "dependencies": {
     "@asciidoctor/reveal.js": "^4.0.1",
-    "asciidoctor": "^2.2.0",
+    "asciidoctor": "^2.2.5",
     "node-srv": "^3.0.2"
   }
 }
