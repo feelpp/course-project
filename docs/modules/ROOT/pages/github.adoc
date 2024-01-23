@@ -8,6 +8,8 @@
 - GitHub is used by individuals and enterprises to host software projects
 - GitHub is the largest code host in the world
 
+The main features of GitHub are:: Issues, Pull Requests, Projects, Actions
+
 == GitHub Issues
 
 * GitHub Issues are a great way to keep track of tasks, enhancements, and bugs for your projects.
@@ -19,7 +21,7 @@
 
 NOTE: more information https://guides.github.com/features/issues/[> guides.github.com] !
 
-== GitHub Issues: Labels
+=== GitHub Issues: Labels
 
 * Labels are a great way to organize different types of issues. For example, you could use labels to tag issues as bugs, features, or questions.
 * You can apply multiple labels to each issue. For example, if a feature request also happens to be a question, you can apply both the `question` and `enhancement` labels.
@@ -28,7 +30,7 @@ NOTE: more information https://guides.github.com/features/issues/[> guides.githu
 
 NOTE: more information https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels[> guides.github.com] !
 
-== GitHub Issues: Milestones
+=== GitHub Issues: Milestones
 
 * Milestones are groups of issues that correspond to a project, feature, or time period.
 * People use them in many different ways. Some plan releases around them, while others use them to track the progress of a feature or project.
@@ -37,7 +39,7 @@ NOTE: more information https://docs.github.com/en/issues/using-labels-and-milest
 
 NOTE: more information https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/about-milestones[> guides.github.com] !
 
-== GitHub Issues: Assignees
+=== GitHub Issues: Assignees
 
 * Assignees are the GitHub users who are responsible for working on the issue.
 * Assignees are selected the same way as labels. Start typing a username, then click their name once it appears to select them.
@@ -45,7 +47,7 @@ NOTE: more information https://docs.github.com/en/issues/using-labels-and-milest
 * You can also assign people who aren’t collaborators on the repository. For example, if you’re working on a feature with a designer, you can assign them to the issue even if they don’t have push access to the repository.
 * Assignees are a great way to clarify who’s responsible for what. They’re also used to filter issues based on who’s working on them.
 
-== GitHub Issues: Mentions
+=== GitHub Issues: Mentions
 
 * You can mention a person or team on GitHub by typing @ plus their username or team name. This will trigger a notification and bring their attention to the conversation.
 * You can also mention teams within an organization. For example, you can mention the @github/owners team within the GitHub organization.
