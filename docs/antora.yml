@@ -1,10 +1,10 @@
-name: feelpp-project
-title: Template Project
+name: course-project
+title: Course Project
 version: ~
 start_page: index.adoc
 asciidoc:
   attributes:
-    project_name: Feel++ Template Project
+    project_name: Course Project
 ext:
   collector:
     - run:

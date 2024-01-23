@@ -1,7 +1,7 @@
 site:
-  title: Feel++ Template Project
-  url: https://feelpp.github.io/feelpp-project/
-  start_page: feelpp-project::index.adoc
+  title: Course Project
+  url: https://feelpp.github.io/course-project
+  start_page: course-project::index.adoc
 content:
   sources:
   - url: .
@@ -23,7 +23,7 @@ antora:
   - '@antora/collector-extension'
 asciidoc:
   attributes:
-    project_name: Feel++ Template Project
+    project_name: Course Project
     project_version: 2.0.2
     numbered: true
     allow-uri-read: true

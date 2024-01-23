@@ -3,3 +3,8 @@ html
 reveal.js/
 vendor/
 java9to13/
+public/
+.bundle
+cache/
+node_modules/
+jupyter/
