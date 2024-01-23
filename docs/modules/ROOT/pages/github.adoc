@@ -21,7 +21,7 @@ The main features of GitHub are:: Issues, Pull Requests, Projects, Actions
 
 NOTE: more information https://guides.github.com/features/issues/[> guides.github.com] !
 
-=== GitHub Issues: Labels
+=== Labels
 
 * Labels are a great way to organize different types of issues. For example, you could use labels to tag issues as bugs, features, or questions.
 * You can apply multiple labels to each issue. For example, if a feature request also happens to be a question, you can apply both the `question` and `enhancement` labels.
@@ -30,7 +30,7 @@ NOTE: more information https://guides.github.com/features/issues/[> guides.githu
 
 NOTE: more information https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels[> guides.github.com] !
 
-=== GitHub Issues: Milestones
+=== Milestones
 
 * Milestones are groups of issues that correspond to a project, feature, or time period.
 * People use them in many different ways. Some plan releases around them, while others use them to track the progress of a feature or project.
@@ -39,7 +39,7 @@ NOTE: more information https://docs.github.com/en/issues/using-labels-and-milest
 
 NOTE: more information https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/about-milestones[> guides.github.com] !
 
-=== GitHub Issues: Assignees
+=== Assignees
 
 * Assignees are the GitHub users who are responsible for working on the issue.
 * Assignees are selected the same way as labels. Start typing a username, then click their name once it appears to select them.
@@ -47,7 +47,7 @@ NOTE: more information https://docs.github.com/en/issues/using-labels-and-milest
 * You can also assign people who aren’t collaborators on the repository. For example, if you’re working on a feature with a designer, you can assign them to the issue even if they don’t have push access to the repository.
 * Assignees are a great way to clarify who’s responsible for what. They’re also used to filter issues based on who’s working on them.
 
-=== GitHub Issues: Mentions
+=== Mentions
 
 * You can mention a person or team on GitHub by typing @ plus their username or team name. This will trigger a notification and bring their attention to the conversation.
 * You can also mention teams within an organization. For example, you can mention the @github/owners team within the GitHub organization.
@@ -74,7 +74,7 @@ NOTE: more information https://guides.github.com/activities/hello-world/[> guide
 
 IMPORTANT: more information https://docs.github.com/en/issues/planning-and-tracking-with-projects[> docs.github.com] !
 
-=== GitHub Project Planning
+=== Planning
 
 * Create issues (tasks),
 * Break them into tasks,
@@ -87,7 +87,7 @@ Visualize large projects as spreadsheets or boards, and automate everything with
 image::https://docs.github.com/assets/cb-102381/mw-1440/images/help/projects-v2/example-table.webp[GitHub Project Board]
 
 
-=== GitHub: Table vs Board Views
+=== Table vs Board Views
 
 * Built like a spreadsheet, project tables give a live workspace to filter, sort, and group issues and pull requests.
 * We can tailor them to your needs with custom fields and saved views.
@@ -104,7 +104,7 @@ image::https://docs.github.com/assets/cb-102381/mw-1440/images/help/projects-v2/
 --
 
 
-=== GitHub: Roadmap
+=== Roadmap
 
 * Roadmaps help you plan and communicate the big picture.
 * They’re built from issues and pull requests, so you can organize work the way you want.
@@ -112,7 +112,7 @@ image::https://docs.github.com/assets/cb-102381/mw-1440/images/help/projects-v2/
 
 image::https://docs.github.com/assets/cb-102381/mw-1440/images/help/projects-v2/example-roadmap.webp[width=600]
 
-=== GitHub: Break issues into actionable tasks
+=== Break issues into actionable tasks
 
 * Tackle complex issues with task lists
 * track their status with new progressindicators.
@@ -130,7 +130,7 @@ image::github-project-actionable-tasks-3.png[width=400]
 --
 
 
-=== GitHub: Conversations
+=== Conversations
 
 * Move conversations forward
 * Express ideas with GitHub Flavored Markdown,
@@ -144,7 +144,7 @@ image::github-project-actionable-tasks-3.png[width=400]
 image::github-project-conversations.png[width=600]
 
 
-=== GitHub project : Views and Fields
+=== Views and Fields
 
 ==== Create views
 
