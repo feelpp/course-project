@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Github Actions :: Feel++ Template Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/feelpp-project/githubactions.html">
+    <title>Antora environment :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/antora.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -96,10 +96,11 @@ MathJax.Hub.Config({
   </head>
   <body class="article">
 <header class="header">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project" style="border-top: 4px solid #9E9E9E">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
         <div class="navbar-brand">
             <div class="navbar-item feelpp-logo">
-                <a href="https://feelpp.github.io/feelpp-project">Feel++ Template Project</a>
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
             </div>
             <button class="navbar-burger" data-target="topbar-nav">
                 <span></span>
@@ -110,29 +111,33 @@ MathJax.Hub.Config({
 
         <div id="topbar-nav" class="navbar-menu">
             <div class="navbar-end">
-                <div class="navbar-item">
-                    <a href="https://docs.feelpp.org/">Documentation Reference</a>
+                div class="navbar-item">
+                <a class="navbar-brand" href="https://csmi.cemosis.fr">
+                    <img class="csmi-logo" src="../_/img/logo-csmi.png" alt="CSMI logo" />
+                </a>
                 </div>
-                <div class="navbar-item has-dropdown is-hoverable download-item">
-                    <div class="navbar-item"><a href="https://docs.feelpp.org/user/latest/install/index.html" class="download-btn">Get Feel++</a></div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
                 </div>
                 <div class="navbar-item">
-                    <a class="navbar-brand"  href="https://www.cemosis.fr">
-                        <img class="cemosis-logo"  src="../_/img/cemosis-logo.svg" alt="Cemosis logo"/>
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../_/img/logo-unistra.png"
+                            alt="Unistra logo" />
                     </a>
                 </div>
             </div>
         </div>
     </nav>
-</header>
-<div class="body">
+</header><div class="body">
 <a href="#" class="menu-expand-toggle"></a>
-<div class="nav-container" data-component="feelpp-project" data-version="">
+<div class="nav-container" data-component="course-project" data-version="">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Template Project</a></h3>
+    <h3 class="title"><a href="index.html">Course Project</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -152,7 +157,7 @@ MathJax.Hub.Config({
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Template Project</span>
+    <span class="title">Course Project</span>
     <span class="version"></span>
   </div>
   <ul class="components">
@@ -160,7 +165,7 @@ MathJax.Hub.Config({
         <a class="title" href="../feelpp-antora-ui/index.html">Antora Feel++ UI</a>
       </li>
       <li class="component is-current">
-        <a class="title" href="index.html">Template Project</a>
+        <a class="title" href="index.html">Course Project</a>
       </li>
   </ul>
 </div>
@@ -173,13 +178,13 @@ MathJax.Hub.Config({
     <a href="index.html" class="home-link"></a>
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Template Project</a></li>
-    <li><a href="githubactions.html">Github Actions</a></li>
+    <li><a href="index.html">Course Project</a></li>
+    <li><a href="antora.html">Antora environment</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/csmi-course-project/edit/master/docs/modules/ROOT/pages/githubactions.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/ROOT/pages/antora.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -199,56 +204,59 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Github Actions</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Antora environment</h1>
 <div class="paragraph">
-<p>Github actions are setup to</p>
+<p>Antora is our static website generator.
+We use it to generate the documentation of the project
+It is part of the documentation of docs.feelpp.org[Feel++ docs] website.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>build the documentation using Antora and upload them to docs.feelpp.org[Feel++ docs] upon any change in the repo.</p>
-</li>
-<li>
-<p>build, install, package and deliver the Feel++ code</p>
-</li>
-</ul>
+<div class="listingblock">
+<div class="title">To generate the documentation</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"> $ npm install <i class="conum" data-value="1"></i><b>(1)</b>
+ $ npm run antora <i class="conum" data-value="2"></i><b>(2)</b>
+ $ npm run start <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Install the dependencies</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Generate the documentation</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Serve the documentation, the url is provided in the console</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>See the [workflow file](.github/workflows/ci.yml) for more details.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_skipping_a_job"><a class="anchor" href="#_skipping_a_job"></a>1. Skipping a job</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can skip the CI  by adding the following line in the commit message: <code>[skip ci]</code></p>
-</div>
-<div class="paragraph">
-<p>You can skip the job that build the documentation  by adding the following line in the commit message: <code>doc skip</code>.</p>
-</div>
-<div class="paragraph">
-<p>You can skip the job that build the code  by adding the following line in the commit message: <code>code skip</code>.</p>
-</div>
-</div>
+<p>Unresolved include directive in modules/ROOT/pages/antora.adoc - include::antora-ui::partial$antora.adoc[]</p>
 </div>
 </article>
   </div>
 </main>
 </div>
-<footer class="footer" style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
     <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
         <div>
             <a href="https://www.cemosis.fr">
                 <img src="../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
             </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
         </div>
-        <span style="font-size: 0.8rem; color: #9e9e9e">© 2024 <a href="https://www.cemosis.fr" style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2024 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
     </div>
-</footer>
-<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+</footer><script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
 
 
 <script async src="../_/js/vendor/fontawesome-icon-defs.js"></script>
