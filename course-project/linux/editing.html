@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Tools in Project Management :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/project-management/tools-gantt.html">
+    <title>File Editing in Linux :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/linux/editing.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -153,30 +153,30 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Introduction to Project Management</a>
+    <a class="nav-link" href="../project-management/index.html">Introduction to Project Management</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="introduction.html">What is Project?</a>
+    <a class="nav-link" href="../project-management/introduction.html">What is Project?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="project-phases.html">Phases of a Project</a>
+    <a class="nav-link" href="../project-management/project-phases.html">Phases of a Project</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="practical-examples.html">Practical Examples in Scientific Computing</a>
+    <a class="nav-link" href="../project-management/practical-examples.html">Practical Examples in Scientific Computing</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="case-studies.html">Case Studies</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="tools-gantt.html">Project Management Tools and Gantt Charts</a>
+    <a class="nav-link" href="../project-management/case-studies.html">Case Studies</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="agile-best-practices.html">Agile Best Practices</a>
+    <a class="nav-link" href="../project-management/tools-gantt.html">Project Management Tools and Gantt Charts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/agile-best-practices.html">Agile Best Practices</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="github.html">Introduction to GitHub</a>
+    <a class="nav-link" href="../project-management/github.html">Introduction to GitHub</a>
   </li>
 </ul>
   </li>
@@ -184,13 +184,13 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../linux/index.html">Introduction to Linux</a>
+    <a class="nav-link" href="index.html">Introduction to Linux</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../linux/editing.html">File Editing in Linux</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="editing.html">File Editing in Linux</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../linux/shell.html">Linux Shell Basics</a>
+    <a class="nav-link" href="shell.html">Linux Shell Basics</a>
   </li>
 </ul>
   </li>
@@ -223,13 +223,13 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Course Project</a></li>
-    <li><a href="index.html">Introduction to Project Management</a></li>
-    <li><a href="tools-gantt.html">Project Management Tools and Gantt Charts</a></li>
+    <li><a href="index.html">Introduction to Linux</a></li>
+    <li><a href="editing.html">File Editing in Linux</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/project-management/pages/tools-gantt.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/linux/pages/editing.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -249,219 +249,149 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Tools in Project Management</h1>
+<h1 class="page">File Editing in Linux</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Linux, like other operating systems, allows file editing for numerous purposes, such as configuring system settings or writing scripts. There’s a wide variety of text editors available in Linux, and these editors come with different capabilities and levels of complexity. Whether you&#8217;re editing configuration files or writing code, choosing the right editor can make a significant difference in your workflow.</p>
+</div>
+</div>
+</div>
 <div class="sect1">
-<h2 id="_what_is_a_milestone"><a class="anchor" href="#_what_is_a_milestone"></a>1. What is a Milestone?</h2>
+<h2 id="_popular_text_editors_in_linux"><a class="anchor" href="#_popular_text_editors_in_linux"></a>1. Popular Text Editors in Linux</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A <strong>milestone</strong> in project management is a significant event or point in the project timeline that marks the completion of a major phase or task. Milestones are often used to:</p>
+<p>Some commonly used text editors in Linux include:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Measure progress</strong>: By marking important points, you can assess if the project is on schedule.</p>
+<p><strong>Nano</strong>: A basic text editor that&#8217;s easy to use, especially for beginners.</p>
 </li>
 <li>
-<p><strong>Highlight deadlines</strong>: Milestones represent key deadlines that need to be met to move the project forward.</p>
+<p><strong>Vi/Vim</strong>: A powerful editor with an extensive set of commands for advanced users.</p>
 </li>
 <li>
-<p><strong>Reflect achievements</strong>: Reaching a milestone signifies the completion of a critical part of the project.</p>
+<p><strong>Emacs</strong>: Another powerful editor with built-in features for coding, writing, and more.</p>
+</li>
+<li>
+<p><strong>Gedit</strong>: A graphical text editor, often the default in many Linux desktop environments.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For example, in a software project, some common milestones might include:</p>
+<p>Each editor has its own learning curve, commands, and unique set of features. For instance, nano is ideal for simple text file editing, while vi/vim offers a more comprehensive feature set suitable for advanced programming or system configuration.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Requirements completion</strong>: All necessary features and requirements for the software have been defined.</p>
-</li>
-<li>
-<p><strong>Design approval</strong>: The software’s architecture and design are approved for development.</p>
-</li>
-<li>
-<p><strong>First working prototype</strong>: A functional version of the software, even if limited in scope, is built and can be demonstrated.</p>
-</li>
-</ul>
+<div class="sect2">
+<h3 id="_editing_a_file"><a class="anchor" href="#_editing_a_file"></a>1.1. Editing a File</h3>
+<div class="paragraph">
+<p>To edit a file using one of these editors, you first need to open it from the command line. For example:</p>
 </div>
-</div>
-</div>
-<div class="sect1 slide">
-<h2 id="_gantt_charts"><a class="anchor" href="#_gantt_charts"></a>2. Gantt Charts</h2>
-<div class="sectionbody">
-<div class="openblock left">
+<div class="listingblock">
 <div class="content">
-<div class="paragraph">
-<p><span class="image"><img src="_images/exama-gantt.png" alt="exama gantt" width="600"></span></p>
-</div>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">nano /path/to/your/file.txt</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A Gantt Chart is an essential tool for project management that provides a visual representation of a project’s timeline. It is typically structured as follows:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Rows</strong> represent tasks or milestones within the project.</p>
-</li>
-<li>
-<p><strong>Columns</strong> represent time intervals, such as days, weeks, or months.</p>
-</li>
-<li>
-<p><strong>Bars</strong> span across the time intervals, showing the duration of tasks.</p>
-</li>
-<li>
-<p><strong>Arrows</strong> may indicate dependencies between tasks.</p>
-</li>
-</ul>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>Gantt charts are a powerful tool for visualizing dependencies and progress across the project timeline.</p>
-</div>
-</blockquote>
-<div class="attribution">
-&#8212; NOTE
-</div>
-</div>
-<div class="sect2">
-<h3 id="_key_elements_of_a_gantt_chart"><a class="anchor" href="#_key_elements_of_a_gantt_chart"></a>2.1. Key Elements of a Gantt Chart</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Tasks/Milestones as Rows</strong>
-Each row in the Gantt chart represents a task or a milestone.</p>
-</li>
-<li>
-<p><strong>Time Intervals as Columns</strong>
-The columns represent the timeline broken down into time intervals (days, weeks, or months).</p>
-</li>
-<li>
-<p><strong>Task Spanning</strong>
-Tasks are visualized as bars across the time intervals, indicating when they begin and end.</p>
-</li>
-<li>
-<p><strong>Task Dependencies</strong>
-Dependencies between tasks can be displayed using arrows, indicating that one task must be completed before another can start.</p>
-</li>
-<li>
-<p><strong>Progress Tracking</strong>
-Tasks are often shown with a percentage of completion to easily monitor the project’s progress.</p>
-</li>
-<li>
-<p><strong>Critical Path</strong>
-The sequence of tasks that must be completed on time for the project to meet its deadline is highlighted as the critical path.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_benefits_of_gantt_charts"><a class="anchor" href="#_benefits_of_gantt_charts"></a>2.2. Benefits of Gantt Charts</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Visual Overview</strong>: A Gantt chart provides a clear, visual timeline of a project’s tasks.</p>
-</li>
-<li>
-<p><strong>Task Dependencies</strong>: It shows relationships between tasks, ensuring team members are aware of task dependencies.</p>
-</li>
-<li>
-<p><strong>Progress Monitoring</strong>: It enables tracking the completion status of each task to ensure the project remains on schedule.</p>
-</li>
-<li>
-<p><strong>Resource Management</strong>: Resources can be efficiently allocated based on the project timeline.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_example_of_a_gantt_chart"><a class="anchor" href="#_example_of_a_gantt_chart"></a>2.3. Example of a Gantt Chart</h3>
-<div class="paragraph">
-<p>Consider the development of a Digital Twin for a Manufacturing System project:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Task Name</th>
-<th class="tableblock halign-left valign-top">Start Date</th>
-<th class="tableblock halign-left valign-top">End Date</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Kick-off Meeting with Stakeholders</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 1, Week 1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 1, Week 1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Identify Data Sources</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 1, Week 2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 1, Week 3</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Define Key Metrics</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 1, Week 4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 2, Week 1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Develop Digital Twin Simulation Model</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 3, Week 1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 5, Week 3</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Test with Real-Time Data</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 6, Week 1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 6, Week 4</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>By following this Gantt chart, teams can visualize the full scope of the project, track its progress, and ensure it remains on schedule.</p>
+<p>This command opens the specified file in the nano editor. You can replace <code>nano</code> with any other editor such as <code>vim</code>, <code>gedit</code>, or <code>emacs</code> depending on your preference.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="sect1 slide">
-<h2 id="_managing_software_projects_with_github"><a class="anchor" href="#_managing_software_projects_with_github"></a>3. Managing Software Projects with GitHub</h2>
+<div class="sect1">
+<h2 id="_using_visual_studio_code_vs_code"><a class="anchor" href="#_using_visual_studio_code_vs_code"></a>2. Using Visual Studio Code (VS Code)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>GitHub is a key tool for software project management. Key features include:</p>
+<p>Visual Studio Code (VS Code) is a popular code editor that is widely used by developers for its rich feature set and extensions. Though not included by default in many Linux distributions, it can be easily installed and is highly customizable.</p>
+</div>
+<div class="paragraph">
+<p>To use VS Code for file editing, follow these steps:</p>
+</div>
+<div class="sect2">
+<h3 id="_installing_vs_code"><a class="anchor" href="#_installing_vs_code"></a>2.1. Installing VS Code</h3>
+<div class="paragraph">
+<p>First, you need to install VS Code on your Linux system. You can do this by downloading the package from the official website or using the terminal with a package manager, depending on your distribution.</p>
+</div>
+<div class="paragraph">
+<p>For example, on <strong>Ubuntu</strong> or <strong>Debian-based</strong> systems:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">sudo apt update
+sudo apt install code</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For <strong>Fedora</strong> or <strong>Red Hat-based</strong> systems:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">sudo dnf install code</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can use <strong>Snap</strong> to install VS Code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">sudo snap install --classic code</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_opening_a_file_in_vs_code"><a class="anchor" href="#_opening_a_file_in_vs_code"></a>2.2. Opening a File in VS Code</h3>
+<div class="paragraph">
+<p>Once VS Code is installed, you can open a file or a folder directly from the terminal using the <code>code</code> command.</p>
+</div>
+<div class="paragraph">
+<p>To open a single file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">code /path/to/your/file.txt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To open an entire directory in VS Code (which is useful for project management):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">code /path/to/your/project/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>VS Code offers an integrated terminal, syntax highlighting, debugging tools, and a rich ecosystem of extensions that support many programming languages and workflows.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_features_of_vs_code"><a class="anchor" href="#_key_features_of_vs_code"></a>2.3. Key Features of VS Code</h3>
+<div class="paragraph">
+<p>Some of the notable features that make VS Code a great choice for Linux users include:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Distributed version control (Git)</p>
+<p><strong>Integrated Terminal</strong>: You can access a terminal window directly inside the editor.</p>
 </li>
 <li>
-<p>Source code management</p>
+<p><strong>Extension Marketplace</strong>: A wide range of extensions for languages, tools, and frameworks.</p>
 </li>
 <li>
-<p>Collaboration with other developers</p>
+<p><strong>Git Integration</strong>: VS Code has built-in support for Git, making it easier to manage version control.</p>
 </li>
 <li>
-<p>Bug tracking, task management, and wikis</p>
-</li>
-<li>
-<p>Largest repository of open-source projects</p>
+<p><strong>Customization</strong>: Easily customizable interface, themes, and settings.</p>
 </li>
 </ul>
 </div>
-<div class="quoteblock">
-<blockquote>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary"><a class="anchor" href="#_summary"></a>3. Summary</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>GitHub facilitates collaboration, version control, and documentation, making it ideal for managing software development projects.</p>
-</div>
-</blockquote>
-<div class="attribution">
-&#8212; NOTE
-</div>
+<p>Whether you&#8217;re editing system files with simple editors like nano or using advanced tools like vim and VS Code, Linux offers a wide variety of choices for text editing. Choose the editor that best suits your needs and experience level, and always explore new tools that might enhance your workflow.</p>
 </div>
 </div>
 </div>

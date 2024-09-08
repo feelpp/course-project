@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Tools in Project Management :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/project-management/tools-gantt.html">
+    <title>Learning Linux Basics :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/linux/index.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -153,44 +153,44 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Introduction to Project Management</a>
+    <a class="nav-link" href="../project-management/index.html">Introduction to Project Management</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="introduction.html">What is Project?</a>
+    <a class="nav-link" href="../project-management/introduction.html">What is Project?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="project-phases.html">Phases of a Project</a>
+    <a class="nav-link" href="../project-management/project-phases.html">Phases of a Project</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="practical-examples.html">Practical Examples in Scientific Computing</a>
+    <a class="nav-link" href="../project-management/practical-examples.html">Practical Examples in Scientific Computing</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="case-studies.html">Case Studies</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="tools-gantt.html">Project Management Tools and Gantt Charts</a>
+    <a class="nav-link" href="../project-management/case-studies.html">Case Studies</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="agile-best-practices.html">Agile Best Practices</a>
+    <a class="nav-link" href="../project-management/tools-gantt.html">Project Management Tools and Gantt Charts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/agile-best-practices.html">Agile Best Practices</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="github.html">Introduction to GitHub</a>
+    <a class="nav-link" href="../project-management/github.html">Introduction to GitHub</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../linux/index.html">Introduction to Linux</a>
+    <a class="nav-link" href="index.html">Introduction to Linux</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../linux/editing.html">File Editing in Linux</a>
+    <a class="nav-link" href="editing.html">File Editing in Linux</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../linux/shell.html">Linux Shell Basics</a>
+    <a class="nav-link" href="shell.html">Linux Shell Basics</a>
   </li>
 </ul>
   </li>
@@ -223,13 +223,12 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Course Project</a></li>
-    <li><a href="index.html">Introduction to Project Management</a></li>
-    <li><a href="tools-gantt.html">Project Management Tools and Gantt Charts</a></li>
+    <li><a href="index.html">Introduction to Linux</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/project-management/pages/tools-gantt.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/linux/pages/index.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -240,6 +239,12 @@ MathJax.Hub.Config({
         <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
       </a>
     </li>
+      <li>
+        <a href="#"
+           title="Download Jupyter Notebook" data-toggle="tooltip" data-placement="left" class="jupyter-download">
+          <img class="jupyter-file-icon icon" src="../../_/img/jupyter-logo.svg"/> .ipynb
+        </a>
+      </li>
   </ul>
 </div>
 </div>
@@ -249,219 +254,189 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Tools in Project Management</h1>
+<h1 class="page">Learning Linux Basics</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Navigating directories and files in Linux is a fundamental skill that allows you to fully exploit the power of the command-line interface (CLI). Mastering essential Linux navigation commands such as <code>cd</code>, <code>pwd</code>, <code>ls</code>, and <code>tree</code> enables you to effortlessly move through the filesystem, display the contents of directories, and understand your location within the system.</p>
+</div>
+</div>
+</div>
 <div class="sect1">
-<h2 id="_what_is_a_milestone"><a class="anchor" href="#_what_is_a_milestone"></a>1. What is a Milestone?</h2>
+<h2 id="_basic_linux_navigation_commands"><a class="anchor" href="#_basic_linux_navigation_commands"></a>1. Basic Linux Navigation Commands</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A <strong>milestone</strong> in project management is a significant event or point in the project timeline that marks the completion of a major phase or task. Milestones are often used to:</p>
+<p>Here is a brief overview of some of the most common commands used for navigation in Linux:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Measure progress</strong>: By marking important points, you can assess if the project is on schedule.</p>
-</li>
-<li>
-<p><strong>Highlight deadlines</strong>: Milestones represent key deadlines that need to be met to move the project forward.</p>
-</li>
-<li>
-<p><strong>Reflect achievements</strong>: Reaching a milestone signifies the completion of a critical part of the project.</p>
-</li>
-</ul>
+<div class="sect2">
+<h3 id="_cd_change_directory"><a class="anchor" href="#_cd_change_directory"></a>1.1. <code>cd</code> – Change Directory</h3>
+<div class="paragraph">
+<p>The <code>cd</code> command allows you to move between directories within the filesystem. It is one of the most frequently used commands when navigating the CLI.</p>
 </div>
 <div class="paragraph">
-<p>For example, in a software project, some common milestones might include:</p>
+<p>Example:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Requirements completion</strong>: All necessary features and requirements for the software have been defined.</p>
-</li>
-<li>
-<p><strong>Design approval</strong>: The software’s architecture and design are approved for development.</p>
-</li>
-<li>
-<p><strong>First working prototype</strong>: A functional version of the software, even if limited in scope, is built and can be demonstrated.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1 slide">
-<h2 id="_gantt_charts"><a class="anchor" href="#_gantt_charts"></a>2. Gantt Charts</h2>
-<div class="sectionbody">
-<div class="openblock left">
+<div class="listingblock">
 <div class="content">
-<div class="paragraph">
-<p><span class="image"><img src="_images/exama-gantt.png" alt="exama gantt" width="600"></span></p>
-</div>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd /path/to/directory</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A Gantt Chart is an essential tool for project management that provides a visual representation of a project’s timeline. It is typically structured as follows:</p>
+<p>This command will move you to the specified directory. If no path is specified, typing <code>cd</code> on its own will take you to your home directory.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Rows</strong> represent tasks or milestones within the project.</p>
+<p><strong>Absolute Path</strong>: <code>/home/user/documents</code></p>
 </li>
 <li>
-<p><strong>Columns</strong> represent time intervals, such as days, weeks, or months.</p>
-</li>
-<li>
-<p><strong>Bars</strong> span across the time intervals, showing the duration of tasks.</p>
-</li>
-<li>
-<p><strong>Arrows</strong> may indicate dependencies between tasks.</p>
-</li>
-</ul>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>Gantt charts are a powerful tool for visualizing dependencies and progress across the project timeline.</p>
-</div>
-</blockquote>
-<div class="attribution">
-&#8212; NOTE
-</div>
-</div>
-<div class="sect2">
-<h3 id="_key_elements_of_a_gantt_chart"><a class="anchor" href="#_key_elements_of_a_gantt_chart"></a>2.1. Key Elements of a Gantt Chart</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Tasks/Milestones as Rows</strong>
-Each row in the Gantt chart represents a task or a milestone.</p>
-</li>
-<li>
-<p><strong>Time Intervals as Columns</strong>
-The columns represent the timeline broken down into time intervals (days, weeks, or months).</p>
-</li>
-<li>
-<p><strong>Task Spanning</strong>
-Tasks are visualized as bars across the time intervals, indicating when they begin and end.</p>
-</li>
-<li>
-<p><strong>Task Dependencies</strong>
-Dependencies between tasks can be displayed using arrows, indicating that one task must be completed before another can start.</p>
-</li>
-<li>
-<p><strong>Progress Tracking</strong>
-Tasks are often shown with a percentage of completion to easily monitor the project’s progress.</p>
-</li>
-<li>
-<p><strong>Critical Path</strong>
-The sequence of tasks that must be completed on time for the project to meet its deadline is highlighted as the critical path.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_benefits_of_gantt_charts"><a class="anchor" href="#_benefits_of_gantt_charts"></a>2.2. Benefits of Gantt Charts</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Visual Overview</strong>: A Gantt chart provides a clear, visual timeline of a project’s tasks.</p>
-</li>
-<li>
-<p><strong>Task Dependencies</strong>: It shows relationships between tasks, ensuring team members are aware of task dependencies.</p>
-</li>
-<li>
-<p><strong>Progress Monitoring</strong>: It enables tracking the completion status of each task to ensure the project remains on schedule.</p>
-</li>
-<li>
-<p><strong>Resource Management</strong>: Resources can be efficiently allocated based on the project timeline.</p>
+<p><strong>Relative Path</strong>: <code>../documents</code> (moves up one directory and into <code>documents</code>)</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_example_of_a_gantt_chart"><a class="anchor" href="#_example_of_a_gantt_chart"></a>2.3. Example of a Gantt Chart</h3>
+<h3 id="_pwd_print_working_directory"><a class="anchor" href="#_pwd_print_working_directory"></a>1.2. <code>pwd</code> – Print Working Directory</h3>
 <div class="paragraph">
-<p>Consider the development of a Digital Twin for a Manufacturing System project:</p>
+<p>The <code>pwd</code> command prints the full path of your current directory. This is particularly useful when you&#8217;ve navigated through several directories and want to confirm your current location in the filesystem.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Task Name</th>
-<th class="tableblock halign-left valign-top">Start Date</th>
-<th class="tableblock halign-left valign-top">End Date</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Kick-off Meeting with Stakeholders</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 1, Week 1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 1, Week 1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Identify Data Sources</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 1, Week 2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 1, Week 3</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Define Key Metrics</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 1, Week 4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 2, Week 1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Develop Digital Twin Simulation Model</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 3, Week 1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 5, Week 3</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Test with Real-Time Data</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 6, Week 1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Month 6, Week 4</p></td>
-</tr>
-</tbody>
-</table>
 <div class="paragraph">
-<p>By following this Gantt chart, teams can visualize the full scope of the project, track its progress, and ensure it remains on schedule.</p>
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">pwd</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will output something like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">/home/user/documents</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ls_list_directory_contents"><a class="anchor" href="#_ls_list_directory_contents"></a>1.3. <code>ls</code> – List Directory Contents</h3>
+<div class="paragraph">
+<p>The <code>ls</code> command lists all files and directories within the current directory. By default, it shows a simple list, but there are many options to customize what is displayed.</p>
+</div>
+<div class="paragraph">
+<p>Basic usage:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ls</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Additional options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ls -l</code>: Displays detailed information about each file, such as permissions, owner, size, and modification date.</p>
+</li>
+<li>
+<p><code>ls -a</code>: Lists all files, including hidden files (those starting with a dot).</p>
+</li>
+<li>
+<p><code>ls -lh</code>: Displays sizes in human-readable format (KB, MB, etc.).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tree_display_directory_structure"><a class="anchor" href="#_tree_display_directory_structure"></a>1.4. <code>tree</code> – Display Directory Structure</h3>
+<div class="paragraph">
+<p>The <code>tree</code> command visually displays the directory structure as a tree. It’s a useful tool for understanding the layout of files and directories.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">tree</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will output a nested tree structure representing the contents of the current directory and its subdirectories.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="sect1 slide">
-<h2 id="_managing_software_projects_with_github"><a class="anchor" href="#_managing_software_projects_with_github"></a>3. Managing Software Projects with GitHub</h2>
+<div class="sect1">
+<h2 id="_practical_examples"><a class="anchor" href="#_practical_examples"></a>2. Practical Examples</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>GitHub is a key tool for software project management. Key features include:</p>
+<p>Here are some practical examples of how you might use these commands:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Distributed version control (Git)</p>
-</li>
-<li>
-<p>Source code management</p>
-</li>
-<li>
-<p>Collaboration with other developers</p>
-</li>
-<li>
-<p>Bug tracking, task management, and wikis</p>
-</li>
-<li>
-<p>Largest repository of open-source projects</p>
+<p><strong>Navigating to a specific directory:</strong></p>
 </li>
 </ul>
 </div>
-<div class="quoteblock">
-<blockquote>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd /var/log</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Confirming your location in the filesystem:</strong></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">pwd</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Listing files in the current directory in detail:</strong></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ls -l</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Viewing the directory structure:</strong></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">tree</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_further_resources"><a class="anchor" href="#_further_resources"></a>3. Further Resources</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>GitHub facilitates collaboration, version control, and documentation, making it ideal for managing software development projects.</p>
+<p>To expand your knowledge on Linux navigation and command-line tools, visit the following resources:</p>
 </div>
-</blockquote>
-<div class="attribution">
-&#8212; NOTE
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#linux_basics.adoc" class="xref unresolved">Linux Basics Documentation</a></p>
+</li>
+<li>
+<p><a href="#linux_commands_cheat_sheet.adoc" class="xref unresolved">Command Line Cheat Sheet</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
