@@ -5,4 +5,4 @@
 ** xref:case-studies.adoc[Case Studies]
 ** xref:tools-gantt.adoc[Project Management Tools and Gantt Charts]
 ** xref:agile-best-practices.adoc[Agile Best Practices]
-** xref:github.adoc[Introduction to GitHub]
+* xref:github.adoc[Introduction to GitHub]

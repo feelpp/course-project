@@ -16,4 +16,5 @@ ext:
 nav:
 - modules/ROOT/nav.adoc
 - modules/project-management/nav.adoc
+- modules/linux/nav.adoc
 

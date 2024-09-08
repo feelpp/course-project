@@ -1,0 +1,110 @@
+= Linux Shell Basics
+:page-jupyter: true
+
+The Linux shell is a command-line interface or terminal used to interact directly with the operating system. 
+The shell helps facilitate system commands and acts as an intermediary interface between the user and the system’s kernel.
+The shell can perform complex tasks efficiently and quickly. 
+There are many types of shells available in Linux, including the Bourne Shell (`sh`), the C Shell (`csh`), and the Bourne-Again Shell (`bash`).
+
+The basics of using a Linux shell include navigating between directories, creating, renaming, and deleting files and directories, and executing system commands. 
+This introductory knowledge is crucial for Linux system administration, scripting, and automation.
+
+Here is a classic bash command as an example, which prints the current directory:
+
+[source,shell]
+----
+pwd
+----
+
+== Command Path
+
+The command path refers to the list of directories that the shell searches when a command is entered. The shell uses the `PATH` environment variable to find commands. If you type a command, the shell will look for that command in each directory listed in your `PATH`, and execute the first match it finds.
+
+View your current command path with the following:
+
+[source,shell]
+----
+echo $PATH
+----
+
+You can modify your `PATH` to include custom directories using:
+
+[source,shell]
+----
+export PATH=$PATH:/your/custom/directory
+----
+
+== Environment Variables
+
+Environment variables are dynamic values that affect the way processes run on the system. Common environment variables include `PATH`, `HOME`, `USER`, and `SHELL`.
+
+To view all environment variables, use the following command:
+
+[source,shell]
+----
+printenv
+----
+
+You can also set or modify environment variables like this:
+
+[source,shell]
+----
+export VARIABLE_NAME="value"
+----
+
+== Command Help
+
+If you're unsure about how to use a particular command or what options it supports, you can access its manual page by using the `man` command. For example:
+
+[source,shell]
+----
+man ls
+----
+
+Alternatively, many commands offer a `--help` option to quickly display usage information:
+
+[source,shell]
+----
+ls --help
+----
+
+== Redirects
+
+Redirection is used to send the output of a command to a file or another command instead of the terminal. There are several types of redirection:
+
+- **`>`**: Redirects output to a file (overwrites the file if it exists).
+- **`>>`**: Appends output to the file.
+- **`<`**: Reads input from a file.
+
+Example:
+
+[source,shell]
+----
+ls > output.txt  # Redirects the output of ls to output.txt
+----
+
+You can also pipe the output of one command into another command:
+
+[source,shell]
+----
+ls | grep "pattern"  # Passes the output of ls to grep to search for a pattern
+----
+
+== Super User
+
+Some tasks require administrative (root) privileges to be executed. To run a command as the superuser, you use `sudo` before the command.
+
+Example:
+
+[source,shell]
+----
+sudo apt update  # Run system update with superuser privileges
+----
+
+You will typically be prompted to enter the password for the superuser account.
+
+[source,shell]
+----
+# Become the superuser for a terminal session
+sudo su
+----
