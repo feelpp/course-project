@@ -1,0 +1,147 @@
+= What is a Project?
+
+[.slide]
+== Definition of a Project
+
+* A sequence of tasks:
+** Planned from beginning to end
+** Bounded by time, resources, & specific results
+* Defined outcomes and "deliverables"
+* Has a deadline and a budget
+** Limits number of people, supplies, and capital
+
+[quote, NOTE]
+____
+A project is a structured, goal-driven effort with clear boundaries and constraints. Outlining these elements clearly from the start is crucial for success.
+____
+
+[.slide]
+== Tasks vs. Projects
+
+Routine tasks:
+
+- Responding to email
+- Making coffee
+- Hooking up a printer
+
+Projects:
+
+- Producing a customer newsletter
+- Catering a party
+- Writing a book
+- Implementing a computer network
+
+[quote, NOTE]
+____
+Tasks are often short-term and repetitive, while projects are complex, unique, and require strategic planning and coordination.
+____
+
+[.slide]
+== Five Features of a Project
+
+1. Defined beginning, end, schedule, and approach
+2. Use of specific resources allocated to the work
+3. Achievement of defined goals (time, cost, performance/quality)
+4. Follows a planned, organized approach
+5. Involves a team of people
+
+[quote, NOTE]
+____
+A successful project incorporates all five of these features and leads to a defined outcome that meets the objectives.
+____
+
+[.slide]
+== Resources and Constraints
+
+A project’s success depends on effective management of:
+
+- Time
+- People
+- Money
+- Equipment
+- Facilities
+
+[quote, NOTE]
+____
+Managing resources efficiently is a key factor in ensuring that the project meets its objectives while staying within constraints.
+____
+
+[.slide]
+== What Makes a Project Successful?
+
+* Organized and well-planned approach
+* Commitment from the project team
+* Balancing:
+** Time
+** Resources
+** Results
+** Customer satisfaction
+
+[quote, NOTE]
+____
+Success in project management comes from maintaining balance between these factors while adapting to changing conditions.
+____
+
+[.slide]
+== What is a Program?
+
+- A recurring or ongoing project
+- Predictable and repeatable in nature
+- Each cycle has a new plan, new resources, and a new end result
+
+[quote, NOTE]
+____
+While a project is a one-time effort, a program represents a recurring, systematic process that requires fresh planning and resources each time.
+____
+
+
+== What is a Milestone?
+
+A **milestone** in project management is a significant event or point in the project timeline that marks the completion of a major phase or task. Milestones are often used to:
+
+- Measure progress: By marking important points, you can assess if the project is on schedule.
+- Highlight deadlines: Milestones represent key deadlines that need to be met to move the project forward.
+- Reflect achievements: Reaching a milestone signifies the completion of a critical part of the project.
+
+For example, in a software project, some common milestones might include:
+
+- **Requirements completion**: All necessary features and requirements for the software have been defined.
+- **Design approval**: The software’s architecture and design are approved for development.
+- **First working prototype**: A functional version of the software, even if limited in scope, is built and can be demonstrated.
+
+=== Milestones vs. Releases in Software Management
+
+In **software project management**, milestones and releases serve different purposes:
+
+==== Milestone
+
+- **Purpose**: A milestone marks the completion of a major phase or achievement, used for internal project tracking.
+- **Focus**: Milestones are about tracking progress within the development cycle (such as completing a design or testing phase).
+- **Time-bound**: They are often tied to specific dates but do not necessarily result in a product being delivered to users.
+- **Example**: Reaching the end of the "feature development" phase or completing "beta testing."
+
+==== Release
+
+- **Purpose**: A release refers to a version of the software made available to the end-user, containing a set of completed features or fixes.
+- **Focus**: Releases are focused on delivering usable software to stakeholders or customers.
+- **Versioning**: Releases are typically versioned (e.g., v1.0, v2.0) and include new features, bug fixes, or performance improvements.
+- **Example**: Releasing "Version 1.0" of the software for deployment to users.
+
+==== Key Differences Between Milestones and Releases
+
+|===
+| **Aspect**       | **Milestone** | **Release** 
+| **Purpose**      | Track progress and mark significant internal project achievements, such as completing algorithm development or model validation. | Deliver a working version of the scientific software to researchers, engineers, or end-users. 
+| **Timing**       | Usually tied to internal deadlines like completing a computational model, feature development, or a simulation test. | Tied to external deadlines, often aligned with conference submissions, publication timelines, or public availability. 
+| **Visibility**   | Mainly visible to internal teams (e.g., scientific programmers, computational researchers, project managers). | Visible to external stakeholders such as collaborating researchers, funding agencies, or general users. 
+| **Scope**        | Focuses on completing scientific tasks like algorithm refinement, numerical validation, or model integration. | Focuses on delivering fully functional, validated, and potentially published software versions with new algorithms or models. 
+| **Deliverable**  | Internal progress tracked, like a working prototype or a validated computational model, but not yet released to the broader scientific community. | A complete software release that includes new algorithms, models, or simulation capabilities made available to users for research or production use. 
+| **Duration**     | No specific duration, marks key points in the research and development process (e.g., completion of the first draft of a new simulation method). | Includes a collection of features, bug fixes, or optimizations that have been developed and tested over a defined period. 
+| **Example**      | Completing the validation of a new fluid dynamics solver or a complex climate model integration. | Release of a new version of the scientific software (e.g., "Version 2.0" with enhanced parallelization capabilities, or new solvers) for use by other researchers. 
+|===
+
+
+=== Summary
+
+- A **milestone** is an internal progress marker that helps project teams track major achievements, while a **release** represents a specific version of the software delivered to users.
+- In the context of software management, milestones help guide the project through its phases, while releases are tied to delivering finished products or features to the customer or end-users.

@@ -1,0 +1,8 @@
+* xref:index.adoc[Introduction to Project Management]
+** xref:introduction.adoc[What is Project?]
+** xref:project-phases.adoc[Phases of a Project]
+** xref:practical-examples.adoc[Practical Examples in Scientific Computing]
+** xref:case-studies.adoc[Case Studies]
+** xref:tools-gantt.adoc[Project Management Tools and Gantt Charts]
+** xref:agile-best-practices.adoc[Agile Best Practices]
+** xref:github.adoc[Introduction to GitHub]

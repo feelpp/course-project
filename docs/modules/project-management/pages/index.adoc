@@ -1,0 +1,6 @@
+= Introduction to Project Management
+
+
+[.lead]
+**Project management** involves organizing resources, tasks, and people to achieve specific goals within time and budget constraints.
+ This introduction explores the key elements, phases, and tools required for successful project management.

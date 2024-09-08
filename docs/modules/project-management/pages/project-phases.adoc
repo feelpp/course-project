@@ -1,0 +1,93 @@
+= Phases of a Project
+
+[.slide]
+== Overview of Project Phases
+
+image::Project_development_stages.jpg[width=600]
+
+The typical phases of a project include:
+
+1. Conceptualization
+2. Feasibility
+3. Preliminary planning
+4. Detailed planning
+5. Execution
+6. Testing
+7. Termination
+
+[quote, NOTE]
+____
+Understanding each phase is crucial for navigating the project lifecycle from idea to completion.
+____
+
+[.slide]
+== Phase 1: Initiating
+
+- Identify the need for the project
+- Determine what the project should accomplish
+- Define the overall goal
+- Identify key stakeholders and initial team members
+- Outline the general scope
+
+[quote, NOTE]
+____
+The initiation phase sets the foundation for the project by clarifying its objectives and assembling the team.
+____
+
+[.slide]
+== Phase 2: Planning
+
+- Refine the project scope
+- List tasks and activities
+- Sequence activities optimally
+- Develop a schedule and budget
+- Get approval from stakeholders
+
+[quote, NOTE]
+____
+Detailed planning ensures that the project is feasible and that all stakeholders are aligned on expectations and resources.
+____
+
+[.slide]
+== Phase 3: Executing
+
+- Lead the project team
+- Hold regular meetings
+- Communicate progress to stakeholders
+- Resolve issues as they arise
+- Secure additional resources as needed
+
+[quote, NOTE]
+____
+Execution is about putting the plan into action and continuously managing the process to keep the project on track.
+____
+
+[.slide]
+== Phase 4: Controlling
+
+- Monitor the project’s progress against the plan
+- Take corrective actions as needed
+- Reschedule or reallocate resources if required
+- Handle change requests
+- Adjust the scope if necessary
+
+[quote, NOTE]
+____
+Control mechanisms ensure that the project stays aligned with its goals, allowing for adjustments when deviations occur.
+____
+
+[.slide]
+== Phase 5: Closing
+
+- Acknowledge accomplishments
+- Disband the team and wrap up operations
+- Conduct a final review of the project process and outcomes
+- Write a final report with lessons learned
+
+[quote, NOTE]
+____
+Closing a project properly is crucial for drawing conclusions, learning for the future, and ensuring a clean handover or shutdown.
+____
+
+
+
