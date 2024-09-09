@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Tools in Project Management :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/project-management/tools-gantt.html">
+    <link rel="prev" href="case-studies.html">
+    <link rel="next" href="agile-best-practices.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header><div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="course-project" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Course Project</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../github.html">Introduction to GitHub</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Introduction to Project Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="introduction.html">What is Project?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-phases.html">Phases of a Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="practical-examples.html">Practical Examples in Scientific Computing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="case-studies.html">Case Studies</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="tools-gantt.html">Project Management Tools and Gantt Charts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="agile-best-practices.html">Agile Best Practices</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="github.html">Introduction to GitHub</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../linux/index.html">Introduction to Linux</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../linux/editing.html">File Editing in Linux</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../linux/shell.html">Linux Shell Basics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../linux/text-processing.html">Text Processing</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Course Project</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../../feelpp-antora-ui/index.html">Antora Feel++ UI</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="../index.html">Course Project</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Course Project</a></li>
+    <li><a href="index.html">Introduction to Project Management</a></li>
+    <li><a href="tools-gantt.html">Project Management Tools and Gantt Charts</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/project-management/pages/tools-gantt.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Tools in Project Management</h1>
+<div class="sect1">
+<h2 id="_what_is_a_milestone"><a class="anchor" href="#_what_is_a_milestone"></a>1. What is a Milestone?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <strong>milestone</strong> in project management is a significant event or point in the project timeline that marks the completion of a major phase or task. Milestones are often used to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Measure progress</strong>: By marking important points, you can assess if the project is on schedule.</p>
+</li>
+<li>
+<p><strong>Highlight deadlines</strong>: Milestones represent key deadlines that need to be met to move the project forward.</p>
+</li>
+<li>
+<p><strong>Reflect achievements</strong>: Reaching a milestone signifies the completion of a critical part of the project.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, in a software project, some common milestones might include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Requirements completion</strong>: All necessary features and requirements for the software have been defined.</p>
+</li>
+<li>
+<p><strong>Design approval</strong>: The software’s architecture and design are approved for development.</p>
+</li>
+<li>
+<p><strong>First working prototype</strong>: A functional version of the software, even if limited in scope, is built and can be demonstrated.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1 slide">
+<h2 id="_gantt_charts"><a class="anchor" href="#_gantt_charts"></a>2. Gantt Charts</h2>
+<div class="sectionbody">
+<div class="openblock left">
+<div class="content">
+<div class="paragraph">
+<p><span class="image"><img src="_images/exama-gantt.png" alt="exama gantt" width="600"></span></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>A Gantt Chart is an essential tool for project management that provides a visual representation of a project’s timeline. It is typically structured as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Rows</strong> represent tasks or milestones within the project.</p>
+</li>
+<li>
+<p><strong>Columns</strong> represent time intervals, such as days, weeks, or months.</p>
+</li>
+<li>
+<p><strong>Bars</strong> span across the time intervals, showing the duration of tasks.</p>
+</li>
+<li>
+<p><strong>Arrows</strong> may indicate dependencies between tasks.</p>
+</li>
+</ul>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Gantt charts are a powerful tool for visualizing dependencies and progress across the project timeline.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; NOTE
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_elements_of_a_gantt_chart"><a class="anchor" href="#_key_elements_of_a_gantt_chart"></a>2.1. Key Elements of a Gantt Chart</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Tasks/Milestones as Rows</strong>
+Each row in the Gantt chart represents a task or a milestone.</p>
+</li>
+<li>
+<p><strong>Time Intervals as Columns</strong>
+The columns represent the timeline broken down into time intervals (days, weeks, or months).</p>
+</li>
+<li>
+<p><strong>Task Spanning</strong>
+Tasks are visualized as bars across the time intervals, indicating when they begin and end.</p>
+</li>
+<li>
+<p><strong>Task Dependencies</strong>
+Dependencies between tasks can be displayed using arrows, indicating that one task must be completed before another can start.</p>
+</li>
+<li>
+<p><strong>Progress Tracking</strong>
+Tasks are often shown with a percentage of completion to easily monitor the project’s progress.</p>
+</li>
+<li>
+<p><strong>Critical Path</strong>
+The sequence of tasks that must be completed on time for the project to meet its deadline is highlighted as the critical path.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_benefits_of_gantt_charts"><a class="anchor" href="#_benefits_of_gantt_charts"></a>2.2. Benefits of Gantt Charts</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Visual Overview</strong>: A Gantt chart provides a clear, visual timeline of a project’s tasks.</p>
+</li>
+<li>
+<p><strong>Task Dependencies</strong>: It shows relationships between tasks, ensuring team members are aware of task dependencies.</p>
+</li>
+<li>
+<p><strong>Progress Monitoring</strong>: It enables tracking the completion status of each task to ensure the project remains on schedule.</p>
+</li>
+<li>
+<p><strong>Resource Management</strong>: Resources can be efficiently allocated based on the project timeline.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example_of_a_gantt_chart"><a class="anchor" href="#_example_of_a_gantt_chart"></a>2.3. Example of a Gantt Chart</h3>
+<div class="paragraph">
+<p>Consider the development of a Digital Twin for a Manufacturing System project:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Task Name</th>
+<th class="tableblock halign-left valign-top">Start Date</th>
+<th class="tableblock halign-left valign-top">End Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kick-off Meeting with Stakeholders</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Month 1, Week 1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Month 1, Week 1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identify Data Sources</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Month 1, Week 2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Month 1, Week 3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Define Key Metrics</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Month 1, Week 4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Month 2, Week 1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Develop Digital Twin Simulation Model</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Month 3, Week 1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Month 5, Week 3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Test with Real-Time Data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Month 6, Week 1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Month 6, Week 4</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>By following this Gantt chart, teams can visualize the full scope of the project, track its progress, and ensure it remains on schedule.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 slide">
+<h2 id="_managing_software_projects_with_github"><a class="anchor" href="#_managing_software_projects_with_github"></a>3. Managing Software Projects with GitHub</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>GitHub is a key tool for software project management. Key features include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Distributed version control (Git)</p>
+</li>
+<li>
+<p>Source code management</p>
+</li>
+<li>
+<p>Collaboration with other developers</p>
+</li>
+<li>
+<p>Bug tracking, task management, and wikis</p>
+</li>
+<li>
+<p>Largest repository of open-source projects</p>
+</li>
+</ul>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>GitHub facilitates collaboration, version control, and documentation, making it ideal for managing software development projects.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; NOTE
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="case-studies.html">Case Studies</a></span>
+  <span class="next"><a href="agile-best-practices.html">Agile Best Practices</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2024 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+
+
+<script async src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../../_/js/vendor/fontawesome.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>

@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Learning Linux Basics :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/linux/index.html">
+    <link rel="prev" href="../project-management/github.html">
+    <link rel="next" href="editing.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header><div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="course-project" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Course Project</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../github.html">Introduction to GitHub</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../project-management/index.html">Introduction to Project Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/introduction.html">What is Project?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/project-phases.html">Phases of a Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/practical-examples.html">Practical Examples in Scientific Computing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/case-studies.html">Case Studies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/tools-gantt.html">Project Management Tools and Gantt Charts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/agile-best-practices.html">Agile Best Practices</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../project-management/github.html">Introduction to GitHub</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Introduction to Linux</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="editing.html">File Editing in Linux</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="shell.html">Linux Shell Basics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="text-processing.html">Text Processing</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Course Project</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../../feelpp-antora-ui/index.html">Antora Feel++ UI</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="../index.html">Course Project</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Course Project</a></li>
+    <li><a href="index.html">Introduction to Linux</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/linux/pages/index.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+      <li>
+        <a href="_attachments/index.ipynb"
+           title="Download Jupyter Notebook" data-toggle="tooltip" data-placement="left" class="jupyter-download">
+          <img class="jupyter-file-icon icon" src="../../_/img/jupyter-logo.svg"/> .ipynb
+        </a>
+      </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Learning Linux Basics</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Navigating directories and files in Linux is a fundamental skill that allows you to fully exploit the power of the command-line interface (CLI). Mastering essential Linux navigation commands such as <code>cd</code>, <code>pwd</code>, <code>ls</code>, and <code>tree</code> enables you to effortlessly move through the filesystem, display the contents of directories, and understand your location within the system.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_basic_linux_navigation_commands"><a class="anchor" href="#_basic_linux_navigation_commands"></a>1. Basic Linux Navigation Commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Here is a brief overview of some of the most common commands used for navigation in Linux:</p>
+</div>
+<div class="sect2">
+<h3 id="_cd_change_directory"><a class="anchor" href="#_cd_change_directory"></a>1.1. <code>cd</code> – Change Directory</h3>
+<div class="paragraph">
+<p>The <code>cd</code> command allows you to move between directories within the filesystem. It is one of the most frequently used commands when navigating the CLI.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /tmp
+pwd</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>/tmp</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>This command will move you to the specified directory. If no path is specified, typing <code>cd</code> on its own will take you to your home directory.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Absolute Path</strong>: <code>/tmp/documents</code> (moves directly to the <code>documents</code> directory within <code>/tmp</code>)</p>
+</li>
+<li>
+<p><strong>Relative Path</strong>: <code>../documents</code> (moves up one directory and into <code>documents</code>)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pwd_print_working_directory"><a class="anchor" href="#_pwd_print_working_directory"></a>1.2. <code>pwd</code> – Print Working Directory</h3>
+<div class="paragraph">
+<p>The <code>pwd</code> command prints the full path of your current directory. This is particularly useful when you&#8217;ve navigated through several directories and want to confirm your current location in the filesystem.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+mkdir /tmp/documents
+cd /tmp/documents
+touch file.txt
+pwd</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>/tmp/documents</pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_ls_list_directory_contents"><a class="anchor" href="#_ls_list_directory_contents"></a>1.3. <code>ls</code> – List Directory Contents</h3>
+<div class="paragraph">
+<p>The <code>ls</code> command lists all files and directories within the current directory. By default, it shows a simple list, but there are many options to customize what is displayed.</p>
+</div>
+<div class="paragraph">
+<p>Basic usage:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /tmp/documents
+ls</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>archive.tar.gz
+example.txt
+file.txt
+file1.txt
+newlink.txt
+softlink.txt
+temp</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>Additional options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ls -l</code>: Displays detailed information about each file, such as permissions, owner, size, and modification date.</p>
+</li>
+<li>
+<p><code>ls -a</code>: Lists all files, including hidden files (those starting with a dot).</p>
+</li>
+<li>
+<p><code>ls -lh</code>: Displays sizes in human-readable format (KB, MB, etc.).</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">ls -l</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /tmp/documents
+ls -l</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>total 8
+-rw-r--r-- 1 runner docker  156 Sep  9 11:17 archive.tar.gz
+-rw-r--r-- 1 runner docker    0 Sep  9 11:17 example.txt
+-rwxr-xr-x 2 runner docker    0 Sep  9 11:17 file.txt
+-rw-r--r-- 1 runner docker    0 Sep  9 11:17 file1.txt
+-rwxr-xr-x 2 runner docker    0 Sep  9 11:17 newlink.txt
+lrwxrwxrwx 1 runner docker    8 Sep  9 11:17 softlink.txt -> file.txt
+drwxr-xr-x 2 runner docker 4096 Sep  9 11:17 temp</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="listingblock">
+<div class="title">ls -a</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /tmp/documents
+ls -a</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>.
+..
+archive.tar.gz
+example.txt
+file.txt
+file1.txt
+newlink.txt
+softlink.txt
+temp</pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_tree_display_directory_structure"><a class="anchor" href="#_tree_display_directory_structure"></a>1.4. <code>tree</code> – Display Directory Structure</h3>
+<div class="paragraph">
+<p>The <code>tree</code> command visually displays the directory structure as a tree. It’s a useful tool for understanding the layout of files and directories.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /tmp/documents
+tree ..</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>..
+├── clr-debug-pipe-1595-9267-in
+├── clr-debug-pipe-1595-9267-out
+├── clr-debug-pipe-1612-9480-in
+├── clr-debug-pipe-1612-9480-out
+├── clr-debug-pipe-597-965-in
+├── clr-debug-pipe-597-965-out
+├── documents
+│   ├── archive.tar.gz
+│   ├── example.txt
+│   ├── file.txt
+│   ├── file1.txt
+│   ├── newlink.txt
+│   ├── softlink.txt -> file.txt
+│   └── temp
+│       ├── file.txt
+│       └── file1.txt
+├── dotnet-diagnostic-1595-9267-socket
+├── dotnet-diagnostic-1612-9480-socket
+├── dotnet-diagnostic-597-965-socket
+├── newname.txt
+├── snap-private-tmp  [error opening dir]
+├── systemd-private-1b9dd8f619df4a0996ad824967cb9ff4-chrony.service-8PawAy  [error opening dir]
+├── systemd-private-1b9dd8f619df4a0996ad824967cb9ff4-haveged.service-ALYx4A  [error opening dir]
+├── systemd-private-1b9dd8f619df4a0996ad824967cb9ff4-systemd-logind.service-sXlfo1  [error opening dir]
+├── systemd-private-1b9dd8f619df4a0996ad824967cb9ff4-systemd-resolved.service-nOVpXv  [error opening dir]
+└── www-data-temp-aspnet-0
+    └── cc117660
+
+9 directories, 18 files
+---------------------------------------------------------------------------
+CalledProcessError                        Traceback (most recent call last)
+File <ipython-input-1-bb284c5f7525>:1
+----> 1 get_ipython().run_cell_magic('bash', '', 'cd /tmp/documents\ntree ..\n')
+
+File ~/work/course-project/course-project/.venv/lib/python3.10/site-packages/IPython/core/interactiveshell.py:2541, in InteractiveShell.run_cell_magic(self, magic_name, line, cell)
+   2539 with self.builtin_trap:
+   2540     args = (magic_arg_s, cell)
+-> 2541     result = fn(*args, **kwargs)
+   2543 # The code below prevents the output from being displayed
+   2544 # when using magics with decorator @output_can_be_silenced
+   2545 # when the last Python token in the expression is a ';'.
+   2546 if getattr(fn, magic.MAGIC_OUTPUT_CAN_BE_SILENCED, False):
+
+File ~/work/course-project/course-project/.venv/lib/python3.10/site-packages/IPython/core/magics/script.py:155, in ScriptMagics._make_script_magic.<locals>.named_script_magic(line, cell)
+    153 else:
+    154     line = script
+--> 155 return self.shebang(line, cell)
+
+File ~/work/course-project/course-project/.venv/lib/python3.10/site-packages/IPython/core/magics/script.py:315, in ScriptMagics.shebang(self, line, cell)
+    310 if args.raise_error and p.returncode != 0:
+    311     # If we get here and p.returncode is still None, we must have
+    312     # killed it but not yet seen its return code. We don't wait for it,
+    313     # in case it's stuck in uninterruptible sleep. -9 = SIGKILL
+    314     rc = p.returncode or -9
+--> 315     raise CalledProcessError(rc, cell)
+
+CalledProcessError: Command 'b'cd /tmp/documents\ntree ..\n'' returned non-zero exit status 2.</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>This will output a nested tree structure representing the contents of the current directory and its subdirectories.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_practical_examples"><a class="anchor" href="#_practical_examples"></a>2. Practical Examples</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Here are some practical examples of how you might use these commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Navigating to a specific directory:</strong></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /var/log</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Confirming your location in the filesystem:</strong></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /var/log
+pwd</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>/var/log</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Listing files in the current directory in detail:</strong></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /var/log
+ls -l</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>total 592
+-rw-r--r--  1 root         root               208 Sep  9 11:15 alternatives.log
+drwxr-x---  2 root         adm               4096 Sep  1 21:17 apache2
+drwxr-xr-x  2 root         root              4096 Sep  4 16:09 apt
+-rw-r-----  1 syslog       adm               2151 Sep  9 11:17 auth.log
+drwxr-xr-x  4 root         root              4096 Sep  4 16:07 azure
+-rw-rw----  1 root         utmp                 0 Sep  4 16:09 btmp
+drwxr-x---  2 _chrony      _chrony           4096 Sep  1 21:06 chrony
+-rw-r-----  1 root         adm               4421 Sep  9 11:16 cloud-init-output.log
+-rw-r-----  1 syslog       adm             133278 Sep  9 11:16 cloud-init.log
+drwxr-xr-x  2 root         root              4096 Feb 13  2024 dist-upgrade
+-rw-r-----  1 root         adm              47172 Sep  9 11:16 dmesg
+-rw-r--r--  1 root         root              1491 Sep  4 16:09 dpkg.log
+-rw-r--r--  1 root         root                 0 Sep  4 16:09 fontconfig.log
+drwxr-sr-x+ 3 root         systemd-journal   4096 Sep  1 21:05 journal
+-rw-r-----  1 syslog       adm              59853 Sep  9 11:16 kern.log
+drwxr-xr-x  2 landscape    landscape         4096 Sep  1 21:06 landscape
+-rw-rw-r--  1 root         utmp                 0 Sep  4 16:09 lastlog
+drwxr-x---  2 mysql        adm               4096 Sep  9 11:15 mysql
+drwxr-xr-x  2 root         adm               4096 Sep  1 21:43 nginx
+-rw-------  1 root         root               281 Sep  9 11:15 php8.1-fpm.log
+drwxrwxr-t  2 root         postgres          4096 Sep  1 21:47 postgresql
+drwx------  2 root         root              4096 Sep  1 21:06 private
+drwxr-xr-x  2 sphinxsearch root              4096 Dec  3  2021 sphinxsearch
+-rw-r-----  1 syslog       adm             234993 Sep  9 11:17 syslog
+drwxr-xr-x  2 root         root              4096 Jun  6  2023 sysstat
+drwxr-x---  2 root         adm               4096 Sep  1 21:06 unattended-upgrades
+-rw-r--r--  1 root         root             30525 Sep  9 11:16 waagent.log
+-rw-rw-r--  1 root         utmp              2688 Sep  9 11:16 wtmp</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Viewing the directory structure:</strong></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /var/log
+tree</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>.
+├── alternatives.log
+├── apache2
+│   ├── access.log
+│   ├── error.log
+│   └── other_vhosts_access.log
+├── apt
+│   ├── eipp.log.xz
+│   ├── history.log
+│   └── term.log
+├── auth.log
+├── azure
+│   ├── Microsoft.Azure.Extensions.CustomScript
+│   │   ├── CommandExecution.log
+│   │   └── events  [error opening dir]
+│   └── custom-script
+│       └── handler.log
+├── btmp
+├── chrony  [error opening dir]
+├── cloud-init-output.log
+├── cloud-init.log
+├── dist-upgrade
+├── dmesg
+├── dpkg.log
+├── fontconfig.log
+├── journal
+│   └── a91c45fbddd94a3d8946fea07a9b1fb4
+│       ├── system.journal
+│       └── user-1001.journal
+├── kern.log
+├── landscape
+│   └── sysinfo.log
+├── lastlog
+├── mysql
+│   ├── error.log
+│   └── error.log.1.gz
+├── nginx
+│   ├── access.log
+│   └── error.log
+├── php8.1-fpm.log
+├── postgresql
+│   └── postgresql-14-main.log
+├── private  [error opening dir]
+├── sphinxsearch
+├── syslog
+├── sysstat
+├── unattended-upgrades
+│   └── unattended-upgrades-shutdown.log
+├── waagent.log
+└── wtmp
+
+18 directories, 31 files
+---------------------------------------------------------------------------
+CalledProcessError                        Traceback (most recent call last)
+File <ipython-input-1-a4a9f5dead09>:1
+----> 1 get_ipython().run_cell_magic('bash', '', 'cd /var/log\ntree\n')
+
+File ~/work/course-project/course-project/.venv/lib/python3.10/site-packages/IPython/core/interactiveshell.py:2541, in InteractiveShell.run_cell_magic(self, magic_name, line, cell)
+   2539 with self.builtin_trap:
+   2540     args = (magic_arg_s, cell)
+-> 2541     result = fn(*args, **kwargs)
+   2543 # The code below prevents the output from being displayed
+   2544 # when using magics with decorator @output_can_be_silenced
+   2545 # when the last Python token in the expression is a ';'.
+   2546 if getattr(fn, magic.MAGIC_OUTPUT_CAN_BE_SILENCED, False):
+
+File ~/work/course-project/course-project/.venv/lib/python3.10/site-packages/IPython/core/magics/script.py:155, in ScriptMagics._make_script_magic.<locals>.named_script_magic(line, cell)
+    153 else:
+    154     line = script
+--> 155 return self.shebang(line, cell)
+
+File ~/work/course-project/course-project/.venv/lib/python3.10/site-packages/IPython/core/magics/script.py:315, in ScriptMagics.shebang(self, line, cell)
+    310 if args.raise_error and p.returncode != 0:
+    311     # If we get here and p.returncode is still None, we must have
+    312     # killed it but not yet seen its return code. We don't wait for it,
+    313     # in case it's stuck in uninterruptible sleep. -9 = SIGKILL
+    314     rc = p.returncode or -9
+--> 315     raise CalledProcessError(rc, cell)
+
+CalledProcessError: Command 'b'cd /var/log\ntree\n'' returned non-zero exit status 2.</pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../project-management/github.html">Introduction to GitHub</a></span>
+  <span class="next"><a href="editing.html">File Editing in Linux</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2024 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+
+
+<script async src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../../_/js/vendor/fontawesome.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>

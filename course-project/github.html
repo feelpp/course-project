@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>GitHub :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/github.html">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="project-management/index.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header><div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="course-project" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Course Project</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Introduction</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="github.html">Introduction to GitHub</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="project-management/index.html">Introduction to Project Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/introduction.html">What is Project?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/project-phases.html">Phases of a Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/practical-examples.html">Practical Examples in Scientific Computing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/case-studies.html">Case Studies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/tools-gantt.html">Project Management Tools and Gantt Charts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/agile-best-practices.html">Agile Best Practices</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="project-management/github.html">Introduction to GitHub</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="linux/index.html">Introduction to Linux</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="linux/editing.html">File Editing in Linux</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="linux/shell.html">Linux Shell Basics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="linux/text-processing.html">Text Processing</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Course Project</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../feelpp-antora-ui/index.html">Antora Feel++ UI</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="index.html">Course Project</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Course Project</a></li>
+    <li><a href="github.html">Introduction to GitHub</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/ROOT/pages/github.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">GitHub</h1>
+<div class="sect1">
+<h2 id="_github_overview"><a class="anchor" href="#_github_overview"></a>1. GitHub:  Overview</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>GitHub is a web-based Git repository hosting service</p>
+</li>
+<li>
+<p>GitHub offers all of the distributed revision control and source code management (SCM) functionality of Git as well as adding its own features</p>
+</li>
+<li>
+<p>GitHub provides a web-based graphical interface and desktop as well as mobile integration</p>
+</li>
+<li>
+<p>GitHub is used by individuals and enterprises to host software projects</p>
+</li>
+<li>
+<p>GitHub is the largest code host in the world</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">The main features of GitHub are</dt>
+<dd>
+<p>Issues, Pull Requests, Projects, Actions</p>
+</dd>
+</dl>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_github_issues"><a class="anchor" href="#_github_issues"></a>2. GitHub Issues</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>GitHub Issues are a great way to keep track of tasks, enhancements, and bugs for your projects.</p>
+</li>
+<li>
+<p>They’re kind of like email—except they can be shared and discussed with the rest of your team.</p>
+</li>
+<li>
+<p>Most software projects have a bug tracker of some kind. GitHub’s tracker is called Issues, and has its own section in every repository.</p>
+</li>
+<li>
+<p>Issues can act as more than just a place to report software bugs. They’re great for tracking ideas and enhancements, tasks, or even a place to discuss ongoing development.</p>
+</li>
+<li>
+<p>Issues are easy to create. Within a repository, click the Issues tab, then the big green New Issue button.</p>
+</li>
+<li>
+<p>You’ll then see the issue editor page</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+more information <a href="https://guides.github.com/features/issues/">&gt; guides.github.com</a> !
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_labels"><a class="anchor" href="#_labels"></a>2.1. Labels</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Labels are a great way to organize different types of issues. For example, you could use labels to tag issues as bugs, features, or questions.</p>
+</li>
+<li>
+<p>You can apply multiple labels to each issue. For example, if a feature request also happens to be a question, you can apply both the <code>question</code> and <code>enhancement</code> labels.</p>
+</li>
+<li>
+<p>You can filter issues based on their labels. For example, you can filter the issues in the above screenshot by clicking the <code>enhancement</code> label underneath the Labels heading on the right.</p>
+</li>
+<li>
+<p>You can also filter issues based on multiple labels. For example, you can filter the issues in the above screenshot by clicking the <code>enhancement</code> and <code>question</code> labels underneath the Labels heading on the right.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+more information <a href="https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels">&gt; guides.github.com</a> !
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_milestones"><a class="anchor" href="#_milestones"></a>2.2. Milestones</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Milestones are groups of issues that correspond to a project, feature, or time period.</p>
+</li>
+<li>
+<p>People use them in many different ways. Some plan releases around them, while others use them to track the progress of a feature or project.</p>
+</li>
+<li>
+<p>Milestones are like issues: they have titles and descriptions, and can be assigned to a user. Here’s an example of a milestone that’s tracking the progress of a feature:</p>
+</li>
+<li>
+<p>Milestones are only available on repositories that have them enabled.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+more information <a href="https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/about-milestones">&gt; guides.github.com</a> !
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_assignees"><a class="anchor" href="#_assignees"></a>2.3. Assignees</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Assignees are the GitHub users who are responsible for working on the issue.</p>
+</li>
+<li>
+<p>Assignees are selected the same way as labels. Start typing a username, then click their name once it appears to select them.</p>
+</li>
+<li>
+<p>You can assign multiple people to an issue. For example, if you’re working on a feature with another user, you can assign both of yourselves to the issue.</p>
+</li>
+<li>
+<p>You can also assign people who aren’t collaborators on the repository. For example, if you’re working on a feature with a designer, you can assign them to the issue even if they don’t have push access to the repository.</p>
+</li>
+<li>
+<p>Assignees are a great way to clarify who’s responsible for what. They’re also used to filter issues based on who’s working on them.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mentions"><a class="anchor" href="#_mentions"></a>2.4. Mentions</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>You can mention a person or team on GitHub by typing @ plus their username or team name. This will trigger a notification and bring their attention to the conversation.</p>
+</li>
+<li>
+<p>You can also mention teams within an organization. For example, you can mention the @github/owners team within the GitHub organization.</p>
+</li>
+<li>
+<p>Mentions are a great way to get feedback from specific people or teams, draw attention to potential problems, or ask for help.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_github_pull_requests"><a class="anchor" href="#_github_pull_requests"></a>3. GitHub Pull Requests</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Pull Requests are the heart of collaboration on GitHub.</p>
+</li>
+<li>
+<p>When you open a pull request, you’re proposing your changes and requesting that someone review and pull in your contribution and merge them into their branch.</p>
+</li>
+<li>
+<p>Pull requests show diffs, or differences, of the content from both branches. The changes, additions, and subtractions are shown in green and red.</p>
+</li>
+<li>
+<p>As soon as you make a commit, you can open a pull request and start a discussion, even before the code is finished.</p>
+</li>
+<li>
+<p>You can even open pull requests in your own repository and merge them yourself. It’s a great way to learn the GitHub Flow before working on larger projects.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+more information <a href="https://guides.github.com/activities/hello-world/">&gt; guides.github.com</a> !
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_github_project"><a class="anchor" href="#_github_project"></a>4. GitHub Project</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>GitHub Projects help you organize and prioritize your work.</p>
+</li>
+<li>
+<p>You can create Project boards for specific feature work, comprehensive roadmaps, or even release checklists.</p>
+</li>
+<li>
+<p>With Projects, you have the flexibility to create customized workflows that suit your needs.</p>
+</li>
+<li>
+<p>Projects are made up of issues, pull requests, and notes that are categorized as cards in columns of your choosing. You can drag and drop or use keyboard shortcuts to reorder cards within a column, move cards from column to column, and change the order of columns.</p>
+</li>
+<li>
+<p>You can also filter the cards displayed on your project board by label, assignee, and milestone.</p>
+</li>
+<li>
+<p>You can create as many project boards as you want within an organization or repository.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+more information <a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects">&gt; docs.github.com</a> !
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_planning"><a class="anchor" href="#_planning"></a>4.1. Planning</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Create issues (tasks),</p>
+</li>
+<li>
+<p>Break them into tasks,</p>
+</li>
+<li>
+<p>Track relationships,</p>
+</li>
+<li>
+<p>Add/use custom fields,</p>
+</li>
+<li>
+<p>And have conversations.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Visualize large projects as spreadsheets or boards, and automate everything with code.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://docs.github.com/assets/cb-102381/mw-1440/images/help/projects-v2/example-table.webp" alt="GitHub Project Board">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_table_vs_board_views"><a class="anchor" href="#_table_vs_board_views"></a>4.2. Table vs Board Views</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Built like a spreadsheet, project tables give a live workspace to filter, sort, and group issues and pull requests.</p>
+</li>
+<li>
+<p>We can tailor them to your needs with custom fields and saved views.</p>
+</li>
+<li>
+<p>Boards can display group issues using custom fields (e.g. Status)</p>
+</li>
+<li>
+<p>We can drag and drop issues between columns to change their status.</p>
+</li>
+<li>
+<p>Built like a spreadsheet, project tables give a live workspace to filter, sort, and group issues and pull requests.</p>
+</li>
+<li>
+<p>We can tailor them to your needs with custom fields and saved views.</p>
+</li>
+<li>
+<p>boards can display group issues using custom fields (e.g. Status)</p>
+</li>
+</ul>
+</div>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="https://docs.github.com/assets/cb-102381/mw-1440/images/help/projects-v2/example-board.webp" alt="example board" width="600">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_roadmap"><a class="anchor" href="#_roadmap"></a>4.3. Roadmap</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Roadmaps help you plan and communicate the big picture.</p>
+</li>
+<li>
+<p>They’re built from issues and pull requests, so you can organize work the way you want.</p>
+</li>
+<li>
+<p>Roadmaps are a great way to communicate your team’s plans and progress to stakeholders.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://docs.github.com/assets/cb-102381/mw-1440/images/help/projects-v2/example-roadmap.webp" alt="example roadmap" width="600">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_break_issues_into_actionable_tasks"><a class="anchor" href="#_break_issues_into_actionable_tasks"></a>4.4. Break issues into actionable tasks</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Tackle complex issues with task lists</p>
+</li>
+<li>
+<p>track their status with new progressindicators.</p>
+</li>
+<li>
+<p>Convert tasks into their own issues</p>
+</li>
+<li>
+<p>navigate your work hierarchy.</p>
+</li>
+</ul>
+</div>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="_images/github-project-actionable-tasks-1.png" alt="github project actionable tasks 1" width="400">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="_images/github-project-actionable-tasks-2.png" alt="github project actionable tasks 2" width="400">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="_images/github-project-actionable-tasks-3.png" alt="github project actionable tasks 3" width="400">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conversations"><a class="anchor" href="#_conversations"></a>4.5. Conversations</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Move conversations forward</p>
+</li>
+<li>
+<p>Express ideas with GitHub Flavored Markdown,</p>
+</li>
+<li>
+<p>mention contributors,</p>
+</li>
+<li>
+<p>react with emoji,</p>
+</li>
+<li>
+<p>clarify with attachments(videos, pdf, images&#8230;&#8203;),</p>
+</li>
+<li>
+<p>see references from commits, pull requests, releases, and deploys.</p>
+</li>
+<li>
+<p>Coordinate by assigning contributors and teams,</p>
+</li>
+<li>
+<p>or by adding them to milestones and projects.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/github-project-conversations.png" alt="github project conversations" width="600">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_views_and_fields"><a class="anchor" href="#_views_and_fields"></a>4.6. Views and Fields</h3>
+<div class="sect3">
+<h4 id="_create_views"><a class="anchor" href="#_create_views"></a>4.6.1. Create views</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Save views for sprints, backlogs, teams, or releases.</p>
+</li>
+<li>
+<p>Rank, group, sort, and filter issues to suit the occasion.</p>
+</li>
+<li>
+<p>Choose between tables, boards, and timelines.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/github-project-views.png" alt="github project views" width="600">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_extend_with_fields"><a class="anchor" href="#_extend_with_fields"></a>4.6.2. Extend with Fields</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Add custom fields to track anything you want.</p>
+</li>
+<li>
+<p>Choose from a variety of field types, including checkboxes, dates, and dropdowns.</p>
+</li>
+<li>
+<p>Use fields to track priority, effort, cost, and more.</p>
+</li>
+<li>
+<p>Add fields to issues and pull requests.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/github-project-fields.png" alt="github project fields" width="600">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="index.html">Introduction</a></span>
+  <span class="next"><a href="project-management/index.html">Introduction to Project Management</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2024 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+
+
+<script async src="../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../_/js/vendor/fontawesome.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>

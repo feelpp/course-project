@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Working with Files in Linux :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/linux/files.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header><div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="course-project" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Course Project</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../github.html">Introduction to GitHub</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../project-management/index.html">Introduction to Project Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/introduction.html">What is Project?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/project-phases.html">Phases of a Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/practical-examples.html">Practical Examples in Scientific Computing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/case-studies.html">Case Studies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/tools-gantt.html">Project Management Tools and Gantt Charts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/agile-best-practices.html">Agile Best Practices</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../project-management/github.html">Introduction to GitHub</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Introduction to Linux</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="editing.html">File Editing in Linux</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="shell.html">Linux Shell Basics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="text-processing.html">Text Processing</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Course Project</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../../feelpp-antora-ui/index.html">Antora Feel++ UI</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="../index.html">Course Project</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Course Project</a></li>
+    <li><a href="files.html">Working with Files in Linux</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/linux/pages/files.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+      <li>
+        <a href="_attachments/files.ipynb"
+           title="Download Jupyter Notebook" data-toggle="tooltip" data-placement="left" class="jupyter-download">
+          <img class="jupyter-file-icon icon" src="../../_/img/jupyter-logo.svg"/> .ipynb
+        </a>
+      </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Working with Files in Linux</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Working with files is an essential part of Linux, and it’s a skill every Linux user must master. In Linux, everything is considered a file: text documents, images, system files, devices, and even directories. Linux provides numerous command-line utilities to create, view, move, or search files. Some of the basic commands for file handling in the Linux terminal include <code>touch</code> for creating files, <code>mv</code> for moving files, <code>cp</code> for copying files, <code>rm</code> for removing files, and <code>ls</code> for listing files and directories.</p>
+</div>
+<div class="paragraph">
+<p>For example, to create a file named <code>example.txt</code>, you can use the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /tmp/
+mkdir documents
+cd documents
+touch example.txt</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>To list the files in the current directory, use the command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /tmp/documents
+ls</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>example.txt</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>Knowing how to effectively manage and manipulate files in Linux is crucial for administering and running a successful Linux system.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_file_permissions"><a class="anchor" href="#_file_permissions"></a>1. File Permissions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Linux is a multi-user system, and file permissions play a vital role in protecting files from unauthorized access or modification. Every file and directory has associated permissions that determine who can read, write, or execute the file.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>r</code> (read)</strong>: Allows reading the file.</p>
+</li>
+<li>
+<p><strong><code>w</code> (write)</strong>: Allows modifying the file.</p>
+</li>
+<li>
+<p><strong><code>x</code> (execute)</strong>: Allows running the file as a program.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To view file permissions, use:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /tmp/documents
+ls -l</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>total 0
+-rw-r--r-- 1 runner docker 0 Sep  9 11:17 example.txt</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>To modify file permissions, use <code>chmod</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /tmp/documents
+touch file.txt
+ls -l file.txt
+chmod 755 file.txt
+ls -l file.txt
+chmod +x file.txt
+ls -l file.txt
+chmod go+x file.txt
+ls -l file.txt</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>-rw-r--r-- 1 runner docker 0 Sep  9 11:17 file.txt
+-rwxr-xr-x 1 runner docker 0 Sep  9 11:17 file.txt
+-rwxr-xr-x 1 runner docker 0 Sep  9 11:17 file.txt
+-rwxr-xr-x 1 runner docker 0 Sep  9 11:17 file.txt</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>This sets the file permissions to <strong>rwxr-xr-x</strong>, where the owner can read, write, and execute the file, while others can only read and execute it.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_archiving_and_compressing"><a class="anchor" href="#_archiving_and_compressing"></a>2. Archiving and Compressing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Archiving and compressing files helps manage storage and transfer large amounts of data efficiently. In Linux, commands like <code>tar</code>, <code>gzip</code>, and <code>bzip2</code> are used for this purpose.</p>
+</div>
+<div class="paragraph">
+<p>To create an archive of files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /tmp/documents
+touch file1.txt
+tar -cvf archive.tar file.txt file1.txt
+ls -l</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>file.txt
+file1.txt
+total 12
+-rw-r--r-- 1 runner docker 10240 Sep  9 11:17 archive.tar
+-rw-r--r-- 1 runner docker     0 Sep  9 11:17 example.txt
+-rwxr-xr-x 1 runner docker     0 Sep  9 11:17 file.txt
+-rw-r--r-- 1 runner docker     0 Sep  9 11:17 file1.txt</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>To compress the archive:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /tmp/documents
+gzip archive.tar
+ls -l</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>total 4
+-rw-r--r-- 1 runner docker 156 Sep  9 11:17 archive.tar.gz
+-rw-r--r-- 1 runner docker   0 Sep  9 11:17 example.txt
+-rwxr-xr-x 1 runner docker   0 Sep  9 11:17 file.txt
+-rw-r--r-- 1 runner docker   0 Sep  9 11:17 file1.txt</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>The file will now be compressed as <code>archive.tar.gz</code>.</p>
+</div>
+<div class="paragraph">
+<p>To extract a tar file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /tmp/documents
+mkdir temp
+cd temp
+tar -xzvf ../archive.tar.gz
+ls -lrt</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>file.txt
+file1.txt
+total 0
+-rw-r--r-- 1 runner docker 0 Sep  9 11:17 file1.txt
+-rwxr-xr-x 1 runner docker 0 Sep  9 11:17 file.txt</pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_copying_and_renaming_files"><a class="anchor" href="#_copying_and_renaming_files"></a>3. Copying and Renaming Files</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Copying and renaming files are essential operations when managing file systems. The <code>cp</code> command is used to copy files, and <code>mv</code> is used both to move and rename files.</p>
+</div>
+<div class="paragraph">
+<p>To copy a file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /tmp/documents
+cp file.txt /tmp
+ls /tmp</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>clr-debug-pipe-1595-9267-in
+clr-debug-pipe-1595-9267-out
+clr-debug-pipe-1612-9480-in
+clr-debug-pipe-1612-9480-out
+clr-debug-pipe-597-965-in
+clr-debug-pipe-597-965-out
+documents
+dotnet-diagnostic-1595-9267-socket
+dotnet-diagnostic-1612-9480-socket
+dotnet-diagnostic-597-965-socket
+file.txt
+snap-private-tmp
+systemd-private-1b9dd8f619df4a0996ad824967cb9ff4-chrony.service-8PawAy
+systemd-private-1b9dd8f619df4a0996ad824967cb9ff4-haveged.service-ALYx4A
+systemd-private-1b9dd8f619df4a0996ad824967cb9ff4-systemd-logind.service-sXlfo1
+systemd-private-1b9dd8f619df4a0996ad824967cb9ff4-systemd-resolved.service-nOVpXv
+www-data-temp-aspnet-0</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>To rename a file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /tmp/documents
+mv /tmp/file.txt newname.txt
+ls</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>archive.tar.gz
+example.txt
+file.txt
+file1.txt
+newname.txt
+temp</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>To move a file to a different directory:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /tmp/documents
+mv newname.txt /tmp
+ls /tmp</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre>clr-debug-pipe-1595-9267-in
+clr-debug-pipe-1595-9267-out
+clr-debug-pipe-1612-9480-in
+clr-debug-pipe-1612-9480-out
+clr-debug-pipe-597-965-in
+clr-debug-pipe-597-965-out
+documents
+dotnet-diagnostic-1595-9267-socket
+dotnet-diagnostic-1612-9480-socket
+dotnet-diagnostic-597-965-socket
+newname.txt
+snap-private-tmp
+systemd-private-1b9dd8f619df4a0996ad824967cb9ff4-chrony.service-8PawAy
+systemd-private-1b9dd8f619df4a0996ad824967cb9ff4-haveged.service-ALYx4A
+systemd-private-1b9dd8f619df4a0996ad824967cb9ff4-systemd-logind.service-sXlfo1
+systemd-private-1b9dd8f619df4a0996ad824967cb9ff4-systemd-resolved.service-nOVpXv
+www-data-temp-aspnet-0</pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_soft_links_hard_links"><a class="anchor" href="#_soft_links_hard_links"></a>4. Soft Links / Hard Links</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Links in Linux are shortcuts to files or directories. There are two types of links: <strong>soft links</strong> (symbolic links) and <strong>hard links</strong>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Soft Link (Symbolic Link)</strong>: A pointer to a file or directory. Removing the original file breaks the link.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /tmp/documents
+rm -f softlink.txt
+ln -s file.txt softlink.txt</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Hard Link</strong>: A copy of the file’s inode, meaning it references the same data as the original file. Deleting the original file does not break the link.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
+cd /tmp/documents
+rm -f newlink.txt
+ln file.txt newlink.txt</code></pre>
+</div>
+</div>
+<details open>
+<summary class="title">Results</summary>
+<div class="content">
+<div class="literalblock dynamic-py-result">
+<div class="content">
+<pre></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>Hard links can only be created for files on the same filesystem.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary"><a class="anchor" href="#_summary"></a>5. Summary</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>File management in Linux is a fundamental task that includes working with file permissions, compressing files, copying/renaming files, and creating links. These skills ensure efficient handling of data and system administration tasks.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2024 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+
+
+<script async src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../../_/js/vendor/fontawesome.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>

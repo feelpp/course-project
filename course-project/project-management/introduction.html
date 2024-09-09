@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>What is a Project? :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/project-management/introduction.html">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="project-phases.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header><div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="course-project" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Course Project</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../github.html">Introduction to GitHub</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Introduction to Project Management</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="introduction.html">What is Project?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-phases.html">Phases of a Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="practical-examples.html">Practical Examples in Scientific Computing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="case-studies.html">Case Studies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tools-gantt.html">Project Management Tools and Gantt Charts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="agile-best-practices.html">Agile Best Practices</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="github.html">Introduction to GitHub</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../linux/index.html">Introduction to Linux</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../linux/editing.html">File Editing in Linux</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../linux/shell.html">Linux Shell Basics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../linux/text-processing.html">Text Processing</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Course Project</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../../feelpp-antora-ui/index.html">Antora Feel++ UI</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="../index.html">Course Project</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Course Project</a></li>
+    <li><a href="index.html">Introduction to Project Management</a></li>
+    <li><a href="introduction.html">What is Project?</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/project-management/pages/introduction.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">What is a Project?</h1>
+<div class="sect1 slide">
+<h2 id="_definition_of_a_project"><a class="anchor" href="#_definition_of_a_project"></a>1. Definition of a Project</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>A sequence of tasks:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Planned from beginning to end</p>
+</li>
+<li>
+<p>Bounded by time, resources, &amp; specific results</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Defined outcomes and "deliverables"</p>
+</li>
+<li>
+<p>Has a deadline and a budget</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Limits number of people, supplies, and capital</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>A project is a structured, goal-driven effort with clear boundaries and constraints. Outlining these elements clearly from the start is crucial for success.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; NOTE
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 slide">
+<h2 id="_tasks_vs_projects"><a class="anchor" href="#_tasks_vs_projects"></a>2. Tasks vs. Projects</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Routine tasks:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Responding to email</p>
+</li>
+<li>
+<p>Making coffee</p>
+</li>
+<li>
+<p>Hooking up a printer</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Projects:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Producing a customer newsletter</p>
+</li>
+<li>
+<p>Catering a party</p>
+</li>
+<li>
+<p>Writing a book</p>
+</li>
+<li>
+<p>Implementing a computer network</p>
+</li>
+</ul>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Tasks are often short-term and repetitive, while projects are complex, unique, and require strategic planning and coordination.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; NOTE
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 slide">
+<h2 id="_five_features_of_a_project"><a class="anchor" href="#_five_features_of_a_project"></a>3. Five Features of a Project</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Defined beginning, end, schedule, and approach</p>
+</li>
+<li>
+<p>Use of specific resources allocated to the work</p>
+</li>
+<li>
+<p>Achievement of defined goals (time, cost, performance/quality)</p>
+</li>
+<li>
+<p>Follows a planned, organized approach</p>
+</li>
+<li>
+<p>Involves a team of people</p>
+</li>
+</ol>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>A successful project incorporates all five of these features and leads to a defined outcome that meets the objectives.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; NOTE
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 slide">
+<h2 id="_resources_and_constraints"><a class="anchor" href="#_resources_and_constraints"></a>4. Resources and Constraints</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A project’s success depends on effective management of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Time</p>
+</li>
+<li>
+<p>People</p>
+</li>
+<li>
+<p>Money</p>
+</li>
+<li>
+<p>Equipment</p>
+</li>
+<li>
+<p>Facilities</p>
+</li>
+</ul>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Managing resources efficiently is a key factor in ensuring that the project meets its objectives while staying within constraints.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; NOTE
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 slide">
+<h2 id="_what_makes_a_project_successful"><a class="anchor" href="#_what_makes_a_project_successful"></a>5. What Makes a Project Successful?</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Organized and well-planned approach</p>
+</li>
+<li>
+<p>Commitment from the project team</p>
+</li>
+<li>
+<p>Balancing:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Time</p>
+</li>
+<li>
+<p>Resources</p>
+</li>
+<li>
+<p>Results</p>
+</li>
+<li>
+<p>Customer satisfaction</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Success in project management comes from maintaining balance between these factors while adapting to changing conditions.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; NOTE
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 slide">
+<h2 id="_what_is_a_program"><a class="anchor" href="#_what_is_a_program"></a>6. What is a Program?</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>A recurring or ongoing project</p>
+</li>
+<li>
+<p>Predictable and repeatable in nature</p>
+</li>
+<li>
+<p>Each cycle has a new plan, new resources, and a new end result</p>
+</li>
+</ul>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>While a project is a one-time effort, a program represents a recurring, systematic process that requires fresh planning and resources each time.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; NOTE
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_is_a_milestone"><a class="anchor" href="#_what_is_a_milestone"></a>7. What is a Milestone?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <strong>milestone</strong> in project management is a significant event or point in the project timeline that marks the completion of a major phase or task. Milestones are often used to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Measure progress: By marking important points, you can assess if the project is on schedule.</p>
+</li>
+<li>
+<p>Highlight deadlines: Milestones represent key deadlines that need to be met to move the project forward.</p>
+</li>
+<li>
+<p>Reflect achievements: Reaching a milestone signifies the completion of a critical part of the project.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, in a software project, some common milestones might include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Requirements completion</strong>: All necessary features and requirements for the software have been defined.</p>
+</li>
+<li>
+<p><strong>Design approval</strong>: The software’s architecture and design are approved for development.</p>
+</li>
+<li>
+<p><strong>First working prototype</strong>: A functional version of the software, even if limited in scope, is built and can be demonstrated.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_milestones_vs_releases_in_software_management"><a class="anchor" href="#_milestones_vs_releases_in_software_management"></a>7.1. Milestones vs. Releases in Software Management</h3>
+<div class="paragraph">
+<p>In <strong>software project management</strong>, milestones and releases serve different purposes:</p>
+</div>
+<div class="sect3">
+<h4 id="_milestone"><a class="anchor" href="#_milestone"></a>7.1.1. Milestone</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Purpose</strong>: A milestone marks the completion of a major phase or achievement, used for internal project tracking.</p>
+</li>
+<li>
+<p><strong>Focus</strong>: Milestones are about tracking progress within the development cycle (such as completing a design or testing phase).</p>
+</li>
+<li>
+<p><strong>Time-bound</strong>: They are often tied to specific dates but do not necessarily result in a product being delivered to users.</p>
+</li>
+<li>
+<p><strong>Example</strong>: Reaching the end of the "feature development" phase or completing "beta testing."</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_release"><a class="anchor" href="#_release"></a>7.1.2. Release</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Purpose</strong>: A release refers to a version of the software made available to the end-user, containing a set of completed features or fixes.</p>
+</li>
+<li>
+<p><strong>Focus</strong>: Releases are focused on delivering usable software to stakeholders or customers.</p>
+</li>
+<li>
+<p><strong>Versioning</strong>: Releases are typically versioned (e.g., v1.0, v2.0) and include new features, bug fixes, or performance improvements.</p>
+</li>
+<li>
+<p><strong>Example</strong>: Releasing "Version 1.0" of the software for deployment to users.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_key_differences_between_milestones_and_releases"><a class="anchor" href="#_key_differences_between_milestones_and_releases"></a>7.1.3. Key Differences Between Milestones and Releases</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Aspect</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Milestone</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Release</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Purpose</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Track progress and mark significant internal project achievements, such as completing algorithm development or model validation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deliver a working version of the scientific software to researchers, engineers, or end-users.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Timing</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usually tied to internal deadlines like completing a computational model, feature development, or a simulation test.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tied to external deadlines, often aligned with conference submissions, publication timelines, or public availability.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Visibility</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mainly visible to internal teams (e.g., scientific programmers, computational researchers, project managers).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Visible to external stakeholders such as collaborating researchers, funding agencies, or general users.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Scope</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Focuses on completing scientific tasks like algorithm refinement, numerical validation, or model integration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Focuses on delivering fully functional, validated, and potentially published software versions with new algorithms or models.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Deliverable</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Internal progress tracked, like a working prototype or a validated computational model, but not yet released to the broader scientific community.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A complete software release that includes new algorithms, models, or simulation capabilities made available to users for research or production use.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Duration</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No specific duration, marks key points in the research and development process (e.g., completion of the first draft of a new simulation method).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Includes a collection of features, bug fixes, or optimizations that have been developed and tested over a defined period.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Example</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Completing the validation of a new fluid dynamics solver or a complex climate model integration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Release of a new version of the scientific software (e.g., "Version 2.0" with enhanced parallelization capabilities, or new solvers) for use by other researchers.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_summary"><a class="anchor" href="#_summary"></a>7.2. Summary</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>A <strong>milestone</strong> is an internal progress marker that helps project teams track major achievements, while a <strong>release</strong> represents a specific version of the software delivered to users.</p>
+</li>
+<li>
+<p>In the context of software management, milestones help guide the project through its phases, while releases are tied to delivering finished products or features to the customer or end-users.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="index.html">Introduction to Project Management</a></span>
+  <span class="next"><a href="project-phases.html">Phases of a Project</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2024 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+
+
+<script async src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../../_/js/vendor/fontawesome.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>
