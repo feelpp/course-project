@@ -8,3 +8,14 @@ public/
 cache/
 node_modules/
 jupyter/
+.venv*/
+notebooks/
+archive.tar
+archive.tar.gz
+cours-project.zip
+file.txt
+file1.txt
+package.json2
+newlink.txt
+docs/antora/supplemental-ui/partials/footer-content copy.hbs
+docs/antora/supplemental-ui/partials/header-content copy.hbs
