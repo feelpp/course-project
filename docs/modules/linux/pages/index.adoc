@@ -1,5 +1,6 @@
 = Learning Linux Basics
 :page-jupyter: true
+:jupyter-language-name: python
 
 Navigating directories and files in Linux is a fundamental skill that allows you to fully exploit the power of the command-line interface (CLI). Mastering essential Linux navigation commands such as `cd`, `pwd`, `ls`, and `tree` enables you to effortlessly move through the filesystem, display the contents of directories, and understand your location within the system.
 
@@ -13,14 +14,16 @@ The `cd` command allows you to move between directories within the filesystem. I
 
 Example:
 
-[source,shell]
+[%dynamic%open,python]
 ----
-cd /path/to/directory
+%%bash
+cd /tmp
+pwd
 ----
 
 This command will move you to the specified directory. If no path is specified, typing `cd` on its own will take you to your home directory.
 
-- **Absolute Path**: `/home/user/documents`
+- **Absolute Path**: `/tmp/documents` (moves directly to the `documents` directory within `/tmp`)
 - **Relative Path**: `../documents` (moves up one directory and into `documents`)
 
 === `pwd` – Print Working Directory
@@ -29,17 +32,15 @@ The `pwd` command prints the full path of your current directory. This is partic
 
 Example:
 
-[source,shell]
+[%dynamic%open,python]
 ----
+%%bash
+mkdir /tmp/documents
+cd /tmp/documents
+touch file.txt
 pwd
 ----
 
-This will output something like:
-
-[source,shell]
-----
-/home/user/documents
-----
 
 === `ls` – List Directory Contents
 
@@ -47,8 +48,10 @@ The `ls` command lists all files and directories within the current directory. B
 
 Basic usage:
 
-[source,shell]
+[%dynamic%open,python]
 ----
+%%bash
+cd /tmp/documents
 ls
 ----
 
@@ -58,15 +61,33 @@ Additional options:
 - `ls -a`: Lists all files, including hidden files (those starting with a dot).
 - `ls -lh`: Displays sizes in human-readable format (KB, MB, etc.).
 
+.ls -l
+[%dynamic%open,python]
+----
+%%bash
+cd /tmp/documents
+ls -l
+----
+
+.ls -a
+[%dynamic%open,python]
+----
+%%bash
+cd /tmp/documents
+ls -a
+----
+
 === `tree` – Display Directory Structure
 
 The `tree` command visually displays the directory structure as a tree. It’s a useful tool for understanding the layout of files and directories.
 
 Example:
 
-[source,shell]
+[%dynamic%open,python]
 ----
-tree
+%%bash
+cd /tmp/documents
+tree ..
 ----
 
 This will output a nested tree structure representing the contents of the current directory and its subdirectories.
@@ -77,35 +98,36 @@ Here are some practical examples of how you might use these commands:
 
 - **Navigating to a specific directory:**
 
-[source,shell]
+[%dynamic%open,python]
 ----
+%%bash
 cd /var/log
 ----
 
 - **Confirming your location in the filesystem:**
 
-[source,shell]
+[%dynamic%open,python]
 ----
+%%bash
+cd /var/log
 pwd
 ----
 
 - **Listing files in the current directory in detail:**
 
-[source,shell]
+[%dynamic%open,python]
 ----
+%%bash
+cd /var/log
 ls -l
 ----
 
 - **Viewing the directory structure:**
 
-[source,shell]
+[%dynamic%open,python]
 ----
+%%bash
+cd /var/log
 tree
 ----
 
-== Further Resources
-
-To expand your knowledge on Linux navigation and command-line tools, visit the following resources:
-
-- xref:linux_basics.adoc[Linux Basics Documentation]
-- xref:linux_commands_cheat_sheet.adoc[Command Line Cheat Sheet]

@@ -1,0 +1,203 @@
+= Text Processing in Linux
+:page-jupyter: true
+:juputer-language-name: shell
+
+Text processing is an essential task for system administrators and developers. Linux, being a robust operating system, provides powerful tools for text searching, manipulation, and processing. The ability to handle and manipulate text files directly from the command line is one of Linux's greatest strengths.
+
+Users can utilize commands like `awk`, `sed`, `grep`, and `cut` for text filtering, substitution, and handling regular expressions. Additionally, shell scripting and programming languages such as Python and Perl offer remarkable text processing capabilities on Linux.
+
+Though Linux is primarily a command-line-based system, it also offers numerous GUI-based text editors, including `gedit`, `nano`, and `vim`, which make text editing convenient for both beginners and advanced users.
+
+Below is a simple example using the `grep` command to search for the term “Linux” in a file named `sample.txt`:
+
+[%dynamic,shellscript]
+----
+grep 'Linux' sample.txt
+----
+
+This command will display all the lines in the `sample.txt` file that contain the word "Linux".
+
+Proficiency in text processing is crucial for Linux users as it allows them to automate tasks, parse files, and mine data efficiently.
+
+== Standard Streams: stdout, stdin, stderr
+
+In Linux, `stdout`, `stdin`, and `stderr` are the three standard streams used for input and output.
+
+- **`stdin` (standard input)**: Input provided to commands or programs (typically from the keyboard).
+- **`stdout` (standard output)**: Output produced by commands or programs (typically displayed on the terminal).
+- **`stderr` (standard error)**: Used to display error messages.
+
+Example of redirecting output from `stdout` to a file:
+
+[source,shellscript]
+----
+ls > filelist.txt
+----
+
+This command saves the output of `ls` to a file named `filelist.txt`.
+
+== Cut and Paste
+
+- **`cut`**: The `cut` command is used to extract sections of each line from a file.
+  Example: Extract the first column from a comma-separated file:
+
+[source,shellscript]
+----
+cut -d ',' -f 1 filename.csv
+----
+
+- **`paste`**: The `paste` command merges lines from multiple files.
+  Example: Merge the lines from two files side by side:
+
+[source,shellscript]
+----
+paste file1.txt file2.txt
+----
+
+== Sorting and Translating Text
+
+- **`sort`**: The `sort` command sorts the contents of a file.
+  Example: Sorting a list alphabetically:
+
+[source,shellscript]
+----
+cat > file.txt << EOF
+cherry
+apple
+banana
+EOF
+sort file.txt
+cat file.txt
+----
+
+- **`tr`**: The `tr` command is used to translate or delete characters.
+  Example: Convert lowercase letters to uppercase:
+
+[source,shellscript]
+----
+echo "hello world" | tr 'a-z' 'A-Z'
+----
+
+== Head and Tail
+
+- **`head`**: The `head` command displays the first few lines of a file.
+  Example: Display the first 10 lines of a file:
+
+[source,shellscript]
+----
+head -n 10 file.txt
+----
+
+- **`tail`**: The `tail` command shows the last few lines of a file.
+  Example: Display the last 5 lines of a file:
+
+[source,shellscript]
+----
+tail -n 5 file.txt
+----
+
+== Joining and Splitting Files
+
+- **`join`**: The `join` command merges lines of two files based on a common field.
+  Example: Join two files on the first field:
+
+[source,shellscript]
+----
+join file1.txt file2.txt
+----
+
+- **`split`**: The `split` command splits a file into smaller chunks.
+  Example: Split a file into chunks of 1000 lines each:
+
+[source,shellscript]
+----
+split -l 1000 largefile.txt
+----
+
+== Pipes and Tee
+
+- **Pipe (`|`)**: Pipes are used to pass the output of one command as input to another.
+  Example: Find all occurrences of "error" in a log file and display the last 10 occurrences:
+
+[source,shellscript]
+----
+grep 'error' logfile.log | tail -n 10
+----
+
+- **`tee`**: The `tee` command reads from `stdin` and writes to both `stdout` and one or more files.
+  Example: Write the output of a command to both the terminal and a file:
+
+[source,shellscript]
+----
+ls | tee filelist.txt
+----
+
+== Line Numbering and Word Counting
+
+- **`nl`**: The `nl` command numbers the lines in a file.
+  Example: Number the lines of a file:
+
+[source,shellscript]
+----
+nl file.txt
+----
+
+- **`wc`**: The `wc` command counts the number of lines, words, and characters in a file.
+  Example: Count lines, words, and characters in a file:
+
+[source,shellscript]
+----
+wc file.txt
+----
+
+== Expand and Unexpand
+
+- **`expand`**: The `expand` command converts tabs to spaces.
+  Example:
+
+[source,shellscript]
+----
+expand file.txt
+----
+
+- **`unexpand`**: The `unexpand` command converts spaces to tabs.
+  Example:
+
+[source,shellscript]
+----
+unexpand file.txt
+----
+
+== Uniqueness and Filtering with Grep
+
+- **`uniq`**: The `uniq` command filters out repeated lines from a sorted file.
+  Example: Filter unique lines from a file:
+
+[source,shellscript]
+----
+uniq file.txt
+----
+
+- **`grep`**: The `grep` command searches for patterns in a file using regular expressions.
+  Example: Search for the word "Linux" in a file:
+
+[source,shellscript]
+----
+grep 'Linux' file.txt
+----
+
+== Advanced Text Processing with AWK
+
+- **`awk`**: The `awk` command is a powerful text processing tool used for pattern scanning and processing.
+  Example: Print the second column of a space-separated file:
+
+[source,shellscript]
+----
+awk '{print $2}' file.txt
+----
+
+`awk` can be used for more complex text filtering, replacing, and formatting tasks.
+
+== Summary
+
+Text processing commands in Linux provide a wide array of tools to manipulate and analyze text data. These tools are invaluable for developers and system administrators alike, as they offer robust functionality for working with large text files, system logs, and even database-like queries using basic shell commands.

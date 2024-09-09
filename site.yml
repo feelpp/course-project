@@ -25,6 +25,8 @@ asciidoc:
   attributes:
     project_name: Course Project
     project_version: 2.0.2
+    page-pagination: '@'
+    dynamic-blocks@: ''
     numbered: true
     allow-uri-read: true
     hide-uri-scheme: true
@@ -37,3 +39,5 @@ asciidoc:
     swimmer: Swimmer
     python: Python
     cpp: C++
+  extensions:
+  - '@feelpp/asciidoctor-extensions'

@@ -1,0 +1,169 @@
+= Working with Files in Linux
+:page-jupyter: true
+:jupyter-language-name: python
+
+Working with files is an essential part of Linux, and it’s a skill every Linux user must master. In Linux, everything is considered a file: text documents, images, system files, devices, and even directories. Linux provides numerous command-line utilities to create, view, move, or search files. Some of the basic commands for file handling in the Linux terminal include `touch` for creating files, `mv` for moving files, `cp` for copying files, `rm` for removing files, and `ls` for listing files and directories.
+
+For example, to create a file named `example.txt`, you can use the following command:
+
+[%dynamic%open,python]
+----
+%%bash
+cd /tmp/
+mkdir documents
+cd documents
+touch example.txt
+----
+
+To list the files in the current directory, use the command:
+
+[%dynamic%open,python]
+----
+%%bash
+cd /tmp/documents
+ls
+----
+
+Knowing how to effectively manage and manipulate files in Linux is crucial for administering and running a successful Linux system.
+
+== File Permissions
+
+Linux is a multi-user system, and file permissions play a vital role in protecting files from unauthorized access or modification. Every file and directory has associated permissions that determine who can read, write, or execute the file.
+
+- **`r` (read)**: Allows reading the file.
+- **`w` (write)**: Allows modifying the file.
+- **`x` (execute)**: Allows running the file as a program.
+
+To view file permissions, use:
+
+[%dynamic%open,python]
+----
+%%bash
+cd /tmp/documents
+ls -l
+----
+
+To modify file permissions, use `chmod`:
+
+[%dynamic%open,python]
+----
+%%bash
+cd /tmp/documents
+touch file.txt
+ls -l file.txt
+chmod 755 file.txt
+ls -l file.txt
+chmod +x file.txt
+ls -l file.txt
+chmod go+x file.txt
+ls -l file.txt
+----
+
+This sets the file permissions to **rwxr-xr-x**, where the owner can read, write, and execute the file, while others can only read and execute it.
+
+== Archiving and Compressing
+
+Archiving and compressing files helps manage storage and transfer large amounts of data efficiently. In Linux, commands like `tar`, `gzip`, and `bzip2` are used for this purpose.
+
+To create an archive of files:
+
+[%dynamic%open,python]
+----
+%%bash
+cd /tmp/documents
+touch file1.txt
+tar -cvf archive.tar file.txt file1.txt
+ls -l
+----
+
+To compress the archive:
+
+[%dynamic%open,python]
+----
+%%bash
+cd /tmp/documents
+gzip archive.tar
+ls -l
+----
+
+The file will now be compressed as `archive.tar.gz`.
+
+To extract a tar file:
+
+[%dynamic%open,python]
+----
+%%bash
+cd /tmp/documents
+mkdir temp
+cd temp
+tar -xzvf ../archive.tar.gz
+ls -lrt
+----
+
+== Copying and Renaming Files
+
+Copying and renaming files are essential operations when managing file systems. The `cp` command is used to copy files, and `mv` is used both to move and rename files.
+
+To copy a file:
+
+[%dynamic%open,python]
+----
+%%bash
+cd /tmp/documents
+cp file.txt /tmp
+ls /tmp
+----
+
+To rename a file:
+
+[%dynamic%open,python]
+----
+%%bash
+cd /tmp/documents
+mv /tmp/file.txt newname.txt
+ls
+----
+
+To move a file to a different directory:
+
+[%dynamic%open,python]
+----
+%%bash
+cd /tmp/documents
+mv newname.txt /tmp
+ls /tmp
+----
+
+== Soft Links / Hard Links
+
+Links in Linux are shortcuts to files or directories. There are two types of links: **soft links** (symbolic links) and **hard links**.
+
+- **Soft Link (Symbolic Link)**: A pointer to a file or directory. Removing the original file breaks the link.
+
+Example:
+
+[%dynamic%open,python]
+----
+%%bash
+cd /tmp/documents
+rm -f softlink.txt
+ln -s file.txt softlink.txt
+----
+
+- **Hard Link**: A copy of the file’s inode, meaning it references the same data as the original file. Deleting the original file does not break the link.
+
+Example:
+
+[%dynamic%open,python]
+----
+%%bash
+cd /tmp/documents
+rm -f newlink.txt
+ln file.txt newlink.txt
+----
+
+Hard links can only be created for files on the same filesystem.
+
+== Summary
+
+File management in Linux is a fundamental task that includes working with file permissions, compressing files, copying/renaming files, and creating links. These skills ensure efficient handling of data and system administration tasks.

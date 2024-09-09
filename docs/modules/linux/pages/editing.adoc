@@ -1,4 +1,7 @@
 = File Editing in Linux
+:page-jupyter: true
+:jupyter-language-name: python
+
 
 Linux, like other operating systems, allows file editing for numerous purposes, such as configuring system settings or writing scripts. There’s a wide variety of text editors available in Linux, and these editors come with different capabilities and levels of complexity. Whether you're editing configuration files or writing code, choosing the right editor can make a significant difference in your workflow.
 
@@ -17,7 +20,7 @@ Each editor has its own learning curve, commands, and unique set of features. Fo
 
 To edit a file using one of these editors, you first need to open it from the command line. For example:
 
-[source,shell]
+[source,python]
 ----
 nano /path/to/your/file.txt
 ----
@@ -32,29 +35,12 @@ To use VS Code for file editing, follow these steps:
 
 === Installing VS Code
 
-First, you need to install VS Code on your Linux system. You can do this by downloading the package from the official website or using the terminal with a package manager, depending on your distribution.
+First, you need to install VS Code on your Linux system. 
+You can do this by downloading the package from the official website or using the terminal with a package manager, depending on your distribution.
 
-For example, on **Ubuntu** or **Debian-based** systems:
+[.lead]
+https://code.visualstudio.com/Download[> Download Visual Studio Code]
 
-[source,shell]
-----
-sudo apt update
-sudo apt install code
-----
-
-For **Fedora** or **Red Hat-based** systems:
-
-[source,shell]
-----
-sudo dnf install code
-----
-
-Alternatively, you can use **Snap** to install VS Code:
-
-[source,shell]
-----
-sudo snap install --classic code
-----
 
 === Opening a File in VS Code
 
@@ -62,14 +48,14 @@ Once VS Code is installed, you can open a file or a folder directly from the ter
 
 To open a single file:
 
-[source,shell]
+[source,python]
 ----
 code /path/to/your/file.txt
 ----
 
 To open an entire directory in VS Code (which is useful for project management):
 
-[source,shell]
+[source,python]
 ----
 code /path/to/your/project/
 ----

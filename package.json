@@ -8,7 +8,7 @@
     "copy": "cp -r css fonts images reveal.js videos html",
     "slides": "./render;npm run copy",
     "start": "http-server public/ -d -i",
-    "antora": "npx antora --stacktrace generate --cache-dir cache --clean site.yml",
+    "antora": "npx antora --stacktrace generate --cache-dir cache --clean site.yml; zip -r cours-project.zip .vscode notebooks  -x \"*.pyc\" -x \"*/__pycache__/\"; mkdir -p public/cours-project/_attachments; cp cours-project.zip public/cours-project/_attachments/",
     "preview:build": "node_modules/.bin/antora --stacktrace --fetch site-dev.yml ; node-srv -p 8010 build/site"
   },
   "repository": {
@@ -28,10 +28,11 @@
     "@antora/site-generator-default": "^3.1",
     "@asciidoctor/core": "~2.2.8",
     "asciidoctor": "~2.2.8",
-    "asciidoctor-jupyter": "^0.7.0",
+    "asciidoctor-jupyter": "~0.7.0",
     "asciidoctor-kroki": "^0.17.0",
     "handlebars": "^4.7.7",
-    "handlebars-utils": "^1.0.6"
+    "handlebars-utils": "^1.0.6",
+    "@feelpp/asciidoctor-extensions": "^1.0.0-rc.11"
   },
   "devDependencies": {
     "broken-link-checker": "^0.7.8",

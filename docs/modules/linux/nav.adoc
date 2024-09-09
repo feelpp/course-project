@@ -1,3 +1,4 @@
 * xref:index.adoc[Introduction to Linux]
 ** xref:editing.adoc[File Editing in Linux]
 ** xref:shell.adoc[Linux Shell Basics]
+** xref:text-processing.adoc[Text Processing]
