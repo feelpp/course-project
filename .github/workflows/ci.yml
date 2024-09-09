@@ -16,21 +16,17 @@ jobs:
     name: Build, Install, Package documentation
     if: "!contains(github.event.head_commit.message, 'docs skip')"
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Install credentials
       run: echo https://$GITHUB_OAUTH:@github.com > $HOME/.git-credentials
       env:
         GITHUB_OAUTH: ${{ secrets.CR_PAT_WORKFLOW }}
-    - name: Install Environment
+    - name: Generate Antora Site
       run: |
         python3 -m venv .venv
         source .venv/bin/activate
         pip3 install -r requirements.txt
         npm install
-
-    - name: Generate site
-      run: |
-        source .venv/bin/activate
         npm run antora
       working-directory: docs
     - name: Deploy
