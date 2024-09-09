@@ -10,19 +10,19 @@ ext:
     - run:
         command: ./generate-jupyter.sh docs/modules/ROOT
       scan:
-        dir: jupyter/ROOT
+        dir: notebooks/ROOT
         files: '**/*.ipynb'
         base: modules/ROOT/attachments/
     - run:
         command: ./generate-jupyter.sh docs/modules/linux
       scan:
-        dir: jupyter/linux
+        dir: notebooks/linux
         files: '**/*.ipynb'
         base: modules/linux/attachments/
     - run:
         command: ./generate-jupyter.sh docs/modules/project-management
       scan:
-        dir: jupyter/project-management
+        dir: notebooks/project-management
         files: '**/*.ipynb'
         base: modules/project-management/attachments/        
 nav:
