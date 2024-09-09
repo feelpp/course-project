@@ -26,7 +26,8 @@ ext:
         files: '**/*.ipynb'
         base: modules/project-management/attachments/        
 nav:
-- modules/ROOT/nav.adoc
-- modules/project-management/nav.adoc
+#- modules/ROOT/nav.adoc
 - modules/linux/nav.adoc
+- modules/project-management/nav.adoc
+
 
