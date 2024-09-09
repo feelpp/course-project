@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Learning Linux Basics :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/linux/index.html">
-    <link rel="prev" href="../project-management/github.html">
+    <link rel="prev" href="../index.html">
     <link rel="next" href="editing.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -144,11 +144,20 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../index.html">Introduction</a>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Introduction to Linux</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="editing.html">File Editing in Linux</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../github.html">Introduction to GitHub</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="shell.html">Linux Shell Basics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="text-processing.html">Text Processing</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -180,25 +189,6 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../project-management/github.html">Introduction to GitHub</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Introduction to Linux</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="editing.html">File Editing in Linux</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="shell.html">Linux Shell Basics</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="text-processing.html">Text Processing</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -402,13 +392,13 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 8
--rw-r--r-- 1 runner docker  156 Sep  9 11:17 archive.tar.gz
--rw-r--r-- 1 runner docker    0 Sep  9 11:17 example.txt
--rwxr-xr-x 2 runner docker    0 Sep  9 11:17 file.txt
--rw-r--r-- 1 runner docker    0 Sep  9 11:17 file1.txt
--rwxr-xr-x 2 runner docker    0 Sep  9 11:17 newlink.txt
-lrwxrwxrwx 1 runner docker    8 Sep  9 11:17 softlink.txt -> file.txt
-drwxr-xr-x 2 runner docker 4096 Sep  9 11:17 temp</pre>
+-rw-r--r-- 1 runner docker  156 Sep  9 11:22 archive.tar.gz
+-rw-r--r-- 1 runner docker    0 Sep  9 11:22 example.txt
+-rwxr-xr-x 2 runner docker    0 Sep  9 11:22 file.txt
+-rw-r--r-- 1 runner docker    0 Sep  9 11:22 file1.txt
+-rwxr-xr-x 2 runner docker    0 Sep  9 11:22 newlink.txt
+lrwxrwxrwx 1 runner docker    8 Sep  9 11:22 softlink.txt -> file.txt
+drwxr-xr-x 2 runner docker 4096 Sep  9 11:22 temp</pre>
 </div>
 </div>
 </div>
@@ -461,12 +451,12 @@ tree ..</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>..
-├── clr-debug-pipe-1595-9267-in
-├── clr-debug-pipe-1595-9267-out
-├── clr-debug-pipe-1612-9480-in
-├── clr-debug-pipe-1612-9480-out
-├── clr-debug-pipe-597-965-in
-├── clr-debug-pipe-597-965-out
+├── clr-debug-pipe-1662-10622-in
+├── clr-debug-pipe-1662-10622-out
+├── clr-debug-pipe-1678-10913-in
+├── clr-debug-pipe-1678-10913-out
+├── clr-debug-pipe-597-882-in
+├── clr-debug-pipe-597-882-out
 ├── documents
 │   ├── archive.tar.gz
 │   ├── example.txt
@@ -477,15 +467,15 @@ tree ..</code></pre>
 │   └── temp
 │       ├── file.txt
 │       └── file1.txt
-├── dotnet-diagnostic-1595-9267-socket
-├── dotnet-diagnostic-1612-9480-socket
-├── dotnet-diagnostic-597-965-socket
+├── dotnet-diagnostic-1662-10622-socket
+├── dotnet-diagnostic-1678-10913-socket
+├── dotnet-diagnostic-597-882-socket
 ├── newname.txt
 ├── snap-private-tmp  [error opening dir]
-├── systemd-private-1b9dd8f619df4a0996ad824967cb9ff4-chrony.service-8PawAy  [error opening dir]
-├── systemd-private-1b9dd8f619df4a0996ad824967cb9ff4-haveged.service-ALYx4A  [error opening dir]
-├── systemd-private-1b9dd8f619df4a0996ad824967cb9ff4-systemd-logind.service-sXlfo1  [error opening dir]
-├── systemd-private-1b9dd8f619df4a0996ad824967cb9ff4-systemd-resolved.service-nOVpXv  [error opening dir]
+├── systemd-private-96213768ede34e14a9e8a9daefc018d7-chrony.service-mSsP4R  [error opening dir]
+├── systemd-private-96213768ede34e14a9e8a9daefc018d7-haveged.service-A8ocTI  [error opening dir]
+├── systemd-private-96213768ede34e14a9e8a9daefc018d7-systemd-logind.service-S1ntZK  [error opening dir]
+├── systemd-private-96213768ede34e14a9e8a9daefc018d7-systemd-resolved.service-lX3nXp  [error opening dir]
 └── www-data-temp-aspnet-0
     └── cc117660
 
@@ -600,35 +590,35 @@ ls -l</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>total 592
--rw-r--r--  1 root         root               208 Sep  9 11:15 alternatives.log
+<pre>total 628
+-rw-r--r--  1 root         root               208 Sep  9 11:20 alternatives.log
 drwxr-x---  2 root         adm               4096 Sep  1 21:17 apache2
-drwxr-xr-x  2 root         root              4096 Sep  4 16:09 apt
--rw-r-----  1 syslog       adm               2151 Sep  9 11:17 auth.log
-drwxr-xr-x  4 root         root              4096 Sep  4 16:07 azure
--rw-rw----  1 root         utmp                 0 Sep  4 16:09 btmp
+drwxr-xr-x  2 root         root              4096 Sep  3 14:02 apt
+-rw-r-----  1 syslog       adm               1943 Sep  9 11:21 auth.log
+drwxr-xr-x  4 root         root              4096 Sep  3 13:59 azure
+-rw-rw----  1 root         utmp                 0 Sep  3 14:01 btmp
 drwxr-x---  2 _chrony      _chrony           4096 Sep  1 21:06 chrony
--rw-r-----  1 root         adm               4421 Sep  9 11:16 cloud-init-output.log
--rw-r-----  1 syslog       adm             133278 Sep  9 11:16 cloud-init.log
+-rw-r-----  1 root         adm               4412 Sep  9 11:20 cloud-init-output.log
+-rw-r-----  1 syslog       adm             133288 Sep  9 11:20 cloud-init.log
 drwxr-xr-x  2 root         root              4096 Feb 13  2024 dist-upgrade
--rw-r-----  1 root         adm              47172 Sep  9 11:16 dmesg
--rw-r--r--  1 root         root              1491 Sep  4 16:09 dpkg.log
--rw-r--r--  1 root         root                 0 Sep  4 16:09 fontconfig.log
+-rw-r-----  1 root         adm              47003 Sep  9 11:20 dmesg
+-rw-r--r--  1 root         root              1491 Sep  3 14:02 dpkg.log
+-rw-r--r--  1 root         root                 0 Sep  3 14:01 fontconfig.log
 drwxr-sr-x+ 3 root         systemd-journal   4096 Sep  1 21:05 journal
--rw-r-----  1 syslog       adm              59853 Sep  9 11:16 kern.log
+-rw-r-----  1 syslog       adm              59596 Sep  9 11:21 kern.log
 drwxr-xr-x  2 landscape    landscape         4096 Sep  1 21:06 landscape
--rw-rw-r--  1 root         utmp                 0 Sep  4 16:09 lastlog
-drwxr-x---  2 mysql        adm               4096 Sep  9 11:15 mysql
+-rw-rw-r--  1 root         utmp                 0 Sep  3 14:01 lastlog
+drwxr-x---  2 mysql        adm               4096 Sep  9 11:20 mysql
 drwxr-xr-x  2 root         adm               4096 Sep  1 21:43 nginx
--rw-------  1 root         root               281 Sep  9 11:15 php8.1-fpm.log
+-rw-------  1 root         root               281 Sep  9 11:20 php8.1-fpm.log
 drwxrwxr-t  2 root         postgres          4096 Sep  1 21:47 postgresql
 drwx------  2 root         root              4096 Sep  1 21:06 private
 drwxr-xr-x  2 sphinxsearch root              4096 Dec  3  2021 sphinxsearch
--rw-r-----  1 syslog       adm             234993 Sep  9 11:17 syslog
+-rw-r-----  1 syslog       adm             258506 Sep  9 11:22 syslog
 drwxr-xr-x  2 root         root              4096 Jun  6  2023 sysstat
 drwxr-x---  2 root         adm               4096 Sep  1 21:06 unattended-upgrades
--rw-r--r--  1 root         root             30525 Sep  9 11:16 waagent.log
--rw-rw-r--  1 root         utmp              2688 Sep  9 11:16 wtmp</pre>
+-rw-r--r--  1 root         root             41671 Sep  9 11:20 waagent.log
+-rw-rw-r--  1 root         utmp              2688 Sep  9 11:20 wtmp</pre>
 </div>
 </div>
 </div>
@@ -680,7 +670,8 @@ tree</code></pre>
 ├── journal
 │   └── a91c45fbddd94a3d8946fea07a9b1fb4
 │       ├── system.journal
-│       └── user-1001.journal
+│       ├── user-1001.journal
+│       └── user-1001@e15da1c25b784ce08a6b7feca5a71eba-00000000000032e6-000621377f880c33.journal
 ├── kern.log
 ├── landscape
 │   └── sysinfo.log
@@ -703,7 +694,7 @@ tree</code></pre>
 ├── waagent.log
 └── wtmp
 
-18 directories, 31 files
+18 directories, 32 files
 ---------------------------------------------------------------------------
 CalledProcessError                        Traceback (most recent call last)
 File <ipython-input-1-a4a9f5dead09>:1
@@ -739,7 +730,7 @@ CalledProcessError: Command 'b'cd /var/log\ntree\n'' returned non-zero exit stat
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="../project-management/github.html">Introduction to GitHub</a></span>
+  <span class="prev"><a href="../index.html">Course Project</a></span>
   <span class="next"><a href="editing.html">File Editing in Linux</a></span>
 </nav>
 </article>
