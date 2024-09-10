@@ -2,6 +2,8 @@
 :page-jupyter: true
 :jupyter-language-name: python
 
+include::partial$bash-commands.adoc[]
+
 The Linux shell is a command-line interface or terminal used to interact directly with the operating system. 
 The shell helps facilitate system commands and acts as an intermediary interface between the user and the system’s kernel.
 The shell can perform complex tasks efficiently and quickly. 

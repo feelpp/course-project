@@ -2,6 +2,8 @@
 :page-jupyter: true
 :jupyter-language-name: python
 
+include::partial$bash-commands.adoc[]
+
 Working with files is an essential part of Linux, and it’s a skill every Linux user must master. In Linux, everything is considered a file: text documents, images, system files, devices, and even directories. Linux provides numerous command-line utilities to create, view, move, or search files. Some of the basic commands for file handling in the Linux terminal include `touch` for creating files, `mv` for moving files, `cp` for copying files, `rm` for removing files, and `ls` for listing files and directories.
 
 For example, to create a file named `example.txt`, you can use the following command:

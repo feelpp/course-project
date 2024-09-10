@@ -2,6 +2,7 @@
 :page-jupyter: true
 :jupyter-language-name: python
 
+include::partial$bash-commands.adoc[]
 
 Linux, like other operating systems, allows file editing for numerous purposes, such as configuring system settings or writing scripts. There’s a wide variety of text editors available in Linux, and these editors come with different capabilities and levels of complexity. Whether you're editing configuration files or writing code, choosing the right editor can make a significant difference in your workflow.
 

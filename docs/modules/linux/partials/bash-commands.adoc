@@ -1,0 +1,2 @@
+
+IMPORTANT: The pages can be downloaded via the green button at the top right of the page. The commands are shell commands and can be executed in a terminal, however, do not copy the `%%bash` magic command that is used to execute the commands in the Jupyter Notebook environment.

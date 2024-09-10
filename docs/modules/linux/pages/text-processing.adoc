@@ -2,6 +2,8 @@
 :page-jupyter: true
 :juputer-language-name: shell
 
+include::partial$bash-commands.adoc[]
+
 Text processing is an essential task for system administrators and developers. Linux, being a robust operating system, provides powerful tools for text searching, manipulation, and processing. The ability to handle and manipulate text files directly from the command line is one of Linux's greatest strengths.
 
 Users can utilize commands like `awk`, `sed`, `grep`, and `cut` for text filtering, substitution, and handling regular expressions. Additionally, shell scripting and programming languages such as Python and Perl offer remarkable text processing capabilities on Linux.
