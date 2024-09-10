@@ -22,6 +22,6 @@ Containers use fewer resources since they share the OS kernel, a crucial advanta
 
 image:docker/why-are-containers-lightweight.png[title="Why are Docker Containers Lightweight?", link="https://www.docker.com/"]
 
-Docker's lightweight design makes it ideal for **scientific computing** pipelines, where iterative and resource-heavy processes (e.g., simulations, ML model training) require quick and flexible deployment.
+Docker's lightweight design makes it useful for **scientific computing** pipelines, where iterative and resource-heavy processes (e.g., simulations, ML model training) require quick and flexible deployment.
 
 **Digital twins** benefit from Docker’s efficiency by allowing rapid iteration of simulations without the overhead of traditional virtual machines, improving performance when running real-time applications.
