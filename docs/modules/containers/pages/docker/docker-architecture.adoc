@@ -1,0 +1,21 @@
+= Docker Architecture
+
+== Separation of Concerns
+
+image:docker/separation-of-concerns.png[title="Separation of Concerns", link="https://www.docker.com/"]
+
+Docker separates the roles of developers and sysadmins by using containers as the interface between these roles. Developers create applications in containers, while sysadmins can manage deployment without worrying about application-specific configurations.
+
+== Containers vs VMs
+
+image:docker/containers-vs-vms.png[title="Containers vs VMs", link="https://www.docker.com/"]
+
+- Containers use less memory and CPU resources than VMs since they share the same OS kernel.
+- VMs, on the other hand, have a full OS image, including kernel space, and use more resources.
+
+== Lightweight by Design
+
+image:docker/why-are-containers-lightweight.png[title="Why are Docker Containers Lightweight?", link="https://www.docker.com/"]
+
+- Docker containers share the host kernel, eliminating the need to run a separate OS in each container.
+- This reduces the overhead and improves performance compared to traditional virtual machines.

@@ -1,0 +1,7 @@
+= Introduction to Containers
+
+Containers provide a lightweight, portable, and consistent environment for running applications. They package an application with all of its dependencies, ensuring that it runs the same way in development, testing, and production environments.
+
+Unlike virtual machines, containers share the host operating system's kernel, making them more resource-efficient. Containers are used in diverse fields such as web development, **scientific computing**, **data science**, and **digital twins**, helping to standardize software deployment across different platforms and environments.
+
+In this module, we will explore Docker, Apptainer (formerly Singularity), and other container technologies.

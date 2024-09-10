@@ -1,0 +1,8 @@
+* xref:index.adoc[Overview of VS Code]
+** xref:install.adoc[VS Code Installation]
+** xref:basic-usage.adoc[Basic Usage and Commands]
+** xref:extensions.adoc[Extension Installation and Key Extensions]
+*** xref:remote-ssh.adoc[Remote SSH Extension]
+*** xref:wsl.adoc[WSL Extension]
+*** xref:python-jupyter.adoc[Python and Jupyter Extensions]
+** xref:configure-vscode.adoc[How to Configure VS Code with .vscode]

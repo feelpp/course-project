@@ -1,0 +1,32 @@
+= Basic Usage and Commands
+:page-toclevels: 3
+
+== Getting Started with VS Code
+
+Once installed, you can open VS Code using the launcher or from the terminal:
+
+[source,shell]
+----
+code .
+----
+
+This opens the current directory in VS Code.
+
+== Basic Interface Overview
+
+The VS Code interface consists of the following key sections:
+
+* **Explorer**: The left-hand panel where you can navigate files and folders.
+* **Editor**: The main area where you open and edit files.
+* **Terminal**: Built-in terminal for running commands directly from VS Code.
+
+== Common Commands
+
+Here are a few essential VS Code commands:
+
+* **Open Command Palette**: `Ctrl + Shift + P` or `Cmd + Shift + P` on macOS. This gives access to all VS Code features via quick commands.
+* **Open a new file**: `Ctrl + N` (Windows/Linux) or `Cmd + N` (macOS).
+* **Toggle terminal**: `Ctrl + `` (Windows/Linux) or `Cmd + `` (macOS).
+
+These basic commands help you get started with coding or file management.
+

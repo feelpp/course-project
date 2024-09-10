@@ -1,0 +1,37 @@
+= Introduction to Apptainer
+
+Apptainer (formerly Singularity) is a container platform specifically designed for **high-performance computing (HPC)**, **scientific computing**, and **data science**. 
+Unlike Docker, Apptainer containers run without requiring root privileges, making them more suitable for multi-user environments like university clusters or supercomputers.
+
+== Why Apptainer?
+
+- *Rootless security*: Apptainer is designed with non-privileged users in mind, increasing security in shared environments.
+- *Performance*: Ideal for workloads in HPC, where performance and security are critical.
+- *Mobility of Compute*: Easily transport workloads between environments, including HPC clusters and cloud infrastructure.
+
+== Getting Started with Apptainer
+
+To get started with Apptainer, you can install it on your system using xref:apptainer/apptainer-install.adoc[].
+
+
+[source,shell]
+----
+# Pulling a container from a registry
+apptainer pull library://alpine
+
+# Running the container
+apptainer exec alpine_latest.sif /bin/sh
+----
+
+== Use Cases for Scientific Computing and Data Science
+
+Apptainer is widely used in the scientific community for reproducible research. Here are a few common use cases:
+
+- **Data Science**: Apptainer can run Jupyter Notebooks, TensorFlow, or other machine learning frameworks in a secure, isolated environment without needing root access.
+- **Digital Twins**: Apptainer can simulate complex environments, making it useful for digital twin applications in industries such as healthcare, manufacturing, and smart cities.
+
+== Apptainer vs Docker
+
+While Docker is widely used for application development and deployment, Apptainer is more suitable for HPC environments due to its security model. Both tools can be used together, depending on the requirements of your workload.
+
+Apptainer’s rootless containers offer a more secure solution in shared environments, while Docker may still be preferred for general-purpose development workflows.

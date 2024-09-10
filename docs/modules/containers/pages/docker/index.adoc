@@ -1,0 +1,5 @@
+= Introduction to Docker
+
+Welcome to the Introduction to Docker course.
+
+This course will cover everything from Docker basics, architecture, practical commands, and advanced topics like Docker Compose. Use the navigation to explore each section.

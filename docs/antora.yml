@@ -29,5 +29,6 @@ nav:
 #- modules/ROOT/nav.adoc
 - modules/linux/nav.adoc
 - modules/project-management/nav.adoc
+- modules/containers/nav.adoc
 
 

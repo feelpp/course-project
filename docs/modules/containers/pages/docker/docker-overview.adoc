@@ -1,0 +1,12 @@
+= Docker Overview
+
+image:docker/docker.png[title="Docker", link="https://www.docker.com/"]
+
+Docker is an open platform that allows developers to automate the deployment of applications inside lightweight, portable containers. This makes it easy to manage and scale applications across different environments.
+
+== What is a Container?
+
+A container is a standard unit of software that packages code and all its dependencies, ensuring the application runs quickly and reliably from one computing environment to another.
+
+- Containers isolate the application environment.
+- Unlike VMs, containers share the host system's OS kernel, making them lightweight.

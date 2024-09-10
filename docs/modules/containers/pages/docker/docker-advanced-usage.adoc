@@ -1,0 +1,18 @@
+= Advanced Docker Usage
+
+== Volumes: Persistent Storage
+
+Use volumes to store data that persists even after a container is removed. Here’s an example of running an Ubuntu container with a mounted volume from your local `/tmp` directory:
+
+[source,shell]
+----
+docker run -it -v /tmp:/tmp ubuntu bash
+----
+
+You can view the volume by running the `df` command inside the container.
+
+== Docker Images and Updates
+
+Docker images can be updated and modified easily by creating new image layers. The ability to roll back and forward to different layers simplifies testing and updates.
+
+image:docker/changes-and-updates.png[title="Changes and Updates", link="https://www.docker.com/"]

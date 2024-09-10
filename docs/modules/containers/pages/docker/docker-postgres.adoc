@@ -1,0 +1,89 @@
+= Using the Postgres Docker Official Image
+
+This section explains how to work with the Postgres Docker Official Image to set up a Postgres container quickly and efficiently.
+
+== Why Use Postgres in Docker?
+
+- Quick and easy setup.
+- Better isolation between the application and database.
+- Easier to spin up in various environments (local development, testing, etc.).
+
+== Pulling the Postgres Image
+
+You can pull the Postgres image from Docker Hub with:
+
+[source,shell]
+----
+docker pull postgres
+----
+
+To use a specific version, add the version tag (e.g., `:14.5`).
+
+== Running Postgres in a Container
+
+To start a Postgres container with environment variables:
+
+[source,shell]
+----
+docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+----
+
+== Using Docker Compose
+
+You can manage multiple services, including Postgres, with Docker Compose. Here is a basic `docker-compose.yml` example:
+
+This Docker Compose file defines a two-service setup using PostgreSQL and Adminer. Below is a breakdown of each section:
+
+[source,yaml]
+----
+services:
+  db:                                               // <1>
+    image: postgres                                 // <2>
+    environment:                                    // <3>
+      POSTGRES_PASSWORD: example                    // <4>
+    volumes:                                        // <5>
+      - pgdata:/var/lib/postgresql/data             // <6>
+
+  adminer:                                          // <7>
+    image: adminer                                  // <8>
+    ports:                                          // <9>
+      - "8080:8080"                                 // <10>
+
+volumes:
+  pgdata:                                           // <11>
+----
+
+<1> **db**: Defines the first service, a PostgreSQL database.
+<2> **image: postgres**: Uses the official PostgreSQL image from Docker Hub.
+<3> **environment**: Sets environment variables for the database configuration.
+<4> **POSTGRES_PASSWORD**: Sets the password for the PostgreSQL database.
+<5> **volumes**: Configures a persistent volume for data storage.
+<6> **pgdata**: Maps the host volume `pgdata` to the container's data directory, ensuring data persistence.
+<7> **adminer**: Defines the second service, Adminer, a lightweight database management interface.
+<8> **image: adminer**: Uses the official Adminer image from Docker Hub.
+<9> **ports**: Maps ports between the host and the container.
+<10> **"8080:8080"**: Maps port 8080 on the host to port 8080 inside the container for accessing Adminer.
+<11> **volumes**: Defines the named volume `pgdata` for persisting PostgreSQL data.
+
+.What is Adminer?
+[TIP]
+====
+*Adminer* is a lightweight and full-featured database management tool, available as a single PHP file. It supports managing databases like **PostgreSQL**, **MySQL**, **SQLite**, and others, offering a user-friendly web interface for performing various database operations, such as running queries, editing tables, and managing users.
+
+In Docker environments, Adminer is commonly used alongside databases like PostgreSQL to provide a simple, browser-based management interface.
+
+For more information, visit the https://www.adminer.org/[> Adminer website].
+====
+
+== Extending the Postgres Image
+
+You can customize your Postgres container by using:
+
+- **Environment variables** for configuration (e.g., `POSTGRES_USER`, `POSTGRES_DB`).
+- **Docker secrets** to handle sensitive data securely.
+- **Initialization scripts** to automate database setup.
+
+== Conclusion
+
+The Postgres Docker Official Image simplifies the deployment of PostgreSQL databases. Whether used for local development or small-scale production, Docker makes it easy to manage and extend Postgres instances.
+For more information, visit the https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/[official blog post].

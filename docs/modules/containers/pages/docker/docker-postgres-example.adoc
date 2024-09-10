@@ -1,0 +1,120 @@
+= Practical Session: Using PostgreSQL with Docker and Injecting a Dataset
+
+This session demonstrates how to set up PostgreSQL using Docker, inject a dataset into the database, and perform basic queries.
+
+== Step 1: Set up PostgreSQL with Docker
+
+Pull the official PostgreSQL image and start a container.
+
+[source,shell]
+----
+docker pull postgres
+docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+----
+
+== Step 2: Prepare the Dataset
+
+Let's use a small CSV dataset for this session. Create a `data.csv` file with the following content:
+
+.data.csv
+[%header,format=csv]
+|===
+include::example$data.csv[]
+|===
+
+== Step 3: Create a Docker Volume for Persistence
+
+We'll create a volume to persist PostgreSQL data and mount it to the container:
+
+.Using Docker Volumes to Persist Data
+[source,shell]
+----
+docker volume create pgdata
+docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -v pgdata:/var/lib/postgresql/data -d postgres
+----
+
+== Step 4: Connect to the PostgreSQL Container
+
+Now, connect to the running Postgres instance:
+
+.Using `psql` to Connect to Postgres
+[source,shell]
+----
+docker exec -it some-postgres psql -U postgres
+----
+
+== Step 5: Create a Table in Postgres
+
+Create a new table to hold our dataset:
+
+.Using SQL language to Create a Table
+[source,sql]
+----
+CREATE TABLE people (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    age INT
+);
+----
+
+== Step 6: Import the Dataset into PostgreSQL
+
+To load the CSV file into the Postgres container, we can use the `COPY` command. 
+First, copy the `data.csv` file to the running container:
+
+.Using `docker cp` to Copy Files to a Container
+[source,shell]
+----
+docker cp data.csv some-postgres:/data.csv
+----
+
+Then, import the CSV data into the `people` table:
+
+.Using SQL language to Import Data
+[source,sql]
+----
+COPY people(id, name, age)
+FROM '/data.csv'
+DELIMITER ','
+CSV HEADER;
+----
+
+== Step 7: Query the Data
+
+Now, let's query the data to ensure it's loaded correctly:
+
+.Using SQL language to Query Data
+[source,sql]
+----
+SELECT * FROM people;
+----
+
+You should see output similar to this:
+
+.Query Output
+[source,output]
+----
+inc
+ id |    name     | age
+----+-------------+-----
+  1 | John Doe    |  30
+  2 | Jane Smith  |  25
+  3 | Emily Johnson |  22
+(3 rows)
+----
+
+== Step 8: Clean Up
+
+When you're done, stop and remove the container:
+
+.Using Docker Commands to Clean Up
+[source,shell]
+----
+docker stop some-postgres
+docker rm some-postgres
+docker volume rm pgdata
+----
+
+== Conclusion
+
+In this session, we've set up PostgreSQL using Docker, imported a small dataset, and performed basic queries. This setup can be expanded to handle larger datasets and more complex queries.

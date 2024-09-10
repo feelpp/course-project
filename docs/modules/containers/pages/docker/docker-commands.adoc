@@ -1,0 +1,28 @@
+= Docker System Basics
+
+image:docker/basics-of-docker-system.png[title="Basics of Docker System", link="https://www.docker.com/"]
+
+The basic components of the Docker system are:
+- **Images**: Blueprints of the application and its dependencies.
+- **Containers**: Running instances of images.
+- **Volumes**: Persistent data storage.
+- **Networks**: Isolated environments for containers to communicate.
+- **Dockerfile**: A file used to create Docker images.
+
+== Docker Hello World Example
+
+[source,shell]
+----
+docker run hello-world
+----
+
+This command pulls the `hello-world` image from Docker Hub and runs it in a container.
+
+== Running Ubuntu in a Container
+
+[source,shell]
+----
+docker run -it ubuntu bash
+----
+
+The `-it` flag starts the container in interactive mode with a terminal attached. This runs an Ubuntu image with the Bash shell.
