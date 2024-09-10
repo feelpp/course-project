@@ -645,6 +645,36 @@ Host example.com
 <div class="paragraph">
 <p>This configuration allows you to specify which SSH key to use for each host.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Configuring SSH Keys for Gaya</div>
+<div class="paragraph">
+<p>Here is an configuration for <code>gaya.math.unistra.fr</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">Host gaya.math.unistra.fr
+  HostName gaya.math.unistra.fr
+  User user
+  IdentityFile ~/.ssh/id_ed25519_gaya
+Host gaya
+  HostName gaya.math.unistra.fr
+  User user
+  IdentityFile ~/.ssh/id_ed25519_gaya</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now you can connect to <code>gaya.math.unistra.fr</code> using the <code>gaya</code> alias.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
