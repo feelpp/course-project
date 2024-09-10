@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Project Management :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/project-management/project.html">
+    <title>Basic Usage and Commands :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/vscode/basic-usage.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -163,30 +163,30 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Introduction to Project Management</a>
+    <a class="nav-link" href="../project-management/index.html">Introduction to Project Management</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="introduction.html">What is Project?</a>
+    <a class="nav-link" href="../project-management/introduction.html">What is Project?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="project-phases.html">Phases of a Project</a>
+    <a class="nav-link" href="../project-management/project-phases.html">Phases of a Project</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="practical-examples.html">Practical Examples in Scientific Computing</a>
+    <a class="nav-link" href="../project-management/practical-examples.html">Practical Examples in Scientific Computing</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="case-studies.html">Case Studies</a>
+    <a class="nav-link" href="../project-management/case-studies.html">Case Studies</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="tools-gantt.html">Project Management Tools and Gantt Charts</a>
+    <a class="nav-link" href="../project-management/tools-gantt.html">Project Management Tools and Gantt Charts</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="agile-best-practices.html">Agile Best Practices</a>
+    <a class="nav-link" href="../project-management/agile-best-practices.html">Agile Best Practices</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="github.html">Introduction to GitHub</a>
+    <a class="nav-link" href="../project-management/github.html">Introduction to GitHub</a>
   </li>
 </ul>
   </li>
@@ -269,12 +269,12 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Course Project</a></li>
-    <li><a href="project.html">Project Management</a></li>
+    <li><a href="basic-usage.html">Basic Usage and Commands</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/project-management/pages/project.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/vscode/pages/basic-usage.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -290,16 +290,69 @@ MathJax.Hub.Config({
 </div>
 
   <div class="content">
-<aside class="toc sidebar" data-title="Contents" data-levels="2">
+<aside class="toc sidebar" data-title="Contents" data-levels="3">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Project Management</h1>
+<h1 class="page">Basic Usage and Commands</h1>
 <div class="sect1">
-<h2 id="_introduction_to_project_management"><a class="anchor" href="#_introduction_to_project_management"></a>1. Introduction to Project Management</h2>
+<h2 id="_getting_started_with_vs_code"><a class="anchor" href="#_getting_started_with_vs_code"></a>1. Getting Started with VS Code</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Project management involves organizing resources, tasks, and people to achieve specific goals within time and budget constraints. This introduction explores the key elements, phases, and tools required for successful project management.</p>
+<p>Once installed, you can open VS Code using the launcher or from the terminal:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">code .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This opens the current directory in VS Code.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_basic_interface_overview"><a class="anchor" href="#_basic_interface_overview"></a>2. Basic Interface Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The VS Code interface consists of the following key sections:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Explorer</strong>: The left-hand panel where you can navigate files and folders.</p>
+</li>
+<li>
+<p><strong>Editor</strong>: The main area where you open and edit files.</p>
+</li>
+<li>
+<p><strong>Terminal</strong>: Built-in terminal for running commands directly from VS Code.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_common_commands"><a class="anchor" href="#_common_commands"></a>3. Common Commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Here are a few essential VS Code commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Open Command Palette</strong>: <code>Ctrl + Shift + P</code> or <code>Cmd + Shift + P</code> on macOS. This gives access to all VS Code features via quick commands.</p>
+</li>
+<li>
+<p><strong>Open a new file</strong>: <code>Ctrl + N</code> (Windows/Linux) or <code>Cmd + N</code> (macOS).</p>
+</li>
+<li>
+<p><strong>Toggle terminal</strong>: `Ctrl + <code> (Windows/Linux) or `Cmd + </code> (macOS).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These basic commands help you get started with coding or file management.</p>
 </div>
 </div>
 </div>

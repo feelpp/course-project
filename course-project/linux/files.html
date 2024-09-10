@@ -190,6 +190,58 @@ MathJax.Hub.Config({
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/index.html">Introduction to Containers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/apptainer/index.html">Apptainer</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/apptainer/apptainer-install.html">Installing Apptainer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/docker/index.html">Docker</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-overview.html">Docker Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-problems-solved.html">The Problem Docker Solves</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-architecture.html">Docker Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-commands.html">Basic Docker Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-advanced-usage.html">Advanced Docker Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/docker/docker-postgres.html">Running PostgreSQL with Docker</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../containers/docker/docker-postgres-example.html">Setting Up PostgreSQL with Docker</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-compose.html">Docker Compose</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
 </ul>
   </nav>
 </div>
@@ -336,7 +388,7 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 0
--rw-r--r-- 1 runner docker 0 Sep  9 11:22 example.txt</pre>
+-rw-r--r-- 1 runner docker 0 Sep 10 04:00 example.txt</pre>
 </div>
 </div>
 </div>
@@ -363,10 +415,10 @@ ls -l file.txt</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>-rw-r--r-- 1 runner docker 0 Sep  9 11:22 file.txt
--rwxr-xr-x 1 runner docker 0 Sep  9 11:22 file.txt
--rwxr-xr-x 1 runner docker 0 Sep  9 11:22 file.txt
--rwxr-xr-x 1 runner docker 0 Sep  9 11:22 file.txt</pre>
+<pre>-rw-r--r-- 1 runner docker 0 Sep 10 04:00 file.txt
+-rwxr-xr-x 1 runner docker 0 Sep 10 04:00 file.txt
+-rwxr-xr-x 1 runner docker 0 Sep 10 04:00 file.txt
+-rwxr-xr-x 1 runner docker 0 Sep 10 04:00 file.txt</pre>
 </div>
 </div>
 </div>
@@ -402,10 +454,10 @@ ls -l</code></pre>
 <pre>file.txt
 file1.txt
 total 12
--rw-r--r-- 1 runner docker 10240 Sep  9 11:22 archive.tar
--rw-r--r-- 1 runner docker     0 Sep  9 11:22 example.txt
--rwxr-xr-x 1 runner docker     0 Sep  9 11:22 file.txt
--rw-r--r-- 1 runner docker     0 Sep  9 11:22 file1.txt</pre>
+-rw-r--r-- 1 runner docker 10240 Sep 10 04:00 archive.tar
+-rw-r--r-- 1 runner docker     0 Sep 10 04:00 example.txt
+-rwxr-xr-x 1 runner docker     0 Sep 10 04:00 file.txt
+-rw-r--r-- 1 runner docker     0 Sep 10 04:00 file1.txt</pre>
 </div>
 </div>
 </div>
@@ -427,10 +479,10 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 4
--rw-r--r-- 1 runner docker 156 Sep  9 11:22 archive.tar.gz
--rw-r--r-- 1 runner docker   0 Sep  9 11:22 example.txt
--rwxr-xr-x 1 runner docker   0 Sep  9 11:22 file.txt
--rw-r--r-- 1 runner docker   0 Sep  9 11:22 file1.txt</pre>
+-rw-r--r-- 1 runner docker 156 Sep 10 04:00 archive.tar.gz
+-rw-r--r-- 1 runner docker   0 Sep 10 04:00 example.txt
+-rwxr-xr-x 1 runner docker   0 Sep 10 04:00 file.txt
+-rw-r--r-- 1 runner docker   0 Sep 10 04:00 file1.txt</pre>
 </div>
 </div>
 </div>
@@ -459,8 +511,8 @@ ls -lrt</code></pre>
 <pre>file.txt
 file1.txt
 total 0
--rw-r--r-- 1 runner docker 0 Sep  9 11:22 file1.txt
--rwxr-xr-x 1 runner docker 0 Sep  9 11:22 file.txt</pre>
+-rw-r--r-- 1 runner docker 0 Sep 10 04:00 file1.txt
+-rwxr-xr-x 1 runner docker 0 Sep 10 04:00 file.txt</pre>
 </div>
 </div>
 </div>
@@ -489,22 +541,22 @@ ls /tmp</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>clr-debug-pipe-1662-10622-in
-clr-debug-pipe-1662-10622-out
-clr-debug-pipe-1678-10913-in
-clr-debug-pipe-1678-10913-out
-clr-debug-pipe-597-882-in
-clr-debug-pipe-597-882-out
+<pre>clr-debug-pipe-1613-19091-in
+clr-debug-pipe-1613-19091-out
+clr-debug-pipe-1629-19310-in
+clr-debug-pipe-1629-19310-out
+clr-debug-pipe-590-1026-in
+clr-debug-pipe-590-1026-out
 documents
-dotnet-diagnostic-1662-10622-socket
-dotnet-diagnostic-1678-10913-socket
-dotnet-diagnostic-597-882-socket
+dotnet-diagnostic-1613-19091-socket
+dotnet-diagnostic-1629-19310-socket
+dotnet-diagnostic-590-1026-socket
 file.txt
 snap-private-tmp
-systemd-private-96213768ede34e14a9e8a9daefc018d7-chrony.service-mSsP4R
-systemd-private-96213768ede34e14a9e8a9daefc018d7-haveged.service-A8ocTI
-systemd-private-96213768ede34e14a9e8a9daefc018d7-systemd-logind.service-S1ntZK
-systemd-private-96213768ede34e14a9e8a9daefc018d7-systemd-resolved.service-lX3nXp
+systemd-private-a398515425874daebc873ba41643d208-chrony.service-Hy2lXz
+systemd-private-a398515425874daebc873ba41643d208-haveged.service-h1FE5M
+systemd-private-a398515425874daebc873ba41643d208-systemd-logind.service-Nb9amo
+systemd-private-a398515425874daebc873ba41643d208-systemd-resolved.service-WGAP5X
 www-data-temp-aspnet-0</pre>
 </div>
 </div>
@@ -552,22 +604,22 @@ ls /tmp</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>clr-debug-pipe-1662-10622-in
-clr-debug-pipe-1662-10622-out
-clr-debug-pipe-1678-10913-in
-clr-debug-pipe-1678-10913-out
-clr-debug-pipe-597-882-in
-clr-debug-pipe-597-882-out
+<pre>clr-debug-pipe-1613-19091-in
+clr-debug-pipe-1613-19091-out
+clr-debug-pipe-1629-19310-in
+clr-debug-pipe-1629-19310-out
+clr-debug-pipe-590-1026-in
+clr-debug-pipe-590-1026-out
 documents
-dotnet-diagnostic-1662-10622-socket
-dotnet-diagnostic-1678-10913-socket
-dotnet-diagnostic-597-882-socket
+dotnet-diagnostic-1613-19091-socket
+dotnet-diagnostic-1629-19310-socket
+dotnet-diagnostic-590-1026-socket
 newname.txt
 snap-private-tmp
-systemd-private-96213768ede34e14a9e8a9daefc018d7-chrony.service-mSsP4R
-systemd-private-96213768ede34e14a9e8a9daefc018d7-haveged.service-A8ocTI
-systemd-private-96213768ede34e14a9e8a9daefc018d7-systemd-logind.service-S1ntZK
-systemd-private-96213768ede34e14a9e8a9daefc018d7-systemd-resolved.service-lX3nXp
+systemd-private-a398515425874daebc873ba41643d208-chrony.service-Hy2lXz
+systemd-private-a398515425874daebc873ba41643d208-haveged.service-h1FE5M
+systemd-private-a398515425874daebc873ba41643d208-systemd-logind.service-Nb9amo
+systemd-private-a398515425874daebc873ba41643d208-systemd-resolved.service-WGAP5X
 www-data-temp-aspnet-0</pre>
 </div>
 </div>
