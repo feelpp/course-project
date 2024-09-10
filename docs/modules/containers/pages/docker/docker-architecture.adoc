@@ -4,18 +4,24 @@
 
 image:docker/separation-of-concerns.png[title="Separation of Concerns", link="https://www.docker.com/"]
 
-Docker separates the roles of developers and sysadmins by using containers as the interface between these roles. Developers create applications in containers, while sysadmins can manage deployment without worrying about application-specific configurations.
+Docker separates the roles of developers and sysadmins by using containers as the interface between these roles. 
+
+This concept is particularly valuable for **scientific computing** and **data science**, where developers can create isolated environments that encapsulate complex computational workflows, ensuring reproducibility. 
+
+For **scientific ML** and **digital twins**, containers help streamline model deployment, making it easier to manage models across different computational platforms, from HPC clusters to edge devices.
 
 == Containers vs VMs
 
 image:docker/containers-vs-vms.png[title="Containers vs VMs", link="https://www.docker.com/"]
 
-- Containers use less memory and CPU resources than VMs since they share the same OS kernel.
-- VMs, on the other hand, have a full OS image, including kernel space, and use more resources.
+Containers use fewer resources since they share the OS kernel, a crucial advantage in **scientific computing** and **scientific ML**, where heavy computation demands efficiency.
+
+**Digital twins** can simulate real-world environments more effectively with containers, ensuring that resource allocation is optimized for simulation fidelity.
 
 == Lightweight by Design
 
 image:docker/why-are-containers-lightweight.png[title="Why are Docker Containers Lightweight?", link="https://www.docker.com/"]
 
-- Docker containers share the host kernel, eliminating the need to run a separate OS in each container.
-- This reduces the overhead and improves performance compared to traditional virtual machines.
+Docker's lightweight design makes it ideal for **scientific computing** pipelines, where iterative and resource-heavy processes (e.g., simulations, ML model training) require quick and flexible deployment.
+
+**Digital twins** benefit from Docker’s efficiency by allowing rapid iteration of simulations without the overhead of traditional virtual machines, improving performance when running real-time applications.
