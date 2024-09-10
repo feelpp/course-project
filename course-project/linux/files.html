@@ -324,6 +324,18 @@ MathJax.Hub.Config({
 <h1 class="page">Working with Files in Linux</h1>
 <div id="preamble">
 <div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The pages can be downloaded via the green button at the top right of the page. The commands are shell commands and can be executed in a terminal, however, do not copy the <code>%%bash</code> magic command that is used to execute the commands in the Jupyter Notebook environment.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Working with files is an essential part of Linux, and it’s a skill every Linux user must master. In Linux, everything is considered a file: text documents, images, system files, devices, and even directories. Linux provides numerous command-line utilities to create, view, move, or search files. Some of the basic commands for file handling in the Linux terminal include <code>touch</code> for creating files, <code>mv</code> for moving files, <code>cp</code> for copying files, <code>rm</code> for removing files, and <code>ls</code> for listing files and directories.</p>
 </div>
@@ -409,7 +421,7 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 0
--rw-r--r-- 1 runner docker 0 Sep 10 20:15 example.txt</pre>
+-rw-r--r-- 1 runner docker 0 Sep 10 20:19 example.txt</pre>
 </div>
 </div>
 </div>
@@ -436,10 +448,10 @@ ls -l file.txt</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>-rw-r--r-- 1 runner docker 0 Sep 10 20:15 file.txt
--rwxr-xr-x 1 runner docker 0 Sep 10 20:15 file.txt
--rwxr-xr-x 1 runner docker 0 Sep 10 20:15 file.txt
--rwxr-xr-x 1 runner docker 0 Sep 10 20:15 file.txt</pre>
+<pre>-rw-r--r-- 1 runner docker 0 Sep 10 20:19 file.txt
+-rwxr-xr-x 1 runner docker 0 Sep 10 20:19 file.txt
+-rwxr-xr-x 1 runner docker 0 Sep 10 20:19 file.txt
+-rwxr-xr-x 1 runner docker 0 Sep 10 20:19 file.txt</pre>
 </div>
 </div>
 </div>
@@ -475,10 +487,10 @@ ls -l</code></pre>
 <pre>file.txt
 file1.txt
 total 12
--rw-r--r-- 1 runner docker 10240 Sep 10 20:15 archive.tar
--rw-r--r-- 1 runner docker     0 Sep 10 20:15 example.txt
--rwxr-xr-x 1 runner docker     0 Sep 10 20:15 file.txt
--rw-r--r-- 1 runner docker     0 Sep 10 20:15 file1.txt</pre>
+-rw-r--r-- 1 runner docker 10240 Sep 10 20:19 archive.tar
+-rw-r--r-- 1 runner docker     0 Sep 10 20:19 example.txt
+-rwxr-xr-x 1 runner docker     0 Sep 10 20:19 file.txt
+-rw-r--r-- 1 runner docker     0 Sep 10 20:19 file1.txt</pre>
 </div>
 </div>
 </div>
@@ -500,10 +512,10 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 4
--rw-r--r-- 1 runner docker 156 Sep 10 20:15 archive.tar.gz
--rw-r--r-- 1 runner docker   0 Sep 10 20:15 example.txt
--rwxr-xr-x 1 runner docker   0 Sep 10 20:15 file.txt
--rw-r--r-- 1 runner docker   0 Sep 10 20:15 file1.txt</pre>
+-rw-r--r-- 1 runner docker 156 Sep 10 20:19 archive.tar.gz
+-rw-r--r-- 1 runner docker   0 Sep 10 20:19 example.txt
+-rwxr-xr-x 1 runner docker   0 Sep 10 20:19 file.txt
+-rw-r--r-- 1 runner docker   0 Sep 10 20:19 file1.txt</pre>
 </div>
 </div>
 </div>
@@ -532,8 +544,8 @@ ls -lrt</code></pre>
 <pre>file.txt
 file1.txt
 total 0
--rw-r--r-- 1 runner docker 0 Sep 10 20:15 file1.txt
--rwxr-xr-x 1 runner docker 0 Sep 10 20:15 file.txt</pre>
+-rw-r--r-- 1 runner docker 0 Sep 10 20:19 file1.txt
+-rwxr-xr-x 1 runner docker 0 Sep 10 20:19 file.txt</pre>
 </div>
 </div>
 </div>
@@ -562,22 +574,22 @@ ls /tmp</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>clr-debug-pipe-1575-6192-in
-clr-debug-pipe-1575-6192-out
-clr-debug-pipe-1593-6475-in
-clr-debug-pipe-1593-6475-out
-clr-debug-pipe-589-876-in
-clr-debug-pipe-589-876-out
+<pre>clr-debug-pipe-1603-15281-in
+clr-debug-pipe-1603-15281-out
+clr-debug-pipe-1619-15460-in
+clr-debug-pipe-1619-15460-out
+clr-debug-pipe-599-923-in
+clr-debug-pipe-599-923-out
 documents
-dotnet-diagnostic-1575-6192-socket
-dotnet-diagnostic-1593-6475-socket
-dotnet-diagnostic-589-876-socket
+dotnet-diagnostic-1603-15281-socket
+dotnet-diagnostic-1619-15460-socket
+dotnet-diagnostic-599-923-socket
 file.txt
 snap-private-tmp
-systemd-private-408cbceaac484f9595f4af2b3eca90d8-chrony.service-l9i3zD
-systemd-private-408cbceaac484f9595f4af2b3eca90d8-haveged.service-JVCx67
-systemd-private-408cbceaac484f9595f4af2b3eca90d8-systemd-logind.service-uAq1sn
-systemd-private-408cbceaac484f9595f4af2b3eca90d8-systemd-resolved.service-dFrhOU
+systemd-private-0be5c924627c436c9a64d914a5bc6998-chrony.service-w1RuKU
+systemd-private-0be5c924627c436c9a64d914a5bc6998-haveged.service-WjlfhD
+systemd-private-0be5c924627c436c9a64d914a5bc6998-systemd-logind.service-6ZiPq1
+systemd-private-0be5c924627c436c9a64d914a5bc6998-systemd-resolved.service-lmFSBX
 www-data-temp-aspnet-0</pre>
 </div>
 </div>
@@ -625,22 +637,22 @@ ls /tmp</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>clr-debug-pipe-1575-6192-in
-clr-debug-pipe-1575-6192-out
-clr-debug-pipe-1593-6475-in
-clr-debug-pipe-1593-6475-out
-clr-debug-pipe-589-876-in
-clr-debug-pipe-589-876-out
+<pre>clr-debug-pipe-1603-15281-in
+clr-debug-pipe-1603-15281-out
+clr-debug-pipe-1619-15460-in
+clr-debug-pipe-1619-15460-out
+clr-debug-pipe-599-923-in
+clr-debug-pipe-599-923-out
 documents
-dotnet-diagnostic-1575-6192-socket
-dotnet-diagnostic-1593-6475-socket
-dotnet-diagnostic-589-876-socket
+dotnet-diagnostic-1603-15281-socket
+dotnet-diagnostic-1619-15460-socket
+dotnet-diagnostic-599-923-socket
 newname.txt
 snap-private-tmp
-systemd-private-408cbceaac484f9595f4af2b3eca90d8-chrony.service-l9i3zD
-systemd-private-408cbceaac484f9595f4af2b3eca90d8-haveged.service-JVCx67
-systemd-private-408cbceaac484f9595f4af2b3eca90d8-systemd-logind.service-uAq1sn
-systemd-private-408cbceaac484f9595f4af2b3eca90d8-systemd-resolved.service-dFrhOU
+systemd-private-0be5c924627c436c9a64d914a5bc6998-chrony.service-w1RuKU
+systemd-private-0be5c924627c436c9a64d914a5bc6998-haveged.service-WjlfhD
+systemd-private-0be5c924627c436c9a64d914a5bc6998-systemd-logind.service-6ZiPq1
+systemd-private-0be5c924627c436c9a64d914a5bc6998-systemd-resolved.service-lmFSBX
 www-data-temp-aspnet-0</pre>
 </div>
 </div>
