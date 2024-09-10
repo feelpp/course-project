@@ -172,6 +172,26 @@ Host example.com
 
 This configuration allows you to specify which SSH key to use for each host.
 
+.Configuring SSH Keys for Gaya
+[NOTE]
+====
+Here is an configuration for `gaya.math.unistra.fr`:
+
+[source,shell]
+----
+Host gaya.math.unistra.fr
+  HostName gaya.math.unistra.fr
+  User user
+  IdentityFile ~/.ssh/id_ed25519_gaya
+Host gaya
+  HostName gaya.math.unistra.fr
+  User user
+  IdentityFile ~/.ssh/id_ed25519_gaya
+----
+
+Now you can connect to `gaya.math.unistra.fr` using the `gaya` alias.
+====
+
 == Conclusion
 
 Understanding the different types of SSH keys and their respective security levels allows you to choose the best key for your environment. 
