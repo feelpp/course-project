@@ -11,7 +11,7 @@ This course is designed to introduce you to the fundamental concepts of project 
 - Introduction to Project Management
 - Introduction to Git and GitHub
 
-Questions? Comments? Suggestions? [Use Slack]
+Questions? Comments? Suggestions? https://join.slack.com/t/feelpp/shared_invite/zt-2qe0q9hw-4pVbhohCXUE6Po9Ma8dbiQ[> Use Slack]
 
 
 
