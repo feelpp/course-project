@@ -1,4 +1,10 @@
 * xref:index.adoc[Introduction to Linux]
-** xref:editing.adoc[File Editing in Linux]
-** xref:shell.adoc[Linux Shell Basics]
-** xref:text-processing.adoc[Text Processing]
+** Command Line
+*** xref:editing.adoc[File Editing in Linux]
+*** xref:shell.adoc[Linux Shell Basics]
+*** xref:text-processing.adoc[Text Processing]
+
+** xref:ssh/index.adoc[Introduction to SSH and Remote-SSH]
+*** xref:ssh/ssh-setup.adoc[Setting Up SSH]
+*** xref:ssh/ssh-commands.adoc[Basic SSH Commands]
+*** xref:ssh/remote-ssh-vscode.adoc[Remote-SSH Extension for VS Code]

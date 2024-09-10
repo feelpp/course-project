@@ -1,0 +1,60 @@
+= Basic SSH Commands
+:page-toclevels: 3
+
+== Common SSH Commands
+
+Once you've set up SSH, here are some common commands for connecting to and managing remote servers.
+
+=== Connecting to a Remote Server
+
+To connect to a remote server via SSH:
+
+[source,shell]
+----
+ssh user@remote-server
+----
+
+Replace `user` with your username and `remote-server` with the IP address or domain name of the server.
+
+=== Using SSH Config File for Convenience
+
+You can configure the SSH client to simplify connections by using a `~/.ssh/config` file.
+
+[source]
+----
+Host myserver
+    HostName remote-server.com
+    User myusername
+    IdentityFile ~/.ssh/id_rsa
+----
+
+Now, you can connect simply by typing:
+
+[source,shell]
+----
+ssh myserver
+----
+
+=== Running Remote Commands with SSH
+
+You can execute commands directly on the remote server without starting an interactive session. For example:
+
+[source,shell]
+----
+ssh user@remote-server 'uptime'
+----
+
+This will run the `uptime` command on the remote server and return the result.
+
+=== Secure Copying Files with SCP
+
+The `scp` (Secure Copy Protocol) command allows you to copy files between local and remote machines securely:
+
+[source,shell]
+----
+# Copy a file from the local machine to the remote server:
+scp localfile.txt user@remote-server:/remote/path
+
+# Copy a file from the remote server to the local machine:
+scp user@remote-server:/remote/path/file.txt /local/path
+----
