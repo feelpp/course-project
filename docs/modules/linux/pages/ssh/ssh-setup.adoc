@@ -181,12 +181,12 @@ Here is an configuration for `gaya.math.unistra.fr`:
 ----
 Host gaya.math.unistra.fr
   HostName gaya.math.unistra.fr
-  User user
-  IdentityFile ~/.ssh/id_ed25519_gaya
+  User your_login_on_gaya
+  IdentityFile ~/.ssh/id_rsa
 Host gaya
   HostName gaya.math.unistra.fr
-  User user
-  IdentityFile ~/.ssh/id_ed25519_gaya
+  User your_login_on_gaya
+  IdentityFile ~/.ssh/id_rsa
 ----
 
 Now you can connect to `gaya.math.unistra.fr` using the `gaya` alias.
