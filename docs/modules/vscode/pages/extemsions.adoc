@@ -1,0 +1,20 @@
+= Extension Installation and Key Extensions
+:page-toclevels: 3
+
+== Installing Extensions
+
+One of the strengths of VS Code is its rich ecosystem of extensions. Extensions enhance your development environment by providing extra features like language support, debugging tools, and integration with cloud services.
+
+To install extensions, follow these steps:
+
+. Open the Extensions panel using kbd:[Ctrl + Shift + X] or kbd:[Cmd + Shift + X] on macOS.
+. In the search bar, type the name of the extension you want to install.
+. Click btn:[Install] on the extension.
+
+You can also search and install extensions from the marketplace: https://marketplace.visualstudio.com/vscode[> marketplace.visualstudio.com/vscode].
+
+Here are some key extensions that are useful for development:
+
+* xref:remote-ssh.adoc[Remote SSH]
+* xref:wsl.adoc[WSL (Windows Subsystem for Linux)]
+* xref:python-jupyter.adoc[Python and Jupyter Extensions]

@@ -10,18 +10,19 @@ You can download VS Code from the official website:
 VS Code supports **Windows**, **macOS**, and **Linux**. Below are the steps for installing on each platform.
 
 === Windows Installation
-1. Download the `.exe` installer from the VS Code website.
-2. Run the installer and follow the on-screen prompts.
-3. Select the option to add VS Code to your `PATH` (this allows you to open VS Code from the terminal).
+. Download the `.exe` installer from the VS Code website.
+. Run the installer and follow the on-screen prompts.
+. Select the option to add VS Code to your `PATH` (this allows you to open VS Code from the terminal).
 
 === macOS Installation
-1. Download the `.dmg` file from the VS Code website.
-2. Open the `.dmg` file and drag the VS Code icon to the Applications folder.
-3. Launch VS Code from the Applications folder or the terminal using `code` if you add it to the `PATH`.
+. Download the `.dmg` file from the VS Code website.
+. Open the `.dmg` file and drag the VS Code icon to the Applications folder.
+. Launch VS Code from the Applications folder or the terminal using `code` if you add it to the `PATH`.
 
 === Linux Installation
-1. Download the appropriate package (`.deb` or `.rpm`) from the VS Code website.
-2. Install it using your distribution’s package manager:
+
+. Download the appropriate package (`.deb` or `.rpm`) from the VS Code website.
+. Install it using your distribution’s package manager:
    - For Debian-based systems (e.g., Ubuntu):
      ```
      sudo dpkg -i <path-to-package>.deb
@@ -31,4 +32,4 @@ VS Code supports **Windows**, **macOS**, and **Linux**. Below are the steps for 
      ```
      sudo rpm -i <path-to-package>.rpm
      ```
-3. You can also use your package manager to install VS Code directly from the terminal:
+

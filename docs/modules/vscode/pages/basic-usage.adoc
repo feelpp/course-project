@@ -1,5 +1,6 @@
 = Basic Usage and Commands
 :page-toclevels: 3
+:experimental:
 
 == Getting Started with VS Code
 
@@ -24,9 +25,9 @@ The VS Code interface consists of the following key sections:
 
 Here are a few essential VS Code commands:
 
-* **Open Command Palette**: `Ctrl + Shift + P` or `Cmd + Shift + P` on macOS. This gives access to all VS Code features via quick commands.
-* **Open a new file**: `Ctrl + N` (Windows/Linux) or `Cmd + N` (macOS).
-* **Toggle terminal**: `Ctrl + `` (Windows/Linux) or `Cmd + `` (macOS).
+* **Open Command Palette**: kbd:[Ctrl + Shift + P] or kbd:[Cmd + Shift + P] on macOS. This gives access to all VS Code features via quick commands.
+* **Open a new file**: kbd:[Ctrl + N] (Windows/Linux) or kbd:[Cmd + N] (macOS).
+* **Toggle terminal**: kbd:[Ctrl + `] (Windows/Linux) or kbd:[Cmd + `] (macOS).
 
 These basic commands help you get started with coding or file management.
 

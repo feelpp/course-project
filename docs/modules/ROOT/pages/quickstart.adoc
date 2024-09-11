@@ -1,4 +1,5 @@
 = Quickstart Guide 
+:experimental:
 
 To get started with compiling and using {project_name}, you can either 
 
@@ -44,7 +45,7 @@ To start using DevContainers in Visual Studio Code, follow these steps:
 
 To open your project using the DevContainer, follow these steps:
 
-1. Open the Command Palette in Visual Studio Code by pressing `Ctrl+Shift+P` (or `Cmd+Shift+P` on macOS).
+1. Open the Command Palette in Visual Studio Code by pressing kbd:[Ctrl+Shift+P] (or kbd:[Cmd+Shift+P] on macOS).
 2. Search for and select "Remote-Containers: Reopen in Container".
 3. Visual Studio Code will build the Docker image specified in the `devcontainer.json` file and open a new window inside the Dev Container.
 4. Once the Dev Container is loaded, you can start working on your project within the containerized environment.

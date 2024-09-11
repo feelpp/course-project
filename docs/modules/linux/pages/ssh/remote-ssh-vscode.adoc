@@ -1,6 +1,6 @@
 = Remote-SSH Extension for VS Code
 :page-toclevels: 3
-
+:experimental:
 == What is Remote-SSH?
 
 The **Remote-SSH** extension in VS Code enables you to work on remote projects as if they were on your local machine. With Remote-SSH, you can connect to a remote server, edit files, run commands, and use VS Code's development features.
@@ -8,23 +8,23 @@ The **Remote-SSH** extension in VS Code enables you to work on remote projects a
 == Installing the Remote-SSH Extension
 
 1. Open VS Code.
-2. Go to the Extensions panel (`Ctrl + Shift + X` on Windows/Linux or `Cmd + Shift + X` on macOS).
+2. Go to the Extensions panel (kbd:[Ctrl+Shift+X] on Windows/Linux or kbd:[Cmd+Shift+X] on macOS).
 3. Search for **Remote - SSH** and click **Install**.
 
 == Connecting to a Remote Machine
 
 After installing the extension, follow these steps to connect to a remote server via SSH:
 
-1. Press `F1` to open the Command Palette.
-2. Type "Remote-SSH: Connect to Host" and select it.
-3. Enter the SSH connection details, e.g., `user@remote-server.com`.
-4. Select your preferred remote OS when prompted (Linux, macOS, or Windows).
+. Press kbd:[F1] or kbd:[Ctrl+Shift+P] to open the Command Palette.
+. Type `Remote-SSH: Connect to Host` and select it.
+. Enter the SSH connection details, e.g., `user@remote-server.com`.
+. Select your preferred remote OS when prompted (Linux, macOS, or Windows).
 
-Once connected, a new VS Code window will open, and you’ll be working within the remote environment.
+Once connected, a new VS Code window will open, and you'll be working within the remote environment.
 
 == Using the SSH Config File in VS Code
 
-If you have an SSH config file (located at `~/.ssh/config`), VS Code will automatically detect the hostnames you’ve configured.
+If you have an SSH config file (located at `~/.ssh/config`), VS Code will automatically detect the hostnames you've configured.
 
 1. Press `F1` and type "Remote-SSH: Connect to Host."
 2. You should see the hostnames from your SSH config file listed. Select the appropriate one to connect.
@@ -32,6 +32,7 @@ If you have an SSH config file (located at `~/.ssh/config`), VS Code will automa
 == Remote-SSH Features
 
 When connected via Remote-SSH, you can:
+
 - Open and edit files directly on the remote server.
 - Use VS Code's terminal to run commands on the remote machine.
 - Install extensions specific to the remote environment.
@@ -49,6 +50,26 @@ For example, if you try to use the Python extension on a remote server, VS Code 
 # Example of opening a Python file remotely, which triggers extension installation.
 code myscript.py
 ----
+
+[TIP]
+====
+On Linux you may need to add the `code` command to your PATH environment variable. This can be done by creating a symbolic link to the `code` binary in a directory that is already in your PATH, such as `/usr/share/code/code`.
+
+Alternatively, you can add the following line to your `~/.bashrc` file:
+
+[source,shell]
+----
+export PATH=$PATH:/usr/share/code
+----
+
+Or you can create an alias in your `~/.bashrc` file:
+
+[source,shell]
+----
+alias code='/usr/share/code/code'
+----
+====
+
 
 == Disconnecting from Remote-SSH
 

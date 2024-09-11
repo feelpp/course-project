@@ -1,0 +1,16 @@
+= WSL (Windows Subsystem for Linux) Extension
+:page-toclevels: 3
+
+== What is WSL?
+
+**Windows Subsystem for Linux (WSL)** allows you to run a Linux distribution natively on Windows. With the **Remote - WSL** extension, you can use VS Code to develop within a WSL environment.
+
+== Installing WSL and the Extension
+
+. Install WSL on your Windows machine: https://docs.microsoft.com/windows/wsl/install
+. Install your preferred Linux distribution (e.g., Ubuntu).
+. In VS Code, open the Extensions panel (kbd:[Ctrl + Shift + X]) and install the "Remote - WSL" extension.
+
+== Using WSL in VS Code
+
+Once installed, you can open a WSL session in VS Code by pressing `F1` and selecting **Remote-WSL: New Window**. This will open VS Code in the WSL environment, allowing you to code and run commands directly in Linux.

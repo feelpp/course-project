@@ -1,0 +1,46 @@
+= How to Configure VS Code with .vscode
+:page-toclevels: 3
+
+== Configuring Projects with `.vscode`
+
+VS Code allows you to configure project-specific settings using a `.vscode` folder. This folder can include settings, tasks, and debug configurations.
+
+=== Adding a `.vscode/settings.json`
+
+Create a `.vscode/settings.json` file in your project directory to customize settings for the current project. Example configuration:
+
+[source,json]
+----
+{
+  "python.pythonPath": "/usr/bin/python3",
+  "editor.formatOnSave": true,
+  "files.exclude": {
+    "**/*.log": true,
+    "**/node_modules": true
+  }
+}
+----
+
+=== Task Configuration with `.vscode/tasks.json`
+
+You can automate tasks like running build scripts by configuring tasks in `.vscode/tasks.json`. Example:
+
+[source,json]
+----
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Build",
+      "type": "shell",
+      "command": "npm run build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
+----
+
+Tasks and settings configured in the `.vscode` folder apply only to the current project.

@@ -5,6 +5,7 @@ start_page: index.adoc
 asciidoc:
   attributes:
     project_name: Course Project
+    experimental: true
 ext:
   collector:
     - run:
@@ -28,7 +29,9 @@ ext:
 nav:
 #- modules/ROOT/nav.adoc
 - modules/linux/nav.adoc
+- modules/vscode/nav.adoc
 - modules/project-management/nav.adoc
+
 - modules/containers/nav.adoc
 
 

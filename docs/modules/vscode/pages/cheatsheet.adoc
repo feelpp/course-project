@@ -1,0 +1,112 @@
+= VSCode Basic Cheatsheet
+:experimental:
+
+== Navigation
+
+[cols="1,1,1,1", options="header"]
+|===
+| Description | Linux | Windows | Mac
+| Open Command Palette | kbd:[Ctrl+Shift+P] | kbd:[Ctrl+Shift+P] | kbd:[Cmd+Shift+P]
+| Open File | kbd:[Ctrl+P] | kbd:[Ctrl+P] | kbd:[Cmd+P]
+| Toggle Sidebar | kbd:[Ctrl+B] | kbd:[Ctrl+B] | kbd:[Cmd+B]
+| Close Editor | kbd:[Ctrl+W] | kbd:[Ctrl+W] | kbd:[Cmd+W]
+| Switch between Tabs | kbd:[Ctrl+Tab] | kbd:[Ctrl+Tab] | kbd:[Cmd+Tab]
+| Split Editor | kbd:[Ctrl+\ ] | kbd:[Ctrl+\ ] | kbd:[Cmd+\ ]
+| Navigate between Editor Groups | kbd:[Ctrl+1, Ctrl+2...] | kbd:[Ctrl+1, Ctrl+2...] | kbd:[Cmd+1, Cmd+2...]
+| Navigate Forward | kbd:[Ctrl+Alt+→] | kbd:[Alt+→] | kbd:[Option+→]
+| Navigate Backward | kbd:[Ctrl+Alt+←] | kbd:[Alt+←] | kbd:[Option+←]
+| Go to Symbol | kbd:[Ctrl+Shift+O] | kbd:[Ctrl+Shift+O] | kbd:[Cmd+Shift+O]
+| Go to Definition | kbd:[F12] | kbd:[F12] | kbd:[F12]
+|===
+
+== Editing
+
+[cols="1,1,1,1", options="header"]
+|===
+| Description | Linux | Windows | Mac
+| Copy Line Up/Down | kbd:[Shift+Alt+↑/↓] | kbd:[Shift+Alt+↑/↓] | kbd:[Shift+Option+↑/↓]
+| Move Line Up/Down | kbd:[Alt+↑/↓] | kbd:[Alt+↑/↓] | kbd:[Option+↑/↓]
+| Duplicate Line | kbd:[Shift+Alt+↓] | kbd:[Shift+Alt+↓] | kbd:[Option+Shift+↓]
+| Delete Line | kbd:[Ctrl+Shift+K] | kbd:[Ctrl+Shift+K] | kbd:[Cmd+Shift+K]
+| Add Line Comment | kbd:[Ctrl+/] | kbd:[Ctrl+/] | kbd:[Cmd+/]
+| Add Block Comment | kbd:[Shift+Alt+A] | kbd:[Shift+Alt+A] | kbd:[Shift+Option+A]
+| Format Document | kbd:[Shift+Alt+F] | kbd:[Shift+Alt+F] | kbd:[Shift+Option+F]
+| Rename Symbol | kbd:[F2] | kbd:[F2] | kbd:[F2]
+| Find | kbd:[Ctrl+F] | kbd:[Ctrl+F] | kbd:[Cmd+F]
+| Find and Replace | kbd:[Ctrl+H] | kbd:[Ctrl+H] | kbd:[Cmd+Option+F]
+| Select All Occurrences | kbd:[Ctrl+Shift+L] | kbd:[Ctrl+Shift+L] | kbd:[Cmd+Shift+L], kbd:[Cmd+D] (for multiple selections)
+|===
+
+
+== File Management
+
+[cols="1,1,1,1", options="header"]
+|===
+| Description | Linux | Windows | Mac
+| New File | kbd:[Ctrl+N] | kbd:[Ctrl+N] | kbd:[Cmd+N]
+| Open File | kbd:[Ctrl+O] | kbd:[Ctrl+O] | kbd:[Cmd+O]
+| Save File | kbd:[Ctrl+S] | kbd:[Ctrl+S] | kbd:[Cmd+S]
+| Save All | kbd:[Ctrl+K, S] | kbd:[Ctrl+K, S] | kbd:[Cmd+Option+S]
+| Close File | kbd:[Ctrl+W] | kbd:[Ctrl+W] | kbd:[Cmd+W]
+| Reopen Closed File | kbd:[Ctrl+Shift+T] | kbd:[Ctrl+Shift+T] | kbd:[Cmd+Shift+T]
+|===
+
+== Terminal
+
+[cols="1,1,1,1", options="header"]
+|===
+| Description | Linux | Windows | Mac
+| Open Integrated Terminal | kbd:[Ctrl+`] | kbd:[Ctrl+`] | kbd:[Cmd+`]
+| Create New Terminal | kbd:[Ctrl+Shift+`] | kbd:[Ctrl+Shift+`] | kbd:[Cmd+Shift+`]
+| Toggle Terminal | kbd:[Ctrl+`] | kbd:[Ctrl+`] | kbd:[Cmd+`]
+| Split Terminal | kbd:[Ctrl+Shift+5] | kbd:[Ctrl+Shift+5] | kbd:[Cmd+Shift+5]
+|===
+
+== Multi-cursor and Selection
+
+[cols="1,1,1,1", options="header"]
+|===
+| Description | Linux | Windows | Mac
+
+| Insert cursor | kbd:[Alt+Click] | kbd:[Alt+Click] | kbd:[Option+Click]
+| Insert cursor above / below | kbd:[Ctrl+Alt+↑] / kbd:[Ctrl+Alt+↓] | kbd:[Ctrl+Alt+↑] / kbd:[Ctrl+Alt+↓] | kbd:[Cmd+Option+↑] / kbd:[Cmd+Option+↓]
+| Undo last cursor operation | kbd:[Ctrl+U] | kbd:[Ctrl+U] | kbd:[Cmd+U]
+| Insert cursor at end of each line selected | kbd:[Shift+Alt+I] | kbd:[Shift+Alt+I] | kbd:[Cmd+Option+I]
+| Select current line | kbd:[Ctrl+L] | kbd:[Ctrl+L] | kbd:[Cmd+L]
+| Select all occurrences of current selection | kbd:[Ctrl+Shift+L] | kbd:[Ctrl+Shift+L] | kbd:[Cmd+Shift+L]
+| Select all occurrences of current word | kbd:[Ctrl+F2] | kbd:[Ctrl+F2] | kbd:[Cmd+F2]
+| Expand selection | kbd:[Shift+Alt+→] | kbd:[Shift+Alt+→] | kbd:[Cmd+Option+→]
+| Shrink selection | kbd:[Shift+Alt+←] | kbd:[Shift+Alt+←] | kbd:[Cmd+Option+←]
+| Column (box) selection (with mouse drag) | kbd:[Shift+Alt] + drag mouse | kbd:[Shift+Alt] + drag mouse | kbd:[Cmd+Option] + drag mouse
+| Column (box) selection (with arrow key) | kbd:[Ctrl+Shift+Alt] + arrow key | kbd:[Ctrl+Shift+Alt] + arrow key | kbd:[Cmd+Shift+Option] + arrow key
+| Column (box) selection page up/down | kbd:[Ctrl+Shift+Alt+PgUp/PgDn] | kbd:[Ctrl+Shift+Alt+PgUp/PgDn] | kbd:[Cmd+Shift+Option+PgUp/PgDn]
+|===
+
+== Search
+
+[cols="1,1,1,1", options="header"]
+|===
+| Description | Linux | Windows | Mac
+| Search Files | kbd:[Ctrl+Shift+F] | kbd:[Ctrl+Shift+F] | kbd:[Cmd+Shift+F]
+| Search and Replace in Files | kbd:[Ctrl+Shift+H] | kbd:[Ctrl+Shift+H] | kbd:[Cmd+Shift+H]
+|===
+
+== View/Window Management
+
+[cols="1,1,1,1", options="header"]
+|===
+| Description | Linux | Windows | Mac
+| Zoom In | kbd:[Ctrl+=] | kbd:[Ctrl+=] | kbd:[Cmd+=]
+| Zoom Out | kbd:[Ctrl+-] | kbd:[Ctrl+-] | kbd:[Cmd+-]
+| Toggle Full Screen | kbd:[F11] | kbd:[F11] | kbd:[Cmd+Ctrl+F]
+|===
+
+== Git
+
+[cols="1,1,1,1", options="header"]
+|===
+| Description | Linux | Windows | Mac
+| Git Commit | kbd:[Ctrl+Enter] | kbd:[Ctrl+Enter] | kbd:[Cmd+Enter]
+| Git Pull | kbd:[Ctrl+Shift+P], search 'Git Pull' | kbd:[Ctrl+Shift+P], search 'Git Pull' | kbd:[Cmd+Shift+P], search 'Git Pull'
+| Git Push | kbd:[Ctrl+Shift+P], search 'Git Push' | kbd:[Ctrl+Shift+P], search 'Git Push' | kbd:[Cmd+Shift+P], search 'Git Push'
+|===

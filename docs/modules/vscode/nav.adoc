@@ -6,3 +6,5 @@
 *** xref:wsl.adoc[WSL Extension]
 *** xref:python-jupyter.adoc[Python and Jupyter Extensions]
 ** xref:configure-vscode.adoc[How to Configure VS Code with .vscode]
+
+* xref:cheatsheet.adoc[VS Code Cheat Sheet]
