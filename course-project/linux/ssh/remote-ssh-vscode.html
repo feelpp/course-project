@@ -6,7 +6,7 @@
     <title>Remote-SSH Extension for VS Code :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/linux/ssh/remote-ssh-vscode.html">
     <link rel="prev" href="ssh-commands.html">
-    <link rel="next" href="../../project-management/index.html">
+    <link rel="next" href="#index.adoc">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
@@ -186,6 +186,43 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#index.adoc">Overview of VS Code</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../vscode/install.html">VS Code Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../vscode/basic-usage.html">Basic Usage and Commands</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#extensions.adoc">Extension Installation and Key Extensions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../vscode/remote-ssh.html">Remote SSH Extension</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../vscode/wsl.html">WSL Extension</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../vscode/python-jupyter.html">Python and Jupyter Extensions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../vscode/configure-vscode.html">How to Configure VS Code with .vscode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../vscode/cheatsheet.html">VS Code Cheat Sheet</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../../project-management/index.html">Introduction to Project Management</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -320,8 +357,7 @@ MathJax.Hub.Config({
 </aside>
 <article class="doc">
 <h1 class="page">Remote-SSH Extension for VS Code</h1>
-<div class="sect1">
-<h2 id="_what_is_remote_ssh"><a class="anchor" href="#_what_is_remote_ssh"></a>1. What is Remote-SSH?</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>The <strong>Remote-SSH</strong> extension in VS Code enables you to work on remote projects as if they were on your local machine. With Remote-SSH, you can connect to a remote server, edit files, run commands, and use VS Code&#8217;s development features.</p>
@@ -329,7 +365,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect1">
-<h2 id="_installing_the_remote_ssh_extension"><a class="anchor" href="#_installing_the_remote_ssh_extension"></a>2. Installing the Remote-SSH Extension</h2>
+<h2 id="_installing_the_remote_ssh_extension"><a class="anchor" href="#_installing_the_remote_ssh_extension"></a>1. Installing the Remote-SSH Extension</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -337,7 +373,7 @@ MathJax.Hub.Config({
 <p>Open VS Code.</p>
 </li>
 <li>
-<p>Go to the Extensions panel (<code>Ctrl + Shift + X</code> on Windows/Linux or <code>Cmd + Shift + X</code> on macOS).</p>
+<p>Go to the Extensions panel (<span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></span> on Windows/Linux or <span class="keyseq"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></span> on macOS).</p>
 </li>
 <li>
 <p>Search for <strong>Remote - SSH</strong> and click <strong>Install</strong>.</p>
@@ -347,7 +383,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect1">
-<h2 id="_connecting_to_a_remote_machine"><a class="anchor" href="#_connecting_to_a_remote_machine"></a>3. Connecting to a Remote Machine</h2>
+<h2 id="_connecting_to_a_remote_machine"><a class="anchor" href="#_connecting_to_a_remote_machine"></a>2. Connecting to a Remote Machine</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>After installing the extension, follow these steps to connect to a remote server via SSH:</p>
@@ -355,10 +391,10 @@ MathJax.Hub.Config({
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Press <code>F1</code> to open the Command Palette.</p>
+<p>Press <kbd>F1</kbd> or <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> to open the Command Palette.</p>
 </li>
 <li>
-<p>Type "Remote-SSH: Connect to Host" and select it.</p>
+<p>Type <code>Remote-SSH: Connect to Host</code> and select it.</p>
 </li>
 <li>
 <p>Enter the SSH connection details, e.g., <code>user@remote-server.com</code>.</p>
@@ -369,15 +405,15 @@ MathJax.Hub.Config({
 </ol>
 </div>
 <div class="paragraph">
-<p>Once connected, a new VS Code window will open, and you’ll be working within the remote environment.</p>
+<p>Once connected, a new VS Code window will open, and you&#8217;ll be working within the remote environment.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_using_the_ssh_config_file_in_vs_code"><a class="anchor" href="#_using_the_ssh_config_file_in_vs_code"></a>4. Using the SSH Config File in VS Code</h2>
+<h2 id="_using_the_ssh_config_file_in_vs_code"><a class="anchor" href="#_using_the_ssh_config_file_in_vs_code"></a>3. Using the SSH Config File in VS Code</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you have an SSH config file (located at <code>~/.ssh/config</code>), VS Code will automatically detect the hostnames you’ve configured.</p>
+<p>If you have an SSH config file (located at <code>~/.ssh/config</code>), VS Code will automatically detect the hostnames you&#8217;ve configured.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -392,13 +428,23 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect1">
-<h2 id="_remote_ssh_features"><a class="anchor" href="#_remote_ssh_features"></a>5. Remote-SSH Features</h2>
+<h2 id="_remote_ssh_features"><a class="anchor" href="#_remote_ssh_features"></a>4. Remote-SSH Features</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When connected via Remote-SSH, you can:
-- Open and edit files directly on the remote server.
-- Use VS Code&#8217;s terminal to run commands on the remote machine.
-- Install extensions specific to the remote environment.</p>
+<p>When connected via Remote-SSH, you can:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Open and edit files directly on the remote server.</p>
+</li>
+<li>
+<p>Use VS Code&#8217;s terminal to run commands on the remote machine.</p>
+</li>
+<li>
+<p>Install extensions specific to the remote environment.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>VS Code handles the heavy lifting of syncing your local environment to the remote, making it a seamless experience.</p>
@@ -406,7 +452,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect1">
-<h2 id="_installing_extensions_on_the_remote_machine"><a class="anchor" href="#_installing_extensions_on_the_remote_machine"></a>6. Installing Extensions on the Remote Machine</h2>
+<h2 id="_installing_extensions_on_the_remote_machine"><a class="anchor" href="#_installing_extensions_on_the_remote_machine"></a>5. Installing Extensions on the Remote Machine</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Some extensions are required to be installed on the remote machine itself. When you attempt to use such an extension, VS Code will prompt you to install the remote version of the extension automatically.</p>
@@ -420,10 +466,40 @@ MathJax.Hub.Config({
 code myscript.py</code></pre>
 </div>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>On Linux you may need to add the <code>code</code> command to your PATH environment variable. This can be done by creating a symbolic link to the <code>code</code> binary in a directory that is already in your PATH, such as <code>/usr/share/code/code</code>.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can add the following line to your <code>~/.bashrc</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">export PATH=$PATH:/usr/share/code</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or you can create an alias in your <code>~/.bashrc</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">alias code='/usr/share/code/code'</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_disconnecting_from_remote_ssh"><a class="anchor" href="#_disconnecting_from_remote_ssh"></a>7. Disconnecting from Remote-SSH</h2>
+<h2 id="_disconnecting_from_remote_ssh"><a class="anchor" href="#_disconnecting_from_remote_ssh"></a>6. Disconnecting from Remote-SSH</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To disconnect from the remote session, simply close the VS Code window that is connected to the remote server.</p>
@@ -432,7 +508,7 @@ code myscript.py</code></pre>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="ssh-commands.html">Basic SSH Commands</a></span>
-  <span class="next"><a href="../../project-management/index.html">Introduction to Project Management</a></span>
+  <span class="next"><a href="#index.adoc">Overview of VS Code</a></span>
 </nav>
 </article>
   </div>
