@@ -4,6 +4,7 @@
 *** xref:git-starter.adoc[Git Starter Guide]
 *** xref:git-repository-basics.adoc[Git Repository]
 *** xref:git-branch.adoc[Git Branching]
+*** xref:git-merges.adoc[Git Remotes]
 *** xref:git-remotes.adoc[Git Remotes]
 ** GitHub
 *** xref:github-essentials.adoc[GitHub Essentials]

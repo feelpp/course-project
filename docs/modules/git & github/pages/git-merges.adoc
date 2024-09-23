@@ -1,0 +1,134 @@
+= Merge Strategies in Git
+Git Tutorial Team <tutorial-team@example.com>
+v1.0, 2024-09-23
+
+This document explains the different merge strategies available in Git. You will learn about fast-forward vs non-fast-forward merges, how to rebase, squash commits, handle conflicts, and cherry-pick specific commits.
+
+toc::[]
+
+== Fast-Forward vs Non-Fast-Forward Merges
+
+When you merge two branches in Git, you can either perform a fast-forward merge or a non-fast-forward merge, depending on whether the two branches have diverged.
+
+=== Fast-Forward Merge
+
+A fast-forward merge occurs when the current branch has no new commits and can be "fast-forwarded" to the tip of the target branch. This happens when there is a direct linear path between the two branches.
+
+To perform a fast-forward merge:
+
+[source,console]
+----
+$ git checkout main
+$ git merge feature-branch
+----
+
+If there are no new commits on `main`, Git will simply move the `main` branch pointer to the tip of `feature-branch`.
+
+=== Non-Fast-Forward Merge
+
+A non-fast-forward merge occurs when the branches have diverged, meaning both branches have new commits. Git will create a new merge commit to combine the histories of the two branches.
+
+To perform a non-fast-forward merge:
+
+[source,console]
+----
+$ git checkout main
+$ git merge --no-ff feature-branch
+----
+
+The `--no-ff` flag ensures that even if the merge could be fast-forwarded, Git will create a merge commit to maintain a clear record of the merge.
+
+== Rebase
+
+Rebasing allows you to apply changes from one branch on top of another branch, creating a clean, linear history. Instead of merging, which keeps both sets of commits, rebase rewrites the commit history by moving your changes to the tip of another branch.
+
+To rebase your feature branch onto the main branch:
+
+[source,console]
+----
+$ git checkout feature-branch
+$ git rebase main
+----
+
+After rebasing, the commits from `feature-branch` will appear as if they were made after the `main` branch’s commits. Once rebased, you can merge it with a fast-forward merge.
+
+== Squash Commits
+
+Squashing commits combines multiple commits into a single commit, which simplifies the commit history, especially for feature branches that have several small or work-in-progress commits.
+
+To squash your commits during a rebase:
+
+[source,console]
+----
+$ git checkout feature-branch
+$ git rebase -i main
+----
+
+This will open an interactive rebase where you can replace `pick` with `squash` for commits you want to squash. Once done, save and close the editor.
+
+You can also squash directly during the merge by running:
+
+[source,console]
+----
+$ git merge --squash feature-branch
+----
+
+This will merge all changes from `feature-branch` into a single commit on `main`.
+
+== Handling Conflicts
+
+Merge conflicts occur when Git cannot automatically merge the changes because the same part of a file has been modified in both branches. When a conflict happens, Git will mark the conflict in the affected files.
+
+To resolve merge conflicts:
+
+1. Open the conflicting files, and you’ll see conflict markers like:
+
+[source]
+----
+<<<<<<< HEAD
+This is the main branch
+=======
+This is the feature branch
+>>>>>>>
+----
+
+2. Manually edit the file to include the correct changes, then stage the resolved files:
+
+[source,console]
+----
+$ git add <file-name>
+----
+
+3. After resolving all conflicts, commit the merge:
+
+[source,console]
+----
+$ git commit
+----
+
+You can view conflicts during a merge with:
+
+[source,console]
+----
+$ git status
+----
+
+== Cherry-Picking Commits
+
+Cherry-picking allows you to apply specific commits from one branch onto another branch without merging the entire branch. This is useful when you only want to bring in selected changes.
+
+To cherry-pick a commit:
+
+[source,console]
+----
+$ git checkout main
+$ git cherry-pick <commit-hash>
+----
+
+Replace `<commit-hash>` with the actual commit hash you want to pick. Git will apply that commit onto your current branch.
+
+If conflicts occur during cherry-picking, you can resolve them in the same way as during a merge.
+
+== Summary
+
+This guide explains the different merge strategies in Git, from fast-forward and non-fast-forward merges to more advanced techniques like rebase, squash, handling conflicts, and cherry-picking. These tools allow you to manage changes effectively while maintaining a clean commit history.
