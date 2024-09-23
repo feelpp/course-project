@@ -271,6 +271,9 @@ MathJax.Hub.Config({
     <a class="nav-link" href="../git%20&%20github/git-branch.html">Git Branching</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../git%20&%20github/git-merges.html">Git Remotes</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../git%20&%20github/git-remotes.html">Git Remotes</a>
   </li>
 </ul>
@@ -501,7 +504,7 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 0
--rw-r--r-- 1 runner docker 0 Sep 23 10:52 example.txt</pre>
+-rw-r--r-- 1 runner docker 0 Sep 23 10:56 example.txt</pre>
 </div>
 </div>
 </div>
@@ -528,10 +531,10 @@ ls -l file.txt</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>-rw-r--r-- 1 runner docker 0 Sep 23 10:52 file.txt
--rwxr-xr-x 1 runner docker 0 Sep 23 10:52 file.txt
--rwxr-xr-x 1 runner docker 0 Sep 23 10:52 file.txt
--rwxr-xr-x 1 runner docker 0 Sep 23 10:52 file.txt</pre>
+<pre>-rw-r--r-- 1 runner docker 0 Sep 23 10:56 file.txt
+-rwxr-xr-x 1 runner docker 0 Sep 23 10:56 file.txt
+-rwxr-xr-x 1 runner docker 0 Sep 23 10:56 file.txt
+-rwxr-xr-x 1 runner docker 0 Sep 23 10:56 file.txt</pre>
 </div>
 </div>
 </div>
@@ -567,10 +570,10 @@ ls -l</code></pre>
 <pre>file.txt
 file1.txt
 total 12
--rw-r--r-- 1 runner docker 10240 Sep 23 10:52 archive.tar
--rw-r--r-- 1 runner docker     0 Sep 23 10:52 example.txt
--rwxr-xr-x 1 runner docker     0 Sep 23 10:52 file.txt
--rw-r--r-- 1 runner docker     0 Sep 23 10:52 file1.txt</pre>
+-rw-r--r-- 1 runner docker 10240 Sep 23 10:56 archive.tar
+-rw-r--r-- 1 runner docker     0 Sep 23 10:56 example.txt
+-rwxr-xr-x 1 runner docker     0 Sep 23 10:56 file.txt
+-rw-r--r-- 1 runner docker     0 Sep 23 10:56 file1.txt</pre>
 </div>
 </div>
 </div>
@@ -592,10 +595,10 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 4
--rw-r--r-- 1 runner docker 157 Sep 23 10:52 archive.tar.gz
--rw-r--r-- 1 runner docker   0 Sep 23 10:52 example.txt
--rwxr-xr-x 1 runner docker   0 Sep 23 10:52 file.txt
--rw-r--r-- 1 runner docker   0 Sep 23 10:52 file1.txt</pre>
+-rw-r--r-- 1 runner docker 157 Sep 23 10:56 archive.tar.gz
+-rw-r--r-- 1 runner docker   0 Sep 23 10:56 example.txt
+-rwxr-xr-x 1 runner docker   0 Sep 23 10:56 file.txt
+-rw-r--r-- 1 runner docker   0 Sep 23 10:56 file1.txt</pre>
 </div>
 </div>
 </div>
@@ -624,8 +627,8 @@ ls -lrt</code></pre>
 <pre>file.txt
 file1.txt
 total 0
--rw-r--r-- 1 runner docker 0 Sep 23 10:52 file1.txt
--rwxr-xr-x 1 runner docker 0 Sep 23 10:52 file.txt</pre>
+-rw-r--r-- 1 runner docker 0 Sep 23 10:56 file1.txt
+-rwxr-xr-x 1 runner docker 0 Sep 23 10:56 file.txt</pre>
 </div>
 </div>
 </div>
@@ -654,22 +657,22 @@ ls /tmp</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>clr-debug-pipe-1610-12507-in
-clr-debug-pipe-1610-12507-out
-clr-debug-pipe-1627-12763-in
-clr-debug-pipe-1627-12763-out
-clr-debug-pipe-613-902-in
-clr-debug-pipe-613-902-out
+<pre>clr-debug-pipe-1618-17438-in
+clr-debug-pipe-1618-17438-out
+clr-debug-pipe-1634-17653-in
+clr-debug-pipe-1634-17653-out
+clr-debug-pipe-612-902-in
+clr-debug-pipe-612-902-out
 documents
-dotnet-diagnostic-1610-12507-socket
-dotnet-diagnostic-1627-12763-socket
-dotnet-diagnostic-613-902-socket
+dotnet-diagnostic-1618-17438-socket
+dotnet-diagnostic-1634-17653-socket
+dotnet-diagnostic-612-902-socket
 file.txt
 snap-private-tmp
-systemd-private-35458e60666542e78b7e2cf7d7281b18-chrony.service-gIVXrO
-systemd-private-35458e60666542e78b7e2cf7d7281b18-haveged.service-y57vSM
-systemd-private-35458e60666542e78b7e2cf7d7281b18-systemd-logind.service-3GXDDC
-systemd-private-35458e60666542e78b7e2cf7d7281b18-systemd-resolved.service-uP8MUb
+systemd-private-4b7e0fdb304e40b19151c86847aaeb37-chrony.service-n1RnEF
+systemd-private-4b7e0fdb304e40b19151c86847aaeb37-haveged.service-TWywIg
+systemd-private-4b7e0fdb304e40b19151c86847aaeb37-systemd-logind.service-0rxJfO
+systemd-private-4b7e0fdb304e40b19151c86847aaeb37-systemd-resolved.service-FUxvpl
 www-data-temp-aspnet-0</pre>
 </div>
 </div>
@@ -717,22 +720,22 @@ ls /tmp</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>clr-debug-pipe-1610-12507-in
-clr-debug-pipe-1610-12507-out
-clr-debug-pipe-1627-12763-in
-clr-debug-pipe-1627-12763-out
-clr-debug-pipe-613-902-in
-clr-debug-pipe-613-902-out
+<pre>clr-debug-pipe-1618-17438-in
+clr-debug-pipe-1618-17438-out
+clr-debug-pipe-1634-17653-in
+clr-debug-pipe-1634-17653-out
+clr-debug-pipe-612-902-in
+clr-debug-pipe-612-902-out
 documents
-dotnet-diagnostic-1610-12507-socket
-dotnet-diagnostic-1627-12763-socket
-dotnet-diagnostic-613-902-socket
+dotnet-diagnostic-1618-17438-socket
+dotnet-diagnostic-1634-17653-socket
+dotnet-diagnostic-612-902-socket
 newname.txt
 snap-private-tmp
-systemd-private-35458e60666542e78b7e2cf7d7281b18-chrony.service-gIVXrO
-systemd-private-35458e60666542e78b7e2cf7d7281b18-haveged.service-y57vSM
-systemd-private-35458e60666542e78b7e2cf7d7281b18-systemd-logind.service-3GXDDC
-systemd-private-35458e60666542e78b7e2cf7d7281b18-systemd-resolved.service-uP8MUb
+systemd-private-4b7e0fdb304e40b19151c86847aaeb37-chrony.service-n1RnEF
+systemd-private-4b7e0fdb304e40b19151c86847aaeb37-haveged.service-TWywIg
+systemd-private-4b7e0fdb304e40b19151c86847aaeb37-systemd-logind.service-0rxJfO
+systemd-private-4b7e0fdb304e40b19151c86847aaeb37-systemd-resolved.service-FUxvpl
 www-data-temp-aspnet-0</pre>
 </div>
 </div>
