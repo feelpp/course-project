@@ -1,0 +1,155 @@
+=== Branching Basics
+
+Branches are essential for managing workflows in Git. A branch represents a separate line of development and allows you to work on features or fixes without affecting the main codebase.
+
+A few key terms:
+* **Main branch**: The default branch in a Git repository (commonly `main` or `master`).
+* **Feature branch**: A branch created for developing new features or fixes.
+
+=== Creating a Branch
+
+To create a new branch from the current branch:
+
+[source,console]
+----
+$ git branch <branch-name>
+----
+
+For example, to create a branch called `feature/new-ui`:
+
+[source,console]
+----
+$ git branch feature/new-ui
+----
+
+This command creates the branch, but you’re still on your current branch. To switch to the new branch:
+
+[source,console]
+----
+$ git checkout feature/new-ui
+----
+
+Alternatively, you can create and switch to the new branch in one step:
+
+[source,console]
+----
+$ git checkout -b feature/new-ui
+----
+
+This is a best practice for starting new features or fixes in isolated branches, ensuring the main codebase remains stable.
+
+=== Renaming a Branch
+
+To rename the current branch:
+
+[source,console]
+----
+$ git branch -m <new-branch-name>
+----
+
+If you’re not on the branch you want to rename, specify both the old and new branch names:
+
+[source,console]
+----
+$ git branch -m <old-branch-name> <new-branch-name>
+----
+
+For example, to rename `feature/new-ui` to `feature/new-design`:
+
+[source,console]
+----
+$ git branch -m feature/new-ui feature/new-design
+----
+
+After renaming, if the branch has been pushed to a remote, you will also need to push the renamed branch and delete the old one from the remote:
+
+[source,console]
+----
+$ git push origin -u <new-branch-name>
+$ git push origin --delete <old-branch-name>
+----
+
+=== Deleting a Branch
+
+Once a feature branch has been merged or is no longer needed, it’s good practice to delete it to keep the repository clean.
+
+To delete a local branch:
+
+[source,console]
+----
+$ git branch -d <branch-name>
+----
+
+If you want to force delete the branch (for example, if the branch contains unmerged changes), use:
+
+[source,console]
+----
+$ git branch -D <branch-name>
+----
+
+To delete a branch on a remote (like GitHub):
+
+[source,console]
+----
+$ git push origin --delete <branch-name>
+----
+
+For example, to delete a branch called `feature/new-ui` locally and remotely:
+
+[source,console]
+----
+$ git branch -d feature/new-ui
+$ git push origin --delete feature/new-ui
+----
+
+=== Checking Out a Branch
+
+Switching between branches is called "checking out" a branch. To switch to another branch:
+
+[source,console]
+----
+$ git checkout <branch-name>
+----
+
+For example, to switch to the `develop` branch:
+
+[source,console]
+----
+$ git checkout develop
+----
+
+=== Merging Basics
+
+Once your feature or fix is complete, you’ll want to merge it back into the main branch (e.g., `main` or `develop`).
+
+To merge another branch into your current branch:
+
+[source,console]
+----
+$ git merge <branch-name>
+----
+
+For example, if you are on the `main` branch and want to merge changes from the `feature/new-ui` branch:
+
+[source,console]
+----
+$ git checkout main
+$ git merge feature/new-ui
+----
+
+After merging, if there are no conflicts, Git will automatically commit the merge.
+
+If conflicts arise, Git will prompt you to resolve them manually. After resolving the conflicts, stage the changes and complete the merge:
+
+[source,console]
+----
+$ git add <file-name>
+$ git commit -m "Resolved merge conflicts"
+----
+
+Finally, push the changes to the remote:
+
+[source,console]
+----
+$ git push origin main
+----

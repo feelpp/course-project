@@ -1,0 +1,84 @@
+= GitHub Essentials
+
+This page introduces the essential GitHub concepts and actions for beginners. Learn how to set up your GitHub account, explore the GitHub interface, create repositories, and manage your profile.
+
+
+== Creating a GitHub Account
+
+To get started with GitHub, you need to create an account. Follow these steps:
+
+1. Go to https://github.com.
+2. Click on "Sign up" in the top-right corner.
+3. Fill in your details such as username, email address, and password.
+4. Verify your email and complete any other steps requested by GitHub.
+
+Once your account is created, you’re ready to start collaborating on repositories and exploring GitHub.
+
+== GitHub Interface
+
+GitHub’s interface is user-friendly and offers a wide range of functionalities. Here’s a breakdown of some key areas:
+
+- **Dashboard**: Once logged in, the dashboard is where you see your repositories, issues, pull requests, and activities.
+- **Repositories**: This tab shows all the repositories you own or contribute to.
+- **Pull Requests**: This tab lists all the pull requests you’ve opened or participated in.
+- **Issues**: This tab tracks issues related to your repositories, including bugs, feature requests, or other tasks.
+- **Actions**: GitHub Actions is a feature for automating tasks such as running tests or deploying code.
+- **Notifications**: GitHub notifies you of any activities related to repositories you are watching, or pull requests/issues you’re involved in.
+
+Familiarizing yourself with the GitHub interface will help you navigate and manage your projects more effectively.
+
+== Setting up Your GitHub Profile
+
+Your GitHub profile showcases your contributions, repositories, and followers. You can customize it as follows:
+
+1. **Profile Picture**: Add a profile picture that helps people identify you.
+2. **Bio**: Write a short bio describing who you are and what you do.
+3. **Location and Website**: Add your location and personal website to your profile.
+4. **Pinned Repositories**: You can pin repositories to highlight your best work.
+
+To edit your profile:
+
+1. Go to your GitHub account.
+2. Click on your profile picture in the upper-right corner and choose "Your profile".
+3. Click "Edit profile" and make the necessary changes.
+
+=== Profile README
+
+You can create a special repository that hosts a personalized README file which appears at the top of your profile page. This is a great way to introduce yourself to visitors.
+
+To set up a profile README:
+
+1. Create a new repository with the exact same name as your GitHub username (e.g., `username/username`).
+2. Add a `README.md` file to the repository with information you want to showcase (e.g., your skills, projects, or contact info).
+3. Once you push the repository, the `README.md` will be displayed on your profile page.
+
+== Creating Repositories
+
+Repositories (or repos) are where your code is stored. You can create a repository to host a project or collaborate with others.
+
+To create a repository on GitHub:
+
+1. Go to https://github.com and log in.
+2. Click the "+" icon in the top-right corner and select "New repository".
+3. Enter a repository name and description (optional).
+4. Choose whether the repository will be **public** or **private**.
+5. Optionally, initialize the repository with a README, .gitignore, or license file.
+6. Click "Create repository".
+
+=== Private vs Public Repositories
+
+- **Public repositories**: Anyone on GitHub can view and contribute if allowed.
+- **Private repositories**: Only you and those you explicitly grant access to can view the repository.
+
+You can choose a public repository if you want to collaborate with a wider audience. For personal or sensitive projects, it's better to use a private repository.
+
+To change a repository from private to public (or vice versa):
+
+1. Go to the repository’s page.
+2. Click on "Settings".
+3. Scroll down to the "Danger Zone" section.
+4. Click either "Make public" or "Make private", depending on the current status.
+
+== Summary
+
+In this **GitHub Essentials** guide, we've covered the basics of setting up your account, navigating the GitHub interface, customizing your profile, and creating repositories. With these foundational concepts, you are now ready to explore more advanced GitHub features like forking repositories, opening pull requests, and automating workflows using GitHub Actions.

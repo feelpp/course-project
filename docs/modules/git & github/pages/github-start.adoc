@@ -1,0 +1,163 @@
+= GitHub for Beginners
+
+This tutorial introduces the basic concepts of GitHub, a web-based platform for version control and collaboration.
+
+== What is GitHub?
+
+GitHub is a cloud-based platform that uses Git, a distributed version control system. 
+It allows developers to collaborate on projects, track changes, and manage code versions in a centralized repository.
+
+== GitHub Basics
+
+=== Creating a GitHub Account
+
+To start using GitHub, you need to create an account:
+
+1. Go to https://github.com.
+2. Click on "Sign up".
+3. Follow the instructions to create your GitHub account.
+
+Once your account is set up, you can create repositories, contribute to projects, and collaborate with others.
+
+=== Creating a Repository
+
+A repository (repo) is where your project's files are stored. To create a new repository:
+
+1. Go to https://github.com and log in.
+2. Click on the "+" icon in the upper-right corner and select "New repository".
+3. Fill in the repository name, description (optional), and choose whether it will be public or private.
+4. Click on "Create repository".
+
+=== Cloning a Repository
+
+After creating a repository on GitHub, you can clone it to your local machine. This allows you to work on your project locally.
+
+To clone a repository:
+
+[source,console]
+----
+$ git clone https://github.com/<username>/<repository-name>.git
+----
+
+Replace `<username>` and `<repository-name>` with your GitHub username and the repository name.
+
+=== Pushing Changes to GitHub
+
+Once you have made changes to your local repository and committed them, you can push the changes to GitHub.
+
+[source,console]
+----
+$ git push origin <branch-name>
+----
+
+This command uploads your local changes to the remote repository on GitHub.
+
+=== Pulling Changes from GitHub
+
+To update your local repository with changes from the GitHub repository, use the following command:
+
+[source,console]
+----
+$ git pull origin <branch-name>
+----
+
+This fetches changes from the remote repository and merges them into your local branch.
+
+=== Creating a Branch
+
+Branches in GitHub allow you to work on different features or versions of a project without affecting the main codebase.
+
+To create a new branch:
+
+[source,console]
+----
+$ git checkout -b <branch-name>
+----
+
+Replace `<branch-name>` with the name of the new branch.
+
+After making changes in the new branch, push it to GitHub:
+
+[source,console]
+----
+$ git push origin <branch-name>
+----
+
+=== Opening a Pull Request
+
+A pull request is a way to propose changes to a project. You can create a pull request once you’ve pushed changes to a branch on GitHub.
+
+1. Go to the repository on GitHub.
+2. Click on the "Pull requests" tab.
+3. Click "New pull request".
+4. Select the branch you want to merge into the main branch.
+5. Add a title and description for the changes.
+6. Click "Create pull request".
+
+A pull request allows other developers to review and discuss your changes before merging them into the main branch.
+
+=== Merging a Pull Request
+
+Once a pull request is approved, you can merge it into the main branch.
+
+1. Navigate to the pull request on GitHub.
+2. Click "Merge pull request".
+3. Confirm the merge by clicking "Confirm merge".
+
+The changes from the pull request will now be part of the main branch.
+
+=== Forking a Repository
+
+Forking a repository allows you to create your own copy of someone else's project. This is useful when you want to contribute to a project but don't have write access to the original repository.
+
+To fork a repository:
+
+1. Navigate to the repository you want to fork.
+2. Click the "Fork" button in the upper-right corner.
+3. A copy of the repository will be created under your GitHub account.
+
+You can now make changes to the forked repository and propose those changes to the original repository using a pull request.
+
+=== GitHub Issues
+
+GitHub Issues is a tool for tracking bugs, feature requests, and other tasks. Each issue can be assigned to a developer, discussed by the team, and linked to specific code changes.
+
+To create an issue:
+
+1. Navigate to the repository.
+2. Click on the "Issues" tab.
+3. Click "New issue".
+4. Fill in the title and description of the issue.
+5. Click "Submit new issue".
+
+Once the issue is created, it can be assigned, labeled, and tracked through its lifecycle.
+
+=== GitHub Actions
+
+GitHub Actions is a CI/CD tool that automates workflows, such as running tests, building code, or deploying applications, directly within GitHub.
+
+To create a workflow in GitHub Actions:
+
+1. Navigate to the repository.
+2. Click on the "Actions" tab.
+3. Click "New workflow".
+4. Choose a pre-built workflow or write your own.
+
+Workflows are stored in a `.github/workflows` directory and defined using YAML files.
+
+=== Managing Collaborators
+
+To collaborate with others on your GitHub project, you need to add them as collaborators:
+
+1. Go to the repository.
+2. Click on "Settings".
+3. Click "Manage access" in the left sidebar.
+4. Click "Invite a collaborator" and enter their GitHub username.
+
+Once they accept the invitation, they will have access to the repository.
+
+== Summary
+
+This tutorial introduces the basics of using GitHub for managing repositories, collaborating on projects, and tracking issues. By mastering these essential GitHub features, you can efficiently manage your projects and collaborate with others.
+
+Continue exploring GitHub by learning about advanced features like GitHub Actions, project boards, and GitHub Pages.

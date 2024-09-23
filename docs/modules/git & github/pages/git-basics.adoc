@@ -1,0 +1,113 @@
+= Git Basics
+
+This document introduces the basic concepts of version control and explains why Git is a widely used tool. You'll also learn how to install Git locally to start using it.
+
+
+== What is Version Control?
+
+Version control is a system that tracks changes to files over time. It allows multiple people to work on the same project while keeping track of each modification, ensuring that past versions of the project can be restored if needed.
+
+In essence, version control systems (VCS) like Git are used to:
+
+- Track changes to files over time.
+- Collaborate on projects without overwriting others' work.
+- Maintain a history of changes and allow reverting to previous states.
+- Help resolve conflicts when multiple people edit the same file simultaneously.
+
+== Why Use Version Control?
+
+Here are some key reasons why version control is essential for projects, especially in software development:
+
+1. **Collaboration**: Version control allows multiple developers to work on the same project without overwriting each other’s changes. Each developer can work on different features simultaneously.
+2. **Backup**: Every change made to the project is stored in the repository, ensuring that previous versions are always available. This makes recovering from mistakes easy.
+3. **History**: Version control keeps a history of all changes made to the project. Developers can see who changed what, and when, making it easier to track bugs or revert to a stable version.
+4. **Branching and Merging**: Developers can create branches to work on specific features or fixes. Once complete, these changes can be merged back into the main project.
+5. **Code Review**: Many modern version control platforms (like GitHub) offer code review features that allow teams to review each other’s work before merging it into the project.
+
+== Git vs Other Version Control Systems (VCS)
+
+Git is a distributed version control system, and it's different from older, centralized version control systems (like Subversion or CVS). Here’s how Git compares to other VCS:
+
+=== Centralized Version Control (Subversion, CVS)
+
+In centralized systems:
+- There is one central repository that developers push their changes to.
+- All changes must be committed to the central repository, meaning an internet connection is required to commit changes.
+- If the central server goes down, developers lose access to the full history of the project.
+
+Example of Subversion usage:
+
+[source,console]
+----
+$ svn checkout https://example.com/repo
+$ svn commit -m "Commit message"
+----
+
+=== Distributed Version Control (Git)
+
+In Git:
+- Each developer has a full copy of the entire project history on their machine.
+- Developers can commit changes locally and push them to the remote repository later.
+- Git allows offline work, and changes can be pushed to the remote repository once connectivity is available.
+- Git is faster and more efficient for large projects because of its distributed nature.
+
+Example of Git usage:
+
+[source,console]
+----
+$ git clone https://github.com/user/repo.git
+$ git commit -m "Commit message"
+$ git push origin main
+----
+
+Git is widely regarded for its speed, flexibility, and robust branching and merging capabilities, which make it ideal for both small and large teams.
+
+== Installing Git Locally
+
+Git can be installed on different platforms, including Windows, macOS, and Linux. Here's how to install Git on each of these platforms.
+
+=== Installing Git on Linux
+
+Most Linux distributions provide Git as part of their default package manager. Use the following command to install Git:
+
+[source,console]
+----
+$ sudo apt install git  # For Debian/Ubuntu
+$ sudo yum install git  # For RHEL/CentOS
+$ sudo dnf install git  # For Fedora
+----
+
+To verify that Git is installed correctly:
+
+[source,console]
+----
+$ git --version
+----
+
+=== Installing Git on macOS
+
+If you're using Homebrew, you can install Git with:
+
+[source,console]
+----
+$ brew install git
+----
+
+Alternatively, you can download Git for macOS from the official Git website: https://git-scm.com
+
+=== Installing Git on Windows
+
+For Windows users, download the Git installer from https://git-scm.com. Once downloaded, follow the installation wizard to set up Git.
+
+After installation, you can use Git via the Command Prompt, PowerShell, or Git Bash, a command-line interface that emulates a Unix shell.
+
+To verify Git is installed, open Command Prompt or Git Bash and run:
+
+[source,console]
+----
+$ git --version
+----
+
+== Summary
+
+This document introduces the basics of version control, highlighting why it's important and how Git compares to other VCS tools. By now, you should understand the core concepts of Git, know why it's widely used, and be ready to install it on your local machine.

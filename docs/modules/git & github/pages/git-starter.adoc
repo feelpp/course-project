@@ -1,0 +1,188 @@
+= Git for Beginners
+
+This tutorial introduces the basic concepts of Git, a version control system used for tracking changes in software development.
+
+toc::[]
+
+== What is Git?
+
+Git is a distributed version control system that allows multiple developers to work on a project simultaneously. 
+It tracks changes to files, enables collaboration, and makes it easy to revert changes when needed.
+
+== Git Basics
+
+=== Installing Git
+
+To check if Git is already installed, open a terminal and run:
+
+[source,console]
+----
+$ git --version
+----
+
+If Git is not installed, follow these instructions based on your operating system:
+
+* **Linux**: Use the package manager (e.g., `apt`, `dnf`, or `yum`).
+[source,console]
+----
+$ sudo apt install git
+----
+
+* **macOS**: Install Git using Homebrew:
+[source,console]
+----
+$ brew install git
+----
+
+* **Windows**: Download and install Git from the official Git website: https://git-scm.com
+
+=== Configuring Git
+
+Before you start using Git, you need to configure your user information. This information will be used in your commits.
+
+[source,console]
+----
+$ git config --global user.name "Your Name"
+$ git config --global user.email "you@example.com"
+----
+
+To check your configuration:
+[source,console]
+----
+$ git config --list
+----
+
+=== Creating a Repository
+
+A Git repository is where Git stores all the files, changes, and history of your project.
+
+To create a new Git repository:
+
+[source,console]
+----
+$ mkdir my-project
+$ cd my-project
+$ git init
+----
+
+This initializes a new Git repository in your project directory.
+
+=== Cloning a Repository
+
+If you want to work on an existing Git project, you can clone a repository:
+
+[source,console]
+----
+$ git clone https://github.com/user/repo.git
+----
+
+This command copies the project from the remote repository to your local machine.
+
+=== Checking the Status of Your Repository
+
+To check the current status of your working directory and staged changes:
+
+[source,console]
+----
+$ git status
+----
+
+This will show which files have been modified, staged, or committed.
+
+=== Staging Changes
+
+After making changes to your files, you need to stage them for commit. To stage a specific file:
+
+[source,console]
+----
+$ git add <file-name>
+----
+
+To stage all changes at once:
+
+[source,console]
+----
+$ git add .
+----
+
+=== Committing Changes
+
+Once your changes are staged, you can commit them to the repository:
+
+[source,console]
+----
+$ git commit -m "Commit message describing the changes"
+----
+
+The `-m` option allows you to add a short message describing your changes.
+
+=== Viewing the Commit History
+
+To view the commit history of your repository:
+
+[source,console]
+----
+$ git log
+----
+
+This will display a list of commits with details like the commit hash, author, and message.
+
+For a compact view of the commit history:
+
+[source,console]
+----
+$ git log --oneline
+----
+
+=== Undoing Changes
+
+To discard changes to a file:
+
+[source,console]
+----
+$ git checkout -- <file-name>
+----
+
+To unstage a file (move it out of the staging area):
+
+[source,console]
+----
+$ git reset <file-name>
+----
+
+To reset your last commit (without losing your changes):
+
+[source,console]
+----
+$ git reset --soft HEAD~1
+----
+
+
+
+=== Pushing Changes to a Remote Repository
+
+To push your local commits to a remote repository:
+
+[source,console]
+----
+$ git push origin <branch-name>
+----
+
+This sends your changes to the remote repository (e.g., GitHub or GitLab).
+
+=== Pulling Changes from a Remote Repository
+
+To fetch and merge changes from a remote repository:
+
+[source,console]
+----
+$ git pull origin <branch-name>
+----
+
+This updates your local branch with any new commits from the remote branch.
+
+== Summary
+
+This tutorial covers the basic Git commands for working with a repository. Understanding these core concepts will help you collaborate more effectively and manage your project’s version history.
+
+Continue learning by exploring advanced Git features such as branching strategies, rebasing, and resolving merge conflicts.

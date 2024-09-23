@@ -1,0 +1,152 @@
+= What is a Git Repository?
+Git Tutorial Team <tutorial-team@example.com>
+v1.0, 2024-09-23
+
+A Git repository is the core of every Git project, where all the project’s files, changes, and history are tracked. This guide introduces Git repositories and key concepts such as repository initialization, configuration, working directory, staging area, and commit history.
+
+toc::[]
+
+== Git Repository Basics
+
+A Git repository stores your project’s files and tracks all changes made to them. Git uses a three-part architecture: the working directory, the staging area, and the repository itself. Together, these help manage and track changes across versions of the project.
+
+=== Initializing a Repository (`git init`)
+
+The first step to using Git is initializing a repository. You can create a new Git repository with the following command:
+
+[source,console]
+----
+$ git init
+----
+
+This creates a `.git` directory inside your project folder. The `.git` directory stores all the metadata and history related to your project.
+
+You can now begin tracking files, making changes, and committing those changes to the repository.
+
+=== Configuring Git (`git config`)
+
+Before committing changes, it’s essential to configure Git with your personal information, such as your name and email address. This information is stored with each commit you make.
+
+To configure Git with your username and email:
+
+[source,console]
+----
+$ git config --global user.name "Your Name"
+$ git config --global user.email "you@example.com"
+----
+
+You can check your configuration with:
+
+[source,console]
+----
+$ git config --list
+----
+
+=== Local vs Global Config
+
+Git allows two levels of configuration:
+
+- **Global config**: Applies to all repositories on your machine. Use `--global` when running `git config` to apply settings globally.
+- **Local config**: Specific to a single repository. If you run `git config` without `--global`, it will apply only to the repository you are currently working in.
+
+To configure Git for a specific repository:
+
+[source,console]
+----
+$ git config user.name "Local Repo Name"
+$ git config user.email "local@example.com"
+----
+
+This way, you can have different configurations for different projects.
+
+=== Repository Initialization
+
+Once a Git repository is initialized, Git begins tracking your project. The repository consists of:
+
+1. **Working Directory**: This is where your project files are located and where you make changes to files.
+2. **Staging Area**: Before changes are committed to the repository, they are staged. Staging allows you to organize your changes before making them part of the project history.
+3. **Repository (.git directory)**: The `.git` folder is where Git stores the commit history, configuration, and other data related to the project.
+
+=== Working Directory
+
+The working directory is where you add, modify, or delete files. Git tracks the state of the files in your working directory, and you can use `git status` to check the current status of the working directory:
+
+[source,console]
+----
+$ git status
+----
+
+This command will tell you if there are any changes, untracked files, or files ready to be staged.
+
+=== Staging Area
+
+Before committing changes, you must first add them to the **staging area**. The staging area is a place to review and organize your changes before committing them. To add changes to the staging area:
+
+[source,console]
+----
+$ git add <file-name>
+----
+
+To stage all changes:
+
+[source,console]
+----
+$ git add .
+----
+
+Files that are staged are ready to be committed to the repository.
+
+=== Committing Changes
+
+Once changes are staged, you can commit them. A **commit** is like a snapshot of your project at a particular point in time.
+
+To commit your changes:
+
+[source,console]
+----
+$ git commit -m "Your commit message"
+----
+
+The `-m` flag allows you to include a short message describing the changes you’ve made. Commit messages should be clear and descriptive to help you and others understand the purpose of the changes.
+
+=== Intro to .gitignore
+
+The `.gitignore` file tells Git which files or directories to ignore and not track in the repository. This is useful for excluding files that are specific to your development environment (e.g., log files, compiled code, or sensitive information).
+
+To create a `.gitignore` file:
+
+1. Create a file named `.gitignore` in your project directory.
+2. Add file patterns that should be ignored by Git. For example:
+
+[source,console]
+----
+*.log
+node_modules/
+config.json
+----
+
+Git will now ignore any files or directories listed in `.gitignore`.
+
+=== Viewing Commit History
+
+To view the history of commits in your repository, use:
+
+[source,console]
+----
+$ git log
+----
+
+This will display a list of commits along with the commit hash, author, date, and commit message.
+
+For a more concise view, you can use:
+
+[source,console]
+----
+$ git log --oneline
+----
+
+This gives a compact summary of the commit history, showing only the commit hash and message for each commit.
+
+== Summary
+
+In this guide, you’ve learned the basics of a Git repository, including how to initialize a repository, configure Git, stage and commit changes, and view commit history. Understanding these core concepts will help you effectively track and manage changes in your projects.
