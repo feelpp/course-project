@@ -1,0 +1,242 @@
+= Collaboration on GitHub
+:experimental: true
+
+This page introduces key GitHub features for collaboration, including forking vs cloning, issues, pull requests, labeling issues/PRs, and more. These tools help streamline collaboration and code review in open source and team projects.
+
+== Forking vs Cloning
+
+GitHub provides two ways to work with repositories: **forking** and **cloning**.
+
+- **Forking**: Creates a copy of someone else's repository under your GitHub account. You can modify this copy and later propose changes to the original repository via a pull request (PR).
+- **Cloning**: Downloads a local copy of a repository on your machine so you can work on it. You can clone both your own and other users' repositories (public repositories).
+
+=== Forking a Repository
+
+[.left]
+--
+.Forking a Repository
+image::collaboration/fork.png[Forking a Repository]
+--
+To fork a repository:
+
+1. Navigate to the repository on GitHub.
+2. Click the btn:[Fork] button in the upper-right corner.
+3. Choose the location (your account) to create the fork.
+
+After forking, you can clone it to your local machine:
+
+[source,console]
+----
+$ git clone https://github.com/<your-username>/<repository-name>.git
+----
+
+
+=== Cloning a Repository
+
+[.right]
+--
+.Cloning a Repository
+image::collaboration/clone.png[Cloning a Repository]
+--
+To clone a repository (without forking):
+
+[source,console]
+----
+$ git clone https://github.com/<username>/<repository-name>.git
+----
+
+Replace `<username>` with the repository owner's username.
+
+
+NOTE: in VS Code, to clone a repository, you can use the `Git: Clone` command from the command palette btn:[Ctrl+Shift+P] on Linux, see xref:vscode:cheatsheet.adoc[] and provide the repository URL.
+
+
+== Issues
+
+[.right]
+--
+.Issue Tab
+image::collaboration/issues.png[Issue Tab]
+--
+GitHub Issues provide a way to track bugs, feature requests, and tasks for a project. 
+Each issue has its own discussion thread, and developers can assign issues, add labels, and link them to pull requests.
+
+[.left]
+--
+.Create a New Issue
+image::collaboration/issues-creation.png[Create a New Issue]
+--
+To create a new issue:
+
+1. Navigate to the repository.
+2. Click on the btn:[Issues] tab.
+3. Click btn:[New issue] and provide a title and description.
+
+
+=== Closing Issues with Commits
+
+You can close an issue automatically by mentioning it in your commit message:
+
+[source,console]
+----
+$ git commit -m "Fixes #123 - Update the login functionality"
+$ git push origin main
+----
+
+This will automatically close issue `#123` when the commit is pushed thanks to the keyword `Fixes` and then the issue number prefixed by `#`.
+Similar keywords include `Closes`, `Resolves`, and `Addresses`.
+
+.How to write issues ?
+TIP: For guidelines about how to write issues, please refer to xref:github-how-to-write-issues.adoc[].
+
+TIP: https://docs.github.com/en/issues/tracking-your-work-with-issues/administering-issues/closing-an-issue[Learn more about closing issues.]
+
+== Pull Requests (PRs)
+
+
+A pull request (PR) proposes changes from your branch to the main repository. Other contributors can review the PR, discuss changes, and eventually merge it.
+
+=== Creating a PR
+
+[.left]
+--
+.Create a New PR
+image::collaboration/pr.png[Create a PR]
+--
+To create a PR after pushing your changes:
+
+1. Go to the repository on GitHub.
+2. Click on the btn:[Pull requests] tab.
+3. Click btn:[New pull request], select your branch, and create the PR.
+
+TIP: You can also reference issues related to the PR by mentioning them (e.g., `#123`).
+
+=== PR from a Fork
+
+If you forked a repository and made changes, you can submit a pull request to the original repository.
+
+[source,console]
+----
+$ git push origin <branch-name>
+----
+
+After pushing your changes, create a PR from your fork's repository to the original repository.
+
+=== Collaborators
+
+Repository owners can invite collaborators to work on private repositories. 
+Collaborators have write access to the repository.
+
+To add a collaborator:
+
+1. Navigate to the repository settings.
+2. Under the btn:[Manage access] tab, invite the collaborator by their GitHub username.
+
+== Labelling Issues / PRs
+
+Labels help organize and categorize issues and PRs. GitHub provides default labels like `bug`, `enhancement`, and `question`, but you can create custom labels.
+
+To add labels to an issue or PR:
+
+1. Open the issue/PR.
+2. Click btn:[Labels] on the right-hand side.
+3. Choose the labels to apply.
+
+== Saved Replies
+
+Saved replies allow you to create and reuse common responses for issues and pull requests. 
+This is useful for repeating instructions, responses, or comments.
+
+To create a saved reply:
+
+1. Navigate to your profile settings.
+2. Under btn:[Saved replies], add a new reply template.
+3. Use it while commenting on issues or pull requests.
+
+== Mentions
+
+[.left]
+--
+.Message Mention
+image::collaboration/mention.png[Message Mention]
+--
+
+To get someone's attention in an issue or pull request, you can mention them using `@` followed by their GitHub username. For example:
+
+[source,console]
+----
+@octocat Can you review this PR?
+----
+
+This sends a notification to the mentioned user.
+
+== Reactions
+
+[.left]
+--
+.Reaction
+image::collaboration/reaction.png[Raction]
+--
+GitHub allows you to react to comments, issues, and pull requests with emojis such as 👍 (thumbs up) and ❤️ (heart). Reactions help gauge community feedback without adding comments.
+
+To react to a comment:
+
+1. Hover over the comment.
+2. Click the smiley face icon and select a reaction.
+
+== Commenting
+
+[.left]
+--
+.Comments
+image::collaboration/comment.png[Comments]
+--
+Comments can be added to issues, pull requests, and specific lines of code in a pull request diff. Comments are a key part of GitHub's review and discussion process.
+
+To comment on an issue or PR:
+
+1. Open the btn:[issue] or btn:[Pull Request] tabs.
+2. Scroll down to the comment box.
+3. Write your comment and click btn:[Comment].
+
+For code review, you can leave line-by-line comments directly on the PR diff.
+
+== GitHub Discussions
+
+[.left]
+--
+.Discussions
+image::collaboration/discussions.png[Discussions]
+--
+GitHub Discussions is a feature that provides a space for long-form conversations separate from issues. Discussions are often used for community engagement, Q&A, and planning.
+
+To create a discussion:
+
+1. Navigate to the btn:[Discussions] tab of a repository.
+2. Click btn:[New Discussion] and choose a category.
+3. Write your discussion topic and post it.
+
+Discussions allow voting, threading, and marking answers as "solved."
+
+[.left]
+--
+.A New Discussion
+image::collaboration/discussion-created.png[A New Discussion]
+--
+
+After the discussion is created, community members can participate by replying, voting, or marking answers.
+
+The discussions tab provides a nice way to engage with the community and gather feedback.
+
+[.left]
+--
+.Discussion View
+image::collaboration/discussion-view.png[Discussion View]
+--
+
+
+TIP: https://docs.github.com/en/discussions[Learn more about GitHub Discussions.]
+
+== Summary
+
+This guide covers various collaboration features on GitHub, including forking, cloning, issues, pull requests, saved replies, mentions, and GitHub Discussions. These tools enable effective collaboration and code management within open-source or team projects.

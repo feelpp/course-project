@@ -1,0 +1,99 @@
+= How to Write a GitHub Issue
+
+
+This guideline explains how to create effective GitHub issues for reporting bugs, requesting features, or asking questions. A well-written issue helps project maintainers understand and resolve the problem more quickly.
+
+== Steps to Create a GitHub Issue
+
+To create a new issue on GitHub:
+
+1. Navigate to the repository where you want to report an issue.
+2. Click the btn:[Issues] tab.
+3. Click btn:[New issue].
+
+Fill out the issue template if the repository provides one, or follow the structure below for general guidance.
+
+== Issue Structure
+
+A well-written issue should include the following sections:
+
+=== 1. Title
+
+The title should be a brief, clear description of the issue. It should summarize the problem or request in one line.
+
+[.examp]
+====
+- Bug: "Login page crashes after form submission"
+- Feature: "Add dark mode support to the website"
+- Question: "How to configure the app for multi-tenancy?"
+====
+
+=== 2. Description
+
+Provide a clear and detailed description of the issue. For bugs, explain what’s happening and what you expected to happen. For feature requests, explain why the feature is necessary and how it would be used.
+
+For Bugs::
+- What is the bug?
+- What did you expect to happen?
+- What actually happened?
+
+For Features::
+- What is the feature you’re requesting?
+- Why would it be useful?
+
+For Questions::
+- What is your question?
+- What context or details might help answer your question?
+
+=== 3. Steps to Reproduce
+
+If you're reporting a bug, list the steps someone can follow to reproduce the issue. Include details like the environment, platform, or configuration.
+
+[.examp]
+====
+1. Go to the login page.
+2. Enter a valid username and password.
+3. Click the btn:[Submit] button.
+4. Observe the page crashes with a "500 Internal Server Error."
+====
+
+=== 4. Environment
+
+List the environment in which the issue occurs. Include:
+- Operating System (e.g., Windows, macOS, Linux)
+- Browser (for web-related issues)
+- Version of the software or library
+
+[.examp]
+====
+- OS: Windows 11
+- Browser: Chrome 95.0
+- App Version: v1.2.3
+====
+
+=== 5. Screenshots or Logs
+
+Include screenshots, error logs, or console output that can help clarify the issue. Visual information makes it easier for maintainers to diagnose the problem.
+
+=== 6. Additional Context
+
+Provide any other context or details that might help maintainers understand and resolve the issue. For feature requests, you can include mockups or links to similar implementations in other projects.
+
+[.examp]
+====
+- Related issue: #45
+- GitHub repository link: https://github.com/example/repo
+- Logs: [attached log file]
+====
+
+== Best Practices for Writing Issues
+
+1. **Be Clear and Concise**: Write in short, precise sentences. Avoid unnecessary details.
+2. **Provide Enough Information**: Make sure the maintainers have all the information they need to reproduce or understand the issue.
+3. **Use Checklists**: For feature requests, provide a checklist of the desired functionality.
+4. **Link to Related Issues**: If your issue is related to an existing one, reference it using the issue number (e.g., `#45`).
+5. **Stay Objective**: Stick to the facts. Avoid opinions or assumptions about what the problem might be unless you are absolutely sure.
+
+== Summary
+
+Writing a clear and informative GitHub issue makes it easier for project maintainers to understand and address the problem quickly. Follow this structure for reporting bugs, requesting features, or asking questions in a concise, well-organized manner.

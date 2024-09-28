@@ -9,3 +9,4 @@
 ** GitHub
 *** xref:github-essentials.adoc[GitHub Essentials]
 *** xref:github-start.adoc[GitHub Starter Guide]
+*** xref:github-collaborations.adoc[GitHub Collaborations]
