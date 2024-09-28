@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Collaboration on GitHub :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/git%20&%20github/github-collaborations.html">
+    <link rel="prev" href="github-start.html">
+    <link rel="next" href="../containers/index.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header><div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="course-project" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Course Project</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../linux/index.html">Introduction to Linux</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Command Line</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/editing.html">File Editing in Linux</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/shell.html">Linux Shell Basics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/text-processing.html">Text Processing</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../linux/ssh/index.html">Introduction to SSH and Remote-SSH</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/ssh/ssh-setup.html">Setting Up SSH</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/ssh/ssh-commands.html">Basic SSH Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/ssh/remote-ssh-vscode.html">Remote-SSH Extension for VS Code</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#index.adoc">Overview of VS Code</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../vscode/install.html">VS Code Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../vscode/basic-usage.html">Basic Usage and Commands</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#extensions.adoc">Extension Installation and Key Extensions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/remote-ssh.html">Remote SSH Extension</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/wsl.html">WSL Extension</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/python-jupyter.html">Python and Jupyter Extensions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../vscode/configure-vscode.html">How to Configure VS Code with .vscode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../vscode/cheatsheet.html">VS Code Cheat Sheet</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../project-management/index.html">Introduction to Project Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/introduction.html">What is Project?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/project-phases.html">Phases of a Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/practical-examples.html">Practical Examples in Scientific Computing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/case-studies.html">Case Studies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/tools-gantt.html">Project Management Tools and Gantt Charts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/agile-best-practices.html">Agile Best Practices</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../project-management/github.html">Introduction to GitHub</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Git &amp; GitHub Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Git</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git-basics.html">Git Basics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git-starter.html">Git Starter Guide</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git-repository-basics.html">Git Repository</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git-branch.html">Git Branching</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git-merges.html">Git Merge</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git-remotes.html">Git Remotes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">GitHub</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="github-essentials.html">GitHub Essentials</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="github-start.html">GitHub Starter Guide</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="github-collaborations.html">GitHub Collaborations</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/index.html">Introduction to Containers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/apptainer/index.html">Apptainer</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/apptainer/apptainer-install.html">Installing Apptainer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/docker/index.html">Docker</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-overview.html">Docker Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-problems-solved.html">The Problem Docker Solves</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-architecture.html">Docker Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-commands.html">Basic Docker Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-advanced-usage.html">Advanced Docker Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/docker/docker-postgres.html">Running PostgreSQL with Docker</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../containers/docker/docker-postgres-example.html">Setting Up PostgreSQL with Docker</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-compose.html">Docker Compose</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Course Project</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../../feelpp-antora-ui/index.html">Antora Feel++ UI</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="../index.html">Course Project</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Course Project</a></li>
+    <li>Git &amp; GitHub Documentation</li>
+    <li>GitHub</li>
+    <li><a href="github-collaborations.html">GitHub Collaborations</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/git%20&amp;%20github/pages/github-collaborations.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Collaboration on GitHub</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This page introduces key GitHub features for collaboration, including forking vs cloning, issues, pull requests, labeling issues/PRs, and more. These tools help streamline collaboration and code review in open source and team projects.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_forking_vs_cloning"><a class="anchor" href="#_forking_vs_cloning"></a>1. Forking vs Cloning</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>GitHub provides two ways to work with repositories: <strong>forking</strong> and <strong>cloning</strong>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Forking</strong>: Creates a copy of someone else&#8217;s repository under your GitHub account. You can modify this copy and later propose changes to the original repository via a pull request (PR).</p>
+</li>
+<li>
+<p><strong>Cloning</strong>: Downloads a local copy of a repository on your machine so you can work on it. You can clone both your own and other users' repositories (public repositories).</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_forking_a_repository"><a class="anchor" href="#_forking_a_repository"></a>1.1. Forking a Repository</h3>
+<div class="openblock left">
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/collaboration/fork.png" alt="Forking a Repository">
+</div>
+<div class="title">Figure 1. Forking a Repository</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>To fork a repository:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the repository on GitHub.</p>
+</li>
+<li>
+<p>Click the <b class="button">Fork</b> button in the upper-right corner.</p>
+</li>
+<li>
+<p>Choose the location (your account) to create the fork.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>After forking, you can clone it to your local machine:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ git clone https://github.com/&lt;your-username&gt;/&lt;repository-name&gt;.git</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cloning_a_repository"><a class="anchor" href="#_cloning_a_repository"></a>1.2. Cloning a Repository</h3>
+<div class="openblock right">
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/collaboration/clone.png" alt="Cloning a Repository">
+</div>
+<div class="title">Figure 2. Cloning a Repository</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>To clone a repository (without forking):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ git clone https://github.com/&lt;username&gt;/&lt;repository-name&gt;.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;username&gt;</code> with the repository owner&#8217;s username.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+in VS Code, to clone a repository, you can use the <code>Git: Clone</code> command from the command palette <b class="button">Ctrl+Shift+P</b> on Linux, see <a href="../vscode/cheatsheet.html" class="xref page">VSCode Basic Cheatsheet</a> and provide the repository URL.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_issues"><a class="anchor" href="#_issues"></a>2. Issues</h2>
+<div class="sectionbody">
+<div class="openblock right">
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/collaboration/issues.png" alt="Issue Tab">
+</div>
+<div class="title">Figure 3. Issue Tab</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>GitHub Issues provide a way to track bugs, feature requests, and tasks for a project.
+Each issue has its own discussion thread, and developers can assign issues, add labels, and link them to pull requests.</p>
+</div>
+<div class="openblock left">
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/collaboration/issues-creation.png" alt="Create a New Issue">
+</div>
+<div class="title">Figure 4. Create a New Issue</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>To create a new issue:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the repository.</p>
+</li>
+<li>
+<p>Click on the <b class="button">Issues</b> tab.</p>
+</li>
+<li>
+<p>Click <b class="button">New issue</b> and provide a title and description.</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="_closing_issues_with_commits"><a class="anchor" href="#_closing_issues_with_commits"></a>2.1. Closing Issues with Commits</h3>
+<div class="paragraph">
+<p>You can close an issue automatically by mentioning it in your commit message:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ git commit -m "Fixes #123 - Update the login functionality"
+$ git push origin main</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will automatically close issue <code><mark>123</code> when the commit is pushed thanks to the keyword <code>Fixes</code> and then the issue number prefixed by <code></mark></code>.
+Similar keywords include <code>Closes</code>, <code>Resolves</code>, and <code>Addresses</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">How to write issues ?</div>
+For guidelines about how to write issues, please refer to <a href="github-how-to-write-issues.html" class="xref page">How to Write a GitHub Issue</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<a href="https://docs.github.com/en/issues/tracking-your-work-with-issues/administering-issues/closing-an-issue">Learn more about closing issues.</a>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pull_requests_prs"><a class="anchor" href="#_pull_requests_prs"></a>3. Pull Requests (PRs)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A pull request (PR) proposes changes from your branch to the main repository. Other contributors can review the PR, discuss changes, and eventually merge it.</p>
+</div>
+<div class="sect2">
+<h3 id="_creating_a_pr"><a class="anchor" href="#_creating_a_pr"></a>3.1. Creating a PR</h3>
+<div class="openblock left">
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/collaboration/pr.png" alt="Create a PR">
+</div>
+<div class="title">Figure 5. Create a New PR</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>To create a PR after pushing your changes:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to the repository on GitHub.</p>
+</li>
+<li>
+<p>Click on the <b class="button">Pull requests</b> tab.</p>
+</li>
+<li>
+<p>Click <b class="button">New pull request</b>, select your branch, and create the PR.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can also reference issues related to the PR by mentioning them (e.g., <code>#123</code>).
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pr_from_a_fork"><a class="anchor" href="#_pr_from_a_fork"></a>3.2. PR from a Fork</h3>
+<div class="paragraph">
+<p>If you forked a repository and made changes, you can submit a pull request to the original repository.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ git push origin &lt;branch-name&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After pushing your changes, create a PR from your fork&#8217;s repository to the original repository.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_collaborators"><a class="anchor" href="#_collaborators"></a>3.3. Collaborators</h3>
+<div class="paragraph">
+<p>Repository owners can invite collaborators to work on private repositories.
+Collaborators have write access to the repository.</p>
+</div>
+<div class="paragraph">
+<p>To add a collaborator:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the repository settings.</p>
+</li>
+<li>
+<p>Under the <b class="button">Manage access</b> tab, invite the collaborator by their GitHub username.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_labelling_issues_prs"><a class="anchor" href="#_labelling_issues_prs"></a>4. Labelling Issues / PRs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Labels help organize and categorize issues and PRs. GitHub provides default labels like <code>bug</code>, <code>enhancement</code>, and <code>question</code>, but you can create custom labels.</p>
+</div>
+<div class="paragraph">
+<p>To add labels to an issue or PR:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the issue/PR.</p>
+</li>
+<li>
+<p>Click <b class="button">Labels</b> on the right-hand side.</p>
+</li>
+<li>
+<p>Choose the labels to apply.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_saved_replies"><a class="anchor" href="#_saved_replies"></a>5. Saved Replies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Saved replies allow you to create and reuse common responses for issues and pull requests.
+This is useful for repeating instructions, responses, or comments.</p>
+</div>
+<div class="paragraph">
+<p>To create a saved reply:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to your profile settings.</p>
+</li>
+<li>
+<p>Under <b class="button">Saved replies</b>, add a new reply template.</p>
+</li>
+<li>
+<p>Use it while commenting on issues or pull requests.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_mentions"><a class="anchor" href="#_mentions"></a>6. Mentions</h2>
+<div class="sectionbody">
+<div class="openblock left">
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/collaboration/mention.png" alt="Message Mention">
+</div>
+<div class="title">Figure 6. Message Mention</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>To get someone&#8217;s attention in an issue or pull request, you can mention them using <code>@</code> followed by their GitHub username. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">@octocat Can you review this PR?</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This sends a notification to the mentioned user.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reactions"><a class="anchor" href="#_reactions"></a>7. Reactions</h2>
+<div class="sectionbody">
+<div class="openblock left">
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/collaboration/reaction.png" alt="Raction">
+</div>
+<div class="title">Figure 7. Reaction</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>GitHub allows you to react to comments, issues, and pull requests with emojis such as 👍 (thumbs up) and ❤️ (heart). Reactions help gauge community feedback without adding comments.</p>
+</div>
+<div class="paragraph">
+<p>To react to a comment:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Hover over the comment.</p>
+</li>
+<li>
+<p>Click the smiley face icon and select a reaction.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_commenting"><a class="anchor" href="#_commenting"></a>8. Commenting</h2>
+<div class="sectionbody">
+<div class="openblock left">
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/collaboration/comment.png" alt="Comments">
+</div>
+<div class="title">Figure 8. Comments</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Comments can be added to issues, pull requests, and specific lines of code in a pull request diff. Comments are a key part of GitHub&#8217;s review and discussion process.</p>
+</div>
+<div class="paragraph">
+<p>To comment on an issue or PR:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the <b class="button">issue</b> or <b class="button">Pull Request</b> tabs.</p>
+</li>
+<li>
+<p>Scroll down to the comment box.</p>
+</li>
+<li>
+<p>Write your comment and click <b class="button">Comment</b>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For code review, you can leave line-by-line comments directly on the PR diff.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_github_discussions"><a class="anchor" href="#_github_discussions"></a>9. GitHub Discussions</h2>
+<div class="sectionbody">
+<div class="openblock left">
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/collaboration/discussions.png" alt="Discussions">
+</div>
+<div class="title">Figure 9. Discussions</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>GitHub Discussions is a feature that provides a space for long-form conversations separate from issues. Discussions are often used for community engagement, Q&amp;A, and planning.</p>
+</div>
+<div class="paragraph">
+<p>To create a discussion:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the <b class="button">Discussions</b> tab of a repository.</p>
+</li>
+<li>
+<p>Click <b class="button">New Discussion</b> and choose a category.</p>
+</li>
+<li>
+<p>Write your discussion topic and post it.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Discussions allow voting, threading, and marking answers as "solved."</p>
+</div>
+<div class="openblock left">
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/collaboration/discussion-created.png" alt="A New Discussion">
+</div>
+<div class="title">Figure 10. A New Discussion</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>After the discussion is created, community members can participate by replying, voting, or marking answers.</p>
+</div>
+<div class="paragraph">
+<p>The discussions tab provides a nice way to engage with the community and gather feedback.</p>
+</div>
+<div class="openblock left">
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/collaboration/discussion-view.png" alt="Discussion View">
+</div>
+<div class="title">Figure 11. Discussion View</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<a href="https://docs.github.com/en/discussions">Learn more about GitHub Discussions.</a>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary"><a class="anchor" href="#_summary"></a>10. Summary</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide covers various collaboration features on GitHub, including forking, cloning, issues, pull requests, saved replies, mentions, and GitHub Discussions. These tools enable effective collaboration and code management within open-source or team projects.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="github-start.html">GitHub Starter Guide</a></span>
+  <span class="next"><a href="../containers/index.html">Introduction to Containers</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2024 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+
+
+<script async src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../../_/js/vendor/fontawesome.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>
