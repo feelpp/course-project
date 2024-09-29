@@ -10,3 +10,5 @@
 *** xref:github-essentials.adoc[GitHub Essentials]
 *** xref:github-start.adoc[GitHub Starter Guide]
 *** xref:github-collaborations.adoc[GitHub Collaborations]
+*** xref:github-actions.adoc[GitHub Actions]
+**** xref:github-actions-cmake-eigen3.adoc[GitHub Actions for CMake and Eigen3]

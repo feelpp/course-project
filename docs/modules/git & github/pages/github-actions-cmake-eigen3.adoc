@@ -1,0 +1,284 @@
+= GitHub Actions Tutorial for Scientific Computing with Eigen3 and CMake Presets
+Author: Christophe Prud'homme
+
+
+This tutorial demonstrates how to set up a continuous integration (CI) workflow for a simple scientific computing project using Eigen3 and CMake Presets. GitHub Actions will compile and test a C++ program using different compilers and build configurations (Debug and Release).
+
+== Project Structure
+
+The project directory structure looks like this:
+
+[source]
+----
+eigen-example/
+├── CMakeLists.txt       # CMake configuration file
+├── CMakePresets.json    # CMake presets file
+├── src/
+│   └── main.cpp         # C++ code using Eigen
+└── .github/
+    └── workflows/
+        └── ci.yml       # GitHub Actions workflow file
+----
+
+== Step 1: `CMakeLists.txt` File
+
+The `CMakeLists.txt` file defines the project, finds the Eigen3 package, and compiles the program. We updated the minimum required version of CMake to 3.22 to use CMake Presets.
+
+[source,cmake]
+----
+# CMakeLists.txt
+
+cmake_minimum_required(VERSION 3.22)  # Updated to support CMake Presets
+project(EigenExample)
+
+# Find Eigen3 package
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+
+# Create an executable from the source file
+add_executable(main src/main.cpp)
+
+# Link Eigen3 to the project
+target_link_libraries(main PRIVATE Eigen3::Eigen)
+----
+
+== Step 2: `CMakePresets.json` File
+
+CMake Presets allow you to define common build and test configurations. This makes it easier to maintain the build process, both locally and in CI environments.
+
+[source,json]
+----
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 22
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/default",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
+      }
+    },
+    {
+      "name": "release",
+      "inherits": "default",
+      "description": "Release build with optimizations",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "debug",
+      "inherits": "default",
+      "description": "Debug build with debug symbols",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default",
+      "hidden": true,
+      "configurePreset": "release"
+    },
+    {
+      "name": "debug",
+      "configurePreset": "debug"
+    },
+    {
+      "name": "release",
+      "configurePreset": "release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "hidden": true,
+      "configurePreset": "release"
+    },
+    {
+      "name": "test-release",
+      "configurePreset": "release"
+    },
+    {
+      "name": "test-debug",
+      "configurePreset": "debug"
+    }
+  ]
+}
+----
+
+This file defines the following presets:
+
+* **`release`**: Builds the project in Release mode with optimizations.
+* **`debug`**: Builds the project in Debug mode with debug symbols.
+* **`buildPresets`**: These are used to compile the code based on the chosen preset.
+* **`testPresets`**: These can be used to run tests after the build.
+
+== Step 3: `main.cpp` Code
+
+This simple C++ code uses Eigen3 to perform matrix multiplication and outputs the result. A basic test ensures the correctness of the result.
+
+[source,cpp]
+----
+#include <iostream>
+#include <Eigen/Dense>
+
+int main() {
+    // Define 2x2 matrices
+    Eigen::Matrix2d A;
+    Eigen::Matrix2d B;
+
+    A << 1, 2,
+         3, 4;
+    B << 2, 3,
+         1, 4;
+
+    // Multiply matrices
+    Eigen::Matrix2d result = A * B;
+
+    // Output the result
+    std::cout << "Result of A * B:\n" << result << std::endl;
+
+    // Basic test to ensure the result is correct
+    Eigen::Matrix2d expected;
+    expected << 4, 11,
+                10, 25;
+
+    if (result.isApprox(expected)) {
+        std::cout << "Test passed!" << std::endl;
+        return 0;
+    } else {
+        std::cout << "Test failed!" << std::endl;
+        return 1;
+    }
+}
+----
+
+== Step 4: GitHub Actions Workflow (`ci.yml`)
+
+This workflow will:
+
+* Install Eigen3 using `apt`.
+* Use **CMake Presets** to configure and build the project.
+* Run the executable to ensure it works as expected.
+* Test the project using both `gcc` and `clang` compilers in both Debug and Release modes.
+
+.`.github/workflows/ci.yml`
+[source,yaml]
+----
+name: Build and Test Eigen3 Project with CMake Presets
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+        build_type: [debug, release]
+
+    steps:
+    # Step 1: Checkout the code
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # Step 2: Install dependencies (Eigen3, CMake)
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y cmake ninja-build libeigen3-dev
+
+    # Step 3: Configure the project using CMake presets
+    - name: Configure project
+      run: |
+        cmake --preset ${{ matrix.build_type }} -DCMAKE_CXX_COMPILER=${{ matrix.compiler }}
+
+    # Step 4: Build the project
+    - name: Build project
+      run: |
+        cmake --build build/${{ matrix.build_type }}
+
+    # Step 5: Run the tests
+    - name: Run tests
+      run: |
+        build/${{ matrix.build_type }}/main
+----
+
+== Step 5: Running the Workflow
+
+Once this is set up, push your repository to GitHub, and the GitHub Actions workflow will automatically trigger on every push or pull request. The workflow will compile and test your project using both `gcc` and `clang` compilers and in both Debug and Release modes.
+
+You can view the results of the workflow by navigating to the **Actions** tab in your GitHub repository. You’ll see whether the build passed, any errors that occurred, and the output of the tests.
+
+== Step 6: Adding a Badge to Your `README.md`
+
+You can add a badge to your `README.md` to display the status of your build:
+
+[source,markdown]
+----
+![Build Status](https://github.com/your-username/eigen-example/actions/workflows/ci.yml/badge.svg)
+----
+
+Replace `your-username` and `eigen-example` with your GitHub username and repository name, respectively.
+
+== Summary
+
+In this tutorial, we demonstrated how to:
+
+1. Use **CMake Presets** to streamline the build process, both locally and in CI environments.
+2. Write a GitHub Actions workflow to compile the project, run tests, and validate across multiple compilers (`gcc` and `clang`) and build configurations (`debug` and `release`).
+3. Automate the entire process using CI/CD with GitHub Actions and CMake Presets.
+
+== Next Steps
+
+* Experiment with additional CMake Presets for cross-platform builds or different compilers.
+* Add advanced features to the GitHub Actions workflow, such as caching dependencies or running tests in parallel.
+* Consider using Docker for reproducible environments or large-scale computations.
+
+== Appendix: Using CMake Presets Locally
+
+You can also use these CMake presets locally to simplify your development workflow.
+
+=== Configure and Build in Debug Mode:
+
+[source,bash]
+----
+cmake --preset debug
+cmake --build build/debug
+----
+
+=== Configure and Build in Release Mode:
+
+[source,bash]
+----
+cmake --preset release
+cmake --build build/release
+----
+
+=== Running Tests (Debug Mode):
+
+[source,bash]
+----
+build/debug/main
+----
+
+=== Running Tests (Release Mode):
+
+[source,bash]
+----
+build/release/main
+----
+

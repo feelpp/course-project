@@ -1,0 +1,377 @@
+= Tutorial: Using GitHub Actions for Scientific Computing
+Author: Christophe Prud'homme
+
+This tutorial explains how to use GitHub Actions to automate essential tasks in scientific computing projects, such as building code, testing, benchmarking, and deploying documentation.
+
+TIP: Before starting this tutorial, please study the following resources on xref:software/package-managers.adoc[Package Managers].
+
+== 1. Introduction to GitHub Actions
+
+**GitHub Actions** is an automation tool that allows you to create custom workflows directly in your GitHub repositories. For scientific computing, this is particularly useful for continuous integration (CI) tasks like:
+
+* Automatically building your code when a new commit is pushed.
+* Running tests to ensure code correctness.
+* Running benchmarks to track performance.
+
+Each workflow is defined in a YAML file under the `.github/workflows/` directory of your repository. A typical GitHub Actions workflow consists of `jobs` that run on specific `runners` (virtual machines). Below is an example of a basic workflow:
+
+[source,yaml]
+----
+name: CI Workflow <1>
+on: [push, pull_request] <2>
+jobs: <3>
+  build: <4>
+    runs-on: ubuntu-latest <4>
+    steps: <5>
+      - name: Checkout repository <6>
+        uses: actions/checkout@v4 <7>
+----
+<.> **`name:`**: Descriptive name for the workflow.
+<.> **`on:`**: Defines events that trigger the workflow (e.g., `push`, `pull_request`).
+<.> **`jobs:`**: Contains tasks that run in sequence or in parallel.
+<.> **`build:`**: Name of the job, this is user-defined.
+<.> **`runs-on:`**: Specifies the runner environment (e.g., `ubuntu-latest`).
+<.> **`steps:`**: Contains a list of actions to perform in the job.
+<.> **`uses:`**: Specifies the action to use (e.g., `actions/checkout@v4`).
+<.> **`actions/checkout@v4`**: An action that checks out your repository code.
+
+== 2. Setting Up a Simple GitHub Actions Workflow
+
+To start, create a simple workflow that runs when code is pushed or a pull request is opened.
+
+=== Step 1: Create the Workflow File
+
+1. Create the directory `.github/workflows/` in your repository.
+2. Inside this directory, create a file named `ci.yml`:
++
+[source,yaml]
+----
+name: CI for Scientific Computing
+
+on: [push, pull_request] 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: View the repository content <1>
+        run: tree <2>
+----
+<1> **`name:`**: Descriptive name for the step.
+<2> **`run:`**: Executes the specified command `tree` to view the repository content.
++
+3. Commit and push the changes to your repository.
+4. Go to the btn:[**Actions**] tab on your GitHub repository to see the workflow **CI for Scientific Computing** in action.
+
+
+== 3. Installing Dependencies in Scientific Projects
+
+Scientific computing projects often require installing dependencies like libraries or tools (e.g., **CMake**, **MPI**, or **Python packages**).
+
+=== Step 1: Installing System Dependencies Using `apt`
+
+You can install system dependencies using the `apt` package manager. 
+
+Here's an example of installing **CMake** and **g++**:
+
+.Example
+[.examp]
+====
+if your project depends on **CMake**, **g++**, and **eigen3**, you can add the following step:
+
+[source,yaml]
+----
+steps:
+  - name: Install dependencies
+    run: |
+      sudo apt update
+      sudo apt install -y cmake g++ libeigen3-dev
+----
+====
+
+=== Step 2: Using Conda for Python and Scientific Libraries
+
+For Python-based scientific computing projects, you can use **Conda** to manage dependencies:
+
+[source,yaml]
+----
+steps:
+  - name: Set up Conda environment
+    uses: conda-incubator/setup-miniconda@v2
+    with:
+      environment-file: environment.yml
+      auto-activate-base: false
+
+  - name: Install dependencies
+    run: conda install -c conda-forge numpy scipy matplotlib
+----
+
+== 4. Automating Build and Test Processes
+
+Automating the build and test processes is essential in scientific computing. Here's how to compile and test code using **CMake** in GitHub Actions.
+
+=== Step 1: Compiling Code with CMake
+
+If you're using **CMake** as your build system, you can configure, build, and test your project using the following steps:
+
+[source,yaml]
+----
+steps:
+  - name: Configure with CMake
+    run: |
+      mkdir build
+      cd build
+      cmake ..
+      make
+
+  - name: Run tests
+    run: |
+      cd build
+      make test
+----
+
+=== Step 2: Testing Multiple Configurations with Matrix Builds
+
+Matrix builds allow you to test your code across different configurations or platforms. For example, testing on both **gcc** and **clang**:
+
+[source,yaml]
+----
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+    steps:
+      - name: Install dependencies
+        run: sudo apt install -y cmake gfortran
+
+      - name: Configure and build
+        run: |
+          mkdir build
+          cd build
+          cmake .. -DCMAKE_C_COMPILER=${{ matrix.compiler }}
+          make
+----
+
+== 5. Running Benchmarks in GitHub Actions
+
+Running performance benchmarks helps ensure that your code maintains its efficiency. You can automate benchmark runs with GitHub Actions:
+
+[source,yaml]
+----
+steps:
+  - name: Run benchmarks
+    run: ./build/my_benchmark_tool --iterations 1000
+
+  - name: Save benchmark results
+    uses: actions/upload-artifact@v2
+    with:
+      name: benchmark-results
+      path: results/
+----
+
+=== Key Action: `upload-artifact`
+
+* **`upload-artifact`**: This action allows you to upload files generated during the workflow (e.g., benchmark results or log files) for future reference.
+
+== 6. Deploying Documentation Automatically
+
+Scientific projects often require documentation that can be auto-generated with tools like **Doxygen** or **Sphinx**. This section demonstrates how to deploy documentation to **GitHub Pages**.
+
+=== Step 1: Example Workflow for Deploying Doxygen Documentation
+
+[source,yaml]
+----
+name: Deploy Doxygen Docs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Doxygen
+        run: sudo apt install -y doxygen
+
+      - name: Generate Documentation
+        run: doxygen Doxyfile
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/html
+----
+
+=== Key Actions:
+
+* **`checkout`**: This action clones the repository into the workflow environment.
+* **`upload-artifact`**: Allows you to upload generated documentation or reports.
+* **`download-artifact`**: Retrieves previously uploaded files for use in later steps or jobs.
+
+== 7. Advanced CI Features for Scientific Computing
+
+GitHub Actions can be extended with advanced features such as Docker for reproducible builds or caching to speed up workflow execution.
+
+=== Step 1: Using Docker for Reproducible Builds
+
+Docker ensures that your workflow runs in a consistent environment. You can specify a custom Docker image for the runner:
+
+[source,yaml]
+----
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: my-custom-image:latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build project
+        run: make
+----
+
+=== Step 2: Caching Dependencies
+
+Caching dependencies speeds up workflows by saving dependencies across multiple runs. Here's an example of caching **CMake** build files:
+
+[source,yaml]
+----
+steps:
+  - uses: actions/cache@v3
+    with:
+      path: build
+      key: ${{ runner.os }}-cmake-${{ hashFiles('CMakeLists.txt') }}
+----
+
+== 8. Monitoring and Analyzing CI Performance
+
+Monitoring the health of your project is crucial in scientific computing. 
+You can set up badges in your **README.adoc** file to display the current status of your builds.
+
+=== Step 1: Setting Up Status Badges
+
+To set up a status badge for your GitHub Actions workflow:
+
+[source,asciidoc]
+----
+image::https://github.com/your-username/your-repo/actions/workflows/ci.yml/badge.svg[Build Status]
+----
+
+Replace `your-username` and `your-repo` with the appropriate values for your repository.
+
+== Conclusion
+
+By using GitHub Actions, you can automate key tasks in scientific computing projects, such as building code, running tests, benchmarking, and deploying documentation. This tutorial covered setting up a basic workflow, installing dependencies, and using advanced features like caching and Docker.
+
+== Next Steps
+
+* Experiment with adding parallelized builds or testing on multiple platforms.
+* Try adding automated performance benchmarks and visualizing the results.
+* Explore using GitHub Actions to automate data processing pipelines or large-scale simulations.
+
+== Appendix: Common GitHub Actions
+
+Below are some common actions used in scientific computing workflows:
+
+* https://github.com/marketplace/actions/checkout:[**`actions/checkout@v4`**]: Clones your repository into the workflow environment.
+* https://github.com/marketplace/actions/upload-a-build-artifact:[**`actions/upload-artifact@v4`**]: Uploads files (e.g., logs, benchmarks) generated during the workflow.
+* https://github.com/marketplace/actions/download-a-build-artifact:[**`actions/download-artifact@v4`**]: Downloads previously uploaded artifacts for use in other jobs or steps.
+
+TIP: The actions you use will depend on your specific project requirements and workflows.
+Many actions are available in the https://github.com/marketplace/actions/:[GitHub Marketplace] for easy integration into your workflows.
+
+
+
+== Appendix: Using the CMake Tools Extension and Presets in Visual Studio Code (VSCode)
+
+The **CMake Tools** extension for VSCode makes it easy to manage CMake projects and build configurations. It directly supports **CMake Presets**, allowing you to configure, build, and run your project without manually invoking CMake from the command line. Here's how to integrate **CMake Presets** into your VSCode workflow.
+
+=== Step 1: Install the CMake Tools Extension
+
+1. Open VSCode.
+2. Go to the btn:[**Extensions**] view by clicking the Extensions icon on the left sidebar or pressing kbd:[Ctrl+Shift+X].
+3. Search for btn:[**CMake Tools**] by Microsoft.
+4. Click btn:[**Install**] to add the extension.
+
+Once installed, the btn:[**CMake Tools**] extension will automatically detect the `CMakeLists.txt` file in your project and set up CMake accordingly.
+
+=== Step 2: Configure Your Project with Presets
+
+With the **CMake Presets** already defined in your project (`CMakePresets.json`), VSCode will automatically detect and allow you to use them. Follow these steps to configure and build your project using the presets:
+
+1. **Open the Command Palette**:
+   - Press kbd:[Ctrl+Shift+P] to open the Command Palette.
+   - Type btn:[CMake: Select Configure Preset] and choose this command.
+
+2. **Select a Preset**:
+   - VSCode will show a list of the presets defined in your `CMakePresets.json` file.
+   - For example, select `debug` or `release`, depending on the build type you want.
+
+3. **Configure the Project**:
+   - After selecting a preset, VSCode will run the CMake configuration using that preset.
+   - You can view the progress in the **CMake** output tab at the bottom of the editor.
+
+=== Step 3: Building the Project
+
+After configuring the project with a preset, you can build it using VSCode's integrated build system.
+
+1. **Build the Project**:
+   - Press kbd:[Ctrl+Shift+B] or open the Command Palette (kbd:[Ctrl+Shift+P]) and type `CMake: Build`.
+   - Select the build target (usually `all`).
+   - The project will be built using the previously selected preset (e.g., `debug` or `release`).
+   - The build progress and results will be displayed in the **CMake: Build** output tab.
+
+=== Step 4: Running the Executable
+
+Once the project is built, you can easily run the generated executable from within VSCode:
+
+1. **Run the Executable**:
+   - Open the Command Palette (kbd:[Ctrl+Shift+P]) and type `CMake: Run Without Debugging`.
+   - VSCode will automatically detect the built binary and run it.
+   - The output of the program will be shown in the terminal within VSCode.
+
+=== Step 5: Debugging the Executable
+
+VSCode also provides integrated debugging capabilities, which are particularly useful for debugging scientific computing applications:
+
+1. **Start Debugging**:
+   - Set breakpoints in your code by clicking in the gutter to the left of the line numbers.
+   - Open the Command Palette (kbd:[Ctrl+Shift+P]) and type `CMake: Debug`.
+   - The executable will be launched in the debugger, and you can inspect variables, step through code, and analyze the call stack.
+
+=== Step 6: Managing Multiple Presets
+
+If you have multiple configurations (e.g., `debug` and `release`), you can easily switch between them in VSCode:
+
+1. **Select a Different Preset**:
+   - Open the Command Palette (kbd:[Ctrl+Shift+P]) and type `CMake: Select Configure Preset`.
+   - Choose the desired preset, and VSCode will reconfigure the project based on that preset.
+
+2. **Build and Run the Project**:
+   - Use the same steps as above to build and run the project with the new configuration.
+
+=== Summary
+
+The **CMake Tools** extension in VSCode provides a seamless way to manage CMake projects, especially when using **CMake Presets**. With the extension, you can easily configure, build, and run your project, and even debug it, all from within the VSCode environment.
+
+=== Key Benefits of Using VSCode with CMake Presets:
+
+* Simplified project configuration and building process.
+* Easy switching between different build configurations (e.g., `debug` and `release`).
+* Integrated terminal and debugging capabilities.
+* Clear output and error messages within the editor.
+
+By integrating **CMake Presets** with **VSCode**, you streamline both local development and CI workflows, ensuring consistency and ease of use across different environments.

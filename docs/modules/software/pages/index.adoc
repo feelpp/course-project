@@ -1,0 +1,215 @@
+= Software Installation: From Package Managers to Building from Source
+:icons: font
+
+== Introduction to Software Installation
+
+=== Understanding Package Managers
+
+- What is `apt`?
+- Advantages of using package managers.
+
+=== Why Build from Source?
+- Latest features and updates.
+- Customization and optimization.
+- Situations where packages aren't available.
+
+=== Build Systems Overview
+- Introduction to build systems like Autotools and CMake.
+- Differences and use cases.
+
+== Setting Up the Development Environment with Codespaces
+
+=== Introduction to GitHub Codespaces
+- What is Codespaces?
+- Benefits over traditional VMs.
+
+=== Getting Started
+[source,shell]
+----
+# Create a Codespace from a repository
+git clone <repository-url>
+# Open it in GitHub Codespaces
+----
+
+=== Environment Configuration
+- Install necessary extensions and tools within Codespaces.
+
+== Installing Software Using `apt` in Codespaces
+
+=== Using the Terminal in Codespaces
+- Accessing the terminal.
+- Running `apt` commands within Codespaces.
+
+=== Practical Examples
+[source,shell]
+----
+# Update and upgrade
+sudo apt update && sudo apt upgrade
+
+# Install GNU Octave and Gnuplot
+sudo apt install octave gnuplot
+----
+
+== Building and Installing Software from Source
+
+=== Preparation
+[source,shell]
+----
+# Install essential build tools
+sudo apt install build-essential
+----
+
+=== Understanding Build Systems
+- **Autotools** (`./configure`, `make`, `make install`)
+- **CMake** (`cmake`, `make`, `make install`)
+
+=== General Steps with Autotools
+[source,shell]
+----
+# Download source code
+wget <source-url>
+
+# Unpack the archive
+tar -xzvf <archive-name>
+
+# Navigate to the directory
+cd <source-directory>
+
+# Configure the build
+./configure
+
+# Compile the source code
+make
+
+# Install the compiled program
+sudo make install
+----
+
+=== General Steps with CMake
+[source,shell]
+----
+# Create a build directory
+mkdir build && cd build
+
+# Configure the build
+cmake ..
+
+# Compile the source code
+make
+
+# Install the compiled program
+sudo make install
+----
+
+== Hands-On Installation Exercises
+
+=== Exercise 1: Installing FFTW with Autotools
+[source,shell]
+----
+# Using apt
+sudo apt install libfftw3-dev
+
+# From source with Autotools
+wget http://www.fftw.org/fftw-3.3.10.tar.gz
+tar -xzvf fftw-3.3.10.tar.gz
+cd fftw-3.3.10
+./configure --enable-shared
+make
+sudo make install
+----
+
+=== Exercise 2: Installing Eigen with CMake
+[source,shell]
+----
+# Using apt
+sudo apt install libeigen3-dev
+
+# From source with CMake
+wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+tar -xzvf eigen-3.4.0.tar.gz
+cd eigen-3.4.0
+mkdir build && cd build
+cmake ..
+make
+sudo make install
+----
+
+== Managing Dependencies
+
+=== Identifying Missing Dependencies
+- Reading `README` and `INSTALL` files.
+- Using error messages to find missing packages.
+
+=== Installing Dependencies via `apt`
+[source,shell]
+----
+# Example: Installing Boost libraries
+sudo apt install libboost-all-dev
+----
+
+=== Handling Dependencies in CMake and Autotools
+- Using `cmake` flags to specify paths.
+- Configuring `./configure` with options.
+
+== Troubleshooting Installation Issues
+
+=== Common Errors
+- Missing header files.
+- Permission issues.
+- Incorrect CMake configurations.
+
+=== Debugging Techniques
+[source,shell]
+----
+# Autotools verbose mode
+./configure --help
+make VERBOSE=1
+
+# CMake verbose mode
+cmake .. -DCMAKE_VERBOSE_MAKEFILE=ON
+----
+
+== Best Practices
+
+=== System Maintenance in Codespaces
+- Managing storage and resources.
+- Keeping the environment clean.
+
+=== Version Control
+[source,shell]
+----
+# Cloning repositories for source builds
+git clone <repository-url>
+----
+
+=== Uninstallation
+[source,shell]
+----
+# Removing packages
+sudo apt remove [package-name]
+
+# Uninstalling source installations (Autotools)
+sudo make uninstall
+----
+
+== Advanced Topics
+
+=== Customizing Builds
+- Using `ccmake` or `cmake-gui` for interactive configuration.
+- Passing options to `./configure`, e.g., `--prefix`, `--enable/disable` features.
+
+=== Creating Reproducible Environments
+- Using Dockerfiles within Codespaces.
+
+=== Continuous Integration
+- Setting up GitHub Actions to automate builds and tests.
+
+== Q&A and Discussion
+
+Encourage students to share their experiences and address specific software installation questions.
+
+== Resources
+
+- Autotools Documentation: https://www.gnu.org/software/autoconf/manual/autoconf.html[GNU Autoconf Manual]
+- CMake Documentation: https://cmake.org/documentation/[Official CMake Documentation]
+- Codespaces Resources: https://docs.github.com/en/codespaces[GitHub Codespaces Documentation]

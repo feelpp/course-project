@@ -6,6 +6,9 @@ asciidoc:
   attributes:
     project_name: Course Project
     experimental: true
+    icons: font
+    cpp: C++
+    source-highlighter: rouge
 ext:
   collector:
     - run:
@@ -32,6 +35,7 @@ nav:
 - modules/vscode/nav.adoc
 - modules/project-management/nav.adoc
 - modules/git & github/nav.adoc
+- modules/software/nav.adoc
 - modules/containers/nav.adoc
 
 
