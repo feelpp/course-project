@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Remote SSH Extension :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/vscode/remote-ssh.html">
-    <link rel="prev" href="#extensions.adoc">
-    <link rel="next" href="wsl.html">
+    <title>Software Installation: From Package Managers to Building from Source :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/software/index.html">
+    <link rel="prev" href="../git%20&%20github/github-actions-cmake-eigen3.html">
+    <link rel="next" href="package-managers.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -189,33 +189,33 @@ MathJax.Hub.Config({
     <a class="nav-link" href="#index.adoc">Overview of VS Code</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="install.html">VS Code Installation</a>
+    <a class="nav-link" href="../vscode/install.html">VS Code Installation</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="basic-usage.html">Basic Usage and Commands</a>
+    <a class="nav-link" href="../vscode/basic-usage.html">Basic Usage and Commands</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="#extensions.adoc">Extension Installation and Key Extensions</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="remote-ssh.html">Remote SSH Extension</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/remote-ssh.html">Remote SSH Extension</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="wsl.html">WSL Extension</a>
+    <a class="nav-link" href="../vscode/wsl.html">WSL Extension</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="python-jupyter.html">Python and Jupyter Extensions</a>
+    <a class="nav-link" href="../vscode/python-jupyter.html">Python and Jupyter Extensions</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="configure-vscode.html">How to Configure VS Code with .vscode</a>
+    <a class="nav-link" href="../vscode/configure-vscode.html">How to Configure VS Code with .vscode</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="cheatsheet.html">VS Code Cheat Sheet</a>
+    <a class="nav-link" href="../vscode/cheatsheet.html">VS Code Cheat Sheet</a>
   </li>
 </ul>
   </li>
@@ -310,12 +310,12 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../software/index.html">Sofware Installation</a>
+    <a class="nav-link" href="index.html">Sofware Installation</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../software/package-managers.html">Package Managers</a>
+    <a class="nav-link" href="package-managers.html">Package Managers</a>
   </li>
 </ul>
   </li>
@@ -400,14 +400,12 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Course Project</a></li>
-    <li><a href="#index.adoc">Overview of VS Code</a></li>
-    <li><a href="#extensions.adoc">Extension Installation and Key Extensions</a></li>
-    <li><a href="remote-ssh.html">Remote SSH Extension</a></li>
+    <li><a href="index.html">Sofware Installation</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/vscode/pages/remote-ssh.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/software/pages/index.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -423,58 +421,415 @@ MathJax.Hub.Config({
 </div>
 
   <div class="content">
-<aside class="toc sidebar" data-title="Contents" data-levels="3">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Remote SSH Extension</h1>
+<h1 class="page">Software Installation: From Package Managers to Building from Source</h1>
 <div class="sect1">
-<h2 id="_what_is_remote_ssh"><a class="anchor" href="#_what_is_remote_ssh"></a>1. What is Remote SSH?</h2>
+<h2 id="_introduction_to_software_installation"><a class="anchor" href="#_introduction_to_software_installation"></a>1. Introduction to Software Installation</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_understanding_package_managers"><a class="anchor" href="#_understanding_package_managers"></a>1.1. Understanding Package Managers</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>What is <code>apt</code>?</p>
+</li>
+<li>
+<p>Advantages of using package managers.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_why_build_from_source"><a class="anchor" href="#_why_build_from_source"></a>1.2. Why Build from Source?</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Latest features and updates.</p>
+</li>
+<li>
+<p>Customization and optimization.</p>
+</li>
+<li>
+<p>Situations where packages aren&#8217;t available.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_systems_overview"><a class="anchor" href="#_build_systems_overview"></a>1.3. Build Systems Overview</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduction to build systems like Autotools and CMake.</p>
+</li>
+<li>
+<p>Differences and use cases.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setting_up_the_development_environment_with_codespaces"><a class="anchor" href="#_setting_up_the_development_environment_with_codespaces"></a>2. Setting Up the Development Environment with Codespaces</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_introduction_to_github_codespaces"><a class="anchor" href="#_introduction_to_github_codespaces"></a>2.1. Introduction to GitHub Codespaces</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>What is Codespaces?</p>
+</li>
+<li>
+<p>Benefits over traditional VMs.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_getting_started"><a class="anchor" href="#_getting_started"></a>2.2. Getting Started</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Create a Codespace from a repository
+git clone &lt;repository-url&gt;
+# Open it in GitHub Codespaces</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_environment_configuration"><a class="anchor" href="#_environment_configuration"></a>2.3. Environment Configuration</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Install necessary extensions and tools within Codespaces.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installing_software_using_apt_in_codespaces"><a class="anchor" href="#_installing_software_using_apt_in_codespaces"></a>3. Installing Software Using <code>apt</code> in Codespaces</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_using_the_terminal_in_codespaces"><a class="anchor" href="#_using_the_terminal_in_codespaces"></a>3.1. Using the Terminal in Codespaces</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Accessing the terminal.</p>
+</li>
+<li>
+<p>Running <code>apt</code> commands within Codespaces.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_practical_examples"><a class="anchor" href="#_practical_examples"></a>3.2. Practical Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Update and upgrade
+sudo apt update &amp;&amp; sudo apt upgrade
+
+# Install GNU Octave and Gnuplot
+sudo apt install octave gnuplot</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_building_and_installing_software_from_source"><a class="anchor" href="#_building_and_installing_software_from_source"></a>4. Building and Installing Software from Source</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_preparation"><a class="anchor" href="#_preparation"></a>4.1. Preparation</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Install essential build tools
+sudo apt install build-essential</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_understanding_build_systems"><a class="anchor" href="#_understanding_build_systems"></a>4.2. Understanding Build Systems</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Autotools</strong> (<code>./configure</code>, <code>make</code>, <code>make install</code>)</p>
+</li>
+<li>
+<p><strong>CMake</strong> (<code>cmake</code>, <code>make</code>, <code>make install</code>)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_general_steps_with_autotools"><a class="anchor" href="#_general_steps_with_autotools"></a>4.3. General Steps with Autotools</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Download source code
+wget &lt;source-url&gt;
+
+# Unpack the archive
+tar -xzvf &lt;archive-name&gt;
+
+# Navigate to the directory
+cd &lt;source-directory&gt;
+
+# Configure the build
+./configure
+
+# Compile the source code
+make
+
+# Install the compiled program
+sudo make install</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_general_steps_with_cmake"><a class="anchor" href="#_general_steps_with_cmake"></a>4.4. General Steps with CMake</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Create a build directory
+mkdir build &amp;&amp; cd build
+
+# Configure the build
+cmake ..
+
+# Compile the source code
+make
+
+# Install the compiled program
+sudo make install</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hands_on_installation_exercises"><a class="anchor" href="#_hands_on_installation_exercises"></a>5. Hands-On Installation Exercises</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_exercise_1_installing_fftw_with_autotools"><a class="anchor" href="#_exercise_1_installing_fftw_with_autotools"></a>5.1. Exercise 1: Installing FFTW with Autotools</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Using apt
+sudo apt install libfftw3-dev
+
+# From source with Autotools
+wget http://www.fftw.org/fftw-3.3.10.tar.gz
+tar -xzvf fftw-3.3.10.tar.gz
+cd fftw-3.3.10
+./configure --enable-shared
+make
+sudo make install</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercise_2_installing_eigen_with_cmake"><a class="anchor" href="#_exercise_2_installing_eigen_with_cmake"></a>5.2. Exercise 2: Installing Eigen with CMake</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Using apt
+sudo apt install libeigen3-dev
+
+# From source with CMake
+wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+tar -xzvf eigen-3.4.0.tar.gz
+cd eigen-3.4.0
+mkdir build &amp;&amp; cd build
+cmake ..
+make
+sudo make install</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_managing_dependencies"><a class="anchor" href="#_managing_dependencies"></a>6. Managing Dependencies</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_identifying_missing_dependencies"><a class="anchor" href="#_identifying_missing_dependencies"></a>6.1. Identifying Missing Dependencies</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Reading <code>README</code> and <code>INSTALL</code> files.</p>
+</li>
+<li>
+<p>Using error messages to find missing packages.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installing_dependencies_via_apt"><a class="anchor" href="#_installing_dependencies_via_apt"></a>6.2. Installing Dependencies via <code>apt</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Example: Installing Boost libraries
+sudo apt install libboost-all-dev</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_handling_dependencies_in_cmake_and_autotools"><a class="anchor" href="#_handling_dependencies_in_cmake_and_autotools"></a>6.3. Handling Dependencies in CMake and Autotools</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Using <code>cmake</code> flags to specify paths.</p>
+</li>
+<li>
+<p>Configuring <code>./configure</code> with options.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_troubleshooting_installation_issues"><a class="anchor" href="#_troubleshooting_installation_issues"></a>7. Troubleshooting Installation Issues</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_common_errors"><a class="anchor" href="#_common_errors"></a>7.1. Common Errors</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Missing header files.</p>
+</li>
+<li>
+<p>Permission issues.</p>
+</li>
+<li>
+<p>Incorrect CMake configurations.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_debugging_techniques"><a class="anchor" href="#_debugging_techniques"></a>7.2. Debugging Techniques</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Autotools verbose mode
+./configure --help
+make VERBOSE=1
+
+# CMake verbose mode
+cmake .. -DCMAKE_VERBOSE_MAKEFILE=ON</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_best_practices"><a class="anchor" href="#_best_practices"></a>8. Best Practices</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_system_maintenance_in_codespaces"><a class="anchor" href="#_system_maintenance_in_codespaces"></a>8.1. System Maintenance in Codespaces</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Managing storage and resources.</p>
+</li>
+<li>
+<p>Keeping the environment clean.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_version_control"><a class="anchor" href="#_version_control"></a>8.2. Version Control</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Cloning repositories for source builds
+git clone &lt;repository-url&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_uninstallation"><a class="anchor" href="#_uninstallation"></a>8.3. Uninstallation</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Removing packages
+sudo apt remove [package-name]
+
+# Uninstalling source installations (Autotools)
+sudo make uninstall</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_advanced_topics"><a class="anchor" href="#_advanced_topics"></a>9. Advanced Topics</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_customizing_builds"><a class="anchor" href="#_customizing_builds"></a>9.1. Customizing Builds</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Using <code>ccmake</code> or <code>cmake-gui</code> for interactive configuration.</p>
+</li>
+<li>
+<p>Passing options to <code>./configure</code>, e.g., <code>--prefix</code>, <code>--enable/disable</code> features.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_reproducible_environments"><a class="anchor" href="#_creating_reproducible_environments"></a>9.2. Creating Reproducible Environments</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Using Dockerfiles within Codespaces.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_continuous_integration"><a class="anchor" href="#_continuous_integration"></a>9.3. Continuous Integration</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Setting up GitHub Actions to automate builds and tests.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_qa_and_discussion"><a class="anchor" href="#_qa_and_discussion"></a>10. Q&amp;A and Discussion</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Remote SSH</strong> extension allows you to connect to a remote server and work on files, debug, and run commands directly on the remote machine.</p>
+<p>Encourage students to share their experiences and address specific software installation questions.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_installing_the_remote_ssh_extension"><a class="anchor" href="#_installing_the_remote_ssh_extension"></a>2. Installing the Remote SSH Extension</h2>
+<h2 id="_resources"><a class="anchor" href="#_resources"></a>11. Resources</h2>
 <div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
-<p>Open the Extensions panel in VS Code (<span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></span>).</p>
+<p>Autotools Documentation: <a href="https://www.gnu.org/software/autoconf/manual/autoconf.html">GNU Autoconf Manual</a></p>
 </li>
 <li>
-<p>Search for "Remote - SSH" and click <b class="button">Install</b>.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_setting_up_remote_ssh"><a class="anchor" href="#_setting_up_remote_ssh"></a>3. Setting up Remote SSH</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Press <kbd>F1</kbd> or <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> or on MacOS <span class="keyseq"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> and type "Remote-SSH: Connect to Host" in the Command Palette.</p>
+<p>CMake Documentation: <a href="https://cmake.org/documentation/">Official CMake Documentation</a></p>
 </li>
 <li>
-<p>Enter the SSH connection details, e.g., <code>ssh <a href="mailto:user@remote-server.com">user@remote-server.com</a></code>.</p>
+<p>Codespaces Resources: <a href="https://docs.github.com/en/codespaces">GitHub Codespaces Documentation</a></p>
 </li>
-<li>
-<p>VS Code will connect to the remote machine, allowing you to use it as if it were local.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>You can also edit your SSH config file to save the connection details for quick access.</p>
+</ul>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="#extensions.adoc">Extension Installation and Key Extensions</a></span>
-  <span class="next"><a href="wsl.html">WSL Extension</a></span>
+  <span class="prev"><a href="../git%20&%20github/github-actions-cmake-eigen3.html">GitHub Actions for CMake and Eigen3</a></span>
+  <span class="next"><a href="package-managers.html">Package Managers</a></span>
 </nav>
 </article>
   </div>

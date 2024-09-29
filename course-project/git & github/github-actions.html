@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Tutorial: Using GitHub Actions for Scientific Computing :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/git%20&%20github/github-actions.html">
+    <link rel="prev" href="github-collaborations.html">
+    <link rel="next" href="github-actions-cmake-eigen3.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header><div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="course-project" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Course Project</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../linux/index.html">Introduction to Linux</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Command Line</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/editing.html">File Editing in Linux</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/shell.html">Linux Shell Basics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/text-processing.html">Text Processing</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../linux/ssh/index.html">Introduction to SSH and Remote-SSH</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/ssh/ssh-setup.html">Setting Up SSH</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/ssh/ssh-commands.html">Basic SSH Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/ssh/remote-ssh-vscode.html">Remote-SSH Extension for VS Code</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#index.adoc">Overview of VS Code</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../vscode/install.html">VS Code Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../vscode/basic-usage.html">Basic Usage and Commands</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#extensions.adoc">Extension Installation and Key Extensions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/remote-ssh.html">Remote SSH Extension</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/wsl.html">WSL Extension</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/python-jupyter.html">Python and Jupyter Extensions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../vscode/configure-vscode.html">How to Configure VS Code with .vscode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../vscode/cheatsheet.html">VS Code Cheat Sheet</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../project-management/index.html">Introduction to Project Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/introduction.html">What is Project?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/project-phases.html">Phases of a Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/practical-examples.html">Practical Examples in Scientific Computing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/case-studies.html">Case Studies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/tools-gantt.html">Project Management Tools and Gantt Charts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/agile-best-practices.html">Agile Best Practices</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/github.html">GitHub and Project Management</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Git &amp; GitHub Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Git</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git-basics.html">Git Basics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git-starter.html">Git Starter Guide</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git-repository-basics.html">Git Repository</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git-branch.html">Git Branching</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git-merges.html">Git Merge</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git-remotes.html">Git Remotes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">GitHub</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="github-essentials.html">GitHub Essentials</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="github-start.html">GitHub Starter Guide</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="github-collaborations.html">GitHub Collaborations</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="github-actions.html">GitHub Actions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="github-actions-cmake-eigen3.html">GitHub Actions for CMake and Eigen3</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../software/index.html">Sofware Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../software/package-managers.html">Package Managers</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/index.html">Introduction to Containers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/apptainer/index.html">Apptainer</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/apptainer/apptainer-install.html">Installing Apptainer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/docker/index.html">Docker</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-overview.html">Docker Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-problems-solved.html">The Problem Docker Solves</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-architecture.html">Docker Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-commands.html">Basic Docker Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-advanced-usage.html">Advanced Docker Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/docker/docker-postgres.html">Running PostgreSQL with Docker</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../containers/docker/docker-postgres-example.html">Setting Up PostgreSQL with Docker</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-compose.html">Docker Compose</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Course Project</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../../feelpp-antora-ui/index.html">Antora Feel++ UI</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="../index.html">Course Project</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Course Project</a></li>
+    <li>Git &amp; GitHub Documentation</li>
+    <li>GitHub</li>
+    <li><a href="github-actions.html">GitHub Actions</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/git%20&amp;%20github/pages/github-actions.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Tutorial: Using GitHub Actions for Scientific Computing</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This tutorial explains how to use GitHub Actions to automate essential tasks in scientific computing projects, such as building code, testing, benchmarking, and deploying documentation.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Before starting this tutorial, please study the following resources on <a href="#software/package-managers.adoc" class="xref unresolved">Package Managers</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_introduction_to_github_actions"><a class="anchor" href="#_1_introduction_to_github_actions"></a>1. 1. Introduction to GitHub Actions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>GitHub Actions</strong> is an automation tool that allows you to create custom workflows directly in your GitHub repositories. For scientific computing, this is particularly useful for continuous integration (CI) tasks like:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Automatically building your code when a new commit is pushed.</p>
+</li>
+<li>
+<p>Running tests to ensure code correctness.</p>
+</li>
+<li>
+<p>Running benchmarks to track performance.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Each workflow is defined in a YAML file under the <code>.github/workflows/</code> directory of your repository. A typical GitHub Actions workflow consists of <code>jobs</code> that run on specific <code>runners</code> (virtual machines). Below is an example of a basic workflow:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: CI Workflow <i class="conum" data-value="1"></i><b>(1)</b>
+on: [push, pull_request] <i class="conum" data-value="2"></i><b>(2)</b>
+jobs: <i class="conum" data-value="3"></i><b>(3)</b>
+  build: <i class="conum" data-value="4"></i><b>(4)</b>
+    runs-on: ubuntu-latest <i class="conum" data-value="4"></i><b>(4)</b>
+    steps: <i class="conum" data-value="5"></i><b>(5)</b>
+      - name: Checkout repository <i class="conum" data-value="6"></i><b>(6)</b>
+        uses: actions/checkout@v4 <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><strong><code>name:</code></strong>: Descriptive name for the workflow.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><strong><code>on:</code></strong>: Defines events that trigger the workflow (e.g., <code>push</code>, <code>pull_request</code>).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><strong><code>jobs:</code></strong>: Contains tasks that run in sequence or in parallel.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><strong><code>build:</code></strong>: Name of the job, this is user-defined.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><strong><code>runs-on:</code></strong>: Specifies the runner environment (e.g., <code>ubuntu-latest</code>).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><strong><code>steps:</code></strong>: Contains a list of actions to perform in the job.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td><strong><code>uses:</code></strong>: Specifies the action to use (e.g., <code>actions/checkout@v4</code>).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><strong><code>actions/checkout@v4</code></strong>: An action that checks out your repository code.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_setting_up_a_simple_github_actions_workflow"><a class="anchor" href="#_2_setting_up_a_simple_github_actions_workflow"></a>2. 2. Setting Up a Simple GitHub Actions Workflow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To start, create a simple workflow that runs when code is pushed or a pull request is opened.</p>
+</div>
+<div class="sect2">
+<h3 id="_step_1_create_the_workflow_file"><a class="anchor" href="#_step_1_create_the_workflow_file"></a>2.1. Step 1: Create the Workflow File</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create the directory <code>.github/workflows/</code> in your repository.</p>
+</li>
+<li>
+<p>Inside this directory, create a file named <code>ci.yml</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: CI for Scientific Computing
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: View the repository content <i class="conum" data-value="1"></i><b>(1)</b>
+        run: tree <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><strong><code>name:</code></strong>: Descriptive name for the step.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><strong><code>run:</code></strong>: Executes the specified command <code>tree</code> to view the repository content.</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Commit and push the changes to your repository.</p>
+</li>
+<li>
+<p>Go to the <b class="button"><strong>Actions</strong></b> tab on your GitHub repository to see the workflow <strong>CI for Scientific Computing</strong> in action.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_installing_dependencies_in_scientific_projects"><a class="anchor" href="#_3_installing_dependencies_in_scientific_projects"></a>3. 3. Installing Dependencies in Scientific Projects</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Scientific computing projects often require installing dependencies like libraries or tools (e.g., <strong>CMake</strong>, <strong>MPI</strong>, or <strong>Python packages</strong>).</p>
+</div>
+<div class="sect2">
+<h3 id="_step_1_installing_system_dependencies_using_apt"><a class="anchor" href="#_step_1_installing_system_dependencies_using_apt"></a>3.1. Step 1: Installing System Dependencies Using <code>apt</code></h3>
+<div class="paragraph">
+<p>You can install system dependencies using the <code>apt</code> package manager.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s an example of installing <strong>CMake</strong> and <strong>g++</strong>:</p>
+</div>
+<div class="exampleblock examp">
+<div class="title">Example 1. Example</div>
+<div class="content">
+<div class="paragraph">
+<p>if your project depends on <strong>CMake</strong>, <strong>g++</strong>, and <strong>eigen3</strong>, you can add the following step:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">steps:
+  - name: Install dependencies
+    run: |
+      sudo apt update
+      sudo apt install -y cmake g++ libeigen3-dev</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_2_using_conda_for_python_and_scientific_libraries"><a class="anchor" href="#_step_2_using_conda_for_python_and_scientific_libraries"></a>3.2. Step 2: Using Conda for Python and Scientific Libraries</h3>
+<div class="paragraph">
+<p>For Python-based scientific computing projects, you can use <strong>Conda</strong> to manage dependencies:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">steps:
+  - name: Set up Conda environment
+    uses: conda-incubator/setup-miniconda@v2
+    with:
+      environment-file: environment.yml
+      auto-activate-base: false
+
+  - name: Install dependencies
+    run: conda install -c conda-forge numpy scipy matplotlib</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_4_automating_build_and_test_processes"><a class="anchor" href="#_4_automating_build_and_test_processes"></a>4. 4. Automating Build and Test Processes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Automating the build and test processes is essential in scientific computing. Here&#8217;s how to compile and test code using <strong>CMake</strong> in GitHub Actions.</p>
+</div>
+<div class="sect2">
+<h3 id="_step_1_compiling_code_with_cmake"><a class="anchor" href="#_step_1_compiling_code_with_cmake"></a>4.1. Step 1: Compiling Code with CMake</h3>
+<div class="paragraph">
+<p>If you&#8217;re using <strong>CMake</strong> as your build system, you can configure, build, and test your project using the following steps:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">steps:
+  - name: Configure with CMake
+    run: |
+      mkdir build
+      cd build
+      cmake ..
+      make
+
+  - name: Run tests
+    run: |
+      cd build
+      make test</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_2_testing_multiple_configurations_with_matrix_builds"><a class="anchor" href="#_step_2_testing_multiple_configurations_with_matrix_builds"></a>4.2. Step 2: Testing Multiple Configurations with Matrix Builds</h3>
+<div class="paragraph">
+<p>Matrix builds allow you to test your code across different configurations or platforms. For example, testing on both <strong>gcc</strong> and <strong>clang</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+    steps:
+      - name: Install dependencies
+        run: sudo apt install -y cmake gfortran
+
+      - name: Configure and build
+        run: |
+          mkdir build
+          cd build
+          cmake .. -DCMAKE_C_COMPILER=${{ matrix.compiler }}
+          make</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_5_running_benchmarks_in_github_actions"><a class="anchor" href="#_5_running_benchmarks_in_github_actions"></a>5. 5. Running Benchmarks in GitHub Actions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Running performance benchmarks helps ensure that your code maintains its efficiency. You can automate benchmark runs with GitHub Actions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">steps:
+  - name: Run benchmarks
+    run: ./build/my_benchmark_tool --iterations 1000
+
+  - name: Save benchmark results
+    uses: actions/upload-artifact@v2
+    with:
+      name: benchmark-results
+      path: results/</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_action_upload_artifact"><a class="anchor" href="#_key_action_upload_artifact"></a>5.1. Key Action: <code>upload-artifact</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>upload-artifact</code></strong>: This action allows you to upload files generated during the workflow (e.g., benchmark results or log files) for future reference.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_6_deploying_documentation_automatically"><a class="anchor" href="#_6_deploying_documentation_automatically"></a>6. 6. Deploying Documentation Automatically</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Scientific projects often require documentation that can be auto-generated with tools like <strong>Doxygen</strong> or <strong>Sphinx</strong>. This section demonstrates how to deploy documentation to <strong>GitHub Pages</strong>.</p>
+</div>
+<div class="sect2">
+<h3 id="_step_1_example_workflow_for_deploying_doxygen_documentation"><a class="anchor" href="#_step_1_example_workflow_for_deploying_doxygen_documentation"></a>6.1. Step 1: Example Workflow for Deploying Doxygen Documentation</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: Deploy Doxygen Docs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Doxygen
+        run: sudo apt install -y doxygen
+
+      - name: Generate Documentation
+        run: doxygen Doxyfile
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/html</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_actions"><a class="anchor" href="#_key_actions"></a>6.2. Key Actions:</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>checkout</code></strong>: This action clones the repository into the workflow environment.</p>
+</li>
+<li>
+<p><strong><code>upload-artifact</code></strong>: Allows you to upload generated documentation or reports.</p>
+</li>
+<li>
+<p><strong><code>download-artifact</code></strong>: Retrieves previously uploaded files for use in later steps or jobs.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_7_advanced_ci_features_for_scientific_computing"><a class="anchor" href="#_7_advanced_ci_features_for_scientific_computing"></a>7. 7. Advanced CI Features for Scientific Computing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>GitHub Actions can be extended with advanced features such as Docker for reproducible builds or caching to speed up workflow execution.</p>
+</div>
+<div class="sect2">
+<h3 id="_step_1_using_docker_for_reproducible_builds"><a class="anchor" href="#_step_1_using_docker_for_reproducible_builds"></a>7.1. Step 1: Using Docker for Reproducible Builds</h3>
+<div class="paragraph">
+<p>Docker ensures that your workflow runs in a consistent environment. You can specify a custom Docker image for the runner:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: my-custom-image:latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build project
+        run: make</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_2_caching_dependencies"><a class="anchor" href="#_step_2_caching_dependencies"></a>7.2. Step 2: Caching Dependencies</h3>
+<div class="paragraph">
+<p>Caching dependencies speeds up workflows by saving dependencies across multiple runs. Here&#8217;s an example of caching <strong>CMake</strong> build files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">steps:
+  - uses: actions/cache@v3
+    with:
+      path: build
+      key: ${{ runner.os }}-cmake-${{ hashFiles('CMakeLists.txt') }}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_8_monitoring_and_analyzing_ci_performance"><a class="anchor" href="#_8_monitoring_and_analyzing_ci_performance"></a>8. 8. Monitoring and Analyzing CI Performance</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Monitoring the health of your project is crucial in scientific computing.
+You can set up badges in your <strong>README.adoc</strong> file to display the current status of your builds.</p>
+</div>
+<div class="sect2">
+<h3 id="_step_1_setting_up_status_badges"><a class="anchor" href="#_step_1_setting_up_status_badges"></a>8.1. Step 1: Setting Up Status Badges</h3>
+<div class="paragraph">
+<p>To set up a status badge for your GitHub Actions workflow:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">image::https://github.com/your-username/your-repo/actions/workflows/ci.yml/badge.svg[Build Status]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>your-username</code> and <code>your-repo</code> with the appropriate values for your repository.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion"><a class="anchor" href="#_conclusion"></a>9. Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By using GitHub Actions, you can automate key tasks in scientific computing projects, such as building code, running tests, benchmarking, and deploying documentation. This tutorial covered setting up a basic workflow, installing dependencies, and using advanced features like caching and Docker.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_next_steps"><a class="anchor" href="#_next_steps"></a>10. Next Steps</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Experiment with adding parallelized builds or testing on multiple platforms.</p>
+</li>
+<li>
+<p>Try adding automated performance benchmarks and visualizing the results.</p>
+</li>
+<li>
+<p>Explore using GitHub Actions to automate data processing pipelines or large-scale simulations.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_appendix_common_github_actions"><a class="anchor" href="#_appendix_common_github_actions"></a>11. Appendix: Common GitHub Actions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Below are some common actions used in scientific computing workflows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/marketplace/actions/checkout:"><strong><code>actions/checkout@v4</code></strong></a>: Clones your repository into the workflow environment.</p>
+</li>
+<li>
+<p><a href="https://github.com/marketplace/actions/upload-a-build-artifact:"><strong><code>actions/upload-artifact@v4</code></strong></a>: Uploads files (e.g., logs, benchmarks) generated during the workflow.</p>
+</li>
+<li>
+<p><a href="https://github.com/marketplace/actions/download-a-build-artifact:"><strong><code>actions/download-artifact@v4</code></strong></a>: Downloads previously uploaded artifacts for use in other jobs or steps.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The actions you use will depend on your specific project requirements and workflows.
+Many actions are available in the <a href="https://github.com/marketplace/actions/:">GitHub Marketplace</a> for easy integration into your workflows.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_appendix_using_the_cmake_tools_extension_and_presets_in_visual_studio_code_vscode"><a class="anchor" href="#_appendix_using_the_cmake_tools_extension_and_presets_in_visual_studio_code_vscode"></a>12. Appendix: Using the CMake Tools Extension and Presets in Visual Studio Code (VSCode)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <strong>CMake Tools</strong> extension for VSCode makes it easy to manage CMake projects and build configurations. It directly supports <strong>CMake Presets</strong>, allowing you to configure, build, and run your project without manually invoking CMake from the command line. Here&#8217;s how to integrate <strong>CMake Presets</strong> into your VSCode workflow.</p>
+</div>
+<div class="sect2">
+<h3 id="_step_1_install_the_cmake_tools_extension"><a class="anchor" href="#_step_1_install_the_cmake_tools_extension"></a>12.1. Step 1: Install the CMake Tools Extension</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open VSCode.</p>
+</li>
+<li>
+<p>Go to the <b class="button"><strong>Extensions</strong></b> view by clicking the Extensions icon on the left sidebar or pressing <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></span>.</p>
+</li>
+<li>
+<p>Search for <b class="button"><strong>CMake Tools</strong></b> by Microsoft.</p>
+</li>
+<li>
+<p>Click <b class="button"><strong>Install</strong></b> to add the extension.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Once installed, the <b class="button"><strong>CMake Tools</strong></b> extension will automatically detect the <code>CMakeLists.txt</code> file in your project and set up CMake accordingly.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_2_configure_your_project_with_presets"><a class="anchor" href="#_step_2_configure_your_project_with_presets"></a>12.2. Step 2: Configure Your Project with Presets</h3>
+<div class="paragraph">
+<p>With the <strong>CMake Presets</strong> already defined in your project (<code>CMakePresets.json</code>), VSCode will automatically detect and allow you to use them. Follow these steps to configure and build your project using the presets:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Open the Command Palette</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> to open the Command Palette.</p>
+</li>
+<li>
+<p>Type <b class="button">CMake: Select Configure Preset</b> and choose this command.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Select a Preset</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>VSCode will show a list of the presets defined in your <code>CMakePresets.json</code> file.</p>
+</li>
+<li>
+<p>For example, select <code>debug</code> or <code>release</code>, depending on the build type you want.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Configure the Project</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>After selecting a preset, VSCode will run the CMake configuration using that preset.</p>
+</li>
+<li>
+<p>You can view the progress in the <strong>CMake</strong> output tab at the bottom of the editor.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_3_building_the_project"><a class="anchor" href="#_step_3_building_the_project"></a>12.3. Step 3: Building the Project</h3>
+<div class="paragraph">
+<p>After configuring the project with a preset, you can build it using VSCode&#8217;s integrated build system.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Build the Project</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd></span> or open the Command Palette (<span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span>) and type <code>CMake: Build</code>.</p>
+</li>
+<li>
+<p>Select the build target (usually <code>all</code>).</p>
+</li>
+<li>
+<p>The project will be built using the previously selected preset (e.g., <code>debug</code> or <code>release</code>).</p>
+</li>
+<li>
+<p>The build progress and results will be displayed in the <strong>CMake: Build</strong> output tab.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_4_running_the_executable"><a class="anchor" href="#_step_4_running_the_executable"></a>12.4. Step 4: Running the Executable</h3>
+<div class="paragraph">
+<p>Once the project is built, you can easily run the generated executable from within VSCode:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Run the Executable</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Open the Command Palette (<span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span>) and type <code>CMake: Run Without Debugging</code>.</p>
+</li>
+<li>
+<p>VSCode will automatically detect the built binary and run it.</p>
+</li>
+<li>
+<p>The output of the program will be shown in the terminal within VSCode.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_5_debugging_the_executable"><a class="anchor" href="#_step_5_debugging_the_executable"></a>12.5. Step 5: Debugging the Executable</h3>
+<div class="paragraph">
+<p>VSCode also provides integrated debugging capabilities, which are particularly useful for debugging scientific computing applications:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Start Debugging</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Set breakpoints in your code by clicking in the gutter to the left of the line numbers.</p>
+</li>
+<li>
+<p>Open the Command Palette (<span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span>) and type <code>CMake: Debug</code>.</p>
+</li>
+<li>
+<p>The executable will be launched in the debugger, and you can inspect variables, step through code, and analyze the call stack.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_6_managing_multiple_presets"><a class="anchor" href="#_step_6_managing_multiple_presets"></a>12.6. Step 6: Managing Multiple Presets</h3>
+<div class="paragraph">
+<p>If you have multiple configurations (e.g., <code>debug</code> and <code>release</code>), you can easily switch between them in VSCode:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Select a Different Preset</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Open the Command Palette (<span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span>) and type <code>CMake: Select Configure Preset</code>.</p>
+</li>
+<li>
+<p>Choose the desired preset, and VSCode will reconfigure the project based on that preset.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Build and Run the Project</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Use the same steps as above to build and run the project with the new configuration.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_summary"><a class="anchor" href="#_summary"></a>12.7. Summary</h3>
+<div class="paragraph">
+<p>The <strong>CMake Tools</strong> extension in VSCode provides a seamless way to manage CMake projects, especially when using <strong>CMake Presets</strong>. With the extension, you can easily configure, build, and run your project, and even debug it, all from within the VSCode environment.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_benefits_of_using_vscode_with_cmake_presets"><a class="anchor" href="#_key_benefits_of_using_vscode_with_cmake_presets"></a>12.8. Key Benefits of Using VSCode with CMake Presets:</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Simplified project configuration and building process.</p>
+</li>
+<li>
+<p>Easy switching between different build configurations (e.g., <code>debug</code> and <code>release</code>).</p>
+</li>
+<li>
+<p>Integrated terminal and debugging capabilities.</p>
+</li>
+<li>
+<p>Clear output and error messages within the editor.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By integrating <strong>CMake Presets</strong> with <strong>VSCode</strong>, you streamline both local development and CI workflows, ensuring consistency and ease of use across different environments.</p>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="github-collaborations.html">GitHub Collaborations</a></span>
+  <span class="next"><a href="github-actions-cmake-eigen3.html">GitHub Actions for CMake and Eigen3</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2024 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+
+
+<script async src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../../_/js/vendor/fontawesome.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>

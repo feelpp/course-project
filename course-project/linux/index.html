@@ -293,7 +293,29 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../git%20&%20github/github-collaborations.html">GitHub Collaborations</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../git%20&%20github/github-actions.html">GitHub Actions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../git%20&%20github/github-actions-cmake-eigen3.html">GitHub Actions for CMake and Eigen3</a>
+  </li>
 </ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../software/index.html">Sofware Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../software/package-managers.html">Package Managers</a>
   </li>
 </ul>
   </li>
@@ -563,13 +585,13 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 8
--rw-r--r-- 1 runner docker  156 Sep 29 06:44 archive.tar.gz
--rw-r--r-- 1 runner docker    0 Sep 29 06:44 example.txt
--rwxr-xr-x 2 runner docker    0 Sep 29 06:44 file.txt
--rw-r--r-- 1 runner docker    0 Sep 29 06:44 file1.txt
--rwxr-xr-x 2 runner docker    0 Sep 29 06:44 newlink.txt
-lrwxrwxrwx 1 runner docker    8 Sep 29 06:44 softlink.txt -> file.txt
-drwxr-xr-x 2 runner docker 4096 Sep 29 06:44 temp</pre>
+-rw-r--r-- 1 runner docker  157 Sep 29 11:04 archive.tar.gz
+-rw-r--r-- 1 runner docker    0 Sep 29 11:04 example.txt
+-rwxr-xr-x 2 runner docker    0 Sep 29 11:04 file.txt
+-rw-r--r-- 1 runner docker    0 Sep 29 11:04 file1.txt
+-rwxr-xr-x 2 runner docker    0 Sep 29 11:04 newlink.txt
+lrwxrwxrwx 1 runner docker    8 Sep 29 11:04 softlink.txt -> file.txt
+drwxr-xr-x 2 runner docker 4096 Sep 29 11:04 temp</pre>
 </div>
 </div>
 </div>
@@ -622,12 +644,12 @@ tree ..</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>..
-├── clr-debug-pipe-1621-24452-in
-├── clr-debug-pipe-1621-24452-out
-├── clr-debug-pipe-1637-24630-in
-├── clr-debug-pipe-1637-24630-out
-├── clr-debug-pipe-611-938-in
-├── clr-debug-pipe-611-938-out
+├── clr-debug-pipe-1632-25225-in
+├── clr-debug-pipe-1632-25225-out
+├── clr-debug-pipe-1648-25399-in
+├── clr-debug-pipe-1648-25399-out
+├── clr-debug-pipe-610-859-in
+├── clr-debug-pipe-610-859-out
 ├── documents
 │   ├── archive.tar.gz
 │   ├── example.txt
@@ -638,15 +660,15 @@ tree ..</code></pre>
 │   └── temp
 │       ├── file.txt
 │       └── file1.txt
-├── dotnet-diagnostic-1621-24452-socket
-├── dotnet-diagnostic-1637-24630-socket
-├── dotnet-diagnostic-611-938-socket
+├── dotnet-diagnostic-1632-25225-socket
+├── dotnet-diagnostic-1648-25399-socket
+├── dotnet-diagnostic-610-859-socket
 ├── newname.txt
 ├── snap-private-tmp  [error opening dir]
-├── systemd-private-1075b5aa0efe4c50b328a9b6ef91a022-chrony.service-nE9SfX  [error opening dir]
-├── systemd-private-1075b5aa0efe4c50b328a9b6ef91a022-haveged.service-0Ta3qJ  [error opening dir]
-├── systemd-private-1075b5aa0efe4c50b328a9b6ef91a022-systemd-logind.service-RZSEfD  [error opening dir]
-├── systemd-private-1075b5aa0efe4c50b328a9b6ef91a022-systemd-resolved.service-SiQu2M  [error opening dir]
+├── systemd-private-38cf5909f43742c48871a87b64ba3613-chrony.service-0Lnbcn  [error opening dir]
+├── systemd-private-38cf5909f43742c48871a87b64ba3613-haveged.service-J4ANch  [error opening dir]
+├── systemd-private-38cf5909f43742c48871a87b64ba3613-systemd-logind.service-OxH1nf  [error opening dir]
+├── systemd-private-38cf5909f43742c48871a87b64ba3613-systemd-resolved.service-9L6HWX  [error opening dir]
 └── www-data-temp-aspnet-0
     └── cc117660
 
@@ -761,39 +783,39 @@ ls -l</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>total 588
--rw-r--r--  1 root         root               208 Sep 29 06:40 alternatives.log
+<pre>total 592
+-rw-r--r--  1 root         root               208 Sep 29 11:00 alternatives.log
 drwxr-x---  2 root         adm               4096 Sep 22 21:16 apache2
 drwxr-xr-x  2 root         root              4096 Sep 25 11:05 apt
--rw-r-----  1 syslog       adm               1080 Sep 29 06:40 auth.log
--rw-r-----  1 syslog       adm                863 Sep 29 06:40 auth.log.1
-drwxr-xr-x  4 root         root              4096 Sep 25 11:03 azure
+-rw-r-----  1 syslog       adm               1122 Sep 29 11:00 auth.log
+-rw-r-----  1 syslog       adm                884 Sep 29 11:00 auth.log.1
+drwxr-xr-x  4 root         root              4096 Sep 25 11:02 azure
 -rw-rw----  1 root         utmp                 0 Sep 25 11:05 btmp
 drwxr-x---  2 _chrony      _chrony           4096 Sep 22 21:06 chrony
--rw-r-----  1 root         adm               4412 Sep 29 06:40 cloud-init-output.log
--rw-r-----  1 syslog       adm             133280 Sep 29 06:40 cloud-init.log
+-rw-r-----  1 root         adm               4406 Sep 29 11:00 cloud-init-output.log
+-rw-r-----  1 syslog       adm             133295 Sep 29 11:00 cloud-init.log
 drwxr-xr-x  2 root         root              4096 Sep 10 12:28 dist-upgrade
--rw-r-----  1 root         adm              48517 Sep 29 06:40 dmesg
+-rw-r-----  1 root         adm              48374 Sep 29 11:00 dmesg
 -rw-r--r--  1 root         root              1491 Sep 25 11:05 dpkg.log
 -rw-r--r--  1 root         root                 0 Sep 25 11:05 fontconfig.log
 drwxr-sr-x+ 3 root         systemd-journal   4096 Sep 22 21:05 journal
--rw-r-----  1 syslog       adm               2039 Sep 29 06:41 kern.log
--rw-r-----  1 syslog       adm              59641 Sep 29 06:40 kern.log.1
+-rw-r-----  1 syslog       adm               2015 Sep 29 11:01 kern.log
+-rw-r-----  1 syslog       adm              58356 Sep 29 11:00 kern.log.1
 drwxr-xr-x  2 landscape    landscape         4096 Sep 22 21:06 landscape
 -rw-rw-r--  1 root         utmp                 0 Sep 25 11:05 lastlog
-drwxr-x---  2 mysql        adm               4096 Sep 29 06:40 mysql
+drwxr-x---  2 mysql        adm               4096 Sep 29 11:00 mysql
 drwxr-xr-x  2 root         adm               4096 Sep 22 21:43 nginx
--rw-------  1 root         root               241 Sep 29 06:40 php8.1-fpm.log
+-rw-------  1 root         root               185 Sep 29 11:00 php8.1-fpm.log
 -rw-------  1 root         root                96 Sep 25 11:06 php8.1-fpm.log.1
 drwxrwxr-t  2 root         postgres          4096 Sep 22 21:47 postgresql
 drwx------  2 root         root              4096 Sep 22 21:06 private
 drwxr-xr-x  2 sphinxsearch root              4096 Dec  3  2021 sphinxsearch
--rw-r-----  1 syslog       adm              45014 Sep 29 06:44 syslog
--rw-r-----  1 syslog       adm             171267 Sep 29 06:40 syslog.1
+-rw-r-----  1 syslog       adm              60518 Sep 29 11:04 syslog
+-rw-r-----  1 syslog       adm             155808 Sep 29 11:00 syslog.1
 drwxr-xr-x  2 root         root              4096 Jun  6  2023 sysstat
 drwxr-x---  2 root         adm               4096 Sep 22 21:06 unattended-upgrades
--rw-r--r--  1 root         root             30339 Sep 29 06:40 waagent.log
--rw-rw-r--  1 root         utmp              2688 Sep 29 06:40 wtmp</pre>
+-rw-r--r--  1 root         root             30447 Sep 29 11:00 waagent.log
+-rw-rw-r--  1 root         utmp              2688 Sep 29 11:00 wtmp</pre>
 </div>
 </div>
 </div>
@@ -847,7 +869,7 @@ tree</code></pre>
 │   └── f560179ec4874b30a876f243e3a48ce5
 │       ├── system.journal
 │       ├── user-1001.journal
-│       └── user-1001@b0edbe1e0b314f4c8f20fa942056831a-00000000000033cd-000622ef9882153f.journal
+│       └── user-1001@182b222aeb2e43b4945fdd2aad48b954-00000000000033b7-000622ef984ac32c.journal
 ├── kern.log
 ├── kern.log.1
 ├── landscape

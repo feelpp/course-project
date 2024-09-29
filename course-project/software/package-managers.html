@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Remote SSH Extension :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/vscode/remote-ssh.html">
-    <link rel="prev" href="#extensions.adoc">
-    <link rel="next" href="wsl.html">
+    <title>Understanding Package Managers :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/software/package-managers.html">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="../containers/index.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -189,33 +189,33 @@ MathJax.Hub.Config({
     <a class="nav-link" href="#index.adoc">Overview of VS Code</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="install.html">VS Code Installation</a>
+    <a class="nav-link" href="../vscode/install.html">VS Code Installation</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="basic-usage.html">Basic Usage and Commands</a>
+    <a class="nav-link" href="../vscode/basic-usage.html">Basic Usage and Commands</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="#extensions.adoc">Extension Installation and Key Extensions</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="remote-ssh.html">Remote SSH Extension</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/remote-ssh.html">Remote SSH Extension</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="wsl.html">WSL Extension</a>
+    <a class="nav-link" href="../vscode/wsl.html">WSL Extension</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="python-jupyter.html">Python and Jupyter Extensions</a>
+    <a class="nav-link" href="../vscode/python-jupyter.html">Python and Jupyter Extensions</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="configure-vscode.html">How to Configure VS Code with .vscode</a>
+    <a class="nav-link" href="../vscode/configure-vscode.html">How to Configure VS Code with .vscode</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="cheatsheet.html">VS Code Cheat Sheet</a>
+    <a class="nav-link" href="../vscode/cheatsheet.html">VS Code Cheat Sheet</a>
   </li>
 </ul>
   </li>
@@ -312,10 +312,10 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../software/index.html">Sofware Installation</a>
+    <a class="nav-link" href="index.html">Sofware Installation</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../software/package-managers.html">Package Managers</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="package-managers.html">Package Managers</a>
   </li>
 </ul>
   </li>
@@ -400,14 +400,13 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Course Project</a></li>
-    <li><a href="#index.adoc">Overview of VS Code</a></li>
-    <li><a href="#extensions.adoc">Extension Installation and Key Extensions</a></li>
-    <li><a href="remote-ssh.html">Remote SSH Extension</a></li>
+    <li><a href="index.html">Sofware Installation</a></li>
+    <li><a href="package-managers.html">Package Managers</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/vscode/pages/remote-ssh.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/software/pages/package-managers.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -423,58 +422,454 @@ MathJax.Hub.Config({
 </div>
 
   <div class="content">
-<aside class="toc sidebar" data-title="Contents" data-levels="3">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Remote SSH Extension</h1>
-<div class="sect1">
-<h2 id="_what_is_remote_ssh"><a class="anchor" href="#_what_is_remote_ssh"></a>1. What is Remote SSH?</h2>
+<h1 class="page">Understanding Package Managers</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Remote SSH</strong> extension allows you to connect to a remote server and work on files, debug, and run commands directly on the remote machine.</p>
+<p>Package managers are essential tools for managing software installations, upgrades, and dependencies. They can be categorized into two main types:</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_installing_the_remote_ssh_extension"><a class="anchor" href="#_installing_the_remote_ssh_extension"></a>2. Installing the Remote SSH Extension</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
-<p>Open the Extensions panel in VS Code (<span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></span>).</p>
+<p><strong>System Package Managers</strong>: These manage software at the operating system level, handling native applications and system libraries. Examples include <code>apt</code>, <code>yum</code>, and <code>brew</code>. These package managers deal with system-wide installations, making software available to all users and applications on the system.</p>
 </li>
 <li>
-<p>Search for "Remote - SSH" and click <b class="button">Install</b>.</p>
+<p><strong>Software-Specific Package Managers</strong>: Many software ecosystems, such as Python, C++, and Node.js, have their own package managers, which handle dependencies and libraries specifically for that language or platform. Examples include <code>pip</code> and <code>conda</code> for Python, and <code>conan</code> for C++.</p>
 </li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_setting_up_remote_ssh"><a class="anchor" href="#_setting_up_remote_ssh"></a>3. Setting up Remote SSH</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Press <kbd>F1</kbd> or <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> or on MacOS <span class="keyseq"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> and type "Remote-SSH: Connect to Host" in the Command Palette.</p>
-</li>
-<li>
-<p>Enter the SSH connection details, e.g., <code>ssh <a href="mailto:user@remote-server.com">user@remote-server.com</a></code>.</p>
-</li>
-<li>
-<p>VS Code will connect to the remote machine, allowing you to use it as if it were local.</p>
-</li>
-</ol>
+</ul>
 </div>
 <div class="paragraph">
-<p>You can also edit your SSH config file to save the connection details for quick access.</p>
+<p>While system package managers are responsible for global software installations, software-specific package managers allow for more granular control over project-specific dependencies, often within isolated environments. This ensures that software projects can have the exact versions of libraries they need without interfering with the rest of the system.</p>
+</div>
+<div class="paragraph">
+<p>Below, we explore the most common system package managers and software-specific package managers.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_system_package_managers"><a class="anchor" href="#_system_package_managers"></a>1. System Package Managers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>System package managers manage software for the entire operating system, ensuring that all dependencies are properly handled for system-wide applications. They also typically offer a large repository of available software.</p>
+</div>
+<div class="sect2">
+<h3 id="_apt"><a class="anchor" href="#_apt"></a>1.1. apt</h3>
+<div class="paragraph">
+<p><code>apt</code> is the Advanced Package Tool used in Debian-based Linux distributions, such as Ubuntu and Debian itself, for managing software packages.</p>
+</div>
+<div class="listingblock">
+<div class="title">Common Commands with <code>apt</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Update the package lists for upgrades and new packages
+sudo apt update
+
+# Upgrade all installed packages to their latest versions
+sudo apt upgrade
+
+# Install a new package (e.g., wget)
+sudo apt install wget
+
+# Remove a package (e.g., wget)
+sudo apt remove wget
+
+# Search for a package (e.g., curl)
+apt search curl</code></pre>
+</div>
+</div>
+<div class="ulist">
+<div class="title">Key Features of <code>apt</code></div>
+<ul>
+<li>
+<p>Resolves dependencies automatically.</p>
+</li>
+<li>
+<p>Easy to use and well-integrated with the Debian-based ecosystem.</p>
+</li>
+<li>
+<p>Offers both binary packages and source package management.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_yum"><a class="anchor" href="#_yum"></a>1.2. yum</h3>
+<div class="paragraph">
+<p><code>yum</code> (Yellowdog Updater, Modified) is a package manager used in Red Hat-based Linux distributions such as CentOS, RHEL, and Fedora.</p>
+</div>
+<div class="listingblock">
+<div class="title">Common Commands with <code>yum</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Update the package lists for upgrades and new packages
+sudo yum check-update
+
+# Install a new package (e.g., wget)
+sudo yum install wget
+
+# Remove a package (e.g., wget)
+sudo yum remove wget
+
+# Search for a package (e.g., curl)
+yum search curl
+
+# Upgrade all installed packages
+sudo yum update</code></pre>
+</div>
+</div>
+<div class="ulist">
+<div class="title">Key Features of <code>yum</code></div>
+<ul>
+<li>
+<p>Automatically resolves dependencies.</p>
+</li>
+<li>
+<p>Supports package groups for easy installation of related software.</p>
+</li>
+<li>
+<p>Integrated with RPM for Red Hat-based systems.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_brew"><a class="anchor" href="#_brew"></a>1.3. brew</h3>
+<div class="paragraph">
+<p><code>brew</code> (Homebrew) is a package manager primarily used on macOS and Linux for managing software outside of the system&#8217;s default package management.</p>
+</div>
+<div class="listingblock">
+<div class="title">Common Commands with <code>brew</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Update Homebrew and its formulae
+brew update
+
+# Install a new package (e.g., wget)
+brew install wget
+
+# Remove a package (e.g., wget)
+brew uninstall wget
+
+# Search for a package (e.g., curl)
+brew search curl
+
+# Upgrade all installed packages
+brew upgrade</code></pre>
+</div>
+</div>
+<div class="ulist">
+<div class="title">Key Features of <code>brew</code></div>
+<ul>
+<li>
+<p>Targets macOS and Linux, making it useful for cross-platform development.</p>
+</li>
+<li>
+<p>Allows users to install software in their home directory without requiring root access.</p>
+</li>
+<li>
+<p>Has a large collection of libraries, utilities, and applications.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_spack"><a class="anchor" href="#_spack"></a>1.4. spack</h3>
+<div class="paragraph">
+<p><code>spack</code> is a flexible package manager specifically designed for high-performance computing (HPC) environments. It supports building and managing complex scientific software stacks with multiple versions and configurations.</p>
+</div>
+<div class="listingblock">
+<div class="title">Common Commands with <code>spack</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Initialize Spack environment
+. /path/to/spack/share/spack/setup-env.sh
+
+# Search for a package (e.g., fftw)
+spack search fftw
+
+# Install a specific version of a package (e.g., FFTW 3.3.10)
+spack install fftw@3.3.10
+
+# Install with specific configurations (e.g., using MPI)
+spack install fftw +mpi
+
+# List installed packages
+spack find
+
+# Load a package into the environment
+spack load fftw
+
+# Remove an installed package
+spack uninstall fftw</code></pre>
+</div>
+</div>
+<div class="ulist">
+<div class="title">Key Features of <code>spack</code></div>
+<ul>
+<li>
+<p>Highly customizable for different architectures, compilers, and configurations.</p>
+</li>
+<li>
+<p>Designed for reproducible software builds in scientific computing.</p>
+</li>
+<li>
+<p>Supports multiple versions and configurations of the same software.</p>
+</li>
+<li>
+<p>Widely used in HPC environments to manage dependencies and software stacks.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_software_specific_package_managers"><a class="anchor" href="#_software_specific_package_managers"></a>2. Software-Specific Package Managers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In addition to system package managers, specific languages or platforms often have their own package management tools, allowing for fine-tuned control over dependencies and libraries for individual projects. These package managers often integrate with virtual environments to isolate project-specific dependencies.</p>
+</div>
+<div class="sect2">
+<h3 id="_python"><a class="anchor" href="#_python"></a>2.1. Python</h3>
+<div class="paragraph">
+<p>Python has two main package managers: <code>pip</code> and <code>conda</code>, both designed to manage Python libraries and packages.</p>
+</div>
+<div class="sect3">
+<h4 id="_pip"><a class="anchor" href="#_pip"></a>2.1.1. pip</h4>
+<div class="paragraph">
+<p><code>pip</code> is the default package manager for Python and is used to install and manage Python packages from the Python Package Index (PyPI).</p>
+</div>
+<div class="listingblock">
+<div class="title">Common Commands with <code>pip</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Install a Python package (e.g., numpy)
+pip install numpy
+
+# Upgrade a Python package
+pip install --upgrade numpy
+
+# Uninstall a Python package
+pip uninstall numpy
+
+# List installed Python packages
+pip list
+
+# Show detailed information about an installed package
+pip show numpy</code></pre>
+</div>
+</div>
+<div class="ulist">
+<div class="title">Key Features of <code>pip</code></div>
+<ul>
+<li>
+<p>Simple and fast for installing Python libraries and packages from PyPI.</p>
+</li>
+<li>
+<p>Works with virtual environments (<code>venv</code>) to isolate project dependencies.</p>
+</li>
+<li>
+<p>Highly integrated with Python, making it the go-to package manager for most Python users.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Managing Virtual Environments with <code>pip</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Create a new virtual environment
+python -m venv myenv
+
+# Activate the virtual environment (Linux/macOS)
+source myenv/bin/activate
+
+# Activate the virtual environment (Windows)
+myenv\Scripts\activate
+
+# Install packages inside the virtual environment
+pip install numpy
+
+# Deactivate the virtual environment
+deactivate</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_conda"><a class="anchor" href="#_conda"></a>2.1.2. conda</h4>
+<div class="paragraph">
+<p><code>conda</code> is a more versatile package manager that manages not only Python packages but also libraries and software across different languages and platforms. It is commonly used with the Anaconda distribution for data science and machine learning.</p>
+</div>
+<div class="listingblock">
+<div class="title">Common Commands with <code>conda</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Create a new environment with specific Python version
+conda create --name myenv python=3.9
+
+# Activate the environment
+conda activate myenv
+
+# Install a Python package (e.g., pandas)
+conda install pandas
+
+# Install a non-Python package (e.g., hdf5)
+conda install hdf5
+
+# List installed packages in the environment
+conda list
+
+# Remove a package from the environment
+conda remove numpy
+
+# Deactivate the environment
+conda deactivate
+
+# Remove the entire environment
+conda env remove --name myenv</code></pre>
+</div>
+</div>
+<div class="ulist">
+<div class="title">Key Features of <code>conda</code></div>
+<ul>
+<li>
+<p>Manages environments and packages for multiple languages (Python, R, C/C++).</p>
+</li>
+<li>
+<p>Excellent for managing complex dependencies, especially in scientific computing.</p>
+</li>
+<li>
+<p>Cross-platform compatibility, including Windows, macOS, and Linux.</p>
+</li>
+<li>
+<p>Enables the installation of non-Python libraries like <code>hdf5</code> or <code>openmpi</code>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Managing Environments with <code>conda</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># List all conda environments
+conda env list
+
+# Create an environment with specific packages
+conda create --name myenv numpy scipy pandas
+
+# Export environment to a YAML file
+conda env export &gt; environment.yml
+
+# Recreate an environment from a YAML file
+conda env create -f environment.yml</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_c"><a class="anchor" href="#_c"></a>2.2. C++</h3>
+<div class="sect3">
+<h4 id="_conan"><a class="anchor" href="#_conan"></a>2.2.1. conan</h4>
+<div class="paragraph">
+<p>For C++ projects, <code>conan</code> is the most widely used package manager, providing a way to manage libraries and dependencies for C++ applications.</p>
+</div>
+<div class="listingblock">
+<div class="title">Common Commands with <code>conan</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Search for a package in the conan center
+conan search zlib
+
+# Install a package (e.g., zlib)
+conan install zlib/1.2.11@
+
+# Export a recipe to the local cache
+conan export . mypackage/1.0@
+
+# Create a binary package
+conan create . mypackage/1.0@
+
+# Upload a package to a remote server
+conan upload mypackage/1.0@ --all
+
+# Remove a package from the local cache
+conan remove zlib/1.2.11@</code></pre>
+</div>
+</div>
+<div class="ulist">
+<div class="title">Key Features of <code>conan</code></div>
+<ul>
+<li>
+<p>Manages dependencies and libraries for C++ projects.</p>
+</li>
+<li>
+<p>Allows easy integration of different versions of libraries within a project.</p>
+</li>
+<li>
+<p>Supports multiple compilers, platforms, and configurations.</p>
+</li>
+<li>
+<p>Can be integrated with CMake or other build systems to automate dependency management.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_advantages_of_using_package_managers"><a class="anchor" href="#_advantages_of_using_package_managers"></a>3. Advantages of Using Package Managers</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Dependency Management</strong>: Automatically resolves and installs necessary dependencies.</p>
+</li>
+<li>
+<p><strong>Version Control</strong>: Allows for easy updates and rollback to previous versions.</p>
+</li>
+<li>
+<p><strong>Isolation</strong>: Software-specific package managers isolate project dependencies, avoiding conflicts with system packages.</p>
+</li>
+<li>
+<p><strong>Ease of Use</strong>: Provides simple commands for installing, upgrading, and removing software.</p>
+</li>
+<li>
+<p><strong>Security</strong>: Verifies the integrity and authenticity of software packages.</p>
+</li>
+<li>
+<p><strong>Reproducibility</strong>: Ensures that software can be installed consistently across different systems.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Example: Installing multiple software packages with apt
+sudo apt install gcc g++ make cmake
+
+# Example: Installing a package with spack and specifying a compiler
+spack install hdf5 %gcc@10.2.0
+
+# Example: Installing a Python package using pip
+pip install requests
+
+# Example: Installing a Python package and non-Python library with conda
+conda install numpy hdf5
+
+# Example: Installing a {cpp} library using conan
+conan install zlib/1.2.11@</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Package managers simplify software management and play a crucial role in maintaining the stability and security of systems, whether for personal use, in development environments, or in large-scale HPC settings.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="#extensions.adoc">Extension Installation and Key Extensions</a></span>
-  <span class="next"><a href="wsl.html">WSL Extension</a></span>
+  <span class="prev"><a href="index.html">Sofware Installation</a></span>
+  <span class="next"><a href="../containers/index.html">Introduction to Containers</a></span>
 </nav>
 </article>
   </div>
