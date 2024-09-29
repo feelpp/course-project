@@ -218,4 +218,10 @@ TIP: https://docs.github.com/en/discussions[Learn more about GitHub Discussions.
 
 == Summary
 
-This guide covers various collaboration features on GitHub, including forking, cloning, issues, pull requests, saved replies, mentions, and GitHub Discussions. These tools enable effective collaboration and code management within open-source or team projects.
+This guide covers various collaboration features on GitHub, including forking, cloning, issues, pull requests, saved replies, mentions, and GitHub Discussions.
+These tools enable effective collaboration and code management within open-source or team projects.
+Please check back the page xref:project-management.adoc[> GitHub and Project Management] for more information on project management.
+
+
+
+TIP: For more information, check the official GitHub documentation: https://docs.github.com/en/github[GitHub Docs].
