@@ -12,11 +12,10 @@ GitHub provides two ways to work with repositories: **forking** and **cloning**.
 
 === Forking a Repository
 
-[.left]
---
+
 .Forking a Repository
 image::collaboration/fork.png[Forking a Repository]
---
+
 To fork a repository:
 
 1. Navigate to the repository on GitHub.
@@ -33,11 +32,9 @@ $ git clone https://github.com/<your-username>/<repository-name>.git
 
 === Cloning a Repository
 
-[.right]
---
 .Cloning a Repository
 image::collaboration/clone.png[Cloning a Repository]
---
+
 To clone a repository (without forking):
 
 [source,console]
@@ -53,19 +50,15 @@ NOTE: in VS Code, to clone a repository, you can use the `Git: Clone` command fr
 
 == Issues
 
-[.right]
---
 .Issue Tab
 image::collaboration/issues.png[Issue Tab]
---
+
 GitHub Issues provide a way to track bugs, feature requests, and tasks for a project. 
 Each issue has its own discussion thread, and developers can assign issues, add labels, and link them to pull requests.
 
-[.left]
---
 .Create a New Issue
 image::collaboration/issues-creation.png[Create a New Issue]
---
+
 To create a new issue:
 
 1. Navigate to the repository.
@@ -98,11 +91,9 @@ A pull request (PR) proposes changes from your branch to the main repository. Ot
 
 === Creating a PR
 
-[.left]
---
 .Create a New PR
 image::collaboration/pr.png[Create a PR]
---
+
 To create a PR after pushing your changes:
 
 1. Go to the repository on GitHub.
@@ -155,11 +146,9 @@ To create a saved reply:
 
 == Mentions
 
-[.left]
---
 .Message Mention
 image::collaboration/mention.png[Message Mention]
---
+
 
 To get someone's attention in an issue or pull request, you can mention them using `@` followed by their GitHub username. For example:
 
@@ -172,11 +161,9 @@ This sends a notification to the mentioned user.
 
 == Reactions
 
-[.left]
---
 .Reaction
 image::collaboration/reaction.png[Raction]
---
+
 GitHub allows you to react to comments, issues, and pull requests with emojis such as 👍 (thumbs up) and ❤️ (heart). Reactions help gauge community feedback without adding comments.
 
 To react to a comment:
@@ -186,11 +173,9 @@ To react to a comment:
 
 == Commenting
 
-[.left]
---
 .Comments
 image::collaboration/comment.png[Comments]
---
+
 Comments can be added to issues, pull requests, and specific lines of code in a pull request diff. Comments are a key part of GitHub's review and discussion process.
 
 To comment on an issue or PR:
@@ -203,11 +188,9 @@ For code review, you can leave line-by-line comments directly on the PR diff.
 
 == GitHub Discussions
 
-[.left]
---
 .Discussions
 image::collaboration/discussions.png[Discussions]
---
+
 GitHub Discussions is a feature that provides a space for long-form conversations separate from issues. Discussions are often used for community engagement, Q&A, and planning.
 
 To create a discussion:
@@ -218,21 +201,17 @@ To create a discussion:
 
 Discussions allow voting, threading, and marking answers as "solved."
 
-[.left]
---
+
 .A New Discussion
 image::collaboration/discussion-created.png[A New Discussion]
---
+
 
 After the discussion is created, community members can participate by replying, voting, or marking answers.
 
 The discussions tab provides a nice way to engage with the community and gather feedback.
 
-[.left]
---
 .Discussion View
 image::collaboration/discussion-view.png[Discussion View]
---
 
 
 TIP: https://docs.github.com/en/discussions[Learn more about GitHub Discussions.]
