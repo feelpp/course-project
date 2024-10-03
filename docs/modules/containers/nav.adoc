@@ -8,6 +8,7 @@
 *** xref:docker/docker-commands.adoc[Basic Docker Commands]
 *** xref:docker/docker-advanced-usage.adoc[Advanced Docker Usage]
 *** xref:docker/docker-postgres.adoc[Running PostgreSQL with Docker]
+*** xref:docker/docker-githubaction.adoc[GitHub Actions with Docker]
 **** xref:docker/docker-postgres-example.adoc[Setting Up PostgreSQL with Docker]
 *** xref:docker/docker-compose.adoc[Docker Compose]
 *** xref:docker/docker-deploy.adoc[Deploy services]

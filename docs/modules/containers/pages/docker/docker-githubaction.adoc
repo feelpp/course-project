@@ -1,0 +1,215 @@
+= Tutorial: Building Docker Images Using GitHub Actions
+
+This tutorial will guide you through building and pushing Docker images using GitHub Actions. You’ll learn how to use GitHub Actions to set up QEMU, Docker Buildx, and push images to the GitHub Container Registry (GHCR).
+
+== Prerequisites
+
+- A GitHub repository.
+- A Dockerfile for the service you want to build.
+- Access to the GitHub Container Registry (GHCR).
+- A GitHub personal access token (PAT) stored as a secret in your repository (`CR_PAT`).
+
+== Step-by-Step Guide
+
+=== 1. Setting Up the GitHub Workflow
+
+Create a file called `.github/workflows/docker-build.yml` in your repository. This file will define the workflow to build and push Docker images using GitHub Actions.
+
+==== Example GitHub Actions Workflow
+
+[source,yaml]
+----
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: [service-name]
+        tag: [latest, v1.0.0]
+        dir: [path-to-dockerfile-directory]
+        dist: [ubuntu, debian]
+        flavor: [base-image-flavor]
+        version: [1.0.0]
+        dockerfile: [Dockerfile]
+
+    steps:
+      # Step 1: Set up QEMU (for multi-platform builds)
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      # Step 2: Set up Docker Buildx (for advanced Docker builds)
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Step 3: Login to GitHub Container Registry
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
+
+      # Step 4: Build and push the main Docker image
+      - name: Build ${{ matrix.service }}:${{ matrix.tag }}
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.dir }}
+          tags: ghcr.io/${{ github.repository_owner }}/${{ matrix.service }}:${{ matrix.tag }},
+                ghcr.io/${{ github.repository_owner }}/${{ matrix.service }}:${{ matrix.dist }}
+          file: ${{ matrix.dir }}/${{ matrix.dockerfile }}
+          build-args: |
+            IMAGE=${{ matrix.flavor }}:${{ matrix.dist }}
+            FLAVOR=${{ matrix.flavor }}
+            DIST=${{ matrix.dist }}
+            VERSION=${{ matrix.version }}
+          push: true
+          secrets: |
+            GIT_AUTH_TOKEN=${{ secrets.CR_PAT }}
+
+      # Step 5: Build and push the development Docker image
+      - name: Build ${{ matrix.service }}-dev:${{ matrix.tag }}
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.dir }}
+          tags: ghcr.io/${{ github.repository_owner }}/${{ matrix.service }}-dev:${{ matrix.tag }},
+                ghcr.io/${{ github.repository_owner }}/${{ matrix.service }}-dev:${{ matrix.dist }}
+          file: ${{ matrix.dir }}/${{ matrix.dockerfile }}-dev
+          build-args: TAG=${{ matrix.tag }}
+          push: true
+          secrets: |
+            GIT_AUTH_TOKEN=${{ secrets.CR_PAT }}
+----
+
+=== Step-by-Step Breakdown:
+
+==== 1. Set up QEMU for Multi-Platform Builds
+The `docker/setup-qemu-action` sets up QEMU, which allows you to build Docker images for multiple platforms like `amd64`, `arm64`, etc.
+
+[source,yaml]
+----
+- name: Set up QEMU
+  uses: docker/setup-qemu-action@v3
+----
+
+==== 2. Set up Docker Buildx
+The `docker/setup-buildx-action` sets up Buildx, Docker's advanced build tool, which supports multi-platform builds and other features like build caching.
+
+[source,yaml]
+----
+- name: Set up Docker Buildx
+  uses: docker/setup-buildx-action@v3
+----
+
+==== 3. Login to GitHub Container Registry (GHCR)
+
+This step logs into the GitHub Container Registry using the `docker/login-action`. You need to provide your GitHub username and a GitHub personal access token (PAT) stored in the secret `CR_PAT`.
+
+[source,yaml]
+----
+- name: Login to GitHub Container Registry
+  uses: docker/login-action@v3
+  with:
+    registry: ghcr.io
+    username: ${{ github.repository_owner }}
+    password: ${{ secrets.CR_PAT }}
+----
+
+==== 4. Build and Push the Main Docker Image
+This step builds the Docker image using the context and Dockerfile specified in the matrix. The image is tagged and pushed to GHCR.
+
+[source,yaml]
+----
+- name: Build ${{ matrix.service }}:${{ matrix.tag }}
+  uses: docker/build-push-action@v6
+  with:
+    context: ${{ matrix.dir }}
+    tags: ghcr.io/${{ github.repository_owner }}/${{ matrix.service }}:${{ matrix.tag }},
+          ghcr.io/${{ github.repository_owner }}/${{ matrix.service }}:${{ matrix.dist }}
+    file: ${{ matrix.dir }}/${{ matrix.dockerfile }}
+    platforms: linux/amd64,linux/arm64
+    build-args: |
+      IMAGE=${{ matrix.flavor }}:${{ matrix.dist }}
+      FLAVOR=${{ matrix.flavor }}
+      DIST=${{ matrix.dist }}
+      VERSION=${{ matrix.version }}
+    push: true
+    secrets: |
+      GIT_AUTH_TOKEN=${{ secrets.CR_PAT }}
+----
+
+- **context**: The directory containing the Dockerfile and other necessary files.
+- **tags**: The tags used to label the image in the registry.
+- **build-args**: These arguments are passed to the `Dockerfile`.
+- **push**: Specifies whether to push the image to the registry.
+
+==== 5. Build and Push the Development Docker Image
+This step builds and pushes the development version of the Docker image.
+
+[source,yaml]
+----
+- name: Build ${{ matrix.service }}-dev:${{ matrix.tag }}
+  uses: docker/build-push-action@v6
+  with:
+    context: ${{ matrix.dir }}
+    tags: ghcr.io/${{ github.repository_owner }}/${{ matrix.service }}-dev:${{ matrix.tag }},
+          ghcr.io/${{ github.repository_owner }}/${{ matrix.service }}-dev:${{ matrix.dist }}
+    file: ${{ matrix.dir }}/${{ matrix.dockerfile }}-dev
+    platforms: linux/amd64,linux/arm64
+    build-args: TAG=${{ matrix.tag }}
+    push: true
+    secrets: |
+      GIT_AUTH_TOKEN=${{ secrets.CR_PAT }}
+----
+
+==== Multi-Platform Builds
+
+ Docker supports  Multiple Architectures*. In this step, we build the Docker images for both `amd64` and `arm64` platforms using the `platforms` option:
+   
+[source,yaml]
+----
+platforms: linux/amd64,linux/arm64
+----
+
+This ensures that the images are built for both architectures.
+
+
+=== 2. Setting Up GitHub Secrets
+You’ll need to add a GitHub secret for your personal access token to authenticate with the GitHub Container Registry.
+
+1. Go to your GitHub repository.
+2. Click on **Settings** > **Secrets and variables** > **Actions**.
+3. Click **New repository secret**.
+4. Add the secret `CR_PAT` with your GitHub personal access token.
+
+== Example
+
+If you're building a service like `feelpp`, the configuration would look like this:
+
+[source,yaml]
+----
+strategy:
+  matrix:
+    service: [feelpp]
+    tag: [latest, v1.0.0]
+    dir: [docker]
+    dist: [ubuntu]
+    flavor: [ubuntu]
+    version: [1.0.0]
+    dockerfile: [Dockerfile]
+----
+
+With this setup, Docker images for both `amd64` and `arm64` platforms will be built and pushed to GHCR with tags such as `ghcr.io/feelpp/feelpp:v1.0.0` and `ghcr.io/feelpp/feelpp:latest`.
+
+
+== Conclusion
+
+This tutorial demonstrates how to use GitHub Actions to build and push Docker images to the GitHub Container Registry using QEMU for multi-platform builds and Docker Buildx for enhanced build capabilities.
