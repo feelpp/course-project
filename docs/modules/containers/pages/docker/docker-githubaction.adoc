@@ -201,7 +201,7 @@ strategy:
     service: [feelpp]
     tag: [latest, v1.0.0]
     dir: [docker]
-    dist: [ubuntu]
+    dist: [noble]
     flavor: [ubuntu]
     version: [1.0.0]
     dockerfile: [Dockerfile]
