@@ -1,0 +1,112 @@
+= Homework
+:stem: latexmath
+:feelpp: Feel++
+
+== Solving the heat equation in a thermal fin
+
+
+We consider the problem of designing a thermal fin to effectively remove heat from a surface. The two-dimensional fin, shown in Figure #fig:1[1], consists of a vertical central "`post`" and four horizontal "`subfins`"; the fin conducts heat from a prescribed uniform flux "`source`" at the root, latexmath:[\Gamma_{\mathrm{root}}] , through the large-surface-area subfins to surrounding flowing air. The fin is characterized by a five-component parameter vector, or "`input,`" latexmath:[\mu_
+= (\mu_1 , \mu_2, \ldots, \mu_5 )],where latexmath:[\mu_i = k^i , i = 1, \ldots
+, 4], and latexmath:[\mu_5 = \mathrm{Bi}]; latexmath:[\mu] may take on any value in a specified design set latexmath:[D \subset \mathbb{R}^5].
+
+.Thermal fin
+[#fig:1]
+image::fin.png[./media/fin]
+
+Here latexmath:[k^i] is the thermal conductivity of the ith subfin (normalized relative to the post conductivity latexmath:[k^0 \equiv 1]); and latexmath:[\mathrm{Bi}] is the Biot number, a nondimensional heat transfer coefficient reflecting convective transport to the air at the fin surfaces (larger latexmath:[\mathrm{Bi}] means better heat transfer). For example, suppose we choose a thermal fin with latexmath:[k^1 = 0.4, k^2 = 0.6, k^3 = 0.8, k^4 = 1.2], and latexmath:[\mathrm{Bi} = 0.1]; for this particular configuration latexmath:[\mu = \{0.4, 0.6, 0.8, 1.2, 0.1\}], which corresponds to a single point in the set of all possible configurations D (the parameter or design set). The post is of width unity and height four; the subfins are of fixed thickness latexmath:[t = 0.25] and length latexmath:[L = 2.5].
+
+We are interested in the design of this thermal fin, and we thus need to look at certain outputs or cost-functionals of the temperature as a function of latexmath:[\mu]. We choose for our output latexmath:[T_{\mathrm{root}}], the average steady-state temperature of the fin root normalized by the prescribed heat flux into the fin root. The particular output chosen relates directly to the cooling efficiency of the fin — lower values of latexmath:[T_{\mathrm{root}}] imply better thermal performance. The steady–state temperature distribution within the fin, latexmath:[u(\mu)], is governed by the elliptic partial differential equation
+
+[latexmath]
+++++
+\label{eq:1}
+-k^i \Delta u^i = 0 \text{ in } \Omega^i , i = 0, \ldots, 4,
+++++
+
+where latexmath:[\Delta] is the Laplacian operator, and latexmath:[u_i] refers to the restriction of latexmath:[u \text{ to } \Omega^i] . Here latexmath:[\Omega^i] is the region of the fin with conductivity latexmath:[k^i , i = 0,\ldots, 4: \Omega^0] is thus the central post, and latexmath:[\Omega^i , i = 1,\ldots, 4], corresponds to the four subfins. The entire fin domain is denoted latexmath:[\Omega (\bar{\Omega} = \cup_{i=0}^4 \bar{\Omega}^i )]; the boundary latexmath:[\Omega] is denoted latexmath:[\Gamma]. We must also ensure continuity of temperature and heat flux at the conductivity– discontinuity interfaces latexmath:[\Gamma^i_{int} \equiv \partial\Omega^0 \cap \partial\Omega^i , i = 1,\ldots, 4], where latexmath:[\partial\Omega^i] denotes the boundary of latexmath:[\Omega^i], we have on latexmath:[\Gamma^i_{int}  i = 1,\ldots, 4] :
+
+[latexmath]
+++++
+\begin{aligned}
+  u^0 &= u^i \\
+  -(\nabla u^0 \cdot n^i ) &= -k^i (\nabla u^i \cdot n^i )
+\end{aligned}
+++++
+
+here latexmath:[n^i] is the outward normal on latexmath:[\partial\Omega^i] . Finally, we introduce a Neumann flux boundary condition on the fin root
+
+[latexmath]
+++++
+-(\nabla u^0 \cdot n^0 ) = -1 \text{ on } \Gamma_{\mathrm{root}} ,
+++++
+
+which models the heat source; and a Robin boundary condition
+
+[latexmath]
+++++
+-k^i (\nabla u^i \cdot n^i ) = \mathrm{Bi} u^i \text{ on } \Gamma^i_{ext} , i = 0,\ldots, 4,
+++++
+
+which models the convective heat losses. Here latexmath:[\Gamma^i_{ext}] is that part of the boundary of latexmath:[\Omega^i] exposed to the flowing fluid; note that latexmath:[\cup_{i=0}^4 \Gamma^i_{ext} = \Gamma\backslash\Gamma_{\mathrm{root}}]. The average temperature at the root, latexmath:[T_{\mathrm{root}} (\mu)], can then be expressed as latexmath:[\ell^O(u(\mu))], where
+
+[latexmath]
+++++
+\ell^O (v) = \int_{\Gamma_{\mathrm{root}}} v
+++++
+
+(recall latexmath:[\Gamma_{\mathrm{root}}] is of length unity). Note that latexmath:[\ell(v) = \ell^O(v)] for this problem.
+
+=== Implement the Finite element discretization
+
+You will find https://github.com/feelpp/feelpp/blob/develop/toolboxes/generator/cases/thermal_fin/[here] a set of files allowing you to generate the data for {feelpp}. 
+The documentation is https://github.com/feelpp/feelpp/blob/develop/toolboxes/generator/cases/thermal_fin/case_generator_thermal_fin.adoc[here]
+
+. Verify that the generated files solve the problem above.
+. Solve the problem using the toolbox heat `feelpp_toolbox_heat` first
+. Visualize the solution in paraview.
+. Solve using the equivalent in Python, the following https://github.com/feelpp/feelpp/blob/develop/python/pyfeelpp-toolboxes/tests/test_heat.py#L18[test] gives you a starting point
+. Visualize the solution in paraview.
+. Modify the Python script in order to be able to modify the Biot number stem:[Bi] and make it a parameter, consider stem:[Bi \in \]0.01,1[], sample the interval with 10 values and use them to compute the solution, compute the output and plot the output using `plotly``.
+. Do the same for the conductivities stem:[k_i]
+
+Now you have a parametrized finite element code with stem:[\mu = (k_1,k_2,k_3,k_4,Bi)].
+
+
+=== Create a graphical user interface (gui_)
+
+We are now ready to create an graphical interface  that would plot the output with respect to stem:[\mu].
+
+Using dash, create a graphical interface that allows you to..:
+
+
+. submit a parameter  set stem:[\mu] to the finite element solver
+. display the output of finite element calculations in a text block
+. Add the possibility to accumulate in a table in your gui a table showing the parameter and corresponding value of the output
+. add the possibility to vary one parameter over an interval and plot the graph  of the output when you vary one of the parameter
+
+=== Package your application
+
+
+We are now ready to package the application with the gui.
+
+Using Docker, package the application
+
+
+. install all relevant {python} libraries necessary for the application
+. generate a docker image `feelpp-gui:<your name>` where your name is used are the tag to identify your app
+. start your app by default on port `80`
+
+.`feelpp-gui.py`
+[source]
+----
+// your code feelpp-gui.py here
+if __name__=='__main__':
+    app.run_server(port=80)
+----
+
+and in the Dockerfile
+[source,docker]
+----
+CMD ["python3 feelpp-gui.py"]
+----
+
