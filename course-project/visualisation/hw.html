@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Working with Files in Linux :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/linux/files.html">
+    <title>Homework :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/visualisation/hw.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -144,35 +144,35 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Introduction to Linux</a>
+    <a class="nav-link" href="../linux/index.html">Introduction to Linux</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Command Line</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="editing.html">File Editing in Linux</a>
+    <a class="nav-link" href="../linux/editing.html">File Editing in Linux</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="shell.html">Linux Shell Basics</a>
+    <a class="nav-link" href="../linux/shell.html">Linux Shell Basics</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="text-processing.html">Text Processing</a>
+    <a class="nav-link" href="../linux/text-processing.html">Text Processing</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="ssh/index.html">Introduction to SSH and Remote-SSH</a>
+    <a class="nav-link" href="../linux/ssh/index.html">Introduction to SSH and Remote-SSH</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ssh/ssh-setup.html">Setting Up SSH</a>
+    <a class="nav-link" href="../linux/ssh/ssh-setup.html">Setting Up SSH</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ssh/ssh-commands.html">Basic SSH Commands</a>
+    <a class="nav-link" href="../linux/ssh/ssh-commands.html">Basic SSH Commands</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ssh/remote-ssh-vscode.html">Remote-SSH Extension for VS Code</a>
+    <a class="nav-link" href="../linux/ssh/remote-ssh-vscode.html">Remote-SSH Extension for VS Code</a>
   </li>
 </ul>
   </li>
@@ -385,7 +385,7 @@ MathJax.Hub.Config({
     <span class="nav-text">Web based</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../visualisation/dash.html">Dash Turorial</a>
+    <a class="nav-link" href="dash.html">Dash Turorial</a>
   </li>
 </ul>
   </li>
@@ -420,12 +420,12 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Course Project</a></li>
-    <li><a href="files.html">Working with Files in Linux</a></li>
+    <li><a href="hw.html">Homework</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/linux/pages/files.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/visualisation/pages/hw.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -436,12 +436,6 @@ MathJax.Hub.Config({
         <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
       </a>
     </li>
-      <li>
-        <a href="_attachments/files.ipynb"
-           title="Download Jupyter Notebook" data-toggle="tooltip" data-placement="left" class="jupyter-download">
-          <img class="jupyter-file-icon icon" src="../../_/img/jupyter-logo.svg"/> .ipynb
-        </a>
-      </li>
   </ul>
 </div>
 </div>
@@ -451,417 +445,168 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Working with Files in Linux</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-The pages can be downloaded via the green button at the top right of the page. The commands are shell commands and can be executed in a terminal, however, do not copy the <code>%%bash</code> magic command that is used to execute the commands in the Jupyter Notebook environment.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Working with files is an essential part of Linux, and it’s a skill every Linux user must master. In Linux, everything is considered a file: text documents, images, system files, devices, and even directories. Linux provides numerous command-line utilities to create, view, move, or search files. Some of the basic commands for file handling in the Linux terminal include <code>touch</code> for creating files, <code>mv</code> for moving files, <code>cp</code> for copying files, <code>rm</code> for removing files, and <code>ls</code> for listing files and directories.</p>
-</div>
-<div class="paragraph">
-<p>For example, to create a file named <code>example.txt</code>, you can use the following command:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/
-mkdir documents
-cd documents
-touch example.txt</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre></pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>To list the files in the current directory, use the command:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-ls</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>example.txt</pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>Knowing how to effectively manage and manipulate files in Linux is crucial for administering and running a successful Linux system.</p>
-</div>
-</div>
-</div>
+<h1 class="page">Homework</h1>
 <div class="sect1">
-<h2 id="_file_permissions"><a class="anchor" href="#_file_permissions"></a>1. File Permissions</h2>
+<h2 id="_solving_the_heat_equation_in_a_thermal_fin"><a class="anchor" href="#_solving_the_heat_equation_in_a_thermal_fin"></a>1. Solving the heat equation in a thermal fin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Linux is a multi-user system, and file permissions play a vital role in protecting files from unauthorized access or modification. Every file and directory has associated permissions that determine who can read, write, or execute the file.</p>
+<p>We consider the problem of designing a thermal fin to effectively remove heat from a surface. The two-dimensional fin, shown in Figure #fig:1[1], consists of a vertical central &#8220;post&#8221; and four horizontal &#8220;subfins&#8221;; the fin conducts heat from a prescribed uniform flux &#8220;source&#8221; at the root, \(\Gamma_{\mathrm{root}}\) , through the large-surface-area subfins to surrounding flowing air. The fin is characterized by a five-component parameter vector, or &#8220;input,&#8221; \(\mu_
+= (\mu_1 , \mu_2, \ldots, \mu_5 )\),where \(\mu_i = k^i , i = 1, \ldots
+, 4\), and \(\mu_5 = \mathrm{Bi}\); \(\mu\) may take on any value in a specified design set \(D \subset \mathbb{R}^5\).</p>
 </div>
-<div class="ulist">
-<ul>
+<div id="fig:1" class="imageblock">
+<div class="content">
+<img src="_images/fin.png" alt="./media/fin">
+</div>
+<div class="title">Figure 1. Thermal fin</div>
+</div>
+<div class="paragraph">
+<p>Here \(k^i\) is the thermal conductivity of the ith subfin (normalized relative to the post conductivity \(k^0 \equiv 1\)); and \(\mathrm{Bi}\) is the Biot number, a nondimensional heat transfer coefficient reflecting convective transport to the air at the fin surfaces (larger \(\mathrm{Bi}\) means better heat transfer). For example, suppose we choose a thermal fin with \(k^1 = 0.4, k^2 = 0.6, k^3 = 0.8, k^4 = 1.2\), and \(\mathrm{Bi} = 0.1\); for this particular configuration \(\mu = \{0.4, 0.6, 0.8, 1.2, 0.1\}\), which corresponds to a single point in the set of all possible configurations D (the parameter or design set). The post is of width unity and height four; the subfins are of fixed thickness \(t = 0.25\) and length \(L = 2.5\).</p>
+</div>
+<div class="paragraph">
+<p>We are interested in the design of this thermal fin, and we thus need to look at certain outputs or cost-functionals of the temperature as a function of \(\mu\). We choose for our output \(T_{\mathrm{root}}\), the average steady-state temperature of the fin root normalized by the prescribed heat flux into the fin root. The particular output chosen relates directly to the cooling efficiency of the fin — lower values of \(T_{\mathrm{root}}\) imply better thermal performance. The steady–state temperature distribution within the fin, \(u(\mu)\), is governed by the elliptic partial differential equation</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\label{eq:1}
+-k^i \Delta u^i = 0 \text{ in } \Omega^i , i = 0, \ldots, 4,\]
+</div>
+</div>
+<div class="paragraph">
+<p>where \(\Delta\) is the Laplacian operator, and \(u_i\) refers to the restriction of \(u \text{ to } \Omega^i\) . Here \(\Omega^i\) is the region of the fin with conductivity \(k^i , i = 0,\ldots, 4: \Omega^0\) is thus the central post, and \(\Omega^i , i = 1,\ldots, 4\), corresponds to the four subfins. The entire fin domain is denoted \(\Omega (\bar{\Omega} = \cup_{i=0}^4 \bar{\Omega}^i )\); the boundary \(\Omega\) is denoted \(\Gamma\). We must also ensure continuity of temperature and heat flux at the conductivity– discontinuity interfaces \(\Gamma^i_{int} \equiv \partial\Omega^0 \cap \partial\Omega^i , i = 1,\ldots, 4\), where \(\partial\Omega^i\) denotes the boundary of \(\Omega^i\), we have on \(\Gamma^i_{int}  i = 1,\ldots, 4\) :</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{aligned}
+  u^0 &amp;= u^i \\
+  -(\nabla u^0 \cdot n^i ) &amp;= -k^i (\nabla u^i \cdot n^i )
+\end{aligned}\]
+</div>
+</div>
+<div class="paragraph">
+<p>here \(n^i\) is the outward normal on \(\partial\Omega^i\) . Finally, we introduce a Neumann flux boundary condition on the fin root</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[-(\nabla u^0 \cdot n^0 ) = -1 \text{ on } \Gamma_{\mathrm{root}} ,\]
+</div>
+</div>
+<div class="paragraph">
+<p>which models the heat source; and a Robin boundary condition</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[-k^i (\nabla u^i \cdot n^i ) = \mathrm{Bi} u^i \text{ on } \Gamma^i_{ext} , i = 0,\ldots, 4,\]
+</div>
+</div>
+<div class="paragraph">
+<p>which models the convective heat losses. Here \(\Gamma^i_{ext}\) is that part of the boundary of \(\Omega^i\) exposed to the flowing fluid; note that \(\cup_{i=0}^4 \Gamma^i_{ext} = \Gamma\backslash\Gamma_{\mathrm{root}}\). The average temperature at the root, \(T_{\mathrm{root}} (\mu)\), can then be expressed as \(\ell^O(u(\mu))\), where</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\ell^O (v) = \int_{\Gamma_{\mathrm{root}}} v\]
+</div>
+</div>
+<div class="paragraph">
+<p>(recall \(\Gamma_{\mathrm{root}}\) is of length unity). Note that \(\ell(v) = \ell^O(v)\) for this problem.</p>
+</div>
+<div class="sect2">
+<h3 id="_implement_the_finite_element_discretization"><a class="anchor" href="#_implement_the_finite_element_discretization"></a>1.1. Implement the Finite element discretization</h3>
+<div class="paragraph">
+<p>You will find <a href="https://github.com/feelpp/feelpp/blob/develop/toolboxes/generator/cases/thermal_fin/">here</a> a set of files allowing you to generate the data for Feel++.
+The documentation is <a href="https://github.com/feelpp/feelpp/blob/develop/toolboxes/generator/cases/thermal_fin/case_generator_thermal_fin.adoc">here</a></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p><strong><code>r</code> (read)</strong>: Allows reading the file.</p>
+<p>Verify that the generated files solve the problem above.</p>
 </li>
 <li>
-<p><strong><code>w</code> (write)</strong>: Allows modifying the file.</p>
+<p>Solve the problem using the toolbox heat <code>feelpp_toolbox_heat</code> first</p>
 </li>
 <li>
-<p><strong><code>x</code> (execute)</strong>: Allows running the file as a program.</p>
+<p>Visualize the solution in paraview.</p>
 </li>
-</ul>
-</div>
-<div class="paragraph">
-<p>To view file permissions, use:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-ls -l</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>total 0
--rw-r--r-- 1 runner docker 0 Oct  3 11:38 example.txt</pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>To modify file permissions, use <code>chmod</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-touch file.txt
-ls -l file.txt
-chmod 755 file.txt
-ls -l file.txt
-chmod +x file.txt
-ls -l file.txt
-chmod go+x file.txt
-ls -l file.txt</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>-rw-r--r-- 1 runner docker 0 Oct  3 11:38 file.txt
--rwxr-xr-x 1 runner docker 0 Oct  3 11:38 file.txt
--rwxr-xr-x 1 runner docker 0 Oct  3 11:38 file.txt
--rwxr-xr-x 1 runner docker 0 Oct  3 11:38 file.txt</pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>This sets the file permissions to <strong>rwxr-xr-x</strong>, where the owner can read, write, and execute the file, while others can only read and execute it.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_archiving_and_compressing"><a class="anchor" href="#_archiving_and_compressing"></a>2. Archiving and Compressing</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Archiving and compressing files helps manage storage and transfer large amounts of data efficiently. In Linux, commands like <code>tar</code>, <code>gzip</code>, and <code>bzip2</code> are used for this purpose.</p>
-</div>
-<div class="paragraph">
-<p>To create an archive of files:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-touch file1.txt
-tar -cvf archive.tar file.txt file1.txt
-ls -l</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>file.txt
-file1.txt
-total 12
--rw-r--r-- 1 runner docker 10240 Oct  3 11:38 archive.tar
--rw-r--r-- 1 runner docker     0 Oct  3 11:38 example.txt
--rwxr-xr-x 1 runner docker     0 Oct  3 11:38 file.txt
--rw-r--r-- 1 runner docker     0 Oct  3 11:38 file1.txt</pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>To compress the archive:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-gzip archive.tar
-ls -l</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>total 4
--rw-r--r-- 1 runner docker 156 Oct  3 11:38 archive.tar.gz
--rw-r--r-- 1 runner docker   0 Oct  3 11:38 example.txt
--rwxr-xr-x 1 runner docker   0 Oct  3 11:38 file.txt
--rw-r--r-- 1 runner docker   0 Oct  3 11:38 file1.txt</pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>The file will now be compressed as <code>archive.tar.gz</code>.</p>
-</div>
-<div class="paragraph">
-<p>To extract a tar file:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-mkdir temp
-cd temp
-tar -xzvf ../archive.tar.gz
-ls -lrt</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>file.txt
-file1.txt
-total 0
--rw-r--r-- 1 runner docker 0 Oct  3 11:38 file1.txt
--rwxr-xr-x 1 runner docker 0 Oct  3 11:38 file.txt</pre>
-</div>
-</div>
-</div>
-</details>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_copying_and_renaming_files"><a class="anchor" href="#_copying_and_renaming_files"></a>3. Copying and Renaming Files</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Copying and renaming files are essential operations when managing file systems. The <code>cp</code> command is used to copy files, and <code>mv</code> is used both to move and rename files.</p>
-</div>
-<div class="paragraph">
-<p>To copy a file:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-cp file.txt /tmp
-ls /tmp</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>clr-debug-pipe-1604-15837-in
-clr-debug-pipe-1604-15837-out
-clr-debug-pipe-1620-16028-in
-clr-debug-pipe-1620-16028-out
-clr-debug-pipe-606-809-in
-clr-debug-pipe-606-809-out
-documents
-dotnet-diagnostic-1604-15837-socket
-dotnet-diagnostic-1620-16028-socket
-dotnet-diagnostic-606-809-socket
-file.txt
-snap-private-tmp
-systemd-private-2866e069e6e54fe2b65ab96517ed40f2-chrony.service-yg9Ng7
-systemd-private-2866e069e6e54fe2b65ab96517ed40f2-haveged.service-1wjcnH
-systemd-private-2866e069e6e54fe2b65ab96517ed40f2-systemd-logind.service-LGiUQL
-systemd-private-2866e069e6e54fe2b65ab96517ed40f2-systemd-resolved.service-PcmLpx
-www-data-temp-aspnet-0</pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>To rename a file:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-mv /tmp/file.txt newname.txt
-ls</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>archive.tar.gz
-example.txt
-file.txt
-file1.txt
-newname.txt
-temp</pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>To move a file to a different directory:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-mv newname.txt /tmp
-ls /tmp</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>clr-debug-pipe-1604-15837-in
-clr-debug-pipe-1604-15837-out
-clr-debug-pipe-1620-16028-in
-clr-debug-pipe-1620-16028-out
-clr-debug-pipe-606-809-in
-clr-debug-pipe-606-809-out
-documents
-dotnet-diagnostic-1604-15837-socket
-dotnet-diagnostic-1620-16028-socket
-dotnet-diagnostic-606-809-socket
-newname.txt
-snap-private-tmp
-systemd-private-2866e069e6e54fe2b65ab96517ed40f2-chrony.service-yg9Ng7
-systemd-private-2866e069e6e54fe2b65ab96517ed40f2-haveged.service-1wjcnH
-systemd-private-2866e069e6e54fe2b65ab96517ed40f2-systemd-logind.service-LGiUQL
-systemd-private-2866e069e6e54fe2b65ab96517ed40f2-systemd-resolved.service-PcmLpx
-www-data-temp-aspnet-0</pre>
-</div>
-</div>
-</div>
-</details>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_soft_links_hard_links"><a class="anchor" href="#_soft_links_hard_links"></a>4. Soft Links / Hard Links</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Links in Linux are shortcuts to files or directories. There are two types of links: <strong>soft links</strong> (symbolic links) and <strong>hard links</strong>.</p>
-</div>
-<div class="ulist">
-<ul>
 <li>
-<p><strong>Soft Link (Symbolic Link)</strong>: A pointer to a file or directory. Removing the original file breaks the link.</p>
+<p>Solve using the equivalent in Python, the following <a href="https://github.com/feelpp/feelpp/blob/develop/python/pyfeelpp-toolboxes/tests/test_heat.py#L18">test</a> gives you a starting point</p>
 </li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-rm -f softlink.txt
-ln -s file.txt softlink.txt</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre></pre>
-</div>
-</div>
-</div>
-</details>
-<div class="ulist">
-<ul>
 <li>
-<p><strong>Hard Link</strong>: A copy of the file’s inode, meaning it references the same data as the original file. Deleting the original file does not break the link.</p>
+<p>Visualize the solution in paraview.</p>
 </li>
-</ul>
+<li>
+<p>Modify the Python script in order to be able to modify the Biot number \(Bi\) and make it a parameter, consider \(Bi \in ]0.01,1[\), sample the interval with 10 values and use them to compute the solution, compute the output and plot the output using <code>plotly`</code>.</p>
+</li>
+<li>
+<p>Do the same for the conductivities \(k_i\)</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Example:</p>
+<p>Now you have a parametrized finite element code with \(\mu = (k_1,k_2,k_3,k_4,Bi)\).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_a_graphical_user_interface_gui"><a class="anchor" href="#_create_a_graphical_user_interface_gui"></a>1.2. Create a graphical user interface (gui_)</h3>
+<div class="paragraph">
+<p>We are now ready to create an graphical interface  that would plot the output with respect to \(\mu\).</p>
+</div>
+<div class="paragraph">
+<p>Using dash, create a graphical interface that allows you to..:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>submit a parameter  set \(\mu\) to the finite element solver</p>
+</li>
+<li>
+<p>display the output of finite element calculations in a text block</p>
+</li>
+<li>
+<p>Add the possibility to accumulate in a table in your gui a table showing the parameter and corresponding value of the output</p>
+</li>
+<li>
+<p>add the possibility to vary one parameter over an interval and plot the graph  of the output when you vary one of the parameter</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_package_your_application"><a class="anchor" href="#_package_your_application"></a>1.3. Package your application</h3>
+<div class="paragraph">
+<p>We are now ready to package the application with the gui.</p>
+</div>
+<div class="paragraph">
+<p>Using Docker, package the application</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>install all relevant Python libraries necessary for the application</p>
+</li>
+<li>
+<p>generate a docker image <code>feelpp-gui:&lt;your name&gt;</code> where your name is used are the tag to identify your app</p>
+</li>
+<li>
+<p>start your app by default on port <code>80</code></p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="title"><code>feelpp-gui.py</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">// your code feelpp-gui.py here
+if __name__=='__main__':
+    app.run_server(port=80)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and in the Dockerfile</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-rm -f newlink.txt
-ln file.txt newlink.txt</code></pre>
+<pre class="highlightjs highlight"><code class="language-docker hljs" data-lang="docker">CMD ["python3 feelpp-gui.py"]</code></pre>
 </div>
 </div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre></pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>Hard links can only be created for files on the same filesystem.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_summary"><a class="anchor" href="#_summary"></a>5. Summary</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>File management in Linux is a fundamental task that includes working with file permissions, compressing files, copying/renaming files, and creating links. These skills ensure efficient handling of data and system administration tasks.</p>
 </div>
 </div>
 </div>
