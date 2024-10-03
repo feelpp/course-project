@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Git Basics :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/git%20&%20github/git-basics.html">
-    <link rel="prev" href="../project-management/github.html">
-    <link rel="next" href="git-starter.html">
+    <title>Dash for Scientific Computing :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/visualisation/dash.html">
+    <link rel="prev" href="../containers/docker/docker-deploy.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -260,23 +259,23 @@ MathJax.Hub.Config({
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Git</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="git-basics.html">Git Basics</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../git%20&%20github/git-basics.html">Git Basics</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="git-starter.html">Git Starter Guide</a>
+    <a class="nav-link" href="../git%20&%20github/git-starter.html">Git Starter Guide</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="git-repository-basics.html">Git Repository</a>
+    <a class="nav-link" href="../git%20&%20github/git-repository-basics.html">Git Repository</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="git-branch.html">Git Branching</a>
+    <a class="nav-link" href="../git%20&%20github/git-branch.html">Git Branching</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="git-merges.html">Git Merge</a>
+    <a class="nav-link" href="../git%20&%20github/git-merges.html">Git Merge</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="git-remotes.html">Git Remotes</a>
+    <a class="nav-link" href="../git%20&%20github/git-remotes.html">Git Remotes</a>
   </li>
 </ul>
   </li>
@@ -285,20 +284,20 @@ MathJax.Hub.Config({
     <span class="nav-text">GitHub</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="github-essentials.html">GitHub Essentials</a>
+    <a class="nav-link" href="../git%20&%20github/github-essentials.html">GitHub Essentials</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="github-start.html">GitHub Starter Guide</a>
+    <a class="nav-link" href="../git%20&%20github/github-start.html">GitHub Starter Guide</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="github-collaborations.html">GitHub Collaborations</a>
+    <a class="nav-link" href="../git%20&%20github/github-collaborations.html">GitHub Collaborations</a>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="github-actions.html">GitHub Actions</a>
+    <a class="nav-link" href="../git%20&%20github/github-actions.html">GitHub Actions</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="github-actions-cmake-eigen3.html">GitHub Actions for CMake and Eigen3</a>
+    <a class="nav-link" href="../git%20&%20github/github-actions-cmake-eigen3.html">GitHub Actions for CMake and Eigen3</a>
   </li>
 </ul>
   </li>
@@ -386,8 +385,8 @@ MathJax.Hub.Config({
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Web based</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../visualisation/dash.html">Dash Turorial</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="dash.html">Dash Turorial</a>
   </li>
 </ul>
   </li>
@@ -422,14 +421,14 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Course Project</a></li>
-    <li>Git &amp; GitHub Documentation</li>
-    <li>Git</li>
-    <li><a href="git-basics.html">Git Basics</a></li>
+    <li>Visualisation</li>
+    <li>Web based</li>
+    <li><a href="dash.html">Dash Turorial</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/git%20&amp;%20github/pages/git-basics.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/visualisation/pages/dash.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -449,188 +448,365 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Git Basics</h1>
+<h1 class="page">Dash for Scientific Computing</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document introduces the basic concepts of version control and explains why Git is a widely used tool. You&#8217;ll also learn how to install Git locally to start using it.</p>
+<p>Dash provides a flexible and powerful platform for scientists and engineers to create interactive web-based applications. This tutorial expands on the basics and focuses on how to integrate Dash with scientific computing libraries such as NumPy, SciPy, and Matplotlib, while using Plotly for interactive visualizations.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_what_is_version_control"><a class="anchor" href="#_what_is_version_control"></a>1. What is Version Control?</h2>
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>1. Prerequisites</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Version control is a system that tracks changes to files over time. It allows multiple people to work on the same project while keeping track of each modification, ensuring that past versions of the project can be restored if needed.</p>
+<p>Ensure that you have Python installed, and install the following packages:</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">pip install dash dash-bootstrap-components pandas plotly numpy scipy matplotlib</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_scientific_libraries_overview"><a class="anchor" href="#_scientific_libraries_overview"></a>2. Scientific Libraries Overview</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>In essence, version control systems (VCS) like Git are used to:</p>
+<p>Dash integrates well with libraries used for scientific computing. Here are some essential libraries:</p>
 </div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">NumPy</dt>
+<dd>
+<p>A fundamental package for numerical computing in Python.</p>
+</dd>
+<dt class="hdlist1">SciPy</dt>
+<dd>
+<p>Builds on NumPy to provide a collection of algorithms and functions for scientific computing.</p>
+</dd>
+<dt class="hdlist1">Matplotlib</dt>
+<dd>
+<p>A comprehensive library for creating static, animated, and interactive visualizations in Python.</p>
+</dd>
+<dt class="hdlist1">Plotly</dt>
+<dd>
+<p>Provides interactive graphing tools for scientific data visualization.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_resources_to_help_you_learn_dash"><a class="anchor" href="#_resources_to_help_you_learn_dash"></a>3. Resources to help you learn Dash</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Check out the book</dt>
+<dd>
+<p><a href="https://www.barnesandnoble.com/w/python-dash-adam-schroeder/1141355104?ean=9781718502222" class="bare">www.barnesandnoble.com/w/python-dash-adam-schroeder/1141355104?ean=9781718502222</a></p>
+</dd>
+<dt class="hdlist1">Important app components</dt>
+<dd>
 <div class="ulist">
 <ul>
 <li>
-<p>Track changes to files over time.</p>
+<p><a href="https://dash.plotly.com/dash-core-components">Dash Core Components</a></p>
 </li>
 <li>
-<p>Collaborate on projects without overwriting others' work.</p>
+<p><a href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/">Dash Bootstrap Components</a></p>
 </li>
 <li>
-<p>Maintain a history of changes and allow reverting to previous states.</p>
-</li>
-<li>
-<p>Help resolve conflicts when multiple people edit the same file simultaneously.</p>
+<p><a href="https://www.dash-mantine-components.com/">Dash Mantine Components</a></p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_why_use_version_control"><a class="anchor" href="#_why_use_version_control"></a>2. Why Use Version Control?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Here are some key reasons why version control is essential for projects, especially in software development:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
+</dd>
+<dt class="hdlist1">Layout components</dt>
+<dd>
+<div class="ulist">
+<ul>
 <li>
-<p><strong>Collaboration</strong>: Version control allows multiple developers to work on the same project without overwriting each other’s changes. Each developer can work on different features simultaneously.</p>
+<p><a href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/">Dash Bootstrap for Layout</a></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Plotly Graphing library</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plotly.com/python/">Plotly Graphs</a></p>
 </li>
 <li>
-<p><strong>Backup</strong>: Every change made to the project is stored in the repository, ensuring that previous versions are always available. This makes recovering from mistakes easy.</p>
+<p><a href="https://plotly.com/python-api-reference/plotly.express.html">Plotly Express API</a></p>
 </li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Cheat Sheet to style your app</dt>
+<dd>
+<div class="ulist">
+<ul>
 <li>
-<p><strong>History</strong>: Version control keeps a history of all changes made to the project. Developers can see who changed what, and when, making it easier to track bugs or revert to a stable version.</p>
+<p><a href="https://dashcheatsheet.pythonanywhere.com/">Dash Bootstrap Cheat Sheet</a></p>
 </li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Speed up your learning process</dt>
+<dd>
+<div class="ulist">
+<ul>
 <li>
-<p><strong>Branching and Merging</strong>: Developers can create branches to work on specific features or fixes. Once complete, these changes can be merged back into the main project.</p>
+<p><a href="https://community.plotly.com">Join the Plotly Community Forum</a></p>
 </li>
-<li>
-<p><strong>Code Review</strong>: Many modern version control platforms (like GitHub) offer code review features that allow teams to review each other’s work before merging it into the project.</p>
-</li>
-</ol>
+</ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_git_vs_other_version_control_systems_vcs"><a class="anchor" href="#_git_vs_other_version_control_systems_vcs"></a>3. Git vs Other Version Control Systems (VCS)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Git is a distributed version control system, and it&#8217;s different from older, centralized version control systems (like Subversion or CVS). Here’s how Git compares to other VCS:</p>
-</div>
-<div class="sect2">
-<h3 id="_centralized_version_control_subversion_cvs"><a class="anchor" href="#_centralized_version_control_subversion_cvs"></a>3.1. Centralized Version Control (Subversion, CVS)</h3>
-<div class="paragraph">
-<p>In centralized systems:
-- There is one central repository that developers push their changes to.
-- All changes must be committed to the central repository, meaning an internet connection is required to commit changes.
-- If the central server goes down, developers lose access to the full history of the project.</p>
-</div>
-<div class="paragraph">
-<p>Example of Subversion usage:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ svn checkout https://example.com/repo
-$ svn commit -m "Commit message"</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_distributed_version_control_git"><a class="anchor" href="#_distributed_version_control_git"></a>3.2. Distributed Version Control (Git)</h3>
-<div class="paragraph">
-<p>In Git:
-- Each developer has a full copy of the entire project history on their machine.
-- Developers can commit changes locally and push them to the remote repository later.
-- Git allows offline work, and changes can be pushed to the remote repository once connectivity is available.
-- Git is faster and more efficient for large projects because of its distributed nature.</p>
-</div>
-<div class="paragraph">
-<p>Example of Git usage:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ git clone https://github.com/user/repo.git
-$ git commit -m "Commit message"
-$ git push origin main</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Git is widely regarded for its speed, flexibility, and robust branching and merging capabilities, which make it ideal for both small and large teams.</p>
-</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_installing_git_locally"><a class="anchor" href="#_installing_git_locally"></a>4. Installing Git Locally</h2>
+<h2 id="_example_1_visualizing_scientific_data_with_numpy_and_plotly"><a class="anchor" href="#_example_1_visualizing_scientific_data_with_numpy_and_plotly"></a>4. Example 1: Visualizing Scientific Data with NumPy and Plotly</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Git can be installed on different platforms, including Windows, macOS, and Linux. Here&#8217;s how to install Git on each of these platforms.</p>
-</div>
-<div class="sect2">
-<h3 id="_installing_git_on_linux"><a class="anchor" href="#_installing_git_on_linux"></a>4.1. Installing Git on Linux</h3>
-<div class="paragraph">
-<p>Most Linux distributions provide Git as part of their default package manager. Use the following command to install Git:</p>
+<p>In this example, we will use NumPy to generate some scientific data and visualize it using Plotly’s interactive graphs within a Dash app.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ sudo apt install git  # For Debian/Ubuntu
-$ sudo yum install git  # For RHEL/CentOS
-$ sudo dnf install git  # For Fedora</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import dash
+from dash import dcc, html
+import dash_bootstrap_components as dbc
+import numpy as np
+import plotly.graph_objs as go
+
+# Generate scientific data using NumPy
+x = np.linspace(0, 10, 100)
+y = np.sin(x)  # A simple sine wave
+
+# Build your components
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.COSMO])
+
+app.layout = dbc.Container([
+    dcc.Graph(id='graph', figure={
+        'data': [
+            go.Scatter(x=x, y=y, mode='lines', name='Sine Wave')
+        ],
+        'layout': go.Layout(title='Sine Wave Visualization', xaxis={'title': 'X-axis'}, yaxis={'title': 'Y-axis'})
+    })
+])
+
+# Run the app
+if __name__ == '__main__':
+    app.run_server(debug=True, port=8052)</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>To verify that Git is installed correctly:</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Explanation:</div>
+<div class="ulist">
+<ul>
+<li>
+<p>We use <code>NumPy</code> to generate an array of values <code>x</code> and compute the corresponding sine wave <code>y</code>.</p>
+</li>
+<li>
+<p><code>plotly.graph_objs</code> is used to create a line graph of the sine wave.</p>
+</li>
+<li>
+<p>The Dash layout contains a <code>dcc.Graph</code> component to display the interactive plot.</p>
+</li>
+</ul>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ git --version</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_installing_git_on_macos"><a class="anchor" href="#_installing_git_on_macos"></a>4.2. Installing Git on macOS</h3>
-<div class="paragraph">
-<p>If you&#8217;re using Homebrew, you can install Git with:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ brew install git</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Alternatively, you can download Git for macOS from the official Git website: <a href="https://git-scm.com" class="bare">git-scm.com</a></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_installing_git_on_windows"><a class="anchor" href="#_installing_git_on_windows"></a>4.3. Installing Git on Windows</h3>
-<div class="paragraph">
-<p>For Windows users, download the Git installer from <a href="https://git-scm.com" class="bare">git-scm.com</a>. Once downloaded, follow the installation wizard to set up Git.</p>
-</div>
-<div class="paragraph">
-<p>After installation, you can use Git via the Command Prompt, PowerShell, or Git Bash, a command-line interface that emulates a Unix shell.</p>
-</div>
-<div class="paragraph">
-<p>To verify Git is installed, open Command Prompt or Git Bash and run:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ git --version</code></pre>
-</div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_summary"><a class="anchor" href="#_summary"></a>5. Summary</h2>
+<h2 id="_example_2_interactive_data_analysis_with_scipy"><a class="anchor" href="#_example_2_interactive_data_analysis_with_scipy"></a>5. Example 2: Interactive Data Analysis with SciPy</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document introduces the basics of version control, highlighting why it&#8217;s important and how Git compares to other VCS tools. By now, you should understand the core concepts of Git, know why it&#8217;s widely used, and be ready to install it on your local machine.</p>
+<p>This example demonstrates how to incorporate data analysis using the SciPy library and create interactive graphs in Dash. We will compute a Fourier Transform and visualize it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import dash
+from dash import dcc, html, Input, Output
+import dash_bootstrap_components as dbc
+import numpy as np
+import scipy.fft as fft
+import plotly.graph_objs as go
+
+# Generate sample data using NumPy
+x = np.linspace(0, 2*np.pi, 1000)
+y = np.sin(5*x) + 0.5*np.random.normal(size=x.shape)  # A sine wave with noise
+
+# Build your components
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.MINTY])
+
+# Layout
+app.layout = dbc.Container([
+    dcc.Graph(id='time-domain', figure={}),
+    dcc.Graph(id='frequency-domain', figure={}),
+    html.Div([
+        dcc.Slider(1, 50, 1, value=5, id='freq-slider', marks={i: f'{i} Hz' for i in range(1, 51)})
+    ])
+])
+
+# Callback to update the graphs based on slider input
+@app.callback(
+    [Output('time-domain', 'figure'),
+     Output('frequency-domain', 'figure')],
+    [Input('freq-slider', 'value')]
+)
+def update_graph(freq):
+    # Time-domain signal (sine wave with noise)
+    y = np.sin(freq * x) + 0.5 * np.random.normal(size=x.shape)
+
+    # Frequency-domain analysis (Fourier Transform)
+    Y = fft.fft(y)
+    freq_vals = fft.fftfreq(len(x), d=x[1]-x[0])
+
+    # Time-domain plot
+    time_fig = go.Figure(
+        data=[go.Scatter(x=x, y=y, mode='lines', name='Time-domain Signal')],
+        layout=go.Layout(title='Time-domain Signal', xaxis={'title': 'Time'}, yaxis={'title': 'Amplitude'})
+    )
+
+    # Frequency-domain plot (magnitude of FFT)
+    freq_fig = go.Figure(
+        data=[go.Scatter(x=freq_vals, y=np.abs(Y), mode='lines', name='Frequency-domain Signal')],
+        layout=go.Layout(title='Frequency-domain Signal', xaxis={'title': 'Frequency (Hz)'}, yaxis={'title': 'Magnitude'})
+    )
+
+    return time_fig, freq_fig
+
+# Run the app
+if __name__ == '__main__':
+    app.run_server(debug=True, port=8053)</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Explanation:</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>np.sin()</code> generates a sine wave signal, and <code>scipy.fft.fft</code> computes its Fourier Transform.</p>
+</li>
+<li>
+<p>We use a Dash <code>Slider</code> component to allow the user to control the frequency of the sine wave.</p>
+</li>
+<li>
+<p>The time-domain and frequency-domain plots update dynamically based on the slider input.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_example_3_scientific_computing_with_matplotlib_and_plotly"><a class="anchor" href="#_example_3_scientific_computing_with_matplotlib_and_plotly"></a>6. Example 3: Scientific Computing with Matplotlib and Plotly</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this example, we use both Matplotlib and Plotly within a Dash app to display complex scientific visualizations. We’ll visualize a mathematical function, and use Plotly for interactivity.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import dash
+from dash import dcc, html, Input, Output
+import dash_bootstrap_components as dbc
+import numpy as np
+import matplotlib.pyplot as plt
+import plotly.tools as tls
+
+# Generate sample data
+x = np.linspace(0, 10, 100)
+y = np.exp(-x) * np.sin(2 * np.pi * x)
+
+# Build your components
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.SANDSTONE])
+
+# Layout
+app.layout = dbc.Container([
+    dcc.Graph(id='matplotlib-plot', figure={})
+])
+
+# Callback to render the Matplotlib plot in Plotly
+@app.callback(
+    Output('matplotlib-plot', 'figure'),
+    Input('matplotlib-plot', 'id')
+)
+def update_graph(_):
+    # Create Matplotlib plot
+    fig, ax = plt.subplots()
+    ax.plot(x, y, label='y = exp(-x) * sin(2πx)')
+    ax.legend()
+    ax.set_title('Exponential Decay with Sinusoidal Oscillation')
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+
+    # Convert Matplotlib figure to Plotly figure
+    plotly_fig = tls.mpl_to_plotly(fig)
+    return plotly_fig
+
+# Run the app
+if __name__ == '__main__':
+    app.run_server(debug=True, port=8055)</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Explanation:</div>
+<div class="ulist">
+<ul>
+<li>
+<p>We use Matplotlib to create a plot of the mathematical function <code>y = exp(-x) * sin(2πx)</code>.</p>
+</li>
+<li>
+<p><code>plotly.tools.mpl_to_plotly</code> converts the Matplotlib figure into a Plotly figure for interactive use in Dash.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion"><a class="anchor" href="#_conclusion"></a>7. Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You&#8217;ve now explored several examples of using Dash for scientific computing.
+By integrating NumPy, SciPy, Matplotlib, and Plotly, you can create highly interactive and visually rich web applications tailored to scientific research and data analysis.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="../project-management/github.html">GitHub and Project Management</a></span>
-  <span class="next"><a href="git-starter.html">Git Starter Guide</a></span>
+  <span class="prev"><a href="../containers/docker/docker-deploy.html">Deploy services</a></span>
 </nav>
 </article>
   </div>

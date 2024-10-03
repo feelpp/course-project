@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Practical Session: Using PostgreSQL with Docker and Injecting a Dataset :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/docker/docker-postgres-example.html">
-    <link rel="prev" href="docker-postgres.html">
-    <link rel="next" href="docker-compose.html">
+    <title>Step-by-Step Guide: Building a Dockerized Data Pipeline with PostgreSQL, Computation, and Visualization using Dash :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/docker/docker-deploy.html">
+    <link rel="prev" href="docker-compose.html">
+    <link rel="next" href="../../visualisation/dash.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
@@ -359,7 +359,7 @@ MathJax.Hub.Config({
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="docker-postgres.html">Running PostgreSQL with Docker</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="4">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="docker-postgres-example.html">Setting Up PostgreSQL with Docker</a>
   </li>
 </ul>
@@ -367,7 +367,7 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="docker-compose.html">Docker Compose</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="docker-deploy.html">Deploy services</a>
   </li>
 </ul>
@@ -424,13 +424,12 @@ MathJax.Hub.Config({
     <li><a href="../../index.html">Course Project</a></li>
     <li><a href="../index.html">Introduction to Containers</a></li>
     <li><a href="index.html">Docker</a></li>
-    <li><a href="docker-postgres.html">Running PostgreSQL with Docker</a></li>
-    <li><a href="docker-postgres-example.html">Setting Up PostgreSQL with Docker</a></li>
+    <li><a href="docker-deploy.html">Deploy services</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/docker-postgres-example.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/docker-deploy.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -450,198 +449,637 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Practical Session: Using PostgreSQL with Docker and Injecting a Dataset</h1>
+<h1 class="page">Step-by-Step Guide: Building a Dockerized Data Pipeline with PostgreSQL, Computation, and Visualization using Dash</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This session demonstrates how to set up PostgreSQL using Docker, inject a dataset into the database, and perform basic queries.</p>
+<p>In this practical session, you will learn how to build and deploy a Docker image that:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Injects time-series data into a PostgreSQL database.</p>
+</li>
+<li>
+<p>Enables computations on the data using Python.</p>
+</li>
+<li>
+<p>Provides a web server using Dash (Plotly) to visualize the results.</p>
+</li>
+<li>
+<p>Deploys the services using Docker Compose.</p>
+</li>
+<li>
+<p>Optionally, deploys the services to a server or cloud environment.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_step_1_set_up_postgresql_with_docker"><a class="anchor" href="#_step_1_set_up_postgresql_with_docker"></a>1. Step 1: Set up PostgreSQL with Docker</h2>
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>1. Prerequisites</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Pull the official PostgreSQL image and start a container.</p>
+<p>Ensure the following are installed on your machine:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Docker</p>
+</li>
+<li>
+<p>Docker Compose</p>
+</li>
+<li>
+<p>Python 3.x (optional for local testing)</p>
+</li>
+<li>
+<p>PostgreSQL client (optional for local testing)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_1_setting_up_the_project_directory_structure"><a class="anchor" href="#_step_1_setting_up_the_project_directory_structure"></a>2. Step 1: Setting Up the Project Directory Structure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create a directory structure for your project with the following command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker pull postgres
-docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir docker-data-pipeline
+cd docker-data-pipeline
+mkdir -p app db
+touch app/__init__.py app/data_injector.py app/compute.py app/web_visualizer.py Dockerfile docker-compose.yml</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_step_2_prepare_the_dataset"><a class="anchor" href="#_step_2_prepare_the_dataset"></a>2. Step 2: Prepare the Dataset</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s use a small CSV dataset for this session. Create a <code>data.csv</code> file with the following content:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. data.csv</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">id</th>
-<th class="tableblock halign-left valign-top">name</th>
-<th class="tableblock halign-left valign-top">age</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">John Doe</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">30</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Jane Smith</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">25</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Emily Johnson</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">22</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_step_3_create_a_docker_volume_for_persistence"><a class="anchor" href="#_step_3_create_a_docker_volume_for_persistence"></a>3. Step 3: Create a Docker Volume for Persistence</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>We&#8217;ll create a volume to persist PostgreSQL data and mount it to the container:</p>
+<p>The project structure is:</p>
 </div>
 <div class="listingblock">
-<div class="title">Using Docker Volumes to Persist Data</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker volume create pgdata
-docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -v pgdata:/var/lib/postgresql/data -d postgres</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker-data-pipeline
+│
+├── app
+│   ├── __init__.py
+│   ├── data_injector.py
+│   ├── compute.py
+│   ├── web_visualizer.py
+│
+├── db
+│   └── init.sql
+│
+├── Dockerfile
+└── docker-compose.yml</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_step_4_connect_to_the_postgresql_container"><a class="anchor" href="#_step_4_connect_to_the_postgresql_container"></a>4. Step 4: Connect to the PostgreSQL Container</h2>
+<h2 id="_step_2_setting_up_postgresql_database_with_docker"><a class="anchor" href="#_step_2_setting_up_postgresql_database_with_docker"></a>3. Step 2: Setting Up PostgreSQL Database with Docker</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Now, connect to the running Postgres instance:</p>
+<p>First, let&#8217;s set up a PostgreSQL database in Docker.</p>
 </div>
-<div class="listingblock">
-<div class="title">Using <code>psql</code> to Connect to Postgres</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker exec -it some-postgres psql -U postgres</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_step_5_create_a_table_in_postgres"><a class="anchor" href="#_step_5_create_a_table_in_postgres"></a>5. Step 5: Create a Table in Postgres</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Create a new table to hold our dataset:</p>
+<p>Add the following lines to <code>db/init.sql</code> to create a table and define the schema for time-series data.</p>
 </div>
 <div class="listingblock">
-<div class="title">Using SQL language to Create a Table</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE people (
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE time_series (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(100),
-    age INT
+    timestamp TIMESTAMPTZ NOT NULL,
+    value NUMERIC
 );</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_step_6_import_the_dataset_into_postgresql"><a class="anchor" href="#_step_6_import_the_dataset_into_postgresql"></a>6. Step 6: Import the Dataset into PostgreSQL</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>To load the CSV file into the Postgres container, we can use the <code>COPY</code> command.
-First, copy the <code>data.csv</code> file to the running container:</p>
+<p>Now, configure the <code>docker-compose.yml</code> file to include PostgreSQL as a service.</p>
 </div>
 <div class="listingblock">
-<div class="title">Using <code>docker cp</code> to Copy Files to a Container</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker cp data.csv some-postgres:/data.csv</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then, import the CSV data into the <code>people</code> table:</p>
-</div>
-<div class="listingblock">
-<div class="title">Using SQL language to Import Data</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">COPY people(id, name, age)
-FROM '/data.csv'
-DELIMITER ','
-CSV HEADER;</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_step_7_query_the_data"><a class="anchor" href="#_step_7_query_the_data"></a>7. Step 7: Query the Data</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Now, let&#8217;s query the data to ensure it&#8217;s loaded correctly:</p>
-</div>
-<div class="listingblock">
-<div class="title">Using SQL language to Query Data</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT * FROM people;</code></pre>
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">version: '3'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: timeseries_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You should see output similar to this:</p>
+<p>In this setup, Docker Compose will run a PostgreSQL container, initialize the database using the <code>init.sql</code> script, and make the database available at <code>localhost:5432</code>.</p>
+</div>
+<div class="paragraph">
+<p>Run the PostgreSQL container:</p>
 </div>
 <div class="listingblock">
-<div class="title">Query Output</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-output hljs" data-lang="output">inc
- id |    name     | age
-----+-------------+-----
-  1 | John Doe    |  30
-  2 | Jane Smith  |  25
-  3 | Emily Johnson |  22
-(3 rows)</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker-compose up -d postgres</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Check if PostgreSQL is running:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker ps</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can now interact with the database using any PostgreSQL client by connecting to <code>localhost:5432</code> with the username <code>user</code> and password <code>password</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_step_8_clean_up"><a class="anchor" href="#_step_8_clean_up"></a>8. Step 8: Clean Up</h2>
+<h2 id="_step_3_injecting_time_series_data_into_postgresql"><a class="anchor" href="#_step_3_injecting_time_series_data_into_postgresql"></a>4. Step 3: Injecting Time-Series Data into PostgreSQL</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When you&#8217;re done, stop and remove the container:</p>
+<p>Next, we will create a Python script to inject sample time-series data into the PostgreSQL database.</p>
+</div>
+<div class="paragraph">
+<p>In <code>app/data_injector.py</code>, add the following code:</p>
 </div>
 <div class="listingblock">
-<div class="title">Using Docker Commands to Clean Up</div>
+<div class="title"><code>app/data_injector.py</code></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker stop some-postgres
-docker rm some-postgres
-docker volume rm pgdata</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import psycopg2
+from datetime import datetime, timedelta
+import random
+
+def inject_data():
+    conn = psycopg2.connect(
+        dbname="timeseries_db",
+        user="user",
+        password="password",
+        host="postgres"
+    )
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM time_series;")
+
+    start_time = datetime.now()
+
+    for i in range(100):
+        timestamp = start_time - timedelta(hours=i)
+        value = random.uniform(10, 100)
+        cursor.execute("INSERT INTO time_series (timestamp, value) VALUES (%s, %s)", (timestamp, value))
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+if __name__ == '__main__':
+    inject_data()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This script injects 100 random time-series data points into the PostgreSQL database.
+The <code>psycopg2</code> library is used to connect to PostgreSQL.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_4_performing_computations_on_the_data"><a class="anchor" href="#_step_4_performing_computations_on_the_data"></a>5. Step 4: Performing Computations on the Data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Next, we&#8217;ll add a script to perform some basic computations on the injected data, such as calculating the average value over the dataset.</p>
+</div>
+<div class="paragraph">
+<p>In <code>app/compute.py</code>, add the following code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import psycopg2
+
+def compute_average():
+    conn = psycopg2.connect(
+        dbname="timeseries_db",
+        user="user",
+        password="password",
+        host="postgres"
+    )
+    cursor = conn.cursor()
+    cursor.execute("SELECT AVG(value) FROM time_series;")
+    avg_value = cursor.fetchone()[0]
+    conn.close()
+    return avg_value
+
+if __name__ == '__main__':
+    avg = compute_average()
+    print(f"Average value: {avg}")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This script retrieves the average value from the <code>time_series</code> table.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_5_visualizing_results_using_dash_plotly"><a class="anchor" href="#_step_5_visualizing_results_using_dash_plotly"></a>6. Step 5: Visualizing Results Using Dash (Plotly)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We will now create a simple web server using Dash to visualize the time-series data.</p>
+</div>
+<div class="paragraph">
+<p>In <code>app/web_visualizer.py</code>, add the following code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import dash
+from dash import dcc, html
+import plotly.graph_objects as go
+import psycopg2
+
+def fetch_data():
+    conn = psycopg2.connect(
+        dbname="timeseries_db",
+        user="user",
+        password="password",
+        host="postgres"
+    )
+    cursor = conn.cursor()
+    cursor.execute("SELECT timestamp, value FROM time_series ORDER BY timestamp;")
+    data = cursor.fetchall()
+    conn.close()
+    return data
+
+app = dash.Dash(__name__)
+
+data = fetch_data()
+timestamps, values = zip(*data)
+
+app.layout = html.Div(children=[
+    html.H1(children='Time Series Visualization'),
+
+    dcc.Graph(
+        id='time-series-plot',
+        figure={
+            'data': [
+                go.Scatter(x=timestamps, y=values, mode='lines', name='Value')
+            ],
+            'layout': go.Layout(
+                title='Time Series Data',
+                xaxis={'title': 'Time'},
+                yaxis={'title': 'Value'}
+            )
+        }
+    )
+])
+
+if __name__ == '__main__':
+    app.run_server(host='0.0.0.0', port=8050)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This script creates a Dash web server and displays a time-series plot with the data retrieved from PostgreSQL.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_6_dockerizing_the_application"><a class="anchor" href="#_step_6_dockerizing_the_application"></a>7. Step 6: Dockerizing the Application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now we will create a <code>Dockerfile</code> to build the image containing the data injector, computation scripts, and Dash web server.</p>
+</div>
+<div class="paragraph">
+<p>Add the following content to the <code>Dockerfile</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Dockerfile hljs" data-lang="Dockerfile"># Use an official Python runtime as a parent image
+FROM python:3.9-slim
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the current directory contents into the container
+COPY app /app
+
+# Install Python dependencies
+RUN pip install psycopg2 dash plotly
+
+# Expose port 8050 for the Dash web server
+EXPOSE 8050
+
+# Define the default command
+CMD ["python", "web_visualizer.py"]</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_conclusion"><a class="anchor" href="#_conclusion"></a>9. Conclusion</h2>
+<h2 id="_step_7_extending_docker_compose_yml"><a class="anchor" href="#_step_7_extending_docker_compose_yml"></a>8. Step 7: Extending docker-compose.yml</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this session, we&#8217;ve set up PostgreSQL using Docker, imported a small dataset, and performed basic queries. This setup can be expanded to handle larger datasets and more complex queries.</p>
+<p>We will extend the <code>docker-compose.yml</code> file to build and run our application along with PostgreSQL.</p>
+</div>
+<div class="paragraph">
+<p>Update the <code>docker-compose.yml</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">version: '3'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: timeseries_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+
+  app:
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - "8050:8050"
+    networks:
+      - app-network
+    command: bash -c "python data_injector.py &amp;&amp; python web_visualizer.py"
+
+networks:
+  app-network:
+    driver: bridge</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_8_running_the_docker_containers"><a class="anchor" href="#_step_8_running_the_docker_containers"></a>9. Step 8: Running the Docker Containers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that everything is set up, you can build and run the containers using <code>docker-compose</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker-compose up --build</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will build the Docker image, inject the time-series data, and start the Dash web server.</p>
+</div>
+<div class="paragraph">
+<p>Visit <code><a href="http://localhost:8050" class="bare">localhost:8050</a></code> in your browser to view the time-series data visualization.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_9_deploying_the_services"><a class="anchor" href="#_step_9_deploying_the_services"></a>10. Step 9: Deploying the Services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After building and testing the services locally, the next step is to deploy them to a server or cloud environment for production use. Here&#8217;s how to deploy the Dockerized services.</p>
+</div>
+<div class="sect2">
+<h3 id="_pre_deployment_checklist"><a class="anchor" href="#_pre_deployment_checklist"></a>10.1. Pre-deployment Checklist</h3>
+<div class="paragraph">
+<p>Ensure the following before deployment:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A host or server where Docker and Docker Compose are installed (this could be a cloud instance like AWS EC2, a VPS, or a local server).</p>
+</li>
+<li>
+<p>Ports <code>5432</code> (PostgreSQL) and <code>8050</code> (Dash Web Application) are open and accessible from outside (check firewall rules).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deploying_locally_or_remotely"><a class="anchor" href="#_deploying_locally_or_remotely"></a>10.2. Deploying Locally or Remotely</h3>
+<div class="paragraph">
+<p>If you&#8217;re deploying on your local machine or a server, follow these steps:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Transfer the Project</dt>
+<dd>
+<p>If you are deploying remotely, copy the project directory to the target server using <code>scp</code> or <code>rsync</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Example using scp to transfer files to a remote server
+scp -r docker-data-pipeline/ user@your-server:/home/user/docker-data-pipeline/</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Run the Docker Compose Command</dt>
+<dd>
+<p>Navigate to the project directory on the server and run the following command to deploy the services.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Deploying the services
+cd docker-data-pipeline
+docker-compose up -d</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Verify Deployment</dt>
+<dd>
+<p>After running the <code>docker-compose up -d</code> command, ensure that the containers are up and running.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker ps</code></pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>You should see two services running:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The PostgreSQL container on port <code>5432</code>.</p>
+</li>
+<li>
+<p>The Dash web application container on port <code>8050</code>.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Access the Web Application</dt>
+<dd>
+<p>Open a web browser and visit your server&#8217;s IP address on port <code>8050</code> to access the Dash interface.</p>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>http://your-server-ip:8050</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_setting_up_auto_restart_for_services"><a class="anchor" href="#_setting_up_auto_restart_for_services"></a>10.3. Setting Up Auto-Restart for Services</h3>
+<div class="paragraph">
+<p>For production, you may want the containers to restart automatically if the server reboots. You can add the <code>restart: always</code> policy to your <code>docker-compose.yml</code> file to achieve this.</p>
+</div>
+<div class="paragraph">
+<p>Update <code>docker-compose.yml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>docker-compose.yml</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">version: '3'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: timeseries_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+    restart: always
+
+  app:
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - "8050:8050"
+    networks:
+      - app-network
+    command: bash -c "python data_injector.py &amp;&amp; python web_visualizer.py"
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This ensures that both services will restart automatically when the server reboots or if they encounter any failures.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_optional_deploying_with_docker_swarm_or_kubernetes"><a class="anchor" href="#_optional_deploying_with_docker_swarm_or_kubernetes"></a>10.4. Optional: Deploying with Docker Swarm or Kubernetes</h3>
+<div class="paragraph">
+<p>For larger-scale deployments or high availability, you may consider using Docker Swarm or Kubernetes to manage the services. Both platforms provide orchestration capabilities and allow scaling across multiple nodes.</p>
+</div>
+<div class="paragraph">
+<p>To deploy with Docker Swarm:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker swarm init  # Initialize the Swarm
+docker stack deploy -c docker-compose.yml data-pipeline  # Deploy the stack</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To deploy with Kubernetes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Convert the <code>docker-compose.yml</code> file to Kubernetes YAML format.</p>
+</li>
+<li>
+<p>Use <code>kubectl apply</code> to deploy the services to a Kubernetes cluster.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_github_actions_for_continuous_deployment_optional"><a class="anchor" href="#_using_github_actions_for_continuous_deployment_optional"></a>10.5. Using GitHub Actions for Continuous Deployment (Optional)</h3>
+<div class="paragraph">
+<p>You can automate the deployment process using GitHub Actions to build and push the Docker image to a container registry like Docker Hub or GitHub Container Registry. Add the following <code>.github/workflows/deploy.yml</code> file to your GitHub repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">name: Deploy Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ghcr.io/your-username/docker-data-pipeline:latest</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With this setup, every push to the <code>main</code> branch will automatically build the Docker image and push it to GitHub Container Registry. Then, you can pull the image and deploy it to your production server.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker pull ghcr.io/your-username/docker-data-pipeline:latest
+docker-compose up -d</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion"><a class="anchor" href="#_conclusion"></a>11. Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You&#8217;ve now successfully deployed a Docker-based time-series data pipeline that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Injects data into PostgreSQL.</p>
+</li>
+<li>
+<p>Performs computations on the data.</p>
+</li>
+<li>
+<p>Provides a web-based visualization using Dash from Plotly.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This pipeline can be extended to handle more complex computations and scaled up using Docker Swarm, Kubernetes, or other container orchestration platforms.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="docker-postgres.html">Running PostgreSQL with Docker</a></span>
-  <span class="next"><a href="docker-compose.html">Docker Compose</a></span>
+  <span class="prev"><a href="docker-compose.html">Docker Compose</a></span>
+  <span class="next"><a href="../../visualisation/dash.html">Dash Turorial</a></span>
 </nav>
 </article>
   </div>
