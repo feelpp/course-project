@@ -1,0 +1,472 @@
+= Step-by-Step Guide: Building a Dockerized Data Pipeline with PostgreSQL, Computation, and Visualization using Dash
+:sectnums:
+:sectnumlevels: 4
+
+In this practical session, you will learn how to build and deploy a Docker image that:
+
+1. Injects time-series data into a PostgreSQL database.
+2. Enables computations on the data using Python.
+3. Provides a web server using Dash (Plotly) to visualize the results.
+4. Deploys the services using Docker Compose.
+5. Optionally, deploys the services to a server or cloud environment.
+
+== Prerequisites
+
+Ensure the following are installed on your machine:
+
+* Docker
+* Docker Compose
+* Python 3.x (optional for local testing)
+* PostgreSQL client (optional for local testing)
+
+== Step 1: Setting Up the Project Directory Structure
+
+Create a directory structure for your project with the following command:
+
+[source,bash]
+----
+mkdir docker-data-pipeline
+cd docker-data-pipeline
+mkdir -p app db
+touch app/__init__.py app/data_injector.py app/compute.py app/web_visualizer.py Dockerfile docker-compose.yml
+----
+
+The project structure is:
+[source,bash]
+----
+docker-data-pipeline
+│
+├── app
+│   ├── __init__.py
+│   ├── data_injector.py
+│   ├── compute.py
+│   ├── web_visualizer.py
+│
+├── db
+│   └── init.sql
+│
+├── Dockerfile
+└── docker-compose.yml
+----
+
+== Step 2: Setting Up PostgreSQL Database with Docker
+
+First, let's set up a PostgreSQL database in Docker.
+
+Add the following lines to `db/init.sql` to create a table and define the schema for time-series data.
+
+[source,sql]
+----
+CREATE TABLE time_series (
+    id SERIAL PRIMARY KEY,
+    timestamp TIMESTAMPTZ NOT NULL,
+    value NUMERIC
+);
+----
+
+Now, configure the `docker-compose.yml` file to include PostgreSQL as a service.
+
+[source,yml]
+----
+version: '3'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: timeseries_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+----
+
+In this setup, Docker Compose will run a PostgreSQL container, initialize the database using the `init.sql` script, and make the database available at `localhost:5432`.
+
+Run the PostgreSQL container:
+
+[source,bash]
+----
+docker-compose up -d postgres
+----
+
+Check if PostgreSQL is running:
+
+[source,bash]
+----
+docker ps
+----
+
+You can now interact with the database using any PostgreSQL client by connecting to `localhost:5432` with the username `user` and password `password`.
+
+== Step 3: Injecting Time-Series Data into PostgreSQL
+
+Next, we will create a Python script to inject sample time-series data into the PostgreSQL database.
+
+In `app/data_injector.py`, add the following code:
+
+.`app/data_injector.py`
+[source,python]
+----
+import psycopg2
+from datetime import datetime, timedelta
+import random
+
+def inject_data():
+    conn = psycopg2.connect(
+        dbname="timeseries_db",
+        user="user",
+        password="password",
+        host="postgres"
+    )
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM time_series;")
+
+    start_time = datetime.now()
+
+    for i in range(100):
+        timestamp = start_time - timedelta(hours=i)
+        value = random.uniform(10, 100)
+        cursor.execute("INSERT INTO time_series (timestamp, value) VALUES (%s, %s)", (timestamp, value))
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+if __name__ == '__main__':
+    inject_data()
+----
+
+This script injects 100 random time-series data points into the PostgreSQL database. 
+The `psycopg2` library is used to connect to PostgreSQL.
+
+== Step 4: Performing Computations on the Data
+
+Next, we'll add a script to perform some basic computations on the injected data, such as calculating the average value over the dataset.
+
+In `app/compute.py`, add the following code:
+
+[source,python]
+----
+import psycopg2
+
+def compute_average():
+    conn = psycopg2.connect(
+        dbname="timeseries_db",
+        user="user",
+        password="password",
+        host="postgres"
+    )
+    cursor = conn.cursor()
+    cursor.execute("SELECT AVG(value) FROM time_series;")
+    avg_value = cursor.fetchone()[0]
+    conn.close()
+    return avg_value
+
+if __name__ == '__main__':
+    avg = compute_average()
+    print(f"Average value: {avg}")
+----
+
+This script retrieves the average value from the `time_series` table.
+
+== Step 5: Visualizing Results Using Dash (Plotly)
+
+We will now create a simple web server using Dash to visualize the time-series data.
+
+In `app/web_visualizer.py`, add the following code:
+
+[source,python]
+----
+import dash
+from dash import dcc, html
+import plotly.graph_objects as go
+import psycopg2
+
+def fetch_data():
+    conn = psycopg2.connect(
+        dbname="timeseries_db",
+        user="user",
+        password="password",
+        host="postgres"
+    )
+    cursor = conn.cursor()
+    cursor.execute("SELECT timestamp, value FROM time_series ORDER BY timestamp;")
+    data = cursor.fetchall()
+    conn.close()
+    return data
+
+app = dash.Dash(__name__)
+
+data = fetch_data()
+timestamps, values = zip(*data)
+
+app.layout = html.Div(children=[
+    html.H1(children='Time Series Visualization'),
+
+    dcc.Graph(
+        id='time-series-plot',
+        figure={
+            'data': [
+                go.Scatter(x=timestamps, y=values, mode='lines', name='Value')
+            ],
+            'layout': go.Layout(
+                title='Time Series Data',
+                xaxis={'title': 'Time'},
+                yaxis={'title': 'Value'}
+            )
+        }
+    )
+])
+
+if __name__ == '__main__':
+    app.run_server(host='0.0.0.0', port=8050)
+----
+
+This script creates a Dash web server and displays a time-series plot with the data retrieved from PostgreSQL.
+
+== Step 6: Dockerizing the Application
+
+Now we will create a `Dockerfile` to build the image containing the data injector, computation scripts, and Dash web server.
+
+Add the following content to the `Dockerfile`:
+
+[source,Dockerfile]
+----
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the current directory contents into the container
+COPY app /app
+
+# Install Python dependencies
+RUN pip install psycopg2 dash plotly
+
+# Expose port 8050 for the Dash web server
+EXPOSE 8050
+
+# Define the default command
+CMD ["python", "web_visualizer.py"]
+----
+
+== Step 7: Extending docker-compose.yml
+
+We will extend the `docker-compose.yml` file to build and run our application along with PostgreSQL.
+
+Update the `docker-compose.yml` file:
+
+[source,yml]
+----
+version: '3'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: timeseries_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+
+  app:
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - "8050:8050"
+    networks:
+      - app-network
+    command: bash -c "python data_injector.py && python web_visualizer.py"
+
+networks:
+  app-network:
+    driver: bridge
+----
+
+== Step 8: Running the Docker Containers
+
+Now that everything is set up, you can build and run the containers using `docker-compose`:
+
+[source,bash]
+----
+docker-compose up --build
+----
+
+This will build the Docker image, inject the time-series data, and start the Dash web server.
+
+Visit `http://localhost:8050` in your browser to view the time-series data visualization.
+
+== Step 9: Deploying the Services
+
+After building and testing the services locally, the next step is to deploy them to a server or cloud environment for production use. Here's how to deploy the Dockerized services.
+
+=== Pre-deployment Checklist
+
+Ensure the following before deployment:
+
+- A host or server where Docker and Docker Compose are installed (this could be a cloud instance like AWS EC2, a VPS, or a local server).
+- Ports `5432` (PostgreSQL) and `8050` (Dash Web Application) are open and accessible from outside (check firewall rules).
+
+=== Deploying Locally or Remotely
+
+If you're deploying on your local machine or a server, follow these steps:
+
+Transfer the Project:: If you are deploying remotely, copy the project directory to the target server using `scp` or `rsync`.
++
+[source,bash]
+----
+# Example using scp to transfer files to a remote server
+scp -r docker-data-pipeline/ user@your-server:/home/user/docker-data-pipeline/
+----
+
+Run the Docker Compose Command:: Navigate to the project directory on the server and run the following command to deploy the services.
++
+[source,bash]
+----
+# Deploying the services
+cd docker-data-pipeline
+docker-compose up -d
+----
+
+Verify Deployment:: After running the `docker-compose up -d` command, ensure that the containers are up and running.
++
+[source,bash]
+----
+docker ps
+----
+
+You should see two services running:
+
+- The PostgreSQL container on port `5432`.
+- The Dash web application container on port `8050`.
+
+Access the Web Application:: Open a web browser and visit your server's IP address on port `8050` to access the Dash interface.
++
+For example:
+----
+http://your-server-ip:8050
+----
+
+=== Setting Up Auto-Restart for Services
+
+For production, you may want the containers to restart automatically if the server reboots. You can add the `restart: always` policy to your `docker-compose.yml` file to achieve this.
+
+Update `docker-compose.yml`:
+
+.`docker-compose.yml`
+[source,yml]
+----
+version: '3'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: timeseries_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+    restart: always
+
+  app:
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - "8050:8050"
+    networks:
+      - app-network
+    command: bash -c "python data_injector.py && python web_visualizer.py"
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge
+----
+
+This ensures that both services will restart automatically when the server reboots or if they encounter any failures.
+
+=== Optional: Deploying with Docker Swarm or Kubernetes
+
+For larger-scale deployments or high availability, you may consider using Docker Swarm or Kubernetes to manage the services. Both platforms provide orchestration capabilities and allow scaling across multiple nodes.
+
+To deploy with Docker Swarm:
+[source,bash]
+----
+docker swarm init  # Initialize the Swarm
+docker stack deploy -c docker-compose.yml data-pipeline  # Deploy the stack
+----
+
+To deploy with Kubernetes:
+
+- Convert the `docker-compose.yml` file to Kubernetes YAML format.
+- Use `kubectl apply` to deploy the services to a Kubernetes cluster.
+
+=== Using GitHub Actions for Continuous Deployment (Optional)
+
+You can automate the deployment process using GitHub Actions to build and push the Docker image to a container registry like Docker Hub or GitHub Container Registry. Add the following `.github/workflows/deploy.yml` file to your GitHub repository:
+
+[source,yml]
+----
+name: Deploy Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ghcr.io/your-username/docker-data-pipeline:latest
+----
+
+With this setup, every push to the `main` branch will automatically build the Docker image and push it to GitHub Container Registry. Then, you can pull the image and deploy it to your production server.
+
+[source,bash]
+----
+docker pull ghcr.io/your-username/docker-data-pipeline:latest
+docker-compose up -d
+----
+
+== Conclusion
+
+You've now successfully deployed a Docker-based time-series data pipeline that:
+
+- Injects data into PostgreSQL.
+- Performs computations on the data.
+- Provides a web-based visualization using Dash from Plotly.
+
+This pipeline can be extended to handle more complex computations and scaled up using Docker Swarm, Kubernetes, or other container orchestration platforms.

@@ -1,0 +1,209 @@
+= Dash for Scientific Computing
+A tutorial to use Dash for building interactive web applications focused on scientific computing
+
+Dash provides a flexible and powerful platform for scientists and engineers to create interactive web-based applications. This tutorial expands on the basics and focuses on how to integrate Dash with scientific computing libraries such as NumPy, SciPy, and Matplotlib, while using Plotly for interactive visualizations.
+
+== Prerequisites
+Ensure that you have Python installed, and install the following packages:
+[source,python]
+----
+pip install dash dash-bootstrap-components pandas plotly numpy scipy matplotlib
+----
+
+== Scientific Libraries Overview
+
+Dash integrates well with libraries used for scientific computing. Here are some essential libraries:
+
+NumPy:: A fundamental package for numerical computing in Python.
+SciPy:: Builds on NumPy to provide a collection of algorithms and functions for scientific computing.
+Matplotlib:: A comprehensive library for creating static, animated, and interactive visualizations in Python.
+Plotly:: Provides interactive graphing tools for scientific data visualization.
+
+== Resources to help you learn Dash
+
+Check out the book:: https://www.barnesandnoble.com/w/python-dash-adam-schroeder/1141355104?ean=9781718502222
+Important app components::
+  * https://dash.plotly.com/dash-core-components[Dash Core Components]
+  * https://dash-bootstrap-components.opensource.faculty.ai/docs/components/[Dash Bootstrap Components]
+  * https://www.dash-mantine-components.com/[Dash Mantine Components]
+Layout components::
+  * https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/[Dash Bootstrap for Layout]
+Plotly Graphing library::
+  * https://plotly.com/python/[Plotly Graphs]
+  * https://plotly.com/python-api-reference/plotly.express.html[Plotly Express API]
+Cheat Sheet to style your app::
+  * https://dashcheatsheet.pythonanywhere.com/[Dash Bootstrap Cheat Sheet]
+Speed up your learning process::
+  * https://community.plotly.com[Join the Plotly Community Forum]
+
+//Ready to share your app with others on the web? 
+//  * https://github.com/andrew-hossack/dash-tools[App deployment with Dash-tools]
+
+== Example 1: Visualizing Scientific Data with NumPy and Plotly
+In this example, we will use NumPy to generate some scientific data and visualize it using Plotly’s interactive graphs within a Dash app.
+
+[source,python]
+----
+import dash
+from dash import dcc, html
+import dash_bootstrap_components as dbc
+import numpy as np
+import plotly.graph_objs as go
+
+# Generate scientific data using NumPy
+x = np.linspace(0, 10, 100)
+y = np.sin(x)  # A simple sine wave
+
+# Build your components
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.COSMO])
+
+app.layout = dbc.Container([
+    dcc.Graph(id='graph', figure={
+        'data': [
+            go.Scatter(x=x, y=y, mode='lines', name='Sine Wave')
+        ],
+        'layout': go.Layout(title='Sine Wave Visualization', xaxis={'title': 'X-axis'}, yaxis={'title': 'Y-axis'})
+    })
+])
+
+# Run the app
+if __name__ == '__main__':
+    app.run_server(debug=True, port=8052)
+----
+
+.Explanation:
+[NOTE]
+====
+* We use `NumPy` to generate an array of values `x` and compute the corresponding sine wave `y`.
+* `plotly.graph_objs` is used to create a line graph of the sine wave.
+* The Dash layout contains a `dcc.Graph` component to display the interactive plot.
+====
+
+== Example 2: Interactive Data Analysis with SciPy
+This example demonstrates how to incorporate data analysis using the SciPy library and create interactive graphs in Dash. We will compute a Fourier Transform and visualize it.
+
+[source,python]
+----
+import dash
+from dash import dcc, html, Input, Output
+import dash_bootstrap_components as dbc
+import numpy as np
+import scipy.fft as fft
+import plotly.graph_objs as go
+
+# Generate sample data using NumPy
+x = np.linspace(0, 2*np.pi, 1000)
+y = np.sin(5*x) + 0.5*np.random.normal(size=x.shape)  # A sine wave with noise
+
+# Build your components
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.MINTY])
+
+# Layout
+app.layout = dbc.Container([
+    dcc.Graph(id='time-domain', figure={}),
+    dcc.Graph(id='frequency-domain', figure={}),
+    html.Div([
+        dcc.Slider(1, 50, 1, value=5, id='freq-slider', marks={i: f'{i} Hz' for i in range(1, 51)})
+    ])
+])
+
+# Callback to update the graphs based on slider input
+@app.callback(
+    [Output('time-domain', 'figure'),
+     Output('frequency-domain', 'figure')],
+    [Input('freq-slider', 'value')]
+)
+def update_graph(freq):
+    # Time-domain signal (sine wave with noise)
+    y = np.sin(freq * x) + 0.5 * np.random.normal(size=x.shape)
+
+    # Frequency-domain analysis (Fourier Transform)
+    Y = fft.fft(y)
+    freq_vals = fft.fftfreq(len(x), d=x[1]-x[0])
+
+    # Time-domain plot
+    time_fig = go.Figure(
+        data=[go.Scatter(x=x, y=y, mode='lines', name='Time-domain Signal')],
+        layout=go.Layout(title='Time-domain Signal', xaxis={'title': 'Time'}, yaxis={'title': 'Amplitude'})
+    )
+
+    # Frequency-domain plot (magnitude of FFT)
+    freq_fig = go.Figure(
+        data=[go.Scatter(x=freq_vals, y=np.abs(Y), mode='lines', name='Frequency-domain Signal')],
+        layout=go.Layout(title='Frequency-domain Signal', xaxis={'title': 'Frequency (Hz)'}, yaxis={'title': 'Magnitude'})
+    )
+
+    return time_fig, freq_fig
+
+# Run the app
+if __name__ == '__main__':
+    app.run_server(debug=True, port=8053)
+----
+
+.Explanation:
+[NOTE]
+====
+* `np.sin()` generates a sine wave signal, and `scipy.fft.fft` computes its Fourier Transform.
+* We use a Dash `Slider` component to allow the user to control the frequency of the sine wave.
+* The time-domain and frequency-domain plots update dynamically based on the slider input.
+====
+
+== Example 3: Scientific Computing with Matplotlib and Plotly
+
+In this example, we use both Matplotlib and Plotly within a Dash app to display complex scientific visualizations. We’ll visualize a mathematical function, and use Plotly for interactivity.
+
+[source,python]
+----
+import dash
+from dash import dcc, html, Input, Output
+import dash_bootstrap_components as dbc
+import numpy as np
+import matplotlib.pyplot as plt
+import plotly.tools as tls
+
+# Generate sample data
+x = np.linspace(0, 10, 100)
+y = np.exp(-x) * np.sin(2 * np.pi * x)
+
+# Build your components
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.SANDSTONE])
+
+# Layout
+app.layout = dbc.Container([
+    dcc.Graph(id='matplotlib-plot', figure={})
+])
+
+# Callback to render the Matplotlib plot in Plotly
+@app.callback(
+    Output('matplotlib-plot', 'figure'),
+    Input('matplotlib-plot', 'id')
+)
+def update_graph(_):
+    # Create Matplotlib plot
+    fig, ax = plt.subplots()
+    ax.plot(x, y, label='y = exp(-x) * sin(2πx)')
+    ax.legend()
+    ax.set_title('Exponential Decay with Sinusoidal Oscillation')
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+
+    # Convert Matplotlib figure to Plotly figure
+    plotly_fig = tls.mpl_to_plotly(fig)
+    return plotly_fig
+
+# Run the app
+if __name__ == '__main__':
+    app.run_server(debug=True, port=8055)
+----
+
+.Explanation:
+[NOTE]
+====
+* We use Matplotlib to create a plot of the mathematical function `y = exp(-x) * sin(2πx)`.
+* `plotly.tools.mpl_to_plotly` converts the Matplotlib figure into a Plotly figure for interactive use in Dash.
+====
+
+== Conclusion
+
+You've now explored several examples of using Dash for scientific computing. 
+By integrating NumPy, SciPy, Matplotlib, and Plotly, you can create highly interactive and visually rich web applications tailored to scientific research and data analysis.

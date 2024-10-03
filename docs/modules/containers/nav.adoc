@@ -10,3 +10,4 @@
 *** xref:docker/docker-postgres.adoc[Running PostgreSQL with Docker]
 **** xref:docker/docker-postgres-example.adoc[Setting Up PostgreSQL with Docker]
 *** xref:docker/docker-compose.adoc[Docker Compose]
+*** xref:docker/docker-deploy.adoc[Deploy services]
