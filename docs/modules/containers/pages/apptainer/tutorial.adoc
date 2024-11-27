@@ -1,0 +1,101 @@
+= Apptainer Quick Start Guide
+
+This guide provides a concise introduction to using Apptainer, a container platform optimized for High Performance Computing (HPC) and Enterprise Performance Computing (EPC). Apptainer allows you to build and interact with containers seamlessly, enabling the execution of programs within a container as if they were running on your host system. ￼
+
+== Installation
+
+Apptainer requires a Linux system for operation. Root access is not mandatory if user namespaces are available. To install Apptainer from source, follow the instructions in the INSTALL.md file on GitHub. Alternative installation methods, including using pre-built RPMs, building RPM or Debian packages, installing without root privileges, and utilizing Apptainer on macOS and Windows, are detailed in the installation section of the admin guide.
+
+== Overview of the Apptainer Interface
+
+Apptainer’s command-line interface facilitates transparent interaction with containers. You can execute programs inside a container with the same ease as running them on your host system, allowing for straightforward I/O redirection, piping, argument passing, and access to host files, sockets, and ports. ￼
+
+To view an overview of Apptainer’s options and subcommands, use the help command:
+
+[source,console]
+
+$ apptainer help
+
+== Downloading Images
+
+Apptainer enables interaction with images through various methods, including using image URIs. For example, to pull the lolcow_latest.sif image from ghcr.io, execute:
+
+[source,console]
+
+$ apptainer pull docker://ghcr.io/apptainer/lolcow
+
+== Interacting with Images
+
+=== Shell
+
+The shell command spawns a new shell within your container, allowing interaction as though it were a virtual machine:
+
+[source,console]
+
+$ apptainer shell lolcow_latest.sif
+Apptainer>
+
+The prompt change indicates entry into the container. Within an Apptainer container, you retain the same user identity as on the host system:
+
+[source,console]
+
+Apptainer> whoami
+your_username
+Apptainer> id
+uid=1000(your_username) gid=1000(your_username) groups=1000(your_username),65534(nfsnobody)
+
+=== Executing Commands
+
+The exec command allows execution of custom commands within a container by specifying the image file. For instance, to run the cowsay program within the lolcow_latest.sif container:
+
+[source,console]
+
+$ apptainer exec lolcow_latest.sif cowsay moo
+
+< moo >
+
+    \   ^__^
+     \  (oo)\_______
+        (__)\       )\/\
+            ||----w |
+            ||     ||
+
+This command creates an ephemeral container that executes the specified command and then exits. ￼
+
+== Running a Container
+
+The run command executes the user-defined default command within a container. If the container has a defined runscript, it will be executed:
+
+[source,console]
+
+$ apptainer run lolcow_latest.sif
+
+To pass arguments to the runscript:
+
+[source,console]
+
+$ apptainer run lolcow_latest.sif arg1 arg2
+
+== Working with Files
+
+Apptainer allows seamless access to files on the host system from within a container. By default, your home directory is accessible inside the container. To bind additional directories, use the --bind option:
+
+[source,console]
+
+$ apptainer exec –bind /path/on/host:/path/in/container lolcow_latest.sif ls /path/in/container
+
+== Building Images from Scratch
+
+Apptainer enables building images from scratch using definition files. A definition file specifies the base image and the steps to customize it. To build an image:
+	1.	Create a definition file (e.g., my_container.def).
+	2.	Build the image using the build command:
+
+[source,console]
+
+$ apptainer build my_container.sif my_container.def
+
+For detailed information on writing definition files and building images, refer to the Apptainer User Guide.
+
+== Additional Resources
+
+For further assistance and support, visit the Apptainer Community Support page.
