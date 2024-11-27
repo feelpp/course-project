@@ -1,6 +1,8 @@
 * xref:index.adoc[Introduction to Containers]
 ** xref:apptainer/index.adoc[Apptainer]
 *** xref:apptainer/apptainer-install.adoc[Installing Apptainer]
+*** xref:apptainer/tutorial.adoc[Tutorial]
+
 ** xref:docker/index.adoc[Docker]
 *** xref:docker/docker-overview.adoc[Docker Overview]
 *** xref:docker/docker-problems-solved.adoc[The Problem Docker Solves]
