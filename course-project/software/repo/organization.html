@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Basic SSH Commands :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/linux/ssh/ssh-commands.html">
-    <link rel="prev" href="ssh-setup.html">
-    <link rel="next" href="remote-ssh-vscode.html">
+    <title>Repository Organization for a C++20 Project Using CMake and CTest :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/software/repo/organization.html">
+    <link rel="prev" href="../package-managers.html">
+    <link rel="next" href="../../containers/index.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
@@ -146,35 +146,35 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../index.html">Introduction to Linux</a>
+    <a class="nav-link" href="../../linux/index.html">Introduction to Linux</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Command Line</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../editing.html">File Editing in Linux</a>
+    <a class="nav-link" href="../../linux/editing.html">File Editing in Linux</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../shell.html">Linux Shell Basics</a>
+    <a class="nav-link" href="../../linux/shell.html">Linux Shell Basics</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../text-processing.html">Text Processing</a>
+    <a class="nav-link" href="../../linux/text-processing.html">Text Processing</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Introduction to SSH and Remote-SSH</a>
+    <a class="nav-link" href="../../linux/ssh/index.html">Introduction to SSH and Remote-SSH</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="ssh-setup.html">Setting Up SSH</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="ssh-commands.html">Basic SSH Commands</a>
+    <a class="nav-link" href="../../linux/ssh/ssh-setup.html">Setting Up SSH</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="remote-ssh-vscode.html">Remote-SSH Extension for VS Code</a>
+    <a class="nav-link" href="../../linux/ssh/ssh-commands.html">Basic SSH Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../linux/ssh/remote-ssh-vscode.html">Remote-SSH Extension for VS Code</a>
   </li>
 </ul>
   </li>
@@ -312,13 +312,13 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../software/index.html">Sofware Installation</a>
+    <a class="nav-link" href="../index.html">Sofware Installation</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../software/package-managers.html">Package Managers</a>
+    <a class="nav-link" href="../package-managers.html">Package Managers</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../software/repo/organization.html">Software Repository</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="organization.html">Software Repository</a>
   </li>
 </ul>
   </li>
@@ -434,14 +434,13 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../../index.html">Course Project</a></li>
-    <li><a href="../index.html">Introduction to Linux</a></li>
-    <li><a href="index.html">Introduction to SSH and Remote-SSH</a></li>
-    <li><a href="ssh-commands.html">Basic SSH Commands</a></li>
+    <li><a href="../index.html">Sofware Installation</a></li>
+    <li><a href="organization.html">Software Repository</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/linux/pages/ssh/ssh-commands.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/software/pages/repo/organization.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -457,87 +456,238 @@ MathJax.Hub.Config({
 </div>
 
   <div class="content">
-<aside class="toc sidebar" data-title="Contents" data-levels="3">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Basic SSH Commands</h1>
+<h1 class="page">Repository Organization for a C++20 Project Using CMake and CTest</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_overview">1. Overview</a></li>
+<li><a href="#_recommended_directory_structure">2. Recommended Directory Structure</a></li>
+<li><a href="#_top_level_cmake_configuration">3. Top-Level CMake Configuration</a></li>
+<li><a href="#_library_configuration_srclibslib1cmakelists_txt">4. Library Configuration (src/libs/lib1/CMakeLists.txt)</a></li>
+<li><a href="#_application_configuration_srcappsapp1cmakelists_txt">5. Application Configuration (src/apps/app1/CMakeLists.txt)</a></li>
+<li><a href="#_tests_configuration_testscmakelists_txt">6. Tests Configuration (tests/CMakeLists.txt)</a></li>
+<li><a href="#_github_actions_ci_workflow">7. GitHub Actions CI Workflow</a></li>
+<li><a href="#_additional_best_practices">8. Additional Best Practices</a></li>
+</ul>
+</div>
 <div class="sect1">
-<h2 id="_common_ssh_commands"><a class="anchor" href="#_common_ssh_commands"></a>1. Common SSH Commands</h2>
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>1. Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Once you&#8217;ve set up SSH, here are some common commands for connecting to and managing remote servers.</p>
+<p>This document outlines a recommended repository organization for a C++20 project that uses CMake for build configuration and CTest for testing.
+In this structure, source files—including both library code and application code—are placed under the <code>src/</code> directory.
+Libraries and applications are organized into separate subdirectories to clearly delineate reusable components from executable projects.</p>
 </div>
-<div class="sect2">
-<h3 id="_connecting_to_a_remote_server"><a class="anchor" href="#_connecting_to_a_remote_server"></a>1.1. Connecting to a Remote Server</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_recommended_directory_structure"><a class="anchor" href="#_recommended_directory_structure"></a>2. Recommended Directory Structure</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs" data-lang="none">my_project/
+├── .github/
+│   └── workflows/
+│       └── ci.yml            # GitHub Actions CI configuration file
+├── build/                    # Out-of-source build directory (typically added to .gitignore)
+├── cmake/
+│   └── Modules/              # Custom CMake modules (if needed)
+├── docs/                     # Documentation (can include Doxygen configs, etc.)
+├── src/
+│   ├── libs/                 # Library code (source + public headers)
+│   │   └── lib1/.            # Library-specific directory (name matches your library)
+│   │       ├── module1.hpp   # Public header(s) for library users
+│   │       ├── module2.hpp
+│   │       ├── module1.cpp   # Library implementation files
+│   │       └── CMakeLists.txt  # CMake configuration for the library target
+│   └── apps/                 # Executable applications
+│       └── app1/             # Example application
+│           ├── main.cpp      # Application entry point
+│           └── CMakeLists.txt  # CMake configuration for the app target (links to the library)
+├── tests/
+│   ├── CMakeLists.txt        # CTest configuration for tests
+│   ├── test_main.cpp         # Main test runner file
+│   └── test_module1.cpp      # Additional test files
+├── CMakeLists.txt            # Top-level CMake configuration file
+├── .gitignore                # Git ignore file for build artifacts, etc.
+└── README.md                 # Project overview, build/test instructions, etc.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_top_level_cmake_configuration"><a class="anchor" href="#_top_level_cmake_configuration"></a>3. Top-Level CMake Configuration</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>To connect to a remote server via SSH:</p>
+<p>The top-level <code>CMakeLists.txt</code> configures the project and delegates to subdirectories for libraries, applications, and tests.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ssh user@remote-server</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Replace <code>user</code> with your username and <code>remote-server</code> with the IP address or domain name of the server.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_using_ssh_config_file_for_convenience"><a class="anchor" href="#_using_ssh_config_file_for_convenience"></a>1.2. Using SSH Config File for Convenience</h3>
-<div class="paragraph">
-<p>You can configure the SSH client to simplify connections by using a <code>~/.ssh/config</code> file.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">Host myserver
-    HostName remote-server.com
-    User myusername
-    IdentityFile ~/.ssh/id_rsa</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now, you can connect simply by typing:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ssh myserver</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_running_remote_commands_with_ssh"><a class="anchor" href="#_running_remote_commands_with_ssh"></a>1.3. Running Remote Commands with SSH</h3>
-<div class="paragraph">
-<p>You can execute commands directly on the remote server without starting an interactive session. For example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ssh user@remote-server 'uptime'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This will run the <code>uptime</code> command on the remote server and return the result.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_secure_copying_files_with_scp"><a class="anchor" href="#_secure_copying_files_with_scp"></a>1.4. Secure Copying Files with SCP</h3>
-<div class="paragraph">
-<p>The <code>scp</code> (Secure Copy Protocol) command allows you to copy files between local and remote machines securely:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Copy a file from the local machine to the remote server:
-scp localfile.txt user@remote-server:/remote/path
+<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">cmake_minimum_required(VERSION 3.20)
+project(MyProject VERSION 1.0 LANGUAGES CXX)
 
-# Copy a file from the remote server to the local machine:
-scp user@remote-server:/remote/path/file.txt /local/path</code></pre>
+# Require C++20.
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# (Optional) Include custom CMake modules.
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules")
+
+# Add subdirectories.
+add_subdirectory(src/libs/)
+add_subdirectory(src/apps/)
+add_subdirectory(tests)</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_library_configuration_srclibslib1cmakelists_txt"><a class="anchor" href="#_library_configuration_srclibslib1cmakelists_txt"></a>4. Library Configuration (src/libs/lib1/CMakeLists.txt)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This configuration builds the library and sets the public include directories. Note that the public headers reside alongside the source files.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake"># Create the library target from your implementation files.
+add_library(lib1
+    module1.cpp
+    # Add other source files as needed.
+)
+
+# Since public headers live alongside the source files, make the current directory public.
+target_include_directories(lib1
+    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+# (Optional) Set additional compile options, warnings, etc.
+target_compile_options(lib1 PRIVATE -Wall -Wextra -pedantic)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_application_configuration_srcappsapp1cmakelists_txt"><a class="anchor" href="#_application_configuration_srcappsapp1cmakelists_txt"></a>5. Application Configuration (src/apps/app1/CMakeLists.txt)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Each application lives in its own subdirectory under <code>src/apps/</code>. Below is an example configuration for an application.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake"># Define the executable for app1.
+add_executable(app1 main.cpp)
+
+# Link the executable with your library.
+target_link_libraries(app1 PRIVATE lib1)
+
+# Optionally, specify additional include directories if required.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tests_configuration_testscmakelists_txt"><a class="anchor" href="#_tests_configuration_testscmakelists_txt"></a>6. Tests Configuration (tests/CMakeLists.txt)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The tests are configured using CTest. You may integrate a testing framework (e.g., GoogleTest, Catch2, Boost.Test) as needed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">enable_testing()
+
+# Create an executable for the tests.
+add_executable(my_project_tests
+    test_main.cpp
+    test_module1.cpp
+    # Add more test files as needed.
+)
+
+# Link the library under test.
+target_link_libraries(my_project_tests PRIVATE my_project_lib)
+
+# Register the tests with CTest.
+add_test(NAME AllTests COMMAND my_project_tests)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_github_actions_ci_workflow"><a class="anchor" href="#_github_actions_ci_workflow"></a>7. GitHub Actions CI Workflow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This sample GitHub Actions workflow (located at <code>.github/workflows/ci.yml</code>) automates the build and test process.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure CMake
+        run: cmake -S . -B build
+
+      - name: Build
+        run: cmake --build build -- -j $(nproc)
+
+      - name: Run tests
+        run: cmake --build build --target test</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_best_practices"><a class="anchor" href="#_additional_best_practices"></a>8. Additional Best Practices</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Out-of-Source Builds:</strong>
+Always build in a separate directory (e.g., <code>build/</code>) and add it to your <code>.gitignore</code> to keep your repository clean.</p>
+</li>
+<li>
+<p><strong>Documentation:</strong>
+Include clear build, test, and usage instructions in your <code>README.md</code> and maintain detailed documentation in the <code>docs/</code> folder.</p>
+</li>
+<li>
+<p><strong>Versioning and Releases:</strong>
+Use Git tags to mark release points and consider using GitHub Releases for packaged binaries.</p>
+</li>
+<li>
+<p><strong>Consistent Code Style:</strong>
+Integrate formatting tools (such as clang-format) and maintain a coding style guide.</p>
+</li>
+<li>
+<p><strong>Continuous Integration:</strong>
+Automate builds and tests with CI (as demonstrated) to ensure cross-platform reliability.</p>
+</li>
+<li>
+<p><strong>Branching Strategy:</strong>
+Use feature branches, pull requests, and code reviews to maintain high code quality.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="ssh-setup.html">Setting Up SSH</a></span>
-  <span class="next"><a href="remote-ssh-vscode.html">Remote-SSH Extension for VS Code</a></span>
+  <span class="prev"><a href="../package-managers.html">Package Managers</a></span>
+  <span class="next"><a href="../../containers/index.html">Introduction to Containers</a></span>
 </nav>
 </article>
   </div>
