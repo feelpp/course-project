@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Inline Text Styles :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/feelpp-antora-ui/inline-text-styles.html">
-    <link rel="prev" href="style-guide.html">
-    <link rel="next" href="admonition-styles.html">
+    <title>Dynamic processor :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/feelpp-antora-ui/dynamic-processor.html">
+    <link rel="prev" href="admonition-styles.html">
+    <link rel="next" href="source-highlighting.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -148,13 +148,13 @@ MathJax.Hub.Config({
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="style-guide.html">UI Element Styles</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="inline-text-styles.html">Inline Text</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="admonition-styles.html">Admonitions</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="dynamic-processor.html">Dynamic processor</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -201,12 +201,12 @@ MathJax.Hub.Config({
   <ul>
     <li><a href="index.html">Antora Feel++ UI</a></li>
     <li><a href="style-guide.html">UI Element Styles</a></li>
-    <li><a href="inline-text-styles.html">Inline Text</a></li>
+    <li><a href="dynamic-processor.html">Dynamic processor</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/inline-text-styles.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/dynamic-processor.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -226,120 +226,287 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Inline Text Styles</h1>
+<h1 class="page">Dynamic processor</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This page describes how to style text in the contents of the page which is visually emphasized.</p>
+<p>This extension allows you to compile and run code snippets in different languages (C and C++ at this time), and with different compilers.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="bold"><a class="anchor" href="#bold"></a>1. Bold text (&lt;strong&gt;)</h2>
+<h2 id="_usage"><a class="anchor" href="#_usage"></a>1. Usage</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>How <a href="asciidoc/bold.html" class="xref page">text marked as bold</a> appears on your site depends on the fonts loaded by the UI and the CSS styles the UI applies to the <code>&lt;strong&gt;</code> HTML tag.</p>
+<p>We present the different options that you can use with the dynamic processor.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">A bold &lt;strong&gt;word&lt;/strong&gt;, or a bold &lt;strong&gt;phrase of text&lt;/strong&gt;.</code></pre>
+<div class="ulist">
+<ul>
+<li>
+<p><code>%dynamic</code>: The block should start with the <code>%dynamic</code> directive, so that the processor can identify it.</p>
+</li>
+<li>
+<p><code>language</code>: The programming language of the code block. It is usefull on the one hand because it allows the processor to display correctly the code block, and on the other hand because it allows the processor to know which compiler to use.</p>
+</li>
+<li>
+<p><code>filename</code>: The name of the file where the code block will be saved. If the file already exists, it will be overwritten. If nothing is specified, the file will be of the <code>tmp_1738748912630.cpp</code> (depending on the date and the file format specified).</p>
+</li>
+<li>
+<p><code>compile</code>: The type of compilation that will be done, in one of the following:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sh</code> or <code>cpp</code>: The code will be compiled with the <code>g++</code> compiler. Default is <code>sh</code>.</p>
+</li>
+<li>
+<p><code>c</code>: The code will be compiled with the <code>gcc</code> compiler.</p>
+</li>
+<li>
+<p><code>mpi</code>: The code will be compiled with the <code>mpicxx</code> compiler.</p>
+</li>
+<li>
+<p><code>make</code>: The code will be compiled with the <code>make</code> command.</p>
+</li>
+<li>
+<p><code>cmake</code>: The code will be compiled with the <code>cmake</code> command. <em>(not implemented yet)</em>
+Note that for the two last options, the page should contain the source of the Makefile or the CMakeLists.txt file. See example below.</p>
+</li>
+</ul>
 </div>
+</li>
+<li>
+<p><code>inputs</code>: The arguments that will be passed to the program during the execution.</p>
+</li>
+<li>
+<p><code>comp-args</code>: The arguments that will be passed to the compiler during the compilation, if none are specified, the default arguments are <code>-std=c++17</code>.</p>
+</li>
+<li>
+<p><code>run</code>: Tells if the program is executed or not (default is <code>true</code>).</p>
+</li>
+<li>
+<p><code>build</code>: Build directory (for CMake), default is <code>build</code>.</p>
+</li>
+<li>
+<p><code>exec</code>: The name of the executable file that will be created. If nothing is specified, the file will be of the form <code>Helloworld.exe</code>.</p>
+</li>
+<li>
+<p><code>np</code>: The number of processes that will be used for the MPI compilation. Default is <code>2</code>.</p>
+</li>
+</ul>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Since <code>&lt;strong&gt;</code> is a semantic HTML element, it automatically inherits default styling (<code>font-weight: bold</code>) from the browser.
-If you want to override the browser styles, you&#8217;ll need to define properties on the <code>strong</code> selector in the stylesheet for your UI.</p>
+<p>The three asciidoctor extensions should be loaded in that order in the <code>site.yml</code> file:</p>
 </div>
-<div class="paragraph">
-<p>In the default UI, the <code>&lt;strong&gt;</code> element is styled in the 500 font weight of the current typeface (Roboto).
-For example:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>cmake-dynamic-processor.js</code></p>
+</li>
+<li>
+<p><code>makefile-dynamic-processor.js</code></p>
+</li>
+<li>
+<p><code>dynamic-processor.js</code></p>
+</li>
+</ol>
 </div>
-<div class="exampleblock">
-<div class="content">
-A bold <strong>word</strong>, or a bold <strong>phrase of text</strong>.
-</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="italic"><a class="anchor" href="#italic"></a>2. Italic text (&lt;em&gt;)</h2>
+<h2 id="_example"><a class="anchor" href="#_example"></a>2. Example</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>How <a href="asciidoc/italic.html" class="xref page">italicized text</a> appears on your site depends on the fonts loaded by the UI and the CSS styles the UI applies to the <code>&lt;em&gt;</code> HTML tag.</p>
+<div class="sect2">
+<h3 id="_example_of_a_c_code"><a class="anchor" href="#_example_of_a_c_code"></a>2.1. Example of a C++ code</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[%dynamic, cpp, filename="Hello.cpp", compile=sh, inputs="arg1 arg2 arg3"]</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Test compile C++</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;iostream&gt;
+
+int main(int argc, char **argv)
+{
+    for (int i=0; i&lt;argc; i++)
+        std::cout &lt;&lt; argv[i] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "Hello, world!" &lt;&lt; std::endl;
+    return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example_of_a_c_code_2"><a class="anchor" href="#_example_of_a_c_code_2"></a>2.2. Example of a C code</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[%dynamic, c, filename="Hello.c", compile=c, args="arg1 arg2 arg3", comp-args="-Wall -Wextra -Werror"]</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Test compile C</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">#include &lt;stdio.h&gt;
+
+int main(int argc, char **argv)
+{
+    for (int i=0; i&lt;argc; i++)
+        printf("%s\n", argv[i]);
+    printf("Hello, world!\n");
+    return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example_of_a_mpi_code"><a class="anchor" href="#_example_of_a_mpi_code"></a>2.3. Example of a MPI code</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[%dynamic, c, filename="MPI_Allgather.c", compile=mpi, np=3]</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Test compile MPI</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">#include &lt;mpi.h&gt;
+#include &lt;stdio.h&gt;
+
+int main(int argc, char **argv)
+{
+    MPI_Init(&amp;argc, &amp;argv);
+    int rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank);
+    printf("Hello from process %d\n", rank);
+    MPI_Finalize();
+    return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example_of_a_code_with_openmp"><a class="anchor" href="#_example_of_a_code_with_openmp"></a>2.4. Example of a code with OpenMP</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[%dynamic, cpp, filename="HelloWorld_omp.cpp", compile=openmp]</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Test compile OpenMP</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;iostream&gt;
+#include &lt;omp.h&gt;
+
+int main(int argc, char* argv[])
+{
+	// Use 4 OpenMP threads
+	omp_set_num_threads(4);
+
+	// Variable that will be private
+	int val = 123456789;
+
+	printf("Value of \"val\" before the OpenMP parallel region: %d.\n", val);
+	#pragma omp parallel private(val)
+	{
+		printf("Thread %d sees \"val\" = %d, and updates it to be %d.\n", omp_get_thread_num(), val, omp_get_thread_num());
+		val = omp_get_thread_num();
+	}
+	// Value after the parallel region; unchanged.
+	printf("Value of \"val\" after the OpenMP parallel region: %d.\n", val);
+	return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example_of_a_compilation_with_cmake"><a class="anchor" href="#_example_of_a_compilation_with_cmake"></a>2.5. Example of a compilation with CMake</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[%dynamic, cmake]</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">An italic &lt;em&gt;word&lt;/em&gt;, or an italic &lt;em&gt;phrase of text&lt;/em&gt;.</code></pre>
+<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">cmake_minimum_required(VERSION 3.0)
+project(HelloWorld)
+add_executable(HelloWorld HelloWorldCMake.cpp)</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Since <code>&lt;em&gt;</code> is a semantic HTML element, it automatically inherits default styling (<code>font-style: italic</code>) from the browser.
-If you want to override the browser styles, you&#8217;ll need to define properties on the <code>em</code> selector in the stylesheet for your UI.</p>
-</div>
-<div class="paragraph">
-<p>In the default UI, the <code>em</code> element is styled in the italic font variant of the current typeface (Roboto).
-For example:</p>
-</div>
-<div class="exampleblock">
-<div class="content">
-An italic <em>word</em>, or an italic <em>phrase of text</em>.
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="monospace"><a class="anchor" href="#monospace"></a>3. Monospace text (&lt;code&gt;)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>How <a href="asciidoc/monospace.html" class="xref page">inline monospace text</a> is displayed depends on the fixed-width font loaded by your UI and the CSS styles it applies to the <code>&lt;code&gt;</code> HTML tag.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">A monospace &lt;code&gt;word&lt;/code&gt;, or a monospace &lt;code&gt;phrase of text&lt;/code&gt;.</code></pre>
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;iostream&gt;
+
+int main(int argc, char **argv)
+{
+    for (int i = 1; i &lt; argc; ++i)
+        std::cout &lt;&lt; argv[i] &lt;&lt;  " ";
+    std::cout &lt;&lt; std::endl;
+    return 0;
+}</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Since <code>&lt;code&gt;</code> is a semantic HTML element, it automatically inherits default styling (<code>font-family: monospace</code>) from the browser.
-If you want to override the browser styles, you&#8217;ll need to define properties on the <code>code</code> selector in the stylesheet for your UI.</p>
 </div>
-<div class="paragraph">
-<p>In the default UI, the <code>code</code> element is styled using the fixed-width font loaded by the stylesheet (Roboto Mono).
-For example:</p>
-</div>
-<div class="exampleblock">
+<div class="sect2">
+<h3 id="_example_of_a_code_with_makefile"><a class="anchor" href="#_example_of_a_code_with_makefile"></a>2.6. Example of a code with Makefile</h3>
+<div class="listingblock">
 <div class="content">
-A monospace <code>word</code>, or a monospace <code>phrase of text</code>.
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[%dynamic, makefile, filename="Makefile"]</code></pre>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="highlight"><a class="anchor" href="#highlight"></a>4. Highlighted text (&lt;mark&gt;)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>How <a href="asciidoc/highlight.html" class="xref page">highlighted (or marked) text</a> appears on your site depends on the CSS styles the UI applies to the <code>&lt;mark&gt;</code> HTML tag.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">Let&amp;#8217;s add some &lt;mark&gt;highlight&lt;/mark&gt; to it.</code></pre>
+<pre class="highlightjs highlight"><code class="language-makefile hljs" data-lang="makefile"># Spécifie le compilateur à utiliser
+CXX = g++
+
+# Spécifie les flags du compilateur
+CXXFLAGS = -Wall -O2 --std=c++17
+
+# Cible par défaut (quand on tape 'make' tout seul)
+all: mon_programme
+
+# Règle pour construire mon_programme
+mon_programme: mon_programme.cpp
+	echo "Compilation de mon_programme..."
+	$(CXX) $(CXXFLAGS) mon_programme.cpp -o mon_programme.exe
+
+# Règle pour nettoyer les fichiers générés
+clean:
+	rm -f mon_programme</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Since <code>&lt;mark&gt;</code> is a semantic HTML element, it automatically inherits default styling (<code>background-color: yellow</code>) from the browser.
-Here&#8217;s an example:</p>
-</div>
-<div class="exampleblock">
+<div class="listingblock">
 <div class="content">
-Let&#8217;s add some <mark>highlight</mark> to it.
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[%dynamic, cpp, compile="make", filename="mon_programme.cpp"]</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>If you want to override the browser styles, you&#8217;ll need to define properties on the <code>mark</code> selector in the stylesheet for your UI.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;iostream&gt;
+
+int main()
+{
+	std::cout &lt;&lt; "Hello, world!" &lt;&lt; std::endl;
+	return 0;
+}</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="style-guide.html">UI Element Styles</a></span>
-  <span class="next"><a href="admonition-styles.html">Admonitions</a></span>
+  <span class="prev"><a href="admonition-styles.html">Admonitions</a></span>
+  <span class="next"><a href="source-highlighting.html">Source Highlighting</a></span>
 </nav>
 </article>
   </div>
