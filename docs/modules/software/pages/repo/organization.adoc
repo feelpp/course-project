@@ -1,0 +1,173 @@
+= Repository Organization for a C++20 Project Using CMake and CTest
+:toc:
+:toclevels: 2
+:icons: font
+:source-highlighter: highlight.js
+:doctype: book
+
+== Overview
+
+This document outlines a recommended repository organization for a C++20 project that uses CMake for build configuration and CTest for testing. 
+In this structure, source files—including both library code and application code—are placed under the `src/` directory. 
+Libraries and applications are organized into separate subdirectories to clearly delineate reusable components from executable projects.
+
+== Recommended Directory Structure
+
+[source,none]
+----
+my_project/
+├── .github/
+│   └── workflows/
+│       └── ci.yml            # GitHub Actions CI configuration file
+├── build/                    # Out-of-source build directory (typically added to .gitignore)
+├── cmake/
+│   └── Modules/              # Custom CMake modules (if needed)
+├── docs/                     # Documentation (can include Doxygen configs, etc.)
+├── src/
+│   ├── libs/                 # Library code (source + public headers)
+│   │   └── lib1/.            # Library-specific directory (name matches your library)
+│   │       ├── module1.hpp   # Public header(s) for library users
+│   │       ├── module2.hpp
+│   │       ├── module1.cpp   # Library implementation files
+│   │       └── CMakeLists.txt  # CMake configuration for the library target
+│   └── apps/                 # Executable applications
+│       └── app1/             # Example application
+│           ├── main.cpp      # Application entry point
+│           └── CMakeLists.txt  # CMake configuration for the app target (links to the library)
+├── tests/
+│   ├── CMakeLists.txt        # CTest configuration for tests
+│   ├── test_main.cpp         # Main test runner file
+│   └── test_module1.cpp      # Additional test files
+├── CMakeLists.txt            # Top-level CMake configuration file
+├── .gitignore                # Git ignore file for build artifacts, etc.
+└── README.md                 # Project overview, build/test instructions, etc.
+----
+
+== Top-Level CMake Configuration
+
+The top-level `CMakeLists.txt` configures the project and delegates to subdirectories for libraries, applications, and tests.
+
+[source,cmake]
+----
+cmake_minimum_required(VERSION 3.20)
+project(MyProject VERSION 1.0 LANGUAGES CXX)
+
+# Require C++20.
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# (Optional) Include custom CMake modules.
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules")
+
+# Add subdirectories.
+add_subdirectory(src/libs/)
+add_subdirectory(src/apps/)
+add_subdirectory(tests)
+----
+
+== Library Configuration (src/libs/lib1/CMakeLists.txt)
+
+This configuration builds the library and sets the public include directories. Note that the public headers reside alongside the source files.
+
+[source,cmake]
+----
+# Create the library target from your implementation files.
+add_library(lib1
+    module1.cpp
+    # Add other source files as needed.
+)
+
+# Since public headers live alongside the source files, make the current directory public.
+target_include_directories(lib1
+    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+# (Optional) Set additional compile options, warnings, etc.
+target_compile_options(lib1 PRIVATE -Wall -Wextra -pedantic)
+----
+
+== Application Configuration (src/apps/app1/CMakeLists.txt)
+
+Each application lives in its own subdirectory under `src/apps/`. Below is an example configuration for an application.
+
+[source,cmake]
+----
+# Define the executable for app1.
+add_executable(app1 main.cpp)
+
+# Link the executable with your library.
+target_link_libraries(app1 PRIVATE lib1)
+
+# Optionally, specify additional include directories if required.
+----
+
+== Tests Configuration (tests/CMakeLists.txt)
+
+The tests are configured using CTest. You may integrate a testing framework (e.g., GoogleTest, Catch2, Boost.Test) as needed.
+
+[source,cmake]
+----
+enable_testing()
+
+# Create an executable for the tests.
+add_executable(my_project_tests
+    test_main.cpp
+    test_module1.cpp
+    # Add more test files as needed.
+)
+
+# Link the library under test.
+target_link_libraries(my_project_tests PRIVATE my_project_lib)
+
+# Register the tests with CTest.
+add_test(NAME AllTests COMMAND my_project_tests)
+----
+
+== GitHub Actions CI Workflow
+
+This sample GitHub Actions workflow (located at `.github/workflows/ci.yml`) automates the build and test process.
+
+[source,yaml]
+----
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure CMake
+        run: cmake -S . -B build
+
+      - name: Build
+        run: cmake --build build -- -j $(nproc)
+
+      - name: Run tests
+        run: cmake --build build --target test
+----
+
+== Additional Best Practices
+
+* **Out-of-Source Builds:**  
+  Always build in a separate directory (e.g., `build/`) and add it to your `.gitignore` to keep your repository clean.
+* **Documentation:**  
+  Include clear build, test, and usage instructions in your `README.md` and maintain detailed documentation in the `docs/` folder.
+* **Versioning and Releases:**  
+  Use Git tags to mark release points and consider using GitHub Releases for packaged binaries.
+* **Consistent Code Style:**  
+  Integrate formatting tools (such as clang-format) and maintain a coding style guide.
+* **Continuous Integration:**  
+  Automate builds and tests with CI (as demonstrated) to ensure cross-platform reliability.
+* **Branching Strategy:**  
+  Use feature branches, pull requests, and code reviews to maintain high code quality.
+
