@@ -1,6 +1,7 @@
 {
   "name": "Noble",
-  "build": { "dockerfile": "Dockerfile" },
+  //"build": { "dockerfile": "Dockerfile" },
+  "image":"mcr.microsoft.com/devcontainers/cpp:ubuntu-24.04",
   "extensions": [
     "ms-vscode.cpptools",
     "ms-vscode.cmake-tools",
