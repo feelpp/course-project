@@ -1,0 +1,178 @@
+== Hands-on: Building and Pushing Container Images for HPC Applications
+
+In this session, you'll learn how to:
+
+* Build a Docker image for an MPI application inside a GitHub Codespace (running Ubuntu 24.04).
+* Push the image to GitHub Container Registry (ghcr.io).
+* Automate the build and push process using GitHub Actions CI/CD.
+* Deploy the container image on the Karolina HPC system (or similar machines) using both Docker and Apptainer.
+
+=== Prerequisites
+
+* A GitHub Codespace based on Ubuntu 24.04.
+* Docker installed in the Codespace.
+* Access to GitHub Container Registry (with a Personal Access Token stored as the secret `CR_PAT`).
+* Apptainer (or Singularity) installed on your target HPC system.
+
+=== Step 1: Building an MPI Application in GitHub Codespace
+
+We'll create a simple MPI "Hello World" application in C and package it into a Docker image using Ubuntu 24.04.
+
+==== Sample MPI Application (app.c)
+
+[source,c]
+----
+#include <mpi.h>
+#include <stdio.h>
+
+int main(int argc, char** argv) {
+    MPI_Init(NULL, NULL);
+    int world_size;
+    MPI_Comm_size(MPI_COMM_WORLD, &world_size);
+    int world_rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+    printf("Hello world from rank %d out of %d processors\n", world_rank, world_size);
+    MPI_Finalize();
+    return 0;
+}
+----
+
+==== Dockerfile for the MPI Application
+
+Create a file named `Dockerfile` in your repository with the following content. Notice we use Ubuntu 24.04 as the base image.
+[source,dockerfile,line-comment=#]
+----
+FROM ubuntu:24.04                            # <1>
+ENV DEBIAN_FRONTEND=noninteractive           # <2>
+RUN apt-get update && apt-get install -y \
+    mpich \
+    build-essential && \
+    rm -rf /var/lib/apt/lists/*              # <3>
+COPY app.c /app/app.c                        # <4>
+WORKDIR /app                                 # <5>
+RUN mpicc -o mpi_app app.c                   # <6>
+CMD ["mpirun", "-np", "4", "./mpi_app"]      # <7>
+----
+<1> Use Ubuntu 24.04 as the base image for a modern, stable environment.
+<2> Set DEBIAN_FRONTEND to noninteractive to suppress prompts during package installation.
+<3> Update package lists, install MPICH and build-essential packages, and clean up package cache.
+<4> Copy the MPI application source code (app.c) into the /app directory in the image.
+<5> Set the working directory to /app for subsequent commands.
+<6> Compile the MPI application using mpicc, outputting the binary as 'mpi_app'.
+<7> Define the default command to run the MPI application with 4 processes using mpirun.
+
+
+
+==== Building the Docker Image in GitHub Codespace
+Open the terminal in your Codespace (Ubuntu 24.04) and run:
+
+
+[source,sh]
+----
+# Build the Docker image locally
+docker build -t ghcr.io/<your-username>/mpi_app:latest .
+
+# Run the image to test the MPI application
+docker run --rm ghcr.io/<your-username>/mpi_app:latest
+----
+
+=== Step 2: Pushing the Image to GitHub Container Registry (ghcr.io)
+Once you have verified the image, push it to ghcr.io:
+
+[source,sh]
+----
+# Log in to GitHub Container Registry using your Personal Access Token (CR_PAT)
+echo $CR_PAT | docker login ghcr.io -u <your-username> --password-stdin
+
+# Push the Docker image to ghcr.io
+docker push ghcr.io/<your-username>/mpi_app:latest
+----
+
+=== Step 3: Automating Builds and Pushes with GitHub Actions CI/CD
+Create a GitHub Actions workflow file (e.g., `.github/workflows/docker-build-push.yml`) with the following content to automate the process:
+
+[source,yaml]
+----
+name: Docker Build and Push
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.CR_PAT }}
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.actor }}/mpi_app:latest
+----
+
+This workflow automatically builds and pushes your Docker image whenever changes are merged into the main branch.
+
+=== Step 4: Deploying on Karolina HPC and Other Machines
+
+On the Karolina HPC system (or another target machine), you can deploy the container image using Docker or convert it to an Apptainer image.
+
+==== Deploying with Docker
+Pull and run the image on the target system:
+
+[source,sh]
+----
+# Log in to GitHub Container Registry if required
+echo $CR_PAT | docker login ghcr.io -u <your-username> --password-stdin
+
+# Pull the latest image
+docker pull ghcr.io/<your-username>/mpi_app:latest
+
+# Run the container on an HPC node
+docker run --rm ghcr.io/<your-username>/mpi_app:latest
+----
+
+==== Converting to an Apptainer Image
+If your HPC system uses Apptainer/Singularity for container execution, convert the Docker image as follows:
+
+[source,sh]
+----
+# On the HPC system, use Apptainer to pull the Docker image
+apptainer pull mpi_app.sif docker://ghcr.io/<your-username>/mpi_app:latest
+----
+
+You can now run the Apptainer image on your HPC system:
+
+[source,sh]
+----
+apptainer exec mpi_app.sif mpirun -np 4 ./mpi_app
+----
+
+=== Wrap-Up and Q&A
+
+* **Review:**  
+  - Built an MPI application in C and containerized it using a Dockerfile based on Ubuntu 24.04.
+  - Tested and pushed the Docker image to GitHub Container Registry.
+  - Automated the build/push process with GitHub Actions.
+  - Demonstrated deployment on HPC systems via Docker and Apptainer.
+  
+* **Discussion:**  
+  - How might this workflow be extended for more complex HPC applications?
+  - What additional optimizations or testing (e.g., performance benchmarks) could be integrated?
+
+Now it's time to experiment, ask questions, and explore how these tools can streamline HPC application deployment!

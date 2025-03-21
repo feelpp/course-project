@@ -21,6 +21,9 @@
 *** xref:docker/hands-on/docker-postgres-example.adoc[Setting Up PostgreSQL with Docker]
 *** xref:docker/hands-on/docker-compose.adoc[Docker Compose]
 *** xref:docker/hands-on/docker-deploy.adoc[Deploy services]
+** xref:hpc/hands-onindex.adoc[HPC Containers Hands-on]
+*** xref:hpc/hands-on/01-docker.adoc[Docker]
+*** xref:hpc/hands-on/02-mpi.adoc[Build, Test, Push and Deploy an MPI App]
 
 
 

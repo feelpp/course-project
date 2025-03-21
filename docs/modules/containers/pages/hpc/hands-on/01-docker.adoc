@@ -1,0 +1,164 @@
+= Docker System Basics
+Christophe Prud'homme <christophe.prudhomme@cemosis.fr>
+v1.0, 2023-03-24
+:icons: font
+:revealjs_theme: white
+:revealjs_slideNumber: true
+:toc: left
+
+[.lead]
+A 30-minute hands-on session to introduce Docker fundamentals with a focus on HPC development.
+
+== Overview
+
+In this session, you will learn:
+
+- The basic components of the Docker system.
+- How to run containers interactively and in detached mode.
+- Key Docker commands such as `docker ps`, `docker images`, and how to manage container lifecycles.
+- How Docker concepts translate to HPC containerization workflows.
+
+== Docker System Components
+
+image:docker/basics-of-docker-system.png[title="Basics of Docker System", link="https://www.docker.com/"]
+
+The basic components of the Docker system are:
+
+- **Images**: Blueprints of the application and its dependencies.
+- **Containers**: Running instances of images.
+- **Volumes**: Persistent data storage.
+- **Networks**: Isolated environments for containers to communicate.
+- **Dockerfile**: A file used to create Docker images.
+
+== Docker Hello World Example
+
+Let's start by running a simple Docker container:
+
+[source,shell]
+----
+docker run hello-world
+----
+
+This command pulls the `hello-world` image from Docker Hub and runs it in a container. Notice that the container runs, prints a message, and then exits.
+
+== Running Ubuntu in a Container
+
+You can start an interactive session in an Ubuntu container. In this example, we also use the `--rm` flag.
+
+[source,shell]
+----
+docker run --rm -it ubuntu bash
+----
+
+* **Explanation:**
+  - `--rm`: Automatically removes the container after it exits, keeping your system clean.
+  - `-it`: Combines `-i` (interactive) and `-t` (allocate a pseudo-TTY) to enable an interactive shell session.
+  
+After running this command, you'll have an interactive Bash shell inside the Ubuntu container.
+
+== Essential Docker Commands
+
+=== Listing Containers and Images
+
+* **`docker ps`**  
+  Lists all running containers.
+  
+[source,shell]
+----
+docker ps
+----
+  
+* **`docker ps -a`**  
+  Lists all containers, including those that have exited.
+  
+[source,shell]
+----
+docker ps -a
+----
+  
+* **`docker images`**  
+  Lists all available Docker images on your system.
+  
+[source,shell]
+----
+docker images
+----
+
+=== Running Containers in Detached Mode
+
+To run a container in the background (detached mode), use the `-d` flag:
+
+[source,shell]
+----
+docker run --rm -d ubuntu sleep 60
+----
+* **Explanation:**  
+  - `-d` runs the container in detached mode.
+  - In this example, the container will run the `sleep 60` command and exit after 60 seconds.  
+  - The `--rm` flag ensures the container is removed automatically when it stops.
+
+=== Logging into and Out of Docker Registries
+
+* **`docker login`**  
+  Log into a Docker registry (e.g., Docker Hub or GitHub Container Registry).
+
+[source,shell]
+----
+docker login ghcr.io -u <your-username> --password-stdin
+----
+* Replace `<your-username>` with your actual username and supply your password via standard input (or use a secret in CI/CD pipelines).
+
+* **`docker logout`**  
+  Log out from the Docker registry.
+
+[source,shell]
+----
+docker logout ghcr.io
+----
+  
+== Advanced Docker Usage
+
+=== Volumes: Persistent Storage
+
+Use volumes to store data that persists even after a container is removed. 
+For example, run an Ubuntu container with a mounted volume from your local `/tmp` directory:
+
+[source,shell]
+----
+docker run --rm -it -v /tmp:/tmp ubuntu bash
+----
+Inside the container, you can run `df` to view the mounted volume.
+
+=== Docker Images and Updates
+
+Docker images can be updated and modified by creating new image layers. 
+
+This approach allows you to:
+
+- **Roll Back Updates:** Easily revert to a previous image version.
+- **Efficient Testing:** Only new layers need to be pushed or pulled.
+- **Optimized Distribution:** Minimize changes, reducing download times.
+
+image:docker/changes-and-updates.png[title="Changes and Updates", link="https://www.docker.com/"]
+
+== Docker for HPC
+
+Docker serves as a foundational tool in HPC container workflows:
+
+- **Development & Testing:** Create and test HPC applications in a controlled Docker environment.
+- **Container Conversion:** Docker images can be converted to Apptainer/Singularity images for deployment on HPC clusters.
+- **Reproducibility:** Docker ensures consistent environments across different stages of development and production.
+
+== Conclusion
+
+We covered:
+
+- Basic Docker components and commands.
+- Running containers interactively and in detached mode.
+- Managing containers and images with `docker ps` and `docker images`.
+- Logging into and out of Docker registries.
+- Advanced topics including volumes and image layering.
+- How Docker basics underpin HPC containerization workflows.
+
+[.center]
+Questions? Let's discuss how these tools can streamline HPC application development!
