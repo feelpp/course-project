@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Introduction to Containers for High-Performance Computing (HPC) :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/hpc/index.html">
+    <link rel="prev" href="../apptainer/tutorial.html">
+    <link rel="next" href="best-practices.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../../../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../../../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../../../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header><div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="course-project" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../index.html">Course Project</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Introduction to Containers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../docker/index.html">Docker</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../docker/docker-overview.html">Docker Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../docker/docker-problems-solved.html">The Problem Docker Solves</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../docker/docker-architecture.html">Docker Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/docker-hpc.adoc">Installing Docker</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../apptainer/index.html">Apptainer</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../apptainer/apptainer-install.html">Installing Apptainer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../apptainer/tutorial.html">Tutorial</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Containers for HPC</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="best-practices.html">Best practices</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Hands-on Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../docker/hands-on/index.html">Docker Hands-on</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../docker/hands-on/01-getting-started.html">Getting Started with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../docker/hands-on/02-advanced-usage.html">Advanced Docker Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/hands-on/docker-githubaction.adoc">GitHub Actions with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/hands-on/docker-postgres-example.adoc">Setting Up PostgreSQL with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/hands-on/docker-compose.adoc">Docker Compose</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/hands-on/docker-deploy.adoc">Deploy services</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../cicd/index.html">Introduction to CI/CD fundamentals with GitHub Actions </a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Course Project</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../../../feelpp-antora-ui/index.html">Antora Feel++ UI</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="../../index.html">Course Project</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="../../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Course Project</a></li>
+    <li><a href="index.html">Containers for HPC</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/hpc/index.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Introduction to Containers for High-Performance Computing (HPC)</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_overview">1. Overview</a></li>
+<li><a href="#_introduction_to_containers_15_min">2. Introduction to Containers (15 min)</a>
+<ul class="sectlevel2">
+<li><a href="#_what_are_containers">2.1. What are Containers?</a></li>
+<li><a href="#_hypervisors_and_containers">2.2. Hypervisors and Containers</a></li>
+<li><a href="#_background_of_virtualization">2.3. Background of Virtualization</a></li>
+</ul>
+</li>
+<li><a href="#_why_containers_for_hpc_15_min">3. Why Containers for HPC? (15 min)</a>
+<ul class="sectlevel2">
+<li><a href="#_hpc_software_deployment_challenges">3.1. HPC Software Deployment Challenges</a></li>
+<li><a href="#_the_hpc_environment_matrix_from_hell">3.2. The HPC Environment Matrix from Hell</a></li>
+<li><a href="#_hpc_environment_modules_helpful_but_still_broken">3.3. HPC Environment Modules: Helpful but Still Broken</a></li>
+<li><a href="#_why_containers_help">3.4. Why Containers Help</a></li>
+<li><a href="#_benefits_of_containerization_for_hpc">3.5. Benefits of Containerization for HPC</a></li>
+</ul>
+</li>
+<li><a href="#_why_does_it_matter_for_cemosis">4. Why Does It Matter for Cemosis?</a>
+<ul class="sectlevel2">
+<li><a href="#_feel_overview">4.1. Feel++ Overview</a></li>
+<li><a href="#_some_feel_applications">4.2. Some Feel++ Applications</a></li>
+</ul>
+</li>
+<li><a href="#_container_technologies_in_hpc_20_min">5. Container Technologies in HPC (20 min)</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_of_container_runtimes">5.1. Overview of Container Runtimes</a></li>
+<li><a href="#_docker_in_a_nutshell">5.2. Docker in a Nutshell</a></li>
+<li><a href="#_the_shipping_container_metaphor">5.3. The Shipping Container Metaphor</a></li>
+<li><a href="#_why_docker_is_not_always_ideal_for_hpc">5.4. Why Docker Is (Not Always) Ideal for HPC</a></li>
+<li><a href="#_apptainer_formerly_singularity">5.5. Apptainer (Formerly Singularity)</a></li>
+<li><a href="#_comparing_docker_and_apptainer">5.6. Comparing Docker and Apptainer</a></li>
+<li><a href="#_container_registries">5.7. Container Registries</a></li>
+<li><a href="#_key_takeaways">5.8. Key Takeaways</a></li>
+</ul>
+</li>
+<li><a href="#_qa_and_discussion_10_min">6. Q&amp;A and Discussion (10 min)</a></li>
+<li><a href="#_references_further_reading">7. References &amp; Further Reading</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>An introductory session on using containers in HPC environments.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>1. Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Duration: 1h30</strong></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Learning Objectives</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Understand the concept of containers and how they differ from traditional virtualization.</p>
+</li>
+<li>
+<p>Explore containerization benefits for HPC workloads.</p>
+</li>
+<li>
+<p>Introduce key container technologies: Docker, Singularity/Apptainer, and Podman.</p>
+</li>
+<li>
+<p>Demonstrate how to use containers in an HPC workflow.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction_to_containers_15_min"><a class="anchor" href="#_introduction_to_containers_15_min"></a>2. Introduction to Containers (15 min)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_what_are_containers"><a class="anchor" href="#_what_are_containers"></a>2.1. What are Containers?</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Lightweight software encapsulating everything needed to run a specific task (minus the OS kernel).</p>
+</li>
+<li>
+<p>Based on Linux only.</p>
+</li>
+<li>
+<p>Processes and user-level software are isolated.</p>
+</li>
+<li>
+<p>Portable software ecosystem.</p>
+</li>
+<li>
+<p>Comparable to "chroot on steroids".</p>
+</li>
+<li>
+<p>Docker is the most common tool:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Available on all major platforms.</p>
+</li>
+<li>
+<p>Widely used in industry.</p>
+</li>
+<li>
+<p>Integrated Dockerhub registry.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_hypervisors_and_containers"><a class="anchor" href="#_hypervisors_and_containers"></a>2.2. Hypervisors and Containers</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Type 1 hypervisors run directly on the hardware, below the host OS.</p>
+</li>
+<li>
+<p>Type 2 hypervisors operate within the host OS.</p>
+</li>
+<li>
+<p>Containers function as an advanced chroot, bypassing traditional hardware abstraction.</p>
+</li>
+<li>
+<p>The level at which abstraction occurs can impact performance.</p>
+</li>
+<li>
+<p>All approaches facilitate custom software stacks on shared hardware.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/containers/vm-vs-containers.png" alt="vm vs containers" width="600">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_background_of_virtualization"><a class="anchor" href="#_background_of_virtualization"></a>2.3. Background of Virtualization</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Advancements in virtualization have fundamentally transformed computing.</p>
+</li>
+<li>
+<p>Prominent cloud platforms demonstrating these changes: FutureGrid, Magellan, Chameleon Cloud, and Hobbes.</p>
+</li>
+<li>
+<p>Key distinctions in OS-level virtualization:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Containerized user-level applications for enhanced portability.</p>
+</li>
+<li>
+<p>Shared OS kernel among containers secured through cgroups-based isolation.</p>
+</li>
+<li>
+<p>Superior performance with some trade-offs in OS customization flexibility.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_containers_for_hpc_15_min"><a class="anchor" href="#_why_containers_for_hpc_15_min"></a>3. Why Containers for HPC? (15 min)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_hpc_software_deployment_challenges"><a class="anchor" href="#_hpc_software_deployment_challenges"></a>3.1. HPC Software Deployment Challenges</h3>
+<div class="paragraph">
+<p>Traditional HPC environments have long relied on centrally maintained software modules to manage complex dependencies. While this approach allows multiple users to share common libraries and tools, it comes with significant challenges:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Complex Software Dependencies &amp; Reproducibility</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Module Conflicts:</strong> Users must navigate conflicting versions of compilers, libraries, and applications. This often leads to "dependency hell" where even minor version differences cause failures in compiling or running HPC codes.</p>
+</li>
+<li>
+<p><strong>Centralized Management:</strong> Since system administrators control the available modules, individual researchers may struggle to install custom or cutting-edge software versions tailored to their project needs.</p>
+</li>
+<li>
+<p><strong>Reproducibility Issues:</strong> Reproducing an experimental environment becomes difficult when software versions and configurations are managed outside of the user&#8217;s control. Small differences in the installed environment can lead to divergent results, hindering scientific validation and collaboration.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Performance-Critical, Consistent Environments for Bulk-Synchronous MPI Workloads</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Strict Synchronization:</strong> HPC applications, especially those using MPI, operate in bulk-synchronous phases where all nodes must coordinate their computation. Any inconsistency in the underlying software (like different MPI library versions) can cause synchronization issues or performance degradation.</p>
+</li>
+<li>
+<p><strong>Scalability Requirements:</strong> When scaling to thousands of nodes, even minor performance overheads become significant. Ensuring a consistent, highly optimized environment across all nodes is critical, as any variability can lead to bottlenecks or failure in achieving optimal performance.</p>
+</li>
+<li>
+<p><strong>Optimized Stacks:</strong> HPC workloads often rely on finely tuned communication libraries, hardware-specific optimizations, and custom drivers. Containers help by encapsulating these finely tuned environments, ensuring that every node uses the same software stack—thereby maintaining the performance characteristics required for large-scale, bulk-synchronous operations.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Leverage containerization to:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Encapsulate all necessary dependencies and configurations.</p>
+</li>
+<li>
+<p>Create a single, reproducible environment.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Simplify the deployment process.</p>
+</li>
+<li>
+<p>Ensure consistency and reliability across:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Different nodes.</p>
+</li>
+<li>
+<p>Various HPC systems.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Containers help address HPC Hell</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_hpc_environment_matrix_from_hell"><a class="anchor" href="#_the_hpc_environment_matrix_from_hell"></a>3.2. The HPC Environment Matrix from Hell</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">HPC Software / Components</th>
+<th class="tableblock halign-left valign-top">Laptop/Desktop (Development)</th>
+<th class="tableblock halign-left valign-top">Tier-2 HPC Center</th>
+<th class="tableblock halign-left valign-top">Tier-1 HPC Center</th>
+<th class="tableblock halign-left valign-top">Tier-0 Supercomputer</th>
+<th class="tableblock halign-left valign-top">HPC Code #1 stack (MPI-based)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HPC Code #2 (GPU-accelerated)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HPC Code #3 (AI/ML Pipeline)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HPC Code #4 (I/O-heavy Workflow)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HPC Libraries (BLAS, LAPACK, MKL, etc.)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compilers &amp; Toolchains (GCC, Intel, LLVM)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MPI Variants (Open MPI, MPICH, MVAPICH)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Performance Tuning &amp; Profilers</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This table highlights the complexity of ensuring every component—MPI libraries, GPU drivers, compilers, file systems, security, etc.—matches across multiple HPC environments. Each “?” can represent different OS versions, library dependencies, hardware constraints, scheduler configurations, or security policies. Containers help encapsulate these dependencies, reducing the “matrix from hell” into a single, portable environment that can run consistently across laptops, Tier-n HPC clusters, and large supercomputers.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_hpc_environment_modules_helpful_but_still_broken"><a class="anchor" href="#_hpc_environment_modules_helpful_but_still_broken"></a>3.3. HPC Environment Modules: Helpful but Still Broken</h3>
+<div class="paragraph">
+<p>Environment modules (e.g., <code>Environment Modules</code> or <code>Lmod</code>) are widely used in HPC to manage complex software stacks. They allow users to load or unload specific versions of compilers, libraries, and applications by manipulating environment variables (e.g., <code>PATH</code>, <code>LD_LIBRARY_PATH</code>). While this approach has been the standard on many supercomputers for years, it still poses several problems:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Lack of True Isolation</dt>
+<dd>
+<p>Modules only adjust environment variables, so if two modules conflict (e.g., different compiler versions), users must manually troubleshoot or re-order module loads. There is no guaranteed isolation of dependencies.</p>
+</dd>
+<dt class="hdlist1">luster-Specific Configurations</dt>
+<dd>
+<p>Each HPC center (and even each cluster within a center) may provide different module names, versions, or dependencies. A workflow that works on one cluster may fail on another due to missing or differently configured modules.</p>
+</dd>
+<dt class="hdlist1">Reproducibility Gaps</dt>
+<dd>
+<p>Because modules rely on the HPC system’s specific software installation, replicating an exact environment later or on a different system can be difficult. Minor changes in system-provided modules can invalidate previous runs.</p>
+</dd>
+<dt class="hdlist1">Complex Dependencies</dt>
+<dd>
+<p>Some scientific codes depend on intricate chains of libraries. Even if modules are available, loading them in the correct order (and verifying version compatibility) can become a “dependency puzzle,” making HPC usage less user-friendly.</p>
+</dd>
+<dt class="hdlist1">Administrative Overhead</dt>
+<dd>
+<p>Sysadmins must maintain a growing set of modules for different libraries, compilers, and versions. This is time-consuming, prone to error, and may lag behind the latest releases needed by researchers.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_why_containers_help"><a class="anchor" href="#_why_containers_help"></a>3.4. Why Containers Help</h3>
+<div class="paragraph">
+<p>By contrast, containers bundle the entire user-space software stack (compilers, libraries, application code) into a portable image. This ensures:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Isolation &amp; Consistency:</strong> The environment inside the container remains the same, regardless of the underlying HPC system.</p>
+</li>
+<li>
+<p><strong>Reproducibility:</strong> Scientific workflows become more easily reproducible, since the container image fully specifies dependencies.</p>
+</li>
+<li>
+<p><strong>Portability:</strong> A container built on a user’s laptop can run on a Tier-n cluster or supercomputer with minimal changes.</p>
+</li>
+<li>
+<p><strong>Reduced Admin Burden:</strong> Researchers control and update their containers without waiting for system administrators to provide new or specialized modules.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In summary, environment modules have helped manage HPC software complexity for many years, but they are not a complete solution to the challenges of portability, reproducibility, and dependency isolation. Containers can complement or even replace modules by providing a fully self-contained runtime environment, reducing “dependency hell” and simplifying cross-platform HPC workflows.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_benefits_of_containerization_for_hpc"><a class="anchor" href="#_benefits_of_containerization_for_hpc"></a>3.5. Benefits of Containerization for HPC</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Reproducibility:</strong> Consistent, version-controlled environments.</p>
+</li>
+<li>
+<p><strong>Portability:</strong> Develop locally and deploy on supercomputers seamlessly.</p>
+</li>
+<li>
+<p><strong>User-space Environments:</strong> Run containers without requiring root access.</p>
+</li>
+<li>
+<p><strong>Scheduler Compatibility:</strong> Integrate with HPC schedulers (Slurm, PBS, etc.)</p>
+</li>
+<li>
+<p>Compared with traditional software management (modules, environment scripts), containers offer a unified approach.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_does_it_matter_for_cemosis"><a class="anchor" href="#_why_does_it_matter_for_cemosis"></a>4. Why Does It Matter for Cemosis?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cemosis, the Center for Modeling and Simulation in Strasbourg, plays a critical role in advancing computational research through the development of Feel within the Feel Consortium. Here&#8217;s why containerization matters for Cemosis:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Enhanced Reproducibility:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>With Feel++ being a sophisticated framework for finite element analysis, ensuring that every simulation runs in an identical environment is crucial for scientific validation. Containers guarantee that dependencies, libraries, and configurations remain consistent across all testing and production runs.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Simplified Collaboration:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>The Feel++ Consortium involves collaboration among multiple institutions. Containers enable researchers at Cemosis and partner organizations to share a single, standardized environment, reducing setup complexities and streamlining collaborative development.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Optimized HPC Workflows:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>HPC applications in modeling and simulation often require finely tuned performance optimizations. Containerization encapsulates these optimizations, ensuring that computational experiments run efficiently on various HPC systems without manual reconfiguration.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Rapid Deployment and Testing:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>With containerized workflows, Cemosis can quickly iterate on new features or bug fixes in Feel++, automatically testing changes in a controlled environment. This accelerates development cycles and improves the overall quality of the software.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Future-Proofing Research:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>As hardware and software evolve, maintaining reproducible environments becomes increasingly challenging. Containers provide a robust solution to preserve the computational environment, ensuring long-term reproducibility and sustainability of research outputs.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This section emphasizes that containerization is not just a technical enhancement but a strategic enabler for research and collaboration at Cemosis.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_feel_overview"><a class="anchor" href="#_feel_overview"></a>4.1. Feel++ Overview</h3>
+<div class="openblock left">
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="../_images/feelpp-arch.png" alt="image" width="600">
+</div>
+</div>
+</div>
+</div>
+<div class="ulist">
+<div class="title">Overview</div>
+<ul>
+<li>
+<p>Framework to solve problems based on ODE and PDE</p>
+</li>
+<li>
+<p>C++17 and C++20</p>
+</li>
+<li>
+<p>Python layer using Pybind11</p>
+</li>
+<li>
+<p>Seamless parallelism with default communicator including ensemble runs</p>
+</li>
+<li>
+<p>Powerful interpolation and integration operators working in parallel</p>
+</li>
+<li>
+<p>Advanced Post-processing including for high order approximation and high order geometry</p>
+</li>
+<li>
+<p><strong>Build</strong>: CMake and CMake Presets</p>
+</li>
+<li>
+<p><strong>Docs:</strong> <a href="https://docs.feelpp.org" class="bare">docs.feelpp.org</a> including dynamic pages that can be downloaded as notebooks</p>
+</li>
+<li>
+<p><strong>DevOps:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>GitHub Actions:</strong> CI/CD and Continuous Benmarking on inHouse and EuroHPC systems</p>
+</li>
+<li>
+<p><strong>Packaging:</strong> Ubuntu/Debian, spack, MacPort</p>
+</li>
+<li>
+<p><strong>Containers:</strong> Docker,  Apptainer</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Tests:</strong> About a thousand  tests  in sequential and parallel C++ and Python</p>
+</li>
+<li>
+<p><strong>Usage:</strong> Research, R&amp;D, Teaching, <em>Services</em></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_some_feel_applications"><a class="anchor" href="#_some_feel_applications"></a>4.2. Some Feel++ Applications</h3>
+<table class="tableblock frame-none grid-none stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-middle">Health(Rheology)</th>
+<th class="tableblock halign-center valign-middle">Physics(High Field Magnets)</th>
+<th class="tableblock halign-center valign-middle">Physics(Deflectometry)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/blood-rheology.png" alt="image" width="100"></span></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/hifimagnet.png" alt="image" width="100"></span></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/holo3.png" alt="image" width="100"></span></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-none grid-none stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-middle">Health(Micro swimmers)</th>
+<th class="tableblock halign-center valign-middle">Engineering (Buildings)<sup>.</sup></th>
+<th class="tableblock halign-left valign-top">Health(Eye/Brain)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/4fastsim-ibat.png" alt="image" width="100"></span></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/microswimmer.png" alt="image" width="100"></span></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/OMVS-scheme-with-results.png" alt="image" width="100"></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_container_technologies_in_hpc_20_min"><a class="anchor" href="#_container_technologies_in_hpc_20_min"></a>5. Container Technologies in HPC (20 min)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_of_container_runtimes"><a class="anchor" href="#_overview_of_container_runtimes"></a>5.1. Overview of Container Runtimes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Docker</strong>
+<strong>Strengths:</strong> A vast ecosystem, straightforward workflows, and seamless integration with many development tools.
+<strong>Limitations:</strong> Typically requires root privileges (via a daemon) and lacks native optimizations for HPC (e.g., multi-node MPI jobs, specialized network interconnects).</p>
+</li>
+<li>
+<p><strong>Singularity/Apptainer</strong>
+<strong>Focus:</strong> Specifically designed for HPC.
+<strong>Key Advantages:</strong> Runs containers without root privileges, integrates well with MPI and GPU workflows, and supports HPC schedulers.</p>
+</li>
+<li>
+<p><strong>Podman</strong>
+<strong>Rootless Docker Alternative:</strong> Allows building and running containers without a daemon, but less common in HPC settings.</p>
+</li>
+<li>
+<p><strong>Shifter and Charliecloud</strong>
+<strong>Additional HPC-Oriented Tools:</strong> Used at some HPC centers for containerized workflows.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_docker_in_a_nutshell"><a class="anchor" href="#_docker_in_a_nutshell"></a>5.2. Docker in a Nutshell</h3>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/docker/basics-of-docker-system.png" alt="Docker Architecture" width="70%">
+</div>
+</div>
+<div class="paragraph">
+<p>Docker follows a client-server model:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <strong>Docker Client</strong> sends commands (build, run, push, pull) to the <strong>Docker Daemon</strong>, which handles image management and container lifecycle.</p>
+</li>
+<li>
+<p><strong>Images</strong> are read-only templates with all dependencies needed to run your application.</p>
+</li>
+<li>
+<p><strong>Containers</strong> are live instances of images, isolated by Linux namespaces and cgroups.</p>
+</li>
+<li>
+<p>A <strong>Dockerfile</strong> defines how to build an image (base OS, libraries, environment variables, etc.).</p>
+</li>
+<li>
+<p>A <strong>Registry</strong> (e.g., Docker Hub) is a repository for storing and sharing images.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_shipping_container_metaphor"><a class="anchor" href="#_the_shipping_container_metaphor"></a>5.3. The Shipping Container Metaphor</h3>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/docker/shipping-container-for-code.png" alt="Shipping Container for Code" width="70%">
+</div>
+</div>
+<div class="paragraph">
+<p>Docker is often compared to shipping containers:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Developers</strong> (“inside” the container) focus on code, libraries, and configurations.</p>
+</li>
+<li>
+<p><strong>Operations</strong> (“outside” the container) handle logging, monitoring, remote access, and networking.</p>
+</li>
+<li>
+<p>This separation of concerns fosters simpler collaboration and consistent deployments across multiple environments (development laptops, QA servers, HPC clusters, etc.).</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/docker/separation-of-concerns.png" alt="Separation of Concerns" width="70%">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_why_docker_is_not_always_ideal_for_hpc"><a class="anchor" href="#_why_docker_is_not_always_ideal_for_hpc"></a>5.4. Why Docker Is (Not Always) Ideal for HPC</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Root Access &amp; Security</strong>
+Docker’s daemon runs with elevated privileges, which many HPC centers disallow for security reasons.</p>
+</li>
+<li>
+<p><strong>HPC-Specific Hardware</strong>
+Docker does not natively integrate with HPC resource managers (e.g., Slurm, PBS) or specialized interconnects (e.g., InfiniBand) without additional configuration.</p>
+</li>
+<li>
+<p><strong>MPI &amp; Multi-Node Workloads</strong>
+Running large-scale MPI jobs across multiple nodes with Docker can be cumbersome, requiring custom networking and environment tweaks.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Despite these drawbacks, Docker remains very popular for development and testing on local machines. You can then migrate or adapt Docker images for HPC-oriented runtimes like Apptainer.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_apptainer_formerly_singularity"><a class="anchor" href="#_apptainer_formerly_singularity"></a>5.5. Apptainer (Formerly Singularity)</h3>
+<div class="paragraph">
+<p>Apptainer (originally Singularity) is a container platform built with HPC in mind. Key highlights include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Rootless Execution</strong>: Containers operate as the user who launches them, preventing privilege escalation.</p>
+</li>
+<li>
+<p><strong>Seamless Integration with HPC Schedulers</strong>: Compatible with Slurm, PBS, LSF, etc., without requiring a persistent daemon.</p>
+</li>
+<li>
+<p><strong>Native MPI &amp; GPU Support</strong>: Automatically binds host MPI libraries and GPU drivers into the container.</p>
+</li>
+<li>
+<p><strong>SIF Format</strong>: Stores the container as a single file (SIF), simplifying distribution and cryptographic signing.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_typical_apptainer_workflow"><a class="anchor" href="#_typical_apptainer_workflow"></a>5.5.1. Typical Apptainer Workflow</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Build</strong> (usually requires root privileges, often done on a local machine or VM):</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>apptainer build my_app.sif docker://ubuntu:20.04</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Run</strong> (on the HPC cluster, no root required):</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>apptainer exec my_app.sif python my_script.py</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>MPI Integration</strong> (using native host libraries):</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mpirun -np 4 apptainer exec --mpi my_app.sif ./mpi_program</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_comparing_docker_and_apptainer"><a class="anchor" href="#_comparing_docker_and_apptainer"></a>5.6. Comparing Docker and Apptainer</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Feature</th>
+<th class="tableblock halign-left valign-top">Docker</th>
+<th class="tableblock halign-left valign-top">Apptainer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Execution Model</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Client-server daemon (root-based)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rootless (user-mode)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>HPC Integration</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Requires extra steps for MPI, batch schedulers, GPUs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Built-in MPI, GPU, scheduler support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Security Model</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Daemon runs as root; user must be in the <code>docker</code> group</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minimal privilege escalation; user runs containers</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Image Format</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Layered images (UnionFS) from Docker Hub</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Single-file SIF images (pullable from Docker/OCI registries)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Typical Usage</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">General development, CI/CD, microservices</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HPC research, multi-tenant secure clusters</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_container_registries"><a class="anchor" href="#_container_registries"></a>5.7. Container Registries</h3>
+<div class="paragraph">
+<p>Container registries store and distribute images:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Docker Hub</strong>: Public and private repositories <a href="https://hub.docker.com/">&gt; Docker Hub</a></p>
+</li>
+<li>
+<p><strong>GitHub/GitLab Registries</strong>: ghcr.io, registry.gitlab.com</p>
+</li>
+<li>
+<p><strong>NVIDIA NGC</strong>: GPU-focused images</p>
+</li>
+<li>
+<p><strong>Local or Institutional Registries</strong>: On-premise solutions for secure HPC environments</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Benefits of using a registry:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Version Control</strong>: Tag images (e.g., <code>v1.0</code>, <code>v2.0</code>) for reproducible environments</p>
+</li>
+<li>
+<p><strong>Collaboration</strong>: Team members can pull the same image</p>
+</li>
+<li>
+<p><strong>Deployment</strong>: Easy retrieval of images on HPC systems (if allowed by policy)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_takeaways"><a class="anchor" href="#_key_takeaways"></a>5.8. Key Takeaways</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Docker</strong> is ubiquitous, user-friendly for local development, but not always HPC-friendly due to security and multi-node concerns.</p>
+</li>
+<li>
+<p><strong>Apptainer</strong> is purpose-built for HPC, offering rootless execution and seamless MPI/GPU support.</p>
+</li>
+<li>
+<p><strong>Registries</strong> enable consistent, versioned sharing of container images across laptops, Tier-n clusters, and supercomputers.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>A common workflow is to build and test with Docker locally, push to a registry, then pull the image into Apptainer on HPC systems for production runs.</p>
+</div>
+<div class="paragraph">
+<p>See the hands-on section for practical examples of running containers in an HPC environment.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_qa_and_discussion_10_min"><a class="anchor" href="#_qa_and_discussion_10_min"></a>6. Q&amp;A and Discussion (10 min)</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Open floor for questions.</p>
+</li>
+<li>
+<p>Discussion on participants’ HPC environments and container use cases.</p>
+</li>
+<li>
+<p>Share experiences and challenges with containerized HPC workflows.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references_further_reading"><a class="anchor" href="#_references_further_reading"></a>7. References &amp; Further Reading</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Singularity/Apptainer documentation: <a href="https://apptainer.org/" class="bare">apptainer.org/</a></p>
+</li>
+<li>
+<p>Docker documentation: <a href="https://docs.docker.com/" class="bare">docs.docker.com/</a></p>
+</li>
+<li>
+<p>Additional HPC container best practices:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Kurtzer, G. M., Sochat, V., &amp; Bauer, M. W. (2017).</strong>
+<strong>Singularity: Scientific containers for mobility of compute.</strong> PLOS ONE, 12(5), e0177459.
+DOI: <a href="https://doi.org/10.1371/journal.pone.0177459" class="bare">doi.org/10.1371/journal.pone.0177459</a></p>
+</li>
+<li>
+<p><strong>NERSC Documentation.</strong>
+<strong>Containers for HPC: Benefits, Limitations, and Best Practices.</strong>
+Available at: <a href="https://www.nersc.gov/users/computational-systems/containers/" class="bare">www.nersc.gov/users/computational-systems/containers/</a></p>
+</li>
+<li>
+<p><strong>Pacheco, P., et al. (2018).</strong>
+<strong>Performance Evaluation of Container-based Virtualization for HPC Applications.</strong>
+Presented at IEEE International Conference on Cloud Computing Technology and Science.
+(A detailed analysis of container overhead and performance tuning in HPC settings.)</p>
+</li>
+<li>
+<p><strong>Containers in HPC: A Survey of Experiences and Best Practices (2019).</strong>
+<strong>Journal of Physics: Conference Series.</strong>
+(A survey summarizing real-world experiences with HPC container deployments and best practices.)</p>
+</li>
+<li>
+<p><strong>San Diego Supercomputer Center (SDSC).</strong>
+<strong>A Practical Guide to Containerized Workflows in HPC.</strong>
+Available at: <a href="https://www.sdsc.edu/hpc/software/containers.html" class="bare">www.sdsc.edu/hpc/software/containers.html</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>EuroHPC offers a comprehensive portal with detailed information on HPC initiatives and training resources.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Official website: <a href="https://www.eurohpc-project.eu/" class="bare">www.eurohpc-project.eu/</a></p>
+</li>
+<li>
+<p>Training documentation: Available through the EuroHPC portal and affiliated training programs.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../apptainer/tutorial.html">Tutorial</a></span>
+  <span class="next"><a href="best-practices.html">Best practices</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2025 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+
+
+<script async src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../../../_/js/vendor/fontawesome.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>

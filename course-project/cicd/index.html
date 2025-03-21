@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Introduction to CI/CD Fundamentals with GitHub Actions :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/cicd/index.html">
+    <link rel="prev" href="#docker/hands-on/docker-deploy.adoc">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header><div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="course-project" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Course Project</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/index.html">Introduction to Containers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/docker/index.html">Docker</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-overview.html">Docker Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-problems-solved.html">The Problem Docker Solves</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-architecture.html">Docker Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/docker-hpc.adoc">Installing Docker</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/apptainer/index.html">Apptainer</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/apptainer/apptainer-install.html">Installing Apptainer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/apptainer/tutorial.html">Tutorial</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/hpc/index.html">Containers for HPC</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../containers/hpc/best-practices.html">Best practices</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Hands-on Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/docker/hands-on/index.html">Docker Hands-on</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/hands-on/01-getting-started.html">Getting Started with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/hands-on/02-advanced-usage.html">Advanced Docker Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/hands-on/docker-githubaction.adoc">GitHub Actions with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/hands-on/docker-postgres-example.adoc">Setting Up PostgreSQL with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/hands-on/docker-compose.adoc">Docker Compose</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/hands-on/docker-deploy.adoc">Deploy services</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="index.html">Introduction to CI/CD fundamentals with GitHub Actions </a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Course Project</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../../feelpp-antora-ui/index.html">Antora Feel++ UI</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="../index.html">Course Project</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Course Project</a></li>
+    <li><a href="index.html">Introduction to CI/CD fundamentals with GitHub Actions </a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/cicd/pages/index.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Introduction to CI/CD Fundamentals with GitHub Actions</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_overview">1. Overview</a></li>
+<li><a href="#_introduction_the_cicd_problem_30_min">2. Introduction: The CI/CD Problem (30 min)</a>
+<ul class="sectlevel2">
+<li><a href="#_the_software_development_challenge">2.1. The Software Development Challenge</a></li>
+<li><a href="#_hpc_considerations_what_does_it_mean_for_hpc_and_how_does_it_help">2.2. HPC Considerations: What Does It Mean for HPC and How Does It Help?</a></li>
+<li><a href="#_why_cicd">2.3. Why CI/CD?</a></li>
+<li><a href="#_cicd_platform_choices_and_development_platforms">2.4. CI/CD Platform Choices and Development Platforms</a></li>
+</ul>
+</li>
+<li><a href="#_github_actions_overview_and_fundamentals_40_min">3. GitHub Actions: Overview and Fundamentals (40 min)</a>
+<ul class="sectlevel2">
+<li><a href="#_what_is_github_actions">3.1. What is GitHub Actions?</a></li>
+<li><a href="#_a_sample_github_actions_workflow">3.2. A Sample GitHub Actions Workflow</a></li>
+<li><a href="#_benefits_of_using_github_actions">3.3. Benefits of Using GitHub Actions</a></li>
+</ul>
+</li>
+<li><a href="#_3_containers_in_cicd_15_min">4. 3. Containers in CI/CD (15 min)</a>
+<ul class="sectlevel2">
+<li><a href="#_why_use_containers_in_cicd">4.1. Why Use Containers in CI/CD?</a></li>
+<li><a href="#_using_containers_with_github_actions">4.2. Using Containers with GitHub Actions</a></li>
+</ul>
+</li>
+<li><a href="#_demo_hands_on_optional_5_min">5. Demo / Hands-on (Optional) (5 min)</a></li>
+<li><a href="#_qa_and_discussion_5_min">6. Q&amp;A and Discussion (5 min)</a></li>
+<li><a href="#_summary_and_closing">7. Summary and Closing</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>1. Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Duration: 1h30</strong></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Learning Objectives</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Understand the challenges of traditional software development and deployment.</p>
+</li>
+<li>
+<p>Learn the fundamentals of CI/CD and why automation is critical.</p>
+</li>
+<li>
+<p>Explore GitHub Actions as an integrated CI/CD solution.</p>
+</li>
+<li>
+<p>Discover how containerization enhances CI/CD workflows.</p>
+</li>
+<li>
+<p>Discuss the impact and benefits of CI/CD in HPC environments.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction_the_cicd_problem_30_min"><a class="anchor" href="#_introduction_the_cicd_problem_30_min"></a>2. Introduction: The CI/CD Problem (30 min)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_the_software_development_challenge"><a class="anchor" href="#_the_software_development_challenge"></a>2.1. The Software Development Challenge</h3>
+<div class="paragraph">
+<p>Traditional software development and deployment processes face several critical issues:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Manual Processes:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Build, Test, and Deployment:</strong> Many projects rely on manual steps that increase the risk of human error.</p>
+</li>
+<li>
+<p><strong>Human Error:</strong> Mistakes in configuring environments or forgetting steps can cause production failures.</p>
+</li>
+<li>
+<p><strong>Inefficiency:</strong> Manual interventions slow down the overall development cycle.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Inconsistencies Across Environments:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>"Works on My Machine" Syndrome:</strong> Differences in local, testing, and production setups cause unexpected behavior.</p>
+</li>
+<li>
+<p><strong>Environment Drift:</strong> Over time, environments evolve differently, leading to compatibility issues.</p>
+</li>
+<li>
+<p><strong>Complex Dependencies:</strong> Managing multiple libraries and tools manually often results in dependency conflicts.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Slow Release Cycles:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Delayed Feedback:</strong> Manual testing and deployment cycles extend the time before new features and fixes reach production.</p>
+</li>
+<li>
+<p><strong>Bottlenecks:</strong> Human-dependent processes limit rapid iteration, reducing agility and responsiveness.</p>
+</li>
+<li>
+<p><strong>Reduced Agility:</strong> Longer release cycles impede the ability to quickly address market changes or user needs.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Scalability Issues:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Growing Codebases and Teams:</strong> As projects scale, manual processes become increasingly error-prone.</p>
+</li>
+<li>
+<p><strong>Operational Overhead:</strong> Coordinating builds and tests manually across large teams is resource-intensive.</p>
+</li>
+<li>
+<p><strong>Inconsistent Quality:</strong> Maintaining quality across releases is challenging without automation.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_hpc_considerations_what_does_it_mean_for_hpc_and_how_does_it_help"><a class="anchor" href="#_hpc_considerations_what_does_it_mean_for_hpc_and_how_does_it_help"></a>2.2. HPC Considerations: What Does It Mean for HPC and How Does It Help?</h3>
+<div class="paragraph">
+<p>For High-Performance Computing (HPC) environments, the benefits of CI/CD are even more pronounced:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Consistent and Reproducible Environments:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>HPC applications depend on highly tuned code and specialized libraries (like MPI). Automating builds with CI/CD and containerizing the environment (using, for example, Apptainer) ensures that every test and deployment is performed in an identical setting, eliminating the "works on my machine" problem.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Automated Testing &amp; Performance Validation:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>HPC systems require rigorous performance benchmarks. CI/CD pipelines can automate not only functional tests but also performance tests to detect regressions early, ensuring that high-performance code remains optimized.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Faster Development Cycles:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>The complexity and scale of HPC codebases can slow progress. Automated pipelines shorten the feedback loop, allowing researchers to iterate quickly and deploy updates efficiently.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Scalability and Collaboration:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Many HPC projects involve collaborations across institutions. CI/CD workflows help integrate changes from various contributors seamlessly, ensuring that code remains stable and scalable.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Simplified Deployment to HPC Systems:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>By integrating containerization into CI/CD pipelines, HPC applications can be deployed consistently across various clusters and supercomputers, reducing configuration errors and improving reproducibility.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_why_cicd"><a class="anchor" href="#_why_cicd"></a>2.3. Why CI/CD?</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Continuous Integration (CI):</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Frequent Merges:</strong> Regular code integrations trigger automated builds and tests, catching issues early.</p>
+</li>
+<li>
+<p><strong>Early Bug Detection:</strong> Automated tests ensure that problems are identified as soon as code is merged.</p>
+</li>
+<li>
+<p><strong>Collaboration and Transparency:</strong> CI promotes regular communication and quick resolution of conflicts.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Continuous Delivery/Deployment (CD):</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Automated Deployments:</strong> Once tests pass, automated pipelines can deploy code to staging or production reliably.</p>
+</li>
+<li>
+<p><strong>Consistency Across Environments:</strong> The same automated process ensures uniformity in all environments.</p>
+</li>
+<li>
+<p><strong>Rapid Iteration:</strong> Faster releases lead to quicker user feedback and improvements.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Overall Benefits:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Accelerated development cycles.</p>
+</li>
+<li>
+<p>Improved code quality and reliability.</p>
+</li>
+<li>
+<p>Faster time-to-market.</p>
+</li>
+<li>
+<p>Reduced risk through incremental updates.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cicd_platform_choices_and_development_platforms"><a class="anchor" href="#_cicd_platform_choices_and_development_platforms"></a>2.4. CI/CD Platform Choices and Development Platforms</h3>
+<div class="paragraph">
+<p>When selecting a CI/CD solution, the choice often depends on your development platform, project requirements, and the specific needs of your HPC or general software projects:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>GitHub Actions:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Integrated with GitHub:</strong> Seamlessly works with GitHub repositories, making it ideal for projects already hosted there.</p>
+</li>
+<li>
+<p><strong>Ease of Use:</strong> Provides a user-friendly YAML-based configuration with a rich marketplace of pre-built actions.</p>
+</li>
+<li>
+<p><strong>Ideal For:</strong> Open-source projects, rapid prototyping, and teams looking for an integrated solution.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>GitLab CI/CD:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Built-In with GitLab:</strong> Offers a robust and flexible CI/CD pipeline directly within GitLab.</p>
+</li>
+<li>
+<p><strong>Features:</strong> Supports multi-stage pipelines, artifacts, and parallel builds.</p>
+</li>
+<li>
+<p><strong>Ideal For:</strong> Projects hosted on GitLab, especially where end-to-end DevOps integration is desired.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Jenkins:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Highly Extensible:</strong> An open-source automation server with a vast plugin ecosystem.</p>
+</li>
+<li>
+<p><strong>Self-Hosted Option:</strong> Suitable for organizations that require on-premise solutions with extensive customization.</p>
+</li>
+<li>
+<p><strong>Ideal For:</strong> Enterprises and HPC environments where tight control over the build environment is necessary.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>CircleCI &amp; Travis CI:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Managed CI/CD Services:</strong> Cloud-based solutions offering easy integration with popular version control systems.</p>
+</li>
+<li>
+<p><strong>Simplicity &amp; Speed:</strong> Provide straightforward setups for standard projects.</p>
+</li>
+<li>
+<p><strong>Ideal For:</strong> Teams that prefer managed services with minimal maintenance overhead.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Other Options:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Azure Pipelines, Bamboo, TeamCity:</strong> These tools offer additional features and integrations, which might suit specific enterprise or HPC workflows.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>HPC-Specific Considerations:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Container Integration:</strong> Many HPC projects require containerization to reproduce specialized environments. Tools that support container-based builds (e.g., using Docker or Apptainer) are highly valuable.</p>
+</li>
+<li>
+<p><strong>Security and On-Premise:</strong> For secure, multi-tenant HPC environments, self-hosted solutions (like Jenkins) may be preferable to ensure compliance with organizational policies.</p>
+</li>
+<li>
+<p><strong>Performance Testing:</strong> Some platforms offer better support for automating performance benchmarks, which is critical for HPC applications.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This section highlights that the right CI/CD tool depends on your existing development environment, the need for containerization, and the unique demands of HPC systems. Each option brings different strengths, and often, teams may even use multiple tools in a hybrid approach to achieve optimal results.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_github_actions_overview_and_fundamentals_40_min"><a class="anchor" href="#_github_actions_overview_and_fundamentals_40_min"></a>3. GitHub Actions: Overview and Fundamentals (40 min)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_what_is_github_actions"><a class="anchor" href="#_what_is_github_actions"></a>3.1. What is GitHub Actions?</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Integrated CI/CD Platform:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Built directly into GitHub, it automates workflows based on repository events.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Key Components:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Workflows:</strong> YAML files that define the automation pipeline.</p>
+</li>
+<li>
+<p><strong>Jobs:</strong> Groups of steps executed in a specified environment.</p>
+</li>
+<li>
+<p><strong>Steps:</strong> Individual commands or actions within a job.</p>
+</li>
+<li>
+<p><strong>Triggers:</strong> Events (e.g., push, pull_request, schedule) that start workflows.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_a_sample_github_actions_workflow"><a class="anchor" href="#_a_sample_github_actions_workflow"></a>3.2. A Sample GitHub Actions Workflow</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_benefits_of_using_github_actions"><a class="anchor" href="#_benefits_of_using_github_actions"></a>3.3. Benefits of Using GitHub Actions</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Seamless GitHub Integration:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>No need for external CI/CD tools.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Flexibility &amp; Extensibility:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>A vast marketplace of pre-built actions allows customization.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Parallel &amp; Matrix Builds:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Efficient testing across multiple environments.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_containers_in_cicd_15_min"><a class="anchor" href="#_3_containers_in_cicd_15_min"></a>4. 3. Containers in CI/CD (15 min)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_why_use_containers_in_cicd"><a class="anchor" href="#_why_use_containers_in_cicd"></a>4.1. Why Use Containers in CI/CD?</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Consistency:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Containers package your code and dependencies into a single image, ensuring the same environment from development to production.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Reproducibility:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>With containerized builds, the environment is preserved, minimizing discrepancies.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Isolation:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Containers isolate applications, reducing dependency conflicts.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_containers_with_github_actions"><a class="anchor" href="#_using_containers_with_github_actions"></a>4.2. Using Containers with GitHub Actions</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Container-Based Runners:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>You can run jobs inside containers to maintain a controlled environment.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Example Workflow Using a Container:</strong></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: node:14
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Advantages:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Consistent, clean environments for builds.</p>
+</li>
+<li>
+<p>Simplified dependency management.</p>
+</li>
+<li>
+<p>Reproducible and faster CI/CD pipelines.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_demo_hands_on_optional_5_min"><a class="anchor" href="#_demo_hands_on_optional_5_min"></a>5. Demo / Hands-on (Optional) (5 min)</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Live demonstration of a GitHub Actions workflow.</p>
+</li>
+<li>
+<p>Experiment with customizing workflows and integrating containerized builds.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_qa_and_discussion_5_min"><a class="anchor" href="#_qa_and_discussion_5_min"></a>6. Q&amp;A and Discussion (5 min)</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Open floor for questions.</p>
+</li>
+<li>
+<p>Discussion on integrating CI/CD in both general and HPC-specific environments.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary_and_closing"><a class="anchor" href="#_summary_and_closing"></a>7. Summary and Closing</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>CI/CD automates the repetitive tasks of building, testing, and deploying code, reducing errors and accelerating development.</p>
+</li>
+<li>
+<p>GitHub Actions provides a powerful, integrated solution for automating these workflows.</p>
+</li>
+<li>
+<p>Containers further enhance consistency and reproducibility, crucial for both general and HPC applications.</p>
+</li>
+<li>
+<p>Embracing these practices leads to higher quality software and more efficient development cycles.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Thank you for your attention – let&#8217;s now open the floor for questions!</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="#docker/hands-on/docker-deploy.adoc">Deploy services</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2025 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+
+
+<script async src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../../_/js/vendor/fontawesome.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>
