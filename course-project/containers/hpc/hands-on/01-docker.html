@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Docker System Basics :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/docker/hands-on/01-getting-started.html">
-    <link rel="prev" href="index.html">
-    <link rel="next" href="02-advanced-usage.html">
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/hpc/hands-on/01-docker.html">
+    <link rel="prev" href="#hpc/hands-onindex.adoc">
+    <link rel="next" href="02-mpi.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
@@ -150,16 +150,16 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../index.html">Docker</a>
+    <a class="nav-link" href="../../docker/index.html">Docker</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../docker-overview.html">Docker Overview</a>
+    <a class="nav-link" href="../../docker/docker-overview.html">Docker Overview</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../docker-problems-solved.html">The Problem Docker Solves</a>
+    <a class="nav-link" href="../../docker/docker-problems-solved.html">The Problem Docker Solves</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../docker-architecture.html">Docker Architecture</a>
+    <a class="nav-link" href="../../docker/docker-architecture.html">Docker Architecture</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#docker/docker-hpc.adoc">Installing Docker</a>
@@ -182,10 +182,10 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../hpc/index.html">Containers for HPC</a>
+    <a class="nav-link" href="../index.html">Containers for HPC</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../hpc/best-practices.html">Best practices</a>
+    <a class="nav-link" href="../best-practices.html">Best practices</a>
   </li>
 </ul>
   </li>
@@ -195,13 +195,13 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Docker Hands-on</a>
+    <a class="nav-link" href="../../docker/hands-on/index.html">Docker Hands-on</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="01-getting-started.html">Getting Started with Docker</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../docker/hands-on/01-getting-started.html">Getting Started with Docker</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="02-advanced-usage.html">Advanced Docker Usage</a>
+    <a class="nav-link" href="../../docker/hands-on/02-advanced-usage.html">Advanced Docker Usage</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#docker/hands-on/docker-githubaction.adoc">GitHub Actions with Docker</a>
@@ -221,11 +221,11 @@ MathJax.Hub.Config({
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="#hpc/hands-onindex.adoc">HPC Containers Hands-on</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../hpc/hands-on/01-docker.html">Docker</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="01-docker.html">Docker</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../hpc/hands-on/02-mpi.html">Build, Test, Push and Deploy an MPI App</a>
+    <a class="nav-link" href="02-mpi.html">Build, Test, Push and Deploy an MPI App</a>
   </li>
 </ul>
   </li>
@@ -268,13 +268,13 @@ MathJax.Hub.Config({
   <ul>
     <li><a href="../../../index.html">Course Project</a></li>
     <li>Hands-on Tutorials</li>
-    <li><a href="index.html">Docker Hands-on</a></li>
-    <li><a href="01-getting-started.html">Getting Started with Docker</a></li>
+    <li><a href="#hpc/hands-onindex.adoc">HPC Containers Hands-on</a></li>
+    <li><a href="01-docker.html">Docker</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/hands-on/01-getting-started.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/hpc/hands-on/01-docker.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -295,50 +295,352 @@ MathJax.Hub.Config({
 </aside>
 <article class="doc">
 <h1 class="page">Docker System Basics</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_overview">1. Overview</a></li>
+<li><a href="#_docker_system_components">2. Docker System Components</a></li>
+<li><a href="#_docker_hello_world_example">3. Docker Hello World Example</a></li>
+<li><a href="#_running_ubuntu_in_a_container">4. Running Ubuntu in a Container</a></li>
+<li><a href="#_essential_docker_commands">5. Essential Docker Commands</a>
+<ul class="sectlevel2">
+<li><a href="#_listing_containers_and_images">5.1. Listing Containers and Images</a></li>
+<li><a href="#_running_containers_in_detached_mode">5.2. Running Containers in Detached Mode</a></li>
+<li><a href="#_logging_into_and_out_of_docker_registries">5.3. Logging into and Out of Docker Registries</a></li>
+</ul>
+</li>
+<li><a href="#_advanced_docker_usage">6. Advanced Docker Usage</a>
+<ul class="sectlevel2">
+<li><a href="#_volumes_persistent_storage">6.1. Volumes: Persistent Storage</a></li>
+<li><a href="#_docker_images_and_updates">6.2. Docker Images and Updates</a></li>
+</ul>
+</li>
+<li><a href="#_docker_for_hpc">7. Docker for HPC</a></li>
+<li><a href="#_conclusion">8. Conclusion</a></li>
+</ul>
+</div>
 <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>A 30-minute hands-on session to introduce Docker fundamentals with a focus on HPC development.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>1. Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this session, you will learn:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The basic components of the Docker system.</p>
+</li>
+<li>
+<p>How to run containers interactively and in detached mode.</p>
+</li>
+<li>
+<p>Key Docker commands such as <code>docker ps</code>, <code>docker images</code>, and how to manage container lifecycles.</p>
+</li>
+<li>
+<p>How Docker concepts translate to HPC containerization workflows.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_docker_system_components"><a class="anchor" href="#_docker_system_components"></a>2. Docker System Components</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../../_images/docker/basics-of-docker-system.png" alt="basics of docker system" title="Basics of Docker System"></a></span></p>
 </div>
 <div class="paragraph">
-<p>The basic components of the Docker system are:
-- <strong>Images</strong>: Blueprints of the application and its dependencies.
-- <strong>Containers</strong>: Running instances of images.
-- <strong>Volumes</strong>: Persistent data storage.
-- <strong>Networks</strong>: Isolated environments for containers to communicate.
-- <strong>Dockerfile</strong>: A file used to create Docker images.</p>
+<p>The basic components of the Docker system are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Images</strong>: Blueprints of the application and its dependencies.</p>
+</li>
+<li>
+<p><strong>Containers</strong>: Running instances of images.</p>
+</li>
+<li>
+<p><strong>Volumes</strong>: Persistent data storage.</p>
+</li>
+<li>
+<p><strong>Networks</strong>: Isolated environments for containers to communicate.</p>
+</li>
+<li>
+<p><strong>Dockerfile</strong>: A file used to create Docker images.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_docker_hello_world_example"><a class="anchor" href="#_docker_hello_world_example"></a>1. Docker Hello World Example</h2>
+<h2 id="_docker_hello_world_example"><a class="anchor" href="#_docker_hello_world_example"></a>3. Docker Hello World Example</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s start by running a simple Docker container:</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run hello-world</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This command pulls the <code>hello-world</code> image from Docker Hub and runs it in a container.</p>
+<p>This command pulls the <code>hello-world</code> image from Docker Hub and runs it in a container. Notice that the container runs, prints a message, and then exits.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_running_ubuntu_in_a_container"><a class="anchor" href="#_running_ubuntu_in_a_container"></a>2. Running Ubuntu in a Container</h2>
+<h2 id="_running_ubuntu_in_a_container"><a class="anchor" href="#_running_ubuntu_in_a_container"></a>4. Running Ubuntu in a Container</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>You can start an interactive session in an Ubuntu container. In this example, we also use the <code>--rm</code> flag.</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run -it ubuntu bash</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run --rm -it ubuntu bash</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Explanation:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>--rm</code>: Automatically removes the container after it exits, keeping your system clean.</p>
+</li>
+<li>
+<p><code>-it</code>: Combines <code>-i</code> (interactive) and <code>-t</code> (allocate a pseudo-TTY) to enable an interactive shell session.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>After running this command, you&#8217;ll have an interactive Bash shell inside the Ubuntu container.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_essential_docker_commands"><a class="anchor" href="#_essential_docker_commands"></a>5. Essential Docker Commands</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_listing_containers_and_images"><a class="anchor" href="#_listing_containers_and_images"></a>5.1. Listing Containers and Images</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>docker ps</code></strong>
+Lists all running containers.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker ps</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>docker ps -a</code></strong>
+Lists all containers, including those that have exited.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker ps -a</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>docker images</code></strong>
+Lists all available Docker images on your system.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker images</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running_containers_in_detached_mode"><a class="anchor" href="#_running_containers_in_detached_mode"></a>5.2. Running Containers in Detached Mode</h3>
+<div class="paragraph">
+<p>To run a container in the background (detached mode), use the <code>-d</code> flag:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run --rm -d ubuntu sleep 60</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Explanation:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>-d</code> runs the container in detached mode.</p>
+</li>
+<li>
+<p>In this example, the container will run the <code>sleep 60</code> command and exit after 60 seconds.</p>
+</li>
+<li>
+<p>The <code>--rm</code> flag ensures the container is removed automatically when it stops.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_logging_into_and_out_of_docker_registries"><a class="anchor" href="#_logging_into_and_out_of_docker_registries"></a>5.3. Logging into and Out of Docker Registries</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>docker login</code></strong>
+Log into a Docker registry (e.g., Docker Hub or GitHub Container Registry).</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker login ghcr.io -u &lt;your-username&gt; --password-stdin</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Replace <code>&lt;your-username&gt;</code> with your actual username and supply your password via standard input (or use a secret in CI/CD pipelines).</p>
+</li>
+<li>
+<p><strong><code>docker logout</code></strong>
+Log out from the Docker registry.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker logout ghcr.io</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_advanced_docker_usage"><a class="anchor" href="#_advanced_docker_usage"></a>6. Advanced Docker Usage</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_volumes_persistent_storage"><a class="anchor" href="#_volumes_persistent_storage"></a>6.1. Volumes: Persistent Storage</h3>
+<div class="paragraph">
+<p>Use volumes to store data that persists even after a container is removed.
+For example, run an Ubuntu container with a mounted volume from your local <code>/tmp</code> directory:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run --rm -it -v /tmp:/tmp ubuntu bash</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>-it</code> flag starts the container in interactive mode with a terminal attached. This runs an Ubuntu image with the Bash shell.</p>
+<p>Inside the container, you can run <code>df</code> to view the mounted volume.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_docker_images_and_updates"><a class="anchor" href="#_docker_images_and_updates"></a>6.2. Docker Images and Updates</h3>
+<div class="paragraph">
+<p>Docker images can be updated and modified by creating new image layers.</p>
+</div>
+<div class="paragraph">
+<p>This approach allows you to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Roll Back Updates:</strong> Easily revert to a previous image version.</p>
+</li>
+<li>
+<p><strong>Efficient Testing:</strong> Only new layers need to be pushed or pulled.</p>
+</li>
+<li>
+<p><strong>Optimized Distribution:</strong> Minimize changes, reducing download times.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../../_images/docker/changes-and-updates.png" alt="changes and updates" title="Changes and Updates"></a></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_docker_for_hpc"><a class="anchor" href="#_docker_for_hpc"></a>7. Docker for HPC</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Docker serves as a foundational tool in HPC container workflows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Development &amp; Testing:</strong> Create and test HPC applications in a controlled Docker environment.</p>
+</li>
+<li>
+<p><strong>Container Conversion:</strong> Docker images can be converted to Apptainer/Singularity images for deployment on HPC clusters.</p>
+</li>
+<li>
+<p><strong>Reproducibility:</strong> Docker ensures consistent environments across different stages of development and production.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion"><a class="anchor" href="#_conclusion"></a>8. Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We covered:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Basic Docker components and commands.</p>
+</li>
+<li>
+<p>Running containers interactively and in detached mode.</p>
+</li>
+<li>
+<p>Managing containers and images with <code>docker ps</code> and <code>docker images</code>.</p>
+</li>
+<li>
+<p>Logging into and out of Docker registries.</p>
+</li>
+<li>
+<p>Advanced topics including volumes and image layering.</p>
+</li>
+<li>
+<p>How Docker basics underpin HPC containerization workflows.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph center">
+<p>Questions? Let&#8217;s discuss how these tools can streamline HPC application development!</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="index.html">Docker Hands-on</a></span>
-  <span class="next"><a href="02-advanced-usage.html">Advanced Docker Usage</a></span>
+  <span class="prev"><a href="#hpc/hands-onindex.adoc">HPC Containers Hands-on</a></span>
+  <span class="next"><a href="02-mpi.html">Build, Test, Push and Deploy an MPI App</a></span>
 </nav>
 </article>
   </div>

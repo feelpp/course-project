@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Practical Session: Using PostgreSQL with Docker and Injecting a Dataset :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/docker/hands-on/03-usecase-db.html">
+    <title>Untitled :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/hpc/hands-on/02-mpi.html">
+    <link rel="prev" href="01-docker.html">
+    <link rel="next" href="../../../cicd/index.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
@@ -148,16 +150,16 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../index.html">Docker</a>
+    <a class="nav-link" href="../../docker/index.html">Docker</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../docker-overview.html">Docker Overview</a>
+    <a class="nav-link" href="../../docker/docker-overview.html">Docker Overview</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../docker-problems-solved.html">The Problem Docker Solves</a>
+    <a class="nav-link" href="../../docker/docker-problems-solved.html">The Problem Docker Solves</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../docker-architecture.html">Docker Architecture</a>
+    <a class="nav-link" href="../../docker/docker-architecture.html">Docker Architecture</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#docker/docker-hpc.adoc">Installing Docker</a>
@@ -180,10 +182,10 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../hpc/index.html">Containers for HPC</a>
+    <a class="nav-link" href="../index.html">Containers for HPC</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../hpc/best-practices.html">Best practices</a>
+    <a class="nav-link" href="../best-practices.html">Best practices</a>
   </li>
 </ul>
   </li>
@@ -193,13 +195,13 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Docker Hands-on</a>
+    <a class="nav-link" href="../../docker/hands-on/index.html">Docker Hands-on</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="01-getting-started.html">Getting Started with Docker</a>
+    <a class="nav-link" href="../../docker/hands-on/01-getting-started.html">Getting Started with Docker</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="02-advanced-usage.html">Advanced Docker Usage</a>
+    <a class="nav-link" href="../../docker/hands-on/02-advanced-usage.html">Advanced Docker Usage</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#docker/hands-on/docker-githubaction.adoc">GitHub Actions with Docker</a>
@@ -220,10 +222,10 @@ MathJax.Hub.Config({
     <a class="nav-link" href="#hpc/hands-onindex.adoc">HPC Containers Hands-on</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../hpc/hands-on/01-docker.html">Docker</a>
+    <a class="nav-link" href="01-docker.html">Docker</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../hpc/hands-on/02-mpi.html">Build, Test, Push and Deploy an MPI App</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="02-mpi.html">Build, Test, Push and Deploy an MPI App</a>
   </li>
 </ul>
   </li>
@@ -265,12 +267,14 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../../../index.html">Course Project</a></li>
-    <li><a href="03-usecase-db.html">Practical Session: Using PostgreSQL with Docker and Injecting a Dataset</a></li>
+    <li>Hands-on Tutorials</li>
+    <li><a href="#hpc/hands-onindex.adoc">HPC Containers Hands-on</a></li>
+    <li><a href="02-mpi.html">Build, Test, Push and Deploy an MPI App</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/hands-on/03-usecase-db.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/hpc/hands-on/02-mpi.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -290,195 +294,291 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Practical Session: Using PostgreSQL with Docker and Injecting a Dataset</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>The objective of this session is to demonstrate how to set up PostgreSQL using Docker, inject a dataset into the database, and perform basic queries including with python Pandas.</p>
-</div>
-</div>
-</div>
 <div class="sect1">
-<h2 id="_step_1_set_up_postgresql_with_docker"><a class="anchor" href="#_step_1_set_up_postgresql_with_docker"></a>1. Step 1: Set up PostgreSQL with Docker</h2>
+<h2 id="_hands_on_building_and_pushing_container_images_for_hpc_applications"><a class="anchor" href="#_hands_on_building_and_pushing_container_images_for_hpc_applications"></a>1. Hands-on: Building and Pushing Container Images for HPC Applications</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Pull the official PostgreSQL image and start a container.</p>
+<p>In this session, you&#8217;ll learn how to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Build a Docker image for an MPI application inside a GitHub Codespace (running Ubuntu 24.04).</p>
+</li>
+<li>
+<p>Push the image to GitHub Container Registry (ghcr.io).</p>
+</li>
+<li>
+<p>Automate the build and push process using GitHub Actions CI/CD.</p>
+</li>
+<li>
+<p>Deploy the container image on the Karolina HPC system (or similar machines) using both Docker and Apptainer.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>1.1. Prerequisites</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>A GitHub Codespace based on Ubuntu 24.04.</p>
+</li>
+<li>
+<p>Docker installed in the Codespace.</p>
+</li>
+<li>
+<p>Access to GitHub Container Registry (with a Personal Access Token stored as the secret <code>CR_PAT</code>).</p>
+</li>
+<li>
+<p>Apptainer (or Singularity) installed on your target HPC system.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_1_building_an_mpi_application_in_github_codespace"><a class="anchor" href="#_step_1_building_an_mpi_application_in_github_codespace"></a>1.2. Step 1: Building an MPI Application in GitHub Codespace</h3>
+<div class="paragraph">
+<p>We&#8217;ll create a simple MPI "Hello World" application in C and package it into a Docker image using Ubuntu 24.04.</p>
+</div>
+<div class="sect3">
+<h4 id="_sample_mpi_application_app_c"><a class="anchor" href="#_sample_mpi_application_app_c"></a>1.2.1. Sample MPI Application (app.c)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">#include &lt;mpi.h&gt;
+#include &lt;stdio.h&gt;
+
+int main(int argc, char** argv) {
+    MPI_Init(NULL, NULL);
+    int world_size;
+    MPI_Comm_size(MPI_COMM_WORLD, &amp;world_size);
+    int world_rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &amp;world_rank);
+    printf("Hello world from rank %d out of %d processors\n", world_rank, world_size);
+    MPI_Finalize();
+    return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_dockerfile_for_the_mpi_application"><a class="anchor" href="#_dockerfile_for_the_mpi_application"></a>1.2.2. Dockerfile for the MPI Application</h4>
+<div class="paragraph">
+<p>Create a file named <code>Dockerfile</code> in your repository with the following content. Notice we use Ubuntu 24.04 as the base image.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker pull postgres
-docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres</code></pre>
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile">FROM ubuntu:24.04                            <i class="conum" data-value="1"></i><b>(1)</b>
+ENV DEBIAN_FRONTEND=noninteractive           <i class="conum" data-value="2"></i><b>(2)</b>
+RUN apt-get update &amp;&amp; apt-get install -y \
+    mpich \
+    build-essential &amp;&amp; \
+    rm -rf /var/lib/apt/lists/*              <i class="conum" data-value="3"></i><b>(3)</b>
+COPY app.c /app/app.c                        <i class="conum" data-value="4"></i><b>(4)</b>
+WORKDIR /app                                 <i class="conum" data-value="5"></i><b>(5)</b>
+RUN mpicc -o mpi_app app.c                   <i class="conum" data-value="6"></i><b>(6)</b>
+CMD ["mpirun", "-np", "4", "./mpi_app"]      <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_step_2_prepare_the_dataset"><a class="anchor" href="#_step_2_prepare_the_dataset"></a>2. Step 2: Prepare the Dataset</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Let&#8217;s use a small CSV dataset for this session. Create a <code>data.csv</code> file with the following content:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. data.csv</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
+<div class="colist arabic">
+<table>
 <tr>
-<th class="tableblock halign-left valign-top">id</th>
-<th class="tableblock halign-left valign-top">name</th>
-<th class="tableblock halign-left valign-top">age</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">John Doe</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">30</p></td>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Use Ubuntu 24.04 as the base image for a modern, stable environment.</td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Jane Smith</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">25</p></td>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Set DEBIAN_FRONTEND to noninteractive to suppress prompts during package installation.</td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Emily Johnson</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">22</p></td>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Update package lists, install MPICH and build-essential packages, and clean up package cache.</td>
 </tr>
-</tbody>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Copy the MPI application source code (app.c) into the /app directory in the image.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Set the working directory to /app for subsequent commands.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Compile the MPI application using mpicc, outputting the binary as 'mpi_app'.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Define the default command to run the MPI application with 4 processes using mpirun.</td>
+</tr>
 </table>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_step_3_create_a_docker_volume_for_persistence"><a class="anchor" href="#_step_3_create_a_docker_volume_for_persistence"></a>3. Step 3: Create a Docker Volume for Persistence</h2>
-<div class="sectionbody">
+<div class="sect3">
+<h4 id="_building_the_docker_image_in_github_codespace"><a class="anchor" href="#_building_the_docker_image_in_github_codespace"></a>1.2.3. Building the Docker Image in GitHub Codespace</h4>
 <div class="paragraph">
-<p>We&#8217;ll create a volume to persist PostgreSQL data and mount it to the container:</p>
+<p>Open the terminal in your Codespace (Ubuntu 24.04) and run:</p>
 </div>
 <div class="listingblock">
-<div class="title">Using Docker Volumes to Persist Data</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker volume create pgdata
-docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -v pgdata:/var/lib/postgresql/data -d postgres</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># Build the Docker image locally
+docker build -t ghcr.io/&lt;your-username&gt;/mpi_app:latest .
+
+# Run the image to test the MPI application
+docker run --rm ghcr.io/&lt;your-username&gt;/mpi_app:latest</code></pre>
 </div>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_step_4_connect_to_the_postgresql_container"><a class="anchor" href="#_step_4_connect_to_the_postgresql_container"></a>4. Step 4: Connect to the PostgreSQL Container</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_step_2_pushing_the_image_to_github_container_registry_ghcr_io"><a class="anchor" href="#_step_2_pushing_the_image_to_github_container_registry_ghcr_io"></a>1.3. Step 2: Pushing the Image to GitHub Container Registry (ghcr.io)</h3>
 <div class="paragraph">
-<p>Now, connect to the running Postgres instance:</p>
+<p>Once you have verified the image, push it to ghcr.io:</p>
 </div>
 <div class="listingblock">
-<div class="title">Using <code>psql</code> to Connect to Postgres</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker exec -it some-postgres psql -U postgres</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># Log in to GitHub Container Registry using your Personal Access Token (CR_PAT)
+echo $CR_PAT | docker login ghcr.io -u &lt;your-username&gt; --password-stdin
+
+# Push the Docker image to ghcr.io
+docker push ghcr.io/&lt;your-username&gt;/mpi_app:latest</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_step_5_create_a_table_in_postgres"><a class="anchor" href="#_step_5_create_a_table_in_postgres"></a>5. Step 5: Create a Table in Postgres</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_step_3_automating_builds_and_pushes_with_github_actions_cicd"><a class="anchor" href="#_step_3_automating_builds_and_pushes_with_github_actions_cicd"></a>1.4. Step 3: Automating Builds and Pushes with GitHub Actions CI/CD</h3>
 <div class="paragraph">
-<p>Create a new table to hold our dataset:</p>
+<p>Create a GitHub Actions workflow file (e.g., <code>.github/workflows/docker-build-push.yml</code>) with the following content to automate the process:</p>
 </div>
 <div class="listingblock">
-<div class="title">Using SQL language to Create a Table</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE people (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100),
-    age INT
-);</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: Docker Build and Push
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.CR_PAT }}
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.actor }}/mpi_app:latest</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_step_6_import_the_dataset_into_postgresql"><a class="anchor" href="#_step_6_import_the_dataset_into_postgresql"></a>6. Step 6: Import the Dataset into PostgreSQL</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>To load the CSV file into the Postgres container, we can use the <code>COPY</code> command.
-First, copy the <code>data.csv</code> file to the running container:</p>
+<p>This workflow automatically builds and pushes your Docker image whenever changes are merged into the main branch.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_4_deploying_on_karolina_hpc_and_other_machines"><a class="anchor" href="#_step_4_deploying_on_karolina_hpc_and_other_machines"></a>1.5. Step 4: Deploying on Karolina HPC and Other Machines</h3>
+<div class="paragraph">
+<p>On the Karolina HPC system (or another target machine), you can deploy the container image using Docker or convert it to an Apptainer image.</p>
+</div>
+<div class="sect3">
+<h4 id="_deploying_with_docker"><a class="anchor" href="#_deploying_with_docker"></a>1.5.1. Deploying with Docker</h4>
+<div class="paragraph">
+<p>Pull and run the image on the target system:</p>
 </div>
 <div class="listingblock">
-<div class="title">Using <code>docker cp</code> to Copy Files to a Container</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker cp data.csv some-postgres:/data.csv</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># Log in to GitHub Container Registry if required
+echo $CR_PAT | docker login ghcr.io -u &lt;your-username&gt; --password-stdin
+
+# Pull the latest image
+docker pull ghcr.io/&lt;your-username&gt;/mpi_app:latest
+
+# Run the container on an HPC node
+docker run --rm ghcr.io/&lt;your-username&gt;/mpi_app:latest</code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_converting_to_an_apptainer_image"><a class="anchor" href="#_converting_to_an_apptainer_image"></a>1.5.2. Converting to an Apptainer Image</h4>
 <div class="paragraph">
-<p>Then, import the CSV data into the <code>people</code> table:</p>
+<p>If your HPC system uses Apptainer/Singularity for container execution, convert the Docker image as follows:</p>
 </div>
 <div class="listingblock">
-<div class="title">Using SQL language to Import Data</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">COPY people(id, name, age)
-FROM '/data.csv'
-DELIMITER ','
-CSV HEADER;</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># On the HPC system, use Apptainer to pull the Docker image
+apptainer pull mpi_app.sif docker://ghcr.io/&lt;your-username&gt;/mpi_app:latest</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_step_7_query_the_data"><a class="anchor" href="#_step_7_query_the_data"></a>7. Step 7: Query the Data</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Now, let&#8217;s query the data to ensure it&#8217;s loaded correctly:</p>
+<p>You can now run the Apptainer image on your HPC system:</p>
 </div>
 <div class="listingblock">
-<div class="title">Using SQL language to Query Data</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT * FROM people;</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">apptainer exec mpi_app.sif mpirun -np 4 ./mpi_app</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_wrap_up_and_qa"><a class="anchor" href="#_wrap_up_and_qa"></a>1.6. Wrap-Up and Q&amp;A</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Review:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Built an MPI application in C and containerized it using a Dockerfile based on Ubuntu 24.04.</p>
+</li>
+<li>
+<p>Tested and pushed the Docker image to GitHub Container Registry.</p>
+</li>
+<li>
+<p>Automated the build/push process with GitHub Actions.</p>
+</li>
+<li>
+<p>Demonstrated deployment on HPC systems via Docker and Apptainer.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Discussion:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>How might this workflow be extended for more complex HPC applications?</p>
+</li>
+<li>
+<p>What additional optimizations or testing (e.g., performance benchmarks) could be integrated?</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>You should see output similar to this:</p>
-</div>
-<div class="listingblock">
-<div class="title">Query Output</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-output hljs" data-lang="output">inc
- id |    name     | age
-----+-------------+-----
-  1 | John Doe    |  30
-  2 | Jane Smith  |  25
-  3 | Emily Johnson |  22
-(3 rows)</code></pre>
+<p>Now it&#8217;s time to experiment, ask questions, and explore how these tools can streamline HPC application deployment!</p>
 </div>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_step_8_clean_up"><a class="anchor" href="#_step_8_clean_up"></a>8. Step 8: Clean Up</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>When you&#8217;re done, stop and remove the container:</p>
-</div>
-<div class="listingblock">
-<div class="title">Using Docker Commands to Clean Up</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker stop some-postgres
-docker rm some-postgres
-docker volume rm pgdata</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_conclusion"><a class="anchor" href="#_conclusion"></a>9. Conclusion</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In this session, we&#8217;ve set up PostgreSQL using Docker, imported a small dataset, and performed basic queries. This setup can be expanded to handle larger datasets and more complex queries.</p>
-</div>
-</div>
-</div>
+<nav class="pagination">
+  <span class="prev"><a href="01-docker.html">Docker</a></span>
+  <span class="next"><a href="../../../cicd/index.html">Introduction to CI/CD fundamentals with GitHub Actions </a></span>
+</nav>
 </article>
   </div>
 </main>
