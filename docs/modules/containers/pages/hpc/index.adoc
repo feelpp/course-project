@@ -1,0 +1,430 @@
+= Introduction to Containers for High-Performance Computing (HPC)
+Christophe Prud'homme <christophe.prudhomme@cemosis.fr>
+v1.0, 2023-03-24
+:icons: font
+:revealjs_theme: white
+:revealjs_slideNumber: true
+:revealjs_autoSlide: 0
+:source-highlighter: pygments
+:toc: left
+
+[.lead]
+An introductory session on using containers in HPC environments.
+
+== Overview
+
+*Duration: 1h30*
+
+Learning Objectives::
+- Understand the concept of containers and how they differ from traditional virtualization.
+- Explore containerization benefits for HPC workloads.
+- Introduce key container technologies: Docker, Singularity/Apptainer, and Podman.
+- Demonstrate how to use containers in an HPC workflow.
+
+== Introduction to Containers (15 min)
+
+=== What are Containers?
+* Lightweight software encapsulating everything needed to run a specific task (minus the OS kernel).
+* Based on Linux only.
+* Processes and user-level software are isolated.
+* Portable software ecosystem.
+* Comparable to "chroot on steroids".
+* Docker is the most common tool:
+  ** Available on all major platforms.
+  ** Widely used in industry.
+  ** Integrated Dockerhub registry.
+
+=== Hypervisors and Containers
+
+
+* Type 1 hypervisors run directly on the hardware, below the host OS.
+* Type 2 hypervisors operate within the host OS.
+* Containers function as an advanced chroot, bypassing traditional hardware abstraction.
+* The level at which abstraction occurs can impact performance.
+* All approaches facilitate custom software stacks on shared hardware.
+
+image::containers/vm-vs-containers.png[width=600]
+
+=== Background of Virtualization
+* Advancements in virtualization have fundamentally transformed computing.
+* Prominent cloud platforms demonstrating these changes: FutureGrid, Magellan, Chameleon Cloud, and Hobbes.
+* Key distinctions in OS-level virtualization:
+    ** Containerized user-level applications for enhanced portability.
+    ** Shared OS kernel among containers secured through cgroups-based isolation.
+    ** Superior performance with some trade-offs in OS customization flexibility.
+
+== Why Containers for HPC? (15 min)
+
+=== HPC Software Deployment Challenges
+
+Traditional HPC environments have long relied on centrally maintained software modules to manage complex dependencies. While this approach allows multiple users to share common libraries and tools, it comes with significant challenges:
+
+Complex Software Dependencies & Reproducibility::
+  - **Module Conflicts:** Users must navigate conflicting versions of compilers, libraries, and applications. This often leads to "dependency hell" where even minor version differences cause failures in compiling or running HPC codes.  
+  - **Centralized Management:** Since system administrators control the available modules, individual researchers may struggle to install custom or cutting-edge software versions tailored to their project needs.  
+  - **Reproducibility Issues:** Reproducing an experimental environment becomes difficult when software versions and configurations are managed outside of the user's control. Small differences in the installed environment can lead to divergent results, hindering scientific validation and collaboration.
+
+Performance-Critical, Consistent Environments for Bulk-Synchronous MPI Workloads::
+  - **Strict Synchronization:** HPC applications, especially those using MPI, operate in bulk-synchronous phases where all nodes must coordinate their computation. Any inconsistency in the underlying software (like different MPI library versions) can cause synchronization issues or performance degradation.  
+  - **Scalability Requirements:** When scaling to thousands of nodes, even minor performance overheads become significant. Ensuring a consistent, highly optimized environment across all nodes is critical, as any variability can lead to bottlenecks or failure in achieving optimal performance.  
+  - **Optimized Stacks:** HPC workloads often rely on finely tuned communication libraries, hardware-specific optimizations, and custom drivers. Containers help by encapsulating these finely tuned environments, ensuring that every node uses the same software stack—thereby maintaining the performance characteristics required for large-scale, bulk-synchronous operations.
+
+
+[IMPORTANT]
+====
+* Leverage containerization to:
+    - Encapsulate all necessary dependencies and configurations.
+    - Create a single, reproducible environment.
+* Simplify the deployment process.
+* Ensure consistency and reliability across:
+    - Different nodes.
+    - Various HPC systems.
+
+====
+
+Containers help address HPC Hell
+
+=== The HPC Environment Matrix from Hell
+
+[cols="1,1,1,1,1,1", options="header"]
+|===
+| HPC Software / Components 
+| Laptop/Desktop (Development) 
+| Tier-2 HPC Center 
+| Tier-1 HPC Center 
+| Tier-0 Supercomputer
+
+| HPC Code #1 stack (MPI-based)
+| ?
+| ?
+| ?
+| ?
+| ?
+
+| HPC Code #2 (GPU-accelerated)
+| ?
+| ?
+| ?
+| ?
+| ?
+
+| HPC Code #3 (AI/ML Pipeline)
+| ?
+| ?
+| ?
+| ?
+| ?
+
+| HPC Code #4 (I/O-heavy Workflow)
+| ?
+| ?
+| ?
+| ?
+| ?
+
+| HPC Libraries (BLAS, LAPACK, MKL, etc.)
+| ?
+| ?
+| ?
+| ?
+| ?
+
+| Compilers & Toolchains (GCC, Intel, LLVM)
+| ?
+| ?
+| ?
+| ?
+| ?
+
+| MPI Variants (Open MPI, MPICH, MVAPICH)
+| ?
+| ?
+| ?
+| ?
+| ?
+
+| Performance Tuning & Profilers
+| ?
+| ?
+| ?
+| ?
+| ?
+|===
+
+[NOTE]
+This table highlights the complexity of ensuring every component—MPI libraries, GPU drivers, compilers, file systems, security, etc.—matches across multiple HPC environments. Each “?” can represent different OS versions, library dependencies, hardware constraints, scheduler configurations, or security policies. Containers help encapsulate these dependencies, reducing the “matrix from hell” into a single, portable environment that can run consistently across laptops, Tier-n HPC clusters, and large supercomputers.
+
+=== HPC Environment Modules: Helpful but Still Broken
+
+Environment modules (e.g., `Environment Modules` or `Lmod`) are widely used in HPC to manage complex software stacks. They allow users to load or unload specific versions of compilers, libraries, and applications by manipulating environment variables (e.g., `PATH`, `LD_LIBRARY_PATH`). While this approach has been the standard on many supercomputers for years, it still poses several problems:
+
+Lack of True Isolation::
+Modules only adjust environment variables, so if two modules conflict (e.g., different compiler versions), users must manually troubleshoot or re-order module loads. There is no guaranteed isolation of dependencies.
+
+luster-Specific Configurations::
+Each HPC center (and even each cluster within a center) may provide different module names, versions, or dependencies. A workflow that works on one cluster may fail on another due to missing or differently configured modules.
+
+Reproducibility Gaps::
+Because modules rely on the HPC system’s specific software installation, replicating an exact environment later or on a different system can be difficult. Minor changes in system-provided modules can invalidate previous runs.
+
+Complex Dependencies::
+Some scientific codes depend on intricate chains of libraries. Even if modules are available, loading them in the correct order (and verifying version compatibility) can become a “dependency puzzle,” making HPC usage less user-friendly.
+
+Administrative Overhead::
+Sysadmins must maintain a growing set of modules for different libraries, compilers, and versions. This is time-consuming, prone to error, and may lag behind the latest releases needed by researchers.
+
+=== Why Containers Help
+
+By contrast, containers bundle the entire user-space software stack (compilers, libraries, application code) into a portable image. This ensures:
+
+* **Isolation & Consistency:** The environment inside the container remains the same, regardless of the underlying HPC system.  
+* **Reproducibility:** Scientific workflows become more easily reproducible, since the container image fully specifies dependencies.  
+* **Portability:** A container built on a user’s laptop can run on a Tier-n cluster or supercomputer with minimal changes.  
+* **Reduced Admin Burden:** Researchers control and update their containers without waiting for system administrators to provide new or specialized modules.
+
+In summary, environment modules have helped manage HPC software complexity for many years, but they are not a complete solution to the challenges of portability, reproducibility, and dependency isolation. Containers can complement or even replace modules by providing a fully self-contained runtime environment, reducing “dependency hell” and simplifying cross-platform HPC workflows.
+
+=== Benefits of Containerization for HPC
+* **Reproducibility:** Consistent, version-controlled environments.
+* **Portability:** Develop locally and deploy on supercomputers seamlessly.
+* **User-space Environments:** Run containers without requiring root access.
+* **Scheduler Compatibility:** Integrate with HPC schedulers (Slurm, PBS, etc.)
+* Compared with traditional software management (modules, environment scripts), containers offer a unified approach.
+
+
+== Why Does It Matter for Cemosis?
+
+Cemosis, the Center for Modeling and Simulation in Strasbourg, plays a critical role in advancing computational research through the development of Feel++ within the Feel++ Consortium. Here's why containerization matters for Cemosis:
+
+* **Enhanced Reproducibility:**  
+  - With Feel++ being a sophisticated framework for finite element analysis, ensuring that every simulation runs in an identical environment is crucial for scientific validation. Containers guarantee that dependencies, libraries, and configurations remain consistent across all testing and production runs.
+
+* **Simplified Collaboration:**  
+  - The Feel++ Consortium involves collaboration among multiple institutions. Containers enable researchers at Cemosis and partner organizations to share a single, standardized environment, reducing setup complexities and streamlining collaborative development.
+
+* **Optimized HPC Workflows:**  
+  - HPC applications in modeling and simulation often require finely tuned performance optimizations. Containerization encapsulates these optimizations, ensuring that computational experiments run efficiently on various HPC systems without manual reconfiguration.
+
+* **Rapid Deployment and Testing:**  
+  - With containerized workflows, Cemosis can quickly iterate on new features or bug fixes in Feel++, automatically testing changes in a controlled environment. This accelerates development cycles and improves the overall quality of the software.
+
+* **Future-Proofing Research:**  
+  - As hardware and software evolve, maintaining reproducible environments becomes increasingly challenging. Containers provide a robust solution to preserve the computational environment, ensuring long-term reproducibility and sustainability of research outputs.
+
+[NOTE]
+This section emphasizes that containerization is not just a technical enhancement but a strategic enabler for research and collaboration at Cemosis.
+
+=== Feel++ Overview
+
+[.left]
+--
+image::feelpp-arch.png[image,width=600]
+--
+.Overview
+* Framework to solve problems based on ODE and PDE
+* {cpp}17 and {cpp}20 
+* Python layer using Pybind11
+* Seamless parallelism with default communicator including ensemble runs
+* Powerful interpolation and integration operators working in parallel
+* Advanced Post-processing including for high order approximation and high order geometry
+* *Build*: CMake and CMake Presets
+* *Docs:* https://docs.feelpp.org including dynamic pages that can be downloaded as notebooks
+* *DevOps:* 
+** *GitHub Actions:* CI/CD and Continuous Benmarking on inHouse and EuroHPC systems
+** *Packaging:* Ubuntu/Debian, spack, MacPort
+** *Containers:* Docker,  Apptainer
+* *Tests:* About a thousand  tests  in sequential and parallel {cpp} and Python
+* *Usage:* Research, R&D, Teaching, _Services_
+
+=== Some Feel++ Applications
+
+[cols="1,1,1", options="header", frame="none", grid="none"]
+|===
+^.^| Health(Rheology) ^.^| Physics(High Field Magnets) ^.^| Physics(Deflectometry)
+^.^| image:feelpp/applications/blood-rheology.png[image,width=100]
+^.^| image:feelpp/applications/hifimagnet.png[image,width=100] 
+^.^| image:feelpp/applications/holo3.png[image,width=100]
+|===
+
+[cols="1,1,1", options="header", frame="none", grid="none"]
+|===
+^.^| Health(Micro swimmers) ^.^| Engineering (Buildings)^.^| Health(Eye/Brain)
+^.^| image:feelpp/applications/4fastsim-ibat.png[image,width=100]
+^.^| image:feelpp/applications/microswimmer.png[image,width=100]
+^.^| image:feelpp/applications/OMVS-scheme-with-results.png[image,width=100]
+|===
+//
+//=== {feelpp} Continuous Integration/Delivery/Deployment
+//
+//image:feelpp-ci-workflow.png[background,size=contain]
+//
+//=== {feelpp} Continuous Benchmarking
+//
+//image:feelpp-cb-workflow.png[background,size=contain]
+
+
+
+
+
+== Container Technologies in HPC (20 min)
+
+=== Overview of Container Runtimes
+
+* **Docker**  
+**Strengths:** A vast ecosystem, straightforward workflows, and seamless integration with many development tools.  
+**Limitations:** Typically requires root privileges (via a daemon) and lacks native optimizations for HPC (e.g., multi-node MPI jobs, specialized network interconnects).
+
+* **Singularity/Apptainer**  
+**Focus:** Specifically designed for HPC.  
+**Key Advantages:** Runs containers without root privileges, integrates well with MPI and GPU workflows, and supports HPC schedulers.
+
+* **Podman**  
+**Rootless Docker Alternative:** Allows building and running containers without a daemon, but less common in HPC settings.
+
+* **Shifter and Charliecloud**  
+**Additional HPC-Oriented Tools:** Used at some HPC centers for containerized workflows.
+
+=== Docker in a Nutshell
+
+image::docker/basics-of-docker-system.png[Docker Architecture, width=70%]
+
+Docker follows a client-server model:
+
+- The **Docker Client** sends commands (build, run, push, pull) to the **Docker Daemon**, which handles image management and container lifecycle.
+- **Images** are read-only templates with all dependencies needed to run your application.
+- **Containers** are live instances of images, isolated by Linux namespaces and cgroups.
+- A **Dockerfile** defines how to build an image (base OS, libraries, environment variables, etc.).
+- A **Registry** (e.g., Docker Hub) is a repository for storing and sharing images.
+
+=== The Shipping Container Metaphor
+
+image::docker/shipping-container-for-code.png[Shipping Container for Code, width=70%]
+
+Docker is often compared to shipping containers:
+
+- **Developers** (“inside” the container) focus on code, libraries, and configurations.
+- **Operations** (“outside” the container) handle logging, monitoring, remote access, and networking.
+- This separation of concerns fosters simpler collaboration and consistent deployments across multiple environments (development laptops, QA servers, HPC clusters, etc.).
+
+image::docker/separation-of-concerns.png[Separation of Concerns, width=70%]
+
+=== Why Docker Is (Not Always) Ideal for HPC
+
+1. **Root Access & Security**  
+   Docker’s daemon runs with elevated privileges, which many HPC centers disallow for security reasons.
+
+2. **HPC-Specific Hardware**  
+   Docker does not natively integrate with HPC resource managers (e.g., Slurm, PBS) or specialized interconnects (e.g., InfiniBand) without additional configuration.
+
+3. **MPI & Multi-Node Workloads**  
+   Running large-scale MPI jobs across multiple nodes with Docker can be cumbersome, requiring custom networking and environment tweaks.
+
+Despite these drawbacks, Docker remains very popular for development and testing on local machines. You can then migrate or adapt Docker images for HPC-oriented runtimes like Apptainer.
+
+=== Apptainer (Formerly Singularity)
+
+Apptainer (originally Singularity) is a container platform built with HPC in mind. Key highlights include:
+
+- **Rootless Execution**: Containers operate as the user who launches them, preventing privilege escalation.
+- **Seamless Integration with HPC Schedulers**: Compatible with Slurm, PBS, LSF, etc., without requiring a persistent daemon.
+- **Native MPI & GPU Support**: Automatically binds host MPI libraries and GPU drivers into the container.
+- **SIF Format**: Stores the container as a single file (SIF), simplifying distribution and cryptographic signing.
+
+==== Typical Apptainer Workflow
+
+1. **Build** (usually requires root privileges, often done on a local machine or VM):
+[source,sh]
+----
+apptainer build my_app.sif docker://ubuntu:20.04
+----
+
+2. **Run** (on the HPC cluster, no root required):
+[source,sh]
+----
+apptainer exec my_app.sif python my_script.py
+----
+
+3. **MPI Integration** (using native host libraries):
+[source,sh]
+----
+mpirun -np 4 apptainer exec --mpi my_app.sif ./mpi_program
+----
+
+=== Comparing Docker and Apptainer
+
+[cols="1,1,1", options="header"]
+|===
+| Feature | Docker | Apptainer
+
+| **Execution Model** | Client-server daemon (root-based) | Rootless (user-mode)
+| **HPC Integration** | Requires extra steps for MPI, batch schedulers, GPUs | Built-in MPI, GPU, scheduler support
+| **Security Model**  | Daemon runs as root; user must be in the `docker` group | Minimal privilege escalation; user runs containers
+| **Image Format**    | Layered images (UnionFS) from Docker Hub | Single-file SIF images (pullable from Docker/OCI registries)
+| **Typical Usage**   | General development, CI/CD, microservices | HPC research, multi-tenant secure clusters
+|===
+
+=== Container Registries
+
+Container registries store and distribute images:
+
+- **Docker Hub**: Public and private repositories https://hub.docker.com/[> Docker Hub]
+- **GitHub/GitLab Registries**: ghcr.io, registry.gitlab.com
+- **NVIDIA NGC**: GPU-focused images
+- **Local or Institutional Registries**: On-premise solutions for secure HPC environments
+
+Benefits of using a registry:
+
+- **Version Control**: Tag images (e.g., `v1.0`, `v2.0`) for reproducible environments
+- **Collaboration**: Team members can pull the same image
+- **Deployment**: Easy retrieval of images on HPC systems (if allowed by policy)
+
+=== Key Takeaways
+
+- **Docker** is ubiquitous, user-friendly for local development, but not always HPC-friendly due to security and multi-node concerns.
+- **Apptainer** is purpose-built for HPC, offering rootless execution and seamless MPI/GPU support.
+- **Registries** enable consistent, versioned sharing of container images across laptops, Tier-n clusters, and supercomputers.
+
+
+[IMPORTANT]
+====
+A common workflow is to build and test with Docker locally, push to a registry, then pull the image into Apptainer on HPC systems for production runs.
+
+See the hands-on section for practical examples of running containers in an HPC environment.
+====
+
+== Q&A and Discussion (10 min)
+
+* Open floor for questions.
+* Discussion on participants’ HPC environments and container use cases.
+* Share experiences and challenges with containerized HPC workflows.
+
+== References & Further Reading
+
+* Singularity/Apptainer documentation: https://apptainer.org/
+* Docker documentation: https://docs.docker.com/
+* Additional HPC container best practices: 
+1. **Kurtzer, G. M., Sochat, V., & Bauer, M. W. (2017).**  
+   *Singularity: Scientific containers for mobility of compute.* PLOS ONE, 12(5), e0177459.  
+   DOI: https://doi.org/10.1371/journal.pone.0177459
+
+2. **NERSC Documentation.**  
+   *Containers for HPC: Benefits, Limitations, and Best Practices.*  
+   Available at: https://www.nersc.gov/users/computational-systems/containers/
+
+3. **Pacheco, P., et al. (2018).**  
+   *Performance Evaluation of Container-based Virtualization for HPC Applications.*  
+   Presented at IEEE International Conference on Cloud Computing Technology and Science.  
+   (A detailed analysis of container overhead and performance tuning in HPC settings.)
+
+4. **Containers in HPC: A Survey of Experiences and Best Practices (2019).**  
+   *Journal of Physics: Conference Series.*  
+   (A survey summarizing real-world experiences with HPC container deployments and best practices.)
+
+5. **San Diego Supercomputer Center (SDSC).**  
+   *A Practical Guide to Containerized Workflows in HPC.*  
+   Available at: https://www.sdsc.edu/hpc/software/containers.html
+* EuroHPC offers a comprehensive portal with detailed information on HPC initiatives and training resources.  
+   - Official website: https://www.eurohpc-project.eu/  
+   - Training documentation: Available through the EuroHPC portal and affiliated training programs.
+
+

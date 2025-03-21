@@ -32,7 +32,7 @@
     "asciidoctor-kroki": "^0.17.0",
     "handlebars": "^4.7.7",
     "handlebars-utils": "^1.0.6",
-    "@feelpp/asciidoctor-extensions": "^1.0.0-rc.11"
+    "@feelpp/asciidoctor-extensions": "^1.0.0-rc.15"
   },
   "devDependencies": {
     "broken-link-checker": "^0.7.8",

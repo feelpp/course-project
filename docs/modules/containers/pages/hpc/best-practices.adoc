@@ -1,0 +1,78 @@
+
+== Best Practices and Performance Considerations (10 min)
+
+=== Optimizing Container Images
+* **Keep images small and lean:**  
+  - Use minimal base images.
+  - Remove unnecessary packages and files after installation.
+* **Pin package versions:**  
+  - Specify exact versions for all dependencies to ensure consistency.
+* **Separate build and runtime stages:**  
+  - Utilize multi-stage builds to compile code in one stage and run it in another, reducing final image size.
+
+=== Performance Considerations
+* **Minimize container startup overhead:**  
+  - Optimize entrypoint scripts and image initialization.
+* **Efficient GPU and MPI integration:**  
+  - Ensure that GPU drivers, MPI libraries, and other performance-critical components are correctly mounted and compatible.
+* **Adapt for HPC workloads:**  
+  - Recognize that HPC jobs are typically long-running, bulk-synchronous operations rather than short-lived microservices. Adjust design and tuning accordingly.
+
+=== Security & DevOps in HPC
+* **Avoid root access in containers:**  
+  - Run containers as non-root users to enhance security.
+* **Integrate with resource managers:**  
+  - Ensure container workflows work seamlessly with HPC schedulers (e.g., Slurm, PBS).
+* **Leverage version control and registries:**  
+  - Use Git-based version control and container registries to maintain reproducible images.
+* **DevOps Workflow:**  
+  - Develop locally with Docker, then import containers into HPC clusters (e.g., using Apptainer) for production deployments.
+
+=== General HPC Container Gotchas
+* Containers run as the user, not root.
+* Images are typically mounted read-only.  
+  - However, directories such as Home, Scratch, or Lustre are usually available.
+* Some volume mount locations may be disallowed.
+* Volumes currently cannot be mounted over each other.
+
+=== Best Practices
+
+* **Automate the Build Process:**  
+  - Build container images using scripts rather than manually entering commands to ensure repeatability and reduce human error.
+
+* **Use Trusted Base Images:**  
+  - Start from reliable, well-maintained images.  
+  - For instance, if you need to build from source:
++
+[source,Dockerfile]
+----
+RUN git clone https://github.com/foo/bar.git
+RUN cd bar && git checkout 4e3c9cc && make install
+----
+
+* **Order Matters – Leverage the Build Cache:**  
+  - Organize your Dockerfile instructions to maximize caching and speed up iterative builds.
+
+* **Multi-Stage Builds (Available since Docker 17.05):**  
+  - Use multi-stage builds to separate the build environment from the runtime environment, keeping images small and secure.  
+  Example:
++
+[source,Dockerfile]
+----
+FROM centos:7 as build
+RUN yum -y install gcc make
+ADD code.c /src/code.c
+RUN gcc -o /src/mycode /src/code.c
+
+FROM centos:7 as run
+COPY --from=build /src/mycode /usr/bin/mycode
+----
+
+=== Other Considerations
+* **Image Size:**  
+  - Avoid very large images (typically >~5GB) to facilitate easier distribution and faster deployment.
+* **Data Management:**  
+  - Keep large application data in shared directories (Home, Scratch, Lustre) and mount them into the container rather than embedding them.
+* **Rapid Prototyping:**  
+  - Use volume mounts for rapid prototyping and testing. Once the code stabilizes, consider incorporating these dependencies directly into the image.
+

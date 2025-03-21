@@ -30,13 +30,15 @@ ext:
         files: '**/*.ipynb'
         base: modules/project-management/attachments/        
 nav:
-#- modules/ROOT/nav.adoc
-- modules/linux/nav.adoc
-- modules/vscode/nav.adoc
-- modules/project-management/nav.adoc
-- modules/git & github/nav.adoc
-- modules/software/nav.adoc
 - modules/containers/nav.adoc
-- modules/visualisation/nav.adoc
+- modules/cicd/nav.adoc
+#- modules/ROOT/nav.adoc
+#- modules/linux/nav.adoc
+#- modules/vscode/nav.adoc
+#- modules/project-management/nav.adoc
+#- modules/git & github/nav.adoc
+#- modules/software/nav.adoc
+#- modules/containers/nav.adoc
+#- modules/visualisation/nav.adoc
 
 

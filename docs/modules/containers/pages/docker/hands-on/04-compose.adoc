@@ -1,0 +1,90 @@
+== Docker Compose: Orchestrating Containers
+
+Docker Compose is a tool used for defining and running multi-container Docker applications. It simplifies the process of managing multiple containers as a single service. With Docker Compose, you can define all the services your application needs in a single YAML file and start them with a single command.
+
+=== Why Docker Compose?
+
+- **Multi-container applications**: It simplifies managing applications that require multiple services like a web server, database, and cache.
+- **Declarative configuration**: Compose uses a declarative `docker-compose.yml` file to describe the services, volumes, networks, and configurations needed.
+- **Consistency**: Ensures all containers in a service are started in the correct order with the proper dependencies.
+- **Portability**: Easily share and distribute your configuration across different environments (development, testing, and production).
+
+=== Getting Started with Docker Compose
+
+First, ensure that Docker Compose is installed on your system. You can verify this by running:
+
+[source,shell]
+----
+docker-compose --version
+----
+
+If it’s not installed, follow the [Docker Compose installation guide](https://docs.docker.com/compose/install/).
+
+=== Writing a `docker-compose.yml` File
+
+Here’s a simple example of a `docker-compose.yml` file that defines a web application with two services: a web server and a database.
+
+[source,yaml]
+----
+version: "3.9"
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./html:/usr/share/nginx/html
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
+----
+
+=== Running Docker Compose
+
+To start the services defined in your `docker-compose.yml` file, navigate to the directory containing the file and run:
+
+[source,shell]
+----
+docker-compose up
+----
+
+This will start both the web server and the database as defined. If you want to run them in detached mode (in the background), use:
+
+[source,shell]
+----
+docker-compose up -d
+----
+
+=== Common Docker Compose Commands
+
+- **Starting containers**: 
+[source,shell]
+----
+docker-compose up
+----
+- **Stopping containers**: 
+[source,shell]
+----
+docker-compose down
+----
+- **Viewing running services**: 
+[source,shell]
+----
+docker-compose ps
+----
+- **Rebuilding services after changes**: 
+[source,shell]
+----
+docker-compose up --build
+----
+
+=== Conclusion
+
+Docker Compose is an essential tool for orchestrating multi-container applications. It simplifies the process of defining, running, and managing multiple services, making it a great choice for development and production environments.

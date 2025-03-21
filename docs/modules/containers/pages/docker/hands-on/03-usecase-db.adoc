@@ -1,6 +1,8 @@
 = Practical Session: Using PostgreSQL with Docker and Injecting a Dataset
 
-This session demonstrates how to set up PostgreSQL using Docker, inject a dataset into the database, and perform basic queries.
+// set the ovjectives of the session
+The objective of this session is to demonstrate how to set up PostgreSQL using Docker, inject a dataset into the database, and perform basic queries including with python Pandas.
+
 
 == Step 1: Set up PostgreSQL with Docker
 
