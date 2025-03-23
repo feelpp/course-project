@@ -183,10 +183,12 @@ To do so we use the `actions/upload-artifact` action.
 
 [source,yaml]
 ----
-        - name: Upload Package                            # <1>
-            uses: actions/upload-artifact@v4
-            with:
-                name: myapp-package
+      - name: Upload tarball                  # <1>
+        uses: actions/upload-artifact@v4
+        with:
+          name: archive-${{ matrix.runs-on }}
+          path: |
+            build/default/*.tar.gz
 ----
 <1> **Artifact Upload:** Uploads the generated tarball artifact (only on `self-ubuntu-24.04`).
 
