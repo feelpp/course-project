@@ -576,131 +576,113 @@ This stage (labeled <code>runtime</code>) starts again from Ubuntu 24.04, but on
 </div>
 <div class="sect2">
 <h3 id="_multi_stage_dockerfile"><a class="anchor" href="#_multi_stage_dockerfile"></a>5.2. Multi-Stage Dockerfile</h3>
+<div class="paragraph">
+<p>Below is the complete Dockerfile with callouts explaining each step:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Stage 1: Build
-FROM ubuntu:24.04 AS builder                            <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Stage 1: Build                                                 <i class="conum" data-value="1"></i><b>(1)</b>
+FROM ubuntu:24.04 AS builder
 
-# Update package lists and install build dependencies
-RUN apt-get update &amp;&amp; export DEBIAN_FRONTEND=noninteractive \  <i class="conum" data-value="2"></i><b>(2)</b>
+# Update package lists and install build dependencies           <i class="conum" data-value="2"></i><b>(2)</b>
+RUN apt-get update &amp;&amp; export DEBIAN_FRONTEND=noninteractive \
     &amp;&amp; apt-get -y install --no-install-recommends \
        git cmake g++ ninja-build openmpi-bin libopenmpi-dev \
        python3 python3-pip python3-dev \
        libboost-test-dev libboost-serialization-dev \
-    &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*          <i class="conum" data-value="3"></i><b>(3)</b>
+    &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*
 
-# Copy the application source code into the builder stage
-COPY . /workspaces/mpihelloworld                         <i class="conum" data-value="4"></i><b>(4)</b>
+# Copy the application source code into the builder stage         <i class="conum" data-value="3"></i><b>(3)</b>
+COPY . /workspaces/mpihelloworld
 
-# Set the working directory for the build
-WORKDIR /workspaces/mpihelloworld                        <i class="conum" data-value="5"></i><b>(5)</b>
+# Set the working directory for the build                           <i class="conum" data-value="4"></i><b>(4)</b>
+WORKDIR /workspaces/mpihelloworld
 
-# Set environment variables for MPI to allow root execution (common in containers)
-ENV OMPI_ALLOW_RUN_AS_ROOT=1                             <i class="conum" data-value="6"></i><b>(6)</b>
-ENV OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1                     <i class="conum" data-value="7"></i><b>(7)</b>
+# Set environment variables to allow MPI to run as root             <i class="conum" data-value="5"></i><b>(5)</b>
+ENV OMPI_ALLOW_RUN_AS_ROOT=1
+ENV OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1
 
-# Configure, build, test, and install the application using CMake presets
-RUN cmake --preset default                              <i class="conum" data-value="8"></i><b>(8)</b>
-    &amp;&amp; cmake --build --preset default                  <i class="conum" data-value="9"></i><b>(9)</b>
-    &amp;&amp; ctest --preset default                          <i class="conum" data-value="10"></i><b>(10)</b>
-    &amp;&amp; cmake --build --preset default -t install         <i class="conum" data-value="11"></i><b>(11)</b>
-    &amp;&amp; rm -rf build                                     <i class="conum" data-value="12"></i><b>(12)</b>
+# Configure, build, test, and install the application using CMake presets <i class="conum" data-value="6"></i><b>(6)</b>
+RUN cmake --preset default      \
+    &amp;&amp; cmake --build --preset default                  \
+    &amp;&amp; ctest --preset default                          \
+    &amp;&amp; cmake --build --preset default -t install        \
+    &amp;&amp; rm -rf build
 
-# Stage 2: Runtime
-FROM ubuntu:24.04 AS runtime                             <i class="conum" data-value="13"></i><b>(13)</b>
+# Stage 2: Runtime                                                 <i class="conum" data-value="7"></i><b>(7)</b>
+FROM ubuntu:24.04 AS runtime
 
-# Install runtime dependencies (only what's needed to run the application)
-RUN apt-get update &amp;&amp; export DEBIAN_FRONTEND=noninteractive \  <i class="conum" data-value="14"></i><b>(14)</b>
-    &amp;&amp; apt-get -y install --no-install-recommends \
-       openmpi-bin libopenmpi-dev \
-    &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*          <i class="conum" data-value="15"></i><b>(15)</b>
+# Install runtime dependencies (only what is needed to run the application) <i class="conum" data-value="8"></i><b>(8)</b>
+RUN apt-get update &amp;&amp; export DEBIAN_FRONTEND=noninteractive \
+    &amp;&amp; apt-get -y install --no-install-recommends           \
+       openmpi-bin libopenmpi3t64                           \
+       libboost-test1.83.0 libboost-serialization1.83.0     \
+       python3 python3-pip python3-dev                      \
+    &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*
 
-# Copy the installed application from the builder stage
-COPY --from=builder /usr/local /usr/local               <i class="conum" data-value="16"></i><b>(16)</b>
+# Copy the installed application from the builder stage             <i class="conum" data-value="9"></i><b>(9)</b>
+COPY --from=builder /usr/local /usr/local
 
-# Optionally, copy additional runtime files if needed
+# Optionally, copy additional runtime files if needed                 <i class="conum" data-value="10"></i><b>(10)</b>
 # COPY --from=builder /workspaces/mpihelloworld/config /config
 
-# Set the working directory (if needed)
-WORKDIR /workspaces/mpihelloworld                       <i class="conum" data-value="17"></i><b>(17)</b>
+# Set the working directory (if needed)                              <i class="conum" data-value="11"></i><b>(11)</b>
+WORKDIR /workspaces/mpihelloworld
 
-# Set the default command (adjust as needed)
-ENTRYPOINT ["mpirun", "-np", "4", "./my_mpi_app"]       <i class="conum" data-value="18"></i><b>(18)</b></code></pre>
+# Set the runtime environment variables for MPI                       <i class="conum" data-value="12"></i><b>(12)</b>
+ENV OMPI_ALLOW_RUN_AS_ROOT=1
+ENV OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1</code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><strong>Base Image (Builder):</strong> Start with Ubuntu 24.04 for a consistent build environment.</td>
+<td><strong>Build Stage:</strong> Uses Ubuntu 24.04 as the base image for building the application.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><strong>Update &amp; Install Build Dependencies:</strong> Updates package lists and installs tools required to build the MPI application.</td>
+<td><strong>Install Build Dependencies:</strong> Updates package lists and installs tools such as Git, CMake, G++, Ninja, OpenMPI, Python3, and Boost libraries necessary for compiling and testing the MPI application. The <code>--no-install-recommends</code> flag ensures that only essential packages are installed, keeping the image lean.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td><strong>Clean Up Build Dependencies:</strong> Cleans up cached files to reduce image size.</td>
+<td><strong>Copy Source Code:</strong> Copies your entire project into the builder stage.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td><strong>Copy Source Code:</strong> Copies the entire repository into the builder image.</td>
+<td><strong>Set Working Directory:</strong> Sets <code>/workspaces/mpihelloworld</code> as the directory for subsequent build commands.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td><strong>Set Build Directory:</strong> Sets the working directory for building the application.</td>
+<td><strong>MPI Environment Variables:</strong> Sets environment variables to allow MPI to run as root, which is common in containerized environments.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td><strong>MPI Environment Variables:</strong> Allows MPI to run as root (common in containers).</td>
+<td><strong>Build, Test, and Install:</strong> Uses CMake presets to configure the build, compile the code, run tests with CTest, and install the application. Finally, it removes the build directory to reduce image size.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
-<td><strong>Confirmation of MPI Settings:</strong> Ensures that MPI root execution is confirmed.</td>
+<td><strong>Runtime Stage:</strong> Starts a new stage from Ubuntu 24.04 that contains only the runtime dependencies.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="8"></i><b>8</b></td>
-<td><strong>CMake Configuration:</strong> Configures the build using CMake presets.</td>
+<td><strong>Install Runtime Dependencies:</strong> Installs only the packages needed to run the MPI application (e.g., OpenMPI runtime libraries, minimal Boost libraries, and Python3).</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="9"></i><b>9</b></td>
-<td><strong>Compilation:</strong> Builds the project.</td>
+<td><strong>Copy Installed Application:</strong> Copies the installed application (assumed to be located in <code>/usr/local</code>) from the builder stage to the runtime stage.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="10"></i><b>10</b></td>
-<td><strong>Testing:</strong> Runs tests with CTest to verify the build.</td>
+<td><strong>Optional Files:</strong> You can copy additional runtime configuration files if needed.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="11"></i><b>11</b></td>
-<td><strong>Installation:</strong> Installs the application to a target directory (e.g., <code>/usr/local</code>).</td>
+<td><strong>Set Runtime Working Directory:</strong> Sets the working directory for the runtime environment.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="12"></i><b>12</b></td>
-<td><strong>Cleanup:</strong> Removes the build directory to reduce final image size.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="13"></i><b>13</b></td>
-<td><strong>Base Image (Runtime):</strong> Uses Ubuntu 24.04 for the runtime environment.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="14"></i><b>14</b></td>
-<td><strong>Install Runtime Dependencies:</strong> Installs only the necessary runtime libraries (e.g., OpenMPI).</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="15"></i><b>15</b></td>
-<td><strong>Clean Up Runtime:</strong> Removes package cache to minimize the image size.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="16"></i><b>16</b></td>
-<td><strong>Copy Installed Application:</strong> Copies the installed binaries and files from the builder stage.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="17"></i><b>17</b></td>
-<td><strong>Set Runtime Working Directory:</strong> Optionally sets a working directory for running the application.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="18"></i><b>18</b></td>
-<td><strong>Default Command:</strong> Specifies the command to run your MPI application with <code>mpirun</code>.
+<td><strong>Runtime MPI Variables:</strong> Re-establishes the environment variables for MPI to run as root
 ---</td>
 </tr>
 </table>
