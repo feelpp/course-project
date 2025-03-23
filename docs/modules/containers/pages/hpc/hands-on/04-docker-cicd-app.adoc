@@ -1,0 +1,143 @@
+= Dockerized MPI Training Session: From Docker to Apptainer on a Supercomputer
+Christophe Prud'homme <christophe.prudhomme@cemosis.fr>
+v1.0, 2023-03-24
+:icons: font
+:revealjs_theme: white
+:revealjs_slideNumber: true
+:toc: left
+
+[.lead]
+This session shows how to dockerize an MPI application, push it to GHCR, and then convert and run it with Apptainer on a supercomputer. 
+It assumes you have completed the Docker and Apptainer basics session.
+
+== Overview
+
+In this session, you will learn:
+- How to build a Docker image for an MPI application.
+- How to test the Docker image locally.
+- How to push the Docker image to GitHub Container Registry (GHCR).
+- How to convert the Docker image to an Apptainer SIF file on a supercomputer.
+- How to run the MPI application using Apptainer, including mounting directories and executing with MPI.
+
+== Prerequisites
+
+- A GitHub repository at https://github.com/coe-hidalgo2/2025-c3b-<your-github-login> that is available via Github classroom
+- Docker installed in your development environment.
+- Access to GHCR and a valid GHCR_PAT (see previous instructions for creating a GHCR_PAT).
+- Apptainer installed on your target supercomputer.
+- An MPI environment on the supercomputer (e.g. OpenMPI).
+
+== Step 1: Clone and Build the Docker Image
+
+First, clone the repository and build the Docker image using the provided Dockerfile.
+
+[source,shell]
+----
+# Clone the repository
+git clone https://github.com/coe-hidalgo2/c3b-template.git
+cd c3b-template
+
+# Build the Docker image (tag it as myapp:latest)
+docker build -t myapp:latest .
+----
+
+Below is the Dockerfile from the repository:
+
+[source,dockerfile]
+----
+FROM ubuntu:24.04
+
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends \
+       git cmake g++ ninja-build openmpi-bin libopenmpi-dev python3 python3-pip python3-dev \
+       libboost-test-dev libboost-serialization-dev \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+COPY . /workspaces/mpihelloworld
+
+WORKDIR /workspaces/mpihelloworld
+
+# Uncomment if needed: ENV OMPI_MCA_btl_vader_single_copy_mechanism=none
+ENV OMPI_ALLOW_RUN_AS_ROOT=1
+ENV OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1
+
+RUN cmake --preset default \
+    && cmake --build --preset default \
+    && ctest --preset default \
+    && cmake --build --preset default -t install \
+    && rm -rf build
+----
+
+== Step 2: Push the Docker Image to GHCR
+
+Log in to GitHub Container Registry (GHCR) and push your image:
+
+[source,shell]
+----
+# Log in to GHCR (replace <your-username> with your GitHub username)
+echo "<GHCR_PAT>" | docker login ghcr.io -u <your-username> --password-stdin
+
+# Tag the image for GHCR
+docker tag myapp:latest ghcr.io/<your-username>/myapp:latest
+
+# Push the image to GHCR
+docker push ghcr.io/<your-username>/myapp:latest
+----
+
+== Step 3: Convert the Docker Image to an Apptainer SIF File on the Supercomputer
+
+On the supercomputer (e.g. Karolina), you need to log in remotely and convert the Docker image into a SIF file.
+
+[source,shell]
+----
+# Log in to GHCR via Apptainer
+apptainer remote login -u <your-username> -p <GHCR_PAT> oras://ghcr.io
+
+# Pull the Docker image and convert it into a SIF file named myapp.sif
+apptainer pull -F myapp.sif docker://ghcr.io/<your-username>/myapp:latest
+
+# Inspect the SIF file to verify its contents
+apptainer inspect myapp.sif
+----
+
+== Step 4: Running the MPI Application with Apptainer on HPC
+
+You can run your application interactively, or in batch using MPI. Here are some examples:
+
+=== Interactive Mode
+
+[source,shell]
+----
+# Launch an interactive shell within the Apptainer container
+apptainer shell myapp.sif
+----
+
+=== Running with MPI
+
+[source,shell]
+----
+# Run the containerized MPI application using mpirun
+mpirun -np 4 apptainer exec myapp.sif ./my_mpi_app
+----
+
+=== Mounting a Host Directory
+
+To mount a host directory into your container, use the `--bind` flag:
+
+[source,shell]
+----
+# Mount /data on the host to /mnt/data in the container and launch an interactive shell
+apptainer exec --bind /data:/mnt/data myapp.sif /bin/bash
+----
+
+== Conclusion
+
+In this session, we have:
+- Built a Docker image for an MPI application.
+- Pushed the image to GHCR.
+- Converted the Docker image to an Apptainer SIF file on a supercomputer.
+- Demonstrated how to run the containerized MPI application both interactively and via MPI.
+- Shown how to mount host directories for accessing data.
+
+[.center]
+Questions? Let's discuss how containerization can streamline HPC application deployment!

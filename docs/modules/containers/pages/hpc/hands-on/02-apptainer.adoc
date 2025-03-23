@@ -1,0 +1,95 @@
+== Connecting to Karolina HPC and Using Apptainer
+
+Because Apptainer does not run within a Docker Codespace, you'll need to connect to the Karolina HPC system (EuroHPC) to work with Apptainer. 
+In this section, we'll cover:
+
+- How to SSH into Karolina.
+- How to remotely log in to GHCR.
+- How to pull, inspect, and run your Apptainer (SIF) image.
+- How to bind host directories and launch an interactive shell.
+
+=== Connecting to Karolina HPC
+
+First, connect to the Karolina HPC system. Replace `your_username` and adjust the hostname as needed:
+
+[source,shell]
+----
+ssh your_username@login1.karolina.it4i.cz
+----
+
+=== Remote Login to GitHub Container Registry
+
+Before pulling your image, you need to log in to GHCR using Apptainer’s remote login command. 
+Replace `<username>` and `<GHCR_PAT>` with your GitHub username and Personal Access Token respectively:
+
+[source,shell]
+----
+apptainer remote login -u <username> -p <GHCR_PAT> oras://ghcr.io
+----
+
+=== Pulling and Inspecting the Docker Package as a SIF Image
+
+Pull the Docker image (from GHCR) and convert it to an Apptainer SIF file:
+
+[source,shell]
+----
+apptainer pull -F myapp.sif docker://ghcr.io/<username>/myapp:latest
+----
+
+After pulling, inspect the SIF image to verify its contents:
+
+[source,shell]
+----
+apptainer inspect myapp.sif
+----
+
+=== Running the Apptainer Container
+
+You can run your container in several ways on Karolina:
+
+* **Interactive Mode (Shell):**
+
+[source,shell]
+----
+apptainer shell myapp.sif
+----
+
+* **Default Command:**
+
+[source,shell]
+----
+apptainer run myapp.sif
+----
+
+* **MPI Batch Execution:**
+
+[source,shell]
+----
+mpirun -np 4 apptainer exec myapp.sif ./my_mpi_app
+----
+
+=== Mounting Directories and Using an Interactive Shell
+
+Often in HPC, you need to access data stored on the host. 
+Use the `--bind` option to mount directories into your container. 
+For example, to mount `/data` from the host to `/mnt/data` inside the container and then launch a Bash shell:
+
+[source,shell]
+----
+apptainer exec --bind /data:/mnt/data myapp.sif /bin/bash
+----
+
+This command allows you to interact with your data within the container environment.
+
+== Conclusion
+
+In this section, you learned how to:
+- Connect to the Karolina HPC system via SSH.
+- Remotely log in to GHCR to retrieve your Docker-based Apptainer image.
+- Pull, inspect, and run your Apptainer SIF image.
+- Bind host directories and launch an interactive shell within the container.
+
+These steps ensure that your HPC applications run in a reproducible, containerized environment on Karolina HPC. 
+
+[.center]
+Questions? Let's discuss how to integrate these steps into your HPC workflows!

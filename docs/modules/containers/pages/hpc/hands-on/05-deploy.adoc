@@ -1,0 +1,110 @@
+= Hands-on: Deploying Apptainer Images on HPC Environments
+Author: Christophe Prud'homme <christophe.prudhomme@cemosis.fr>
+v1.0, 2023-03-24
+:icons: font
+:revealjs_theme: white
+:revealjs_slideNumber: true
+:toc: left
+:source-highlighter: pygments
+
+[.lead]
+This session demonstrates how to deploy your Apptainer image to run a parallel MPI job on two environments: a local runner (`self-ubuntu-24.04`) and the Karolina HPC system. We will also show how to automatically trigger the deploy job when the Apptainer image is updated.
+
+== Overview
+
+In this session, you will learn:
+
+- How to configure a GitHub Actions workflow (`deploy.yml`) that uses a matrix strategy to run on both `self-ubuntu-24.04` and `karolina`.
+- How to pull, inspect, and run the Apptainer image on these environments.
+- How to trigger the deploy workflow automatically from another job (e.g., when the Apptainer image is pushed).
+- How to monitor and run parallel jobs in HPC using Apptainer and MPI.
+
+== The Deploy Workflow
+
+Below is the complete `deploy.yml` file used to deploy the Apptainer image:
+
+[source,yaml]
+----
+name: Deploy                                     # <1>
+
+on:
+  workflow_dispatch:                               # <2>
+
+jobs:
+  deploy:
+    strategy:
+      matrix:
+        runs-on: [self-ubuntu-24.04, karolina]     # <3>
+    runs-on: ${{ matrix.runs-on }}
+    steps:
+      - name: Checkout Repository                # <4>
+        uses: actions/checkout@v4
+
+      - name: Create sif filename                # <5>
+        run: |
+          sif=$(basename "${{ github.repository }}.sif")
+          echo "SIF_FILENAME=$sif" >> $GITHUB_ENV
+
+      - name: Set APPTAINER_CMD                   # <6>
+        run: |
+          if [ "${{ matrix.runs-on }}" == "karolina" ]; then
+            apptainer_cmd=apptainer
+          else 
+            apptainer_cmd=/opt/apptainer/v1.4.0/apptainer/bin/apptainer
+          fi  
+          echo "Using apptainer command: $apptainer_cmd"
+          echo "APPTAINER_CMD=$apptainer_cmd" >> $GITHUB_ENV
+
+      - name: PULL Apptainer SIF                # <7>
+        run: |
+          # Pull the SIF file from GHCR
+          $APPTAINER_CMD pull -F $SIF_FILENAME oras://ghcr.io/${{ github.repository }}:solution-sif
+          # Inspect the SIF file to verify its contents
+          $APPTAINER_CMD inspect $SIF_FILENAME
+
+      - name: Run Container on self-ubuntu-24.04  # <8>
+        if: matrix.runs-on == 'self-ubuntu-24.04'
+        run: |
+          # Run the containerized application using mpirun
+          mpirun -np 4 $APPTAINER_CMD run $SIF_FILENAME myapp
+
+      - name: Run Container on Karolina           # <9>
+        if: matrix.runs-on == 'karolina'
+        run: |
+          # Use a helper script (job_monitor.sh) to submit and monitor the job on Karolina
+          bash job_monitor.sh $SIF_FILENAME
+----
+<1> **Workflow Name:** A descriptive title for the deploy workflow.
+<2> **Manual Trigger:** The workflow is triggered manually via Workflow Dispatch.
+<3> **Matrix Strategy:** The job runs on two environments: `self-ubuntu-24.04` and `karolina`.
+<4> **Checkout Step:** Clones your repository into the workflow environment.
+<5> **Create SIF Filename:** Generates the SIF filename based on the repository name and saves it to the environment.
+<6> **Set Apptainer Command:** Determines which Apptainer command to use based on the environment (using a module on Karolina or a local path on self‑ubuntu‑24.04) and saves it.
+<7> **Pull and Inspect SIF:** Pulls the Apptainer SIF from GHCR and inspects it to verify the conversion.
+<8> **Run on Self-Ubuntu:** Uses `mpirun` to execute the application inside the container on the self‑ubuntu‑24.04 runner.
+<9> **Run on Karolina:** Invokes a helper script (`job_monitor.sh`) to submit and monitor the job on Karolina.
+
+== Triggering the Deploy Workflow Automatically
+
+To streamline the workflow, you can add a step in your `build_apptainer` job to trigger the deploy workflow as soon as the Apptainer image is pushed. For example, in your `build_apptainer` job add the step below at the end:
+
+[source,shell]
+----
+    - name: Trigger Deployment                # <10>
+        run: |
+          # This step triggers the deploy workflow automatically.
+          # It can be invoked from the build_apptainer job after a successful image push.
+          gh workflow run deploy.yml
+----
+This command triggers the `deploy.yml` workflow on the `solution` branch, ensuring that both the `self-ubuntu-24.04` and `karolina` jobs are executed.
+
+== Conclusion
+
+This hands‑on session has demonstrated:
+
+- How to set up a GitHub Actions deploy workflow using a matrix to target different environments.
+- How to pull, inspect, and run an Apptainer SIF image on both a local runner and an HPC system.
+- How to automatically trigger the deploy workflow from another job.
+
+[.center]
+Questions? Let's discuss how to integrate these deployment steps into your HPC CI/CD pipeline!

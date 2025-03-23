@@ -1,0 +1,201 @@
+= Hands-on: CI Workflow for HPC Application
+Author: Your Name <your.email@example.com>
+v1.0, 2023-03-24
+:icons: font
+:revealjs_theme: white
+:revealjs_slideNumber: true
+:toc: left
+
+[.lead]
+In this session, you will create a simple GitHub Actions workflow that automates the configuration, building, and testing of your HPC application using CMake presets. 
+This workflow runs on a runner labeled `self-ubuntu-24.04`. Each step is explained with callouts.
+
+== Overview
+
+In this tutorial, you will learn to:
+
+- Check out your repository.
+- Configure the build system using CMake presets.
+- Build the project with CMake.
+- Run tests using CTest.
+- Understand each step through detailed callouts.
+
+== GitHub Actions Workflow
+
+Below is the complete YAML for the workflow, with callouts explaining each section:
+
+[source,yaml]
+----
+name: CI - Configure, Build, Test                   # <1>
+
+on:
+  push:                                             # <2>
+    branches: [ main ]
+  pull_request:                                     # <3>
+    branches: [ main ]
+  workflow_dispatch:                                # <4>
+
+jobs:
+  build-test:
+    runs-on: self-ubuntu-24.04                      # <5>
+    steps:
+      - name: Checkout Repository                   # <6>
+        uses: actions/checkout@v3
+
+      - name: Configure the Build System            # <7>
+        run: |
+          cmake --preset default                    # <8>
+
+      - name: Build the Project                     # <9>
+        run: |
+          cmake --build --preset default            # <10>
+
+      - name: Run Tests                             # <11>
+        run: |
+          ctest --preset default                    # <12>
+----
+<1> **Workflow Name:** A descriptive title for this CI workflow.
+<2> **Trigger on Push:** The workflow will run when changes are pushed to the `main` branch.
+<3> **Trigger on Pull Request:** The workflow also runs for pull requests targeting `main`.
+<4> **Manual Trigger:** Enables manual execution via GitHub Actions UI (Workflow Dispatch).
+<5> **Runner Specification:** This job runs on a runner labeled `self-ubuntu-24.04`.
+<6> **Checkout Step:** Clones your repository into the workflow environment.
+<7> **Configure Build Step:** Prepares the build environment using CMake presets.
+<8> **CMake Configuration:** Runs CMake with the default preset (as defined in your CMakePresets.json).
+<9> **Build Step:** Compiles the project using the configured presets.
+<10> **CMake Build:** Executes the build process.
+<11> **Test Step:** Runs the tests using CTest with the preset configuration.
+<12> **CTest Execution:** Validates the build by running tests.
+
+== Running the Workflow
+
+To trigger this workflow:
+- **Push a commit** to the `main` branch.
+- **Open a pull request** targeting `main`.
+- **Manually trigger** the workflow via the GitHub Actions tab (using Workflow Dispatch).
+
+== Add step to install the application
+
+To install the application, add the following step to the workflow:
+
+[source,yaml]
+----
+      - name: Package the Application
+        run: |
+          cmake --build --preset default -t install
+----
+
+== Add step to package the application
+
+To package the application, add the following step to the workflow:
+
+[source,yaml]
+----
+      - name: Package the Application
+        run: |
+          cmake --build --preset default -t package
+----
+
+== Matrix strategy to build on multiple platforms
+
+We now want to run the same set of steps on two different environments: `self-ubuntu-24.04` and `karolina`. 
+
+This can be achieved using a matrix strategy.
+
+The new workflow utilizes a matrix strategy to run the same set of steps on different environments. Here’s how it works:
+
+Matrix Definition::
+  The `strategy.matrix` key defines a variable `runs-on` with two possible values: `self-ubuntu-24.04` and `karolina`. This means that for each push, the job will run twice, once on each specified environment.
+
+Conditional Module Loading::
+  Since the `karolina` environment requires specific module loads (e.g., Boost, Ninja, OpenMPI), the workflow checks the value of `${{ matrix.runs-on }}`. If it equals `karolina`, the required modules are loaded before configuring, building, testing, or packaging.
+
+Single Workflow, Multiple Targets::
+  By using the matrix strategy, you can verify that your code builds correctly in both your local Codespace environment (`self-ubuntu-24.04`) and the HPC environment on Karolina. This ensures consistency and helps identify environment-specific issues.
+
+This approach allows you to maintain one workflow that automatically adapts to different platforms, simplifying the management of CI/CD pipelines across varied environments.
+
+Below is the complete YAML for the workflow, with callouts explaining each section:
+
+[source,yaml]
+----
+name: CI - Configure, Build, Test, and Package           # <1>
+
+on:
+  push:                                                 # <2>
+    branches: [ main ]
+  pull_request:                                         # <3>
+    branches: [ main ]
+  workflow_dispatch:                                    # <4>
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        runs-on: [self-ubuntu-24.04, karolina]           # <5>
+    runs-on: ${{ matrix.runs-on }}
+    steps:
+      - name: Checkout Repository                       # <6>
+        uses: actions/checkout@v4
+
+      - name: Build                                        # <7>
+        run: |
+          if [ "${{ matrix.runs-on }}" == "karolina" ]; then
+            module load Boost/1.83.0-GCC-13.2.0 Ninja/1.12.1-GCCcore-13.3.0 OpenMPI/4.1.6-GCC-13.2.0
+          fi
+          cmake --preset default                           # <8>
+          cmake --build --preset default                   # <9>
+
+      - name: Test                                         # <10>
+        run: |
+          if [ "${{ matrix.runs-on }}" == "karolina" ]; then
+            module load Boost/1.83.0-GCC-13.2.0 Ninja/1.12.1-GCCcore-13.3.0 OpenMPI/4.1.6-GCC-13.2.0
+          fi
+          ctest --preset default                           # <11>
+
+      - name: Package                                      # <12>
+        run: |
+          if [ "${{ matrix.runs-on }}" == "karolina" ]; then
+            module load Boost/1.83.0-GCC-13.2.0 Ninja/1.12.1-GCCcore-13.3.0 OpenMPI/4.1.6-GCC-13.2.0
+          fi
+          cmake --build --preset default -t package         # <13>
+
+
+----
+<1> **Workflow Name:** A descriptive title for the workflow.
+<2> **Trigger on Push:** Runs when commits are pushed to `main`.
+<3> **Trigger on Pull Request:** Runs for pull requests targeting `main`.
+<4> **Manual Trigger:** Allows manual execution via Workflow Dispatch.
+<5> **Matrix Strategy:** This job runs on both `self-ubuntu-24.04` and `karolina` environments.
+<6> **Checkout:** Clones your repository into the workflow environment.
+<7> **Build Step:** Initiates the build process.
+<8> **CMake Configuration:** Configures the project using the default CMake preset.
+<9> **Compilation:** Builds the project.
+<10> **Test Step:** Runs tests using CTest.
+<11> **CTest Execution:** Validates the build by running tests.
+<12> **Packaging:** Packages the application.
+<13> **CMake Package:** Executes the packaging target defined in your presets.
+
+== Add a step to upload the package
+
+We now want to upload the generated package as an artifact.
+To do so we use the `actions/upload-artifact` action.
+
+[source,yaml]
+----
+        - name: Upload Package                            # <1>
+            uses: actions/upload-artifact@v4
+            with:
+                name: myapp-package
+----
+<1> **Artifact Upload:** Uploads the generated tarball artifact (only on `self-ubuntu-24.04`).
+
+NOTE: in vscode you can click on the action name to access its documentation using the `Ctrl` key.
+
+== Conclusion
+
+This workflow demonstrates how GitHub Actions can automate the repetitive tasks of configuring, building, and testing your HPC application. 
+Using CMake presets ensures a consistent build environment.
+
+[.center]
+Questions? Let's discuss how CI/CD can further enhance your HPC development workflow!

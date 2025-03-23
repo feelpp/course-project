@@ -1,0 +1,259 @@
+= Hands-on: Building the Docker Image for Our MPI Application
+Author: Christophe Prud'homme <christophe.prudhomme@cemosis.fr>
+v1.0, 2023-03-24
+:icons: font
+:revealjs_theme: white
+:revealjs_slideNumber: true
+:toc: left
+
+[.lead]
+In this session, we will walk through the Dockerfile used to build the Docker image for our MPI application. Each step is explained using callouts to help you understand the purpose of the instructions. 
+
+== The Dockerfile
+
+Below is the complete Dockerfile we will explain:
+
+[source,dockerfile]
+----
+FROM ubuntu:24.04                              <1>
+
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \   <2>
+    && apt-get -y install --no-install-recommends \              <3>
+       git cmake g++ ninja-build openmpi-bin libopenmpi-dev python3 python3-pip python3-dev \   <4>
+       libboost-test-dev libboost-serialization-dev \            <5>
+    && apt-get clean && rm -rf /var/lib/apt/lists/*                <6>
+
+COPY . /workspaces/mpihelloworld              <7>
+
+WORKDIR /workspaces/mpihelloworld             <8>
+
+# ENV OMPI_MCA_btl_vader_single_copy_mechanism=none  <9>
+ENV OMPI_ALLOW_RUN_AS_ROOT=1                  <10>
+ENV OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1          <11>
+
+RUN cmake --preset default \                  <12>
+    && cmake --build --preset default \        <13>
+    && ctest --preset default \                <14>
+    && cmake --build --preset default -t install \  <15>
+    && rm -rf build                            <16>
+----
+
+== Callout Explanations
+
+<1> **Base Image:**  
+The image starts from `ubuntu:24.04`, ensuring a modern Ubuntu environment with predictable behavior and up-to-date packages.
+
+<2> **Update & Set Environment:**  
+`apt-get update` refreshes the package lists.  
+`export DEBIAN_FRONTEND=noninteractive` prevents interactive prompts during package installation.
+
+<3> **Install Dependencies (Part 1):**  
+`apt-get -y install --no-install-recommends` installs packages non-interactively and avoids installing unnecessary packages. This keeps the image lean.
+
+<4> **Install Essential Tools:**  
+Installs Git, CMake, G++, and Ninja Build to compile the MPI application.  
+Also installs OpenMPI and its development libraries needed for MPI programming, along with Python3 and its development tools.
+
+<5> **Install Boost Libraries:**  
+Installs Boost.Test and Boost.Serialization libraries, which are used for testing and data serialization in our MPI application.
+
+<6> **Clean Up:**  
+`apt-get clean && rm -rf /var/lib/apt/lists/*` removes cached package files to reduce image size.
+
+<7> **Copy Application Code:**  
+Copies the entire repository into `/workspaces/mpihelloworld` in the container. This makes your MPI application code available in the image.
+
+<8> **Set Working Directory:**  
+Sets `/workspaces/mpihelloworld` as the working directory. All subsequent commands run in this directory.
+
+<9> **Optional Environment Variable:**  
+This commented line shows an optional setting for MPI, which can be uncommented if needed to adjust the behavior of the OpenMPI “vader” communication module.
+
+<10> **Allow Running as Root:**  
+`ENV OMPI_ALLOW_RUN_AS_ROOT=1` permits running MPI applications as the root user. This is often necessary in containerized environments if you don't have a dedicated user for MPI.
+
+<11> **Confirm Running as Root:**  
+`ENV OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1` confirms the previous setting, ensuring that OpenMPI does not abort when running as root.
+
+<12> **Configure the Project:**  
+Runs CMake with the preset named `default` (as defined in your `CMakePresets.json`). This step configures the build system.
+
+<13> **Build the Project:**  
+Builds the project using the default preset. This compiles your MPI application.
+
+<14> **Run Tests:**  
+Executes the tests with CTest using the default preset. This step verifies that the build is correct and that your tests pass.
+
+<15> **Install the Application:**  
+Builds the install target using CMake. This step installs the application into the container.
+
+<16> **Clean Build Directory:**  
+Removes the build directory to reduce the final image size after the installation is complete.
+
+== Would You Do the Image Differently?
+
+This Dockerfile is designed for a development and testing environment, focusing on:
+
+- Installing only necessary packages to keep the image lean.
+- Using CMake presets to configure, build, test, and install the application.
+- Cleaning up after installation to minimize image size.
+
+Depending on your use case, you might consider:
+
+- **Multi-Stage Builds:** To further reduce image size by separating build dependencies from runtime dependencies.
+- **Specific Version Pinning:** Pin package versions for even more reproducibility.
+- **Enhanced Caching:** Organize layers to take advantage of Docker's caching (e.g., updating apt cache separately).
+
+For an HPC application development environment, this image strikes a balance between simplicity and functionality. 
+In production, you may adopt a multi-stage build to isolate build and runtime environments.
+
+== Conclusion on Dockerfile Explanation
+
+This hands‑on guide explained each step of the Dockerfile used to build the Docker image for our MPI application. 
+By understanding each instruction and its purpose, you can adapt the Dockerfile to meet your specific needs in HPC development and testing.
+
+
+== Multi-Stage Build modification
+
+
+=== Hands-on: Building a Multi-Stage Docker Image for an MPI Application
+
+In this session, we will build a Docker image for our MPI application using a multi-stage Dockerfile. Multi-stage builds allow us to separate the build environment from the runtime environment, reducing the final image size and ensuring a clean runtime.
+
+==== Step 1: Understanding the Multi-Stage Dockerfile
+
+The Dockerfile is divided into two stages:
+
+- **Builder Stage:**  
+  This stage (labeled `builder`) uses Ubuntu 24.04, installs all build dependencies, copies your source code, and then uses CMake presets to configure, compile, test, and install your MPI application.
+
+- **Runtime Stage:**  
+  This stage (labeled `runtime`) starts again from Ubuntu 24.04, but only installs the runtime dependencies necessary to execute your MPI application. It then copies the installed application from the builder stage.
+
+==== Step 2: Build the Docker Image
+
+To build the Docker image, run:
+
+[source,shell]
+----
+docker build -t myapp:latest .
+----
+
+This command executes the multi-stage build, producing a final runtime image tagged as `myapp:latest`.
+
+==== Step 3: Run the MPI Application
+
+Once built, you can run your MPI application from the Docker image. For example, to run the application interactively:
+
+[source,shell]
+----
+docker run --rm -it myapp:latest /bin/bash
+----
+Inside the container, you can execute your application, or rely on the default entrypoint which runs:
+[source,shell]
+----
+mpirun -np 4 ./my_mpi_app
+----
+This uses the built-in default command defined in the Dockerfile.
+
+==== Step 4: Verify and Test
+
+Ensure that the image works as expected by running your tests locally in the container. Use your CTest output to verify that the application behaves correctly.
+
+=== Multi-Stage Dockerfile
+
+[source,dockerfile]
+----
+# Stage 1: Build
+FROM ubuntu:24.04 AS builder                            # <1>
+
+# Update package lists and install build dependencies
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \  # <2>
+    && apt-get -y install --no-install-recommends \
+       git cmake g++ ninja-build openmpi-bin libopenmpi-dev \
+       python3 python3-pip python3-dev \
+       libboost-test-dev libboost-serialization-dev \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*          # <3>
+
+# Copy the application source code into the builder stage
+COPY . /workspaces/mpihelloworld                         # <4>
+
+# Set the working directory for the build
+WORKDIR /workspaces/mpihelloworld                        # <5>
+
+# Set environment variables for MPI to allow root execution (common in containers)
+ENV OMPI_ALLOW_RUN_AS_ROOT=1                             # <6>
+ENV OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1                     # <7>
+
+# Configure, build, test, and install the application using CMake presets
+RUN cmake --preset default                              # <8>
+    && cmake --build --preset default                  # <9>
+    && ctest --preset default                          # <10>
+    && cmake --build --preset default -t install         # <11>
+    && rm -rf build                                     # <12>
+
+# Stage 2: Runtime
+FROM ubuntu:24.04 AS runtime                             # <13>
+
+# Install runtime dependencies (only what's needed to run the application)
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \  # <14>
+    && apt-get -y install --no-install-recommends \
+       openmpi-bin libopenmpi-dev \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*          # <15>
+
+# Copy the installed application from the builder stage
+COPY --from=builder /usr/local /usr/local               # <16>
+
+# Optionally, copy additional runtime files if needed
+# COPY --from=builder /workspaces/mpihelloworld/config /config
+
+# Set the working directory (if needed)
+WORKDIR /workspaces/mpihelloworld                       # <17>
+
+# Set the default command (adjust as needed)
+ENTRYPOINT ["mpirun", "-np", "4", "./my_mpi_app"]       # <18>
+----
+
+<1> **Base Image (Builder):** Start with Ubuntu 24.04 for a consistent build environment.
+<2> **Update & Install Build Dependencies:** Updates package lists and installs tools required to build the MPI application.
+<3> **Clean Up Build Dependencies:** Cleans up cached files to reduce image size.
+<4> **Copy Source Code:** Copies the entire repository into the builder image.
+<5> **Set Build Directory:** Sets the working directory for building the application.
+<6> **MPI Environment Variables:** Allows MPI to run as root (common in containers).
+<7> **Confirmation of MPI Settings:** Ensures that MPI root execution is confirmed.
+<8> **CMake Configuration:** Configures the build using CMake presets.
+<9> **Compilation:** Builds the project.
+<10> **Testing:** Runs tests with CTest to verify the build.
+<11> **Installation:** Installs the application to a target directory (e.g., `/usr/local`).
+<12> **Cleanup:** Removes the build directory to reduce final image size.
+<13> **Base Image (Runtime):** Uses Ubuntu 24.04 for the runtime environment.
+<14> **Install Runtime Dependencies:** Installs only the necessary runtime libraries (e.g., OpenMPI).
+<15> **Clean Up Runtime:** Removes package cache to minimize the image size.
+<16> **Copy Installed Application:** Copies the installed binaries and files from the builder stage.
+<17> **Set Runtime Working Directory:** Optionally sets a working directory for running the application.
+<18> **Default Command:** Specifies the command to run your MPI application with `mpirun`.
+
+---
+
+== Conclusion on Multi-Stage Dockerfile
+
+This hands‑on session has demonstrated how to create a multi‑stage Dockerfile that builds, tests, and packages an MPI application efficiently. 
+Multi-stage builds help isolate build and runtime environments, reduce final image size, and simplify dependency management.  
+
+Questions? Let's discuss how you might further optimize or customize this Dockerfile for your HPC applications!
+
+
+== Upload to GitHub Container Registry (GHCR)
+
+To upload the Docker image to GitHub Container Registry (GHCR), you need to log in to GHCR and push the image and follow the steps 
+xref:hpc/hands-on/01-docker.adoc[> here].
+
+
+== References
+
+- Docker Documentation: https://docs.docker.com/
+- Dockerfile reference: https://docs.docker.com/reference/dockerfile/
+- Building best practices: https://docs.docker.com/build/building/best-practices/
+
+[.center]
+Questions? Let's discuss how to further optimize this Dockerfile for your projects!

@@ -99,12 +99,46 @@ docker run --rm -d ubuntu sleep 60
 
 === Logging into and Out of Docker Registries
 
+==== Creating a GHCR_PAT (Classic Token) for GitHub Container Registry
+
+To authenticate with GitHub Container Registry (ghcr.io), you need to create a Personal Access Token (PAT) with the proper scopes. Follow these steps:
+
+1. **Go to GitHub Settings:**  
+   Click your profile icon in the upper-right corner and select **Settings**.
+
+2. **Navigate to Developer Settings:**  
+   In the left sidebar, select **Developer settings**.
+
+3. **Personal Access Tokens:**  
+   Click **Personal access tokens** and then select **Generate new token (classic)**.
+
+4. **Configure Your Token:**  
+   - **Note:** Provide a descriptive name (e.g., "GHCR PAT for Actions").  
+   - **Expiration:** Set an expiration date appropriate for your use case.  
+   - **Scopes:** Make sure to select at least the following:
+     - `read:packages` – Required to pull packages from GHCR.
+     - `write:packages` – Required to push packages to GHCR.
+     - *(Optional)* `delete:packages` – If you need to remove packages.
+  
+5. **Generate the Token:**  
+   Click **Generate token** at the bottom of the page.
+
+6. **Copy the Token:**  
+   **Important:** Copy the generated token immediately and store it securely. You won't be able to see it again.
+
+7. **Use the Token:**  
+   Save this token as `GHCR_PAT` in your GitHub repository secrets for use in your CI/CD workflows.
+
+For more details, refer to the GitHub documentation on [creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+
+==== Login and Logout Commands
+
 * **`docker login`**  
   Log into a Docker registry (e.g., Docker Hub or GitHub Container Registry).
 
 [source,shell]
 ----
-docker login ghcr.io -u <your-username> --password-stdin
+docker login ghcr.io -u <your-username> --password $GHCR_PAT
 ----
 * Replace `<your-username>` with your actual username and supply your password via standard input (or use a secret in CI/CD pipelines).
 
@@ -148,6 +182,8 @@ Docker serves as a foundational tool in HPC container workflows:
 - **Development & Testing:** Create and test HPC applications in a controlled Docker environment.
 - **Container Conversion:** Docker images can be converted to Apptainer/Singularity images for deployment on HPC clusters.
 - **Reproducibility:** Docker ensures consistent environments across different stages of development and production.
+
+
 
 == Conclusion
 

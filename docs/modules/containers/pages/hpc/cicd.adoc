@@ -1,0 +1,211 @@
+= Introduction to CI/CD Fundamentals with GitHub Actions
+Your Name <your.email@example.com>
+:icons: font
+:revealjs_theme: white
+:revealjs_slideNumber: true
+:toc: left
+:source-highlighter: pygments
+
+== Overview
+
+*Duration: 1h30*
+
+Learning Objectives::
+- Understand the challenges of traditional software development and deployment.
+- Learn the fundamentals of CI/CD and why automation is critical.
+- Explore GitHub Actions as an integrated CI/CD solution.
+- Discover how containerization enhances CI/CD workflows.
+- Discuss the impact and benefits of CI/CD in HPC environments.
+
+== Introduction: The CI/CD Problem (30 min)
+
+=== The Software Development Challenge
+
+Traditional software development and deployment processes face several critical issues:
+
+* **Manual Processes:**  
+  - **Build, Test, and Deployment:** Many projects rely on manual steps that increase the risk of human error.
+  - **Human Error:** Mistakes in configuring environments or forgetting steps can cause production failures.
+  - **Inefficiency:** Manual interventions slow down the overall development cycle.
+
+* **Inconsistencies Across Environments:**  
+  - **"Works on My Machine" Syndrome:** Differences in local, testing, and production setups cause unexpected behavior.
+  - **Environment Drift:** Over time, environments evolve differently, leading to compatibility issues.
+  - **Complex Dependencies:** Managing multiple libraries and tools manually often results in dependency conflicts.
+
+* **Slow Release Cycles:**  
+  - **Delayed Feedback:** Manual testing and deployment cycles extend the time before new features and fixes reach production.
+  - **Bottlenecks:** Human-dependent processes limit rapid iteration, reducing agility and responsiveness.
+  - **Reduced Agility:** Longer release cycles impede the ability to quickly address market changes or user needs.
+
+* **Scalability Issues:**  
+  - **Growing Codebases and Teams:** As projects scale, manual processes become increasingly error-prone.
+  - **Operational Overhead:** Coordinating builds and tests manually across large teams is resource-intensive.
+  - **Inconsistent Quality:** Maintaining quality across releases is challenging without automation.
+
+=== HPC Considerations: What Does It Mean for HPC and How Does It Help?
+
+For High-Performance Computing (HPC) environments, the benefits of CI/CD are even more pronounced:
+
+* **Consistent and Reproducible Environments:**  
+  - HPC applications depend on highly tuned code and specialized libraries (like MPI). Automating builds with CI/CD and containerizing the environment (using, for example, Apptainer) ensures that every test and deployment is performed in an identical setting, eliminating the "works on my machine" problem.
+
+* **Automated Testing & Performance Validation:**  
+  - HPC systems require rigorous performance benchmarks. CI/CD pipelines can automate not only functional tests but also performance tests to detect regressions early, ensuring that high-performance code remains optimized.
+
+* **Faster Development Cycles:**  
+  - The complexity and scale of HPC codebases can slow progress. Automated pipelines shorten the feedback loop, allowing researchers to iterate quickly and deploy updates efficiently.
+
+* **Scalability and Collaboration:**  
+  - Many HPC projects involve collaborations across institutions. CI/CD workflows help integrate changes from various contributors seamlessly, ensuring that code remains stable and scalable.
+
+* **Simplified Deployment to HPC Systems:**  
+  - By integrating containerization into CI/CD pipelines, HPC applications can be deployed consistently across various clusters and supercomputers, reducing configuration errors and improving reproducibility.
+
+=== Why CI/CD?
+
+* **Continuous Integration (CI):**  
+  - **Frequent Merges:** Regular code integrations trigger automated builds and tests, catching issues early.
+  - **Early Bug Detection:** Automated tests ensure that problems are identified as soon as code is merged.
+  - **Collaboration and Transparency:** CI promotes regular communication and quick resolution of conflicts.
+
+* **Continuous Delivery/Deployment (CD):**  
+  - **Automated Deployments:** Once tests pass, automated pipelines can deploy code to staging or production reliably.
+  - **Consistency Across Environments:** The same automated process ensures uniformity in all environments.
+  - **Rapid Iteration:** Faster releases lead to quicker user feedback and improvements.
+
+* **Overall Benefits:**  
+  - Accelerated development cycles.
+  - Improved code quality and reliability.
+  - Faster time-to-market.
+  - Reduced risk through incremental updates.
+
+=== CI/CD Platform Choices and Development Platforms
+
+When selecting a CI/CD solution, the choice often depends on your development platform, project requirements, and the specific needs of your HPC or general software projects:
+
+* **GitHub Actions:**  
+  - **Integrated with GitHub:** Seamlessly works with GitHub repositories, making it ideal for projects already hosted there.
+  - **Ease of Use:** Provides a user-friendly YAML-based configuration with a rich marketplace of pre-built actions.
+  - **Ideal For:** Open-source projects, rapid prototyping, and teams looking for an integrated solution.
+
+* **GitLab CI/CD:**  
+  - **Built-In with GitLab:** Offers a robust and flexible CI/CD pipeline directly within GitLab.
+  - **Features:** Supports multi-stage pipelines, artifacts, and parallel builds.
+  - **Ideal For:** Projects hosted on GitLab, especially where end-to-end DevOps integration is desired.
+
+* **Jenkins:**  
+  - **Highly Extensible:** An open-source automation server with a vast plugin ecosystem.
+  - **Self-Hosted Option:** Suitable for organizations that require on-premise solutions with extensive customization.
+  - **Ideal For:** Enterprises and HPC environments where tight control over the build environment is necessary.
+
+* **CircleCI & Travis CI:**  
+  - **Managed CI/CD Services:** Cloud-based solutions offering easy integration with popular version control systems.
+  - **Simplicity & Speed:** Provide straightforward setups for standard projects.
+  - **Ideal For:** Teams that prefer managed services with minimal maintenance overhead.
+
+* **Other Options:**  
+  - **Azure Pipelines, Bamboo, TeamCity:** These tools offer additional features and integrations, which might suit specific enterprise or HPC workflows.
+  
+* **HPC-Specific Considerations:**  
+  - **Container Integration:** Many HPC projects require containerization to reproduce specialized environments. Tools that support container-based builds (e.g., using Docker or Apptainer) are highly valuable.
+  - **Security and On-Premise:** For secure, multi-tenant HPC environments, self-hosted solutions (like Jenkins) may be preferable to ensure compliance with organizational policies.
+  - **Performance Testing:** Some platforms offer better support for automating performance benchmarks, which is critical for HPC applications.
+
+NOTE: This section highlights that the right CI/CD tool depends on your existing development environment, the need for containerization, and the unique demands of HPC systems. Each option brings different strengths, and often, teams may even use multiple tools in a hybrid approach to achieve optimal results.
+
+
+== GitHub Actions: Overview and Fundamentals (40 min)
+
+=== What is GitHub Actions?
+* **Integrated CI/CD Platform:**  
+  - Built directly into GitHub, it automates workflows based on repository events.
+* **Key Components:**
+  - **Workflows:** YAML files that define the automation pipeline.
+  - **Jobs:** Groups of steps executed in a specified environment.
+  - **Steps:** Individual commands or actions within a job.
+  - **Triggers:** Events (e.g., push, pull_request, schedule) that start workflows.
+
+=== A Sample GitHub Actions Workflow
+[source,yaml]
+----
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+----
+
+=== Benefits of Using GitHub Actions
+* **Seamless GitHub Integration:**  
+  - No need for external CI/CD tools.
+* **Flexibility & Extensibility:**  
+  - A vast marketplace of pre-built actions allows customization.
+* **Parallel & Matrix Builds:**  
+  - Efficient testing across multiple environments.
+
+== 3. Containers in CI/CD (15 min)
+
+=== Why Use Containers in CI/CD?
+* **Consistency:**  
+  - Containers package your code and dependencies into a single image, ensuring the same environment from development to production.
+* **Reproducibility:**  
+  - With containerized builds, the environment is preserved, minimizing discrepancies.
+* **Isolation:**  
+  - Containers isolate applications, reducing dependency conflicts.
+
+=== Using Containers with GitHub Actions
+* **Container-Based Runners:**  
+  - You can run jobs inside containers to maintain a controlled environment.
+* **Example Workflow Using a Container:**
+[source,yaml]
+----
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: node:14
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+----
+
+* **Advantages:**
+  - Consistent, clean environments for builds.
+  - Simplified dependency management.
+  - Reproducible and faster CI/CD pipelines.
+
+== Demo / Hands-on (Optional) (5 min)
+* Live demonstration of a GitHub Actions workflow.
+* Experiment with customizing workflows and integrating containerized builds.
+
+== Q&A and Discussion (5 min)
+* Open floor for questions.
+* Discussion on integrating CI/CD in both general and HPC-specific environments.
+
+== Summary and Closing
+* CI/CD automates the repetitive tasks of building, testing, and deploying code, reducing errors and accelerating development.
+* GitHub Actions provides a powerful, integrated solution for automating these workflows.
+* Containers further enhance consistency and reproducibility, crucial for both general and HPC applications.
+* Embracing these practices leads to higher quality software and more efficient development cycles.
+
+Thank you for your attention – let's now open the floor for questions!

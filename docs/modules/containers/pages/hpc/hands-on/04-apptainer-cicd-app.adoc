@@ -1,0 +1,77 @@
+= Hands-on: Generating the Apptainer Job for HPC Deployment
+Author: Christophe Prud'homme <christophe.prudhomme@cemosis.fr>
+v1.0, 2023-03-24
+:icons: font
+:revealjs_theme: white
+:revealjs_slideNumber: true
+:toc: left
+:source-highlighter: pygments
+
+[.lead]
+In this session, we will generate a GitHub Actions job that converts our Docker image into an Apptainer SIF file and pushes it to GitHub Container Registry (GHCR). Each step is explained using callouts.
+
+== Workflow Key Steps
+
+This job automates the conversion of your Docker image into an Apptainer SIF file and then uploads the SIF file to GHCR. 
+
+The key steps are:
+
+- **Authentication:** Log in to GHCR via Apptainer.
+- **Conversion:** Use Apptainer to pull the Docker image and convert it to SIF.
+- **Verification:** Inspect the SIF file to verify its contents.
+- **Upload:** Push the SIF file back to GHCR for later deployment.
+
+
+== GitHub Actions Job: Convert and Upload Apptainer SIF
+
+Below is the complete YAML for the `build-apptainer` job:
+
+[source,yaml]
+----
+build-apptainer:
+    runs-on: self-apptainer                   # <1>
+    needs: build-docker                       # <2>
+    env:
+      apptainer: /opt/apptainer/v1.4.0/apptainer/bin/apptainer   # <3>
+    steps:
+      - name: Checkout Repository             # <4>
+        uses: actions/checkout@v4
+
+      - name: Login to GitHub Container Registry  # <5>
+        run: |
+          ${{ env.apptainer }} remote login -u ${{ github.repository_owner }} -p ${{ secrets.GHCR_PAT }} oras://ghcr.io
+
+      - name: Convert Docker Image to Apptainer SIF   # <6>
+        run: |
+          # Set the SIF filename based on the repository name.
+          sif=$(basename ${{ github.repository }}.sif)
+          # Pull the Docker image (tagged as 'solution') and convert it to a SIF file.
+          ${{ env.apptainer }} pull -F $sif docker://ghcr.io/${{ github.repository }}:solution
+          # Inspect the SIF file to verify its contents.
+          ${{ env.apptainer }} inspect $sif
+
+      - name: Upload Apptainer SIF to GitHub Container Registry  # <7>
+        run: |
+          # Determine the SIF filename.
+          sif=$(basename ${{ github.repository }}.sif)
+          # Push the SIF file to GHCR under the tag 'solution-sif'
+          ${{ env.apptainer }} push $sif oras://ghcr.io/${{ github.repository }}:solution-sif
+----
+<1> **Runner Specification:** This job runs on a self-hosted runner labeled `self-apptainer`, which has Apptainer installed.
+<2> **Job Dependency:** This job depends on the `build-docker` job; the Docker image must be built first.
+<3> **Environment Variable:** The `apptainer` variable holds the path to the Apptainer binary, used in subsequent commands.
+<4> **Checkout Repository:** Clones your repository so that the workflow can access necessary files and metadata.
+<5> **GHCR Login:** Authenticates with GitHub Container Registry using Apptainer’s remote login command. This allows the subsequent pull and push operations to access private images.
+<6> **Convert Docker Image to SIF:**  
+   - The SIF filename is generated from the repository name.
+   - The command pulls the Docker image from GHCR (using the tag `solution`), converts it into a SIF file, and then inspects the file to ensure correctness.
+<7> **Upload SIF:**  
+   - The SIF file is then pushed to GHCR under a new tag (`solution-sif`), making it available for deployment on HPC systems.
+
+== Conclusion
+
+By automating this conversion process, you ensure that your HPC application, initially built as a Docker image, is readily available in a format (SIF) that can be deployed on supercomputers using Apptainer.  
+This streamlined workflow is essential for enabling reproducible, containerized HPC deployments.
+
+[.center]
+Questions? Let's discuss how this workflow enhances your CI/CD pipeline for HPC!

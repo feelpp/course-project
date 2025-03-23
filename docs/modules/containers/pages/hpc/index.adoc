@@ -21,7 +21,7 @@ Learning Objectives::
 - Introduce key container technologies: Docker, Singularity/Apptainer, and Podman.
 - Demonstrate how to use containers in an HPC workflow.
 
-== Introduction to Containers (15 min)
+== Introduction to Containers
 
 === What are Containers?
 * Lightweight software encapsulating everything needed to run a specific task (minus the OS kernel).
@@ -53,7 +53,7 @@ image::containers/vm-vs-containers.png[width=600]
     ** Shared OS kernel among containers secured through cgroups-based isolation.
     ** Superior performance with some trade-offs in OS customization flexibility.
 
-== Why Containers for HPC? (15 min)
+== Why Containers for HPC? 
 
 === HPC Software Deployment Challenges
 
@@ -266,7 +266,7 @@ image::feelpp-arch.png[image,width=600]
 
 
 
-== Container Technologies in HPC (20 min)
+== Container Technologies in HPC
 
 === Overview of Container Runtimes
 
@@ -332,10 +332,10 @@ Apptainer (originally Singularity) is a container platform built with HPC in min
 
 ==== Typical Apptainer Workflow
 
-1. **Build** (usually requires root privileges, often done on a local machine or VM):
+1. **Build**:
 [source,sh]
 ----
-apptainer build my_app.sif docker://ubuntu:20.04
+apptainer pull -F my_app.sif docker://ubuntu:24.04
 ----
 
 2. **Run** (on the HPC cluster, no root required):
@@ -392,7 +392,7 @@ A common workflow is to build and test with Docker locally, push to a registry, 
 See the hands-on section for practical examples of running containers in an HPC environment.
 ====
 
-== Q&A and Discussion (10 min)
+== Q&A and Discussion
 
 * Open floor for questions.
 * Discussion on participants’ HPC environments and container use cases.
@@ -407,22 +407,13 @@ See the hands-on section for practical examples of running containers in an HPC 
    *Singularity: Scientific containers for mobility of compute.* PLOS ONE, 12(5), e0177459.  
    DOI: https://doi.org/10.1371/journal.pone.0177459
 
-2. **NERSC Documentation.**  
-   *Containers for HPC: Benefits, Limitations, and Best Practices.*  
-   Available at: https://www.nersc.gov/users/computational-systems/containers/
+2. **NERSC** – *Containers in HPC: Training Event (March 2025)* – link:https://www.nersc.gov/users/training/past-training-events/containers-march-2025/[NERSC Training Event]
 
-3. **Pacheco, P., et al. (2018).**  
-   *Performance Evaluation of Container-based Virtualization for HPC Applications.*  
-   Presented at IEEE International Conference on Cloud Computing Technology and Science.  
-   (A detailed analysis of container overhead and performance tuning in HPC settings.)
+3. **Carlos Arango, Rémy Dernat, John Sanabria. Performance**,*Evaluation of Container-based Virtualization for High Performance Computing Environments*. 2024. 
+   DOI: https://hal.archives-ouvertes.fr/hal-04795161
 
-4. **Containers in HPC: A Survey of Experiences and Best Practices (2019).**  
-   *Journal of Physics: Conference Series.*  
-   (A survey summarizing real-world experiences with HPC container deployments and best practices.)
+4. * **Keller Tesser, Rafael and Borin, Edson** – *Containers in HPC: a survey* (2022) – link:https://doi.org/10.1007/s11227-022-04848-y[DOI]
 
-5. **San Diego Supercomputer Center (SDSC).**  
-   *A Practical Guide to Containerized Workflows in HPC.*  
-   Available at: https://www.sdsc.edu/hpc/software/containers.html
 * EuroHPC offers a comprehensive portal with detailed information on HPC initiatives and training resources.  
    - Official website: https://www.eurohpc-project.eu/  
    - Training documentation: Available through the EuroHPC portal and affiliated training programs.

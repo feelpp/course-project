@@ -11,6 +11,7 @@
 *** xref:apptainer/tutorial.adoc[Tutorial]
 
 * xref:hpc/index.adoc[Containers for HPC]
+** xref:hpc/cicd.adoc[CI/CD for HPC]
 ** xref:hpc/best-practices.adoc[Best practices]
 
 * Hands-on Tutorials
@@ -21,9 +22,15 @@
 *** xref:docker/hands-on/docker-postgres-example.adoc[Setting Up PostgreSQL with Docker]
 *** xref:docker/hands-on/docker-compose.adoc[Docker Compose]
 *** xref:docker/hands-on/docker-deploy.adoc[Deploy services]
-** xref:hpc/hands-onindex.adoc[HPC Containers Hands-on]
+//** xref:hpc/hands-on/index.adoc[HPC Containers Hands-on]
+** xref:hpc/hands-on/00-classroom.adoc[C3B Classroom Setup]
 *** xref:hpc/hands-on/01-docker.adoc[Docker]
-*** xref:hpc/hands-on/02-mpi.adoc[Build, Test, Push and Deploy an MPI App]
+*** xref:hpc/hands-on/02-apptainer.adoc[Apptainer]
+*** xref:hpc/hands-on/03-docker-mpi.adoc[Docker and MPI]
+*** xref:hpc/hands-on/03-cicd-githubactions.adoc[CI/CD with GitHub Actions]
+*** xref:hpc/hands-on/04-docker-cicd-app.adoc[CI/CD Docker Job]
+*** xref:hpc/hands-on/04-apptainer-cicd-app.adoc[CI/CD Apptainer Job]
+*** xref:hpc/hands-on/05-deploy.adoc[Deploy with Apptainer]
 
 
 

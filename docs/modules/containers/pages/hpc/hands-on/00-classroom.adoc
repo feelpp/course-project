@@ -1,0 +1,87 @@
+= GitHub Classroom and Codespaces: Empowering Personalized Development Environments
+Christophe Prud'homme <christophe.prudhomme@cemosis.fr>
+v1.0, 2023-03-24
+:icons: font
+:revealjs_theme: white
+:revealjs_slideNumber: true
+:toc: left
+
+[.lead]
+This session introduces GitHub Classroom and Codespaces, frameworks that enable educators to deliver personalized, reproducible development environments for training sessions. These tools help ensure that every trainee starts from a consistent baseline and can focus on learning without worrying about local environment issues.
+
+== Overview
+
+GitHub Classroom and Codespaces together allow instructors to:
+
+- **Automate Repository Creation:** Personalized repositories are generated for each student from a central template (e.g., *c3b-template*).
+- **Provide Instant Development Environments:** Students can launch cloud-based Codespaces pre-configured with all required tools and dependencies.
+- **Maintain Consistency:** Every student’s environment is identical, reducing setup issues and enabling smooth collaboration and assessment.
+
+== GitHub Classroom
+
+GitHub Classroom streamlines the assignment lifecycle by automating repository creation and management.
+
+* **Key Features:**
+  - **Automated Repository Creation:**  
+    When an assignment is distributed, GitHub Classroom generates a personalized repository for each student using a template such as *c3b-template*. This ensures every trainee starts from the same codebase.
+  - **Assignment Management:**  
+    Instructors can set deadlines, provide feedback, and track student progress directly within GitHub.
+  - **Version Control Integration:**  
+    Students benefit from Git’s version control system, making it easier to track changes and collaborate.
+
+* **Benefits for Training:**
+  - **Uniformity:**  
+    All trainees work from the same starting point, enabling a consistent learning experience.
+  - **Efficiency:**  
+    Automated workflows reduce the time instructors spend managing repositories.
+  - **Enhanced Collaboration:**  
+    Instructors and students can interact directly through pull requests, issues, and code reviews.
+
+== GitHub Codespaces
+
+GitHub Codespaces provides cloud-hosted development environments that are ready to use immediately.
+
+* **Key Features:**
+  - **Pre-configured Environments:**  
+    Codespaces are built using configuration files (e.g., `devcontainer.json`) from the repository, ensuring each environment contains all necessary tools (like Docker, compilers, and MPI libraries).
+  - **Accessible Anywhere:**  
+    Trainees can open their Codespace directly in a web browser without needing local installations.
+  - **Consistency and Reproducibility:**  
+    Every Codespace uses the same OS (e.g., Ubuntu 24.04) and setup, eliminating "works on my machine" issues.
+
+* **Integration with GitHub Classroom:**
+  - When a student accepts an assignment, GitHub Classroom creates a repository from *c3b-template*. This repository includes the configuration for Codespaces, so each student gets an identical, ready-to-use environment.
+  - This allows trainees to dive straight into coding and learning MPI/HPC concepts, rather than spending time setting up their local environments.
+
+IMPORTANT: Please click https://classroom.github.com/a/nqquhOdm[> here to start] the training session.
+
+
+== Your repository
+
+Now check your repository and read the README.adoc instructions to start the training session.
+
+The next steps are:
+
+- compile the MPI application
+- run the MPI application
+- test the MPI application
+
+- Repeat on Karolina using the following modules
++
+[source,sh]
+----
+
+----
+
+== Summary
+
+By combining GitHub Classroom with Codespaces:
+
+- Instructors can automatically generate personalized repositories using the *c3b-template*.
+- Trainees receive a fully configured, cloud-based development environment that is consistent across the board.
+- The focus shifts from environment setup to learning and developing HPC applications, making the training experience smoother and more effective.
+
+
+
+[.center]
+Questions? Let's discuss how these frameworks can transform your teaching and streamline the learning process!
