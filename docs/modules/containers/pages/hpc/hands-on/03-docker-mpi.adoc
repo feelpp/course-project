@@ -162,76 +162,75 @@ Ensure that the image works as expected by running your tests locally in the con
 
 === Multi-Stage Dockerfile
 
+Below is the complete Dockerfile with callouts explaining each step:
+
 [source,dockerfile]
 ----
-# Stage 1: Build
-FROM ubuntu:24.04 AS builder                            # <1>
+# Stage 1: Build                                                 <1>
+FROM ubuntu:24.04 AS builder
 
-# Update package lists and install build dependencies
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \  # <2>
+# Update package lists and install build dependencies           <2>
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \  
     && apt-get -y install --no-install-recommends \
        git cmake g++ ninja-build openmpi-bin libopenmpi-dev \
        python3 python3-pip python3-dev \
-       libboost-test-dev libboost-serialization-dev \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*          # <3>
+       libboost-test-dev libboost-serialization-dev \  
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Copy the application source code into the builder stage
-COPY . /workspaces/mpihelloworld                         # <4>
+# Copy the application source code into the builder stage         <3>
+COPY . /workspaces/mpihelloworld
 
-# Set the working directory for the build
-WORKDIR /workspaces/mpihelloworld                        # <5>
+# Set the working directory for the build                           <4>
+WORKDIR /workspaces/mpihelloworld
 
-# Set environment variables for MPI to allow root execution (common in containers)
-ENV OMPI_ALLOW_RUN_AS_ROOT=1                             # <6>
-ENV OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1                     # <7>
+# Set environment variables to allow MPI to run as root             <5>
+ENV OMPI_ALLOW_RUN_AS_ROOT=1
+ENV OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1
 
-# Configure, build, test, and install the application using CMake presets
-RUN cmake --preset default                              # <8>
-    && cmake --build --preset default                  # <9>
-    && ctest --preset default                          # <10>
-    && cmake --build --preset default -t install         # <11>
-    && rm -rf build                                     # <12>
+# Configure, build, test, and install the application using CMake presets <6>
+RUN cmake --preset default      \                        
+    && cmake --build --preset default                  \
+    && ctest --preset default                          \
+    && cmake --build --preset default -t install        \ 
+    && rm -rf build
 
-# Stage 2: Runtime
-FROM ubuntu:24.04 AS runtime                             # <13>
+# Stage 2: Runtime                                                 <7>
+FROM ubuntu:24.04 AS runtime
 
-# Install runtime dependencies (only what's needed to run the application)
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \  # <14>
-    && apt-get -y install --no-install-recommends \
-       openmpi-bin libopenmpi-dev \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*          # <15>
+# Install runtime dependencies (only what is needed to run the application) <8>
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \  
+    && apt-get -y install --no-install-recommends           \
+       openmpi-bin libopenmpi3t64                           \
+       libboost-test1.83.0 libboost-serialization1.83.0     \
+       python3 python3-pip python3-dev                      \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Copy the installed application from the builder stage
-COPY --from=builder /usr/local /usr/local               # <16>
+# Copy the installed application from the builder stage             <9>
+COPY --from=builder /usr/local /usr/local               
 
-# Optionally, copy additional runtime files if needed
+# Optionally, copy additional runtime files if needed                 <10>
 # COPY --from=builder /workspaces/mpihelloworld/config /config
 
-# Set the working directory (if needed)
-WORKDIR /workspaces/mpihelloworld                       # <17>
+# Set the working directory (if needed)                              <11>
+WORKDIR /workspaces/mpihelloworld                       
 
-# Set the default command (adjust as needed)
-ENTRYPOINT ["mpirun", "-np", "4", "./my_mpi_app"]       # <18>
+# Set the runtime environment variables for MPI                       <12>
+ENV OMPI_ALLOW_RUN_AS_ROOT=1
+ENV OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1   
 ----
 
-<1> **Base Image (Builder):** Start with Ubuntu 24.04 for a consistent build environment.
-<2> **Update & Install Build Dependencies:** Updates package lists and installs tools required to build the MPI application.
-<3> **Clean Up Build Dependencies:** Cleans up cached files to reduce image size.
-<4> **Copy Source Code:** Copies the entire repository into the builder image.
-<5> **Set Build Directory:** Sets the working directory for building the application.
-<6> **MPI Environment Variables:** Allows MPI to run as root (common in containers).
-<7> **Confirmation of MPI Settings:** Ensures that MPI root execution is confirmed.
-<8> **CMake Configuration:** Configures the build using CMake presets.
-<9> **Compilation:** Builds the project.
-<10> **Testing:** Runs tests with CTest to verify the build.
-<11> **Installation:** Installs the application to a target directory (e.g., `/usr/local`).
-<12> **Cleanup:** Removes the build directory to reduce final image size.
-<13> **Base Image (Runtime):** Uses Ubuntu 24.04 for the runtime environment.
-<14> **Install Runtime Dependencies:** Installs only the necessary runtime libraries (e.g., OpenMPI).
-<15> **Clean Up Runtime:** Removes package cache to minimize the image size.
-<16> **Copy Installed Application:** Copies the installed binaries and files from the builder stage.
-<17> **Set Runtime Working Directory:** Optionally sets a working directory for running the application.
-<18> **Default Command:** Specifies the command to run your MPI application with `mpirun`.
+<1> **Build Stage:** Uses Ubuntu 24.04 as the base image for building the application.
+<2> **Install Build Dependencies:** Updates package lists and installs tools such as Git, CMake, G++, Ninja, OpenMPI, Python3, and Boost libraries necessary for compiling and testing the MPI application. The `--no-install-recommends` flag ensures that only essential packages are installed, keeping the image lean.
+<3> **Copy Source Code:** Copies your entire project into the builder stage.
+<4> **Set Working Directory:** Sets `/workspaces/mpihelloworld` as the directory for subsequent build commands.
+<5> **MPI Environment Variables:** Sets environment variables to allow MPI to run as root, which is common in containerized environments.
+<6> **Build, Test, and Install:** Uses CMake presets to configure the build, compile the code, run tests with CTest, and install the application. Finally, it removes the build directory to reduce image size.
+<7> **Runtime Stage:** Starts a new stage from Ubuntu 24.04 that contains only the runtime dependencies.
+<8> **Install Runtime Dependencies:** Installs only the packages needed to run the MPI application (e.g., OpenMPI runtime libraries, minimal Boost libraries, and Python3).
+<9> **Copy Installed Application:** Copies the installed application (assumed to be located in `/usr/local`) from the builder stage to the runtime stage.
+<10> **Optional Files:** You can copy additional runtime configuration files if needed.
+<11> **Set Runtime Working Directory:** Sets the working directory for the runtime environment.
+<12> **Runtime MPI Variables:** Re-establishes the environment variables for MPI to run as root
 ---
 
 == Conclusion on Multi-Stage Dockerfile
