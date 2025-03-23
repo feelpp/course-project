@@ -6,7 +6,7 @@
     <title>Introduction to Containers for High-Performance Computing (HPC) :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/hpc/index.html">
     <link rel="prev" href="../apptainer/tutorial.html">
-    <link rel="next" href="best-practices.html">
+    <link rel="next" href="cicd.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
@@ -185,6 +185,9 @@ MathJax.Hub.Config({
     <a class="nav-link" href="index.html">Containers for HPC</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cicd.html">CI/CD for HPC</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="best-practices.html">Best practices</a>
   </li>
 </ul>
@@ -219,24 +222,32 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#hpc/hands-onindex.adoc">HPC Containers Hands-on</a>
+    <a class="nav-link" href="hands-on/00-classroom.html">C3B Classroom Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="hands-on/01-docker.html">Docker</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="hands-on/02-mpi.html">Build, Test, Push and Deploy an MPI App</a>
+    <a class="nav-link" href="hands-on/02-apptainer.html">Apptainer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/03-docker-mpi.html">Docker and MPI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/03-cicd-githubactions.html">CI/CD with GitHub Actions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/04-docker-cicd-app.html">CI/CD Docker Job</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/04-apptainer-cicd-app.html">CI/CD Apptainer Job</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/05-deploy.html">Deploy with Apptainer</a>
   </li>
 </ul>
   </li>
 </ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../cicd/index.html">Introduction to CI/CD fundamentals with GitHub Actions </a>
   </li>
 </ul>
   </li>
@@ -297,14 +308,14 @@ MathJax.Hub.Config({
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_overview">1. Overview</a></li>
-<li><a href="#_introduction_to_containers_15_min">2. Introduction to Containers (15 min)</a>
+<li><a href="#_introduction_to_containers">2. Introduction to Containers</a>
 <ul class="sectlevel2">
 <li><a href="#_what_are_containers">2.1. What are Containers?</a></li>
 <li><a href="#_hypervisors_and_containers">2.2. Hypervisors and Containers</a></li>
 <li><a href="#_background_of_virtualization">2.3. Background of Virtualization</a></li>
 </ul>
 </li>
-<li><a href="#_why_containers_for_hpc_15_min">3. Why Containers for HPC? (15 min)</a>
+<li><a href="#_why_containers_for_hpc">3. Why Containers for HPC?</a>
 <ul class="sectlevel2">
 <li><a href="#_hpc_software_deployment_challenges">3.1. HPC Software Deployment Challenges</a></li>
 <li><a href="#_the_hpc_environment_matrix_from_hell">3.2. The HPC Environment Matrix from Hell</a></li>
@@ -319,7 +330,7 @@ MathJax.Hub.Config({
 <li><a href="#_some_feel_applications">4.2. Some Feel++ Applications</a></li>
 </ul>
 </li>
-<li><a href="#_container_technologies_in_hpc_20_min">5. Container Technologies in HPC (20 min)</a>
+<li><a href="#_container_technologies_in_hpc">5. Container Technologies in HPC</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_of_container_runtimes">5.1. Overview of Container Runtimes</a></li>
 <li><a href="#_docker_in_a_nutshell">5.2. Docker in a Nutshell</a></li>
@@ -331,7 +342,7 @@ MathJax.Hub.Config({
 <li><a href="#_key_takeaways">5.8. Key Takeaways</a></li>
 </ul>
 </li>
-<li><a href="#_qa_and_discussion_10_min">6. Q&amp;A and Discussion (10 min)</a></li>
+<li><a href="#_qa_and_discussion">6. Q&amp;A and Discussion</a></li>
 <li><a href="#_references_further_reading">7. References &amp; Further Reading</a></li>
 </ul>
 </div>
@@ -374,7 +385,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect1">
-<h2 id="_introduction_to_containers_15_min"><a class="anchor" href="#_introduction_to_containers_15_min"></a>2. Introduction to Containers (15 min)</h2>
+<h2 id="_introduction_to_containers"><a class="anchor" href="#_introduction_to_containers"></a>2. Introduction to Containers</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_what_are_containers"><a class="anchor" href="#_what_are_containers"></a>2.1. What are Containers?</h3>
@@ -473,7 +484,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect1">
-<h2 id="_why_containers_for_hpc_15_min"><a class="anchor" href="#_why_containers_for_hpc_15_min"></a>3. Why Containers for HPC? (15 min)</h2>
+<h2 id="_why_containers_for_hpc"><a class="anchor" href="#_why_containers_for_hpc"></a>3. Why Containers for HPC?</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_hpc_software_deployment_challenges"><a class="anchor" href="#_hpc_software_deployment_challenges"></a>3.1. HPC Software Deployment Challenges</h3>
@@ -919,7 +930,7 @@ This section emphasizes that containerization is not just a technical enhancemen
 </div>
 </div>
 <div class="sect1">
-<h2 id="_container_technologies_in_hpc_20_min"><a class="anchor" href="#_container_technologies_in_hpc_20_min"></a>5. Container Technologies in HPC (20 min)</h2>
+<h2 id="_container_technologies_in_hpc"><a class="anchor" href="#_container_technologies_in_hpc"></a>5. Container Technologies in HPC</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_overview_of_container_runtimes"><a class="anchor" href="#_overview_of_container_runtimes"></a>5.1. Overview of Container Runtimes</h3>
@@ -1053,13 +1064,13 @@ Running large-scale MPI jobs across multiple nodes with Docker can be cumbersome
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Build</strong> (usually requires root privileges, often done on a local machine or VM):</p>
+<p><strong>Build</strong>:</p>
 </li>
 </ol>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>apptainer build my_app.sif docker://ubuntu:20.04</pre>
+<pre>apptainer pull -F my_app.sif docker://ubuntu:24.04</pre>
 </div>
 </div>
 <div class="olist arabic">
@@ -1206,7 +1217,7 @@ Running large-scale MPI jobs across multiple nodes with Docker can be cumbersome
 </div>
 </div>
 <div class="sect1">
-<h2 id="_qa_and_discussion_10_min"><a class="anchor" href="#_qa_and_discussion_10_min"></a>6. Q&amp;A and Discussion (10 min)</h2>
+<h2 id="_qa_and_discussion"><a class="anchor" href="#_qa_and_discussion"></a>6. Q&amp;A and Discussion</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -1244,25 +1255,14 @@ Running large-scale MPI jobs across multiple nodes with Docker can be cumbersome
 DOI: <a href="https://doi.org/10.1371/journal.pone.0177459" class="bare">doi.org/10.1371/journal.pone.0177459</a></p>
 </li>
 <li>
-<p><strong>NERSC Documentation.</strong>
-<strong>Containers for HPC: Benefits, Limitations, and Best Practices.</strong>
-Available at: <a href="https://www.nersc.gov/users/computational-systems/containers/" class="bare">www.nersc.gov/users/computational-systems/containers/</a></p>
+<p><strong>NERSC</strong> – <strong>Containers in HPC: Training Event (March 2025)</strong> – <a href="https://www.nersc.gov/users/training/past-training-events/containers-march-2025/">NERSC Training Event</a></p>
 </li>
 <li>
-<p><strong>Pacheco, P., et al. (2018).</strong>
-<strong>Performance Evaluation of Container-based Virtualization for HPC Applications.</strong>
-Presented at IEEE International Conference on Cloud Computing Technology and Science.
-(A detailed analysis of container overhead and performance tuning in HPC settings.)</p>
+<p><strong>Carlos Arango, Rémy Dernat, John Sanabria. Performance</strong>,<strong>Evaluation of Container-based Virtualization for High Performance Computing Environments</strong>. 2024.
+DOI: <a href="https://hal.archives-ouvertes.fr/hal-04795161" class="bare">hal.archives-ouvertes.fr/hal-04795161</a></p>
 </li>
 <li>
-<p><strong>Containers in HPC: A Survey of Experiences and Best Practices (2019).</strong>
-<strong>Journal of Physics: Conference Series.</strong>
-(A survey summarizing real-world experiences with HPC container deployments and best practices.)</p>
-</li>
-<li>
-<p><strong>San Diego Supercomputer Center (SDSC).</strong>
-<strong>A Practical Guide to Containerized Workflows in HPC.</strong>
-Available at: <a href="https://www.sdsc.edu/hpc/software/containers.html" class="bare">www.sdsc.edu/hpc/software/containers.html</a></p>
+<p>* <strong>Keller Tesser, Rafael and Borin, Edson</strong> – <strong>Containers in HPC: a survey</strong> (2022) – <a href="https://doi.org/10.1007/s11227-022-04848-y">DOI</a></p>
 </li>
 </ol>
 </div>
@@ -1286,7 +1286,7 @@ Available at: <a href="https://www.sdsc.edu/hpc/software/containers.html" class=
 </div>
 <nav class="pagination">
   <span class="prev"><a href="../apptainer/tutorial.html">Tutorial</a></span>
-  <span class="next"><a href="best-practices.html">Best practices</a></span>
+  <span class="next"><a href="cicd.html">CI/CD for HPC</a></span>
 </nav>
 </article>
   </div>

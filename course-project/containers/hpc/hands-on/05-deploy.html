@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/hpc/hands-on/02-mpi.html">
-    <link rel="prev" href="01-docker.html">
-    <link rel="next" href="../../../cicd/index.html">
+    <title>Hands-on: Deploying Apptainer Images on HPC Environments :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/hpc/hands-on/05-deploy.html">
+    <link rel="prev" href="04-apptainer-cicd-app.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
@@ -185,6 +184,9 @@ MathJax.Hub.Config({
     <a class="nav-link" href="../index.html">Containers for HPC</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cicd.html">CI/CD for HPC</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../best-practices.html">Best practices</a>
   </li>
 </ul>
@@ -219,24 +221,32 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#hpc/hands-onindex.adoc">HPC Containers Hands-on</a>
+    <a class="nav-link" href="00-classroom.html">C3B Classroom Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="01-docker.html">Docker</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="02-apptainer.html">Apptainer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="03-docker-mpi.html">Docker and MPI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="03-cicd-githubactions.html">CI/CD with GitHub Actions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="04-docker-cicd-app.html">CI/CD Docker Job</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="04-apptainer-cicd-app.html">CI/CD Apptainer Job</a>
+  </li>
   <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="02-mpi.html">Build, Test, Push and Deploy an MPI App</a>
+    <a class="nav-link" href="05-deploy.html">Deploy with Apptainer</a>
   </li>
 </ul>
   </li>
 </ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../../cicd/index.html">Introduction to CI/CD fundamentals with GitHub Actions </a>
   </li>
 </ul>
   </li>
@@ -268,13 +278,13 @@ MathJax.Hub.Config({
   <ul>
     <li><a href="../../../index.html">Course Project</a></li>
     <li>Hands-on Tutorials</li>
-    <li><a href="#hpc/hands-onindex.adoc">HPC Containers Hands-on</a></li>
-    <li><a href="02-mpi.html">Build, Test, Push and Deploy an MPI App</a></li>
+    <li><a href="00-classroom.html">C3B Classroom Setup</a></li>
+    <li><a href="05-deploy.html">Deploy with Apptainer</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/hpc/hands-on/02-mpi.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/hpc/hands-on/05-deploy.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -294,290 +304,193 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
+<h1 class="page">Hands-on: Deploying Apptainer Images on HPC Environments</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_overview">1. Overview</a></li>
+<li><a href="#_the_deploy_workflow">2. The Deploy Workflow</a></li>
+<li><a href="#_triggering_the_deploy_workflow_automatically">3. Triggering the Deploy Workflow Automatically</a></li>
+<li><a href="#_conclusion">4. Conclusion</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>This session demonstrates how to deploy your Apptainer image to run a parallel MPI job on two environments: a local runner (<code>self-ubuntu-24.04</code>) and the Karolina HPC system. We will also show how to automatically trigger the deploy job when the Apptainer image is updated.</p>
+</div>
+</div>
+</div>
 <div class="sect1">
-<h2 id="_hands_on_building_and_pushing_container_images_for_hpc_applications"><a class="anchor" href="#_hands_on_building_and_pushing_container_images_for_hpc_applications"></a>1. Hands-on: Building and Pushing Container Images for HPC Applications</h2>
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>1. Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this session, you&#8217;ll learn how to:</p>
+<p>In this session, you will learn:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Build a Docker image for an MPI application inside a GitHub Codespace (running Ubuntu 24.04).</p>
+<p>How to configure a GitHub Actions workflow (<code>deploy.yml</code>) that uses a matrix strategy to run on both <code>self-ubuntu-24.04</code> and <code>karolina</code>.</p>
 </li>
 <li>
-<p>Push the image to GitHub Container Registry (ghcr.io).</p>
+<p>How to pull, inspect, and run the Apptainer image on these environments.</p>
 </li>
 <li>
-<p>Automate the build and push process using GitHub Actions CI/CD.</p>
+<p>How to trigger the deploy workflow automatically from another job (e.g., when the Apptainer image is pushed).</p>
 </li>
 <li>
-<p>Deploy the container image on the Karolina HPC system (or similar machines) using both Docker and Apptainer.</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>1.1. Prerequisites</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A GitHub Codespace based on Ubuntu 24.04.</p>
-</li>
-<li>
-<p>Docker installed in the Codespace.</p>
-</li>
-<li>
-<p>Access to GitHub Container Registry (with a Personal Access Token stored as the secret <code>CR_PAT</code>).</p>
-</li>
-<li>
-<p>Apptainer (or Singularity) installed on your target HPC system.</p>
+<p>How to monitor and run parallel jobs in HPC using Apptainer and MPI.</p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_step_1_building_an_mpi_application_in_github_codespace"><a class="anchor" href="#_step_1_building_an_mpi_application_in_github_codespace"></a>1.2. Step 1: Building an MPI Application in GitHub Codespace</h3>
+</div>
+<div class="sect1">
+<h2 id="_the_deploy_workflow"><a class="anchor" href="#_the_deploy_workflow"></a>2. The Deploy Workflow</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>We&#8217;ll create a simple MPI "Hello World" application in C and package it into a Docker image using Ubuntu 24.04.</p>
+<p>Below is the complete <code>deploy.yml</code> file used to deploy the Apptainer image:</p>
 </div>
-<div class="sect3">
-<h4 id="_sample_mpi_application_app_c"><a class="anchor" href="#_sample_mpi_application_app_c"></a>1.2.1. Sample MPI Application (app.c)</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">#include &lt;mpi.h&gt;
-#include &lt;stdio.h&gt;
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: Deploy                                     <i class="conum" data-value="1"></i><b>(1)</b>
 
-int main(int argc, char** argv) {
-    MPI_Init(NULL, NULL);
-    int world_size;
-    MPI_Comm_size(MPI_COMM_WORLD, &amp;world_size);
-    int world_rank;
-    MPI_Comm_rank(MPI_COMM_WORLD, &amp;world_rank);
-    printf("Hello world from rank %d out of %d processors\n", world_rank, world_size);
-    MPI_Finalize();
-    return 0;
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_dockerfile_for_the_mpi_application"><a class="anchor" href="#_dockerfile_for_the_mpi_application"></a>1.2.2. Dockerfile for the MPI Application</h4>
-<div class="paragraph">
-<p>Create a file named <code>Dockerfile</code> in your repository with the following content. Notice we use Ubuntu 24.04 as the base image.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile">FROM ubuntu:24.04                            <i class="conum" data-value="1"></i><b>(1)</b>
-ENV DEBIAN_FRONTEND=noninteractive           <i class="conum" data-value="2"></i><b>(2)</b>
-RUN apt-get update &amp;&amp; apt-get install -y \
-    mpich \
-    build-essential &amp;&amp; \
-    rm -rf /var/lib/apt/lists/*              <i class="conum" data-value="3"></i><b>(3)</b>
-COPY app.c /app/app.c                        <i class="conum" data-value="4"></i><b>(4)</b>
-WORKDIR /app                                 <i class="conum" data-value="5"></i><b>(5)</b>
-RUN mpicc -o mpi_app app.c                   <i class="conum" data-value="6"></i><b>(6)</b>
-CMD ["mpirun", "-np", "4", "./mpi_app"]      <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
+on:
+  workflow_dispatch:                               <i class="conum" data-value="2"></i><b>(2)</b>
+
+jobs:
+  deploy:
+    strategy:
+      matrix:
+        runs-on: [self-ubuntu-24.04, karolina]     <i class="conum" data-value="3"></i><b>(3)</b>
+    runs-on: ${{ matrix.runs-on }}
+    steps:
+      - name: Checkout Repository                <i class="conum" data-value="4"></i><b>(4)</b>
+        uses: actions/checkout@v4
+
+      - name: Create sif filename                <i class="conum" data-value="5"></i><b>(5)</b>
+        run: |
+          sif=$(basename "${{ github.repository }}.sif")
+          echo "SIF_FILENAME=$sif" &gt;&gt; $GITHUB_ENV
+
+      - name: Set APPTAINER_CMD                   <i class="conum" data-value="6"></i><b>(6)</b>
+        run: |
+          if [ "${{ matrix.runs-on }}" == "karolina" ]; then
+            apptainer_cmd=apptainer
+          else
+            apptainer_cmd=/opt/apptainer/v1.4.0/apptainer/bin/apptainer
+          fi
+          echo "Using apptainer command: $apptainer_cmd"
+          echo "APPTAINER_CMD=$apptainer_cmd" &gt;&gt; $GITHUB_ENV
+
+      - name: PULL Apptainer SIF                <i class="conum" data-value="7"></i><b>(7)</b>
+        run: |
+          # Pull the SIF file from GHCR
+          $APPTAINER_CMD pull -F $SIF_FILENAME oras://ghcr.io/${{ github.repository }}:solution-sif
+          # Inspect the SIF file to verify its contents
+          $APPTAINER_CMD inspect $SIF_FILENAME
+
+      - name: Run Container on self-ubuntu-24.04  <i class="conum" data-value="8"></i><b>(8)</b>
+        if: matrix.runs-on == 'self-ubuntu-24.04'
+        run: |
+          # Run the containerized application using mpirun
+          mpirun -np 4 $APPTAINER_CMD run $SIF_FILENAME myapp
+
+      - name: Run Container on Karolina           <i class="conum" data-value="9"></i><b>(9)</b>
+        if: matrix.runs-on == 'karolina'
+        run: |
+          # Use a helper script (job_monitor.sh) to submit and monitor the job on Karolina
+          bash job_monitor.sh $SIF_FILENAME</code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Use Ubuntu 24.04 as the base image for a modern, stable environment.</td>
+<td><strong>Workflow Name:</strong> A descriptive title for the deploy workflow.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Set DEBIAN_FRONTEND to noninteractive to suppress prompts during package installation.</td>
+<td><strong>Manual Trigger:</strong> The workflow is triggered manually via Workflow Dispatch.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Update package lists, install MPICH and build-essential packages, and clean up package cache.</td>
+<td><strong>Matrix Strategy:</strong> The job runs on two environments: <code>self-ubuntu-24.04</code> and <code>karolina</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Copy the MPI application source code (app.c) into the /app directory in the image.</td>
+<td><strong>Checkout Step:</strong> Clones your repository into the workflow environment.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Set the working directory to /app for subsequent commands.</td>
+<td><strong>Create SIF Filename:</strong> Generates the SIF filename based on the repository name and saves it to the environment.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Compile the MPI application using mpicc, outputting the binary as 'mpi_app'.</td>
+<td><strong>Set Apptainer Command:</strong> Determines which Apptainer command to use based on the environment (using a module on Karolina or a local path on self‑ubuntu‑24.04) and saves it.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>Define the default command to run the MPI application with 4 processes using mpirun.</td>
+<td><strong>Pull and Inspect SIF:</strong> Pulls the Apptainer SIF from GHCR and inspects it to verify the conversion.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><strong>Run on Self-Ubuntu:</strong> Uses <code>mpirun</code> to execute the application inside the container on the self‑ubuntu‑24.04 runner.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td><strong>Run on Karolina:</strong> Invokes a helper script (<code>job_monitor.sh</code>) to submit and monitor the job on Karolina.</td>
 </tr>
 </table>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_building_the_docker_image_in_github_codespace"><a class="anchor" href="#_building_the_docker_image_in_github_codespace"></a>1.2.3. Building the Docker Image in GitHub Codespace</h4>
+</div>
+<div class="sect1">
+<h2 id="_triggering_the_deploy_workflow_automatically"><a class="anchor" href="#_triggering_the_deploy_workflow_automatically"></a>3. Triggering the Deploy Workflow Automatically</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Open the terminal in your Codespace (Ubuntu 24.04) and run:</p>
+<p>To streamline the workflow, you can add a step in your <code>build_apptainer</code> job to trigger the deploy workflow as soon as the Apptainer image is pushed. For example, in your <code>build_apptainer</code> job add the step below at the end:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># Build the Docker image locally
-docker build -t ghcr.io/&lt;your-username&gt;/mpi_app:latest .
-
-# Run the image to test the MPI application
-docker run --rm ghcr.io/&lt;your-username&gt;/mpi_app:latest</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_step_2_pushing_the_image_to_github_container_registry_ghcr_io"><a class="anchor" href="#_step_2_pushing_the_image_to_github_container_registry_ghcr_io"></a>1.3. Step 2: Pushing the Image to GitHub Container Registry (ghcr.io)</h3>
-<div class="paragraph">
-<p>Once you have verified the image, push it to ghcr.io:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># Log in to GitHub Container Registry using your Personal Access Token (CR_PAT)
-echo $CR_PAT | docker login ghcr.io -u &lt;your-username&gt; --password-stdin
-
-# Push the Docker image to ghcr.io
-docker push ghcr.io/&lt;your-username&gt;/mpi_app:latest</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_step_3_automating_builds_and_pushes_with_github_actions_cicd"><a class="anchor" href="#_step_3_automating_builds_and_pushes_with_github_actions_cicd"></a>1.4. Step 3: Automating Builds and Pushes with GitHub Actions CI/CD</h3>
-<div class="paragraph">
-<p>Create a GitHub Actions workflow file (e.g., <code>.github/workflows/docker-build-push.yml</code>) with the following content to automate the process:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: Docker Build and Push
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.CR_PAT }}
-
-      - name: Build and Push Docker Image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: ghcr.io/${{ github.actor }}/mpi_app:latest</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">    - name: Trigger Deployment                <i class="conum" data-value="10"></i><b>(10)</b>
+        run: |
+          # This step triggers the deploy workflow automatically.
+          # It can be invoked from the build_apptainer job after a successful image push.
+          gh workflow run deploy.yml</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This workflow automatically builds and pushes your Docker image whenever changes are merged into the main branch.</p>
+<p>This command triggers the <code>deploy.yml</code> workflow on the <code>solution</code> branch, ensuring that both the <code>self-ubuntu-24.04</code> and <code>karolina</code> jobs are executed.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_step_4_deploying_on_karolina_hpc_and_other_machines"><a class="anchor" href="#_step_4_deploying_on_karolina_hpc_and_other_machines"></a>1.5. Step 4: Deploying on Karolina HPC and Other Machines</h3>
+</div>
+<div class="sect1">
+<h2 id="_conclusion"><a class="anchor" href="#_conclusion"></a>4. Conclusion</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>On the Karolina HPC system (or another target machine), you can deploy the container image using Docker or convert it to an Apptainer image.</p>
+<p>This hands‑on session has demonstrated:</p>
 </div>
-<div class="sect3">
-<h4 id="_deploying_with_docker"><a class="anchor" href="#_deploying_with_docker"></a>1.5.1. Deploying with Docker</h4>
-<div class="paragraph">
-<p>Pull and run the image on the target system:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># Log in to GitHub Container Registry if required
-echo $CR_PAT | docker login ghcr.io -u &lt;your-username&gt; --password-stdin
-
-# Pull the latest image
-docker pull ghcr.io/&lt;your-username&gt;/mpi_app:latest
-
-# Run the container on an HPC node
-docker run --rm ghcr.io/&lt;your-username&gt;/mpi_app:latest</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_converting_to_an_apptainer_image"><a class="anchor" href="#_converting_to_an_apptainer_image"></a>1.5.2. Converting to an Apptainer Image</h4>
-<div class="paragraph">
-<p>If your HPC system uses Apptainer/Singularity for container execution, convert the Docker image as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># On the HPC system, use Apptainer to pull the Docker image
-apptainer pull mpi_app.sif docker://ghcr.io/&lt;your-username&gt;/mpi_app:latest</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can now run the Apptainer image on your HPC system:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">apptainer exec mpi_app.sif mpirun -np 4 ./mpi_app</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_wrap_up_and_qa"><a class="anchor" href="#_wrap_up_and_qa"></a>1.6. Wrap-Up and Q&amp;A</h3>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Review:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Built an MPI application in C and containerized it using a Dockerfile based on Ubuntu 24.04.</p>
+<p>How to set up a GitHub Actions deploy workflow using a matrix to target different environments.</p>
 </li>
 <li>
-<p>Tested and pushed the Docker image to GitHub Container Registry.</p>
+<p>How to pull, inspect, and run an Apptainer SIF image on both a local runner and an HPC system.</p>
 </li>
 <li>
-<p>Automated the build/push process with GitHub Actions.</p>
-</li>
-<li>
-<p>Demonstrated deployment on HPC systems via Docker and Apptainer.</p>
+<p>How to automatically trigger the deploy workflow from another job.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p><strong>Discussion:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>How might this workflow be extended for more complex HPC applications?</p>
-</li>
-<li>
-<p>What additional optimizations or testing (e.g., performance benchmarks) could be integrated?</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Now it&#8217;s time to experiment, ask questions, and explore how these tools can streamline HPC application deployment!</p>
-</div>
+<div class="paragraph center">
+<p>Questions? Let&#8217;s discuss how to integrate these deployment steps into your HPC CI/CD pipeline!</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="01-docker.html">Docker</a></span>
-  <span class="next"><a href="../../../cicd/index.html">Introduction to CI/CD fundamentals with GitHub Actions </a></span>
+  <span class="prev"><a href="04-apptainer-cicd-app.html">CI/CD Apptainer Job</a></span>
 </nav>
 </article>
   </div>

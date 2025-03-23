@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Docker System Basics :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/hpc/hands-on/01-docker.html">
-    <link rel="prev" href="00-classroom.html">
-    <link rel="next" href="02-apptainer.html">
+    <title>GitHub Classroom and Codespaces: Empowering Personalized Development Environments :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/hpc/hands-on/00-classroom.html">
+    <link rel="prev" href="#docker/hands-on/docker-deploy.adoc">
+    <link rel="next" href="01-docker.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
@@ -220,11 +220,11 @@ MathJax.Hub.Config({
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="00-classroom.html">C3B Classroom Setup</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="01-docker.html">Docker</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -280,12 +280,11 @@ MathJax.Hub.Config({
     <li><a href="../../../index.html">Course Project</a></li>
     <li>Hands-on Tutorials</li>
     <li><a href="00-classroom.html">C3B Classroom Setup</a></li>
-    <li><a href="01-docker.html">Docker</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/hpc/hands-on/01-docker.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/hpc/hands-on/00-classroom.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -305,35 +304,21 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Docker System Basics</h1>
+<h1 class="page">GitHub Classroom and Codespaces: Empowering Personalized Development Environments</h1>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_overview">1. Overview</a></li>
-<li><a href="#_docker_system_components">2. Docker System Components</a></li>
-<li><a href="#_docker_hello_world_example">3. Docker Hello World Example</a></li>
-<li><a href="#_running_ubuntu_in_a_container">4. Running Ubuntu in a Container</a></li>
-<li><a href="#_essential_docker_commands">5. Essential Docker Commands</a>
-<ul class="sectlevel2">
-<li><a href="#_listing_containers_and_images">5.1. Listing Containers and Images</a></li>
-<li><a href="#_running_containers_in_detached_mode">5.2. Running Containers in Detached Mode</a></li>
-<li><a href="#_logging_into_and_out_of_docker_registries">5.3. Logging into and Out of Docker Registries</a></li>
-</ul>
-</li>
-<li><a href="#_advanced_docker_usage">6. Advanced Docker Usage</a>
-<ul class="sectlevel2">
-<li><a href="#_volumes_persistent_storage">6.1. Volumes: Persistent Storage</a></li>
-<li><a href="#_docker_images_and_updates">6.2. Docker Images and Updates</a></li>
-</ul>
-</li>
-<li><a href="#_docker_for_hpc">7. Docker for HPC</a></li>
-<li><a href="#_conclusion">8. Conclusion</a></li>
+<li><a href="#_github_classroom">2. GitHub Classroom</a></li>
+<li><a href="#_github_codespaces">3. GitHub Codespaces</a></li>
+<li><a href="#_your_repository">4. Your repository</a></li>
+<li><a href="#_summary">5. Summary</a></li>
 </ul>
 </div>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph lead">
-<p>A 30-minute hands-on session to introduce Docker fundamentals with a focus on HPC development.</p>
+<p>This session introduces GitHub Classroom and Codespaces, frameworks that enable educators to deliver personalized, reproducible development environments for training sessions. These tools help ensure that every trainee starts from a consistent baseline and can focus on learning without worrying about local environment issues.</p>
 </div>
 </div>
 </div>
@@ -341,382 +326,188 @@ MathJax.Hub.Config({
 <h2 id="_overview"><a class="anchor" href="#_overview"></a>1. Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this session, you will learn:</p>
+<p>GitHub Classroom and Codespaces together allow instructors to:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The basic components of the Docker system.</p>
+<p><strong>Automate Repository Creation:</strong> Personalized repositories are generated for each student from a central template (e.g., <strong>c3b-template</strong>).</p>
 </li>
 <li>
-<p>How to run containers interactively and in detached mode.</p>
+<p><strong>Provide Instant Development Environments:</strong> Students can launch cloud-based Codespaces pre-configured with all required tools and dependencies.</p>
 </li>
 <li>
-<p>Key Docker commands such as <code>docker ps</code>, <code>docker images</code>, and how to manage container lifecycles.</p>
-</li>
-<li>
-<p>How Docker concepts translate to HPC containerization workflows.</p>
+<p><strong>Maintain Consistency:</strong> Every student’s environment is identical, reducing setup issues and enabling smooth collaboration and assessment.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_docker_system_components"><a class="anchor" href="#_docker_system_components"></a>2. Docker System Components</h2>
+<h2 id="_github_classroom"><a class="anchor" href="#_github_classroom"></a>2. GitHub Classroom</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../../_images/docker/basics-of-docker-system.png" alt="basics of docker system" title="Basics of Docker System"></a></span></p>
-</div>
-<div class="paragraph">
-<p>The basic components of the Docker system are:</p>
+<p>GitHub Classroom streamlines the assignment lifecycle by automating repository creation and management.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Images</strong>: Blueprints of the application and its dependencies.</p>
+<p><strong>Key Features:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Automated Repository Creation:</strong>
+When an assignment is distributed, GitHub Classroom generates a personalized repository for each student using a template such as <strong>c3b-template</strong>. This ensures every trainee starts from the same codebase.</p>
 </li>
 <li>
-<p><strong>Containers</strong>: Running instances of images.</p>
+<p><strong>Assignment Management:</strong>
+Instructors can set deadlines, provide feedback, and track student progress directly within GitHub.</p>
 </li>
 <li>
-<p><strong>Volumes</strong>: Persistent data storage.</p>
+<p><strong>Version Control Integration:</strong>
+Students benefit from Git’s version control system, making it easier to track changes and collaborate.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>Networks</strong>: Isolated environments for containers to communicate.</p>
+<p><strong>Benefits for Training:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Uniformity:</strong>
+All trainees work from the same starting point, enabling a consistent learning experience.</p>
 </li>
 <li>
-<p><strong>Dockerfile</strong>: A file used to create Docker images.</p>
+<p><strong>Efficiency:</strong>
+Automated workflows reduce the time instructors spend managing repositories.</p>
+</li>
+<li>
+<p><strong>Enhanced Collaboration:</strong>
+Instructors and students can interact directly through pull requests, issues, and code reviews.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_docker_hello_world_example"><a class="anchor" href="#_docker_hello_world_example"></a>3. Docker Hello World Example</h2>
+<h2 id="_github_codespaces"><a class="anchor" href="#_github_codespaces"></a>3. GitHub Codespaces</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s start by running a simple Docker container:</p>
+<p>GitHub Codespaces provides cloud-hosted development environments that are ready to use immediately.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run hello-world</code></pre>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Key Features:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Pre-configured Environments:</strong>
+Codespaces are built using configuration files (e.g., <code>devcontainer.json</code>) from the repository, ensuring each environment contains all necessary tools (like Docker, compilers, and MPI libraries).</p>
+</li>
+<li>
+<p><strong>Accessible Anywhere:</strong>
+Trainees can open their Codespace directly in a web browser without needing local installations.</p>
+</li>
+<li>
+<p><strong>Consistency and Reproducibility:</strong>
+Every Codespace uses the same OS (e.g., Ubuntu 24.04) and setup, eliminating "works on my machine" issues.</p>
+</li>
+</ul>
 </div>
+</li>
+<li>
+<p><strong>Integration with GitHub Classroom:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>When a student accepts an assignment, GitHub Classroom creates a repository from <strong>c3b-template</strong>. This repository includes the configuration for Codespaces, so each student gets an identical, ready-to-use environment.</p>
+</li>
+<li>
+<p>This allows trainees to dive straight into coding and learning MPI/HPC concepts, rather than spending time setting up their local environments.</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>This command pulls the <code>hello-world</code> image from Docker Hub and runs it in a container. Notice that the container runs, prints a message, and then exits.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Please click <a href="https://classroom.github.com/a/nqquhOdm">&gt; here to start</a> the training session.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_running_ubuntu_in_a_container"><a class="anchor" href="#_running_ubuntu_in_a_container"></a>4. Running Ubuntu in a Container</h2>
+<h2 id="_your_repository"><a class="anchor" href="#_your_repository"></a>4. Your repository</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can start an interactive session in an Ubuntu container. In this example, we also use the <code>--rm</code> flag.</p>
+<p>Now check your repository and read the README.adoc instructions to start the training session.</p>
 </div>
+<div class="paragraph">
+<p>The next steps are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>compile the MPI application</p>
+</li>
+<li>
+<p>run the MPI application</p>
+</li>
+<li>
+<p>test the MPI application</p>
+</li>
+<li>
+<p>Repeat on Karolina using the following modules</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run --rm -it ubuntu bash</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"></code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Explanation:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>--rm</code>: Automatically removes the container after it exits, keeping your system clean.</p>
-</li>
-<li>
-<p><code>-it</code>: Combines <code>-i</code> (interactive) and <code>-t</code> (allocate a pseudo-TTY) to enable an interactive shell session.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>After running this command, you&#8217;ll have an interactive Bash shell inside the Ubuntu container.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_essential_docker_commands"><a class="anchor" href="#_essential_docker_commands"></a>5. Essential Docker Commands</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_listing_containers_and_images"><a class="anchor" href="#_listing_containers_and_images"></a>5.1. Listing Containers and Images</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><strong><code>docker ps</code></strong>
-Lists all running containers.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker ps</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong><code>docker ps -a</code></strong>
-Lists all containers, including those that have exited.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker ps -a</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong><code>docker images</code></strong>
-Lists all available Docker images on your system.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker images</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_running_containers_in_detached_mode"><a class="anchor" href="#_running_containers_in_detached_mode"></a>5.2. Running Containers in Detached Mode</h3>
-<div class="paragraph">
-<p>To run a container in the background (detached mode), use the <code>-d</code> flag:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run --rm -d ubuntu sleep 60</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Explanation:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>-d</code> runs the container in detached mode.</p>
-</li>
-<li>
-<p>In this example, the container will run the <code>sleep 60</code> command and exit after 60 seconds.</p>
-</li>
-<li>
-<p>The <code>--rm</code> flag ensures the container is removed automatically when it stops.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_logging_into_and_out_of_docker_registries"><a class="anchor" href="#_logging_into_and_out_of_docker_registries"></a>5.3. Logging into and Out of Docker Registries</h3>
-<div class="sect3">
-<h4 id="_creating_a_ghcr_pat_classic_token_for_github_container_registry"><a class="anchor" href="#_creating_a_ghcr_pat_classic_token_for_github_container_registry"></a>5.3.1. Creating a GHCR_PAT (Classic Token) for GitHub Container Registry</h4>
-<div class="paragraph">
-<p>To authenticate with GitHub Container Registry (ghcr.io), you need to create a Personal Access Token (PAT) with the proper scopes. Follow these steps:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Go to GitHub Settings:</strong>
-Click your profile icon in the upper-right corner and select <strong>Settings</strong>.</p>
-</li>
-<li>
-<p><strong>Navigate to Developer Settings:</strong>
-In the left sidebar, select <strong>Developer settings</strong>.</p>
-</li>
-<li>
-<p><strong>Personal Access Tokens:</strong>
-Click <strong>Personal access tokens</strong> and then select <strong>Generate new token (classic)</strong>.</p>
-</li>
-<li>
-<p><strong>Configure Your Token:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Note:</strong> Provide a descriptive name (e.g., "GHCR PAT for Actions").</p>
-</li>
-<li>
-<p><strong>Expiration:</strong> Set an expiration date appropriate for your use case.</p>
-</li>
-<li>
-<p><strong>Scopes:</strong> Make sure to select at least the following:</p>
-</li>
-<li>
-<p><code>read:packages</code> – Required to pull packages from GHCR.</p>
-</li>
-<li>
-<p><code>write:packages</code> – Required to push packages to GHCR.</p>
-</li>
-<li>
-<p><strong>(Optional)</strong> <code>delete:packages</code> – If you need to remove packages.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Generate the Token:</strong>
-Click <strong>Generate token</strong> at the bottom of the page.</p>
-</li>
-<li>
-<p><strong>Copy the Token:</strong>
-<strong>Important:</strong> Copy the generated token immediately and store it securely. You won&#8217;t be able to see it again.</p>
-</li>
-<li>
-<p><strong>Use the Token:</strong>
-Save this token as <code>GHCR_PAT</code> in your GitHub repository secrets for use in your CI/CD workflows.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>For more details, refer to the GitHub documentation on [creating a personal access token](<a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token" class="bare">docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token</a>).</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_login_and_logout_commands"><a class="anchor" href="#_login_and_logout_commands"></a>5.3.2. Login and Logout Commands</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><strong><code>docker login</code></strong>
-Log into a Docker registry (e.g., Docker Hub or GitHub Container Registry).</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker login ghcr.io -u &lt;your-username&gt; --password $GHCR_PAT</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Replace <code>&lt;your-username&gt;</code> with your actual username and supply your password via standard input (or use a secret in CI/CD pipelines).</p>
-</li>
-<li>
-<p><strong><code>docker logout</code></strong>
-Log out from the Docker registry.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker logout ghcr.io</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_advanced_docker_usage"><a class="anchor" href="#_advanced_docker_usage"></a>6. Advanced Docker Usage</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_volumes_persistent_storage"><a class="anchor" href="#_volumes_persistent_storage"></a>6.1. Volumes: Persistent Storage</h3>
-<div class="paragraph">
-<p>Use volumes to store data that persists even after a container is removed.
-For example, run an Ubuntu container with a mounted volume from your local <code>/tmp</code> directory:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run --rm -it -v /tmp:/tmp ubuntu bash</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Inside the container, you can run <code>df</code> to view the mounted volume.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_docker_images_and_updates"><a class="anchor" href="#_docker_images_and_updates"></a>6.2. Docker Images and Updates</h3>
-<div class="paragraph">
-<p>Docker images can be updated and modified by creating new image layers.</p>
-</div>
-<div class="paragraph">
-<p>This approach allows you to:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Roll Back Updates:</strong> Easily revert to a previous image version.</p>
-</li>
-<li>
-<p><strong>Efficient Testing:</strong> Only new layers need to be pushed or pulled.</p>
-</li>
-<li>
-<p><strong>Optimized Distribution:</strong> Minimize changes, reducing download times.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../../_images/docker/changes-and-updates.png" alt="changes and updates" title="Changes and Updates"></a></span></p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_docker_for_hpc"><a class="anchor" href="#_docker_for_hpc"></a>7. Docker for HPC</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Docker serves as a foundational tool in HPC container workflows:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Development &amp; Testing:</strong> Create and test HPC applications in a controlled Docker environment.</p>
-</li>
-<li>
-<p><strong>Container Conversion:</strong> Docker images can be converted to Apptainer/Singularity images for deployment on HPC clusters.</p>
-</li>
-<li>
-<p><strong>Reproducibility:</strong> Docker ensures consistent environments across different stages of development and production.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_conclusion"><a class="anchor" href="#_conclusion"></a>8. Conclusion</h2>
+<h2 id="_summary"><a class="anchor" href="#_summary"></a>5. Summary</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>We covered:</p>
+<p>By combining GitHub Classroom with Codespaces:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Basic Docker components and commands.</p>
+<p>Instructors can automatically generate personalized repositories using the <strong>c3b-template</strong>.</p>
 </li>
 <li>
-<p>Running containers interactively and in detached mode.</p>
+<p>Trainees receive a fully configured, cloud-based development environment that is consistent across the board.</p>
 </li>
 <li>
-<p>Managing containers and images with <code>docker ps</code> and <code>docker images</code>.</p>
-</li>
-<li>
-<p>Logging into and out of Docker registries.</p>
-</li>
-<li>
-<p>Advanced topics including volumes and image layering.</p>
-</li>
-<li>
-<p>How Docker basics underpin HPC containerization workflows.</p>
+<p>The focus shifts from environment setup to learning and developing HPC applications, making the training experience smoother and more effective.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph center">
-<p>Questions? Let&#8217;s discuss how these tools can streamline HPC application development!</p>
+<p>Questions? Let&#8217;s discuss how these frameworks can transform your teaching and streamline the learning process!</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="00-classroom.html">C3B Classroom Setup</a></span>
-  <span class="next"><a href="02-apptainer.html">Apptainer</a></span>
+  <span class="prev"><a href="#docker/hands-on/docker-deploy.adoc">Deploy services</a></span>
+  <span class="next"><a href="01-docker.html">Docker</a></span>
 </nav>
 </article>
   </div>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Untitled :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/hpc/best-practices.html">
-    <link rel="prev" href="index.html">
+    <link rel="prev" href="cicd.html">
     <link rel="next" href="../docker/hands-on/index.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -184,6 +184,9 @@ MathJax.Hub.Config({
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="index.html">Containers for HPC</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cicd.html">CI/CD for HPC</a>
+  </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="best-practices.html">Best practices</a>
   </li>
@@ -219,24 +222,32 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#hpc/hands-onindex.adoc">HPC Containers Hands-on</a>
+    <a class="nav-link" href="hands-on/00-classroom.html">C3B Classroom Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="hands-on/01-docker.html">Docker</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="hands-on/02-mpi.html">Build, Test, Push and Deploy an MPI App</a>
+    <a class="nav-link" href="hands-on/02-apptainer.html">Apptainer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/03-docker-mpi.html">Docker and MPI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/03-cicd-githubactions.html">CI/CD with GitHub Actions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/04-docker-cicd-app.html">CI/CD Docker Job</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/04-apptainer-cicd-app.html">CI/CD Apptainer Job</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/05-deploy.html">Deploy with Apptainer</a>
   </li>
 </ul>
   </li>
 </ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../cicd/index.html">Introduction to CI/CD fundamentals with GitHub Actions </a>
   </li>
 </ul>
   </li>
@@ -554,7 +565,7 @@ COPY --from=build /src/mycode /usr/bin/mycode</code></pre>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="index.html">Containers for HPC</a></span>
+  <span class="prev"><a href="cicd.html">CI/CD for HPC</a></span>
   <span class="next"><a href="../docker/hands-on/index.html">Docker Hands-on</a></span>
 </nav>
 </article>

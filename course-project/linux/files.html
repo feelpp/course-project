@@ -183,6 +183,9 @@ MathJax.Hub.Config({
     <a class="nav-link" href="../containers/hpc/index.html">Containers for HPC</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../containers/hpc/cicd.html">CI/CD for HPC</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../containers/hpc/best-practices.html">Best practices</a>
   </li>
 </ul>
@@ -217,24 +220,32 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#hpc/hands-onindex.adoc">HPC Containers Hands-on</a>
+    <a class="nav-link" href="../containers/hpc/hands-on/00-classroom.html">C3B Classroom Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../containers/hpc/hands-on/01-docker.html">Docker</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../containers/hpc/hands-on/02-mpi.html">Build, Test, Push and Deploy an MPI App</a>
+    <a class="nav-link" href="../containers/hpc/hands-on/02-apptainer.html">Apptainer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/03-docker-mpi.html">Docker and MPI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/03-cicd-githubactions.html">CI/CD with GitHub Actions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/04-docker-cicd-app.html">CI/CD Docker Job</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/04-apptainer-cicd-app.html">CI/CD Apptainer Job</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/05-deploy.html">Deploy with Apptainer</a>
   </li>
 </ul>
   </li>
 </ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../cicd/index.html">Introduction to CI/CD fundamentals with GitHub Actions </a>
   </li>
 </ul>
   </li>
@@ -396,7 +407,7 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 0
--rw-r--r-- 1 runner docker 0 Mar 21 08:24 example.txt</pre>
+-rw-r--r-- 1 runner docker 0 Mar 23 23:02 example.txt</pre>
 </div>
 </div>
 </div>
@@ -423,10 +434,10 @@ ls -l file.txt</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>-rw-r--r-- 1 runner docker 0 Mar 21 08:24 file.txt
--rwxr-xr-x 1 runner docker 0 Mar 21 08:24 file.txt
--rwxr-xr-x 1 runner docker 0 Mar 21 08:24 file.txt
--rwxr-xr-x 1 runner docker 0 Mar 21 08:24 file.txt</pre>
+<pre>-rw-r--r-- 1 runner docker 0 Mar 23 23:02 file.txt
+-rwxr-xr-x 1 runner docker 0 Mar 23 23:02 file.txt
+-rwxr-xr-x 1 runner docker 0 Mar 23 23:02 file.txt
+-rwxr-xr-x 1 runner docker 0 Mar 23 23:02 file.txt</pre>
 </div>
 </div>
 </div>
@@ -462,10 +473,10 @@ ls -l</code></pre>
 <pre>file.txt
 file1.txt
 total 12
--rw-r--r-- 1 runner docker 10240 Mar 21 08:24 archive.tar
--rw-r--r-- 1 runner docker     0 Mar 21 08:24 example.txt
--rwxr-xr-x 1 runner docker     0 Mar 21 08:24 file.txt
--rw-r--r-- 1 runner docker     0 Mar 21 08:24 file1.txt</pre>
+-rw-r--r-- 1 runner docker 10240 Mar 23 23:02 archive.tar
+-rw-r--r-- 1 runner docker     0 Mar 23 23:02 example.txt
+-rwxr-xr-x 1 runner docker     0 Mar 23 23:02 file.txt
+-rw-r--r-- 1 runner docker     0 Mar 23 23:02 file1.txt</pre>
 </div>
 </div>
 </div>
@@ -487,10 +498,10 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 4
--rw-r--r-- 1 runner docker 157 Mar 21 08:24 archive.tar.gz
--rw-r--r-- 1 runner docker   0 Mar 21 08:24 example.txt
--rwxr-xr-x 1 runner docker   0 Mar 21 08:24 file.txt
--rw-r--r-- 1 runner docker   0 Mar 21 08:24 file1.txt</pre>
+-rw-r--r-- 1 runner docker 159 Mar 23 23:02 archive.tar.gz
+-rw-r--r-- 1 runner docker   0 Mar 23 23:02 example.txt
+-rwxr-xr-x 1 runner docker   0 Mar 23 23:02 file.txt
+-rw-r--r-- 1 runner docker   0 Mar 23 23:02 file1.txt</pre>
 </div>
 </div>
 </div>
@@ -519,8 +530,8 @@ ls -lrt</code></pre>
 <pre>file.txt
 file1.txt
 total 0
--rw-r--r-- 1 runner docker 0 Mar 21 08:24 file1.txt
--rwxr-xr-x 1 runner docker 0 Mar 21 08:24 file.txt</pre>
+-rwxr-xr-x 1 runner docker 0 Mar 23 23:02 file.txt
+-rw-r--r-- 1 runner docker 0 Mar 23 23:02 file1.txt</pre>
 </div>
 </div>
 </div>
@@ -549,22 +560,22 @@ ls /tmp</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>clr-debug-pipe-1751-45586-in
-clr-debug-pipe-1751-45586-out
-clr-debug-pipe-1767-45784-in
-clr-debug-pipe-1767-45784-out
-clr-debug-pipe-630-940-in
-clr-debug-pipe-630-940-out
+<pre>clr-debug-pipe-1651-17665-in
+clr-debug-pipe-1651-17665-out
+clr-debug-pipe-1667-17919-in
+clr-debug-pipe-1667-17919-out
+clr-debug-pipe-619-980-in
+clr-debug-pipe-619-980-out
 documents
-dotnet-diagnostic-1751-45586-socket
-dotnet-diagnostic-1767-45784-socket
-dotnet-diagnostic-630-940-socket
+dotnet-diagnostic-1651-17665-socket
+dotnet-diagnostic-1667-17919-socket
+dotnet-diagnostic-619-980-socket
 file.txt
 snap-private-tmp
-systemd-private-c5ef9c80b63f4cd99c51d0c5f68d1525-chrony.service-D7XjUh
-systemd-private-c5ef9c80b63f4cd99c51d0c5f68d1525-haveged.service-QF3dyt
-systemd-private-c5ef9c80b63f4cd99c51d0c5f68d1525-systemd-logind.service-7pRTGo
-systemd-private-c5ef9c80b63f4cd99c51d0c5f68d1525-systemd-resolved.service-PcONCy
+systemd-private-60c5c0e274674131a054d4555d0c653e-chrony.service-cQGRy2
+systemd-private-60c5c0e274674131a054d4555d0c653e-haveged.service-JUkS3o
+systemd-private-60c5c0e274674131a054d4555d0c653e-systemd-logind.service-nAd2Uv
+systemd-private-60c5c0e274674131a054d4555d0c653e-systemd-resolved.service-YvD4Ll
 www-data-temp-aspnet-0</pre>
 </div>
 </div>
@@ -612,22 +623,22 @@ ls /tmp</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>clr-debug-pipe-1751-45586-in
-clr-debug-pipe-1751-45586-out
-clr-debug-pipe-1767-45784-in
-clr-debug-pipe-1767-45784-out
-clr-debug-pipe-630-940-in
-clr-debug-pipe-630-940-out
+<pre>clr-debug-pipe-1651-17665-in
+clr-debug-pipe-1651-17665-out
+clr-debug-pipe-1667-17919-in
+clr-debug-pipe-1667-17919-out
+clr-debug-pipe-619-980-in
+clr-debug-pipe-619-980-out
 documents
-dotnet-diagnostic-1751-45586-socket
-dotnet-diagnostic-1767-45784-socket
-dotnet-diagnostic-630-940-socket
+dotnet-diagnostic-1651-17665-socket
+dotnet-diagnostic-1667-17919-socket
+dotnet-diagnostic-619-980-socket
 newname.txt
 snap-private-tmp
-systemd-private-c5ef9c80b63f4cd99c51d0c5f68d1525-chrony.service-D7XjUh
-systemd-private-c5ef9c80b63f4cd99c51d0c5f68d1525-haveged.service-QF3dyt
-systemd-private-c5ef9c80b63f4cd99c51d0c5f68d1525-systemd-logind.service-7pRTGo
-systemd-private-c5ef9c80b63f4cd99c51d0c5f68d1525-systemd-resolved.service-PcONCy
+systemd-private-60c5c0e274674131a054d4555d0c653e-chrony.service-cQGRy2
+systemd-private-60c5c0e274674131a054d4555d0c653e-haveged.service-JUkS3o
+systemd-private-60c5c0e274674131a054d4555d0c653e-systemd-logind.service-nAd2Uv
+systemd-private-60c5c0e274674131a054d4555d0c653e-systemd-resolved.service-YvD4Ll
 www-data-temp-aspnet-0</pre>
 </div>
 </div>

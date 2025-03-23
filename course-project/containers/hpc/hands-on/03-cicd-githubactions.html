@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Docker System Basics :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/hpc/hands-on/01-docker.html">
-    <link rel="prev" href="00-classroom.html">
-    <link rel="next" href="02-apptainer.html">
+    <title>Hands-on: CI Workflow for HPC Application :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/hpc/hands-on/03-cicd-githubactions.html">
+    <link rel="prev" href="03-docker-mpi.html">
+    <link rel="next" href="04-docker-cicd-app.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
@@ -224,7 +224,7 @@ MathJax.Hub.Config({
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="00-classroom.html">C3B Classroom Setup</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="01-docker.html">Docker</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -233,7 +233,7 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="03-docker-mpi.html">Docker and MPI</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="03-cicd-githubactions.html">CI/CD with GitHub Actions</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -280,12 +280,12 @@ MathJax.Hub.Config({
     <li><a href="../../../index.html">Course Project</a></li>
     <li>Hands-on Tutorials</li>
     <li><a href="00-classroom.html">C3B Classroom Setup</a></li>
-    <li><a href="01-docker.html">Docker</a></li>
+    <li><a href="03-cicd-githubactions.html">CI/CD with GitHub Actions</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/hpc/hands-on/01-docker.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/hpc/hands-on/03-cicd-githubactions.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -305,35 +305,25 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Docker System Basics</h1>
+<h1 class="page">Hands-on: CI Workflow for HPC Application</h1>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_overview">1. Overview</a></li>
-<li><a href="#_docker_system_components">2. Docker System Components</a></li>
-<li><a href="#_docker_hello_world_example">3. Docker Hello World Example</a></li>
-<li><a href="#_running_ubuntu_in_a_container">4. Running Ubuntu in a Container</a></li>
-<li><a href="#_essential_docker_commands">5. Essential Docker Commands</a>
-<ul class="sectlevel2">
-<li><a href="#_listing_containers_and_images">5.1. Listing Containers and Images</a></li>
-<li><a href="#_running_containers_in_detached_mode">5.2. Running Containers in Detached Mode</a></li>
-<li><a href="#_logging_into_and_out_of_docker_registries">5.3. Logging into and Out of Docker Registries</a></li>
-</ul>
-</li>
-<li><a href="#_advanced_docker_usage">6. Advanced Docker Usage</a>
-<ul class="sectlevel2">
-<li><a href="#_volumes_persistent_storage">6.1. Volumes: Persistent Storage</a></li>
-<li><a href="#_docker_images_and_updates">6.2. Docker Images and Updates</a></li>
-</ul>
-</li>
-<li><a href="#_docker_for_hpc">7. Docker for HPC</a></li>
+<li><a href="#_github_actions_workflow">2. GitHub Actions Workflow</a></li>
+<li><a href="#_running_the_workflow">3. Running the Workflow</a></li>
+<li><a href="#_add_step_to_install_the_application">4. Add step to install the application</a></li>
+<li><a href="#_add_step_to_package_the_application">5. Add step to package the application</a></li>
+<li><a href="#_matrix_strategy_to_build_on_multiple_platforms">6. Matrix strategy to build on multiple platforms</a></li>
+<li><a href="#_add_a_step_to_upload_the_package">7. Add a step to upload the package</a></li>
 <li><a href="#_conclusion">8. Conclusion</a></li>
 </ul>
 </div>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph lead">
-<p>A 30-minute hands-on session to introduce Docker fundamentals with a focus on HPC development.</p>
+<p>In this session, you will create a simple GitHub Actions workflow that automates the configuration, building, and testing of your HPC application using CMake presets.
+This workflow runs on a runner labeled <code>self-ubuntu-24.04</code>. Each step is explained with callouts.</p>
 </div>
 </div>
 </div>
@@ -341,343 +331,331 @@ MathJax.Hub.Config({
 <h2 id="_overview"><a class="anchor" href="#_overview"></a>1. Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this session, you will learn:</p>
+<p>In this tutorial, you will learn to:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The basic components of the Docker system.</p>
+<p>Check out your repository.</p>
 </li>
 <li>
-<p>How to run containers interactively and in detached mode.</p>
+<p>Configure the build system using CMake presets.</p>
 </li>
 <li>
-<p>Key Docker commands such as <code>docker ps</code>, <code>docker images</code>, and how to manage container lifecycles.</p>
+<p>Build the project with CMake.</p>
 </li>
 <li>
-<p>How Docker concepts translate to HPC containerization workflows.</p>
+<p>Run tests using CTest.</p>
+</li>
+<li>
+<p>Understand each step through detailed callouts.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_docker_system_components"><a class="anchor" href="#_docker_system_components"></a>2. Docker System Components</h2>
+<h2 id="_github_actions_workflow"><a class="anchor" href="#_github_actions_workflow"></a>2. GitHub Actions Workflow</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../../_images/docker/basics-of-docker-system.png" alt="basics of docker system" title="Basics of Docker System"></a></span></p>
+<p>Below is the complete YAML for the workflow, with callouts explaining each section:</p>
 </div>
-<div class="paragraph">
-<p>The basic components of the Docker system are:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: CI - Configure, Build, Test                   <i class="conum" data-value="1"></i><b>(1)</b>
+
+on:
+  push:                                             <i class="conum" data-value="2"></i><b>(2)</b>
+    branches: [ main ]
+  pull_request:                                     <i class="conum" data-value="3"></i><b>(3)</b>
+    branches: [ main ]
+  workflow_dispatch:                                <i class="conum" data-value="4"></i><b>(4)</b>
+
+jobs:
+  build-test:
+    runs-on: self-ubuntu-24.04                      <i class="conum" data-value="5"></i><b>(5)</b>
+    steps:
+      - name: Checkout Repository                   <i class="conum" data-value="6"></i><b>(6)</b>
+        uses: actions/checkout@v3
+
+      - name: Configure the Build System            <i class="conum" data-value="7"></i><b>(7)</b>
+        run: |
+          cmake --preset default                    <i class="conum" data-value="8"></i><b>(8)</b>
+
+      - name: Build the Project                     <i class="conum" data-value="9"></i><b>(9)</b>
+        run: |
+          cmake --build --preset default            <i class="conum" data-value="10"></i><b>(10)</b>
+
+      - name: Run Tests                             <i class="conum" data-value="11"></i><b>(11)</b>
+        run: |
+          ctest --preset default                    <i class="conum" data-value="12"></i><b>(12)</b></code></pre>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Images</strong>: Blueprints of the application and its dependencies.</p>
-</li>
-<li>
-<p><strong>Containers</strong>: Running instances of images.</p>
-</li>
-<li>
-<p><strong>Volumes</strong>: Persistent data storage.</p>
-</li>
-<li>
-<p><strong>Networks</strong>: Isolated environments for containers to communicate.</p>
-</li>
-<li>
-<p><strong>Dockerfile</strong>: A file used to create Docker images.</p>
-</li>
-</ul>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><strong>Workflow Name:</strong> A descriptive title for this CI workflow.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><strong>Trigger on Push:</strong> The workflow will run when changes are pushed to the <code>main</code> branch.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><strong>Trigger on Pull Request:</strong> The workflow also runs for pull requests targeting <code>main</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><strong>Manual Trigger:</strong> Enables manual execution via GitHub Actions UI (Workflow Dispatch).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><strong>Runner Specification:</strong> This job runs on a runner labeled <code>self-ubuntu-24.04</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><strong>Checkout Step:</strong> Clones your repository into the workflow environment.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td><strong>Configure Build Step:</strong> Prepares the build environment using CMake presets.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><strong>CMake Configuration:</strong> Runs CMake with the default preset (as defined in your CMakePresets.json).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td><strong>Build Step:</strong> Compiles the project using the configured presets.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td><strong>CMake Build:</strong> Executes the build process.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
+<td><strong>Test Step:</strong> Runs the tests using CTest with the preset configuration.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="12"></i><b>12</b></td>
+<td><strong>CTest Execution:</strong> Validates the build by running tests.</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_docker_hello_world_example"><a class="anchor" href="#_docker_hello_world_example"></a>3. Docker Hello World Example</h2>
+<h2 id="_running_the_workflow"><a class="anchor" href="#_running_the_workflow"></a>3. Running the Workflow</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s start by running a simple Docker container:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run hello-world</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This command pulls the <code>hello-world</code> image from Docker Hub and runs it in a container. Notice that the container runs, prints a message, and then exits.</p>
+<p>To trigger this workflow:
+- <strong>Push a commit</strong> to the <code>main</code> branch.
+- <strong>Open a pull request</strong> targeting <code>main</code>.
+- <strong>Manually trigger</strong> the workflow via the GitHub Actions tab (using Workflow Dispatch).</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_running_ubuntu_in_a_container"><a class="anchor" href="#_running_ubuntu_in_a_container"></a>4. Running Ubuntu in a Container</h2>
+<h2 id="_add_step_to_install_the_application"><a class="anchor" href="#_add_step_to_install_the_application"></a>4. Add step to install the application</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can start an interactive session in an Ubuntu container. In this example, we also use the <code>--rm</code> flag.</p>
+<p>To install the application, add the following step to the workflow:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run --rm -it ubuntu bash</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Explanation:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>--rm</code>: Automatically removes the container after it exits, keeping your system clean.</p>
-</li>
-<li>
-<p><code>-it</code>: Combines <code>-i</code> (interactive) and <code>-t</code> (allocate a pseudo-TTY) to enable an interactive shell session.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>After running this command, you&#8217;ll have an interactive Bash shell inside the Ubuntu container.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_essential_docker_commands"><a class="anchor" href="#_essential_docker_commands"></a>5. Essential Docker Commands</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_listing_containers_and_images"><a class="anchor" href="#_listing_containers_and_images"></a>5.1. Listing Containers and Images</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><strong><code>docker ps</code></strong>
-Lists all running containers.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker ps</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong><code>docker ps -a</code></strong>
-Lists all containers, including those that have exited.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker ps -a</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong><code>docker images</code></strong>
-Lists all available Docker images on your system.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker images</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_running_containers_in_detached_mode"><a class="anchor" href="#_running_containers_in_detached_mode"></a>5.2. Running Containers in Detached Mode</h3>
-<div class="paragraph">
-<p>To run a container in the background (detached mode), use the <code>-d</code> flag:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run --rm -d ubuntu sleep 60</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Explanation:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>-d</code> runs the container in detached mode.</p>
-</li>
-<li>
-<p>In this example, the container will run the <code>sleep 60</code> command and exit after 60 seconds.</p>
-</li>
-<li>
-<p>The <code>--rm</code> flag ensures the container is removed automatically when it stops.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_logging_into_and_out_of_docker_registries"><a class="anchor" href="#_logging_into_and_out_of_docker_registries"></a>5.3. Logging into and Out of Docker Registries</h3>
-<div class="sect3">
-<h4 id="_creating_a_ghcr_pat_classic_token_for_github_container_registry"><a class="anchor" href="#_creating_a_ghcr_pat_classic_token_for_github_container_registry"></a>5.3.1. Creating a GHCR_PAT (Classic Token) for GitHub Container Registry</h4>
-<div class="paragraph">
-<p>To authenticate with GitHub Container Registry (ghcr.io), you need to create a Personal Access Token (PAT) with the proper scopes. Follow these steps:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Go to GitHub Settings:</strong>
-Click your profile icon in the upper-right corner and select <strong>Settings</strong>.</p>
-</li>
-<li>
-<p><strong>Navigate to Developer Settings:</strong>
-In the left sidebar, select <strong>Developer settings</strong>.</p>
-</li>
-<li>
-<p><strong>Personal Access Tokens:</strong>
-Click <strong>Personal access tokens</strong> and then select <strong>Generate new token (classic)</strong>.</p>
-</li>
-<li>
-<p><strong>Configure Your Token:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Note:</strong> Provide a descriptive name (e.g., "GHCR PAT for Actions").</p>
-</li>
-<li>
-<p><strong>Expiration:</strong> Set an expiration date appropriate for your use case.</p>
-</li>
-<li>
-<p><strong>Scopes:</strong> Make sure to select at least the following:</p>
-</li>
-<li>
-<p><code>read:packages</code> – Required to pull packages from GHCR.</p>
-</li>
-<li>
-<p><code>write:packages</code> – Required to push packages to GHCR.</p>
-</li>
-<li>
-<p><strong>(Optional)</strong> <code>delete:packages</code> – If you need to remove packages.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Generate the Token:</strong>
-Click <strong>Generate token</strong> at the bottom of the page.</p>
-</li>
-<li>
-<p><strong>Copy the Token:</strong>
-<strong>Important:</strong> Copy the generated token immediately and store it securely. You won&#8217;t be able to see it again.</p>
-</li>
-<li>
-<p><strong>Use the Token:</strong>
-Save this token as <code>GHCR_PAT</code> in your GitHub repository secrets for use in your CI/CD workflows.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>For more details, refer to the GitHub documentation on [creating a personal access token](<a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token" class="bare">docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token</a>).</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_login_and_logout_commands"><a class="anchor" href="#_login_and_logout_commands"></a>5.3.2. Login and Logout Commands</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><strong><code>docker login</code></strong>
-Log into a Docker registry (e.g., Docker Hub or GitHub Container Registry).</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker login ghcr.io -u &lt;your-username&gt; --password $GHCR_PAT</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Replace <code>&lt;your-username&gt;</code> with your actual username and supply your password via standard input (or use a secret in CI/CD pipelines).</p>
-</li>
-<li>
-<p><strong><code>docker logout</code></strong>
-Log out from the Docker registry.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker logout ghcr.io</code></pre>
-</div>
-</div>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">      - name: Package the Application
+        run: |
+          cmake --build --preset default -t install</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_advanced_docker_usage"><a class="anchor" href="#_advanced_docker_usage"></a>6. Advanced Docker Usage</h2>
+<h2 id="_add_step_to_package_the_application"><a class="anchor" href="#_add_step_to_package_the_application"></a>5. Add step to package the application</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_volumes_persistent_storage"><a class="anchor" href="#_volumes_persistent_storage"></a>6.1. Volumes: Persistent Storage</h3>
 <div class="paragraph">
-<p>Use volumes to store data that persists even after a container is removed.
-For example, run an Ubuntu container with a mounted volume from your local <code>/tmp</code> directory:</p>
+<p>To package the application, add the following step to the workflow:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run --rm -it -v /tmp:/tmp ubuntu bash</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Inside the container, you can run <code>df</code> to view the mounted volume.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_docker_images_and_updates"><a class="anchor" href="#_docker_images_and_updates"></a>6.2. Docker Images and Updates</h3>
-<div class="paragraph">
-<p>Docker images can be updated and modified by creating new image layers.</p>
-</div>
-<div class="paragraph">
-<p>This approach allows you to:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Roll Back Updates:</strong> Easily revert to a previous image version.</p>
-</li>
-<li>
-<p><strong>Efficient Testing:</strong> Only new layers need to be pushed or pulled.</p>
-</li>
-<li>
-<p><strong>Optimized Distribution:</strong> Minimize changes, reducing download times.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../../_images/docker/changes-and-updates.png" alt="changes and updates" title="Changes and Updates"></a></span></p>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">      - name: Package the Application
+        run: |
+          cmake --build --preset default -t package</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_docker_for_hpc"><a class="anchor" href="#_docker_for_hpc"></a>7. Docker for HPC</h2>
+<h2 id="_matrix_strategy_to_build_on_multiple_platforms"><a class="anchor" href="#_matrix_strategy_to_build_on_multiple_platforms"></a>6. Matrix strategy to build on multiple platforms</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Docker serves as a foundational tool in HPC container workflows:</p>
+<p>We now want to run the same set of steps on two different environments: <code>self-ubuntu-24.04</code> and <code>karolina</code>.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Development &amp; Testing:</strong> Create and test HPC applications in a controlled Docker environment.</p>
-</li>
-<li>
-<p><strong>Container Conversion:</strong> Docker images can be converted to Apptainer/Singularity images for deployment on HPC clusters.</p>
-</li>
-<li>
-<p><strong>Reproducibility:</strong> Docker ensures consistent environments across different stages of development and production.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>This can be achieved using a matrix strategy.</p>
+</div>
+<div class="paragraph">
+<p>The new workflow utilizes a matrix strategy to run the same set of steps on different environments. Here’s how it works:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Matrix Definition</dt>
+<dd>
+<p>The <code>strategy.matrix</code> key defines a variable <code>runs-on</code> with two possible values: <code>self-ubuntu-24.04</code> and <code>karolina</code>. This means that for each push, the job will run twice, once on each specified environment.</p>
+</dd>
+<dt class="hdlist1">Conditional Module Loading</dt>
+<dd>
+<p>Since the <code>karolina</code> environment requires specific module loads (e.g., Boost, Ninja, OpenMPI), the workflow checks the value of <code>${{ matrix.runs-on }}</code>. If it equals <code>karolina</code>, the required modules are loaded before configuring, building, testing, or packaging.</p>
+</dd>
+<dt class="hdlist1">Single Workflow, Multiple Targets</dt>
+<dd>
+<p>By using the matrix strategy, you can verify that your code builds correctly in both your local Codespace environment (<code>self-ubuntu-24.04</code>) and the HPC environment on Karolina. This ensures consistency and helps identify environment-specific issues.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>This approach allows you to maintain one workflow that automatically adapts to different platforms, simplifying the management of CI/CD pipelines across varied environments.</p>
+</div>
+<div class="paragraph">
+<p>Below is the complete YAML for the workflow, with callouts explaining each section:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: CI - Configure, Build, Test, and Package           <i class="conum" data-value="1"></i><b>(1)</b>
+
+on:
+  push:                                                 <i class="conum" data-value="2"></i><b>(2)</b>
+    branches: [ main ]
+  pull_request:                                         <i class="conum" data-value="3"></i><b>(3)</b>
+    branches: [ main ]
+  workflow_dispatch:                                    <i class="conum" data-value="4"></i><b>(4)</b>
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        runs-on: [self-ubuntu-24.04, karolina]           <i class="conum" data-value="5"></i><b>(5)</b>
+    runs-on: ${{ matrix.runs-on }}
+    steps:
+      - name: Checkout Repository                       <i class="conum" data-value="6"></i><b>(6)</b>
+        uses: actions/checkout@v4
+
+      - name: Build                                        <i class="conum" data-value="7"></i><b>(7)</b>
+        run: |
+          if [ "${{ matrix.runs-on }}" == "karolina" ]; then
+            module load Boost/1.83.0-GCC-13.2.0 Ninja/1.12.1-GCCcore-13.3.0 OpenMPI/4.1.6-GCC-13.2.0
+          fi
+          cmake --preset default                           <i class="conum" data-value="8"></i><b>(8)</b>
+          cmake --build --preset default                   <i class="conum" data-value="9"></i><b>(9)</b>
+
+      - name: Test                                         <i class="conum" data-value="10"></i><b>(10)</b>
+        run: |
+          if [ "${{ matrix.runs-on }}" == "karolina" ]; then
+            module load Boost/1.83.0-GCC-13.2.0 Ninja/1.12.1-GCCcore-13.3.0 OpenMPI/4.1.6-GCC-13.2.0
+          fi
+          ctest --preset default                           <i class="conum" data-value="11"></i><b>(11)</b>
+
+      - name: Package                                      <i class="conum" data-value="12"></i><b>(12)</b>
+        run: |
+          if [ "${{ matrix.runs-on }}" == "karolina" ]; then
+            module load Boost/1.83.0-GCC-13.2.0 Ninja/1.12.1-GCCcore-13.3.0 OpenMPI/4.1.6-GCC-13.2.0
+          fi
+          cmake --build --preset default -t package         <i class="conum" data-value="13"></i><b>(13)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><strong>Workflow Name:</strong> A descriptive title for the workflow.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><strong>Trigger on Push:</strong> Runs when commits are pushed to <code>main</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><strong>Trigger on Pull Request:</strong> Runs for pull requests targeting <code>main</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><strong>Manual Trigger:</strong> Allows manual execution via Workflow Dispatch.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><strong>Matrix Strategy:</strong> This job runs on both <code>self-ubuntu-24.04</code> and <code>karolina</code> environments.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><strong>Checkout:</strong> Clones your repository into the workflow environment.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td><strong>Build Step:</strong> Initiates the build process.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><strong>CMake Configuration:</strong> Configures the project using the default CMake preset.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td><strong>Compilation:</strong> Builds the project.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td><strong>Test Step:</strong> Runs tests using CTest.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
+<td><strong>CTest Execution:</strong> Validates the build by running tests.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="12"></i><b>12</b></td>
+<td><strong>Packaging:</strong> Packages the application.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="13"></i><b>13</b></td>
+<td><strong>CMake Package:</strong> Executes the packaging target defined in your presets.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_a_step_to_upload_the_package"><a class="anchor" href="#_add_a_step_to_upload_the_package"></a>7. Add a step to upload the package</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We now want to upload the generated package as an artifact.
+To do so we use the <code>actions/upload-artifact</code> action.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">        - name: Upload Package                            <i class="conum" data-value="1"></i><b>(1)</b>
+            uses: actions/upload-artifact@v4
+            with:
+                name: myapp-package</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><strong>Artifact Upload:</strong> Uploads the generated tarball artifact (only on <code>self-ubuntu-24.04</code>).</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+in vscode you can click on the action name to access its documentation using the <code>Ctrl</code> key.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -685,38 +663,17 @@ For example, run an Ubuntu container with a mounted volume from your local <code
 <h2 id="_conclusion"><a class="anchor" href="#_conclusion"></a>8. Conclusion</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>We covered:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Basic Docker components and commands.</p>
-</li>
-<li>
-<p>Running containers interactively and in detached mode.</p>
-</li>
-<li>
-<p>Managing containers and images with <code>docker ps</code> and <code>docker images</code>.</p>
-</li>
-<li>
-<p>Logging into and out of Docker registries.</p>
-</li>
-<li>
-<p>Advanced topics including volumes and image layering.</p>
-</li>
-<li>
-<p>How Docker basics underpin HPC containerization workflows.</p>
-</li>
-</ul>
+<p>This workflow demonstrates how GitHub Actions can automate the repetitive tasks of configuring, building, and testing your HPC application.
+Using CMake presets ensures a consistent build environment.</p>
 </div>
 <div class="paragraph center">
-<p>Questions? Let&#8217;s discuss how these tools can streamline HPC application development!</p>
+<p>Questions? Let&#8217;s discuss how CI/CD can further enhance your HPC development workflow!</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="00-classroom.html">C3B Classroom Setup</a></span>
-  <span class="next"><a href="02-apptainer.html">Apptainer</a></span>
+  <span class="prev"><a href="03-docker-mpi.html">Docker and MPI</a></span>
+  <span class="next"><a href="04-docker-cicd-app.html">CI/CD Docker Job</a></span>
 </nav>
 </article>
   </div>

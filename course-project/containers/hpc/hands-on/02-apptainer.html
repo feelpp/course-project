@@ -3,17 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Docker Architecture :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/docker/docker-architecture.html">
-    <link rel="prev" href="docker-problems-solved.html">
-    <link rel="next" href="#docker/docker-hpc.adoc">
+    <title>Untitled :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/hpc/hands-on/02-apptainer.html">
+    <link rel="prev" href="01-docker.html">
+    <link rel="next" href="03-docker-mpi.html">
     <meta name="generator" content="Antora 3.1.7">
-    <link rel="stylesheet" href="../../../_/css/site.css">
-<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../../../_/css/site.css">
+<link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
 <script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
 
-<script src="../../../_/js/vendor/tabs-block-extension.js"></script>
-<script src="../../../_/js/vendor/tabs-block-behavior.js"></script>
+<script src="../../../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../../../_/js/vendor/tabs-block-behavior.js"></script>
 
 
 
@@ -93,7 +93,7 @@ MathJax.Hub.Config({
 
 <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
-<script>var uiRootPath = '../../../_'</script>
+<script>var uiRootPath = '../../../../_'</script>
 
   </head>
   <body class="article">
@@ -114,20 +114,20 @@ MathJax.Hub.Config({
         <div id="topbar-nav" class="navbar-menu">
             <div class="navbar-end">
                <!--<div class="navbar-item">
-                    <a href="../../../_/../cours-project/python/index.html">Documentation Reference</a>
+                    <a href="../../../../_/../cours-project/python/index.html">Documentation Reference</a>
                 </div>-->
                 <div class="navbar-item has-dropdown is-hoverable download-item">
-                    <div class="navbar-item"><a href="../../../_/../cours-project/_attachments/cours-project.zip"
+                    <div class="navbar-item"><a href="../../../../_/../cours-project/_attachments/cours-project.zip"
                             class="download-btn">Download the Notebooks</a></div>
                 </div>
                 <div class="navbar-item">
                     <a class="navbar-brand" href="https://www.cemosis.fr">
-                        <img class="cemosis-logo" src="../../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                        <img class="cemosis-logo" src="../../../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
                     </a>
                 </div>
                 <div class="navbar-item">
                     <a class="navbar-brand" href="https://www.unistra.fr">
-                        <img class="cemosis-logo" src="../../../_/img/logo-unistra.png" alt="Unistra logo" />
+                        <img class="cemosis-logo" src="../../../../_/img/logo-unistra.png" alt="Unistra logo" />
                     </a>
                 </div>
             </div>
@@ -140,26 +140,26 @@ MathJax.Hub.Config({
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="../../index.html">Course Project</a></h3>
+    <h3 class="title"><a href="../../../index.html">Course Project</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../index.html">Introduction to Containers</a>
+    <a class="nav-link" href="../../index.html">Introduction to Containers</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Docker</a>
+    <a class="nav-link" href="../../docker/index.html">Docker</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="docker-overview.html">Docker Overview</a>
+    <a class="nav-link" href="../../docker/docker-overview.html">Docker Overview</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="docker-problems-solved.html">The Problem Docker Solves</a>
+    <a class="nav-link" href="../../docker/docker-problems-solved.html">The Problem Docker Solves</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="docker-architecture.html">Docker Architecture</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../docker/docker-architecture.html">Docker Architecture</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#docker/docker-hpc.adoc">Installing Docker</a>
@@ -168,13 +168,13 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../apptainer/index.html">Apptainer</a>
+    <a class="nav-link" href="../../apptainer/index.html">Apptainer</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../apptainer/apptainer-install.html">Installing Apptainer</a>
+    <a class="nav-link" href="../../apptainer/apptainer-install.html">Installing Apptainer</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../apptainer/tutorial.html">Tutorial</a>
+    <a class="nav-link" href="../../apptainer/tutorial.html">Tutorial</a>
   </li>
 </ul>
   </li>
@@ -182,13 +182,13 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../hpc/index.html">Containers for HPC</a>
+    <a class="nav-link" href="../index.html">Containers for HPC</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../hpc/cicd.html">CI/CD for HPC</a>
+    <a class="nav-link" href="../cicd.html">CI/CD for HPC</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../hpc/best-practices.html">Best practices</a>
+    <a class="nav-link" href="../best-practices.html">Best practices</a>
   </li>
 </ul>
   </li>
@@ -198,13 +198,13 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="hands-on/index.html">Docker Hands-on</a>
+    <a class="nav-link" href="../../docker/hands-on/index.html">Docker Hands-on</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="hands-on/01-getting-started.html">Getting Started with Docker</a>
+    <a class="nav-link" href="../../docker/hands-on/01-getting-started.html">Getting Started with Docker</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="hands-on/02-advanced-usage.html">Advanced Docker Usage</a>
+    <a class="nav-link" href="../../docker/hands-on/02-advanced-usage.html">Advanced Docker Usage</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#docker/hands-on/docker-githubaction.adoc">GitHub Actions with Docker</a>
@@ -222,28 +222,28 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../hpc/hands-on/00-classroom.html">C3B Classroom Setup</a>
+    <a class="nav-link" href="00-classroom.html">C3B Classroom Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../hpc/hands-on/01-docker.html">Docker</a>
+    <a class="nav-link" href="01-docker.html">Docker</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="02-apptainer.html">Apptainer</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../hpc/hands-on/02-apptainer.html">Apptainer</a>
+    <a class="nav-link" href="03-docker-mpi.html">Docker and MPI</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../hpc/hands-on/03-docker-mpi.html">Docker and MPI</a>
+    <a class="nav-link" href="03-cicd-githubactions.html">CI/CD with GitHub Actions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../hpc/hands-on/03-cicd-githubactions.html">CI/CD with GitHub Actions</a>
+    <a class="nav-link" href="04-docker-cicd-app.html">CI/CD Docker Job</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../hpc/hands-on/04-docker-cicd-app.html">CI/CD Docker Job</a>
+    <a class="nav-link" href="04-apptainer-cicd-app.html">CI/CD Apptainer Job</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../hpc/hands-on/04-apptainer-cicd-app.html">CI/CD Apptainer Job</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../hpc/hands-on/05-deploy.html">Deploy with Apptainer</a>
+    <a class="nav-link" href="05-deploy.html">Deploy with Apptainer</a>
   </li>
 </ul>
   </li>
@@ -261,10 +261,10 @@ MathJax.Hub.Config({
   </div>
   <ul class="components">
       <li class="component">
-        <a class="title" href="../../../feelpp-antora-ui/index.html">Antora Feel++ UI</a>
+        <a class="title" href="../../../../feelpp-antora-ui/index.html">Antora Feel++ UI</a>
       </li>
       <li class="component is-current">
-        <a class="title" href="../../index.html">Course Project</a>
+        <a class="title" href="../../../index.html">Course Project</a>
       </li>
   </ul>
 </div>
@@ -274,18 +274,18 @@ MathJax.Hub.Config({
 <main class="article">
 <div class="toolbar" role="navigation">
   <button class="nav-toggle"></button>
-    <a href="../../index.html" class="home-link"></a>
+    <a href="../../../index.html" class="home-link"></a>
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../../index.html">Course Project</a></li>
-    <li><a href="../index.html">Introduction to Containers</a></li>
-    <li><a href="index.html">Docker</a></li>
-    <li><a href="docker-architecture.html">Docker Architecture</a></li>
+    <li><a href="../../../index.html">Course Project</a></li>
+    <li>Hands-on Tutorials</li>
+    <li><a href="00-classroom.html">C3B Classroom Setup</a></li>
+    <li><a href="02-apptainer.html">Apptainer</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/docker-architecture.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/hpc/hands-on/02-apptainer.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -293,7 +293,7 @@ MathJax.Hub.Config({
     <li>
       <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
          class="pdf-download">
-        <img class="pdf-file-icon icon" src="../../../_/img/pdf.svg"/> .pdf
+        <img class="pdf-file-icon icon" src="../../../../_/img/pdf.svg"/> .pdf
       </a>
     </li>
   </ul>
@@ -305,55 +305,152 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Docker Architecture</h1>
 <div class="sect1">
-<h2 id="_separation_of_concerns"><a class="anchor" href="#_separation_of_concerns"></a>1. Separation of Concerns</h2>
+<h2 id="_connecting_to_karolina_hpc_and_using_apptainer"><a class="anchor" href="#_connecting_to_karolina_hpc_and_using_apptainer"></a>1. Connecting to Karolina HPC and Using Apptainer</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../_images/docker/separation-of-concerns.png" alt="separation of concerns" title="Separation of Concerns"></a></span></p>
+<p>Because Apptainer does not run within a Docker Codespace, you&#8217;ll need to connect to the Karolina HPC system (EuroHPC) to work with Apptainer.
+In this section, we&#8217;ll cover:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>How to SSH into Karolina.</p>
+</li>
+<li>
+<p>How to remotely log in to GHCR.</p>
+</li>
+<li>
+<p>How to pull, inspect, and run your Apptainer (SIF) image.</p>
+</li>
+<li>
+<p>How to bind host directories and launch an interactive shell.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_connecting_to_karolina_hpc"><a class="anchor" href="#_connecting_to_karolina_hpc"></a>1.1. Connecting to Karolina HPC</h3>
+<div class="paragraph">
+<p>First, connect to the Karolina HPC system. Replace <code>your_username</code> and adjust the hostname as needed:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ssh your_username@login1.karolina.it4i.cz</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_remote_login_to_github_container_registry"><a class="anchor" href="#_remote_login_to_github_container_registry"></a>1.2. Remote Login to GitHub Container Registry</h3>
+<div class="paragraph">
+<p>Before pulling your image, you need to log in to GHCR using Apptainer’s remote login command.
+Replace <code>&lt;username&gt;</code> and <code>&lt;GHCR_PAT&gt;</code> with your GitHub username and Personal Access Token respectively:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">apptainer remote login -u &lt;username&gt; -p &lt;GHCR_PAT&gt; oras://ghcr.io</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pulling_and_inspecting_the_docker_package_as_a_sif_image"><a class="anchor" href="#_pulling_and_inspecting_the_docker_package_as_a_sif_image"></a>1.3. Pulling and Inspecting the Docker Package as a SIF Image</h3>
+<div class="paragraph">
+<p>Pull the Docker image (from GHCR) and convert it to an Apptainer SIF file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">apptainer pull -F myapp.sif docker://ghcr.io/&lt;username&gt;/myapp:latest</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Docker separates the roles of developers and sysadmins by using containers as the interface between these roles.</p>
+<p>After pulling, inspect the SIF image to verify its contents:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">apptainer inspect myapp.sif</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running_the_apptainer_container"><a class="anchor" href="#_running_the_apptainer_container"></a>1.4. Running the Apptainer Container</h3>
+<div class="paragraph">
+<p>You can run your container in several ways on Karolina:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Interactive Mode (Shell):</strong></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">apptainer shell myapp.sif</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Default Command:</strong></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">apptainer run myapp.sif</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>MPI Batch Execution:</strong></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">mpirun -np 4 apptainer exec myapp.sif ./my_mpi_app</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mounting_directories_and_using_an_interactive_shell"><a class="anchor" href="#_mounting_directories_and_using_an_interactive_shell"></a>1.5. Mounting Directories and Using an Interactive Shell</h3>
+<div class="paragraph">
+<p>Often in HPC, you need to access data stored on the host.
+Use the <code>--bind</code> option to mount directories into your container.
+For example, to mount <code>/data</code> from the host to <code>/mnt/data</code> inside the container and then launch a Bash shell:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">apptainer exec --bind /data:/mnt/data myapp.sif /bin/bash</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>This concept is particularly valuable for <strong>scientific computing</strong> and <strong>data science</strong>, where developers can create isolated environments that encapsulate complex computational workflows, ensuring reproducibility.</p>
+<p>This command allows you to interact with your data within the container environment.</p>
 </div>
-<div class="paragraph">
-<p>For <strong>scientific ML</strong> and <strong>digital twins</strong>, containers help streamline model deployment, making it easier to manage models across different computational platforms, from HPC clusters to edge devices.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_containers_vs_vms"><a class="anchor" href="#_containers_vs_vms"></a>2. Containers vs VMs</h2>
+<h2 id="_conclusion"><a class="anchor" href="#_conclusion"></a>2. Conclusion</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../_images/docker/containers-vs-vms.png" alt="containers vs vms" title="Containers vs VMs"></a></span></p>
+<p>In this section, you learned how to:
+- Connect to the Karolina HPC system via SSH.
+- Remotely log in to GHCR to retrieve your Docker-based Apptainer image.
+- Pull, inspect, and run your Apptainer SIF image.
+- Bind host directories and launch an interactive shell within the container.</p>
 </div>
 <div class="paragraph">
-<p>Containers use fewer resources since they share the OS kernel, a crucial advantage in <strong>scientific computing</strong> and <strong>scientific ML</strong>, where heavy computation demands efficiency.</p>
+<p>These steps ensure that your HPC applications run in a reproducible, containerized environment on Karolina HPC.</p>
 </div>
-<div class="paragraph">
-<p><strong>Digital twins</strong> can simulate real-world environments more effectively with containers, ensuring that resource allocation is optimized for simulation fidelity.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_lightweight_by_design"><a class="anchor" href="#_lightweight_by_design"></a>3. Lightweight by Design</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../_images/docker/why-are-containers-lightweight.png" alt="why are containers lightweight" title="Why are Docker Containers Lightweight?"></a></span></p>
-</div>
-<div class="paragraph">
-<p>Docker&#8217;s lightweight design makes it useful for <strong>scientific computing</strong> pipelines, where iterative and resource-heavy processes (e.g., simulations, ML model training) require quick and flexible deployment.</p>
-</div>
-<div class="paragraph">
-<p><strong>Digital twins</strong> benefit from Docker’s efficiency by allowing rapid iteration of simulations without the overhead of traditional virtual machines, improving performance when running real-time applications.</p>
+<div class="paragraph center">
+<p>Questions? Let&#8217;s discuss how to integrate these steps into your HPC workflows!</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="docker-problems-solved.html">The Problem Docker Solves</a></span>
-  <span class="next"><a href="#docker/docker-hpc.adoc">Installing Docker</a></span>
+  <span class="prev"><a href="01-docker.html">Docker</a></span>
+  <span class="next"><a href="03-docker-mpi.html">Docker and MPI</a></span>
 </nav>
 </article>
   </div>
@@ -364,22 +461,22 @@ MathJax.Hub.Config({
     <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
         <div>
             <a href="https://www.cemosis.fr">
-                <img src="../../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+                <img src="../../../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
             </a>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <a href="https://www.unistra.fr">
-                <img src="../../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+                <img src="../../../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
             </a>
         </div>
         <span style="font-size: 0.8rem; color: #9e9e9e">© 2025 <a href="https://www.cemosis.fr"
                 style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
     </div>
-</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+</footer><script id="site-script" src="../../../../_/js/site.js" data-ui-root-path="../../../../_"></script>
 
 
-<script async src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
-<script async src="../../../_/js/vendor/fontawesome.js"></script>
-<script async src="../../../_/js/vendor/highlight.js"></script>
+<script async src="../../../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../../../../_/js/vendor/fontawesome.js"></script>
+<script async src="../../../../_/js/vendor/highlight.js"></script>
 
 
 <script type="text/javascript">
