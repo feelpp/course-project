@@ -232,7 +232,6 @@ ENTRYPOINT ["mpirun", "-np", "4", "./my_mpi_app"]       # <18>
 <16> **Copy Installed Application:** Copies the installed binaries and files from the builder stage.
 <17> **Set Runtime Working Directory:** Optionally sets a working directory for running the application.
 <18> **Default Command:** Specifies the command to run your MPI application with `mpirun`.
-
 ---
 
 == Conclusion on Multi-Stage Dockerfile

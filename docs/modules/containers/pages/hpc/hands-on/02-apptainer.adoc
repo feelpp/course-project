@@ -14,9 +14,23 @@ First, connect to the Karolina HPC system. Replace `your_username` and adjust th
 
 [source,shell]
 ----
-ssh your_username@login1.karolina.it4i.cz
+ssh your_username@karolina.it4i.cz
 ----
 
+[NOTE]
+====
+I use the follow `ssh` configuration to connect to Karolina HPC:
+[source,sh]
+----
+Host karolina
+    Hostname karolina.it4i.cz
+    User it4i-<login>
+    ForwardAgent Yes
+----
+and of course I have my SSH key added to the `ssh-agent` and the public key added to the `~/.ssh/authorized_keys` file on the Karolina HPC system using the `ssh-copy-id` command. 
+In vscode with the Remote - SSH extension, I can connect to Karolina HPC by selecting the `karolina` host.
+In a terminal, I can connect to Karolina HPC by running `ssh karolina`.
+====
 === Remote Login to GitHub Container Registry
 
 Before pulling your image, you need to log in to GHCR using Apptainer’s remote login command. 
