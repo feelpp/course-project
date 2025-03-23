@@ -631,10 +631,12 @@ To do so we use the <code>actions/upload-artifact</code> action.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">        - name: Upload Package                            <i class="conum" data-value="1"></i><b>(1)</b>
-            uses: actions/upload-artifact@v4
-            with:
-                name: myapp-package</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">      - name: Upload tarball                  <i class="conum" data-value="1"></i><b>(1)</b>
+        uses: actions/upload-artifact@v4
+        with:
+          name: archive-${{ matrix.runs-on }}
+          path: |
+            build/default/*.tar.gz</code></pre>
 </div>
 </div>
 <div class="colist arabic">
