@@ -17,7 +17,7 @@ Learning Objectives::
 - Discover how containerization enhances CI/CD workflows.
 - Discuss the impact and benefits of CI/CD in HPC environments.
 
-== Introduction: The CI/CD Problem (30 min)
+== Introduction: The CI/CD Problem 
 
 === The Software Development Challenge
 
@@ -115,7 +115,7 @@ When selecting a CI/CD solution, the choice often depends on your development pl
 NOTE: This section highlights that the right CI/CD tool depends on your existing development environment, the need for containerization, and the unique demands of HPC systems. Each option brings different strengths, and often, teams may even use multiple tools in a hybrid approach to achieve optimal results.
 
 
-== GitHub Actions: Overview and Fundamentals (40 min)
+== GitHub Actions: Overview and Fundamentals 
 
 === What is GitHub Actions?
 * **Integrated CI/CD Platform:**  
@@ -141,7 +141,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -160,7 +160,7 @@ jobs:
 * **Parallel & Matrix Builds:**  
   - Efficient testing across multiple environments.
 
-== 3. Containers in CI/CD (15 min)
+== 3. Containers in CI/CD 
 
 === Why Use Containers in CI/CD?
 * **Consistency:**  
@@ -194,11 +194,11 @@ jobs:
   - Simplified dependency management.
   - Reproducible and faster CI/CD pipelines.
 
-== Demo / Hands-on (Optional) (5 min)
-* Live demonstration of a GitHub Actions workflow.
-* Experiment with customizing workflows and integrating containerized builds.
+//== Demo / Hands-on (Optional) (5 min)
+//* Live demonstration of a GitHub Actions workflow.
+//* Experiment with customizing workflows and integrating containerized builds.
 
-== Q&A and Discussion (5 min)
+== Q&A and Discussion 
 * Open floor for questions.
 * Discussion on integrating CI/CD in both general and HPC-specific environments.
 
