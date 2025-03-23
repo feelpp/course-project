@@ -335,8 +335,35 @@ In this section, we&#8217;ll cover:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ssh your_username@login1.karolina.it4i.cz</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ssh your_username@karolina.it4i.cz</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>I use the follow <code>ssh</code> configuration to connect to Karolina HPC:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">Host karolina
+    Hostname karolina.it4i.cz
+    User it4i-&lt;login&gt;
+    ForwardAgent Yes</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and of course I have my SSH key added to the <code>ssh-agent</code> and the public key added to the <code>~/.ssh/authorized_keys</code> file on the Karolina HPC system using the <code>ssh-copy-id</code> command.
+In vscode with the Remote - SSH extension, I can connect to Karolina HPC by selecting the <code>karolina</code> host.
+In a terminal, I can connect to Karolina HPC by running <code>ssh karolina</code>.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
