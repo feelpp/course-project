@@ -21,6 +21,125 @@ Learning Objectives::
 - Introduce key container technologies: Docker, Singularity/Apptainer, and Podman.
 - Demonstrate how to use containers in an HPC workflow.
 
+== But first who are we and why are we here ?
+
+Cemosis, the Center for Modeling and Simulation in Strasbourg, plays a critical role in advancing computational research through the development of Feel++ within the Feel++ Consortium. Here's why containerization matters for Cemosis:
+
+* **Enhanced Reproducibility:**  
+  - With Feel++ being a sophisticated framework for finite element analysis, ensuring that every simulation runs in an identical environment is crucial for scientific validation. Containers guarantee that dependencies, libraries, and configurations remain consistent across all testing and production runs.
+
+* **Simplified Collaboration:**  
+  - The Feel++ Consortium involves collaboration among multiple institutions. Containers enable researchers at Cemosis and partner organizations to share a single, standardized environment, reducing setup complexities and streamlining collaborative development.
+
+* **Optimized HPC Workflows:**  
+  - HPC applications in modeling and simulation often require finely tuned performance optimizations. Containerization encapsulates these optimizations, ensuring that computational experiments run efficiently on various HPC systems without manual reconfiguration.
+
+* **Rapid Deployment and Testing:**  
+  - With containerized workflows, Cemosis can quickly iterate on new features or bug fixes in Feel++, automatically testing changes in a controlled environment. This accelerates development cycles and improves the overall quality of the software.
+
+* **Future-Proofing Research:**  
+  - As hardware and software evolve, maintaining reproducible environments becomes increasingly challenging. Containers provide a robust solution to preserve the computational environment, ensuring long-term reproducibility and sustainability of research outputs.
+
+[NOTE]
+This section emphasizes that containerization is not just a technical enhancement but a strategic enabler for research and collaboration at Cemosis.
+
+=== Feel++ Overview
+
+[.left]
+--
+image::feelpp-arch.png[image,width=600]
+--
+.Overview
+* Framework to solve problems based on ODE and PDE
+* {cpp}17 and {cpp}20 
+* Python layer using Pybind11
+* Seamless parallelism with default communicator including ensemble runs
+* Powerful interpolation and integration operators working in parallel
+* Advanced Post-processing including for high order approximation and high order geometry
+* *Build*: CMake and CMake Presets
+* *Docs:* https://docs.feelpp.org including dynamic pages that can be downloaded as notebooks
+* *DevOps:* 
+** *GitHub Actions:* CI/CD and Continuous Benmarking on inHouse and EuroHPC systems
+** *Packaging:* Ubuntu/Debian, spack, MacPort
+** *Containers:* Docker,  Apptainer
+* *Tests:* About a thousand  tests  in sequential and parallel {cpp} and Python
+* *Usage:* Research, R&D, Teaching, _Services_
+
+=== Some Feel++ Applications
+
+[cols="1,1,1", options="header", frame="none", grid="none"]
+|===
+^.^| Health(Rheology) ^.^| Physics(High Field Magnets) ^.^| Physics(Deflectometry)
+^.^| image:feelpp/applications/blood-rheology.png[image,width=100]
+^.^| image:feelpp/applications/hifimagnet.png[image,width=100] 
+^.^| image:feelpp/applications/holo3.png[image,width=100]
+|===
+
+[cols="1,1,1", options="header", frame="none", grid="none"]
+|===
+^.^| Health(Micro swimmers) ^.^| Engineering (Buildings)^.^| Health(Eye/Brain)
+^.^| image:feelpp/applications/4fastsim-ibat.png[image,width=100]
+^.^| image:feelpp/applications/microswimmer.png[image,width=100]
+^.^| image:feelpp/applications/OMVS-scheme-with-results.png[image,width=100]
+|===
+
+=== Cemosis Projects
+
+==== NumPEX and Exa-MA: Methods and Algorithms at Exascale
+
+NumPEx is the french initiative for Exascale computing. 
+https://numpex.org/exama-methods-and-algorithms-for-exascale/[Exa-MA] is one of the projects of NumPEx
+
+Challenges::
+- Enable extreme scale computing for vastly more accurate predictive models
+- Create digital copies of physical assets
+- Apply to  environmental, health, energy, industrial and fundamental knowledge challenges
+
+Objectives::
+-to develop methods, algorithms, and implementations that, taking advantage of the exascale architectures empower modeling, solving, assimilating model and data, optimizing and quantifying uncertainty, at levels that are unreachable at present
+-to develop and contribute to software libraries for the exascale software stack
+-to identify and co-design Methodological and Algorithmic Patterns at exascale
+-to enable AI algorithms to achieve performances at exascale 
+-to provide demonstrators : mini-apps and proxy-apps openly available
+-to create, animate and foster a community around Exascale (and HPC) computing
+
+.Exa-MA organisation, a project of NumPEx
+image:feelpp/exa-ma.png[width=75%]
+
+=== CoE Hidalgo2: Urban Building Pilot
+
+In the Center of Excellence (CoE) Hidalgo2 we develop an https://www.hidalgo2.eu/urban-building-model/[urban building energy simulation pilot application]. 
+
+--
+image:feelpp/kub-ny.png[width=45%]
+image:feelpp/hidalgo2.png[width=45%]
+--
+
+
+//
+//=== {feelpp} Continuous Integration/Delivery/Deployment
+//
+//image:feelpp-ci-workflow.png[background,size=contain]
+//
+//=== {feelpp} Continuous Benchmarking
+//
+//image:feelpp-cb-workflow.png[background,size=contain]
+
+=== Feel++ Continuous Integration/Continuous Delivery (CI/CD)
+
+Here is our strategy for CI/CD workflow
+
+.Feel++ CI/CD Workflow
+image:feelpp/cicd/feelpp-cicd.png[title="Feel++ CI/CD Workflow",width=75%]
+
+=== Feel++ Continous Benchmarking (CB)
+
+Here is our strategy for CB workflow on EuroHPC and a few other systems
+
+.Feel++ CB Workflow
+image:feelpp/cicd/feelpp-cd-hpc.png[title="Feel++ EuroHPC CB",width=75%]
+
+
 == Introduction to Containers
 
 === What are Containers?
@@ -191,90 +310,6 @@ In summary, environment modules have helped manage HPC software complexity for m
 * **Scheduler Compatibility:** Integrate with HPC schedulers (Slurm, PBS, etc.)
 * Compared with traditional software management (modules, environment scripts), containers offer a unified approach.
 
-
-== Why Does It Matter for Cemosis?
-
-Cemosis, the Center for Modeling and Simulation in Strasbourg, plays a critical role in advancing computational research through the development of Feel++ within the Feel++ Consortium. Here's why containerization matters for Cemosis:
-
-* **Enhanced Reproducibility:**  
-  - With Feel++ being a sophisticated framework for finite element analysis, ensuring that every simulation runs in an identical environment is crucial for scientific validation. Containers guarantee that dependencies, libraries, and configurations remain consistent across all testing and production runs.
-
-* **Simplified Collaboration:**  
-  - The Feel++ Consortium involves collaboration among multiple institutions. Containers enable researchers at Cemosis and partner organizations to share a single, standardized environment, reducing setup complexities and streamlining collaborative development.
-
-* **Optimized HPC Workflows:**  
-  - HPC applications in modeling and simulation often require finely tuned performance optimizations. Containerization encapsulates these optimizations, ensuring that computational experiments run efficiently on various HPC systems without manual reconfiguration.
-
-* **Rapid Deployment and Testing:**  
-  - With containerized workflows, Cemosis can quickly iterate on new features or bug fixes in Feel++, automatically testing changes in a controlled environment. This accelerates development cycles and improves the overall quality of the software.
-
-* **Future-Proofing Research:**  
-  - As hardware and software evolve, maintaining reproducible environments becomes increasingly challenging. Containers provide a robust solution to preserve the computational environment, ensuring long-term reproducibility and sustainability of research outputs.
-
-[NOTE]
-This section emphasizes that containerization is not just a technical enhancement but a strategic enabler for research and collaboration at Cemosis.
-
-=== Feel++ Overview
-
-[.left]
---
-image::feelpp-arch.png[image,width=600]
---
-.Overview
-* Framework to solve problems based on ODE and PDE
-* {cpp}17 and {cpp}20 
-* Python layer using Pybind11
-* Seamless parallelism with default communicator including ensemble runs
-* Powerful interpolation and integration operators working in parallel
-* Advanced Post-processing including for high order approximation and high order geometry
-* *Build*: CMake and CMake Presets
-* *Docs:* https://docs.feelpp.org including dynamic pages that can be downloaded as notebooks
-* *DevOps:* 
-** *GitHub Actions:* CI/CD and Continuous Benmarking on inHouse and EuroHPC systems
-** *Packaging:* Ubuntu/Debian, spack, MacPort
-** *Containers:* Docker,  Apptainer
-* *Tests:* About a thousand  tests  in sequential and parallel {cpp} and Python
-* *Usage:* Research, R&D, Teaching, _Services_
-
-=== Some Feel++ Applications
-
-[cols="1,1,1", options="header", frame="none", grid="none"]
-|===
-^.^| Health(Rheology) ^.^| Physics(High Field Magnets) ^.^| Physics(Deflectometry)
-^.^| image:feelpp/applications/blood-rheology.png[image,width=100]
-^.^| image:feelpp/applications/hifimagnet.png[image,width=100] 
-^.^| image:feelpp/applications/holo3.png[image,width=100]
-|===
-
-[cols="1,1,1", options="header", frame="none", grid="none"]
-|===
-^.^| Health(Micro swimmers) ^.^| Engineering (Buildings)^.^| Health(Eye/Brain)
-^.^| image:feelpp/applications/4fastsim-ibat.png[image,width=100]
-^.^| image:feelpp/applications/microswimmer.png[image,width=100]
-^.^| image:feelpp/applications/OMVS-scheme-with-results.png[image,width=100]
-|===
-//
-//=== {feelpp} Continuous Integration/Delivery/Deployment
-//
-//image:feelpp-ci-workflow.png[background,size=contain]
-//
-//=== {feelpp} Continuous Benchmarking
-//
-//image:feelpp-cb-workflow.png[background,size=contain]
-
-=== Feel++ Continuous Integration/Continuous Delivery (CI/CD)
-
-Here is our strategy for CI/CD workflow
-
-.Feel++ CI/CD Workflow
-image:feelpp/cicd/feelpp-cicd.png[title="Feel++ CI/CD Workflow",width=75%]
-
-=== Feel++ Continous Benchmarking (CB)
-
-Here is our strategy for CB workflow on EuroHPC and a few other systems
-
-.Feel++ CB Workflow
-image:feelpp/cicd/feelpp-cd-hpc.png[title="Feel++ EuroHPC CB",width=75%]
 
 
 == Container Technologies in HPC
