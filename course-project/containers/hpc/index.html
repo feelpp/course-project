@@ -308,28 +308,30 @@ MathJax.Hub.Config({
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_overview">1. Overview</a></li>
-<li><a href="#_introduction_to_containers">2. Introduction to Containers</a>
+<li><a href="#_but_first_who_are_we_and_why_are_we_here">2. But first who are we and why are we here ?</a>
 <ul class="sectlevel2">
-<li><a href="#_what_are_containers">2.1. What are Containers?</a></li>
-<li><a href="#_hypervisors_and_containers">2.2. Hypervisors and Containers</a></li>
-<li><a href="#_background_of_virtualization">2.3. Background of Virtualization</a></li>
+<li><a href="#_feel_overview">2.1. Feel++ Overview</a></li>
+<li><a href="#_some_feel_applications">2.2. Some Feel++ Applications</a></li>
+<li><a href="#_cemosis_projects">2.3. Cemosis Projects</a></li>
+<li><a href="#_coe_hidalgo2_urban_building_pilot">2.4. CoE Hidalgo2: Urban Building Pilot</a></li>
+<li><a href="#_feel_continuous_integrationcontinuous_delivery_cicd">2.5. Feel++ Continuous Integration/Continuous Delivery (CI/CD)</a></li>
+<li><a href="#_feel_continous_benchmarking_cb">2.6. Feel++ Continous Benchmarking (CB)</a></li>
 </ul>
 </li>
-<li><a href="#_why_containers_for_hpc">3. Why Containers for HPC?</a>
+<li><a href="#_introduction_to_containers">3. Introduction to Containers</a>
 <ul class="sectlevel2">
-<li><a href="#_hpc_software_deployment_challenges">3.1. HPC Software Deployment Challenges</a></li>
-<li><a href="#_the_hpc_environment_matrix_from_hell">3.2. The HPC Environment Matrix from Hell</a></li>
-<li><a href="#_hpc_environment_modules_helpful_but_still_broken">3.3. HPC Environment Modules: Helpful but Still Broken</a></li>
-<li><a href="#_why_containers_help">3.4. Why Containers Help</a></li>
-<li><a href="#_benefits_of_containerization_for_hpc">3.5. Benefits of Containerization for HPC</a></li>
+<li><a href="#_what_are_containers">3.1. What are Containers?</a></li>
+<li><a href="#_hypervisors_and_containers">3.2. Hypervisors and Containers</a></li>
+<li><a href="#_background_of_virtualization">3.3. Background of Virtualization</a></li>
 </ul>
 </li>
-<li><a href="#_why_does_it_matter_for_cemosis">4. Why Does It Matter for Cemosis?</a>
+<li><a href="#_why_containers_for_hpc">4. Why Containers for HPC?</a>
 <ul class="sectlevel2">
-<li><a href="#_feel_overview">4.1. Feel++ Overview</a></li>
-<li><a href="#_some_feel_applications">4.2. Some Feel++ Applications</a></li>
-<li><a href="#_feel_continuous_integrationcontinuous_delivery_cicd">4.3. Feel++ Continuous Integration/Continuous Delivery (CI/CD)</a></li>
-<li><a href="#_feel_continous_benchmarking_cb">4.4. Feel++ Continous Benchmarking (CB)</a></li>
+<li><a href="#_hpc_software_deployment_challenges">4.1. HPC Software Deployment Challenges</a></li>
+<li><a href="#_the_hpc_environment_matrix_from_hell">4.2. The HPC Environment Matrix from Hell</a></li>
+<li><a href="#_hpc_environment_modules_helpful_but_still_broken">4.3. HPC Environment Modules: Helpful but Still Broken</a></li>
+<li><a href="#_why_containers_help">4.4. Why Containers Help</a></li>
+<li><a href="#_benefits_of_containerization_for_hpc">4.5. Benefits of Containerization for HPC</a></li>
 </ul>
 </li>
 <li><a href="#_container_technologies_in_hpc">5. Container Technologies in HPC</a>
@@ -387,10 +389,269 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect1">
-<h2 id="_introduction_to_containers"><a class="anchor" href="#_introduction_to_containers"></a>2. Introduction to Containers</h2>
+<h2 id="_but_first_who_are_we_and_why_are_we_here"><a class="anchor" href="#_but_first_who_are_we_and_why_are_we_here"></a>2. But first who are we and why are we here ?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cemosis, the Center for Modeling and Simulation in Strasbourg, plays a critical role in advancing computational research through the development of Feel within the Feel Consortium. Here&#8217;s why containerization matters for Cemosis:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Enhanced Reproducibility:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>With Feel++ being a sophisticated framework for finite element analysis, ensuring that every simulation runs in an identical environment is crucial for scientific validation. Containers guarantee that dependencies, libraries, and configurations remain consistent across all testing and production runs.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Simplified Collaboration:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>The Feel++ Consortium involves collaboration among multiple institutions. Containers enable researchers at Cemosis and partner organizations to share a single, standardized environment, reducing setup complexities and streamlining collaborative development.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Optimized HPC Workflows:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>HPC applications in modeling and simulation often require finely tuned performance optimizations. Containerization encapsulates these optimizations, ensuring that computational experiments run efficiently on various HPC systems without manual reconfiguration.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Rapid Deployment and Testing:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>With containerized workflows, Cemosis can quickly iterate on new features or bug fixes in Feel++, automatically testing changes in a controlled environment. This accelerates development cycles and improves the overall quality of the software.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Future-Proofing Research:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>As hardware and software evolve, maintaining reproducible environments becomes increasingly challenging. Containers provide a robust solution to preserve the computational environment, ensuring long-term reproducibility and sustainability of research outputs.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This section emphasizes that containerization is not just a technical enhancement but a strategic enabler for research and collaboration at Cemosis.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_feel_overview"><a class="anchor" href="#_feel_overview"></a>2.1. Feel++ Overview</h3>
+<div class="openblock left">
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="../_images/feelpp-arch.png" alt="image" width="600">
+</div>
+</div>
+</div>
+</div>
+<div class="ulist">
+<div class="title">Overview</div>
+<ul>
+<li>
+<p>Framework to solve problems based on ODE and PDE</p>
+</li>
+<li>
+<p>C++17 and C++20</p>
+</li>
+<li>
+<p>Python layer using Pybind11</p>
+</li>
+<li>
+<p>Seamless parallelism with default communicator including ensemble runs</p>
+</li>
+<li>
+<p>Powerful interpolation and integration operators working in parallel</p>
+</li>
+<li>
+<p>Advanced Post-processing including for high order approximation and high order geometry</p>
+</li>
+<li>
+<p><strong>Build</strong>: CMake and CMake Presets</p>
+</li>
+<li>
+<p><strong>Docs:</strong> <a href="https://docs.feelpp.org" class="bare">docs.feelpp.org</a> including dynamic pages that can be downloaded as notebooks</p>
+</li>
+<li>
+<p><strong>DevOps:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>GitHub Actions:</strong> CI/CD and Continuous Benmarking on inHouse and EuroHPC systems</p>
+</li>
+<li>
+<p><strong>Packaging:</strong> Ubuntu/Debian, spack, MacPort</p>
+</li>
+<li>
+<p><strong>Containers:</strong> Docker,  Apptainer</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Tests:</strong> About a thousand  tests  in sequential and parallel C++ and Python</p>
+</li>
+<li>
+<p><strong>Usage:</strong> Research, R&amp;D, Teaching, <em>Services</em></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_some_feel_applications"><a class="anchor" href="#_some_feel_applications"></a>2.2. Some Feel++ Applications</h3>
+<table class="tableblock frame-none grid-none stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-middle">Health(Rheology)</th>
+<th class="tableblock halign-center valign-middle">Physics(High Field Magnets)</th>
+<th class="tableblock halign-center valign-middle">Physics(Deflectometry)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/blood-rheology.png" alt="image" width="100"></span></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/hifimagnet.png" alt="image" width="100"></span></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/holo3.png" alt="image" width="100"></span></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-none grid-none stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-middle">Health(Micro swimmers)</th>
+<th class="tableblock halign-center valign-middle">Engineering (Buildings)<sup>.</sup></th>
+<th class="tableblock halign-left valign-top">Health(Eye/Brain)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/4fastsim-ibat.png" alt="image" width="100"></span></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/microswimmer.png" alt="image" width="100"></span></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/OMVS-scheme-with-results.png" alt="image" width="100"></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_cemosis_projects"><a class="anchor" href="#_cemosis_projects"></a>2.3. Cemosis Projects</h3>
+<div class="sect3">
+<h4 id="_numpex_and_exa_ma_methods_and_algorithms_at_exascale"><a class="anchor" href="#_numpex_and_exa_ma_methods_and_algorithms_at_exascale"></a>2.3.1. NumPEX and Exa-MA: Methods and Algorithms at Exascale</h4>
+<div class="paragraph">
+<p>NumPEx is the french initiative for Exascale computing.
+<a href="https://numpex.org/exama-methods-and-algorithms-for-exascale/">Exa-MA</a> is one of the projects of NumPEx</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Challenges</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Enable extreme scale computing for vastly more accurate predictive models</p>
+</li>
+<li>
+<p>Create digital copies of physical assets</p>
+</li>
+<li>
+<p>Apply to  environmental, health, energy, industrial and fundamental knowledge challenges</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Objectives</dt>
+<dd>
+<p>-to develop methods, algorithms, and implementations that, taking advantage of the exascale architectures empower modeling, solving, assimilating model and data, optimizing and quantifying uncertainty, at levels that are unreachable at present
+-to develop and contribute to software libraries for the exascale software stack
+-to identify and co-design Methodological and Algorithmic Patterns at exascale
+-to enable AI algorithms to achieve performances at exascale
+-to provide demonstrators : mini-apps and proxy-apps openly available
+-to create, animate and foster a community around Exascale (and HPC) computing</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<div class="title">Exa-MA organisation, a project of NumPEx</div>
+<p><span class="image"><img src="../_images/feelpp/exa-ma.png" alt="exa ma" width="75%"></span></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_coe_hidalgo2_urban_building_pilot"><a class="anchor" href="#_coe_hidalgo2_urban_building_pilot"></a>2.4. CoE Hidalgo2: Urban Building Pilot</h3>
+<div class="paragraph">
+<p>In the Center of Excellence (CoE) Hidalgo2 we develop an <a href="https://www.hidalgo2.eu/urban-building-model/">urban building energy simulation pilot application</a>.</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><span class="image"><img src="../_images/feelpp/kub-ny.png" alt="kub ny" width="45%"></span>
+<span class="image"><img src="../_images/feelpp/hidalgo2.png" alt="hidalgo2" width="45%"></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_feel_continuous_integrationcontinuous_delivery_cicd"><a class="anchor" href="#_feel_continuous_integrationcontinuous_delivery_cicd"></a>2.5. Feel++ Continuous Integration/Continuous Delivery (CI/CD)</h3>
+<div class="paragraph">
+<p>Here is our strategy for CI/CD workflow</p>
+</div>
+<div class="paragraph">
+<div class="title">Feel++ CI/CD Workflow</div>
+<p><span class="image"><img src="../_images/feelpp/cicd/feelpp-cicd.png" alt="feelpp cicd" width="75%" title="Feel++ CI/CD Workflow"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_feel_continous_benchmarking_cb"><a class="anchor" href="#_feel_continous_benchmarking_cb"></a>2.6. Feel++ Continous Benchmarking (CB)</h3>
+<div class="paragraph">
+<p>Here is our strategy for CB workflow on EuroHPC and a few other systems</p>
+</div>
+<div class="paragraph">
+<div class="title">Feel++ CB Workflow</div>
+<p><span class="image"><img src="../_images/feelpp/cicd/feelpp-cd-hpc.png" alt="feelpp cd hpc" width="75%" title="Feel++ EuroHPC CB"></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction_to_containers"><a class="anchor" href="#_introduction_to_containers"></a>3. Introduction to Containers</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_what_are_containers"><a class="anchor" href="#_what_are_containers"></a>2.1. What are Containers?</h3>
+<h3 id="_what_are_containers"><a class="anchor" href="#_what_are_containers"></a>3.1. What are Containers?</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -428,7 +689,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect2">
-<h3 id="_hypervisors_and_containers"><a class="anchor" href="#_hypervisors_and_containers"></a>2.2. Hypervisors and Containers</h3>
+<h3 id="_hypervisors_and_containers"><a class="anchor" href="#_hypervisors_and_containers"></a>3.2. Hypervisors and Containers</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -455,7 +716,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect2">
-<h3 id="_background_of_virtualization"><a class="anchor" href="#_background_of_virtualization"></a>2.3. Background of Virtualization</h3>
+<h3 id="_background_of_virtualization"><a class="anchor" href="#_background_of_virtualization"></a>3.3. Background of Virtualization</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -486,10 +747,10 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect1">
-<h2 id="_why_containers_for_hpc"><a class="anchor" href="#_why_containers_for_hpc"></a>3. Why Containers for HPC?</h2>
+<h2 id="_why_containers_for_hpc"><a class="anchor" href="#_why_containers_for_hpc"></a>4. Why Containers for HPC?</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_hpc_software_deployment_challenges"><a class="anchor" href="#_hpc_software_deployment_challenges"></a>3.1. HPC Software Deployment Challenges</h3>
+<h3 id="_hpc_software_deployment_challenges"><a class="anchor" href="#_hpc_software_deployment_challenges"></a>4.1. HPC Software Deployment Challenges</h3>
 <div class="paragraph">
 <p>Traditional HPC environments have long relied on centrally maintained software modules to manage complex dependencies. While this approach allows multiple users to share common libraries and tools, it comes with significant challenges:</p>
 </div>
@@ -578,7 +839,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_hpc_environment_matrix_from_hell"><a class="anchor" href="#_the_hpc_environment_matrix_from_hell"></a>3.2. The HPC Environment Matrix from Hell</h3>
+<h3 id="_the_hpc_environment_matrix_from_hell"><a class="anchor" href="#_the_hpc_environment_matrix_from_hell"></a>4.2. The HPC Environment Matrix from Hell</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -671,7 +932,7 @@ This table highlights the complexity of ensuring every component—MPI libraries
 </div>
 </div>
 <div class="sect2">
-<h3 id="_hpc_environment_modules_helpful_but_still_broken"><a class="anchor" href="#_hpc_environment_modules_helpful_but_still_broken"></a>3.3. HPC Environment Modules: Helpful but Still Broken</h3>
+<h3 id="_hpc_environment_modules_helpful_but_still_broken"><a class="anchor" href="#_hpc_environment_modules_helpful_but_still_broken"></a>4.3. HPC Environment Modules: Helpful but Still Broken</h3>
 <div class="paragraph">
 <p>Environment modules (e.g., <code>Environment Modules</code> or <code>Lmod</code>) are widely used in HPC to manage complex software stacks. They allow users to load or unload specific versions of compilers, libraries, and applications by manipulating environment variables (e.g., <code>PATH</code>, <code>LD_LIBRARY_PATH</code>). While this approach has been the standard on many supercomputers for years, it still poses several problems:</p>
 </div>
@@ -701,7 +962,7 @@ This table highlights the complexity of ensuring every component—MPI libraries
 </div>
 </div>
 <div class="sect2">
-<h3 id="_why_containers_help"><a class="anchor" href="#_why_containers_help"></a>3.4. Why Containers Help</h3>
+<h3 id="_why_containers_help"><a class="anchor" href="#_why_containers_help"></a>4.4. Why Containers Help</h3>
 <div class="paragraph">
 <p>By contrast, containers bundle the entire user-space software stack (compilers, libraries, application code) into a portable image. This ensures:</p>
 </div>
@@ -726,7 +987,7 @@ This table highlights the complexity of ensuring every component—MPI libraries
 </div>
 </div>
 <div class="sect2">
-<h3 id="_benefits_of_containerization_for_hpc"><a class="anchor" href="#_benefits_of_containerization_for_hpc"></a>3.5. Benefits of Containerization for HPC</h3>
+<h3 id="_benefits_of_containerization_for_hpc"><a class="anchor" href="#_benefits_of_containerization_for_hpc"></a>4.5. Benefits of Containerization for HPC</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -745,208 +1006,6 @@ This table highlights the complexity of ensuring every component—MPI libraries
 <p>Compared with traditional software management (modules, environment scripts), containers offer a unified approach.</p>
 </li>
 </ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_why_does_it_matter_for_cemosis"><a class="anchor" href="#_why_does_it_matter_for_cemosis"></a>4. Why Does It Matter for Cemosis?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Cemosis, the Center for Modeling and Simulation in Strasbourg, plays a critical role in advancing computational research through the development of Feel within the Feel Consortium. Here&#8217;s why containerization matters for Cemosis:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Enhanced Reproducibility:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>With Feel++ being a sophisticated framework for finite element analysis, ensuring that every simulation runs in an identical environment is crucial for scientific validation. Containers guarantee that dependencies, libraries, and configurations remain consistent across all testing and production runs.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Simplified Collaboration:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>The Feel++ Consortium involves collaboration among multiple institutions. Containers enable researchers at Cemosis and partner organizations to share a single, standardized environment, reducing setup complexities and streamlining collaborative development.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Optimized HPC Workflows:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>HPC applications in modeling and simulation often require finely tuned performance optimizations. Containerization encapsulates these optimizations, ensuring that computational experiments run efficiently on various HPC systems without manual reconfiguration.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Rapid Deployment and Testing:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>With containerized workflows, Cemosis can quickly iterate on new features or bug fixes in Feel++, automatically testing changes in a controlled environment. This accelerates development cycles and improves the overall quality of the software.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Future-Proofing Research:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>As hardware and software evolve, maintaining reproducible environments becomes increasingly challenging. Containers provide a robust solution to preserve the computational environment, ensuring long-term reproducibility and sustainability of research outputs.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This section emphasizes that containerization is not just a technical enhancement but a strategic enabler for research and collaboration at Cemosis.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_feel_overview"><a class="anchor" href="#_feel_overview"></a>4.1. Feel++ Overview</h3>
-<div class="openblock left">
-<div class="content">
-<div class="imageblock">
-<div class="content">
-<img src="../_images/feelpp-arch.png" alt="image" width="600">
-</div>
-</div>
-</div>
-</div>
-<div class="ulist">
-<div class="title">Overview</div>
-<ul>
-<li>
-<p>Framework to solve problems based on ODE and PDE</p>
-</li>
-<li>
-<p>C++17 and C++20</p>
-</li>
-<li>
-<p>Python layer using Pybind11</p>
-</li>
-<li>
-<p>Seamless parallelism with default communicator including ensemble runs</p>
-</li>
-<li>
-<p>Powerful interpolation and integration operators working in parallel</p>
-</li>
-<li>
-<p>Advanced Post-processing including for high order approximation and high order geometry</p>
-</li>
-<li>
-<p><strong>Build</strong>: CMake and CMake Presets</p>
-</li>
-<li>
-<p><strong>Docs:</strong> <a href="https://docs.feelpp.org" class="bare">docs.feelpp.org</a> including dynamic pages that can be downloaded as notebooks</p>
-</li>
-<li>
-<p><strong>DevOps:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>GitHub Actions:</strong> CI/CD and Continuous Benmarking on inHouse and EuroHPC systems</p>
-</li>
-<li>
-<p><strong>Packaging:</strong> Ubuntu/Debian, spack, MacPort</p>
-</li>
-<li>
-<p><strong>Containers:</strong> Docker,  Apptainer</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Tests:</strong> About a thousand  tests  in sequential and parallel C++ and Python</p>
-</li>
-<li>
-<p><strong>Usage:</strong> Research, R&amp;D, Teaching, <em>Services</em></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_some_feel_applications"><a class="anchor" href="#_some_feel_applications"></a>4.2. Some Feel++ Applications</h3>
-<table class="tableblock frame-none grid-none stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-center valign-middle">Health(Rheology)</th>
-<th class="tableblock halign-center valign-middle">Physics(High Field Magnets)</th>
-<th class="tableblock halign-center valign-middle">Physics(Deflectometry)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/blood-rheology.png" alt="image" width="100"></span></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/hifimagnet.png" alt="image" width="100"></span></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/holo3.png" alt="image" width="100"></span></p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-none grid-none stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-center valign-middle">Health(Micro swimmers)</th>
-<th class="tableblock halign-center valign-middle">Engineering (Buildings)<sup>.</sup></th>
-<th class="tableblock halign-left valign-top">Health(Eye/Brain)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/4fastsim-ibat.png" alt="image" width="100"></span></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/microswimmer.png" alt="image" width="100"></span></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="image"><img src="../_images/feelpp/applications/OMVS-scheme-with-results.png" alt="image" width="100"></span></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_feel_continuous_integrationcontinuous_delivery_cicd"><a class="anchor" href="#_feel_continuous_integrationcontinuous_delivery_cicd"></a>4.3. Feel++ Continuous Integration/Continuous Delivery (CI/CD)</h3>
-<div class="paragraph">
-<p>Here is our strategy for CI/CD workflow</p>
-</div>
-<div class="paragraph">
-<div class="title">Feel++ CI/CD Workflow</div>
-<p><span class="image"><img src="../_images/feelpp/cicd/feelpp-cicd.png" alt="feelpp cicd" width="75%" title="Feel++ CI/CD Workflow"></span></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_feel_continous_benchmarking_cb"><a class="anchor" href="#_feel_continous_benchmarking_cb"></a>4.4. Feel++ Continous Benchmarking (CB)</h3>
-<div class="paragraph">
-<p>Here is our strategy for CB workflow on EuroHPC and a few other systems</p>
-</div>
-<div class="paragraph">
-<div class="title">Feel++ CB Workflow</div>
-<p><span class="image"><img src="../_images/feelpp/cicd/feelpp-cd-hpc.png" alt="feelpp cd hpc" width="75%" title="Feel++ EuroHPC CB"></span></p>
 </div>
 </div>
 </div>
