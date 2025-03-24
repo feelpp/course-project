@@ -262,8 +262,19 @@ image::feelpp-arch.png[image,width=600]
 //
 //image:feelpp-cb-workflow.png[background,size=contain]
 
+=== Feel++ Continuous Integration/Continuous Delivery (CI/CD)
 
+Here is our strategy for CI/CD workflow
 
+.Feel++ CI/CD Workflow
+image:feelpp/cicd/feelpp-cicd.png[title="Feel++ CI/CD Workflow",width=75%]
+
+=== Feel++ Continous Benchmarking (CB)
+
+Here is our strategy for CB workflow on EuroHPC and a few other systems
+
+.Feel++ CB Workflow
+image:feelpp/cicd/feelpp-cd-hpc.png[title="Feel++ EuroHPC CB",width=75%]
 
 
 == Container Technologies in HPC
