@@ -111,11 +111,12 @@ Runners::
 *** Kubernetes
 *** Custom
 
-Parts of a pieline::
-
 .Anatomy of a Pipeline Workflow
 image::../images/Gitlab_CI-Page-2.drawio.png[Workflow_File]
 
+
+
+Parts of a pipeline::
 * Stages
 ** One or more
 ** help readibility/maintainibility of pipeline
