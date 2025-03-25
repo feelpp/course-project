@@ -27,7 +27,7 @@ CD (Continuous Delivery / Continous Deployment)::
 ** staging/pre-prodcution (run against main)
 ** production envs (run against tags)
 
-* continuous delivery
+* continuous delivery#
 ** automatic deploy to test and dev envs
 ** not automatically deployed to production without manual approval
 * continuous deployment
@@ -113,8 +113,8 @@ Runners::
 
 Parts of a pieline::
 
-. Anatomy of a Pipeline Workflow
-image::../images/Gitlab_CI-Page-1.drawio.png[Gitlab_CI]
+.Anatomy of a Pipeline Workflow
+image::../images/Gitlab_CI-Page-2.drawio.png[Gitlab_CI]
 
 * Stages
 ** One or more
