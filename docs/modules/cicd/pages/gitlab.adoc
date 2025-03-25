@@ -1,0 +1,236 @@
+= CI/CD through Gitlab 
+Sameer Haroon <sameer.haroon@hlrs.de>
+:toc:
+
+== Review of CI/CD as a concept
+
+CI (Continuous Integration)::
+  ** Is your code good?
+  ** earlier you run tests, sooner you find problems
+  ** makes sure that any file edits made integrate well with the stable code base
+    *** functional tests
+    *** security scans
+    *** code quality scans
+    *** performance tests
+    *** license scanning
+    *** fuzz testing
+  ** gives everyone on the team an understanding of the state of the
+    software
+
+CD (Continuous Delivery / Continous Deployment)::
+  ** more ambiguous
+  ** finding out where your code should go
+    *** and putting it there
+  ** make releases "boring"
+
+  ** different environments
+    *** testing/development environments (run against feature branches etc)
+    *** staging/pre-prodcution (run against main)
+    *** production envs (run against tags)
+
+  ** continuous delivery
+    *** automatic deploy to test and dev envs
+    *** not automatically deployed to production without manual approval
+  ** continuous deployment
+    *** deploy to production automatically
+
+  ** building/packaging
+    *** preparing the code into deployable form
+      **** ruby gem
+      **** java war/ear
+      **** c code -> docker image
+      **** tarball
+      **** no packaging/building
+
+  ** sending/delivering/deploying
+    *** pushing docker image to repository
+    *** using a cli tool to deploy to AWS environment
+    *** last (sometimes only) task of CD
+
+CI/CD Pipeline can be tool agnostic::
+  ** pipelines ultimately boil down to a series of shell commands
+    *** that run automatically
+    *** i.e. series of tasks run by a robot that relate to
+      **** building
+      **** verifying
+      **** deploying
+
+== Overview of Gitlab CI
+
+A Gitlab CI/CD pipeline is a series of steps::
+  ** performed on your files
+  ** when ever you commit and push source code changes
+  ** blueprint/recipe
+    
+Steps::
+  ** tasks that are performed on your files
+    *** tests
+    *** security scans
+    *** build / packaging
+      **** zip file?
+      **** linux package?
+      **** docker container?
+    *** deploy / set up
+      **** test env
+      **** prod env
+  ** inspect, test, package, deploy, any manpipulation of files
+
+Runners::
+  ** Runners are robots/daemons/programs that
+    *** take these steps from somewhere (e.g. Github/Gitlab instance)
+    *** and execute them in an environment
+    *** where the rubber meets the road
+      **** CI/CD code to actual tasks
+
+Parts of a pieline::
+  ** Stages
+    *** One or more
+    *** help readibility/maintainibility of pipeline
+    *** collection of pipeline tasks that are related
+      **** build
+        ***** compile
+        **** package?
+      **** test
+        ***** linting
+        ***** unit tests
+        ***** scans
+      **** deploy
+        ***** package
+        ***** deliver
+     **** each stage is executed sequentially by default
+       ***** one stage after another
+       ***** can be changed using the needs keyword
+
+  ** Jobs
+    *** equivilant to steps/tasks
+    *** Each stage contains one more more jobs
+    *** best practice to have each job do one task
+    *** all jobs within a stage are executed in parallel by default
+      **** can be changed using the needs keyword
+
+  ** Commands
+    *** each job contains one or more commands
+    *** job is the robot/runner take types commands in to a bash shell
+      **** javac *.java
+      **** docker build --tag my_app:1.2
+      **** mvn test
+    *** in the end, running all of the commands of a pipeline manually
+    *** is the same thing as running the pipeline through a runner
+       
+Running Pipelines::
+  ** automatically
+    *** commit push
+    *** merge request
+      **** source code of branch of merge request
+    *** merged result
+      **** pipeline on a temporary merge
+    *** merge train
+      **** sepearte, concurrent merged result piepeline
+      **** temp merge of source branches from every merge request that's ahead of the current merge request in the queue.
+  ** manually
+    *** branch
+    *** tag
+    *** skipping pipelines    
+
+  ** certain "features" of the single pipeline can be turned on or off,
+    *** depending on which features make sesnse for the type of changes.
+    *** unit tests on code changes
+    *** spelling/editing tests on documentation changes
+
+== Karlina and IT4I's CI/CD setup
+
+Documentation::
+  ** https://docs.it4i.cz/general/tools/cicd/#execution-of-ci-pipelines-in-docker-containers
+
+Gitlab Instance::
+  ** code.it4i.cz
+    *** you should have an account.
+
+Gitlab Runners::
+  ** 7 System Runners
+  ** 5 Docker Runners
+
+Jacamar CI::
+  ** System Runners use a custom executor model called Jacamar CI 
+  ** handles authorisation and downscoping, matching hpc username to Gitlab username
+  ** interacts directly with SLURM/PBS schedulers
+  ** documentation:
+    *** https://ecp-ci.gitlab.io/docs/admin/jacamar/introduction.html
+
+      
+== A comparison of Gitlab CI and Github Actions
+
+Similarities::
+
+* both systems base their workflow language on YAML
+* both systems support multiple stages, and work directly on your files in the associated repo.
+
+Differences::
+
+* Gitlab CI does not have a comparable marketplace like Github Actions.
+  ** new feature/component under development, available: "Gitlab Steps"
+    *** https://docs.gitlab.com/17.9/ci/steps/
+    *** official components developed by Gitlab (safe but not so many)
+    *** support now added to use Github Actions in Gitlab CI. Weird!
+      
+* Gitlab has support for custom executers
+  ** JacamarCI
+  ** a native Kubernetes executer.
+
+* only one pipeline workflow file per project
+  * .gitlab-ci.yml
+
+=== What is a Github Action?
+
+* a container image, in principle.
+* either has an action.yml that calls javascript code.
+* or a Dockerfile that can call anything (python, c, etc)
+
+== Gitlab YAML syntax
+
+documentation::
+  * https://docs.gitlab.com/ci/migration/github_actions/#github-actions-workflow-syntax
+  * https://docs.github.com/en/actions/migrating-to-github-actions/manually-migrating-to-github-actions/migrating-from-gitlab-cicd-to-github-actions
+
+key differences::
+
+[%header,cols=2*]
+|===
+|GitHub
+|GitLab
+
+| "on"
+| no keyword
+
+| "run"
+| no keyword
+
+| "jobs"
+| "stages"
+
+| "env"
+| "variables"
+
+| "runs-on"
+| "tags"
+
+| "steps"
+| "script"
+
+| "uses"
+| "inculde"
+
+| "container"
+| "image"
+
+|===
+
+* no "on" keyword
+* no "run" keyword
+* upload-artifact and download-artifact replaced with "artifcats"
+
+* secrets management
+  ** github has integrated secrets management
+  ** gitlab encourages 3rd party tools (like Vault)
+    ** or have to use masked and protected ci/cd variables 
+
