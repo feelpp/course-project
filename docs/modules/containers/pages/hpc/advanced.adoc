@@ -1,0 +1,568 @@
+= Advanced CI/CD Techniques for HPC using GitHub Actions
+Author: Christophe Prud'homme <christophe.prudhomme@cemosis.fr>
+v1.0, 2023-03-24
+:icons: font
+:revealjs_theme: white
+:revealjs_slideNumber: true
+:toc: left
+:source-highlighter: pygments
+
+[.lead]
+In this session, we will explore **advanced CI/CD techniques** using **GitHub Actions** in an HPC context. We cover how to manage HPC dependencies with **Spack**, create **composite actions**, leverage **caching and artifact management**, orchestrate **dynamic matrix builds**, and integrate **notifications** and **HPC scheduler interactions** into your CI/CD pipelines. These **advanced techniques** help ensure reproducible, scalable, and robust workflows for scientific computing.
+
+== Overview (5 minutes)
+
+By the end of this session, you will be able to:
+
+- Integrate Spack for automated installation of HPC dependencies.
+- Create reusable composite actions to encapsulate common CI/CD tasks.
+- Utilize caching and artifact actions to speed up workflows.
+- Use matrix strategies for dynamic, multi-environment builds.
+- Implement advanced notifications and error handling.
+- Integrate job submission with HPC schedulers.
+- Apply best practices for writing and debugging complex workflows.
+- Understand security best practices for CI/CD pipelines.
+- Optimize performance and scalability of CI/CD workflows.
+
+== Integrating Spack for HPC Dependency Management (15 minutes)
+
+Spack is a versatile package manager designed for High Performance Computing (HPC). It simplifies the installation, management, and caching of complex software dependencies. This document introduces Spack and details its use in creating isolated environments, containerizing HPC software stacks, and automating deployments via CI/CD pipelines.
+
+== What is Spack?
+
+Spack is an open-source package management tool tailored for HPC and scientific computing. 
+It enables you to:
+
+* Install and manage multiple versions of software concurrently.
+* Handle intricate dependency trees and compiler-specific configurations.
+* Leverage custom builds and optimizations for various architectures.
+
+This flexibility makes Spack indispensable for maintaining consistent software environments in both development and production.
+
+=== Motivations for Spack
+
+. *Software complexity grows exponentially*  
+  Modern HPC applications are composed of hundreds of libraries and dependencies.  
+  Each dependency may itself rely on many other packages (potentially hundreds more).
+
+. *Component-based development has a long history*  
+  The idea of reusing “building blocks” for software dates back to the 1960s (NATO SE Conf, 1968).  
+  Today, we reuse *millions* of each other’s libraries, requiring robust integration strategies.
++
+--
+.Built time error, fails fast
+image:spack/spack-built-time-failure.png[width=37%,title="Spack Build Time",link="https://spack.io/"]
+.Seems Ok but not quite, failures later
+image:spack/spack-seems-ok-but-no.png[width=37%,title="Spack Build Time",link="https://spack.io/"]
+--
++
+. *Manual integration is infeasible*  
+  With large dependency graphs (100+ direct packages, 600+ transitive dependencies), it is impossible to build and integrate everything by hand.
++
+--
+.Spack Dependency Graph for E4S
+image:spack/graph-e4s.png[title="Spack Dependency Graph", l
+ink="https://spack.io/",width=75%]
+--
++
+. *Modern software mixes open source and internal packages*  
+  Projects often combine internal (proprietary) components with numerous open-source libraries.  
+  This complexity makes consistent builds and updates difficult.
+
+. *Common assumptions of standard package managers break down in HPC*  
+  - 1:1 relationship between source code and binary does not hold for performance-optimized builds.  
+  - Binaries are rarely portable across supercomputers (different CPUs/GPUs, interconnects, compilers).  
+  - A single toolchain is not guaranteed—HPC systems often require multiple compilers or specialized libraries.
+
+. *High Performance Computing amplifies these challenges*  
+  - HPC software is typically distributed as source and compiled for specific architectures.  
+  - Many variants of the same package may be needed to optimize for different hardware.  
+  - Systems can be multi-language (C, C++, Fortran, Python, etc.) with specialized interconnects.
+
+. *Containers help, but do not solve the “N-platform problem”*  
+  - Containers can capture a pre-built software stack but still need to be *built* for each target system.  
+  - Relying on default OS package managers within containers often yields suboptimal, unoptimized binaries.  
+  - HPC containers typically must be rebuilt for each major architecture or GPU platform.
+
+[IMPORTANT]
+====
+*Conclusions:*  
+HPC environments demand a more flexible and powerful approach to building and managing software than typical package managers can provide. Containers alone cannot address the complexity and variability of HPC systems. A specialized tool—capable of handling multiple compilers, custom build configurations, and per-architecture optimizations—is essential to keep HPC software manageable, performant, and reproducible.
+
+.Check out spack at https://hpsf.io/projects/[> HPSF]
+image::spack/spack-logo.png[width=20%,title="Spack Logo",link="https://spack.io/"]
+====
+
+IMPORTANT: guix-hpc is an alternative to Spack that is based on the Guix package manager. It provides a functional package management system with reproducible builds and a declarative package definition language. Guix-HPC is also particularly well-suited for scientific computing and HPC environments. The french NumPEx initiative is using both.
+
+=== Spack Environments
+
+One of Spack’s key strengths is its ability to create and manage isolated environments. 
+Spack environments allow you to:
+
+* Define a complete set of dependencies in a single `spack.yaml` file.
+* Reproducibly build and install software tailored to specific project needs.
+* Share consistent environment configurations across teams and CI pipelines.
+
+==== Example: Creating a Spack Environment
+
+Below is an example `spack.yaml` that specifies an environment with key HPC dependencies:
+
+[source,yaml]
+----
+spack:
+  view: /opt/view
+  specs:
+    - openmpi@4.1.6 %gcc
+    - boost@1.83.0 %gcc
+  config:
+    install_tree:
+      root: /opt/spack
+      padded_length: 128
+----
+
+Activate the environment with:
+
+[source,bash]
+----
+spack env create my-hpc-env
+spack env activate my-hpc-env
+----
+
+=== Workflow: From Spack Environment to Apptainer Container
+
+This section outlines an end-to-end workflow to encapsulate your HPC software stack.
+
+==== Step 1: Spack Environment Creation
+
+Define and activate your Spack environment as shown above. This creates a reproducible set of dependencies specific to your application.
+
+==== Step 2: Spack Containerisation
+
+Spack provides the `spack containerise` command, which automates the generation of container recipes. Run the following command to produce a Dockerfile based on your environment:
+
+[source,bash]
+----
+spack containerise -e my-hpc-env --image-type docker
+----
+
+This command reads your `my-hpc-env` environment and generates a Dockerfile tailored for your HPC dependencies.
+
+.Example of a Spack Environment Configuration File `spack.yaml`
+[source,yaml]
+----
+spack:
+  # Define package configuration: sets global package requirements.
+  packages:
+    # "all" applies to every package in the environment.
+    all:
+      # Specify available compilers: GCC (version 14 and above) and Clang (versions 14 up to 18).
+      compiler: [gcc@14:, clang@14:18]
+    # "mpi" section targets MPI-specific settings.
+    mpi:
+      # Require OpenMPI up to version 4 with automatic fabric selection.
+      require: ['openmpi@:4 fabrics=auto']
+
+  # Definitions allow you to create aliases for reuse in specs.
+  definitions:
+  - compilers: [gcc@14:]    # Define a group of compilers.
+  - packages: [caliper, chai+openmp, raja+openmp, umpire+openmp, kokkos+openmp]  # Define a group of packages with OpenMP support.
+
+  # Specs define the concrete packages to install.
+  specs:
+  - $compilers   # Include the compiler group defined above.
+  - matrix:
+    - [$packages]    # Use the package group defined in definitions.
+    - [$%compilers]  # Combine with the specified compiler group.
+
+  # Enable the creation of a view, which creates a unified directory of installed packages.
+  view: true
+
+  # Concretizer settings: unify ensures consistent dependency resolution.
+  concretizer:
+    unify: true
+
+  # Configuration for the system environment.
+  config:
+    os: ubuntu22.04    # Target operating system.
+    target: x86_64     # Target architecture.
+----
+
+==== Step 3: Docker Build
+
+Build the Docker image from the generated Dockerfile:
+
+[source,bash]
+----
+docker build -t my-hpc-image .
+----
+
+After the build completes, you can verify your image using:
+
+[source,bash]
+----
+docker images | grep my-hpc-image
+----
+
+==== Step 4: Apptainer Build from Docker Image
+
+Apptainer (formerly Singularity) can directly convert Docker images into portable container images. Use the following command to build an Apptainer image:
+
+[source,bash]
+----
+apptainer build my-hpc.sif docker://my-hpc-image:latest
+----
+
+This command pulls the Docker image and converts it into an Apptainer image (`.sif`), which is suitable for HPC environments where Singularity/Apptainer is preferred.
+
+=== Spack in CI/CD Workflows
+
+Integrating Spack into CI/CD pipelines automates dependency management, resulting in faster, more reliable builds. CI/CD systems can use Spack to install, cache, and reproduce complex software stacks, making them ideal for testing and deploying HPC applications.
+
+==== Example: GitHub Actions Workflow with Spack
+
+The snippet below demonstrates a GitHub Actions pipeline that creates a Spack environment, installs dependencies, and runs tests:
+
+[source,yaml]
+----
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    - name: Set up Spack
+      uses: spack/setup-spack@v2
+      with:
+        ref: develop
+        buildcache: true
+        color: true
+        path: spack
+    - name: Create and Activate Spack Environment
+      run: |
+        spack env create ci-env
+        spack env activate ci-env
+        spack install python
+    - name: Run Application Tests
+      run: |
+        spack env activate ci-env
+        python -c "import sys; print('Hello from CI!')"
+----
+
+Leveraging Spack’s build cache via [Spack Buildcache](https://github.com/spack/github-actions-buildcache) minimizes redundant builds, ensuring consistency and efficiency across CI runs.
+
+=== Conclusion on Spack
+
+This document has outlined how Spack streamlines HPC dependency management through:
+
+* **Spack Environments:** Defining reproducible, isolated software stacks.
+* **Containerisation:** Using `spack containerise` to generate Docker recipes and building Docker images.
+* **Apptainer Integration:** Converting Docker images into portable Apptainer containers.
+* **CI/CD Automation:** Embedding these processes in CI/CD pipelines for consistent, reliable builds and deployments.
+
+NOTE: Using this workflow ensures that your HPC applications are built, tested, and deployed with the consistency and performance required in modern high-performance computing environments.
+
+== Composite Actions and Modular Workflows (15 minutes)
+
+
+https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-composite-action[> Composite actions] in GitHub Actions allow you to group multiple steps into a single, reusable action. 
+This is particularly useful for encapsulating common tasks that are repeated across different workflows, promoting code reuse and maintainability.
+
+=== Why Use Composite Actions?
+
+- **Reusability**: Define a set of steps once and reuse them in multiple workflows.
+- **Maintainability**: Update the composite action in one place, and the changes propagate to all workflows that use it.
+- **Modularity**: Break down complex workflows into smaller, manageable components.
+
+=== How to Create and Use a Composite Action
+
+1. **Define the Composite Action**:
+** Create a directory structure in your repository to store the composite action. For example, `.github/actions/build-and-test/`.
+** Inside this directory, create a file named `action.yml` that defines the action's metadata and steps.
+
+2. **Example: Creating a Composite Action**
+** Create a file `.github/actions/build-and-test/action.yml` with the following content:
++
+[source,yaml]
+----
+name: "Build and Test"
+description: "Configure, build, and run tests using CMake presets"
+inputs:
+  preset:
+    description: "The CMake preset to use"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Configure Build System
+      run: cmake --preset ${{ inputs.preset }}
+    - name: Build Project
+      run: cmake --build --preset ${{ inputs.preset }}
+    - name: Run Tests
+      run: ctest --preset ${{ inputs.preset }}
+----
++
+** **name**: A brief name for the action.
+** **description**: A description of what the action does.
+** **inputs**: Define inputs that the action accepts. In this case, `preset` is a required input that specifies the CMake preset to use.
+** **runs**: Specifies that this is a composite action and lists the steps to execute.
+
+3. **Using the Composite Action in a Workflow**
+** To use the composite action in a workflow, reference it in your workflow file (e.g., `.github/workflows/ci.yml`):
++
+[source,yaml]
+----
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Build and Test
+        uses: ./.github/actions/build-and-test
+        with:
+          preset: default
+----
++
+** **uses**: Specifies the path to the composite action. The `./` indicates that the action is located in the same repository.
+** **with**: Passes inputs to the composite action. In this case, `preset` is set to `default`.
+4. **Benefits of Composite Actions**
+** **Consistency**: Ensures that the same build and test steps are used across different workflows.
+** **Simplification**: Reduces the complexity of individual workflow files by abstracting common steps.
+** **Flexibility**: Allows for easy customization through inputs, making the action adaptable to different use cases.
+
+NOTE: By using composite actions, you can streamline your CI/CD pipelines, making them more efficient and easier to manage. This approach is particularly beneficial in complex projects where multiple workflows share common tasks.
+
+
+== Caching and Artifact Management (15 minutes)
+
+Caching and artifact management are essential techniques in CI/CD pipelines to optimize build times and efficiently manage build outputs.
+
+=== Caching
+
+Caching allows you to store and reuse dependencies or build outputs from previous runs, significantly speeding up subsequent builds. This is particularly useful for large projects with many dependencies or lengthy build processes.
+
+==== Example: Caching Build Files
+
+[source,yaml]
+----
+- name: Cache CMake Build Directory // <1>
+    uses: actions/cache@v4 // <2>
+    with: // <3>
+        path: build // <4>
+        key: ${{ runner.os }}-cmake-${{ hashFiles('CMakeLists.txt') }} // <5>
+----
+<1> The step name describing what the step does.
+<2> Uses the cache action from GitHub Actions.
+<3> Begins the section for additional parameters.
+<4> Specifies the directory to cache (CMake's build directory).
+<5> Defines a unique cache key that updates when CMakeLists.txt changes.
+
+=== Artifact Management
+
+Artifacts are files generated during a workflow run that you want to persist for later use, such as build outputs, test logs, or reports. GitHub Actions provides actions to upload and download artifacts, facilitating the sharing of data between jobs.
+
+==== Example: Uploading Artifacts
+
+[source,yaml]
+----
+- name: Upload Build Artifact  // <1>
+    uses: actions/upload-artifact@v4  // <2>
+    with:
+        name: build-tarball  // <3>
+        path: build/default/*.tar.gz  // <4>
+----
+
+<1> The step name indicating what the step does.  
+<2> Specifies the GitHub Action used for uploading artifacts.  
+<3> The artifact's name, used as a reference in later steps.  
+<4> The file path (with wildcard support) for files to be uploaded.
+
+==== Example: Downloading Artifacts
+
+To download an artifact in a subsequent job, you can use the `download-artifact` action:
+
+[source,yaml]
+----
+- name: Download Build Artifact                   // <1>
+    uses: actions/download-artifact@v4            // <2>
+    with:                                         // <3>
+        name: build-tarball                       // <4>
+        path: downloaded-artifacts/               // <5>
+----
+ 
+// <1> Step name for downloading the build artifact.
+// <2> Uses the GitHub Action for artifact download.
+// <3> Begins the parameters section.
+// <4> Artifact name matching that used during upload.
+// <5> Destination directory for the downloaded artifact.
+
+==== Practical Use Cases
+
+- **Storing Test Results**: Upload test results as artifacts to review them after the workflow completes, even if the workflow fails.
+- **Sharing Build Outputs**: Upload build outputs as artifacts to share them between jobs or workflows, enabling complex deployment pipelines.
+- **Debugging**: Download artifacts locally to debug issues that occur during the workflow run.
+
+By effectively using caching and artifact management, you can create efficient and robust CI/CD pipelines that minimize redundant work and maximize productivity.
+
+== Integrating with HPC Schedulers (10 minutes)
+
+For HPC workflows, integrating job submission (e.g., via Slurm) within your CI/CD pipeline can further automate deployment. For example, you might include a step to submit a job and monitor its status.
+
+=== Example: Submitting a Job with Slurm
+
+Below is an example of a Slurm job submission script (`job_myapp.sh`) and a monitoring script (`job_monitor.sh`) that can be used in a GitHub Actions workflow.
+
+==== Slurm Job Submission Script (`job_myapp.sh`)
+
+[source,bash]
+----
+#!/bin/bash
+#SBATCH --job-name=apptainer
+#SBATCH --output=apptainer.out
+#SBATCH --error=apptainer.err
+#SBATCH --time=00:10:00
+#SBATCH --partition=qcpu
+#SBATCH --ntasks=16
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=1G
+#SBATCH --account=dd-24-88
+
+SIF=${1:-c3b-template.sif} # <1>
+
+# Declare the following variables to be used by apptainer to avoid warnings
+export APPTAINER_BINDPATH=$SINGULARITY_BINDPATH
+export APPTAINERENV_LD_PRELOAD=$SINGULARITYENV_LD_PRELOAD
+
+module load Boost/1.83.0-GCC-13.2.0 Ninja/1.12.1-GCCcore-13.3.0 OpenMPI/4.1.6-GCC-13.2.0
+
+srun apptainer exec --sharens $SIF myapp # <2>
+----
+<1> The `SIF` variable is set to the Singularity image file name, with a default value of `c3b-template.sif`.
+<2> The `apptainer exec` command runs the application (`myapp`) inside the Singularity container, sharing the host's network namespace.
+
+==== Slurm Job Monitoring Script (`job_monitor.sh`)
+
+[source,bash]
+----
+# Get SIF filename from command line
+SIF=${1:-c3b-template.sif}
+WAIT=10
+
+# Submit the job and capture the sbatch output.
+job_output=$(sbatch job_myapp.sh $SIF)
+echo "sbatch output: $job_output"
+
+# Extract the job ID (assumes output: "Submitted batch job <jobid>")
+jobid=$(echo "$job_output" | awk '{print $4}')
+echo "Submitted job with ID: $jobid"
+
+job_state=""
+
+# Poll the job state using sacct until it reaches a terminal state.
+while true; do
+    job_state=$(sacct -j "$jobid" --format=State --noheader | head -n 1 | tr -d ' ')
+    echo "Job $jobid state: $job_state"
+
+    # Check if the job state starts with any terminal keyword.
+    if [[ "$job_state" == COMPLETED* || "$job_state" == FAILED* || "$job_state" == CANCELLED* || "$job_state" == TIMEOUT* ]]; then
+        break
+    fi
+
+    echo "Job $jobid is still running... waiting $WAIT seconds."
+    sleep $WAIT
+done
+
+echo "Job $jobid has finished with state: $job_state"
+
+echo "Detailed job information:"
+# Show additional job information.
+sacct -j "$jobid" --format=JobID,JobName,Partition,Account,AllocCPUS,State,ExitCode,Elapsed,Start,End --noheader
+
+echo "Displaying job output log:"
+cat apptainer.out
+----
+
+* The script submits the job using `sbatch` and captures the job ID.
+* It polls the job status using `sacct` until the job reaches a terminal state (e.g., COMPLETED, FAILED).
+* Once the job is finished, it displays detailed job information and the output log.
+
+==== Using the Scripts in GitHub Actions
+
+To integrate these scripts into your GitHub Actions workflow, you can use the following step:
+
+.Submit and monitor step in CICD
+[source,yaml]
+----
+- name: Run Container on Karolina
+  if: matrix.runs-on == 'karolina'      <1>
+  run: |
+    bash job_monitor.sh $SIF_FILENAME   <2>
+----
+<1> Conditionally run the step on the 'karolina' environment.
+<2> Run the job monitoring script with the Singularity image file name as an argument.
+
+NOTE By integrating job submission and monitoring into your CI/CD pipeline, you can automate the deployment and testing of applications on HPC systems, ensuring efficient and reliable workflows.
+
+IMPORTANT: Depending on the EuroHPC system, you may need to adjust the job submission script to match the specific requirements and configurations of the target system.
+
+== Security Best Practices (5 minutes)
+
+Implementing security best practices is crucial for protecting sensitive information and ensuring the integrity of your CI/CD pipelines.
+
+=== Example: Managing Secrets
+
+- Use GitHub Secrets to store sensitive information such as API keys, passwords, and tokens.
+- Avoid hardcoding sensitive information in your workflow files.
+- Regularly rotate secrets and limit their scope to only the necessary repositories.
+
+== Performance Optimization (5 minutes)
+
+Optimizing performance can significantly reduce build times and resource usage in your CI/CD pipelines.
+
+=== Example: Parallelizing Tasks
+
+- Identify tasks that can run in parallel and configure them to do so in your workflow.
+- Use matrix builds to run tests across multiple environments simultaneously.
+- Monitor resource usage and optimize job configurations to avoid bottlenecks.
+
+== Triggering Workflows Dynamically (5 minutes)
+
+You can trigger one workflow from another. 
+For example, after successfully building and pushing an Apptainer image, you can trigger a deployment workflow.
+
+[source,shell]
+----
+gh workflow run deploy.yml -r develop
+----
+
+NOTE: This command uses the GitHub CLI to trigger the deploy workflow on the `develop` branch automatically.
+
+== Monitoring and Logging (5 minutes)
+
+Effective monitoring and logging are essential for debugging and maintaining CI/CD pipelines.
+
+=== Example: Setting Up Logging
+
+- Use GitHub Actions' built-in logging features to capture output from each step.
+- Integrate with external logging services for more advanced monitoring and alerting.
+- Regularly review logs to identify and address issues proactively.
+
+== Conclusion and Q&A (10 minutes)
+
+In this advanced session, we have explored:
+
+- Integrating Spack for managing HPC dependencies.
+- Creating composite actions to modularize your CI/CD pipeline.
+- Leveraging caching and artifacts to optimize build times.
+- Using matrix strategies for dynamic, multi-environment builds.
+- Implementing advanced notifications to monitor pipeline health.
+- Integrating HPC scheduler job submission for automated deployments.
+- Dynamically triggering workflows to streamline complex CI/CD processes.
+- Security best practices for protecting sensitive information.
+- Performance optimization techniques for efficient workflows.
+
+By applying these techniques, you can build robust, scalable, and efficient CI/CD pipelines that meet the unique demands of HPC applications.
+
+[.center]
+Questions? Let's discuss how these advanced techniques can further enhance your CI/CD pipelines for scientific computing!

@@ -96,12 +96,12 @@ Challenges::
 - Apply to  environmental, health, energy, industrial and fundamental knowledge challenges
 
 Objectives::
--to develop methods, algorithms, and implementations that, taking advantage of the exascale architectures empower modeling, solving, assimilating model and data, optimizing and quantifying uncertainty, at levels that are unreachable at present
--to develop and contribute to software libraries for the exascale software stack
--to identify and co-design Methodological and Algorithmic Patterns at exascale
--to enable AI algorithms to achieve performances at exascale 
--to provide demonstrators : mini-apps and proxy-apps openly available
--to create, animate and foster a community around Exascale (and HPC) computing
+- to develop methods, algorithms, and implementations that, taking advantage of the exascale architectures empower modeling, solving, assimilating model and data, optimizing and quantifying uncertainty, at levels that are unreachable at present
+- to develop and contribute to software libraries for the exascale software stack
+- to identify and co-design Methodological and Algorithmic Patterns at exascale
+- to enable AI algorithms to achieve performances at exascale 
+- to provide demonstrators : mini-apps and proxy-apps openly available
+- to create, animate and foster a community around Exascale (and HPC) computing
 
 .Exa-MA organisation, a project of NumPEx
 image:feelpp/exa-ma.png[width=75%]
@@ -212,6 +212,8 @@ Containers help address HPC Hell
 | Tier-2 HPC Center 
 | Tier-1 HPC Center 
 | Tier-0 Supercomputer
+| Cloud Infrastructure
+
 
 | HPC Code #1 stack (MPI-based)
 | ?

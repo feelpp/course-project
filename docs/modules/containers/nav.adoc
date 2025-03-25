@@ -13,6 +13,7 @@
 * xref:hpc/index.adoc[Containers for HPC]
 ** xref:hpc/cicd.adoc[CI/CD for HPC]
 ** xref:hpc/best-practices.adoc[Best practices]
+** xref:hpc/advanced.adoc[Advanced Topics]
 
 * Hands-on Tutorials
 ** xref:docker/hands-on/index.adoc[Docker Hands-on]
