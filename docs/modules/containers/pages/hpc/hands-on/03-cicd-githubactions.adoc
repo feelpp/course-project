@@ -70,6 +70,7 @@ jobs:
 == Running the Workflow
 
 To trigger this workflow:
+
 - **Push a commit** to the `main` branch.
 - **Open a pull request** targeting `main`.
 - **Manually trigger** the workflow via the GitHub Actions tab (using Workflow Dispatch).
