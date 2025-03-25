@@ -190,6 +190,9 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="best-practices.html">Best practices</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="advanced.html">Advanced Topics</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -596,12 +599,28 @@ This section emphasizes that containerization is not just a technical enhancemen
 </dd>
 <dt class="hdlist1">Objectives</dt>
 <dd>
-<p>-to develop methods, algorithms, and implementations that, taking advantage of the exascale architectures empower modeling, solving, assimilating model and data, optimizing and quantifying uncertainty, at levels that are unreachable at present
--to develop and contribute to software libraries for the exascale software stack
--to identify and co-design Methodological and Algorithmic Patterns at exascale
--to enable AI algorithms to achieve performances at exascale
--to provide demonstrators : mini-apps and proxy-apps openly available
--to create, animate and foster a community around Exascale (and HPC) computing</p>
+<div class="ulist">
+<ul>
+<li>
+<p>to develop methods, algorithms, and implementations that, taking advantage of the exascale architectures empower modeling, solving, assimilating model and data, optimizing and quantifying uncertainty, at levels that are unreachable at present</p>
+</li>
+<li>
+<p>to develop and contribute to software libraries for the exascale software stack</p>
+</li>
+<li>
+<p>to identify and co-design Methodological and Algorithmic Patterns at exascale</p>
+</li>
+<li>
+<p>to enable AI algorithms to achieve performances at exascale</p>
+</li>
+<li>
+<p>to provide demonstrators : mini-apps and proxy-apps openly available</p>
+</li>
+<li>
+<p>to create, animate and foster a community around Exascale (and HPC) computing</p>
+</li>
+</ul>
+</div>
 </dd>
 </dl>
 </div>
@@ -856,65 +875,73 @@ This section emphasizes that containerization is not just a technical enhancemen
 <th class="tableblock halign-left valign-top">Tier-2 HPC Center</th>
 <th class="tableblock halign-left valign-top">Tier-1 HPC Center</th>
 <th class="tableblock halign-left valign-top">Tier-0 Supercomputer</th>
-<th class="tableblock halign-left valign-top">HPC Code #1 stack (MPI-based)</th>
+<th class="tableblock halign-left valign-top">Cloud Infrastructure</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HPC Code #1 stack (MPI-based)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">HPC Code #2 (GPU-accelerated)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">HPC Code #3 (AI/ML Pipeline)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">HPC Code #4 (I/O-heavy Workflow)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">HPC Libraries (BLAS, LAPACK, MKL, etc.)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Compilers &amp; Toolchains (GCC, Intel, LLVM)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MPI Variants (Open MPI, MPICH, MVAPICH)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Performance Tuning &amp; Profilers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
 </tr>
 </tbody>
 </table>

@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Advanced CI/CD Techniques for HPC using GitHub Actions :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/hpc/advanced.html">
+    <link rel="prev" href="best-practices.html">
+    <link rel="next" href="../docker/hands-on/index.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../../../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../../../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../../../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header><div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="course-project" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../index.html">Course Project</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Introduction to Containers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../docker/index.html">Docker</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../docker/docker-overview.html">Docker Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../docker/docker-problems-solved.html">The Problem Docker Solves</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../docker/docker-architecture.html">Docker Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/docker-hpc.adoc">Installing Docker</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../apptainer/index.html">Apptainer</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../apptainer/apptainer-install.html">Installing Apptainer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../apptainer/tutorial.html">Tutorial</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Containers for HPC</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cicd.html">CI/CD for HPC</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="best-practices.html">Best practices</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="advanced.html">Advanced Topics</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Hands-on Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../docker/hands-on/index.html">Docker Hands-on</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../docker/hands-on/01-getting-started.html">Getting Started with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../docker/hands-on/02-advanced-usage.html">Advanced Docker Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/hands-on/docker-githubaction.adoc">GitHub Actions with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/hands-on/docker-postgres-example.adoc">Setting Up PostgreSQL with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/hands-on/docker-compose.adoc">Docker Compose</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/hands-on/docker-deploy.adoc">Deploy services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="hands-on/00-classroom.html">C3B Classroom Setup</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/01-docker.html">Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/02-apptainer.html">Apptainer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/03-docker-mpi.html">Docker and MPI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/03-cicd-githubactions.html">CI/CD with GitHub Actions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/04-docker-cicd-app.html">CI/CD Docker Job</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/04-apptainer-cicd-app.html">CI/CD Apptainer Job</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/05-deploy.html">Deploy with Apptainer</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Course Project</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../../../feelpp-antora-ui/index.html">Antora Feel++ UI</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="../../index.html">Course Project</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="../../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Course Project</a></li>
+    <li><a href="index.html">Containers for HPC</a></li>
+    <li><a href="advanced.html">Advanced Topics</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/hpc/advanced.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Advanced CI/CD Techniques for HPC using GitHub Actions</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_overview_5_minutes">1. Overview (5 minutes)</a></li>
+<li><a href="#_integrating_spack_for_hpc_dependency_management_15_minutes">2. Integrating Spack for HPC Dependency Management (15 minutes)</a></li>
+<li><a href="#_what_is_spack">3. What is Spack?</a>
+<ul class="sectlevel2">
+<li><a href="#_motivations_for_spack">3.1. Motivations for Spack</a></li>
+<li><a href="#_spack_environments">3.2. Spack Environments</a></li>
+<li><a href="#_workflow_from_spack_environment_to_apptainer_container">3.3. Workflow: From Spack Environment to Apptainer Container</a></li>
+<li><a href="#_spack_in_cicd_workflows">3.4. Spack in CI/CD Workflows</a></li>
+<li><a href="#_conclusion_on_spack">3.5. Conclusion on Spack</a></li>
+</ul>
+</li>
+<li><a href="#_composite_actions_and_modular_workflows_15_minutes">4. Composite Actions and Modular Workflows (15 minutes)</a>
+<ul class="sectlevel2">
+<li><a href="#_why_use_composite_actions">4.1. Why Use Composite Actions?</a></li>
+<li><a href="#_how_to_create_and_use_a_composite_action">4.2. How to Create and Use a Composite Action</a></li>
+</ul>
+</li>
+<li><a href="#_caching_and_artifact_management_15_minutes">5. Caching and Artifact Management (15 minutes)</a>
+<ul class="sectlevel2">
+<li><a href="#_caching">5.1. Caching</a></li>
+<li><a href="#_artifact_management">5.2. Artifact Management</a></li>
+</ul>
+</li>
+<li><a href="#_integrating_with_hpc_schedulers_10_minutes">6. Integrating with HPC Schedulers (10 minutes)</a>
+<ul class="sectlevel2">
+<li><a href="#_example_submitting_a_job_with_slurm">6.1. Example: Submitting a Job with Slurm</a></li>
+</ul>
+</li>
+<li><a href="#_security_best_practices_5_minutes">7. Security Best Practices (5 minutes)</a>
+<ul class="sectlevel2">
+<li><a href="#_example_managing_secrets">7.1. Example: Managing Secrets</a></li>
+</ul>
+</li>
+<li><a href="#_performance_optimization_5_minutes">8. Performance Optimization (5 minutes)</a>
+<ul class="sectlevel2">
+<li><a href="#_example_parallelizing_tasks">8.1. Example: Parallelizing Tasks</a></li>
+</ul>
+</li>
+<li><a href="#_triggering_workflows_dynamically_5_minutes">9. Triggering Workflows Dynamically (5 minutes)</a></li>
+<li><a href="#_monitoring_and_logging_5_minutes">10. Monitoring and Logging (5 minutes)</a>
+<ul class="sectlevel2">
+<li><a href="#_example_setting_up_logging">10.1. Example: Setting Up Logging</a></li>
+</ul>
+</li>
+<li><a href="#_conclusion_and_qa_10_minutes">11. Conclusion and Q&amp;A (10 minutes)</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>In this session, we will explore <strong>advanced CI/CD techniques</strong> using <strong>GitHub Actions</strong> in an HPC context. We cover how to manage HPC dependencies with <strong>Spack</strong>, create <strong>composite actions</strong>, leverage <strong>caching and artifact management</strong>, orchestrate <strong>dynamic matrix builds</strong>, and integrate <strong>notifications</strong> and <strong>HPC scheduler interactions</strong> into your CI/CD pipelines. These <strong>advanced techniques</strong> help ensure reproducible, scalable, and robust workflows for scientific computing.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview_5_minutes"><a class="anchor" href="#_overview_5_minutes"></a>1. Overview (5 minutes)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By the end of this session, you will be able to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Integrate Spack for automated installation of HPC dependencies.</p>
+</li>
+<li>
+<p>Create reusable composite actions to encapsulate common CI/CD tasks.</p>
+</li>
+<li>
+<p>Utilize caching and artifact actions to speed up workflows.</p>
+</li>
+<li>
+<p>Use matrix strategies for dynamic, multi-environment builds.</p>
+</li>
+<li>
+<p>Implement advanced notifications and error handling.</p>
+</li>
+<li>
+<p>Integrate job submission with HPC schedulers.</p>
+</li>
+<li>
+<p>Apply best practices for writing and debugging complex workflows.</p>
+</li>
+<li>
+<p>Understand security best practices for CI/CD pipelines.</p>
+</li>
+<li>
+<p>Optimize performance and scalability of CI/CD workflows.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_integrating_spack_for_hpc_dependency_management_15_minutes"><a class="anchor" href="#_integrating_spack_for_hpc_dependency_management_15_minutes"></a>2. Integrating Spack for HPC Dependency Management (15 minutes)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Spack is a versatile package manager designed for High Performance Computing (HPC). It simplifies the installation, management, and caching of complex software dependencies. This document introduces Spack and details its use in creating isolated environments, containerizing HPC software stacks, and automating deployments via CI/CD pipelines.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_is_spack"><a class="anchor" href="#_what_is_spack"></a>3. What is Spack?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Spack is an open-source package management tool tailored for HPC and scientific computing.
+It enables you to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Install and manage multiple versions of software concurrently.</p>
+</li>
+<li>
+<p>Handle intricate dependency trees and compiler-specific configurations.</p>
+</li>
+<li>
+<p>Leverage custom builds and optimizations for various architectures.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This flexibility makes Spack indispensable for maintaining consistent software environments in both development and production.</p>
+</div>
+<div class="sect2">
+<h3 id="_motivations_for_spack"><a class="anchor" href="#_motivations_for_spack"></a>3.1. Motivations for Spack</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Software complexity grows exponentially</strong>
+Modern HPC applications are composed of hundreds of libraries and dependencies.
+Each dependency may itself rely on many other packages (potentially hundreds more).</p>
+</li>
+<li>
+<p><strong>Component-based development has a long history</strong>
+The idea of reusing “building blocks” for software dates back to the 1960s (NATO SE Conf, 1968).
+Today, we reuse <strong>millions</strong> of each other’s libraries, requiring robust integration strategies.</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<div class="title">Built time error, fails fast</div>
+<p><span class="image"><a class="image" href="https://spack.io/"><img src="../_images/spack/spack-built-time-failure.png" alt="spack built time failure" width="37%" title="Spack Build Time"></a></span>
+.Seems Ok but not quite, failures later
+<span class="image"><a class="image" href="https://spack.io/"><img src="../_images/spack/spack-seems-ok-but-no.png" alt="spack seems ok but no" width="37%" title="Spack Build Time"></a></span></p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Manual integration is infeasible</strong>
+With large dependency graphs (100+ direct packages, 600+ transitive dependencies), it is impossible to build and integrate everything by hand.</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<div class="title">Spack Dependency Graph for E4S</div>
+<p><span class="image"><img src="../_images/spack/graph-e4s.png" alt="graph e4s" width="75%" title="Spack Dependency Graph"></span></p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Modern software mixes open source and internal packages</strong>
+Projects often combine internal (proprietary) components with numerous open-source libraries.
+This complexity makes consistent builds and updates difficult.</p>
+</li>
+<li>
+<p><strong>Common assumptions of standard package managers break down in HPC</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>1:1 relationship between source code and binary does not hold for performance-optimized builds.</p>
+</li>
+<li>
+<p>Binaries are rarely portable across supercomputers (different CPUs/GPUs, interconnects, compilers).</p>
+</li>
+<li>
+<p>A single toolchain is not guaranteed—HPC systems often require multiple compilers or specialized libraries.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>High Performance Computing amplifies these challenges</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>HPC software is typically distributed as source and compiled for specific architectures.</p>
+</li>
+<li>
+<p>Many variants of the same package may be needed to optimize for different hardware.</p>
+</li>
+<li>
+<p>Systems can be multi-language (C, C++, Fortran, Python, etc.) with specialized interconnects.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Containers help, but do not solve the “N-platform problem”</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Containers can capture a pre-built software stack but still need to be <strong>built</strong> for each target system.</p>
+</li>
+<li>
+<p>Relying on default OS package managers within containers often yields suboptimal, unoptimized binaries.</p>
+</li>
+<li>
+<p>HPC containers typically must be rebuilt for each major architecture or GPU platform.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Conclusions:</strong>
+HPC environments demand a more flexible and powerful approach to building and managing software than typical package managers can provide. Containers alone cannot address the complexity and variability of HPC systems. A specialized tool—capable of handling multiple compilers, custom build configurations, and per-architecture optimizations—is essential to keep HPC software manageable, performant, and reproducible.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://spack.io/"><img src="../_images/spack/spack-logo.png" alt="spack logo" width="20%"></a>
+</div>
+<div class="title">Figure 1. Spack Logo</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+guix-hpc is an alternative to Spack that is based on the Guix package manager. It provides a functional package management system with reproducible builds and a declarative package definition language. Guix-HPC is also particularly well-suited for scientific computing and HPC environments. The french NumPEx initiative is using both.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_spack_environments"><a class="anchor" href="#_spack_environments"></a>3.2. Spack Environments</h3>
+<div class="paragraph">
+<p>One of Spack’s key strengths is its ability to create and manage isolated environments.
+Spack environments allow you to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Define a complete set of dependencies in a single <code>spack.yaml</code> file.</p>
+</li>
+<li>
+<p>Reproducibly build and install software tailored to specific project needs.</p>
+</li>
+<li>
+<p>Share consistent environment configurations across teams and CI pipelines.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_example_creating_a_spack_environment"><a class="anchor" href="#_example_creating_a_spack_environment"></a>3.2.1. Example: Creating a Spack Environment</h4>
+<div class="paragraph">
+<p>Below is an example <code>spack.yaml</code> that specifies an environment with key HPC dependencies:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spack:
+  view: /opt/view
+  specs:
+    - openmpi@4.1.6 %gcc
+    - boost@1.83.0 %gcc
+  config:
+    install_tree:
+      root: /opt/spack
+      padded_length: 128</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Activate the environment with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">spack env create my-hpc-env
+spack env activate my-hpc-env</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_workflow_from_spack_environment_to_apptainer_container"><a class="anchor" href="#_workflow_from_spack_environment_to_apptainer_container"></a>3.3. Workflow: From Spack Environment to Apptainer Container</h3>
+<div class="paragraph">
+<p>This section outlines an end-to-end workflow to encapsulate your HPC software stack.</p>
+</div>
+<div class="sect3">
+<h4 id="_step_1_spack_environment_creation"><a class="anchor" href="#_step_1_spack_environment_creation"></a>3.3.1. Step 1: Spack Environment Creation</h4>
+<div class="paragraph">
+<p>Define and activate your Spack environment as shown above. This creates a reproducible set of dependencies specific to your application.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_step_2_spack_containerisation"><a class="anchor" href="#_step_2_spack_containerisation"></a>3.3.2. Step 2: Spack Containerisation</h4>
+<div class="paragraph">
+<p>Spack provides the <code>spack containerise</code> command, which automates the generation of container recipes. Run the following command to produce a Dockerfile based on your environment:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">spack containerise -e my-hpc-env --image-type docker</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command reads your <code>my-hpc-env</code> environment and generates a Dockerfile tailored for your HPC dependencies.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of a Spack Environment Configuration File <code>spack.yaml</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spack:
+  # Define package configuration: sets global package requirements.
+  packages:
+    # "all" applies to every package in the environment.
+    all:
+      # Specify available compilers: GCC (version 14 and above) and Clang (versions 14 up to 18).
+      compiler: [gcc@14:, clang@14:18]
+    # "mpi" section targets MPI-specific settings.
+    mpi:
+      # Require OpenMPI up to version 4 with automatic fabric selection.
+      require: ['openmpi@:4 fabrics=auto']
+
+  # Definitions allow you to create aliases for reuse in specs.
+  definitions:
+  - compilers: [gcc@14:]    # Define a group of compilers.
+  - packages: [caliper, chai+openmp, raja+openmp, umpire+openmp, kokkos+openmp]  # Define a group of packages with OpenMP support.
+
+  # Specs define the concrete packages to install.
+  specs:
+  - $compilers   # Include the compiler group defined above.
+  - matrix:
+    - [$packages]    # Use the package group defined in definitions.
+    - [$%compilers]  # Combine with the specified compiler group.
+
+  # Enable the creation of a view, which creates a unified directory of installed packages.
+  view: true
+
+  # Concretizer settings: unify ensures consistent dependency resolution.
+  concretizer:
+    unify: true
+
+  # Configuration for the system environment.
+  config:
+    os: ubuntu22.04    # Target operating system.
+    target: x86_64     # Target architecture.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_step_3_docker_build"><a class="anchor" href="#_step_3_docker_build"></a>3.3.3. Step 3: Docker Build</h4>
+<div class="paragraph">
+<p>Build the Docker image from the generated Dockerfile:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker build -t my-hpc-image .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After the build completes, you can verify your image using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker images | grep my-hpc-image</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_step_4_apptainer_build_from_docker_image"><a class="anchor" href="#_step_4_apptainer_build_from_docker_image"></a>3.3.4. Step 4: Apptainer Build from Docker Image</h4>
+<div class="paragraph">
+<p>Apptainer (formerly Singularity) can directly convert Docker images into portable container images. Use the following command to build an Apptainer image:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">apptainer build my-hpc.sif docker://my-hpc-image:latest</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command pulls the Docker image and converts it into an Apptainer image (<code>.sif</code>), which is suitable for HPC environments where Singularity/Apptainer is preferred.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_spack_in_cicd_workflows"><a class="anchor" href="#_spack_in_cicd_workflows"></a>3.4. Spack in CI/CD Workflows</h3>
+<div class="paragraph">
+<p>Integrating Spack into CI/CD pipelines automates dependency management, resulting in faster, more reliable builds. CI/CD systems can use Spack to install, cache, and reproduce complex software stacks, making them ideal for testing and deploying HPC applications.</p>
+</div>
+<div class="sect3">
+<h4 id="_example_github_actions_workflow_with_spack"><a class="anchor" href="#_example_github_actions_workflow_with_spack"></a>3.4.1. Example: GitHub Actions Workflow with Spack</h4>
+<div class="paragraph">
+<p>The snippet below demonstrates a GitHub Actions pipeline that creates a Spack environment, installs dependencies, and runs tests:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    - name: Set up Spack
+      uses: spack/setup-spack@v2
+      with:
+        ref: develop
+        buildcache: true
+        color: true
+        path: spack
+    - name: Create and Activate Spack Environment
+      run: |
+        spack env create ci-env
+        spack env activate ci-env
+        spack install python
+    - name: Run Application Tests
+      run: |
+        spack env activate ci-env
+        python -c "import sys; print('Hello from CI!')"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Leveraging Spack’s build cache via [Spack Buildcache](<a href="https://github.com/spack/github-actions-buildcache" class="bare">github.com/spack/github-actions-buildcache</a>) minimizes redundant builds, ensuring consistency and efficiency across CI runs.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusion_on_spack"><a class="anchor" href="#_conclusion_on_spack"></a>3.5. Conclusion on Spack</h3>
+<div class="paragraph">
+<p>This document has outlined how Spack streamlines HPC dependency management through:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Spack Environments:</strong> Defining reproducible, isolated software stacks.</p>
+</li>
+<li>
+<p><strong>Containerisation:</strong> Using <code>spack containerise</code> to generate Docker recipes and building Docker images.</p>
+</li>
+<li>
+<p><strong>Apptainer Integration:</strong> Converting Docker images into portable Apptainer containers.</p>
+</li>
+<li>
+<p><strong>CI/CD Automation:</strong> Embedding these processes in CI/CD pipelines for consistent, reliable builds and deployments.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Using this workflow ensures that your HPC applications are built, tested, and deployed with the consistency and performance required in modern high-performance computing environments.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_composite_actions_and_modular_workflows_15_minutes"><a class="anchor" href="#_composite_actions_and_modular_workflows_15_minutes"></a>4. Composite Actions and Modular Workflows (15 minutes)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-composite-action">&gt; Composite actions</a> in GitHub Actions allow you to group multiple steps into a single, reusable action.
+This is particularly useful for encapsulating common tasks that are repeated across different workflows, promoting code reuse and maintainability.</p>
+</div>
+<div class="sect2">
+<h3 id="_why_use_composite_actions"><a class="anchor" href="#_why_use_composite_actions"></a>4.1. Why Use Composite Actions?</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Reusability</strong>: Define a set of steps once and reuse them in multiple workflows.</p>
+</li>
+<li>
+<p><strong>Maintainability</strong>: Update the composite action in one place, and the changes propagate to all workflows that use it.</p>
+</li>
+<li>
+<p><strong>Modularity</strong>: Break down complex workflows into smaller, manageable components.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_create_and_use_a_composite_action"><a class="anchor" href="#_how_to_create_and_use_a_composite_action"></a>4.2. How to Create and Use a Composite Action</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Define the Composite Action</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a directory structure in your repository to store the composite action. For example, <code>.github/actions/build-and-test/</code>.</p>
+</li>
+<li>
+<p>Inside this directory, create a file named <code>action.yml</code> that defines the action&#8217;s metadata and steps.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Example: Creating a Composite Action</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a file <code>.github/actions/build-and-test/action.yml</code> with the following content:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: "Build and Test"
+description: "Configure, build, and run tests using CMake presets"
+inputs:
+  preset:
+    description: "The CMake preset to use"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Configure Build System
+      run: cmake --preset ${{ inputs.preset }}
+    - name: Build Project
+      run: cmake --build --preset ${{ inputs.preset }}
+    - name: Run Tests
+      run: ctest --preset ${{ inputs.preset }}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>name</strong>: A brief name for the action.</p>
+</li>
+<li>
+<p><strong>description</strong>: A description of what the action does.</p>
+</li>
+<li>
+<p><strong>inputs</strong>: Define inputs that the action accepts. In this case, <code>preset</code> is a required input that specifies the CMake preset to use.</p>
+</li>
+<li>
+<p><strong>runs</strong>: Specifies that this is a composite action and lists the steps to execute.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Using the Composite Action in a Workflow</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>To use the composite action in a workflow, reference it in your workflow file (e.g., <code>.github/workflows/ci.yml</code>):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Build and Test
+        uses: ./.github/actions/build-and-test
+        with:
+          preset: default</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>uses</strong>: Specifies the path to the composite action. The <code>./</code> indicates that the action is located in the same repository.</p>
+</li>
+<li>
+<p><strong>with</strong>: Passes inputs to the composite action. In this case, <code>preset</code> is set to <code>default</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Benefits of Composite Actions</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Consistency</strong>: Ensures that the same build and test steps are used across different workflows.</p>
+</li>
+<li>
+<p><strong>Simplification</strong>: Reduces the complexity of individual workflow files by abstracting common steps.</p>
+</li>
+<li>
+<p><strong>Flexibility</strong>: Allows for easy customization through inputs, making the action adaptable to different use cases.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+By using composite actions, you can streamline your CI/CD pipelines, making them more efficient and easier to manage. This approach is particularly beneficial in complex projects where multiple workflows share common tasks.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_caching_and_artifact_management_15_minutes"><a class="anchor" href="#_caching_and_artifact_management_15_minutes"></a>5. Caching and Artifact Management (15 minutes)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Caching and artifact management are essential techniques in CI/CD pipelines to optimize build times and efficiently manage build outputs.</p>
+</div>
+<div class="sect2">
+<h3 id="_caching"><a class="anchor" href="#_caching"></a>5.1. Caching</h3>
+<div class="paragraph">
+<p>Caching allows you to store and reuse dependencies or build outputs from previous runs, significantly speeding up subsequent builds. This is particularly useful for large projects with many dependencies or lengthy build processes.</p>
+</div>
+<div class="sect3">
+<h4 id="_example_caching_build_files"><a class="anchor" href="#_example_caching_build_files"></a>5.1.1. Example: Caching Build Files</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- name: Cache CMake Build Directory <i class="conum" data-value="1"></i><b>(1)</b>
+    uses: actions/cache@v4 <i class="conum" data-value="2"></i><b>(2)</b>
+    with: <i class="conum" data-value="3"></i><b>(3)</b>
+        path: build <i class="conum" data-value="4"></i><b>(4)</b>
+        key: ${{ runner.os }}-cmake-${{ hashFiles('CMakeLists.txt') }} <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The step name describing what the step does.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Uses the cache action from GitHub Actions.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Begins the section for additional parameters.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Specifies the directory to cache (CMake&#8217;s build directory).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Defines a unique cache key that updates when CMakeLists.txt changes.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_artifact_management"><a class="anchor" href="#_artifact_management"></a>5.2. Artifact Management</h3>
+<div class="paragraph">
+<p>Artifacts are files generated during a workflow run that you want to persist for later use, such as build outputs, test logs, or reports. GitHub Actions provides actions to upload and download artifacts, facilitating the sharing of data between jobs.</p>
+</div>
+<div class="sect3">
+<h4 id="_example_uploading_artifacts"><a class="anchor" href="#_example_uploading_artifacts"></a>5.2.1. Example: Uploading Artifacts</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- name: Upload Build Artifact  <i class="conum" data-value="1"></i><b>(1)</b>
+    uses: actions/upload-artifact@v4  <i class="conum" data-value="2"></i><b>(2)</b>
+    with:
+        name: build-tarball  <i class="conum" data-value="3"></i><b>(3)</b>
+        path: build/default/*.tar.gz  <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The step name indicating what the step does.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Specifies the GitHub Action used for uploading artifacts.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The artifact&#8217;s name, used as a reference in later steps.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The file path (with wildcard support) for files to be uploaded.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_example_downloading_artifacts"><a class="anchor" href="#_example_downloading_artifacts"></a>5.2.2. Example: Downloading Artifacts</h4>
+<div class="paragraph">
+<p>To download an artifact in a subsequent job, you can use the <code>download-artifact</code> action:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- name: Download Build Artifact                   <i class="conum" data-value="1"></i><b>(1)</b>
+    uses: actions/download-artifact@v4            <i class="conum" data-value="2"></i><b>(2)</b>
+    with:                                         <i class="conum" data-value="3"></i><b>(3)</b>
+        name: build-tarball                       <i class="conum" data-value="4"></i><b>(4)</b>
+        path: downloaded-artifacts/               <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_practical_use_cases"><a class="anchor" href="#_practical_use_cases"></a>5.2.3. Practical Use Cases</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Storing Test Results</strong>: Upload test results as artifacts to review them after the workflow completes, even if the workflow fails.</p>
+</li>
+<li>
+<p><strong>Sharing Build Outputs</strong>: Upload build outputs as artifacts to share them between jobs or workflows, enabling complex deployment pipelines.</p>
+</li>
+<li>
+<p><strong>Debugging</strong>: Download artifacts locally to debug issues that occur during the workflow run.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By effectively using caching and artifact management, you can create efficient and robust CI/CD pipelines that minimize redundant work and maximize productivity.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_integrating_with_hpc_schedulers_10_minutes"><a class="anchor" href="#_integrating_with_hpc_schedulers_10_minutes"></a>6. Integrating with HPC Schedulers (10 minutes)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For HPC workflows, integrating job submission (e.g., via Slurm) within your CI/CD pipeline can further automate deployment. For example, you might include a step to submit a job and monitor its status.</p>
+</div>
+<div class="sect2">
+<h3 id="_example_submitting_a_job_with_slurm"><a class="anchor" href="#_example_submitting_a_job_with_slurm"></a>6.1. Example: Submitting a Job with Slurm</h3>
+<div class="paragraph">
+<p>Below is an example of a Slurm job submission script (<code>job_myapp.sh</code>) and a monitoring script (<code>job_monitor.sh</code>) that can be used in a GitHub Actions workflow.</p>
+</div>
+<div class="sect3">
+<h4 id="_slurm_job_submission_script_job_myapp_sh"><a class="anchor" href="#_slurm_job_submission_script_job_myapp_sh"></a>6.1.1. Slurm Job Submission Script (<code>job_myapp.sh</code>)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/bin/bash
+#SBATCH --job-name=apptainer
+#SBATCH --output=apptainer.out
+#SBATCH --error=apptainer.err
+#SBATCH --time=00:10:00
+#SBATCH --partition=qcpu
+#SBATCH --ntasks=16
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=1G
+#SBATCH --account=dd-24-88
+
+SIF=${1:-c3b-template.sif} <i class="conum" data-value="1"></i><b>(1)</b>
+
+# Declare the following variables to be used by apptainer to avoid warnings
+export APPTAINER_BINDPATH=$SINGULARITY_BINDPATH
+export APPTAINERENV_LD_PRELOAD=$SINGULARITYENV_LD_PRELOAD
+
+module load Boost/1.83.0-GCC-13.2.0 Ninja/1.12.1-GCCcore-13.3.0 OpenMPI/4.1.6-GCC-13.2.0
+
+srun apptainer exec --sharens $SIF myapp <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>SIF</code> variable is set to the Singularity image file name, with a default value of <code>c3b-template.sif</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>apptainer exec</code> command runs the application (<code>myapp</code>) inside the Singularity container, sharing the host&#8217;s network namespace.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_slurm_job_monitoring_script_job_monitor_sh"><a class="anchor" href="#_slurm_job_monitoring_script_job_monitor_sh"></a>6.1.2. Slurm Job Monitoring Script (<code>job_monitor.sh</code>)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Get SIF filename from command line
+SIF=${1:-c3b-template.sif}
+WAIT=10
+
+# Submit the job and capture the sbatch output.
+job_output=$(sbatch job_myapp.sh $SIF)
+echo "sbatch output: $job_output"
+
+# Extract the job ID (assumes output: "Submitted batch job &lt;jobid&gt;")
+jobid=$(echo "$job_output" | awk '{print $4}')
+echo "Submitted job with ID: $jobid"
+
+job_state=""
+
+# Poll the job state using sacct until it reaches a terminal state.
+while true; do
+    job_state=$(sacct -j "$jobid" --format=State --noheader | head -n 1 | tr -d ' ')
+    echo "Job $jobid state: $job_state"
+
+    # Check if the job state starts with any terminal keyword.
+    if [[ "$job_state" == COMPLETED* || "$job_state" == FAILED* || "$job_state" == CANCELLED* || "$job_state" == TIMEOUT* ]]; then
+        break
+    fi
+
+    echo "Job $jobid is still running... waiting $WAIT seconds."
+    sleep $WAIT
+done
+
+echo "Job $jobid has finished with state: $job_state"
+
+echo "Detailed job information:"
+# Show additional job information.
+sacct -j "$jobid" --format=JobID,JobName,Partition,Account,AllocCPUS,State,ExitCode,Elapsed,Start,End --noheader
+
+echo "Displaying job output log:"
+cat apptainer.out</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The script submits the job using <code>sbatch</code> and captures the job ID.</p>
+</li>
+<li>
+<p>It polls the job status using <code>sacct</code> until the job reaches a terminal state (e.g., COMPLETED, FAILED).</p>
+</li>
+<li>
+<p>Once the job is finished, it displays detailed job information and the output log.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_using_the_scripts_in_github_actions"><a class="anchor" href="#_using_the_scripts_in_github_actions"></a>6.1.3. Using the Scripts in GitHub Actions</h4>
+<div class="paragraph">
+<p>To integrate these scripts into your GitHub Actions workflow, you can use the following step:</p>
+</div>
+<div class="listingblock">
+<div class="title">Submit and monitor step in CICD</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- name: Run Container on Karolina
+  if: matrix.runs-on == 'karolina'      <i class="conum" data-value="1"></i><b>(1)</b>
+  run: |
+    bash job_monitor.sh $SIF_FILENAME   <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Conditionally run the step on the 'karolina' environment.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Run the job monitoring script with the Singularity image file name as an argument.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>NOTE By integrating job submission and monitoring into your CI/CD pipeline, you can automate the deployment and testing of applications on HPC systems, ensuring efficient and reliable workflows.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Depending on the EuroHPC system, you may need to adjust the job submission script to match the specific requirements and configurations of the target system.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_security_best_practices_5_minutes"><a class="anchor" href="#_security_best_practices_5_minutes"></a>7. Security Best Practices (5 minutes)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Implementing security best practices is crucial for protecting sensitive information and ensuring the integrity of your CI/CD pipelines.</p>
+</div>
+<div class="sect2">
+<h3 id="_example_managing_secrets"><a class="anchor" href="#_example_managing_secrets"></a>7.1. Example: Managing Secrets</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Use GitHub Secrets to store sensitive information such as API keys, passwords, and tokens.</p>
+</li>
+<li>
+<p>Avoid hardcoding sensitive information in your workflow files.</p>
+</li>
+<li>
+<p>Regularly rotate secrets and limit their scope to only the necessary repositories.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_performance_optimization_5_minutes"><a class="anchor" href="#_performance_optimization_5_minutes"></a>8. Performance Optimization (5 minutes)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Optimizing performance can significantly reduce build times and resource usage in your CI/CD pipelines.</p>
+</div>
+<div class="sect2">
+<h3 id="_example_parallelizing_tasks"><a class="anchor" href="#_example_parallelizing_tasks"></a>8.1. Example: Parallelizing Tasks</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Identify tasks that can run in parallel and configure them to do so in your workflow.</p>
+</li>
+<li>
+<p>Use matrix builds to run tests across multiple environments simultaneously.</p>
+</li>
+<li>
+<p>Monitor resource usage and optimize job configurations to avoid bottlenecks.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_triggering_workflows_dynamically_5_minutes"><a class="anchor" href="#_triggering_workflows_dynamically_5_minutes"></a>9. Triggering Workflows Dynamically (5 minutes)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can trigger one workflow from another.
+For example, after successfully building and pushing an Apptainer image, you can trigger a deployment workflow.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gh workflow run deploy.yml -r develop</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This command uses the GitHub CLI to trigger the deploy workflow on the <code>develop</code> branch automatically.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_monitoring_and_logging_5_minutes"><a class="anchor" href="#_monitoring_and_logging_5_minutes"></a>10. Monitoring and Logging (5 minutes)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Effective monitoring and logging are essential for debugging and maintaining CI/CD pipelines.</p>
+</div>
+<div class="sect2">
+<h3 id="_example_setting_up_logging"><a class="anchor" href="#_example_setting_up_logging"></a>10.1. Example: Setting Up Logging</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Use GitHub Actions' built-in logging features to capture output from each step.</p>
+</li>
+<li>
+<p>Integrate with external logging services for more advanced monitoring and alerting.</p>
+</li>
+<li>
+<p>Regularly review logs to identify and address issues proactively.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_and_qa_10_minutes"><a class="anchor" href="#_conclusion_and_qa_10_minutes"></a>11. Conclusion and Q&amp;A (10 minutes)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this advanced session, we have explored:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Integrating Spack for managing HPC dependencies.</p>
+</li>
+<li>
+<p>Creating composite actions to modularize your CI/CD pipeline.</p>
+</li>
+<li>
+<p>Leveraging caching and artifacts to optimize build times.</p>
+</li>
+<li>
+<p>Using matrix strategies for dynamic, multi-environment builds.</p>
+</li>
+<li>
+<p>Implementing advanced notifications to monitor pipeline health.</p>
+</li>
+<li>
+<p>Integrating HPC scheduler job submission for automated deployments.</p>
+</li>
+<li>
+<p>Dynamically triggering workflows to streamline complex CI/CD processes.</p>
+</li>
+<li>
+<p>Security best practices for protecting sensitive information.</p>
+</li>
+<li>
+<p>Performance optimization techniques for efficient workflows.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By applying these techniques, you can build robust, scalable, and efficient CI/CD pipelines that meet the unique demands of HPC applications.</p>
+</div>
+<div class="paragraph center">
+<p>Questions? Let&#8217;s discuss how these advanced techniques can further enhance your CI/CD pipelines for scientific computing!</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="best-practices.html">Best practices</a></span>
+  <span class="next"><a href="../docker/hands-on/index.html">Docker Hands-on</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2025 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+
+
+<script async src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../../../_/js/vendor/fontawesome.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>
