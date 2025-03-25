@@ -50,10 +50,13 @@ This flexibility makes Spack indispensable for maintaining consistent software e
   Today, we reuse *millions* of each other’s libraries, requiring robust integration strategies.
 +
 --
-.Built time error, fails fast
-image:spack/spack-built-time-failure.png[width=37%,title="Spack Build Time",link="https://spack.io/"]
-.Seems Ok but not quite, failures later
-image:spack/spack-seems-ok-but-no.png[width=37%,title="Spack Build Time",link="https://spack.io/"]
+
+[cols="1,1", options="header", frame="none", grid="none"]
+|===
+^.^|Built time error, fails fast ^.^| Seems Ok but not quite, failures later
+^.^|image:spack/spack-built-time-failure.png[width=37%,title="Spack Build Time",link="https://spack.io/"]
+^.^|image:spack/spack-seems-ok-but-no.png[width=37%,title="Spack Build Time",link="https://spack.io/"]
+|==
 --
 +
 . *Manual integration is infeasible*  
