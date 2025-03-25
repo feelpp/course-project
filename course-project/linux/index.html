@@ -464,13 +464,13 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 8
--rw-r--r-- 1 runner docker  157 Mar 25 05:32 archive.tar.gz
--rw-r--r-- 1 runner docker    0 Mar 25 05:32 example.txt
--rwxr-xr-x 2 runner docker    0 Mar 25 05:32 file.txt
--rw-r--r-- 1 runner docker    0 Mar 25 05:32 file1.txt
--rwxr-xr-x 2 runner docker    0 Mar 25 05:32 newlink.txt
-lrwxrwxrwx 1 runner docker    8 Mar 25 05:32 softlink.txt -> file.txt
-drwxr-xr-x 2 runner docker 4096 Mar 25 05:32 temp</pre>
+-rw-r--r-- 1 runner docker  157 Mar 25 07:54 archive.tar.gz
+-rw-r--r-- 1 runner docker    0 Mar 25 07:54 example.txt
+-rwxr-xr-x 2 runner docker    0 Mar 25 07:54 file.txt
+-rw-r--r-- 1 runner docker    0 Mar 25 07:54 file1.txt
+-rwxr-xr-x 2 runner docker    0 Mar 25 07:54 newlink.txt
+lrwxrwxrwx 1 runner docker    8 Mar 25 07:54 softlink.txt -> file.txt
+drwxr-xr-x 2 runner docker 4096 Mar 25 07:54 temp</pre>
 </div>
 </div>
 </div>
@@ -523,31 +523,31 @@ tree ..</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>..
-├── clr-debug-pipe-1625-7502-in
-├── clr-debug-pipe-1625-7502-out
-├── clr-debug-pipe-1642-7676-in
-├── clr-debug-pipe-1642-7676-out
-├── clr-debug-pipe-617-913-in
-├─��� clr-debug-pipe-617-913-out
+├── clr-debug-pipe-1629-24724-in
+├── clr-debug-pipe-1629-24724-out
+├── clr-debug-pipe-1646-24993-in
+├── clr-debug-pipe-1646-24993-out
+├── clr-debug-pipe-620-989-in
+├── clr-debug-pipe-620-989-out
 ├── documents
 │   ├── archive.tar.gz
-│   ├── example.txt
+│   ├��─ example.txt
 │   ├── file.txt
 │   ├── file1.txt
 │   ├── newlink.txt
-��   ├── softlink.txt -> file.txt
+│   ├── softlink.txt -> file.txt
 │   └── temp
 │       ├── file.txt
-│       └── file1.txt
-├── dotnet-diagnostic-1625-7502-socket
-├── dotnet-diagnostic-1642-7676-socket
-├── dotnet-diagnostic-617-913-socket
+���       └── file1.txt
+├── dotnet-diagnostic-1629-24724-socket
+├── dotnet-diagnostic-1646-24993-socket
+├── dotnet-diagnostic-620-989-socket
 ├── newname.txt
 ├── snap-private-tmp  [error opening dir]
-├── systemd-private-7e9b4cbb68cf4555af940358a1176ffd-chrony.service-RUJU3e  [error opening dir]
-├── systemd-private-7e9b4cbb68cf4555af940358a1176ffd-haveged.service-E40CcD  [error opening dir]
-├── systemd-private-7e9b4cbb68cf4555af940358a1176ffd-systemd-logind.service-TnDhUy  [error opening dir]
-├── systemd-private-7e9b4cbb68cf4555af940358a1176ffd-systemd-resolved.service-iNqUp3  [error opening dir]
+├── systemd-private-f47fc1a2eb434a6593b7214ea9e21272-chrony.service-m27ioI  [error opening dir]
+├── systemd-private-f47fc1a2eb434a6593b7214ea9e21272-haveged.service-9ak2wI  [error opening dir]
+├── systemd-private-f47fc1a2eb434a6593b7214ea9e21272-systemd-logind.service-Pbe99f  [error opening dir]
+├── systemd-private-f47fc1a2eb434a6593b7214ea9e21272-systemd-resolved.service-Xwbj0W  [error opening dir]
 └── www-data-temp-aspnet-0
     └── cc117660
 
@@ -662,35 +662,35 @@ ls -l</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>total 572
--rw-r--r--  1 root         root               208 Mar 25 05:30 alternatives.log
+<pre>total 612
+-rw-r--r--  1 root         root               208 Mar 25 07:50 alternatives.log
 drwxr-x---  2 root         adm               4096 Mar 16 21:20 apache2
-drwxr-xr-x  2 root         root              4096 Mar 19 19:19 apt
--rw-r-----  1 syslog       adm               2132 Mar 25 05:30 auth.log
+drwxr-xr-x  2 root         root              4096 Mar 19 19:20 apt
+-rw-r-----  1 syslog       adm               2154 Mar 25 07:50 auth.log
 drwxr-xr-x  4 root         root              4096 Mar 19 19:17 azure
 -rw-rw----  1 root         utmp                 0 Mar 19 19:19 btmp
 drwxr-x---  2 _chrony      _chrony           4096 Mar 16 21:06 chrony
--rw-r-----  1 root         adm               4419 Mar 25 05:30 cloud-init-output.log
--rw-r-----  1 syslog       adm             130827 Mar 25 05:30 cloud-init.log
+-rw-r-----  1 root         adm               4431 Mar 25 07:50 cloud-init-output.log
+-rw-r-----  1 syslog       adm             130612 Mar 25 07:50 cloud-init.log
 drwxr-xr-x  2 root         root              4096 Sep 10  2024 dist-upgrade
--rw-r-----  1 root         adm              48038 Mar 25 05:30 dmesg
+-rw-r-----  1 root         adm              48012 Mar 25 07:50 dmesg
 -rw-r--r--  1 root         root              1491 Mar 19 19:20 dpkg.log
 -rw-r--r--  1 root         root                 0 Mar 19 19:19 fontconfig.log
 drwxr-sr-x+ 3 root         systemd-journal   4096 Mar 16 21:06 journal
--rw-r-----  1 syslog       adm              60493 Mar 25 05:31 kern.log
+-rw-r-----  1 syslog       adm              61203 Mar 25 07:51 kern.log
 drwxr-xr-x  2 landscape    landscape         4096 Mar 16 21:06 landscape
 -rw-rw-r--  1 root         utmp                 0 Mar 19 19:19 lastlog
-drwxr-x---  2 mysql        adm               4096 Mar 25 05:30 mysql
+drwxr-x---  2 mysql        adm               4096 Mar 25 07:50 mysql
 drwxr-xr-x  2 root         adm               4096 Mar 16 21:47 nginx
--rw-------  1 root         root               281 Mar 25 05:30 php8.1-fpm.log
+-rw-------  1 root         root               281 Mar 25 07:50 php8.1-fpm.log
 drwxrwxr-t  2 root         postgres          4096 Mar 16 21:51 postgresql
 drwx------  2 root         root              4096 Mar 16 21:06 private
 drwxr-xr-x  2 sphinxsearch root              4096 Dec  3  2021 sphinxsearch
--rw-r-----  1 syslog       adm             215226 Mar 25 05:31 syslog
-drwxr-xr-x  2 root         root              4096 Mar 25 05:30 sysstat
+-rw-r-----  1 syslog       adm             260612 Mar 25 07:54 syslog
+drwxr-xr-x  2 root         root              4096 Mar 25 07:50 sysstat
 drwxr-x---  2 root         adm               4096 Mar 16 21:06 unattended-upgrades
--rw-r--r--  1 root         root             30819 Mar 25 05:30 waagent.log
--rw-rw-r--  1 root         utmp              2688 Mar 25 05:30 wtmp</pre>
+-rw-r--r--  1 root         root             30053 Mar 25 07:50 waagent.log
+-rw-rw-r--  1 root         utmp              2688 Mar 25 07:50 wtmp</pre>
 </div>
 </div>
 </div>
