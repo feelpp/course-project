@@ -114,7 +114,7 @@ Runners::
 Parts of a pieline::
 
 .Anatomy of a Pipeline Workflow
-image::../images/Gitlab_CI-Page-2.drawio.png[Gitlab_CI]
+image::../images/Gitlab_CI-Page-2.drawio.png[Workflow_File]
 
 * Stages
 ** One or more
