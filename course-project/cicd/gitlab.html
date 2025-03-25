@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Working with Files in Linux :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/linux/files.html">
+    <title>CI/CD through Gitlab :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/cicd/gitlab.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -279,12 +279,12 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Course Project</a></li>
-    <li><a href="files.html">Working with Files in Linux</a></li>
+    <li><a href="gitlab.html">CI/CD through Gitlab</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/linux/pages/files.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/cicd/pages/gitlab.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -295,12 +295,6 @@ MathJax.Hub.Config({
         <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
       </a>
     </li>
-      <li>
-        <a href="_attachments/files.ipynb"
-           title="Download Jupyter Notebook" data-toggle="tooltip" data-placement="left" class="jupyter-download">
-          <img class="jupyter-file-icon icon" src="../../_/img/jupyter-logo.svg"/> .ipynb
-        </a>
-      </li>
   </ul>
 </div>
 </div>
@@ -310,417 +304,798 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Working with Files in Linux</h1>
-<div id="preamble">
+<h1 class="page">CI/CD through Gitlab</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_review_of_cicd_as_a_concept">1. Review of CI/CD as a concept</a></li>
+<li><a href="#_overview_of_gitlab_ci">2. Overview of Gitlab CI</a></li>
+<li><a href="#_karlina_and_it4is_cicd_setup">3. Karlina and IT4I&#8217;s CI/CD setup</a></li>
+<li><a href="#_a_comparison_of_gitlab_ci_and_github_actions">4. A comparison of Gitlab CI and Github Actions</a>
+<ul class="sectlevel2">
+<li><a href="#_what_is_a_github_action">4.1. What is a Github Action?</a></li>
+</ul>
+</li>
+<li><a href="#_gitlab_yaml_syntax">5. Gitlab YAML syntax</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_review_of_cicd_as_a_concept"><a class="anchor" href="#_review_of_cicd_as_a_concept"></a>1. Review of CI/CD as a concept</h2>
 <div class="sectionbody">
-<div class="admonitionblock important">
-<table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">CI (Continuous Integration)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Is your code good?</p>
+</li>
+<li>
+<p>earlier you run tests, sooner you find problems</p>
+</li>
+<li>
+<p>makes sure that any file edits made integrate well with the stable code base</p>
+<div class="ulist">
+<ul>
+<li>
+<p>functional tests</p>
+</li>
+<li>
+<p>security scans</p>
+</li>
+<li>
+<p>code quality scans</p>
+</li>
+<li>
+<p>performance tests</p>
+</li>
+<li>
+<p>license scanning</p>
+</li>
+<li>
+<p>fuzz testing</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>gives everyone on the team an understanding of the state of the
+software</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">CD (Continuous Delivery / Continous Deployment)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>more ambiguous</p>
+</li>
+<li>
+<p>finding out where your code should go</p>
+<div class="ulist">
+<ul>
+<li>
+<p>and putting it there</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>make releases "boring"</p>
+</li>
+<li>
+<p>different environments</p>
+<div class="ulist">
+<ul>
+<li>
+<p>testing/development environments (run against feature branches etc)</p>
+</li>
+<li>
+<p>staging/pre-prodcution (run against main)</p>
+</li>
+<li>
+<p>production envs (run against tags)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>continuous delivery</p>
+<div class="ulist">
+<ul>
+<li>
+<p>automatic deploy to test and dev envs</p>
+</li>
+<li>
+<p>not automatically deployed to production without manual approval</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>continuous deployment</p>
+<div class="ulist">
+<ul>
+<li>
+<p>deploy to production automatically</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>building/packaging</p>
+<div class="ulist">
+<ul>
+<li>
+<p>preparing the code into deployable form</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ruby gem</p>
+</li>
+<li>
+<p>java war/ear</p>
+</li>
+<li>
+<p>c code &#8594; docker image</p>
+</li>
+<li>
+<p>tarball</p>
+</li>
+<li>
+<p>no packaging/building</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>sending/delivering/deploying</p>
+<div class="ulist">
+<ul>
+<li>
+<p>pushing docker image to repository</p>
+</li>
+<li>
+<p>using a cli tool to deploy to AWS environment</p>
+</li>
+<li>
+<p>last (sometimes only) task of CD</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">CI/CD Pipeline can be tool agnostic</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>pipelines ultimately boil down to a series of shell commands</p>
+<div class="ulist">
+<ul>
+<li>
+<p>that run automatically</p>
+</li>
+<li>
+<p>i.e. series of tasks run by a robot that relate to</p>
+<div class="ulist">
+<ul>
+<li>
+<p>building</p>
+</li>
+<li>
+<p>verifying</p>
+</li>
+<li>
+<p>deploying</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview_of_gitlab_ci"><a class="anchor" href="#_overview_of_gitlab_ci"></a>2. Overview of Gitlab CI</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">A Gitlab CI/CD pipeline is a series of steps</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>performed on your files</p>
+</li>
+<li>
+<p>when ever you commit and push source code changes</p>
+</li>
+<li>
+<p>blueprint/recipe</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Steps</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>tasks that are performed on your files</p>
+<div class="ulist">
+<ul>
+<li>
+<p>tests</p>
+</li>
+<li>
+<p>security scans</p>
+</li>
+<li>
+<p>build / packaging</p>
+<div class="ulist">
+<ul>
+<li>
+<p>zip file?</p>
+</li>
+<li>
+<p>linux package?</p>
+</li>
+<li>
+<p>docker container?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>deploy / set up</p>
+<div class="ulist">
+<ul>
+<li>
+<p>test env</p>
+</li>
+<li>
+<p>prod env</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>inspect, test, package, deploy, any manpipulation of files</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Runners</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Runners are robots/daemons/programs that</p>
+<div class="ulist">
+<ul>
+<li>
+<p>take these steps from somewhere (e.g. Github/Gitlab instance)</p>
+</li>
+<li>
+<p>and execute them in an environment</p>
+</li>
+<li>
+<p>where the rubber meets the road</p>
+<div class="ulist">
+<ul>
+<li>
+<p>CI/CD code to actual tasks</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Parts of a pieline</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Stages</p>
+<div class="ulist">
+<ul>
+<li>
+<p>One or more</p>
+</li>
+<li>
+<p>help readibility/maintainibility of pipeline</p>
+</li>
+<li>
+<p>collection of pipeline tasks that are related</p>
+<div class="ulist">
+<ul>
+<li>
+<p>build</p>
+<div class="ulist">
+<ul>
+<li>
+<p>compile</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>package?</p>
+</li>
+<li>
+<p>test</p>
+<div class="ulist">
+<ul>
+<li>
+<p>linting</p>
+</li>
+<li>
+<p>unit tests</p>
+</li>
+<li>
+<p>scans</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>deploy</p>
+<div class="ulist">
+<ul>
+<li>
+<p>package</p>
+</li>
+<li>
+<p>deliver</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>each stage is executed sequentially by default</p>
+<div class="ulist">
+<ul>
+<li>
+<p>one stage after another</p>
+</li>
+<li>
+<p>can be changed using the needs keyword</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Jobs</p>
+<div class="ulist">
+<ul>
+<li>
+<p>equivilant to steps/tasks</p>
+</li>
+<li>
+<p>Each stage contains one more more jobs</p>
+</li>
+<li>
+<p>best practice to have each job do one task</p>
+</li>
+<li>
+<p>all jobs within a stage are executed in parallel by default</p>
+<div class="ulist">
+<ul>
+<li>
+<p>can be changed using the needs keyword</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Commands</p>
+<div class="ulist">
+<ul>
+<li>
+<p>each job contains one or more commands</p>
+</li>
+<li>
+<p>job is the robot/runner take types commands in to a bash shell</p>
+<div class="ulist">
+<ul>
+<li>
+<p>javac *.java</p>
+</li>
+<li>
+<p>docker build --tag my_app:1.2</p>
+</li>
+<li>
+<p>mvn test</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>in the end, running all of the commands of a pipeline manually</p>
+</li>
+<li>
+<p>is the same thing as running the pipeline through a runner</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Running Pipelines</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>automatically</p>
+<div class="ulist">
+<ul>
+<li>
+<p>commit push</p>
+</li>
+<li>
+<p>merge request</p>
+<div class="ulist">
+<ul>
+<li>
+<p>source code of branch of merge request</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>merged result</p>
+<div class="ulist">
+<ul>
+<li>
+<p>pipeline on a temporary merge</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>merge train</p>
+<div class="ulist">
+<ul>
+<li>
+<p>sepearte, concurrent merged result piepeline</p>
+</li>
+<li>
+<p>temp merge of source branches from every merge request that&#8217;s ahead of the current merge request in the queue.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>manually</p>
+<div class="ulist">
+<ul>
+<li>
+<p>branch</p>
+</li>
+<li>
+<p>tag</p>
+</li>
+<li>
+<p>skipping pipelines</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>certain "features" of the single pipeline can be turned on or off,</p>
+<div class="ulist">
+<ul>
+<li>
+<p>depending on which features make sesnse for the type of changes.</p>
+</li>
+<li>
+<p>unit tests on code changes</p>
+</li>
+<li>
+<p>spelling/editing tests on documentation changes</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_karlina_and_it4is_cicd_setup"><a class="anchor" href="#_karlina_and_it4is_cicd_setup"></a>3. Karlina and IT4I&#8217;s CI/CD setup</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Documentation</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.it4i.cz/general/tools/cicd/#execution-of-ci-pipelines-in-docker-containers" class="bare">docs.it4i.cz/general/tools/cicd/#execution-of-ci-pipelines-in-docker-containers</a></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Gitlab Instance</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>code.it4i.cz</p>
+<div class="ulist">
+<ul>
+<li>
+<p>you should have an account.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Gitlab Runners</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>7 System Runners</p>
+</li>
+<li>
+<p>5 Docker Runners</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Jacamar CI</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>System Runners use a custom executor model called Jacamar CI</p>
+</li>
+<li>
+<p>handles authorisation and downscoping, matching hpc username to Gitlab username</p>
+</li>
+<li>
+<p>interacts directly with SLURM/PBS schedulers</p>
+</li>
+<li>
+<p>documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://ecp-ci.gitlab.io/docs/admin/jacamar/introduction.html" class="bare">ecp-ci.gitlab.io/docs/admin/jacamar/introduction.html</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_a_comparison_of_gitlab_ci_and_github_actions"><a class="anchor" href="#_a_comparison_of_gitlab_ci_and_github_actions"></a>4. A comparison of Gitlab CI and Github Actions</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Similarities</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>both systems base their workflow language on YAML</p>
+</li>
+<li>
+<p>both systems support multiple stages, and work directly on your files in the associated repo.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Differences</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Gitlab CI does not have a comparable marketplace like Github Actions.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>new feature/component under development, available: "Gitlab Steps"</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.gitlab.com/17.9/ci/steps/" class="bare">docs.gitlab.com/17.9/ci/steps/</a></p>
+</li>
+<li>
+<p>official components developed by Gitlab (safe but not so many)</p>
+</li>
+<li>
+<p>support now added to use Github Actions in Gitlab CI. Weird!</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Gitlab has support for custom executers</p>
+<div class="ulist">
+<ul>
+<li>
+<p>JacamarCI</p>
+</li>
+<li>
+<p>a native Kubernetes executer.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>only one pipeline workflow file per project</p>
+</li>
+<li>
+<p>.gitlab-ci.yml</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="sect2">
+<h3 id="_what_is_a_github_action"><a class="anchor" href="#_what_is_a_github_action"></a>4.1. What is a Github Action?</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>a container image, in principle.</p>
+</li>
+<li>
+<p>either has an action.yml that calls javascript code.</p>
+</li>
+<li>
+<p>or a Dockerfile that can call anything (python, c, etc)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gitlab_yaml_syntax"><a class="anchor" href="#_gitlab_yaml_syntax"></a>5. Gitlab YAML syntax</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">documentation</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.gitlab.com/ci/migration/github_actions/#github-actions-workflow-syntax" class="bare">docs.gitlab.com/ci/migration/github_actions/#github-actions-workflow-syntax</a></p>
+</li>
+<li>
+<p><a href="https://docs.github.com/en/actions/migrating-to-github-actions/manually-migrating-to-github-actions/migrating-from-gitlab-cicd-to-github-actions" class="bare">docs.github.com/en/actions/migrating-to-github-actions/manually-migrating-to-github-actions/migrating-from-gitlab-cicd-to-github-actions</a></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">key differences</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
 <tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-The pages can be downloaded via the green button at the top right of the page. The commands are shell commands and can be executed in a terminal, however, do not copy the <code>%%bash</code> magic command that is used to execute the commands in the Jupyter Notebook environment.
-</td>
+<th class="tableblock halign-left valign-top">GitHub</th>
+<th class="tableblock halign-left valign-top">GitLab</th>
 </tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"on"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no keyword</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"run"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no keyword</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"jobs"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"stages"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"env"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"variables"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"runs-on"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"tags"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"steps"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"script"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"uses"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"inculde"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"container"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"image"</p></td>
+</tr>
+</tbody>
 </table>
-</div>
-<div class="paragraph">
-<p>Working with files is an essential part of Linux, and it’s a skill every Linux user must master. In Linux, everything is considered a file: text documents, images, system files, devices, and even directories. Linux provides numerous command-line utilities to create, view, move, or search files. Some of the basic commands for file handling in the Linux terminal include <code>touch</code> for creating files, <code>mv</code> for moving files, <code>cp</code> for copying files, <code>rm</code> for removing files, and <code>ls</code> for listing files and directories.</p>
-</div>
-<div class="paragraph">
-<p>For example, to create a file named <code>example.txt</code>, you can use the following command:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/
-mkdir documents
-cd documents
-touch example.txt</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre></pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>To list the files in the current directory, use the command:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-ls</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>example.txt</pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>Knowing how to effectively manage and manipulate files in Linux is crucial for administering and running a successful Linux system.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_file_permissions"><a class="anchor" href="#_file_permissions"></a>1. File Permissions</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Linux is a multi-user system, and file permissions play a vital role in protecting files from unauthorized access or modification. Every file and directory has associated permissions that determine who can read, write, or execute the file.</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>r</code> (read)</strong>: Allows reading the file.</p>
+<p>no "on" keyword</p>
 </li>
 <li>
-<p><strong><code>w</code> (write)</strong>: Allows modifying the file.</p>
+<p>no "run" keyword</p>
 </li>
 <li>
-<p><strong><code>x</code> (execute)</strong>: Allows running the file as a program.</p>
+<p>upload-artifact and download-artifact replaced with "artifcats"</p>
 </li>
-</ul>
-</div>
-<div class="paragraph">
-<p>To view file permissions, use:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-ls -l</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>total 0
--rw-r--r-- 1 runner docker 0 Mar 25 12:50 example.txt</pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>To modify file permissions, use <code>chmod</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-touch file.txt
-ls -l file.txt
-chmod 755 file.txt
-ls -l file.txt
-chmod +x file.txt
-ls -l file.txt
-chmod go+x file.txt
-ls -l file.txt</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>-rw-r--r-- 1 runner docker 0 Mar 25 12:50 file.txt
--rwxr-xr-x 1 runner docker 0 Mar 25 12:50 file.txt
--rwxr-xr-x 1 runner docker 0 Mar 25 12:50 file.txt
--rwxr-xr-x 1 runner docker 0 Mar 25 12:50 file.txt</pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>This sets the file permissions to <strong>rwxr-xr-x</strong>, where the owner can read, write, and execute the file, while others can only read and execute it.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_archiving_and_compressing"><a class="anchor" href="#_archiving_and_compressing"></a>2. Archiving and Compressing</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Archiving and compressing files helps manage storage and transfer large amounts of data efficiently. In Linux, commands like <code>tar</code>, <code>gzip</code>, and <code>bzip2</code> are used for this purpose.</p>
-</div>
-<div class="paragraph">
-<p>To create an archive of files:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-touch file1.txt
-tar -cvf archive.tar file.txt file1.txt
-ls -l</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>file.txt
-file1.txt
-total 12
--rw-r--r-- 1 runner docker 10240 Mar 25 12:50 archive.tar
--rw-r--r-- 1 runner docker     0 Mar 25 12:50 example.txt
--rwxr-xr-x 1 runner docker     0 Mar 25 12:50 file.txt
--rw-r--r-- 1 runner docker     0 Mar 25 12:50 file1.txt</pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>To compress the archive:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-gzip archive.tar
-ls -l</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>total 4
--rw-r--r-- 1 runner docker 157 Mar 25 12:50 archive.tar.gz
--rw-r--r-- 1 runner docker   0 Mar 25 12:50 example.txt
--rwxr-xr-x 1 runner docker   0 Mar 25 12:50 file.txt
--rw-r--r-- 1 runner docker   0 Mar 25 12:50 file1.txt</pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>The file will now be compressed as <code>archive.tar.gz</code>.</p>
-</div>
-<div class="paragraph">
-<p>To extract a tar file:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-mkdir temp
-cd temp
-tar -xzvf ../archive.tar.gz
-ls -lrt</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>file.txt
-file1.txt
-total 0
--rw-r--r-- 1 runner docker 0 Mar 25 12:50 file1.txt
--rwxr-xr-x 1 runner docker 0 Mar 25 12:50 file.txt</pre>
-</div>
-</div>
-</div>
-</details>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_copying_and_renaming_files"><a class="anchor" href="#_copying_and_renaming_files"></a>3. Copying and Renaming Files</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Copying and renaming files are essential operations when managing file systems. The <code>cp</code> command is used to copy files, and <code>mv</code> is used both to move and rename files.</p>
-</div>
-<div class="paragraph">
-<p>To copy a file:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-cp file.txt /tmp
-ls /tmp</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>clr-debug-pipe-1632-13657-in
-clr-debug-pipe-1632-13657-out
-clr-debug-pipe-1649-13908-in
-clr-debug-pipe-1649-13908-out
-clr-debug-pipe-619-918-in
-clr-debug-pipe-619-918-out
-documents
-dotnet-diagnostic-1632-13657-socket
-dotnet-diagnostic-1649-13908-socket
-dotnet-diagnostic-619-918-socket
-file.txt
-snap-private-tmp
-systemd-private-c08b53ee035f49c2b420110c6f35bd27-chrony.service-BDwH1i
-systemd-private-c08b53ee035f49c2b420110c6f35bd27-haveged.service-ainiDL
-systemd-private-c08b53ee035f49c2b420110c6f35bd27-systemd-logind.service-cEvbTX
-systemd-private-c08b53ee035f49c2b420110c6f35bd27-systemd-resolved.service-Zeubc5
-www-data-temp-aspnet-0</pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>To rename a file:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-mv /tmp/file.txt newname.txt
-ls</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>archive.tar.gz
-example.txt
-file.txt
-file1.txt
-newname.txt
-temp</pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>To move a file to a different directory:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-mv newname.txt /tmp
-ls /tmp</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre>clr-debug-pipe-1632-13657-in
-clr-debug-pipe-1632-13657-out
-clr-debug-pipe-1649-13908-in
-clr-debug-pipe-1649-13908-out
-clr-debug-pipe-619-918-in
-clr-debug-pipe-619-918-out
-documents
-dotnet-diagnostic-1632-13657-socket
-dotnet-diagnostic-1649-13908-socket
-dotnet-diagnostic-619-918-socket
-newname.txt
-snap-private-tmp
-systemd-private-c08b53ee035f49c2b420110c6f35bd27-chrony.service-BDwH1i
-systemd-private-c08b53ee035f49c2b420110c6f35bd27-haveged.service-ainiDL
-systemd-private-c08b53ee035f49c2b420110c6f35bd27-systemd-logind.service-cEvbTX
-systemd-private-c08b53ee035f49c2b420110c6f35bd27-systemd-resolved.service-Zeubc5
-www-data-temp-aspnet-0</pre>
-</div>
-</div>
-</div>
-</details>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_soft_links_hard_links"><a class="anchor" href="#_soft_links_hard_links"></a>4. Soft Links / Hard Links</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Links in Linux are shortcuts to files or directories. There are two types of links: <strong>soft links</strong> (symbolic links) and <strong>hard links</strong>.</p>
-</div>
+<li>
+<p>secrets management</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Soft Link (Symbolic Link)</strong>: A pointer to a file or directory. Removing the original file breaks the link.</p>
+<p>github has integrated secrets management</p>
 </li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-rm -f softlink.txt
-ln -s file.txt softlink.txt</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre></pre>
-</div>
-</div>
-</div>
-</details>
-<div class="ulist">
-<ul>
 <li>
-<p><strong>Hard Link</strong>: A copy of the file’s inode, meaning it references the same data as the original file. Deleting the original file does not break the link.</p>
+<p>gitlab encourages 3rd party tools (like Vault)</p>
+</li>
+<li>
+<p>or have to use masked and protected ci/cd variables</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%%bash
-cd /tmp/documents
-rm -f newlink.txt
-ln file.txt newlink.txt</code></pre>
-</div>
-</div>
-<details open>
-<summary class="title">Results</summary>
-<div class="content">
-<div class="literalblock dynamic-py-result">
-<div class="content">
-<pre></pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>Hard links can only be created for files on the same filesystem.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_summary"><a class="anchor" href="#_summary"></a>5. Summary</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>File management in Linux is a fundamental task that includes working with file permissions, compressing files, copying/renaming files, and creating links. These skills ensure efficient handling of data and system administration tasks.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
