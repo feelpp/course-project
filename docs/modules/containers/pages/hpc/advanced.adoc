@@ -86,11 +86,11 @@ ink="https://spack.io/",width=75%]
 
 [IMPORTANT]
 ====
-*Conclusions:*  
+[left,width=10%]
+--
+image:spack/spack-logo.png[width=90%,title="Spack Logo",link="https://spack.io/"]
+--
 HPC environments demand a more flexible and powerful approach to building and managing software than typical package managers can provide. Containers alone cannot address the complexity and variability of HPC systems. A specialized tool—capable of handling multiple compilers, custom build configurations, and per-architecture optimizations—is essential to keep HPC software manageable, performant, and reproducible.
-
-.Check out spack at https://hpsf.io/projects/[> HPSF]
-image::spack/spack-logo.png[width=20%,title="Spack Logo",link="https://spack.io/"]
 ====
 
 IMPORTANT: guix-hpc is an alternative to Spack that is based on the Guix package manager. It provides a functional package management system with reproducible builds and a declarative package definition language. Guix-HPC is also particularly well-suited for scientific computing and HPC environments. The french NumPEx initiative is using both.
