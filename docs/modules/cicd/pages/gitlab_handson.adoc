@@ -1,0 +1,434 @@
+= Hands on: Gitlab CI/CD
+Sameer Haroon <sameer.haroon@hlrs.de>
+:toc:
+
+== Exercise 1: Connecting with Karolina Runners
+
+Our first task is to start working the officially provided Gitlab Runners from Karolina.
+
+As mentioned before, we have a number of runners available, however, we cannot choose one particular one to run our CI job. Instead, we can "match" with one runner, out of a possible group of runners, using the CI job labels, or tags.
+
+
+=== Step I: Making our repository
+
+First, we have to create a repository on the offical IT4I Gitlab.
+
+https://code.it4i.cz[Gitlab from IT4I]
+
+If you have access to the training resources, you also must have an
+account on the IT4I Gitlab.
+
+Create a repository called repo_one.
+(you can name it anything you like, but we will refer it as repo_one.)
+
+After creating the repo, navigate to Settings -> CI/CD.
+
+Here, you can see a list of available runners. Take careful note of
+the tags that each runner equips.
+
+=== Step II: Adding a Hello World CI Job
+
+Now, we will add our first Gitlab CI job, by adding the Gitlab YAML
+workflow file  to the repositoy.
+
+To do this, we can either edit the repository directly in the browser,
+or you can clone the repository to your local system and edit it in
+your preffered IDE/Environment.
+
+Create an empty file, and name it .gitlab-ci.yml
+(take care of any typos).
+
+Now, add the following basic YAML to it.
+
+..gitlab-ci.yml
+[source, yaml]
+----
+hello-runner-docker:
+  image: alpine
+  tags:
+    - docker
+    - centos7
+  script:
+    - echo 'HELLO WORLD!'
+    - hostname
+----
+
+
+Here, we are trying to target on of the 5 runners that have the Docker executor.
+These runners are on a separate cloud cluster from IT4I, so we won't be using the Karolina or Barbara runners just yet, for out first Hello World application.
+
+Now, commit and push the file.
+
+Go to your repository -> Build -> Jobs.
+
+Hopefully, you should see a succesful job run, and a Hello World printed out!
+
+
+== Exercise 2: Converting our Github App
+
+=== Step 1: Getting the C++ MPI Application
+
+Now, let's move on, or go back rather, to the MPI application from Day 1.
+
+We could do this using the same repository as Day 1, e.g. by mirroring
+the repo, however, to keep it clean and separate to GitLab, we will
+make a new repo on code.it4i.cz, and add the required files there manually.
+
+First, we create a new repo, let's call it repo_two.
+
+Then, to get the required files, we can first clone the Day 1 Github repository.
+
+[source, bash]
+----
+git clone https://github.com/coe-hidalgo2/202503-c3b-shirgho.git
+----
+
+Let's move the initially required files and folders to our new repo.(repo_two)
+
+----
+myapp/
+CMakePresets.json
+CMakeLists.txt
+----
+
+=== Step 2: Converting from GitHub to GitLab
+
+Now, comes our first challange. We have our first pipeline from
+Christoph, that compiled and ran our c++ application. But how do we
+run this on our Gitlab Runners?
+
+Here is the ci.yml code from this point in the Github Actions training:
+
+.ci.yml (Github Actions YAML)
+[source, yaml]
+----
+
+name: CI - Configure, Build, Test
+ 
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-test:
+    runs-on: self-ubuntu-24.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configure the Build System
+        run: |
+          cmake --preset default
+ 
+      - name: Build the Project
+        run: |
+          cmake --build --preset default
+ 
+      - name: Run Tests
+        run: |
+          ctest --preset default
+
+----
+
+.Hints
+----
+
+1. We need to replace the triggers in "on" with rules.
+2. We don't need the workflow dispatch.
+3. We don't need the "jobs" keyword.
+4. We need to define a "stage", a name for our stage and a name for our "job".
+5. We need to use the correct IT4I runner labels instead of runs on.
+6. We can replace the checkout action with a GitLab variable.
+7. We replace the "run" keyword for the bash commands with "script".
+----
+
+.Solution
+[%collapsible.proof]
+====
+[source, yaml]
+----
+
+build-and-test:
+  tags:
+    - it4i
+    - karolina
+    - slurmjob
+    
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'main'
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    
+  variables:
+    GIT_CHECKOUT: "true"
+
+  script:
+    - module load Boost/1.83.0-GCC-13.2.0 Ninja/1.12.1-GCCcore-13.3.0 OpenMPI/4.1.6-GCC-13.2.0
+    - cmake --preset default
+    - cmake --build --preset default
+    - ctest --preset default
+
+----
+====
+
+=== Step 3: Deploying through JacamarCI to SLURM
+
+Actually, the above solution is not the solution for running on Karolina.
+
+This is because, we should follow the official and secure way of running on Karolina. This means we must utilise the JacamarCI executor, and any CI job we want to run on Karolina must be submitted as an sbatch job through Gitlab Runner and JacamarCI working together.
+
+The following .gitlab-ci.yml file gives us what we need.
+
+..gitlab-ci.yml
+[source, yaml]
+----
+
+stages:
+  - build-test
+
+build-and-test:
+  stage: build-test
+
+  tags:
+    - it4i
+    - karolina
+    - slurmjob
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'main'
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+
+  id_tokens:
+    SITE_ID_TOKEN:
+      aud: https://code.it4i.cz/
+
+  variables:
+    GIT_CHECKOUT: "true"
+    SCHEDULER_PARAMETERS: '-A DD-24-88 -p qcpu_exp -N 1 --ntasks-per-node=4'
+
+  script:
+    - module load Boost/1.83.0-GCC-13.2.0 Ninja/1.12.1-GCCcore-13.3.0 OpenMPI/4.1.6-GCC-13.2.0
+    - cmake --preset default
+    - cmake --build --preset default
+    - ctest --preset default
+
+----
+
+=== Step 4: Uploading the built package as an artifact
+
+Like we did in the Github Actions part, we can also upload built packages as artifacts to Gitlab.
+However, the syntax is different. Look at the documentation and try to figure it out.
+If short on time, can look at the solution.
+
+
+.ci.yml (Github Actions)
+[source, yaml]
+----
+- name: Upload tarball
+  uses: actions/upload-artifact@v4
+  with:
+    name: archive-${{ matrix.runs-on }}
+    path: |
+      build/default/*.tar.gz
+      README.adoc
+----
+
+
+.Solution
+[%collapsible.proof]
+====
+[source, yaml]
+----
+build-and-test:
+  tags:
+    - it4i
+    - karolina
+    - slurmjob
+
+  id_tokens:
+    SITE_ID_TOKEN:
+      aud: https://code.it4i.cz/
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'main'
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+
+  variables:
+    GIT_CHECKOUT: "true"
+    SCHEDULER_PARAMETERS: '-A DD-24-88 -p qcpu_exp -N 1 --ntasks-per-node=4'
+
+  script:
+    - module load Boost/1.83.0-GCC-13.2.0 Ninja/1.12.1-GCCcore-13.3.0 OpenMPI/4.1.6-GCC-13.2.0
+    - cmake --preset default
+    - cmake --build --preset default
+    - ctest --preset default
+    - cmake --build --preset default -t package
+
+  artifacts:
+    paths:
+      - build/default/*.tar.gz
+      - README.adoc
+    expire_in: 1 week
+----
+====
+
+
+
+== Exercise 3: Containers through GitLab
+
+Now, let us attempt to make use of the containerisation work done on
+Day 2, and skip the creation of the docker file and the Apptainer
+conversion.  Instead, we will directly pull the apptainer image we
+created, and submit it to SLURM via JacamarCI.
+
+This will have the advantage that we won't need the bash script
+infrastructure that we previously needed with the Github Actions
+workflow, in order to deploy or apptainer image to SLURM. Instead, we
+can do this simply through the Gitlab Runner and JacamarCI combo.
+
+=== Deploying to SLURM
+
+
+.deploy.yml (Github Actions)
+[source, yaml]
+----
+name: Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    strategy:
+      matrix:
+        runs-on: [self-ubuntu-24.04, karolina]
+    runs-on: ${{ matrix.runs-on }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Create sif filename
+        run: |
+          sif=$(basename "${{ github.repository }}.sif")
+          echo "SIF_FILENAME=$sif" >> $GITHUB_ENV
+      - name: Set APPTAINER_CMD
+        run: |
+          if [ "${{ matrix.runs-on }}" == "karolina" ]; then
+            apptainer_cmd=apptainer
+          else 
+            apptainer_cmd=/opt/apptainer/v1.4.0/apptainer/bin/apptainer
+          fi  
+          echo "Using apptainer command: $apptainer_cmd"
+          # Save the command in the environment for subsequent steps
+          echo "APPTAINER_CMD=$apptainer_cmd" >> $GITHUB_ENV
+      - name: PULL Apptainer SIF
+        run: |
+          # Pull the SIF file from GHCR
+          $APPTAINER_CMD pull -F $SIF_FILENAME oras://ghcr.io/${{ github.repository }}:2.0-sif
+          # inspect the SIF file
+          $APPTAINER_CMD inspect $SIF_FILENAME
+      - name: Run Container on self-ubuntu-24.04
+        if: matrix.runs-on == 'self-ubuntu-24.04'
+        run: |
+          # Run the SIF using the stored APPTAINER_CMD command and mpirun
+          mpirun -np 4 $APPTAINER_CMD run --sharens $SIF_FILENAME myapp
+      - name: Run Container on Karolina
+        if: matrix.runs-on == 'karolina'
+        run: |
+          bash job_monitor.sh $SIF_FILENAME
+----
+
+
+..gitlab-ci.yml
+[source, yaml]
+----
+
+stages:
+  - deploy
+
+apptainer-deploy:
+  stage: deploy
+
+  tags:
+    - it4i
+    - karolina
+    - slurmjob
+
+  id_tokens:
+    SITE_ID_TOKEN:
+      aud: https://code.it4i.cz/
+
+  variables:
+    GIT_CHECKOUT: "true"
+    SCHEDULER_PARAMETERS: '-A DD-24-88 -p qcpu_exp -N 1 --ntasks-per-node=4'
+    SIF_FILENAME: coe-hidalgo2/202503-c3b-prudhomm.sif
+
+  script:
+    - apptainer pull oras://ghcr.io/coe-hidalgo2/202503-c3b-prudhomm:main-sif
+    - apptainer inspect 202503-c3b-prudhomm.sif
+    - mpirun -np 4 apptainer run --sharens 202503-c3b-prudhomm.sif myapp
+
+----
+
+
+== (Bonus) Exercise 4: Self-hosted Runners
+
+We have now used both kinds of runners available to us through IT4I.
+To give you more of a feel of how the runners work, we will work
+through this bonus exercise, and set up our own personal runner, on our systems.
+
+Please note, this is just for personal testing. It is not meant to do
+any production work. A runner that has access to your system CAN BE dangerous.
+For example, if you workflow file deletes important files from your system,
+they will be gone from your actual system!
+
+With that in mind, if you would rather not do this exercise, that is also fine.
+
+
+
+=== Setting up your personal runner
+
+Use the instructions at
+
+- https://docs.gitlab.com/runner/register/
+- https://docs.gitlab.com/runner/install/
+- https://docs.gitlab.com/runner/install/linux-manually/
+
+to set up your runner on your own system.
+
+
+=== Building a simple pipeline
+
+Now, we can create a new workflow, something simple and suitable to run at home (i.e. your system).
+
+. A multi-stage simple workflow
+[source, yaml]
+----
+stages:
+  - compile
+  - test
+  - package
+
+compile:
+  stage: compile
+  script: cat file1.txt file2.txt > compiled.txt
+  artifacts:
+    paths:
+    - compiled.txt
+
+test:
+  stage: test
+  script: cat compiled.txt | grep -q 'Hello world'
+
+package:
+  stage: package
+  script: cat compiled.txt | gzip > packaged.gz
+  artifacts:
+    paths:
+    - packaged.gz
+----
+
+
+
