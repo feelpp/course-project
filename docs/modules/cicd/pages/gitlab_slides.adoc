@@ -1,20 +1,19 @@
 = CI/CD through Gitlab 
-Sameer Haroon <sameer.haroon@hlrs.de>
-:toc:
+:revealjsdir: ../reveal.js
 
 == Review of CI/CD as a concept
 
-.DevOps and CI/CD (1/3)
+=== DevOps and CI/CD (1/3)
 image::../images/Gitlab_CI-Page-3-1.drawio.svg[DevOps_CICD]
 
-.DevOps and CI/CD (2/3)
+=== DevOps and CI/CD (2/3)
 image::../images/Gitlab_CI-Page-3-2.drawio.svg[DevOps_CICD]
 
-.DevOps and CI/CD (3/3)
+=== DevOps and CI/CD (3/3)
 image::../images/Gitlab_CI-Page-3-3.drawio.svg[DevOps_CICD]
 
+=== CI (Continuous Integration)
 
-CI (Continuous Integration)::
 * Is your code good?
 * earlier you run tests, sooner you find problems
 * makes sure that any file edits made integrate well with the stable code base
@@ -26,7 +25,8 @@ CI (Continuous Integration)::
 ** fuzz testing
 * gives everyone on the team an understanding of the state of thesoftware
 
-CD (Continuous Delivery / Continous Deployment)::
+=== CD (Continuous Delivery / Continous Deployment)
+
 * more ambiguous
 * finding out where your code should go
 ** and putting it there
@@ -37,13 +37,17 @@ CD (Continuous Delivery / Continous Deployment)::
 ** staging/pre-prodcution (run against main)
 ** production envs (run against tags)
 
-* continuous delivery#
+=== CD (Continuous Delivery / Continous Deployment)
+
+* continuous delivery
 ** automatic deploy to test and dev envs
 ** not automatically deployed to production without manual approval
+
 * continuous deployment
 ** deploy to production automatically
 
-* building/packaging
+
+=== building/packaging
 ** preparing the code into deployable form
 *** ruby gem
 *** java war/ear
@@ -51,12 +55,12 @@ CD (Continuous Delivery / Continous Deployment)::
 *** tarball
 *** no packaging/building
 
-* sending/delivering/deploying
+=== sending/delivering/deploying
 ** pushing docker image to repository
 ** using a cli tool to deploy to AWS environment
 ** last (sometimes only) task of CD
 
-CI/CD Pipeline can be tool agnostic::
+=== CI/CD Pipeline can be tool agnostic
 * pipelines ultimately boil down to a series of shell commands
 ** that run automatically
 ** i.e. series of tasks run by a robot that relate to
@@ -70,17 +74,17 @@ CI/CD Pipeline can be tool agnostic::
 image::../images/Gitlab_CI-Page-1.drawio.svg[Gitlab_CI]
 
 
-The three major parts of a Gitlab CI/CD pipeline::
+=== The three major parts of a Gitlab CI/CD pipeline
 * the Gitlab instance
 * The Gitlab CI Workflow file
 * Gitlab Runner(s)
 
-The Gitlab CI Workflow file::
+=== The Gitlab CI Workflow file
 * is a series of steps performed on your files
 * when ever you commit and push source code changes
 * can be thought of as a blueprint/recipe
 
-Steps::
+=== Steps
 * tasks that are performed on your files
 ** tests
 ** security scans
@@ -93,13 +97,14 @@ Steps::
 *** prod env
 * basically, steps are any manipulation of your repository files
 
-Runners::
+=== Runners (1/4)
 * Runners are robots/daemons/programs that
 ** take these steps from somewhere (e.g. Github/Gitlab instance)
 ** and execute them in an environment
 ** where the rubber meets the road
 *** CI/CD code to actual tasks
 
+=== Runners (2/4)
 * GitLab Runners are open source programs
 ** written in Go
 ** https://gitlab.com/gitlab-org/gitlab-runner
@@ -107,11 +112,13 @@ Runners::
 ** or used through 3rd party installations (e.g. Gitlab.com runners)
 ** Each Runner Agent can spawn multiple runner processes.
 
+=== Runners (3/4)
 * Runners can be private or shared
 ** specifically registered to a single repository
 ** Or shared with a project/organisation
 ** Or belong to an entire GitLab instance
 
+=== Runners (4/4)
 * Runners have different "executors"
 ** This allows them to perform or execute your steps
 ** In different environments.
@@ -121,19 +128,25 @@ Runners::
 *** Kubernetes
 *** Custom
 
+
+== Parts of a pipeline (1/5)
+
 .Anatomy of a Pipeline Workflow
 image::../images/Gitlab_CI-Page-2.drawio.svg[Workflow_File]
 
+=== Parts of a pipeline (2/5)
 
-
-Parts of a pipeline::
 * Stages
-** Each pipeline is made up of one or more "Stages"
+** Each Pipeline is made up of ne or more "Stages"
 ** help readibility/maintainibility of pipeline
 ** collection of pipeline tasks that are related
+
+
+=== Parts of a pipeline (3/5)
+
 *** build
 **** compile
-*** package?
+**** package?
 *** test
 **** linting
 **** unit tests
@@ -141,9 +154,14 @@ Parts of a pipeline::
 *** deploy
 **** package
 **** deliver
+
+
 *** each stage is executed sequentially by default
 **** one stage after another
 **** can be changed using the needs keyword
+
+
+=== Parts of a pipeline (4/5)
 
 * Jobs
 ** equivilant to steps/tasks
@@ -152,16 +170,19 @@ Parts of a pipeline::
 ** all jobs within a stage are executed in parallel by default
 *** can be changed using the needs keyword
 
+
+=== Parts of a pipeline (5/5)
+
 * Commands
 ** each job contains one or more commands
 ** job is the robot/runner take types commands in to a bash shell
 *** javac *.java
 *** docker build --tag my_app:1.2
-*** mvn test
 ** in the end, running all of the commands of a pipeline manually
-** is the same thing as running the pipeline through a runner
-  
-Running Pipelines::
+*** is the same thing as running the pipeline through a runner
+
+
+=== Running Pipeline (1/2)
 * automatically
 ** commit push
 ** merge request
@@ -171,6 +192,9 @@ Running Pipelines::
 ** merge train
 *** seperate, concurrent merged result piepeline
 *** temp merge of source branches from every merge request that's ahead of the current merge request in the queue.
+
+=== Running Pipeline (2/2)
+
 * manually
 ** branch
 ** tag
@@ -189,11 +213,11 @@ image::../images/it4i-ci.svg[IT4I_CICD]
 Documentation::
 * https://docs.it4i.cz/general/tools/cicd/#cicd
 
-Gitlab Instance::
+=== Gitlab Instance
 * https://code.it4i.cz
 ** If you have been granted access to Karolina or other IT4I systems, you should have an account here.
 
-Gitlab Runners::
+=== Gitlab Runners (1/2)
 * 7 System Runners
 ** 4 runners (of this type) running in the login nodes of Karolina,
 ** 2 runners (of this type) running in the login nodes of Barbora,
@@ -201,11 +225,13 @@ Gitlab Runners::
 
 * 5 Docker Runners
 
+=== Gitlab Runners (2/2)
+
 * We are not able to choose exactly which of the GitLab runners will be picked.
 ** We use tags to select which cluster we want the CI job to be submitted to as a SLURM job.
 ** One of the GitLab runners that match our CI job's tags(running in the login node of the specified cluster) will automatically pick our  job.
 
-Jacamar CI::
+=== Jacamar CI
 * System Runners use a custom executor model called Jacamar CI 
 * handles authorisation and downscoping, matching hpc username to Gitlab username
 * interacts directly with SLURM/PBS schedulers
@@ -215,12 +241,12 @@ Jacamar CI::
  
 == A comparison of Gitlab CI and Github Actions
 
-Similarities::
+=== Similarities
 
 * both systems base their workflow language on YAML
 * both systems support multiple stages, and work directly on your files in the associated repo.
 
-Differences::
+=== Differences (1/3)
 
 * Gitlab CI does not have a comparable marketplace like Github Actions.
 ** new feature/component under development, available: "Gitlab Steps"
@@ -228,13 +254,6 @@ Differences::
 *** official components developed by Gitlab (safe but not so many)
 *** support now added to use Github Actions in Gitlab CI. Weird!
  
-* Gitlab has support for custom executers
-** JacamarCI
-** a native Kubernetes executer.
-
-* only one pipeline workflow file per project
-* .gitlab-ci.yml
-
 === What is a Github Action?
 
 * A Github action can be thought of as a simple program, or more like a Function As A Service.
@@ -243,14 +262,36 @@ Differences::
 ** Either a docker file to make a container based action. This can run anything from shell scripts to python code.
 * Or a Nodejs application, usually calling index.html as the starting point.
 
+=== Differences (2/3)
+* Gitlab has support for custom executers
+** JacamarCI
+** a native Kubernetes executer.
+** virtual machines
+** ssh
 
-== Gitlab YAML syntax
+=== Differences (3/3)
+
+* only one pipeline workflow file per project
+** .gitlab-ci.yml
+
+* Actually, not really true
+** Many advanced ways to run multiple workflow files per project.
+** include keyword, parent-child workflows, other advanced techniques.
+** However, they are all technically part of one pipeline.
+** So more correct to say, one pipeline per project.
+
+* also, .gitlab-ci.yml filename can be changed
+** is just the default
+** can also be moved out of the project
+
+
+== Gitlab DSL / YAML syntax
 
 documentation::
 * https://docs.gitlab.com/ci/migration/github_actions/#github-actions-workflow-syntax
 * https://docs.github.com/en/actions/migrating-to-github-actions/manually-migrating-to-github-actions/migrating-from-gitlab-cicd-to-github-actions
 
-key differences::
+=== Syntax differences
 
 [%header,cols=2*]
 |===
@@ -282,6 +323,8 @@ key differences::
 | "image"
 
 |===
+
+=== Some more differences
 
 * no "on" keyword
 * no "run" keyword
