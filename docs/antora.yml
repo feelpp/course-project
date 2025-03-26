@@ -32,7 +32,7 @@ ext:
         base: modules/project-management/attachments/        
 nav:
 - modules/containers/nav.adoc
-#- modules/cicd/nav.adoc
+- modules/cicd/nav.adoc
 #- modules/ROOT/nav.adoc
 #- modules/linux/nav.adoc
 #- modules/vscode/nav.adoc

@@ -1,1 +1,6 @@
-* xref:index.adoc[Introduction to CI/CD fundamentals with GitHub Actions ]
+* CICD
+** xref:index.adoc[CI/CD with GitHub Actions ]
+** xref:gitlab.adoc[CI/CD with GitLab]
+
+* HandsOn
+** xref:gitlab_handson.adoc[Hands on with GitLab]
