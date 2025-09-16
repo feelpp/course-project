@@ -39,7 +39,8 @@ nav:
 - modules/project-management/nav.adoc
 - modules/git & github/nav.adoc
 - modules/software/nav.adoc
-#- modules/containers/nav.adoc
+- modules/containers/nav.adoc
+- modules/cicd/nav.adoc
 #- modules/visualisation/nav.adoc
 
 
