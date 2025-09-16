@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Antora Feel++ UI :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/feelpp-antora-ui/index.html">
-    <link rel="next" href="style-guide.html">
+    <link rel="next" href="search-setup.html">
     <meta name="generator" content="Antora 3.1.7">
-    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="stylesheet" href="../_/css/site.css">
+
+<!-- Font Awesome webfont CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
 <script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
 
@@ -143,10 +147,22 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="search-setup.html">Search Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="policy-templates.html">Policy Templates</a>
+  </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="style-guide.html">UI Element Styles</a>
+    <span class="nav-text">UI Element Styles</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="style-guide.html">Style Guide</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="inline-text-styles.html">Inline Text</a>
   </li>
@@ -154,7 +170,7 @@ MathJax.Hub.Config({
     <a class="nav-link" href="admonition-styles.html">Admonitions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="dynamic-processor.html">Dynamic processor</a>
+    <a class="nav-link" href="dynamic-processor.html">Dynamic Processor</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="source-highlighting.html">Source Highlighting</a>
@@ -165,10 +181,106 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="pseudocode.html">Pseudocode</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="lead.html">Lead Paragraphs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="images.html">Images &amp; Icons</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="page-layouts.html">Page Layouts</a>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Layout Helpers</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="grid.html">Layout Helpers (Grid)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="page-layouts.html">Page Layouts Overview</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Catalog Layouts (via Manuals)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="manuals.html">Manuals (Catalog Engine)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="layout-examples.html">Examples Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="layout-benchmarks.html">Benchmarks Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="layout-reports.html">Reports Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="layout-applications.html">Applications Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="layout-machines.html">Machines Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="layout-usecases.html">Use Cases Catalog</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Page Types</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="page-example.html">Example Page</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="page-benchmark.html">Benchmark Page</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="page-report.html">Report Page</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="page-application.html">Application Page</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="page-machine.html">Machine Page</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="page-usecase.html">Use Case Page</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cards System</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="card-system.html">Card System Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="catalogExample/catalog.html">Catalog Example</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Policies &amp; Legal</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="terms-of-use.html">Terms of Use</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="privacy-policy.html">Privacy Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cookie-policy.html">Cookie Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="support-policy.html">Support Policy</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -199,6 +311,7 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Antora Feel++ UI</a></li>
+    <li><a href="index.html">Overview</a></li>
   </ul>
 </nav>
 
@@ -227,9 +340,41 @@ MathJax.Hub.Config({
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This project produces the <a href="https://feelpp.github.io/antora-ui/">default UI bundle</a> for documentation sites generated with <a href="https://antora.org">Antora</a>.
+<p>This project produces the <a href="https://feelpp.github.io/antora-ui/">Feel++ UI bundle</a> for documentation sites generated with <a href="https://antora.org">Antora</a>.
 It contains the UI assets (page templates, CSS, JavaScript, images, etc.) and a Gulp build script.
 The build can be used to preview the UI locally (featuring live updates), or to package it for consumption by the Antora site generator.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_key_features"><a class="anchor" href="#_key_features"></a>1. Key Features</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Feel++ Antora UI provides several advanced features beyond the standard Antora UI:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Card-Based Navigation</dt>
+<dd>
+<p>Sophisticated catalog system with automatic card generation for related content</p>
+</dd>
+<dt class="hdlist1">Font Awesome Integration</dt>
+<dd>
+<p>First-class support for Font Awesome icons in page illustrations</p>
+</dd>
+<dt class="hdlist1">Multiple Layout Types</dt>
+<dd>
+<p>Specialized layouts for manuals, catalogs, case studies, and reports</p>
+</dd>
+<dt class="hdlist1">Responsive Design</dt>
+<dd>
+<p>Mobile-first design with adaptive layouts across all device sizes</p>
+</dd>
+<dt class="hdlist1">Enhanced Styling</dt>
+<dd>
+<p>Custom CSS for scientific documentation including math rendering support</p>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
 <p>This documentation explains how to use this project to set up, customize and manage a UI for a documentation site generated with Antora.
@@ -257,7 +402,7 @@ After reading it, you&#8217;ll be able to:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_file_type_and_technology_overview"><a class="anchor" href="#_file_type_and_technology_overview"></a>1. File type and technology overview</h2>
+<h2 id="_file_type_and_technology_overview"><a class="anchor" href="#_file_type_and_technology_overview"></a>2. File type and technology overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Antora UI consists of the following file types that are used to structure and style the documentation site pages generated by Antora.</p>
@@ -334,7 +479,7 @@ The most common postprocessor backports newer CSS features to older browsers by 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ui_project_versus_ui_bundle"><a class="anchor" href="#_ui_project_versus_ui_bundle"></a>2. UI project versus UI bundle</h2>
+<h2 id="_ui_project_versus_ui_bundle"><a class="anchor" href="#_ui_project_versus_ui_bundle"></a>3. UI project versus UI bundle</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The <strong class="term">UI project</strong>, which is comprised of the source files in the git repository, provides the recipe and raw materials for creating an Antora UI bundle.
@@ -345,7 +490,7 @@ This is your development workspace.</p>
 <p>The <strong class="term">UI bundle</strong>, a distributable archive, provides pre-compiled (interpreted, consolidated, and/or minimized) files that are ready to be used by Antora.</p>
 </div>
 <div class="sect2">
-<h3 id="_ui_project_repository_structure_default_branch"><a class="anchor" href="#_ui_project_repository_structure_default_branch"></a>2.1. UI project repository structure (default branch)</h3>
+<h3 id="_ui_project_repository_structure_default_branch"><a class="anchor" href="#_ui_project_repository_structure_default_branch"></a>3.1. UI project repository structure (default branch)</h3>
 <div class="paragraph">
 <p>You should think of the UI project&#8217;s default branch as your UI workspace.
 It contains the recipe and raw materials for creating a UI, including a build, source files, project files, and dependency information.</p>
@@ -398,7 +543,7 @@ preview-src/
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ui_bundle_structure_releases"><a class="anchor" href="#_ui_bundle_structure_releases"></a>2.2. UI bundle structure (releases)</h3>
+<h3 id="_ui_bundle_structure_releases"><a class="anchor" href="#_ui_bundle_structure_releases"></a>3.2. UI bundle structure (releases)</h3>
 <div class="paragraph">
 <p>The UI bundle&#8212;&#8203;a distributable archive&#8212;&#8203;provides files which are ready to be used by Antora.</p>
 </div>
@@ -447,7 +592,7 @@ Since these optimizations are only applied to the pre-compiled files, they don&#
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ui_compilation_and_generator_consumption_overview"><a class="anchor" href="#_ui_compilation_and_generator_consumption_overview"></a>3. UI compilation and generator consumption overview</h2>
+<h2 id="_ui_compilation_and_generator_consumption_overview"><a class="anchor" href="#_ui_compilation_and_generator_consumption_overview"></a>4. UI compilation and generator consumption overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The purpose of an Antora UI project is to assemble the UI files into a reusable distribution that Antora can use to compose the HTML pages and the assets they require.</p>
@@ -515,7 +660,7 @@ Antora then copies the remaining UI assets to the site output.</p>
 </div>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="style-guide.html">UI Element Styles</a></span>
+  <span class="next"><a href="search-setup.html">Search Setup</a></span>
 </nav>
 </article>
   </div>
@@ -539,10 +684,10 @@ Antora then copies the remaining UI assets to the site output.</p>
 </footer><script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
 
 
-<script async src="../_/js/vendor/fontawesome-icon-defs.js"></script>
-<script async src="../_/js/vendor/fontawesome.js"></script>
+<!-- Font Awesome JS removed to use webfont icons only -->
 <script async src="../_/js/vendor/highlight.js"></script>
 
+<script src="../_/js/vendor/lunr.js"></script>
 
 <script type="text/javascript">
 function toggleFullScreen() {

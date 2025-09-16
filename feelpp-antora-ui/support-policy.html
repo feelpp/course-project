@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Support Policy :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/feelpp-antora-ui/support-policy.html">
+    <link rel="prev" href="cookie-policy.html">
+    <meta name="description" content="Support policy for Feel++ software and documentation - community and commercial support options">
+    <meta name="keywords" content="support, help, community, documentation, feel++">
+    <meta name="generator" content="Antora 3.1.7">
+<link rel="stylesheet" href="../_/css/site.css">
+
+<!-- Font Awesome webfont CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header><div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="feelpp-antora-ui" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Antora Feel++ UI</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="search-setup.html">Search Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="policy-templates.html">Policy Templates</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">UI Element Styles</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="style-guide.html">Style Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="inline-text-styles.html">Inline Text</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="admonition-styles.html">Admonitions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dynamic-processor.html">Dynamic Processor</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="source-highlighting.html">Source Highlighting</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="copy-to-clipboard.html">Copy to Clipboard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="pseudocode.html">Pseudocode</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="lead.html">Lead Paragraphs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="images.html">Images &amp; Icons</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Layout Helpers</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="grid.html">Layout Helpers (Grid)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="page-layouts.html">Page Layouts Overview</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Catalog Layouts (via Manuals)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="manuals.html">Manuals (Catalog Engine)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="layout-examples.html">Examples Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="layout-benchmarks.html">Benchmarks Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="layout-reports.html">Reports Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="layout-applications.html">Applications Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="layout-machines.html">Machines Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="layout-usecases.html">Use Cases Catalog</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Page Types</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="page-example.html">Example Page</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="page-benchmark.html">Benchmark Page</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="page-report.html">Report Page</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="page-application.html">Application Page</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="page-machine.html">Machine Page</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="page-usecase.html">Use Case Page</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cards System</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="card-system.html">Card System Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="catalogExample/catalog.html">Catalog Example</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Policies &amp; Legal</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="terms-of-use.html">Terms of Use</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="privacy-policy.html">Privacy Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cookie-policy.html">Cookie Policy</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="support-policy.html">Support Policy</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Antora Feel++ UI</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component is-current">
+        <a class="title" href="index.html">Antora Feel++ UI</a>
+      </li>
+      <li class="component">
+        <a class="title" href="../course-project/index.html">Course Project</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="../course-project/index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Antora Feel++ UI</a></li>
+    <li>Policies &amp; Legal</li>
+    <li><a href="support-policy.html">Support Policy</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/support-policy.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Support Policy</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>This support policy outlines the available support channels for Feel++ users and sets expectations for response times and support scope.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_support_philosophy"><a class="anchor" href="#_support_philosophy"></a>1. Support Philosophy</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Feel++ is an open-source scientific computing platform developed primarily for research and education. Our support model reflects this mission:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Community-driven:</strong> Primary support through user community</p>
+</li>
+<li>
+<p><strong>Educational focus:</strong> Priority on learning and knowledge sharing</p>
+</li>
+<li>
+<p><strong>Research-oriented:</strong> Support for academic and scientific applications</p>
+</li>
+<li>
+<p><strong>Best-effort basis:</strong> Volunteer-based support with no guarantees</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_support_channels"><a class="anchor" href="#_support_channels"></a>2. Support Channels</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_community_support_free"><a class="anchor" href="#_community_support_free"></a>2.1. Community Support (Free)</h3>
+<div class="sect3">
+<h4 id="_github_issues"><a class="anchor" href="#_github_issues"></a>2.1.1. GitHub Issues</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Purpose:</strong> Bug reports, feature requests, technical questions</p>
+</li>
+<li>
+<p><strong>URL:</strong> <a href="https://github.com/feelpp/feelpp/issues" class="bare">github.com/feelpp/feelpp/issues</a></p>
+</li>
+<li>
+<p><strong>Response time:</strong> Best effort, typically 1-7 days</p>
+</li>
+<li>
+<p><strong>Who responds:</strong> Maintainers and community members</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_discussions_forum"><a class="anchor" href="#_discussions_forum"></a>2.1.2. Discussions Forum</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Purpose:</strong> General questions, usage help, troubleshooting</p>
+</li>
+<li>
+<p><strong>URL:</strong> <a href="https://github.com/orgs/feelpp/discussions" class="bare">github.com/orgs/feelpp/discussions</a></p>
+</li>
+<li>
+<p><strong>Response time:</strong> Best effort, typically 1-3 days</p>
+</li>
+<li>
+<p><strong>Who responds:</strong> Community members and maintainers</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_slack_community"><a class="anchor" href="#_slack_community"></a>2.1.3. Slack Community</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Purpose:</strong> Real-time chat, quick questions, community interaction</p>
+</li>
+<li>
+<p><strong>Access:</strong> <a href="https://join.slack.com/t/feelpp/shared_invite/zt-2qe0q9hw-4pVbhohCXUE6Po9Ma8dbiQ" class="bare">join.slack.com/t/feelpp/shared_invite/zt-2qe0q9hw-4pVbhohCXUE6Po9Ma8dbiQ</a></p>
+</li>
+<li>
+<p><strong>Response time:</strong> Varies, real-time to several hours</p>
+</li>
+<li>
+<p><strong>Who responds:</strong> Active community members</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_documentation"><a class="anchor" href="#_documentation"></a>2.1.4. Documentation</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Purpose:</strong> Self-service help and tutorials</p>
+</li>
+<li>
+<p><strong>URL:</strong> <a href="https://docs.feelpp.org" class="bare">docs.feelpp.org</a></p>
+</li>
+<li>
+<p><strong>Content:</strong> Installation guides, tutorials, API reference</p>
+</li>
+<li>
+<p><strong>Updates:</strong> Regular community contributions</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_academic_support"><a class="anchor" href="#_academic_support"></a>2.2. Academic Support</h3>
+<div class="sect3">
+<h4 id="_research_collaboration"><a class="anchor" href="#_research_collaboration"></a>2.2.1. Research Collaboration</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Purpose:</strong> Academic partnerships and research projects</p>
+</li>
+<li>
+<p><strong>Contact:</strong> <a href="mailto:research@cemosis.fr">research@cemosis.fr</a></p>
+</li>
+<li>
+<p><strong>Scope:</strong> Joint research, academic publications, student projects</p>
+</li>
+<li>
+<p><strong>Requirements:</strong> Academic affiliation, mutual benefit</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_educational_support"><a class="anchor" href="#_educational_support"></a>2.2.2. Educational Support</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Purpose:</strong> Course integration, teaching materials</p>
+</li>
+<li>
+<p><strong>Contact:</strong> <a href="mailto:education@cemosis.fr">education@cemosis.fr</a></p>
+</li>
+<li>
+<p><strong>Scope:</strong> Curriculum development, student training</p>
+</li>
+<li>
+<p><strong>Requirements:</strong> Educational institution affiliation</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_commercial_support_paid"><a class="anchor" href="#_commercial_support_paid"></a>2.3. Commercial Support (Paid)</h3>
+<div class="sect3">
+<h4 id="_consulting_services"><a class="anchor" href="#_consulting_services"></a>2.3.1. Consulting Services</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Purpose:</strong> Custom development, integration support</p>
+</li>
+<li>
+<p><strong>Contact:</strong> <a href="mailto:consulting@cemosis.fr">consulting@cemosis.fr</a></p>
+</li>
+<li>
+<p><strong>Scope:</strong> Custom features, performance optimization, training</p>
+</li>
+<li>
+<p><strong>Terms:</strong> Negotiated based on requirements</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_priority_support"><a class="anchor" href="#_priority_support"></a>2.3.2. Priority Support</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Purpose:</strong> Guaranteed response times, direct access</p>
+</li>
+<li>
+<p><strong>Contact:</strong> <a href="mailto:support@cemosis.fr">support@cemosis.fr</a></p>
+</li>
+<li>
+<p><strong>Benefits:</strong> 24-48 hour response, priority bug fixes</p>
+</li>
+<li>
+<p><strong>Terms:</strong> Annual contracts available</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_we_support"><a class="anchor" href="#_what_we_support"></a>3. What We Support</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_included_in_community_support"><a class="anchor" href="#_included_in_community_support"></a>3.1. Included in Community Support</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Software bugs:</strong> Reproducible issues in released versions</p>
+</li>
+<li>
+<p><strong>Documentation questions:</strong> Help understanding features</p>
+</li>
+<li>
+<p><strong>Installation help:</strong> Basic installation and configuration</p>
+</li>
+<li>
+<p><strong>Usage guidance:</strong> How to use existing features</p>
+</li>
+<li>
+<p><strong>Performance tips:</strong> General optimization advice</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_not_included_in_community_support"><a class="anchor" href="#_not_included_in_community_support"></a>3.2. Not Included in Community Support</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Custom development:</strong> Building specific features for your needs</p>
+</li>
+<li>
+<p><strong>Debugging your code:</strong> Issues in your own applications</p>
+</li>
+<li>
+<p><strong>System administration:</strong> Server setup and maintenance</p>
+</li>
+<li>
+<p><strong>Real-time support:</strong> Immediate response guarantees</p>
+</li>
+<li>
+<p><strong>Proprietary integrations:</strong> Connecting to commercial software</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_response_time_expectations"><a class="anchor" href="#_response_time_expectations"></a>4. Response Time Expectations</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 22.2222%;">
+<col style="width: 22.2222%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Channel</th>
+<th class="tableblock halign-left valign-top">Response Time</th>
+<th class="tableblock halign-left valign-top">Resolution Time</th>
+<th class="tableblock halign-left valign-top">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub Issues</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1-7 days</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Varies</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Community-driven, best effort</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Discussions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1-3 days</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Varies</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Community Q&amp;A format</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Slack</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Real-time to hours</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Informal chat, no guarantees</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Email (General)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3-7 days</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Varies</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Non-urgent inquiries only</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Commercial Support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">24-48 hours</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Negotiated</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Paid service level agreements</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_get_effective_support"><a class="anchor" href="#_how_to_get_effective_support"></a>5. How to Get Effective Support</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_before_asking_for_help"><a class="anchor" href="#_before_asking_for_help"></a>5.1. Before Asking for Help</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Check documentation:</strong> Search docs.feelpp.org first</p>
+</li>
+<li>
+<p><strong>Search existing issues:</strong> Look for similar problems on GitHub</p>
+</li>
+<li>
+<p><strong>Prepare information:</strong> Version numbers, error messages, minimal examples</p>
+</li>
+<li>
+<p><strong>Try basic troubleshooting:</strong> Restart, reinstall, check dependencies</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_when_reporting_issues"><a class="anchor" href="#_when_reporting_issues"></a>5.2. When Reporting Issues</h3>
+<div class="paragraph">
+<p>Include the following information:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Feel++ version:</strong> <code>feelpp --version</code> output</p>
+</li>
+<li>
+<p><strong>Operating system:</strong> Version and distribution</p>
+</li>
+<li>
+<p><strong>Installation method:</strong> Source, package manager, Docker</p>
+</li>
+<li>
+<p><strong>Error messages:</strong> Complete error logs</p>
+</li>
+<li>
+<p><strong>Minimal example:</strong> Smallest code that reproduces the issue</p>
+</li>
+<li>
+<p><strong>Expected vs actual behavior:</strong> Clear description of the problem</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_code_of_conduct"><a class="anchor" href="#_code_of_conduct"></a>5.3. Code of Conduct</h3>
+<div class="paragraph">
+<p>All support interactions must follow our Code of Conduct:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Be respectful and professional</p>
+</li>
+<li>
+<p>Provide constructive feedback</p>
+</li>
+<li>
+<p>Help others when possible</p>
+</li>
+<li>
+<p>Avoid duplicate posts across channels</p>
+</li>
+<li>
+<p>Use appropriate channels for different types of questions</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_support_limitations"><a class="anchor" href="#_support_limitations"></a>6. Support Limitations</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_community_support_limitations"><a class="anchor" href="#_community_support_limitations"></a>6.1. Community Support Limitations</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>No guarantees:</strong> Best-effort basis only</p>
+</li>
+<li>
+<p><strong>Volunteer time:</strong> Contributors participate when available</p>
+</li>
+<li>
+<p><strong>Scope boundaries:</strong> Focus on Feel++ core functionality</p>
+</li>
+<li>
+<p><strong>Language:</strong> Primary support in English and French</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_we_cannot_support"><a class="anchor" href="#_what_we_cannot_support"></a>6.2. What We Cannot Support</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Deprecated versions:</strong> Only current and previous major versions</p>
+</li>
+<li>
+<p><strong>Modified code:</strong> Significant changes to Feel++ source</p>
+</li>
+<li>
+<p><strong>Third-party software:</strong> Issues with external dependencies</p>
+</li>
+<li>
+<p><strong>Hardware problems:</strong> System-level configuration issues</p>
+</li>
+<li>
+<p><strong>Legal advice:</strong> Licensing questions beyond basic clarification</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_support_escalation"><a class="anchor" href="#_support_escalation"></a>7. Support Escalation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you need additional help:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Start with community channels:</strong> GitHub, Discussions, Slack</p>
+</li>
+<li>
+<p><strong>Provide detailed information:</strong> Follow reporting guidelines</p>
+</li>
+<li>
+<p><strong>Be patient:</strong> Allow time for community response</p>
+</li>
+<li>
+<p><strong>Consider commercial support:</strong> For urgent or complex needs</p>
+</li>
+<li>
+<p><strong>Contact maintainers directly:</strong> Only for security issues or abuse</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_contributing_to_support"><a class="anchor" href="#_contributing_to_support"></a>8. Contributing to Support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Help improve support for everyone:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Answer questions:</strong> Help other users in community channels</p>
+</li>
+<li>
+<p><strong>Improve documentation:</strong> Submit documentation improvements</p>
+</li>
+<li>
+<p><strong>Report bugs clearly:</strong> Follow issue templates</p>
+</li>
+<li>
+<p><strong>Share solutions:</strong> Post solutions to common problems</p>
+</li>
+<li>
+<p><strong>Contribute code:</strong> Fix issues and add features</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_security_issues"><a class="anchor" href="#_security_issues"></a>9. Security Issues</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For security vulnerabilities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Do not use public channels:</strong> Report privately first</p>
+</li>
+<li>
+<p><strong>Email:</strong> <a href="mailto:security@cemosis.fr">security@cemosis.fr</a></p>
+</li>
+<li>
+<p><strong>Provide details:</strong> Steps to reproduce, potential impact</p>
+</li>
+<li>
+<p><strong>Responsible disclosure:</strong> Allow time for patches before public disclosure</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_feedback_and_improvement"><a class="anchor" href="#_feedback_and_improvement"></a>10. Feedback and Improvement</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Help us improve our support:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Support survey:</strong> Annual feedback collection</p>
+</li>
+<li>
+<p><strong>Documentation feedback:</strong> Report gaps or unclear sections</p>
+</li>
+<li>
+<p><strong>Process suggestions:</strong> Ideas for better support workflows</p>
+</li>
+<li>
+<p><strong>Community input:</strong> Participate in support policy discussions</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_contact_information"><a class="anchor" href="#_contact_information"></a>11. Contact Information</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>General questions:</strong> <a href="https://github.com/orgs/feelpp/discussions" class="bare">github.com/orgs/feelpp/discussions</a></p>
+</li>
+<li>
+<p><strong>Bug reports:</strong> <a href="https://github.com/feelpp/feelpp/issues" class="bare">github.com/feelpp/feelpp/issues</a></p>
+</li>
+<li>
+<p><strong>Academic collaboration:</strong> <a href="mailto:research@cemosis.fr">research@cemosis.fr</a></p>
+</li>
+<li>
+<p><strong>Commercial support:</strong> <a href="mailto:consulting@cemosis.fr">consulting@cemosis.fr</a></p>
+</li>
+<li>
+<p><strong>Security issues:</strong> <a href="mailto:security@cemosis.fr">security@cemosis.fr</a></p>
+</li>
+</ul>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Last updated: 2025-09-16</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>This policy may be updated based on community needs and available resources.</strong></p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="cookie-policy.html">Cookie Policy</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2025 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+
+
+<!-- Font Awesome JS removed to use webfont icons only -->
+<script async src="../_/js/vendor/highlight.js"></script>
+
+<script src="../_/js/vendor/lunr.js"></script>
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>

@@ -3,11 +3,17 @@
 <head>
       <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Catalog :: Course Project</title>
+    <title>Catalog Example :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/feelpp-antora-ui/catalogExample/catalog.html">
-    <meta name="description" content="Example of the catalog page layout.">
+    <link rel="prev" href="../card-system.html">
+    <link rel="next" href="../terms-of-use.html">
+    <meta name="description" content="Demonstration of the catalog page layout with cards.">
     <meta name="generator" content="Antora 3.1.7">
-    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="../../_/css/site.css">
+
+<!-- Font Awesome webfont CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
 <script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
 
@@ -95,7 +101,7 @@ MathJax.Hub.Config({
 <script>var uiRootPath = '../../_'</script>
 
 </head>
-<body class="article docs-case-study">
+<body class="article docs-manuals-catalog docs-cards-layout ">
 <header class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
         style="border-top: 4px solid #9E9E9E">
@@ -145,9 +151,21 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../search-setup.html">Search Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../policy-templates.html">Policy Templates</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../style-guide.html">UI Element Styles</a>
+    <span class="nav-text">UI Element Styles</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../style-guide.html">Style Guide</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../inline-text-styles.html">Inline Text</a>
   </li>
@@ -155,7 +173,7 @@ MathJax.Hub.Config({
     <a class="nav-link" href="../admonition-styles.html">Admonitions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../dynamic-processor.html">Dynamic processor</a>
+    <a class="nav-link" href="../dynamic-processor.html">Dynamic Processor</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../source-highlighting.html">Source Highlighting</a>
@@ -166,10 +184,106 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../pseudocode.html">Pseudocode</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../lead.html">Lead Paragraphs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../images.html">Images &amp; Icons</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../page-layouts.html">Page Layouts</a>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Layout Helpers</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../grid.html">Layout Helpers (Grid)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../page-layouts.html">Page Layouts Overview</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Catalog Layouts (via Manuals)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../manuals.html">Manuals (Catalog Engine)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../layout-examples.html">Examples Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../layout-benchmarks.html">Benchmarks Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../layout-reports.html">Reports Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../layout-applications.html">Applications Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../layout-machines.html">Machines Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../layout-usecases.html">Use Cases Catalog</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Page Types</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../page-example.html">Example Page</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../page-benchmark.html">Benchmark Page</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../page-report.html">Report Page</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../page-application.html">Application Page</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../page-machine.html">Machine Page</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../page-usecase.html">Use Case Page</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cards System</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../card-system.html">Card System Documentation</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="catalog.html">Catalog Example</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Policies &amp; Legal</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../terms-of-use.html">Terms of Use</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../privacy-policy.html">Privacy Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cookie-policy.html">Cookie Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../support-policy.html">Support Policy</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -196,51 +310,286 @@ MathJax.Hub.Config({
   <main class="article">
     <div class="toolbar" role="navigation">
       <button class="nav-toggle"></button>
-        <a href="../../course-project/index.html" class="home-link"></a>
+       <a href="../../course-project/index.html" class="home-link"></a> 
       <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Antora Feel++ UI</a></li>
-    <li><a href="catalog.html">Catalog</a></li>
+    <li>Cards System</li>
+    <li><a href="catalog.html">Catalog Example</a></li>
   </ul>
 </nav>
     </div>
 
     <div class="content">
       <article class="doc">
-          <h1 class="page">Catalog</h1>
-          <h2>Toolboxes</h2>
-          <div class="toolboxes">
-            <div class="toolbox"><a class="page-card" href="itemA.html">
-    <div class="page-card-illustration">
-      <img alt="" src="../_images/A.png"/>
-    </div>
-    <div class="page-card-body">
-      <h4>Item A</h4>
-      <p class="page-card-description">Item containing 2 subitems.</p>
-    </div>
+         <h1 class="page">Catalog Example</h1> 
+        <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This page demonstrates the manuals layout functioning as a catalog. It automatically displays cards for all pages that have this page listed in their <code>parent-catalogs</code> attribute.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_it_works"><a class="anchor" href="#_how_it_works"></a>1. How It Works</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The catalog layout uses the following mechanism:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>This page has <code>page-layout: manuals</code> and <code>page-tags: catalog-example,catalog</code></p>
+</li>
+<li>
+<p>Child pages reference this catalog with <code>parent-catalogs: catalog-example</code></p>
+</li>
+<li>
+<p>The layout automatically finds and displays matching pages as cards</p>
+</li>
+<li>
+<p>Cards show the page title, description, and illustration (Font Awesome icon or image)</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_card_generation"><a class="anchor" href="#_card_generation"></a>2. Card Generation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cards are generated for pages with:
+- <code>parent-catalogs: catalog-example</code> (matching this page&#8217;s primary tag)
+- Appropriate <code>page-tags</code> that match the <code>page-cards-tag</code> criteria
+- Valid <code>description</code> and <code>page-illustration</code> attributes for display</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_visual_features"><a class="anchor" href="#_visual_features"></a>3. Visual Features</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Font Awesome Icons</dt>
+<dd>
+<p>Pages can use Font Awesome classes like <code>fa-solid fa-gear</code> for illustrations</p>
+</dd>
+<dt class="hdlist1">Image Support</dt>
+<dd>
+<p>Traditional images are also supported using standard Antora image references</p>
+</dd>
+<dt class="hdlist1">Responsive Design</dt>
+<dd>
+<p>Cards automatically adapt to different screen sizes</p>
+</dd>
+<dt class="hdlist1">Hover Effects</dt>
+<dd>
+<p>Interactive feedback when hovering over cards</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>The child pages below demonstrate different illustration types and content organization patterns.</p>
+</div>
+</div>
+</div>
+
+                    
+                    
+                      <div class="catalogs">
+                            <div class="catalog"><a class="page-card application" href="../layout-applications.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-diagram-project"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>Applications Catalog (via manuals)</h4>
+    <p class="page-card-description">How to list application pages as cards using the generic catalog layout</p>
+  </div>
 </a>
 </div>
-            <div class="toolbox"><a class="page-card" href="itemB.html">
-    <div class="page-card-illustration">
-      <img alt="" src="../_images/B.png"/>
-    </div>
-    <div class="page-card-body">
-      <h4>Item B</h4>
-      <p class="page-card-description">Item containing 1 shared subitem.</p>
-    </div>
+                            <div class="catalog"><a class="page-card benchmark" href="../layout-benchmarks.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-gauge"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>Benchmarks Catalog (via manuals)</h4>
+    <p class="page-card-description">How to list benchmark pages as cards using the generic catalog layout</p>
+  </div>
 </a>
 </div>
-            <div class="toolbox"><a class="page-card" href="itemC.html">
-    <div class="page-card-illustration">
-      <img alt="" src="../_images/C.png"/>
-    </div>
-    <div class="page-card-body">
-      <h4>Item C</h4>
-      <p class="page-card-description">Leaf item.</p>
-    </div>
+                            <div class="catalog"><a class="page-card example" href="../layout-examples.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-flask"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>Examples Catalog (via manuals)</h4>
+    <p class="page-card-description">How to list example pages as cards using the generic catalog layout</p>
+  </div>
 </a>
 </div>
-          </div>
+                            <div class="catalog"><a class="page-card machine" href="../layout-machines.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-microchip"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>Machines Catalog (via manuals)</h4>
+    <p class="page-card-description">How to list machine pages as cards using the generic catalog layout</p>
+  </div>
+</a>
+</div>
+                            <div class="catalog"><a class="page-card report" href="../layout-reports.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-chart-line"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>Reports Catalog (via manuals)</h4>
+    <p class="page-card-description">How to list report pages as cards using the generic catalog layout</p>
+  </div>
+</a>
+</div>
+                            <div class="catalog"><a class="page-card usecase" href="../layout-usecases.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-briefcase"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>Use Cases Catalog (via manuals)</h4>
+    <p class="page-card-description">How to list use case pages as cards using the generic catalog layout</p>
+  </div>
+</a>
+</div>
+                      </div>
+                    
+                    
+                      <div class="manuals">
+                            <div class="manual"><a class="page-card manual" href="manualA.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-cog"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>Manual A: Font Awesome Example</h4>
+    <p class="page-card-description">Demonstrates Font Awesome icon usage in page cards with detailed content.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual"><a class="page-card manual" href="itemA.html">
+  <div class="page-card-illustration">
+        <img alt="" src="../_images/A.png"/>
+  </div>
+  <div class="page-card-body">
+    <h4>Manual B: Image Example</h4>
+    <p class="page-card-description">Demonstrates traditional image usage in page cards instead of Font Awesome icons.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual"><a class="page-card manual" href="itemB.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-star"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>Manual C: Advanced Features</h4>
+    <p class="page-card-description">Demonstrates advanced catalog features including multi-tag organization and card grouping.</p>
+  </div>
+</a>
+</div>
+                      </div>
+                    
+                    
+                      <div class="examples">
+                            <div class="example"><a class="page-card example" href="../page-example.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-flask"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>Example Page</h4>
+    <p class="page-card-description">Example page to showcase features or concepts</p>
+  </div>
+</a>
+</div>
+                      </div>
+                    
+                    
+                      <div class="benchmarks">
+                            <div class="benchmark"><a class="page-card benchmark" href="../page-benchmark.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-gauge"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>Benchmark Page</h4>
+    <p class="page-card-description">Benchmark page to showcase performance</p>
+  </div>
+</a>
+</div>
+                      </div>
+                    
+                    
+                      <div class="reports">
+                            <div class="report"><a class="page-card report" href="../page-report.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-chart-column"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>Report Pages</h4>
+    <p class="page-card-description">Guidance for single report pages and how they appear in report catalogs</p>
+  </div>
+</a>
+</div>
+                      </div>
+                    
+                    
+                      <div class="applications">
+                            <div class="application"><a class="page-card application" href="../page-application.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-diagram-project"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>Application Pages</h4>
+    <p class="page-card-description">Guidance for single application pages and how they appear in application catalogs</p>
+  </div>
+</a>
+</div>
+                      </div>
+                    
+                    
+                      <div class="machines">
+                            <div class="machine"><a class="page-card machine" href="../page-machine.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-microchip"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>Machine Pages</h4>
+    <p class="page-card-description">Guidance for single machine pages and how they appear in machine catalogs</p>
+  </div>
+</a>
+</div>
+                      </div>
+                    
+                    
+                      <div class="usecases">
+                            <div class="usecase"><a class="page-card usecase" href="../page-usecase.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-briefcase"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>Use Case page</h4>
+    <p class="page-card-description">Guidance for single use case pages and how they appear in use case catalogs</p>
+  </div>
+</a>
+</div>
+                      </div>
+                    
+                    
+                      <div class="cases">
+                            <div class="case"><a class="page-card " href="case-example.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-fire"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>Heat Transfer Case Study</h4>
+    <p class="page-card-description">A simple case study demonstrating heat transfer simulation in Feel++</p>
+  </div>
+</a>
+</div>
+                      </div>
       </article>
     </div>
   </main>
@@ -264,10 +613,10 @@ MathJax.Hub.Config({
 </footer><script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
 
 
-<script async src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
-<script async src="../../_/js/vendor/fontawesome.js"></script>
+<!-- Font Awesome JS removed to use webfont icons only -->
 <script async src="../../_/js/vendor/highlight.js"></script>
 
+<script src="../../_/js/vendor/lunr.js"></script>
 
 <script type="text/javascript">
 function toggleFullScreen() {
