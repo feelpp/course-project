@@ -1,0 +1,521 @@
+= Instructor Guide: Week-by-Week Curriculum
+:page-tags: instructor
+:parent-catalogs: ROOT:index
+:page-illustration: fa-solid fa-chalkboard-teacher
+:description: Complete teaching guide for the Course Project, designed specifically for mathematics students. Includes weekly schedules, common challenges, and assessment strategies.
+
+[.lead]
+This comprehensive guide helps instructors deliver the Course Project effectively to mathematics students (CSMI program). The curriculum is designed for a 12-week semester with flexible pacing based on student backgrounds.
+
+== Course Overview for Mathematics Students
+
+[.callout.important]
+--
+**Key Teaching Principles for Mathematics Students:**
+
+1. **Start with "Why"** - Always explain the mathematical relevance before diving into technical details
+2. **Use Mathematical Examples** - Replace generic programming examples with numerical analysis, LaTeX, data analysis
+3. **Build Confidence Gradually** - Many students may feel intimidated by command-line interfaces
+4. **Connect to Research** - Show how tools apply to mathematical research and collaboration
+--
+
+== Pre-Course Preparation (Week 0)
+
+=== Instructor Tasks
+
+**Before the semester begins:**
+
+Setup and Assessment::
++
+- [ ] Send prerequisites assessment to all students 2 weeks before class
+- [ ] Prepare 3 different lesson plans based on student skill levels (Beginner/Intermediate/Advanced)
+- [ ] Set up course Slack workspace for Q&A and peer support
+- [ ] Prepare virtual machines or lab access for students without Linux systems
+- [ ] Create mathematical example datasets and code repositories
+
+Student Grouping Strategy::
++
+- [ ] Group students by skill level based on assessment results
+- [ ] Assign peer mentors (advanced students help beginners)
+- [ ] Prepare differentiated assignments for mixed-level classes
+
+**Sample Pre-Course Email:**
+[source,text]
+----
+Subject: Course Project - Pre-Assessment & Preparation
+
+Dear CSMI Students,
+
+Welcome to Course Project! This course will teach you essential computational tools for mathematical research. Please complete the self-assessment at [link] by [date].
+
+Based on your responses, we'll customize the first few weeks to match your background. Don't worry if you have no programming experience - the course is designed for mathematicians!
+
+Best regards,
+[Instructor Name]
+----
+
+== 🟢 **LEVEL 1: FOUNDATIONAL TRACK** (Weeks 1-8)
+
+*For students with minimal computational experience*
+
+=== Week 1: Introduction and Environment Setup
+
+Learning Objectives::
++
+- Understand why computational tools matter in mathematics
+- Complete environment setup (Linux/WSL, basic software)
+- Navigate the course structure and assessment approach
+
+**Monday: Course Introduction** _(90 minutes)_
+
+Opening (15 min)::
++
+- Course overview and mathematical relevance
+- Student introductions and background sharing
+- Review self-assessment results
+
+Why These Tools Matter for Mathematics (30 min)::
++
+- Case study: Collaborative paper writing with LaTeX and Git
+- Demo: Managing mathematical datasets and simulations
+- Show: How mathematical software benefits from version control
+
+Environment Setup Workshop (45 min)::
++
+- Install Linux/WSL for Windows users
+- Basic system verification
+- Install essential tools (text editor, terminal)
+
+**Wednesday: Linux Foundations** _(90 minutes)_
+
+Mathematical Context Introduction (20 min)::
++
+- Show real mathematical workflows that use command line
+- Demonstrate: File management for research projects
+- Examples: Organizing mathematical papers, datasets, simulation results
+
+Hands-on Linux Basics (70 min)::
++
+- File system navigation (`cd`, `ls`, `pwd`)
+- Creating and managing directories for research projects
+- File operations for mathematical work
+- **Mathematical Exercise:** Organize a sample research project structure
+
+**Friday: Linux Practice & Problem Solving** _(90 minutes)_
+
+Advanced File Operations (45 min)::
++
+- Text processing for mathematical data
+- File permissions and sharing
+- Remote access basics (SSH)
+
+Workshop: Mathematical Data Management (45 min)::
++
+- **Project:** Students organize sample mathematical datasets
+- Practice with real CSV files from mathematical experiments
+- Troubleshooting common issues
+
+**Week 1 Assessment:**
+=
+- Practical skills check: Navigate and organize file system
+- Self-reflection: Comfort level with command line
+- Peer assessment: Help classmates with setup issues
+
+=== Week 2: Version Control for Mathematical Research
+
+Learning Objectives::
++
+- Understand version control for mathematical research
+- Use Git for LaTeX document management
+- Set up GitHub for academic collaboration
+
+**Monday: Git Fundamentals for Mathematics** _(90 minutes)_
+
+Introduction to Version Control (30 min)::
++
+- Why mathematicians need version control
+- Case study: Tracking changes in research papers
+- Demo: Git for LaTeX document collaboration
+
+Git Basics Hands-on (60 min)::
+- Initialize repository for a mathematical paper
+- Basic commands: `add`, `commit`, `status`
+- **Mathematical Exercise:** Version control a LaTeX document
+
+**Wednesday: Collaborative Mathematics with Git** _(90 minutes)_
+
+Branching for Research (45 min)::
+- Creating branches for different paper sections
+- Merging collaborative work
+- Resolving conflicts in mathematical documents
+
+GitHub for Academic Work (45 min)::
+- Setting up academic GitHub account
+- Creating repositories for mathematical projects
+- **Exercise:** Collaborate on a mathematical proof document
+
+**Friday: Git Workshop & Project** _(90 minutes)_
+
+Mathematical Project Setup (90 min)::
+- **Group Project:** Set up shared repository for mathematical analysis
+- Practice collaborative workflows
+- Code review for mathematical scripts
+- Issue tracking for research tasks
+
+**Week 2 Assessment:**
+- Git workflow demonstration
+- Collaborative exercise evaluation
+- Repository organization quality
+
+=== Week 3: Development Environment (VS Code)
+
+**Learning Objectives:**
+- Set up integrated development environment
+- Configure VS Code for mathematical work
+- Understand extensions for LaTeX, Python, and data analysis
+
+**Monday: VS Code for Mathematics Students** _(90 minutes)_
+
+IDE Introduction (30 min)::
+- Why use an integrated development environment
+- Overview of VS Code for mathematical work
+- Comparison with mathematical software interfaces
+
+VS Code Setup and Configuration (60 min)::
+- Installation and basic configuration
+- Essential extensions for mathematics: LaTeX, Python, Jupyter
+- **Exercise:** Set up workspace for mathematical project
+
+**Wednesday: LaTeX and Document Management** _(90 minutes)_
+
+LaTeX in VS Code (45 min)::
+- LaTeX extension setup and configuration
+- Writing mathematical documents with live preview
+- Bibliography management integration
+
+Version Control Integration (45 min)::
+- Git integration in VS Code
+- Managing mathematical document versions
+- **Exercise:** Write and version a mathematical report
+
+**Friday: Data Analysis Environment** _(90 minutes)_
+
+Python and Jupyter Setup (45 min)::
+- Python extension configuration
+- Jupyter notebook integration
+- Mathematical libraries overview
+
+Mathematical Computing Workflow (45 min)::
+- **Project:** Set up complete mathematical analysis environment
+- Integration with external mathematical software
+- Best practices for reproducible research
+
+**Week 3 Assessment:**
+- Environment setup evaluation
+- LaTeX document creation
+- Integrated workflow demonstration
+
+=== Week 4: Project Management for Research
+
+**Learning Objectives:**
+- Apply project management to mathematical research
+- Use GitHub for research project organization
+- Understand Agile methods in academic context
+
+**Monday: Research Project Management** _(90 minutes)_
+
+Academic Project Management (45 min)::
+- Adapting project management for mathematical research
+- Timeline management for research projects
+- Milestone setting for mathematical investigations
+
+GitHub Projects for Research (45 min)::
+- Setting up research project boards
+- Issue tracking for mathematical tasks
+- **Exercise:** Plan a semester research project
+
+**Wednesday: Collaborative Research Methods** _(90 minutes)_
+
+Research Team Workflows (45 min)::
+- Organizing collaborative mathematical research
+- Code review for mathematical scripts
+- Documentation standards for mathematical projects
+
+Agile Research Practices (45 min)::
+- Sprint planning for research phases
+- Retrospectives for mathematical investigations
+- **Workshop:** Apply Agile methods to research project
+
+**Friday: Research Project Workshop** _(90 minutes)_
+
+Integrated Project Setup (90 min)::
+- **Capstone Project Start:** Students begin semester-long mathematical project
+- Apply all learned tools in integrated workflow
+- Peer review and feedback session
+
+**Week 4 Assessment:**
+- Project planning quality
+- Tool integration effectiveness
+- Collaboration skills demonstration
+
+=== Weeks 5-8: Intermediate Skills Development
+
+**Weeks 5-6: Advanced Git and Collaboration**
+- Advanced branching strategies for research
+- Large file management (Git LFS) for mathematical datasets
+- Continuous integration basics for mathematical projects
+
+**Weeks 7-8: Introduction to Containers and Automation**
+- Basic containerization for reproducible mathematical computing
+- Simple automation scripts for mathematical workflows
+- Preparation for advanced topics
+
+== 🟡 **LEVEL 2: INTERMEDIATE TRACK** (Weeks 5-10)
+
+*For students with some computational background*
+
+=== Week 5: Advanced Collaboration and Code Quality
+
+**Learning Objectives:**
+- Implement advanced Git workflows
+- Apply code review processes to mathematical code
+- Establish quality standards for mathematical computing
+
+**Focus Areas:**
+- Mathematical code review practices
+- Documentation standards for computational mathematics
+- Testing strategies for mathematical algorithms
+
+=== Week 6: Containerization for Mathematical Research
+
+**Learning Objectives:**
+- Understand containerization for reproducible research
+- Use Docker for mathematical software environments
+- Share computational environments with collaborators
+
+**Mathematical Applications:**
+- Packaging mathematical software stacks
+- Reproducible numerical experiments
+- Cross-platform mathematical computing
+
+=== Week 7: Project Management at Scale
+
+**Learning Objectives:**
+- Manage complex mathematical research projects
+- Coordinate multiple research streams
+- Apply advanced project management tools
+
+=== Week 8: Introduction to Automation
+
+**Learning Objectives:**
+- Automate repetitive mathematical tasks
+- Set up basic continuous integration
+- Prepare for advanced computing workflows
+
+=== Weeks 9-10: Integration and Advanced Preparation
+
+- Portfolio project development
+- Preparation for advanced HPC concepts
+- Research presentation and documentation
+
+== 🔴 **LEVEL 3: ADVANCED TRACK** (Weeks 9-12)
+
+*For computationally experienced students*
+
+=== Week 9: High-Performance Computing and Containers
+
+**Learning Objectives:**
+- Deploy mathematical software on HPC systems
+- Use advanced containerization (Apptainer/Singularity)
+- Understand HPC workflow management
+
+**Mathematical Applications:**
+- Large-scale numerical simulations
+- Parallel mathematical computing
+- HPC cluster resource management
+
+=== Week 10: CI/CD for Mathematical Research
+
+**Learning Objectives:**
+- Implement continuous integration for mathematical projects
+- Automate testing of mathematical algorithms
+- Deploy mathematical software automatically
+
+=== Week 11: Advanced Automation and Integration
+
+**Learning Objectives:**
+- Create complex mathematical workflows
+- Integrate multiple computational tools
+- Optimize computational research pipelines
+
+=== Week 12: Capstone Projects and Portfolio
+
+**Learning Objectives:**
+- Complete comprehensive mathematical computing project
+- Demonstrate mastery of all course tools
+- Present integrated research workflow
+
+## 📊 Assessment Strategies
+
+=== Formative Assessment
+
+**Weekly Skills Checks:**
+- Practical demonstrations of tool usage
+- Peer collaboration exercises
+- Self-reflection journals on learning progress
+
+**Project-Based Learning:**
+- Ongoing mathematical research project
+- Portfolio development throughout semester
+- Regular peer review sessions
+
+=== Summative Assessment
+
+**Midterm Portfolio Review** _(Week 6)_::
++
+- Demonstrate proficiency with foundational tools
+- Present mathematical project progress
+- Peer evaluation of collaboration skills
+
+**Final Project Presentation** _(Week 12)_::
++
+- Complete mathematical research project using all course tools
+- Documentation quality and reproducibility
+- Presentation to mathematical research community
+
+**Assessment Rubric Categories:**
+1. **Technical Proficiency** (40%) - Tool usage and integration
+2. **Mathematical Application** (30%) - Relevance to mathematical research
+3. **Collaboration** (20%) - Teamwork and peer interaction
+4. **Communication** (10%) - Documentation and presentation quality
+
+## 🚨 Common Challenges and Solutions
+
+=== Challenge 1: Mathematics Students Intimidated by Command Line
+
+**Symptoms:**
+- Students avoid using terminal
+- Preference for graphical interfaces
+- Fear of "breaking something"
+
+**Solutions:**
+- Start with mathematical file organization examples
+- Use "safe" sandbox environments for practice
+- Pair programming with more confident students
+- Emphasize mathematical relevance in every command
+
+**Script for Encouragement:**
+[source,text]
+----
+"Think of the command line like mathematical notation - it seems complex at first, but it's actually a precise, powerful language for expressing exactly what you want the computer to do. Just like mathematical notation, once you learn the basics, it becomes much more efficient than everyday language."
+----
+
+=== Challenge 2: Students Don't See Relevance to Mathematics
+
+**Symptoms:**
+- "Why can't I just use MATLAB/Mathematica?"
+- Resistance to learning new tools
+- Focus on immediate assignment completion over skill building
+
+**Solutions:**
+- Always start lessons with mathematical use cases
+- Show real research workflows from mathematical faculty
+- Invite guest speakers from computational mathematics
+- Use mathematical datasets and problems in all exercises
+
+**Example Mathematical Connections:**
+- **Linux:** "Managing output from long-running numerical simulations"
+- **Git:** "Collaborating on mathematical papers with advisors"
+- **Containers:** "Ensuring your numerical results are reproducible"
+
+=== Challenge 3: Mixed Skill Levels in Same Class
+
+**Symptoms:**
+- Advanced students bored with basics
+- Beginners overwhelmed by pace
+- Uneven group project contributions
+
+**Solutions:**
+- Peer mentoring system (advanced students help beginners)
+- Tiered assignments with optional advanced components
+- Flexible deadlines based on starting skill level
+- Additional support sessions for beginners
+
+**Differentiated Assignment Example:**
+- **Basic:** Use Git to track changes in a LaTeX document
+- **Intermediate:** Set up collaborative repository with branch protection
+- **Advanced:** Implement automated LaTeX compilation with CI/CD
+
+=== Challenge 4: Time Management and Semester Integration
+
+**Symptoms:**
+- Students overwhelmed by other mathematics courses
+- Difficulty seeing long-term value
+- Procrastination on practical assignments
+
+**Solutions:**
+- Integrate with other mathematics courses when possible
+- Show immediate benefits (easier homework management)
+- Break large projects into weekly mini-deliverables
+- Connect with mathematics faculty for reinforcement
+
+## 📚 Additional Resources for Instructors
+
+=== Mathematical Example Repositories
+
+**Recommended Example Projects:**
+1. **Numerical Analysis Project:** Implementing and comparing root-finding algorithms
+2. **Statistical Analysis:** Processing and visualizing mathematical survey data
+3. **LaTeX Collaboration:** Co-authoring mathematical research paper
+4. **Simulation Study:** Monte Carlo simulation with result management
+
+=== Guest Speaker Suggestions
+
+**Potential Speakers:**
+- Computational mathematics faculty showing research workflows
+- Industry mathematicians using these tools
+- Graduate students in computational mathematics
+- Mathematical software developers
+
+=== Professional Development
+
+**Recommended Training for Instructors:**
+- Understanding mathematics student learning styles
+- Computational mathematics teaching strategies
+- Industry trends in mathematical computing
+- Inclusive teaching practices for STEM
+
+## 🎯 Success Metrics
+
+=== Student Success Indicators
+
+**By End of Course, Students Should:**
+- Confidently manage mathematical research projects using version control
+- Set up reproducible computational environments for mathematical work
+- Collaborate effectively on mathematical research using modern tools
+- Apply project management principles to mathematical investigations
+- Demonstrate integration of tools in cohesive mathematical workflow
+
+=== Course Improvement Metrics
+
+**Track These Metrics:**
+- Student confidence surveys (pre/post course)
+- Tool adoption in subsequent mathematical courses
+- Student feedback on mathematical relevance
+- Faculty feedback on student preparedness
+- Long-term tool usage tracking
+
+=== End-of-Semester Student Reflection Questions
+
+1. How have these tools changed your approach to mathematical research?
+2. Which tools do you plan to continue using in future mathematics courses?
+3. What mathematical applications of these tools surprised you most?
+4. How confident do you feel collaborating on computational mathematics projects?
+5. What advice would you give to future mathematics students taking this course?
+
+---
+
+[.callout.note]
+--
+**Remember:** This curriculum guide should be adapted based on your specific student population, available resources, and institutional constraints. The key is maintaining focus on mathematical applications while building computational confidence gradually.
+--

@@ -1,4 +1,19 @@
-* xref:index.adoc[Introduction]
-//* xref:project.adoc[Introduction to Project Management]
-* xref:github.adoc[Introduction to GitHub]
+* xref:index.adoc[🏠 Course Home]
+* xref:quick-start.adoc[🚀 Quick Start Guide] 
+* xref:prerequisites.adoc[📋 Prerequisites & Self-Assessment]
+* xref:instructor-guide.adoc[📚 Instructor Guide]
+
+.🟢 Level 1: Essential Foundations
+* xref:linux:index.adoc[Linux Essentials for Mathematics]  
+* Git & GitHub Fundamentals (See Git & GitHub Documentation section)
+* xref:vscode:index.adoc[VS Code for Mathematics]
+
+.🟡 Level 2: Collaborative Development
+* xref:project-management:index.adoc[Research Project Management]
+* xref:containers:index.adoc[Containers for Mathematics]
+
+.🔴 Level 3: Advanced Automation  
+* xref:cicd:index.adoc[CI/CD for Mathematical Computing]
+* xref:software:index.adoc[Software Distribution]
+* xref:visualisation:index.adoc[Research Visualization]
 

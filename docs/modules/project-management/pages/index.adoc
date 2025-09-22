@@ -1,15 +1,54 @@
-= Introduction to Project Management
+= Project Management for Mathematical Research
 :page-layout: manuals
 :page-tags: catalog,projectmanagement
 :parent-catalogs: project
 :page-cards-tag: manual
 :page-cards-within-module: true
 :page-illustration: fa-solid fa-project-diagram
-:description: Learn the fundamentals of project management including organizing resources, managing tasks, and leading teams to achieve specific goals within time and budget constraints.
+:description: Learn project management specifically for mathematical research projects. Master organization, collaboration, and timeline management for mathematical investigations, thesis projects, and research publications.
+
+[.level-indicator.bg-warning.text-white.p-3.rounded.mb-4]
+====
+*🟡 INTERMEDIATE LEVEL* | *Prerequisites:* Basic Git and collaboration tools | *Time:* 3-4 hours | *For:* Mathematics students managing research projects and collaborative work
+====
+
+[.callout.note]
+--
+**Why Project Management for Mathematics?**
+
+Mathematical research projects have unique characteristics:
+- **Long-term investigations** that may span months or years
+- **Iterative discovery process** where goals evolve based on findings
+- **Collaborative elements** involving advisors, peers, and external researchers
+- **Multiple deliverables**: papers, presentations, code, data analysis
+- **Publication timelines** with conference and journal deadlines
+
+Project management helps structure the inherent complexity of mathematical research.
+--
 
 [.lead]
-**Project management** involves organizing resources, tasks, and people to achieve specific goals within time and budget constraints.
- This introduction explores the key elements, phases, and tools required for successful project management.
+**Project management for mathematics** involves organizing mathematical research activities, managing collaborative relationships, and coordinating timelines to achieve research goals within academic constraints.
+
+Mathematical research presents unique project management challenges: investigations may lead to unexpected discoveries, collaboration often involves distributed teams of researchers, and success metrics differ from traditional business projects.
+
+== Mathematical Research Project Examples
+
+**Typical Projects for Mathematics Students:**
+
+Master's Thesis Research::
+Multi-semester investigation requiring literature review, method development, analysis, and written dissertation
+
+Collaborative Research Paper::
+Joint investigation with advisor or peers leading to academic publication
+
+Conference Presentation::
+Focused research project culminating in presentation at mathematical conference
+
+Mathematical Software Development::
+Creating tools or libraries for mathematical computation with proper documentation
+
+Data Analysis Project::
+Statistical investigation of mathematical datasets with reproducible methodology
 
 == Project Management Learning Modules
 

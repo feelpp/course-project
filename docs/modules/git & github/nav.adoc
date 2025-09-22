@@ -1,14 +1,17 @@
 * Git & GitHub Documentation
-** Git
-*** xref:git-basics.adoc[Git Basics]
-*** xref:git-starter.adoc[Git Starter Guide]
-*** xref:git-repository-basics.adoc[Git Repository]
+** 🟢 Git Fundamentals (Level 1)
+*** xref:git-basics.adoc[Git Basics for Mathematical Research]
+*** xref:git-starter.adoc[Git Starter Guide] 
+*** xref:git-repository-basics.adoc[Git Repository Basics]
+** 🟡 Intermediate Git (Level 2)
 *** xref:git-branch.adoc[Git Branching]
-*** xref:git-merges.adoc[Git Merge]
+*** xref:git-merges.adoc[Git Merge & Conflicts]
 *** xref:git-remotes.adoc[Git Remotes]
-** GitHub
+** 🟢 GitHub Basics (Level 1)
 *** xref:github-essentials.adoc[GitHub Essentials]
-*** xref:github-start.adoc[GitHub Starter Guide]
+*** xref:github-start.adoc[GitHub Getting Started]
+*** xref:github-how-to-write-issues.adoc[Writing Issues]
+** 🟡 Advanced GitHub (Level 2)
 *** xref:github-collaborations.adoc[GitHub Collaborations]
-*** xref:github-actions.adoc[GitHub Actions]
-**** xref:github-actions-cmake-eigen3.adoc[GitHub Actions for CMake and Eigen3]
+*** xref:github-actions.adoc[GitHub Actions Intro]
+**** xref:github-actions-cmake-eigen3.adoc[GitHub Actions: CMake + Eigen3]

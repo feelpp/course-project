@@ -1,15 +1,53 @@
-= Introduction to Containers
+= Containers for Mathematical Computing
 :page-tags: catalog
 :parent-catalogs: ROOT:index
 :page-layout: manuals
 :page-cards-tag: manual
 :page-cards-within-module: true
 :page-illustration: fa-solid fa-cube
-:description: Learn containerization technologies including Docker and Apptainer. Master portable, consistent environments for applications in scientific computing, data science, and software development.
+:description: Learn containerization for mathematical research - create reproducible environments for numerical analysis, statistical computing, and mathematical software. Perfect for sharing mathematical computations and ensuring reproducible research.
 
-Containers provide a lightweight, portable, and consistent environment for running applications. They package an application with all of its dependencies, ensuring that it runs the same way in development, testing, and production environments.
+[.level-indicator.bg-warning.text-white.p-3.rounded.mb-4]
+====
+*🟡 INTERMEDIATE LEVEL* | *Prerequisites:* Linux basics, Git fundamentals | *Time:* 4-6 hours | *For:* Mathematics students ready for reproducible computing workflows
+====
 
-Unlike virtual machines, containers share the host operating system's kernel, making them more resource-efficient. Containers are used in diverse fields such as web development, **scientific computing**, **data science**, and **digital twins**, helping to standardize software deployment across different platforms and environments.
+[.callout.note]
+--
+**Why Containers for Mathematics?**
+
+Mathematical research increasingly requires:
+- **Reproducible Computations**: Ensure your numerical results can be replicated by others
+- **Complex Software Stacks**: Manage dependencies for mathematical libraries (NumPy, SciPy, MATLAB, Mathematica)
+- **Cross-Platform Compatibility**: Share mathematical code that works on different operating systems
+- **Collaboration**: Provide colleagues with identical computing environments
+- **Long-term Preservation**: Archive computational environments for future reference
+
+Containers solve the "it works on my machine" problem that plagues mathematical computing.
+--
+
+Containers provide lightweight, portable, and consistent environments for mathematical applications. They package mathematical software with all dependencies, ensuring computations run identically across development, testing, and production environments.
+
+For mathematics students, containers are essential for **reproducible research**, **collaborative mathematical computing**, and **sharing numerical experiments**. They enable you to capture your entire mathematical computing environment and share it with advisors, collaborators, or reviewers.
+
+== Mathematical Applications of Containers
+
+**Real Use Cases for Mathematics Students:**
+
+Numerical Analysis Projects::
+Package Python/MATLAB environments with specific library versions for consistent numerical results
+
+Statistical Computing::
+Create reproducible R or Python environments for data analysis and visualization
+
+Mathematical Software Distribution::
+Share custom mathematical algorithms with guaranteed dependencies
+
+Computational Research::
+Archive complete computational environments with published mathematical papers
+
+High-Performance Computing::
+Deploy mathematical software consistently across different HPC clusters
 
 In this module, we will explore Docker, Apptainer (formerly Singularity), and other container technologies.
 

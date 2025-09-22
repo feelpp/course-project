@@ -1,14 +1,33 @@
-= Visual Studio Code Essentials
+= VS Code for Mathematical Computing
 :page-tags: catalog
 :parent-catalogs: ROOT:index
 :page-layout: manuals
 :page-cards-tag: manual
 :page-cards-within-module: true
 :page-illustration: fa-solid fa-code
-:description: Master Visual Studio Code for data science and software development. Learn installation, configuration, extensions, and advanced features for productive coding.
+:description: Set up Visual Studio Code for mathematical research. Configure LaTeX editing, Python/Jupyter integration, and version control for efficient mathematical computing workflows.
+
+[.level-indicator.bg-success.text-white.p-3.rounded.mb-4]
+====
+*🟢 FOUNDATIONAL LEVEL* | *Prerequisites:* Basic computer skills | *Time:* 2-3 hours | *For:* Mathematics students setting up development environment
+====
+
+[.callout.note]
+--
+**Why VS Code for Mathematics?**
+
+An integrated development environment helps mathematicians:
+- **Write LaTeX documents** with syntax highlighting and live preview
+- **Develop mathematical code** in Python, R, or MATLAB with debugging support
+- **Manage version control** visually with Git integration
+- **Work with Jupyter notebooks** for mathematical analysis
+- **Collaborate efficiently** with shared workspace configurations
+
+VS Code unifies all your mathematical computing tools in one interface.
+--
 
 [.lead]
-Learn to use **Visual Studio Code** as your primary development environment for data science, scientific computing, and software development projects. From basic usage to advanced productivity features.
+Learn to use **Visual Studio Code** as your primary environment for mathematical research, LaTeX document preparation, and computational mathematics projects.
 
 == VS Code Learning Modules
 

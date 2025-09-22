@@ -1,0 +1,152 @@
+= Prerequisites and Self-Assessment
+:page-tags: assessment
+:parent-catalogs: ROOT:index
+:page-illustration: fa-solid fa-list-check
+:description: Assess your current knowledge and determine the best starting point for your learning journey in computational mathematics.
+
+[.lead]
+This course is designed for mathematics students with varying levels of computational experience. Use this self-assessment to determine your starting point.
+
+== Quick Self-Assessment
+
+[.assessment-checklist]
+=== 🖥️ **Computer Skills Assessment**
+
+Check all that apply to you:
+
+Basic Computer Use::
++
+- [ ] I can navigate folders and files on my computer using a graphical interface
+- [ ] I know how to install software on my computer
+- [ ] I'm comfortable using a web browser and email
+
+Command Line Experience::
++
+- [ ] I have used a terminal or command prompt before
+- [ ] I know basic commands like `cd`, `ls`, `mkdir`
+- [ ] I can navigate directories using the command line
+
+Programming Background::
++
+- [ ] I have written programs in any language (Python, MATLAB, R, etc.)
+- [ ] I understand concepts like variables, functions, and loops
+- [ ] I have worked with mathematical software packages
+
+Version Control::
++
+- [ ] I know what version control is
+- [ ] I have used Git or similar tools before
+- [ ] I have collaborated on code or documents using version control
+
+== Recommended Starting Points
+
+Based on your self-assessment:
+
+[.cards.grid-2]
+[cols="1,1"]
+|===
+^.^a|
+[.card.bg-light.border-success]
+====
+*🟢 **Start with Level 1: Foundations***
+
+**If you checked 0-3 boxes above**
+
+You'll benefit from starting with the foundational modules:
+
+- Linux Essentials for Mathematics Students
+- Git Basics for Mathematical Research  
+- VS Code Setup and Basic Usage
+- Introduction to Project Management
+
+*Estimated time:* 4-6 weeks
+====
+
+^.^a|
+[.card.bg-light.border-warning]
+====
+*🟡 **Start with Level 2: Intermediate***
+
+**If you checked 4-7 boxes above**
+
+You can skip some basics and focus on:
+
+- Advanced Git workflows
+- Container basics
+- Project management for research
+- Collaborative development
+
+*Estimated time:* 3-4 weeks
+====
+|===
+
+[.card.bg-light.border-danger.mt-3]
+====
+*🔴 **Advanced Level Entry***
+
+**If you checked 8+ boxes above**
+
+You may be ready for advanced topics:
+
+- HPC and containerization
+- CI/CD for scientific computing
+- Advanced automation workflows
+
+*Estimated time:* 2-3 weeks
+====
+
+== Mathematical Background Assumptions
+
+This course assumes you have:
+
+✅ Mathematics Prerequisites::
++
+- Undergraduate mathematics degree or equivalent
+- Familiarity with mathematical notation and concepts
+- Experience with mathematical problem-solving
+
+✅ Computational Mathematics (helpful but not required)::
++
+- Basic understanding of numerical methods
+- Experience with mathematical software (MATLAB, Mathematica, SageMath, etc.)
+- Interest in computational approaches to mathematical problems
+
+== What You'll Need
+
+Required Software::
++
+- A computer with administrative privileges to install software
+- Internet connection for downloading tools and accessing online resources
+- Text editor (we'll help you set up VS Code)
+
+Recommended Hardware::
++
+- At least 8GB RAM for container work
+- 20GB free disk space for software installation
+- Access to a Linux system (physical, virtual machine, or WSL on Windows)
+
+== Getting Help
+
+**If you're unsure about your starting point:**
+
+1. **Try the Linux module first** - it will quickly show if you need more basic preparation
+2. **Ask on Slack** - link to the course Slack workspace
+3. **Consult with instructors** during office hours
+4. **Form study groups** with other mathematics students
+
+[.callout.tip]
+--
+**For Mathematics Students New to Programming:**
+
+Don't worry if programming concepts seem foreign at first. The course is designed to introduce computational tools gradually, with mathematical applications as examples. Focus on understanding the concepts rather than memorizing commands.
+--
+
+== Ready to Start?
+
+Based on your self-assessment, proceed to:
+
+- **🟢 Level 1:** xref:linux:index.adoc[Linux Essentials for Mathematics Students]
+- **🟡 Level 2:** xref:project-management:index.adoc[Project Management for Research]  
+- **🔴 Level 3:** xref:containers:index.adoc[Containers and HPC]
+
+Remember: You can always go back to earlier modules if you need to review foundational concepts!

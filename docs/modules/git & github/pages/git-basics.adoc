@@ -1,10 +1,29 @@
-= Git Basics
+= Git Basics for Mathematical Research
 :page-tags: manual
 :parent-catalogs: git & github:index
 :page-illustration: fa-solid fa-git-alt
-:description: Learn fundamental Git concepts including version control principles, installation, and basic workflow understanding.
+:description: Learn version control for mathematical research - track changes in papers, code, and data analysis. Essential for collaborative mathematical projects and reproducible research.
 
-This document introduces the basic concepts of version control and explains why Git is a widely used tool. You'll also learn how to install Git locally to start using it.
+[.level-indicator.bg-success.text-white.p-3.rounded.mb-4]
+====
+*🟢 FOUNDATIONAL LEVEL* | *Prerequisites:* Basic Linux navigation | *Time:* 3-4 hours | *For:* Mathematics students starting collaborative research
+====
+
+[.callout.note]
+--
+**Why Version Control for Mathematics?**
+
+As a mathematics student, you work with:
+
+- **Research papers and LaTeX documents** that evolve through multiple drafts
+- **Mathematical code and scripts** (Python, MATLAB, R) for computations
+- **Data analysis notebooks** with experimental results
+- **Collaborative research projects** with advisors and peers
+
+Version control helps you track changes, collaborate safely, and never lose important work.
+--
+
+This document introduces version control concepts specifically for mathematical research and explains why Git is essential for modern mathematical collaboration.
 
 
 == What is Version Control?

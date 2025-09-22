@@ -1,36 +1,35 @@
-* xref:index.adoc[Introduction to Containers]
-
-** xref:docker/index.adoc[Docker]
+* Containers for Mathematical Computing
+** 🟡 Container Fundamentals (Level 2)
+*** xref:index.adoc[Introduction to Containers]
+*** xref:docker/index.adoc[Docker for Mathematics]
 *** xref:docker/docker-overview.adoc[Docker Overview]
-*** xref:docker/docker-problems-solved.adoc[The Problem Docker Solves]
+*** xref:docker/docker-problems-solved.adoc[Problems Docker Solves]
 *** xref:docker/docker-architecture.adoc[Docker Architecture]
-*** xref:docker/docker-hpc.adoc[Installing Docker]
 
-** xref:apptainer/index.adoc[Apptainer]
-*** xref:apptainer/apptainer-install.adoc[Installing Apptainer]
-*** xref:apptainer/tutorial.adoc[Tutorial]
-
-* xref:hpc/index.adoc[Containers for HPC]
-** xref:hpc/cicd.adoc[CI/CD for HPC]
-** xref:hpc/best-practices.adoc[Best practices]
-** xref:hpc/advanced.adoc[Advanced Topics]
-
-* Hands-on Tutorials
-** xref:docker/hands-on/index.adoc[Docker Hands-on]
+** 🟡 Basic Container Usage (Level 2)
+*** xref:docker/hands-on/index.adoc[Docker Hands-on Tutorials]
 *** xref:docker/hands-on/01-getting-started.adoc[Getting Started with Docker]
 *** xref:docker/hands-on/02-advanced-usage.adoc[Advanced Docker Usage]
-*** xref:docker/hands-on/docker-githubaction.adoc[GitHub Actions with Docker]
-*** xref:docker/hands-on/docker-postgres-example.adoc[Setting Up PostgreSQL with Docker]
-*** xref:docker/hands-on/docker-compose.adoc[Docker Compose]
-*** xref:docker/hands-on/docker-deploy.adoc[Deploy services]
-//** xref:hpc/hands-on/index.adoc[HPC Containers Hands-on]
-** xref:hpc/hands-on/00-classroom.adoc[C3B Classroom Setup]
-*** xref:hpc/hands-on/01-docker.adoc[Docker]
-*** xref:hpc/hands-on/02-apptainer.adoc[Apptainer]
+*** xref:docker/hands-on/04-compose.adoc[Docker Compose]
+
+** 🔴 HPC Containerization (Level 3)
+*** xref:hpc/index.adoc[Containers for HPC]
+*** xref:apptainer/index.adoc[Apptainer/Singularity]
+*** xref:apptainer/apptainer-install.adoc[Installing Apptainer]
+*** xref:apptainer/tutorial.adoc[Apptainer Tutorial]
+
+** 🔴 Advanced HPC Workflows (Level 3)
+*** xref:hpc/cicd.adoc[CI/CD for HPC]
+*** xref:hpc/best-practices.adoc[HPC Best Practices]
+*** xref:hpc/advanced.adoc[Advanced HPC Techniques]
+
+** 🔴 Production Deployment (Level 3)
+*** xref:hpc/hands-on/index.adoc[HPC Hands-on Tutorials]
+*** xref:hpc/hands-on/00-classroom.adoc[C3B Classroom Setup]
+*** xref:hpc/hands-on/01-docker.adoc[Docker on HPC]
+*** xref:hpc/hands-on/02-apptainer.adoc[Apptainer on HPC]
 *** xref:hpc/hands-on/03-docker-mpi.adoc[Docker and MPI]
 *** xref:hpc/hands-on/03-cicd-githubactions.adoc[CI/CD with GitHub Actions]
-*** xref:hpc/hands-on/04-docker-cicd-app.adoc[CI/CD Docker Job]
-*** xref:hpc/hands-on/04-apptainer-cicd-app.adoc[CI/CD Apptainer Job]
 *** xref:hpc/hands-on/05-deploy.adoc[Deploy with Apptainer]
 
 

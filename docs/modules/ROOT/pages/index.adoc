@@ -7,16 +7,132 @@
 :!numbered:
 
 [.lead.panel.note.rounded.w-70.justify-self-center]
-This course is designed to introduce you to the fundamental concepts of project management in Data science, Scientific Computing and Software production. 
+This course is designed to introduce mathematicians and scientific computing students to essential software development tools and practices. No prior programming or Linux experience required.
 
-== Syllabus
+== Learning Path for Mathematics Students
 
+The course is organized in **three progressive levels** with clear prerequisites and difficulty indicators:
 
-We will cover the following topics through hands-on modules:
+[.cards.grid-3]
+[cols="1,1,1"]
+|===
+^.^a|
+[.card.bg-primary.text-white]
+====
+*🟢 FOUNDATIONAL*
 
-The course modules are organized as interactive learning cards below. Each module provides comprehensive coverage of essential skills needed for modern data science and software development projects.
+*Prerequisites:* None
+
+Essential tools every mathematician needs for computational work
+====
+
+^.^a|
+[.card.bg-warning.text-white] 
+====
+*🟡 INTERMEDIATE*
+
+*Prerequisites:* Linux basics, Git fundamentals
+
+Collaborative development and project management
+====
+
+^.^a|
+[.card.bg-danger.text-white]
+====
+*🔴 ADVANCED*
+
+*Prerequisites:* All previous modules
+
+High-performance computing and automation
+====
+|===
+
+== Course Modules by Difficulty Level
+
+=== 🟢 **Level 1: Essential Foundations** _(Weeks 1-4)_
+
+For students with **no prior programming or Linux experience**:
+
+[.cards.cards-2]
+--
+Linux Essentials for Mathematics:: 
+Learn command-line basics for mathematical computing. Navigate file systems, manage mathematical datasets, and access remote computing resources.
++
+→ xref:linux:index.adoc[Start Learning Linux]
+
+Git for Mathematical Research:: 
+Track changes in LaTeX documents, collaborate on mathematical projects, and manage research code versions.
++
+→ Link: Git Basics for Mathematical Research
+
+VS Code for Mathematics::
+Set up integrated development environment for mathematical work with LaTeX, Python, and Jupyter integration.
++
+→ xref:vscode:index.adoc[Start Learning VS Code]
+
+Research Project Management::
+Apply project management principles to mathematical research, thesis projects, and academic collaborations.
++
+→ xref:project-management:index.adoc[Start Learning Project Management]
+--
+
+=== 🟡 **Level 2: Collaborative Development** _(Weeks 5-8)_
+
+For students comfortable with **basic command line and version control**:
+
+[.cards.cards-2]  
+--
+Advanced Git Workflows::
+Master branching, merging, and collaborative development for complex mathematical research projects.
++
+→ See Git & GitHub module for details
+
+xref:containers:index.adoc[Containers for Mathematics,role=card]::
+Create reproducible environments for mathematical computing, share numerical experiments, and ensure research reproducibility.
+
+xref:project-management:agile-best-practices.adoc[Agile Research Methods,role=card]::
+Apply modern project management methodologies to mathematical research and collaborative investigations.
+
+xref:cicd:index.adoc[Automation Basics,role=card]::
+Introduce automation concepts for mathematical workflows and computational research.
+--
+
+=== 🔴 **Level 3: Advanced Automation** _(Weeks 9-12)_
+
+For students ready for **high-performance computing workflows**:
+
+[.cards.cards-2]
+--
+xref:containers:hpc/index.adoc[HPC Containerization,role=card]::
+Deploy mathematical software on high-performance computing systems using advanced container technologies.
+
+xref:containers:hpc/advanced.adoc[Advanced CI/CD for HPC,role=card]::
+Implement sophisticated automation workflows for mathematical computing research and deployment.
+
+xref:cicd:gitlab.adoc[Production Workflows,role=card]::
+Master enterprise-level continuous integration and deployment for mathematical software development.
+
+xref:visualisation:index.adoc[Research Visualization,role=card]::
+Create interactive visualizations and dashboards for mathematical research results and data analysis.
+--
 
 Questions? Comments? Suggestions? https://join.slack.com/t/feelpp/shared_invite/zt-2qe0q9hw-4pVbhohCXUE6Po9Ma8dbiQ[> Use Slack]
+
+== Quick Start for Instructors
+
+👩‍🏫 **Teaching this course?** Check out the comprehensive xref:instructor-guide.adoc[📚 Instructor Guide] with:
+
+- Week-by-week curriculum for 12-week semester
+- Assessment strategies for mathematics students  
+- Common challenges and solutions
+- Mathematical examples and case studies
+- Differentiated instruction for mixed skill levels
+
+== Take the Assessment First!
+
+🎯 **Students:** Don't jump straight into modules! Start with the xref:prerequisites.adoc[Prerequisites & Self-Assessment] to find your optimal starting point and avoid frustration or boredom.
+
+💨 **In a hurry?** Check out the xref:quick-start.adoc[🚀 Quick Start Guide] for immediate next steps.
 
 
 

@@ -1,4 +1,4 @@
-= Introduction to CI/CD Fundamentals with GitHub Actions
+= CI/CD for Mathematical Computing
 Your Name <your.email@example.com>
 :icons: font
 :revealjs_theme: white
@@ -11,7 +11,26 @@ Your Name <your.email@example.com>
 :page-cards-tag: manual
 :page-cards-within-module: true
 :page-illustration: fa-solid fa-sync-alt
-:description: Master Continuous Integration and Continuous Deployment with GitHub Actions. Learn automation pipelines, containerization, and best practices for HPC and software development.
+:description: Learn automation for mathematical research workflows. Implement continuous integration for mathematical software, automate testing of numerical algorithms, and deploy computational research reproducibly.
+
+[.level-indicator.bg-danger.text-white.p-3.rounded.mb-4]
+====
+*🔴 ADVANCED LEVEL* | *Prerequisites:* Containers, Git workflows, basic scripting | *Time:* 6-8 hours | *For:* Mathematics students ready for automated research workflows
+====
+
+[.callout.note]
+--
+**Why CI/CD for Mathematical Research?**
+
+Mathematical computing benefits enormously from automation:
+- **Automated Testing**: Verify mathematical algorithms produce correct results
+- **Reproducible Computations**: Ensure numerical experiments can be replicated
+- **Collaboration**: Automatically validate contributions from research collaborators  
+- **Publication Support**: Generate figures, tables, and reports automatically
+- **Research Integrity**: Catch computational errors before they affect research conclusions
+
+CI/CD transforms mathematical research from manual, error-prone processes into reliable, automated workflows.
+--
 
 == Overview
 
