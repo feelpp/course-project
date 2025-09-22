@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Prerequisites and Self-Assessment :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/prerequisites.html">
+    <link rel="prev" href="quick-start.html">
+    <link rel="next" href="instructor-guide.html">
+    <meta name="description" content="Assess your current knowledge and determine the best starting point for your learning journey in computational mathematics.">
+    <meta name="generator" content="Antora 3.1.7">
+<link rel="stylesheet" href="../_/css/site.css">
+
+<!-- Font Awesome webfont CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../_/css/listing.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header><div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="course-project" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Course Project</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">🏠 Course Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="quick-start.html">🚀 Quick Start Guide</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="prerequisites.html">📋 Prerequisites &amp; Self-Assessment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="instructor-guide.html">📚 Instructor Guide</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟢 Level 1: Essential Foundations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="linux/index.html">Linux Essentials for Mathematics</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Git &amp; GitHub Fundamentals (See Git &amp; GitHub Documentation section)</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="vscode/index.html">VS Code for Mathematics</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Level 2: Collaborative Development</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="project-management/index.html">Research Project Management</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="containers/index.html">Containers for Mathematics</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🔴 Level 3: Advanced Automation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cicd/index.html">CI/CD for Mathematical Computing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="software/index.html">Software Distribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="visualisation/index.html">Research Visualization</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟢 Linux Essentials for Mathematics (Level 1)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="linux/index.html">Introduction &amp; Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Command Line Fundamentals</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="linux/shell.html">Linux Shell Basics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="linux/editing.html">File Editing in Linux</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="linux/text-processing.html">Text Processing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="linux/files.html">File Operations</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Remote Computing (Level 2)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="linux/ssh/index.html">Introduction to SSH and Remote-SSH</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="linux/ssh/ssh-setup.html">Setting Up SSH</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="linux/ssh/ssh-commands.html">Basic SSH Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="linux/ssh/remote-ssh-vscode.html">Remote-SSH Extension for VS Code</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="vscode/index.html">Overview of VS Code</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="vscode/install.html">VS Code Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="vscode/basic-usage.html">Basic Usage and Commands</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="vscode/extemsions.html">Extension Installation and Key Extensions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="vscode/remote-ssh.html">Remote SSH Extension</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="vscode/wsl.html">WSL Extension</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="vscode/python-jupyter.html">Python and Jupyter Extensions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="vscode/configure-vscode.html">How to Configure VS Code with .vscode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="vscode/cheatsheet.html">VS Code Cheat Sheet</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="project-management/index.html">Introduction to Project Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/introduction.html">What is Project?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/project-phases.html">Phases of a Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/practical-examples.html">Practical Examples in Scientific Computing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/case-studies.html">Case Studies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/tools-gantt.html">Project Management Tools and Gantt Charts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/agile-best-practices.html">Agile Best Practices</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/github.html">GitHub and Project Management</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Git &amp; GitHub Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟢 Git Fundamentals (Level 1)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/git-basics.html">Git Basics for Mathematical Research</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/git-starter.html">Git Starter Guide</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/git-repository-basics.html">Git Repository Basics</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Intermediate Git (Level 2)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/git-branch.html">Git Branching</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/git-merges.html">Git Merge &amp; Conflicts</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/git-remotes.html">Git Remotes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟢 GitHub Basics (Level 1)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/github-essentials.html">GitHub Essentials</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/github-start.html">GitHub Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/github-how-to-write-issues.html">Writing Issues</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Advanced GitHub (Level 2)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/github-collaborations.html">GitHub Collaborations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="git%20&%20github/github-actions.html">GitHub Actions Intro</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="git%20&%20github/github-actions-cmake-eigen3.html">GitHub Actions: CMake + Eigen3</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containers for Mathematical Computing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Container Fundamentals (Level 2)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/index.html">Introduction to Containers</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/docker/index.html">Docker for Mathematics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/docker/docker-overview.html">Docker Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/docker/docker-problems-solved.html">Problems Docker Solves</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/docker/docker-architecture.html">Docker Architecture</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Basic Container Usage (Level 2)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/docker/hands-on/index.html">Docker Hands-on Tutorials</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/docker/hands-on/01-getting-started.html">Getting Started with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/docker/hands-on/02-advanced-usage.html">Advanced Docker Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/docker/hands-on/04-compose.html">Docker Compose</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🔴 HPC Containerization (Level 3)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/index.html">Containers for HPC</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/apptainer/index.html">Apptainer/Singularity</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/apptainer/apptainer-install.html">Installing Apptainer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/apptainer/tutorial.html">Apptainer Tutorial</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🔴 Advanced HPC Workflows (Level 3)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/cicd.html">CI/CD for HPC</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/best-practices.html">HPC Best Practices</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/advanced.html">Advanced HPC Techniques</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🔴 Production Deployment (Level 3)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/hands-on/index.html">HPC Hands-on Tutorials</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/hands-on/00-classroom.html">C3B Classroom Setup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/hands-on/01-docker.html">Docker on HPC</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/hands-on/02-apptainer.html">Apptainer on HPC</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/hands-on/03-docker-mpi.html">Docker and MPI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/hands-on/03-cicd-githubactions.html">CI/CD with GitHub Actions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/hands-on/05-deploy.html">Deploy with Apptainer</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">CICD</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cicd/index.html">CI/CD with GitHub Actions </a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cicd/gitlab.html">CI/CD with GitLab</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">HandsOn</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cicd/gitlab_handson.html">Hands on with GitLab</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="software/index.html">Sofware Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="software/package-managers.html">Package Managers</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="software/repo/organization.html">Software Repository</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Visualisation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Web based</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="visualisation/dash.html">Dash Turorial</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="visualisation/hw.html">Dash Homework</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Course Project</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../feelpp-antora-ui/index.html">Antora Feel++ UI</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="index.html">Course Project</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Course Project</a></li>
+    <li><a href="prerequisites.html">📋 Prerequisites &amp; Self-Assessment</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/ROOT/pages/prerequisites.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Prerequisites and Self-Assessment</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>This course is designed for mathematics students with varying levels of computational experience. Use this self-assessment to determine your starting point.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_quick_self_assessment"><a class="anchor" href="#_quick_self_assessment"></a>1. Quick Self-Assessment</h2>
+<div class="sectionbody">
+<div class="sect2 assessment-checklist">
+<h3 id="_computer_skills_assessment"><a class="anchor" href="#_computer_skills_assessment"></a>1.1. 🖥️ <strong>Computer Skills Assessment</strong></h3>
+<div class="paragraph">
+<p>Check all that apply to you:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Basic Computer Use</dt>
+<dd>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> I can navigate folders and files on my computer using a graphical interface</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> I know how to install software on my computer</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> I&#8217;m comfortable using a web browser and email</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Command Line Experience</dt>
+<dd>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> I have used a terminal or command prompt before</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> I know basic commands like <code>cd</code>, <code>ls</code>, <code>mkdir</code></p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> I can navigate directories using the command line</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Programming Background</dt>
+<dd>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> I have written programs in any language (Python, MATLAB, R, etc.)</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> I understand concepts like variables, functions, and loops</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> I have worked with mathematical software packages</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Version Control</dt>
+<dd>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> I know what version control is</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> I have used Git or similar tools before</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> I have collaborated on code or documents using version control</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_recommended_starting_points"><a class="anchor" href="#_recommended_starting_points"></a>2. Recommended Starting Points</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Based on your self-assessment:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch cards grid-2">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="exampleblock card bg-light border-success">
+<div class="content">
+<div class="paragraph">
+<p><strong>🟢 <strong>Start with Level 1: Foundations</strong></strong></p>
+</div>
+<div class="paragraph">
+<p><strong>If you checked 0-3 boxes above</strong></p>
+</div>
+<div class="paragraph">
+<p>You&#8217;ll benefit from starting with the foundational modules:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Linux Essentials for Mathematics Students</p>
+</li>
+<li>
+<p>Git Basics for Mathematical Research</p>
+</li>
+<li>
+<p>VS Code Setup and Basic Usage</p>
+</li>
+<li>
+<p>Introduction to Project Management</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Estimated time:</strong> 4-6 weeks</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="exampleblock card bg-light border-warning">
+<div class="content">
+<div class="paragraph">
+<p><strong>🟡 <strong>Start with Level 2: Intermediate</strong></strong></p>
+</div>
+<div class="paragraph">
+<p><strong>If you checked 4-7 boxes above</strong></p>
+</div>
+<div class="paragraph">
+<p>You can skip some basics and focus on:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Advanced Git workflows</p>
+</li>
+<li>
+<p>Container basics</p>
+</li>
+<li>
+<p>Project management for research</p>
+</li>
+<li>
+<p>Collaborative development</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Estimated time:</strong> 3-4 weeks</p>
+</div>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="exampleblock card bg-light border-danger mt-3">
+<div class="content">
+<div class="paragraph">
+<p><strong>🔴 <strong>Advanced Level Entry</strong></strong></p>
+</div>
+<div class="paragraph">
+<p><strong>If you checked 8+ boxes above</strong></p>
+</div>
+<div class="paragraph">
+<p>You may be ready for advanced topics:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>HPC and containerization</p>
+</li>
+<li>
+<p>CI/CD for scientific computing</p>
+</li>
+<li>
+<p>Advanced automation workflows</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Estimated time:</strong> 2-3 weeks</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_mathematical_background_assumptions"><a class="anchor" href="#_mathematical_background_assumptions"></a>3. Mathematical Background Assumptions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This course assumes you have:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">✅ Mathematics Prerequisites</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Undergraduate mathematics degree or equivalent</p>
+</li>
+<li>
+<p>Familiarity with mathematical notation and concepts</p>
+</li>
+<li>
+<p>Experience with mathematical problem-solving</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">✅ Computational Mathematics (helpful but not required)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Basic understanding of numerical methods</p>
+</li>
+<li>
+<p>Experience with mathematical software (MATLAB, Mathematica, SageMath, etc.)</p>
+</li>
+<li>
+<p>Interest in computational approaches to mathematical problems</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_youll_need"><a class="anchor" href="#_what_youll_need"></a>4. What You&#8217;ll Need</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Required Software</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>A computer with administrative privileges to install software</p>
+</li>
+<li>
+<p>Internet connection for downloading tools and accessing online resources</p>
+</li>
+<li>
+<p>Text editor (we&#8217;ll help you set up VS Code)</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Recommended Hardware</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>At least 8GB RAM for container work</p>
+</li>
+<li>
+<p>20GB free disk space for software installation</p>
+</li>
+<li>
+<p>Access to a Linux system (physical, virtual machine, or WSL on Windows)</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_getting_help"><a class="anchor" href="#_getting_help"></a>5. Getting Help</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>If you&#8217;re unsure about your starting point:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Try the Linux module first</strong> - it will quickly show if you need more basic preparation</p>
+</li>
+<li>
+<p><strong>Ask on Slack</strong> - link to the course Slack workspace</p>
+</li>
+<li>
+<p><strong>Consult with instructors</strong> during office hours</p>
+</li>
+<li>
+<p><strong>Form study groups</strong> with other mathematics students</p>
+</li>
+</ol>
+</div>
+<div class="openblock callout tip">
+<div class="content">
+<div class="paragraph">
+<p><strong>For Mathematics Students New to Programming:</strong></p>
+</div>
+<div class="paragraph">
+<p>Don&#8217;t worry if programming concepts seem foreign at first. The course is designed to introduce computational tools gradually, with mathematical applications as examples. Focus on understanding the concepts rather than memorizing commands.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ready_to_start"><a class="anchor" href="#_ready_to_start"></a>6. Ready to Start?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Based on your self-assessment, proceed to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>🟢 Level 1:</strong> <a href="linux/index.html" class="xref page">Linux Essentials for Mathematics Students</a></p>
+</li>
+<li>
+<p><strong>🟡 Level 2:</strong> <a href="project-management/index.html" class="xref page">Project Management for Research</a></p>
+</li>
+<li>
+<p><strong>🔴 Level 3:</strong> <a href="containers/index.html" class="xref page">Containers and HPC</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Remember: You can always go back to earlier modules if you need to review foundational concepts!</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="quick-start.html">🚀 Quick Start Guide</a></span>
+  <span class="next"><a href="instructor-guide.html">📚 Instructor Guide</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2025 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+
+
+<!-- Font Awesome JS removed to use webfont icons only -->
+<script async src="../_/js/vendor/highlight.js"></script>
+
+<script src="../_/js/vendor/lunr.js"></script>
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>

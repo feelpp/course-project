@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Instructor Guide: Week-by-Week Curriculum :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/instructor-guide.html">
+    <link rel="prev" href="prerequisites.html">
+    <link rel="next" href="linux/index.html">
+    <meta name="description" content="Complete teaching guide for the Course Project, designed specifically for mathematics students. Includes weekly schedules, common challenges, and assessment strategies.">
+    <meta name="generator" content="Antora 3.1.7">
+<link rel="stylesheet" href="../_/css/site.css">
+
+<!-- Font Awesome webfont CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../_/css/listing.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header><div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="course-project" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Course Project</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">🏠 Course Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="quick-start.html">🚀 Quick Start Guide</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="prerequisites.html">📋 Prerequisites &amp; Self-Assessment</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="instructor-guide.html">📚 Instructor Guide</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟢 Level 1: Essential Foundations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="linux/index.html">Linux Essentials for Mathematics</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Git &amp; GitHub Fundamentals (See Git &amp; GitHub Documentation section)</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="vscode/index.html">VS Code for Mathematics</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Level 2: Collaborative Development</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="project-management/index.html">Research Project Management</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="containers/index.html">Containers for Mathematics</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🔴 Level 3: Advanced Automation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cicd/index.html">CI/CD for Mathematical Computing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="software/index.html">Software Distribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="visualisation/index.html">Research Visualization</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟢 Linux Essentials for Mathematics (Level 1)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="linux/index.html">Introduction &amp; Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Command Line Fundamentals</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="linux/shell.html">Linux Shell Basics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="linux/editing.html">File Editing in Linux</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="linux/text-processing.html">Text Processing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="linux/files.html">File Operations</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Remote Computing (Level 2)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="linux/ssh/index.html">Introduction to SSH and Remote-SSH</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="linux/ssh/ssh-setup.html">Setting Up SSH</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="linux/ssh/ssh-commands.html">Basic SSH Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="linux/ssh/remote-ssh-vscode.html">Remote-SSH Extension for VS Code</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="vscode/index.html">Overview of VS Code</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="vscode/install.html">VS Code Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="vscode/basic-usage.html">Basic Usage and Commands</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="vscode/extemsions.html">Extension Installation and Key Extensions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="vscode/remote-ssh.html">Remote SSH Extension</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="vscode/wsl.html">WSL Extension</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="vscode/python-jupyter.html">Python and Jupyter Extensions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="vscode/configure-vscode.html">How to Configure VS Code with .vscode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="vscode/cheatsheet.html">VS Code Cheat Sheet</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="project-management/index.html">Introduction to Project Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/introduction.html">What is Project?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/project-phases.html">Phases of a Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/practical-examples.html">Practical Examples in Scientific Computing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/case-studies.html">Case Studies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/tools-gantt.html">Project Management Tools and Gantt Charts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/agile-best-practices.html">Agile Best Practices</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project-management/github.html">GitHub and Project Management</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Git &amp; GitHub Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟢 Git Fundamentals (Level 1)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/git-basics.html">Git Basics for Mathematical Research</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/git-starter.html">Git Starter Guide</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/git-repository-basics.html">Git Repository Basics</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Intermediate Git (Level 2)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/git-branch.html">Git Branching</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/git-merges.html">Git Merge &amp; Conflicts</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/git-remotes.html">Git Remotes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟢 GitHub Basics (Level 1)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/github-essentials.html">GitHub Essentials</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/github-start.html">GitHub Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/github-how-to-write-issues.html">Writing Issues</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Advanced GitHub (Level 2)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git%20&%20github/github-collaborations.html">GitHub Collaborations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="git%20&%20github/github-actions.html">GitHub Actions Intro</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="git%20&%20github/github-actions-cmake-eigen3.html">GitHub Actions: CMake + Eigen3</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containers for Mathematical Computing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Container Fundamentals (Level 2)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/index.html">Introduction to Containers</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/docker/index.html">Docker for Mathematics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/docker/docker-overview.html">Docker Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/docker/docker-problems-solved.html">Problems Docker Solves</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/docker/docker-architecture.html">Docker Architecture</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Basic Container Usage (Level 2)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/docker/hands-on/index.html">Docker Hands-on Tutorials</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/docker/hands-on/01-getting-started.html">Getting Started with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/docker/hands-on/02-advanced-usage.html">Advanced Docker Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/docker/hands-on/04-compose.html">Docker Compose</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🔴 HPC Containerization (Level 3)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/index.html">Containers for HPC</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/apptainer/index.html">Apptainer/Singularity</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/apptainer/apptainer-install.html">Installing Apptainer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/apptainer/tutorial.html">Apptainer Tutorial</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🔴 Advanced HPC Workflows (Level 3)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/cicd.html">CI/CD for HPC</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/best-practices.html">HPC Best Practices</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/advanced.html">Advanced HPC Techniques</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🔴 Production Deployment (Level 3)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/hands-on/index.html">HPC Hands-on Tutorials</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/hands-on/00-classroom.html">C3B Classroom Setup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/hands-on/01-docker.html">Docker on HPC</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/hands-on/02-apptainer.html">Apptainer on HPC</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/hands-on/03-docker-mpi.html">Docker and MPI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/hands-on/03-cicd-githubactions.html">CI/CD with GitHub Actions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containers/hpc/hands-on/05-deploy.html">Deploy with Apptainer</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">CICD</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cicd/index.html">CI/CD with GitHub Actions </a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cicd/gitlab.html">CI/CD with GitLab</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">HandsOn</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cicd/gitlab_handson.html">Hands on with GitLab</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="software/index.html">Sofware Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="software/package-managers.html">Package Managers</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="software/repo/organization.html">Software Repository</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Visualisation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Web based</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="visualisation/dash.html">Dash Turorial</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="visualisation/hw.html">Dash Homework</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Course Project</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../feelpp-antora-ui/index.html">Antora Feel++ UI</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="index.html">Course Project</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Course Project</a></li>
+    <li><a href="instructor-guide.html">📚 Instructor Guide</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/ROOT/pages/instructor-guide.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Instructor Guide: Week-by-Week Curriculum</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>This comprehensive guide helps instructors deliver the Course Project effectively to mathematics students (CSMI program). The curriculum is designed for a 12-week semester with flexible pacing based on student backgrounds.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_course_overview_for_mathematics_students"><a class="anchor" href="#_course_overview_for_mathematics_students"></a>1. Course Overview for Mathematics Students</h2>
+<div class="sectionbody">
+<div class="openblock callout important">
+<div class="content">
+<div class="paragraph">
+<p><strong>Key Teaching Principles for Mathematics Students:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Start with "Why"</strong> - Always explain the mathematical relevance before diving into technical details</p>
+</li>
+<li>
+<p><strong>Use Mathematical Examples</strong> - Replace generic programming examples with numerical analysis, LaTeX, data analysis</p>
+</li>
+<li>
+<p><strong>Build Confidence Gradually</strong> - Many students may feel intimidated by command-line interfaces</p>
+</li>
+<li>
+<p><strong>Connect to Research</strong> - Show how tools apply to mathematical research and collaboration</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pre_course_preparation_week_0"><a class="anchor" href="#_pre_course_preparation_week_0"></a>2. Pre-Course Preparation (Week 0)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_instructor_tasks"><a class="anchor" href="#_instructor_tasks"></a>2.1. Instructor Tasks</h3>
+<div class="paragraph">
+<p><strong>Before the semester begins:</strong></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Setup and Assessment</dt>
+<dd>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Send prerequisites assessment to all students 2 weeks before class</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Prepare 3 different lesson plans based on student skill levels (Beginner/Intermediate/Advanced)</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Set up course Slack workspace for Q&amp;A and peer support</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Prepare virtual machines or lab access for students without Linux systems</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Create mathematical example datasets and code repositories</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Student Grouping Strategy</dt>
+<dd>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Group students by skill level based on assessment results</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Assign peer mentors (advanced students help beginners)</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Prepare differentiated assignments for mixed-level classes</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><strong>Sample Pre-Course Email:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Subject: Course Project - Pre-Assessment &amp; Preparation
+
+Dear CSMI Students,
+
+Welcome to Course Project! This course will teach you essential computational tools for mathematical research. Please complete the self-assessment at [link] by [date].
+
+Based on your responses, we'll customize the first few weeks to match your background. Don't worry if you have no programming experience - the course is designed for mathematicians!
+
+Best regards,
+[Instructor Name]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_level_1_foundational_track_weeks_1_8"><a class="anchor" href="#_level_1_foundational_track_weeks_1_8"></a>3. 🟢 <strong>LEVEL 1: FOUNDATIONAL TRACK</strong> (Weeks 1-8)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>For students with minimal computational experience</strong></p>
+</div>
+<div class="sect2">
+<h3 id="_week_1_introduction_and_environment_setup"><a class="anchor" href="#_week_1_introduction_and_environment_setup"></a>3.1. Week 1: Introduction and Environment Setup</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Learning Objectives</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Understand why computational tools matter in mathematics</p>
+</li>
+<li>
+<p>Complete environment setup (Linux/WSL, basic software)</p>
+</li>
+<li>
+<p>Navigate the course structure and assessment approach</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><strong>Monday: Course Introduction</strong> <em>(90 minutes)</em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Opening (15 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Course overview and mathematical relevance</p>
+</li>
+<li>
+<p>Student introductions and background sharing</p>
+</li>
+<li>
+<p>Review self-assessment results</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Why These Tools Matter for Mathematics (30 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Case study: Collaborative paper writing with LaTeX and Git</p>
+</li>
+<li>
+<p>Demo: Managing mathematical datasets and simulations</p>
+</li>
+<li>
+<p>Show: How mathematical software benefits from version control</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Environment Setup Workshop (45 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Install Linux/WSL for Windows users</p>
+</li>
+<li>
+<p>Basic system verification</p>
+</li>
+<li>
+<p>Install essential tools (text editor, terminal)</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><strong>Wednesday: Linux Foundations</strong> <em>(90 minutes)</em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Mathematical Context Introduction (20 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Show real mathematical workflows that use command line</p>
+</li>
+<li>
+<p>Demonstrate: File management for research projects</p>
+</li>
+<li>
+<p>Examples: Organizing mathematical papers, datasets, simulation results</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Hands-on Linux Basics (70 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>File system navigation (<code>cd</code>, <code>ls</code>, <code>pwd</code>)</p>
+</li>
+<li>
+<p>Creating and managing directories for research projects</p>
+</li>
+<li>
+<p>File operations for mathematical work</p>
+</li>
+<li>
+<p><strong>Mathematical Exercise:</strong> Organize a sample research project structure</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><strong>Friday: Linux Practice &amp; Problem Solving</strong> <em>(90 minutes)</em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Advanced File Operations (45 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Text processing for mathematical data</p>
+</li>
+<li>
+<p>File permissions and sharing</p>
+</li>
+<li>
+<p>Remote access basics (SSH)</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Workshop: Mathematical Data Management (45 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Project:</strong> Students organize sample mathematical datasets</p>
+</li>
+<li>
+<p>Practice with real CSV files from mathematical experiments</p>
+</li>
+<li>
+<p>Troubleshooting common issues</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><strong>Week 1 Assessment:</strong>
+=
+- Practical skills check: Navigate and organize file system
+- Self-reflection: Comfort level with command line
+- Peer assessment: Help classmates with setup issues</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_week_2_version_control_for_mathematical_research"><a class="anchor" href="#_week_2_version_control_for_mathematical_research"></a>3.2. Week 2: Version Control for Mathematical Research</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Learning Objectives</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Understand version control for mathematical research</p>
+</li>
+<li>
+<p>Use Git for LaTeX document management</p>
+</li>
+<li>
+<p>Set up GitHub for academic collaboration</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><strong>Monday: Git Fundamentals for Mathematics</strong> <em>(90 minutes)</em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Introduction to Version Control (30 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Why mathematicians need version control</p>
+</li>
+<li>
+<p>Case study: Tracking changes in research papers</p>
+</li>
+<li>
+<p>Demo: Git for LaTeX document collaboration</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Git Basics Hands-on (60 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Initialize repository for a mathematical paper</p>
+</li>
+<li>
+<p>Basic commands: <code>add</code>, <code>commit</code>, <code>status</code></p>
+</li>
+<li>
+<p><strong>Mathematical Exercise:</strong> Version control a LaTeX document</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><strong>Wednesday: Collaborative Mathematics with Git</strong> <em>(90 minutes)</em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Branching for Research (45 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Creating branches for different paper sections</p>
+</li>
+<li>
+<p>Merging collaborative work</p>
+</li>
+<li>
+<p>Resolving conflicts in mathematical documents</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">GitHub for Academic Work (45 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Setting up academic GitHub account</p>
+</li>
+<li>
+<p>Creating repositories for mathematical projects</p>
+</li>
+<li>
+<p><strong>Exercise:</strong> Collaborate on a mathematical proof document</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><strong>Friday: Git Workshop &amp; Project</strong> <em>(90 minutes)</em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Mathematical Project Setup (90 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Group Project:</strong> Set up shared repository for mathematical analysis</p>
+</li>
+<li>
+<p>Practice collaborative workflows</p>
+</li>
+<li>
+<p>Code review for mathematical scripts</p>
+</li>
+<li>
+<p>Issue tracking for research tasks</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><strong>Week 2 Assessment:</strong>
+- Git workflow demonstration
+- Collaborative exercise evaluation
+- Repository organization quality</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_week_3_development_environment_vs_code"><a class="anchor" href="#_week_3_development_environment_vs_code"></a>3.3. Week 3: Development Environment (VS Code)</h3>
+<div class="paragraph">
+<p><strong>Learning Objectives:</strong>
+- Set up integrated development environment
+- Configure VS Code for mathematical work
+- Understand extensions for LaTeX, Python, and data analysis</p>
+</div>
+<div class="paragraph">
+<p><strong>Monday: VS Code for Mathematics Students</strong> <em>(90 minutes)</em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">IDE Introduction (30 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Why use an integrated development environment</p>
+</li>
+<li>
+<p>Overview of VS Code for mathematical work</p>
+</li>
+<li>
+<p>Comparison with mathematical software interfaces</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">VS Code Setup and Configuration (60 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Installation and basic configuration</p>
+</li>
+<li>
+<p>Essential extensions for mathematics: LaTeX, Python, Jupyter</p>
+</li>
+<li>
+<p><strong>Exercise:</strong> Set up workspace for mathematical project</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><strong>Wednesday: LaTeX and Document Management</strong> <em>(90 minutes)</em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">LaTeX in VS Code (45 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>LaTeX extension setup and configuration</p>
+</li>
+<li>
+<p>Writing mathematical documents with live preview</p>
+</li>
+<li>
+<p>Bibliography management integration</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Version Control Integration (45 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Git integration in VS Code</p>
+</li>
+<li>
+<p>Managing mathematical document versions</p>
+</li>
+<li>
+<p><strong>Exercise:</strong> Write and version a mathematical report</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><strong>Friday: Data Analysis Environment</strong> <em>(90 minutes)</em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Python and Jupyter Setup (45 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Python extension configuration</p>
+</li>
+<li>
+<p>Jupyter notebook integration</p>
+</li>
+<li>
+<p>Mathematical libraries overview</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Mathematical Computing Workflow (45 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Project:</strong> Set up complete mathematical analysis environment</p>
+</li>
+<li>
+<p>Integration with external mathematical software</p>
+</li>
+<li>
+<p>Best practices for reproducible research</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><strong>Week 3 Assessment:</strong>
+- Environment setup evaluation
+- LaTeX document creation
+- Integrated workflow demonstration</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_week_4_project_management_for_research"><a class="anchor" href="#_week_4_project_management_for_research"></a>3.4. Week 4: Project Management for Research</h3>
+<div class="paragraph">
+<p><strong>Learning Objectives:</strong>
+- Apply project management to mathematical research
+- Use GitHub for research project organization
+- Understand Agile methods in academic context</p>
+</div>
+<div class="paragraph">
+<p><strong>Monday: Research Project Management</strong> <em>(90 minutes)</em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Academic Project Management (45 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Adapting project management for mathematical research</p>
+</li>
+<li>
+<p>Timeline management for research projects</p>
+</li>
+<li>
+<p>Milestone setting for mathematical investigations</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">GitHub Projects for Research (45 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Setting up research project boards</p>
+</li>
+<li>
+<p>Issue tracking for mathematical tasks</p>
+</li>
+<li>
+<p><strong>Exercise:</strong> Plan a semester research project</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><strong>Wednesday: Collaborative Research Methods</strong> <em>(90 minutes)</em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Research Team Workflows (45 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Organizing collaborative mathematical research</p>
+</li>
+<li>
+<p>Code review for mathematical scripts</p>
+</li>
+<li>
+<p>Documentation standards for mathematical projects</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Agile Research Practices (45 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Sprint planning for research phases</p>
+</li>
+<li>
+<p>Retrospectives for mathematical investigations</p>
+</li>
+<li>
+<p><strong>Workshop:</strong> Apply Agile methods to research project</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><strong>Friday: Research Project Workshop</strong> <em>(90 minutes)</em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Integrated Project Setup (90 min)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Capstone Project Start:</strong> Students begin semester-long mathematical project</p>
+</li>
+<li>
+<p>Apply all learned tools in integrated workflow</p>
+</li>
+<li>
+<p>Peer review and feedback session</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><strong>Week 4 Assessment:</strong>
+- Project planning quality
+- Tool integration effectiveness
+- Collaboration skills demonstration</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_weeks_5_8_intermediate_skills_development"><a class="anchor" href="#_weeks_5_8_intermediate_skills_development"></a>3.5. Weeks 5-8: Intermediate Skills Development</h3>
+<div class="paragraph">
+<p><strong>Weeks 5-6: Advanced Git and Collaboration</strong>
+- Advanced branching strategies for research
+- Large file management (Git LFS) for mathematical datasets
+- Continuous integration basics for mathematical projects</p>
+</div>
+<div class="paragraph">
+<p><strong>Weeks 7-8: Introduction to Containers and Automation</strong>
+- Basic containerization for reproducible mathematical computing
+- Simple automation scripts for mathematical workflows
+- Preparation for advanced topics</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_level_2_intermediate_track_weeks_5_10"><a class="anchor" href="#_level_2_intermediate_track_weeks_5_10"></a>4. 🟡 <strong>LEVEL 2: INTERMEDIATE TRACK</strong> (Weeks 5-10)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>For students with some computational background</strong></p>
+</div>
+<div class="sect2">
+<h3 id="_week_5_advanced_collaboration_and_code_quality"><a class="anchor" href="#_week_5_advanced_collaboration_and_code_quality"></a>4.1. Week 5: Advanced Collaboration and Code Quality</h3>
+<div class="paragraph">
+<p><strong>Learning Objectives:</strong>
+- Implement advanced Git workflows
+- Apply code review processes to mathematical code
+- Establish quality standards for mathematical computing</p>
+</div>
+<div class="paragraph">
+<p><strong>Focus Areas:</strong>
+- Mathematical code review practices
+- Documentation standards for computational mathematics
+- Testing strategies for mathematical algorithms</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_week_6_containerization_for_mathematical_research"><a class="anchor" href="#_week_6_containerization_for_mathematical_research"></a>4.2. Week 6: Containerization for Mathematical Research</h3>
+<div class="paragraph">
+<p><strong>Learning Objectives:</strong>
+- Understand containerization for reproducible research
+- Use Docker for mathematical software environments
+- Share computational environments with collaborators</p>
+</div>
+<div class="paragraph">
+<p><strong>Mathematical Applications:</strong>
+- Packaging mathematical software stacks
+- Reproducible numerical experiments
+- Cross-platform mathematical computing</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_week_7_project_management_at_scale"><a class="anchor" href="#_week_7_project_management_at_scale"></a>4.3. Week 7: Project Management at Scale</h3>
+<div class="paragraph">
+<p><strong>Learning Objectives:</strong>
+- Manage complex mathematical research projects
+- Coordinate multiple research streams
+- Apply advanced project management tools</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_week_8_introduction_to_automation"><a class="anchor" href="#_week_8_introduction_to_automation"></a>4.4. Week 8: Introduction to Automation</h3>
+<div class="paragraph">
+<p><strong>Learning Objectives:</strong>
+- Automate repetitive mathematical tasks
+- Set up basic continuous integration
+- Prepare for advanced computing workflows</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_weeks_9_10_integration_and_advanced_preparation"><a class="anchor" href="#_weeks_9_10_integration_and_advanced_preparation"></a>4.5. Weeks 9-10: Integration and Advanced Preparation</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Portfolio project development</p>
+</li>
+<li>
+<p>Preparation for advanced HPC concepts</p>
+</li>
+<li>
+<p>Research presentation and documentation</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_level_3_advanced_track_weeks_9_12"><a class="anchor" href="#_level_3_advanced_track_weeks_9_12"></a>5. 🔴 <strong>LEVEL 3: ADVANCED TRACK</strong> (Weeks 9-12)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>For computationally experienced students</strong></p>
+</div>
+<div class="sect2">
+<h3 id="_week_9_high_performance_computing_and_containers"><a class="anchor" href="#_week_9_high_performance_computing_and_containers"></a>5.1. Week 9: High-Performance Computing and Containers</h3>
+<div class="paragraph">
+<p><strong>Learning Objectives:</strong>
+- Deploy mathematical software on HPC systems
+- Use advanced containerization (Apptainer/Singularity)
+- Understand HPC workflow management</p>
+</div>
+<div class="paragraph">
+<p><strong>Mathematical Applications:</strong>
+- Large-scale numerical simulations
+- Parallel mathematical computing
+- HPC cluster resource management</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_week_10_cicd_for_mathematical_research"><a class="anchor" href="#_week_10_cicd_for_mathematical_research"></a>5.2. Week 10: CI/CD for Mathematical Research</h3>
+<div class="paragraph">
+<p><strong>Learning Objectives:</strong>
+- Implement continuous integration for mathematical projects
+- Automate testing of mathematical algorithms
+- Deploy mathematical software automatically</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_week_11_advanced_automation_and_integration"><a class="anchor" href="#_week_11_advanced_automation_and_integration"></a>5.3. Week 11: Advanced Automation and Integration</h3>
+<div class="paragraph">
+<p><strong>Learning Objectives:</strong>
+- Create complex mathematical workflows
+- Integrate multiple computational tools
+- Optimize computational research pipelines</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_week_12_capstone_projects_and_portfolio"><a class="anchor" href="#_week_12_capstone_projects_and_portfolio"></a>5.4. Week 12: Capstone Projects and Portfolio</h3>
+<div class="paragraph">
+<p><strong>Learning Objectives:</strong>
+- Complete comprehensive mathematical computing project
+- Demonstrate mastery of all course tools
+- Present integrated research workflow</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_assessment_strategies"><a class="anchor" href="#_assessment_strategies"></a>6. 📊 Assessment Strategies</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_formative_assessment"><a class="anchor" href="#_formative_assessment"></a>6.1. Formative Assessment</h3>
+<div class="paragraph">
+<p><strong>Weekly Skills Checks:</strong>
+- Practical demonstrations of tool usage
+- Peer collaboration exercises
+- Self-reflection journals on learning progress</p>
+</div>
+<div class="paragraph">
+<p><strong>Project-Based Learning:</strong>
+- Ongoing mathematical research project
+- Portfolio development throughout semester
+- Regular peer review sessions</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_summative_assessment"><a class="anchor" href="#_summative_assessment"></a>6.2. Summative Assessment</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>Midterm Portfolio Review</strong> <em>(Week 6)</em></dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Demonstrate proficiency with foundational tools</p>
+</li>
+<li>
+<p>Present mathematical project progress</p>
+</li>
+<li>
+<p>Peer evaluation of collaboration skills</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"><strong>Final Project Presentation</strong> <em>(Week 12)</em></dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Complete mathematical research project using all course tools</p>
+</li>
+<li>
+<p>Documentation quality and reproducibility</p>
+</li>
+<li>
+<p>Presentation to mathematical research community</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><strong>Assessment Rubric Categories:</strong>
+1. <strong>Technical Proficiency</strong> (40%) - Tool usage and integration
+2. <strong>Mathematical Application</strong> (30%) - Relevance to mathematical research
+3. <strong>Collaboration</strong> (20%) - Teamwork and peer interaction
+4. <strong>Communication</strong> (10%) - Documentation and presentation quality</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_common_challenges_and_solutions"><a class="anchor" href="#_common_challenges_and_solutions"></a>7. 🚨 Common Challenges and Solutions</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_challenge_1_mathematics_students_intimidated_by_command_line"><a class="anchor" href="#_challenge_1_mathematics_students_intimidated_by_command_line"></a>7.1. Challenge 1: Mathematics Students Intimidated by Command Line</h3>
+<div class="paragraph">
+<p><strong>Symptoms:</strong>
+- Students avoid using terminal
+- Preference for graphical interfaces
+- Fear of "breaking something"</p>
+</div>
+<div class="paragraph">
+<p><strong>Solutions:</strong>
+- Start with mathematical file organization examples
+- Use "safe" sandbox environments for practice
+- Pair programming with more confident students
+- Emphasize mathematical relevance in every command</p>
+</div>
+<div class="paragraph">
+<p><strong>Script for Encouragement:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">"Think of the command line like mathematical notation - it seems complex at first, but it's actually a precise, powerful language for expressing exactly what you want the computer to do. Just like mathematical notation, once you learn the basics, it becomes much more efficient than everyday language."</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_challenge_2_students_dont_see_relevance_to_mathematics"><a class="anchor" href="#_challenge_2_students_dont_see_relevance_to_mathematics"></a>7.2. Challenge 2: Students Don&#8217;t See Relevance to Mathematics</h3>
+<div class="paragraph">
+<p><strong>Symptoms:</strong>
+- "Why can&#8217;t I just use MATLAB/Mathematica?"
+- Resistance to learning new tools
+- Focus on immediate assignment completion over skill building</p>
+</div>
+<div class="paragraph">
+<p><strong>Solutions:</strong>
+- Always start lessons with mathematical use cases
+- Show real research workflows from mathematical faculty
+- Invite guest speakers from computational mathematics
+- Use mathematical datasets and problems in all exercises</p>
+</div>
+<div class="paragraph">
+<p><strong>Example Mathematical Connections:</strong>
+- <strong>Linux:</strong> "Managing output from long-running numerical simulations"
+- <strong>Git:</strong> "Collaborating on mathematical papers with advisors"
+- <strong>Containers:</strong> "Ensuring your numerical results are reproducible"</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_challenge_3_mixed_skill_levels_in_same_class"><a class="anchor" href="#_challenge_3_mixed_skill_levels_in_same_class"></a>7.3. Challenge 3: Mixed Skill Levels in Same Class</h3>
+<div class="paragraph">
+<p><strong>Symptoms:</strong>
+- Advanced students bored with basics
+- Beginners overwhelmed by pace
+- Uneven group project contributions</p>
+</div>
+<div class="paragraph">
+<p><strong>Solutions:</strong>
+- Peer mentoring system (advanced students help beginners)
+- Tiered assignments with optional advanced components
+- Flexible deadlines based on starting skill level
+- Additional support sessions for beginners</p>
+</div>
+<div class="paragraph">
+<p><strong>Differentiated Assignment Example:</strong>
+- <strong>Basic:</strong> Use Git to track changes in a LaTeX document
+- <strong>Intermediate:</strong> Set up collaborative repository with branch protection
+- <strong>Advanced:</strong> Implement automated LaTeX compilation with CI/CD</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_challenge_4_time_management_and_semester_integration"><a class="anchor" href="#_challenge_4_time_management_and_semester_integration"></a>7.4. Challenge 4: Time Management and Semester Integration</h3>
+<div class="paragraph">
+<p><strong>Symptoms:</strong>
+- Students overwhelmed by other mathematics courses
+- Difficulty seeing long-term value
+- Procrastination on practical assignments</p>
+</div>
+<div class="paragraph">
+<p><strong>Solutions:</strong>
+- Integrate with other mathematics courses when possible
+- Show immediate benefits (easier homework management)
+- Break large projects into weekly mini-deliverables
+- Connect with mathematics faculty for reinforcement</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_resources_for_instructors"><a class="anchor" href="#_additional_resources_for_instructors"></a>8. 📚 Additional Resources for Instructors</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_mathematical_example_repositories"><a class="anchor" href="#_mathematical_example_repositories"></a>8.1. Mathematical Example Repositories</h3>
+<div class="paragraph">
+<p><strong>Recommended Example Projects:</strong>
+1. <strong>Numerical Analysis Project:</strong> Implementing and comparing root-finding algorithms
+2. <strong>Statistical Analysis:</strong> Processing and visualizing mathematical survey data
+3. <strong>LaTeX Collaboration:</strong> Co-authoring mathematical research paper
+4. <strong>Simulation Study:</strong> Monte Carlo simulation with result management</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_guest_speaker_suggestions"><a class="anchor" href="#_guest_speaker_suggestions"></a>8.2. Guest Speaker Suggestions</h3>
+<div class="paragraph">
+<p><strong>Potential Speakers:</strong>
+- Computational mathematics faculty showing research workflows
+- Industry mathematicians using these tools
+- Graduate students in computational mathematics
+- Mathematical software developers</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_professional_development"><a class="anchor" href="#_professional_development"></a>8.3. Professional Development</h3>
+<div class="paragraph">
+<p><strong>Recommended Training for Instructors:</strong>
+- Understanding mathematics student learning styles
+- Computational mathematics teaching strategies
+- Industry trends in mathematical computing
+- Inclusive teaching practices for STEM</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_success_metrics"><a class="anchor" href="#_success_metrics"></a>9. 🎯 Success Metrics</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_student_success_indicators"><a class="anchor" href="#_student_success_indicators"></a>9.1. Student Success Indicators</h3>
+<div class="paragraph">
+<p><strong>By End of Course, Students Should:</strong>
+- Confidently manage mathematical research projects using version control
+- Set up reproducible computational environments for mathematical work
+- Collaborate effectively on mathematical research using modern tools
+- Apply project management principles to mathematical investigations
+- Demonstrate integration of tools in cohesive mathematical workflow</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_course_improvement_metrics"><a class="anchor" href="#_course_improvement_metrics"></a>9.2. Course Improvement Metrics</h3>
+<div class="paragraph">
+<p><strong>Track These Metrics:</strong>
+- Student confidence surveys (pre/post course)
+- Tool adoption in subsequent mathematical courses
+- Student feedback on mathematical relevance
+- Faculty feedback on student preparedness
+- Long-term tool usage tracking</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_end_of_semester_student_reflection_questions"><a class="anchor" href="#_end_of_semester_student_reflection_questions"></a>9.3. End-of-Semester Student Reflection Questions</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>How have these tools changed your approach to mathematical research?</p>
+</li>
+<li>
+<p>Which tools do you plan to continue using in future mathematics courses?</p>
+</li>
+<li>
+<p>What mathematical applications of these tools surprised you most?</p>
+</li>
+<li>
+<p>How confident do you feel collaborating on computational mathematics projects?</p>
+</li>
+<li>
+<p>What advice would you give to future mathematics students taking this course?</p>
+</li>
+</ol>
+</div>
+<hr>
+<div class="openblock callout note">
+<div class="content">
+<div class="paragraph">
+<p><strong>Remember:</strong> This curriculum guide should be adapted based on your specific student population, available resources, and institutional constraints. The key is maintaining focus on mathematical applications while building computational confidence gradually.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="prerequisites.html">📋 Prerequisites &amp; Self-Assessment</a></span>
+  <span class="next"><a href="linux/index.html">Linux Essentials for Mathematics</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2025 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+
+
+<!-- Font Awesome JS removed to use webfont icons only -->
+<script async src="../_/js/vendor/highlight.js"></script>
+
+<script src="../_/js/vendor/lunr.js"></script>
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>

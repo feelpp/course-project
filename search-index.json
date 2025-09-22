@@ -1,0 +1,898 @@
+{
+  "documents": [
+    {
+      "id": 1,
+      "title": "Page Not Found :: Course Project",
+      "content": "Download as .pdf Page Not Found The page you’re looking for does not exist. It may have been moved. You can return to the start page, or follow one of the links in the navigation to the left. If you arrived on this page by clicking on a link, please notify the owner of the site that the link is broken. If you typed the URL of this page manually, please double check that you entered the address correctly.",
+      "url": "/404.html"
+    },
+    {
+      "id": 2,
+      "title": "Antora environment :: Course Project",
+      "content": "Edit this Page Download as .pdf Antora environment Antora is our static website generator. We use it to generate the documentation of the project It is part of the documentation of docs.feelpp.org[Feel++ docs] website. To generate the documentation $ npm install (1) $ npm run antora (2) $ npm run start (3) 1 Install the dependencies 2 Generate the documentation 3 Serve the documentation, the url is provided in the console Unresolved include directive in modules/ROOT/pages/antora.adoc - include::antora-ui::partial$antora.adoc[]",
+      "url": "/course-project/antora.html"
+    },
+    {
+      "id": 3,
+      "title": "CI/CD through Gitlab :: Course Project",
+      "content": "Edit this Page Download as .pdf CI/CD through Gitlab Table of Contents 1. Review of CI/CD as a concept 2. Overview of Gitlab CI 3. Karlina and IT4I’s CI/CD setup 4. A comparison of Gitlab CI and Github Actions 4.1. What is a Github Action? 5. Gitlab YAML syntax 1. Review of CI/CD as a concept Figure 1. DevOps and CI/CD (1/3) Figure 2. DevOps and CI/CD (2/3) Figure 3. DevOps and CI/CD (3/3) CI (Continuous Integration) Is your code good? earlier you run tests, sooner you find problems makes sure that any file edits made integrate well with the stable code base functional tests security scans code quality scans performance tests license scanning fuzz testing gives everyone on the team an understanding of the state of thesoftware CD (Continuous Delivery / Continous Deployment) more ambiguous finding out where your code should go and putting it there make releases \"boring\" different environments testing/development environments (run against feature branches etc) staging/pre-prodcution (run ",
+      "url": "/course-project/cicd/gitlab.html"
+    },
+    {
+      "id": 4,
+      "title": "Hands on: Gitlab CI/CD :: Course Project",
+      "content": "Edit this Page Download as .pdf Hands on: Gitlab CI/CD Table of Contents 1. Exercise 1: Connecting with Karolina Runners 1.1. Step I: Making our repository 1.2. Step II: Adding a Hello World CI Job 2. Exercise 2: Converting our Github App 2.1. Step 1: Getting the C++ MPI Application 2.2. Step 2: Converting from GitHub to GitLab 2.3. Step 3: Deploying through JacamarCI to SLURM 2.4. Step 4: Uploading the built package as an artifact 3. (Bonus) Exercise: Self-hosted Runners 3.1. Setting up your personal runner 3.2. Building a simple pipeline 4. (Bonus) Exercise: Containers through GitLab 4.1. Deploying to SLURM 1. Exercise 1: Connecting with Karolina Runners Our first task is to start working the officially provided Gitlab Runners from Karolina. As mentioned before, we have a number of runners available, however, we cannot choose one particular one to run our CI job. Instead, we can \"match\" with one runner, out of a possible group of runners, using the CI job labels, or tags. 1.1. Step I",
+      "url": "/course-project/cicd/gitlab_handson.html"
+    },
+    {
+      "id": 5,
+      "title": "CI/CD through Gitlab :: Course Project",
+      "content": "Edit this Page Download as .pdf CI/CD through Gitlab 1. Review of CI/CD as a concept 1.1. DevOps and CI/CD (1/3) 1.2. DevOps and CI/CD (2/3) 1.3. DevOps and CI/CD (3/3) 1.4. CI (Continuous Integration) Is your code good? earlier you run tests, sooner you find problems makes sure that any file edits made integrate well with the stable code base functional tests security scans code quality scans performance tests license scanning fuzz testing gives everyone on the team an understanding of the state of thesoftware 1.5. CD (Continuous Delivery / Continous Deployment) more ambiguous finding out where your code should go and putting it there make releases \"boring\" different environments testing/development environments (run against feature branches etc) staging/pre-prodcution (run against main) production envs (run against tags) 1.6. CD (Continuous Delivery / Continous Deployment) continuous delivery automatic deploy to test and dev envs not automatically deployed to production without manua",
+      "url": "/course-project/cicd/gitlab_slides.html"
+    },
+    {
+      "id": 6,
+      "title": "CI/CD for Mathematical Computing :: Course Project",
+      "content": "CI/CD for Mathematical Computing Table of Contents 1. Overview 2. Introduction: The CI/CD Problem (30 min) 2.1. The Software Development Challenge 2.2. HPC Considerations: What Does It Mean for HPC and How Does It Help? 2.3. Why CI/CD? 2.4. CI/CD Platform Choices and Development Platforms 3. GitHub Actions: Overview and Fundamentals (40 min) 3.1. What is GitHub Actions? 3.2. A Sample GitHub Actions Workflow 3.3. Benefits of Using GitHub Actions 4. 3. Containers in CI/CD (15 min) 4.1. Why Use Containers in CI/CD? 4.2. Using Containers with GitHub Actions 5. Demo / Hands-on (Optional) (5 min) 6. Q&A and Discussion (5 min) 7. Summary and Closing 🔴 ADVANCED LEVEL | Prerequisites: Containers, Git workflows, basic scripting | Time: 6-8 hours | For: Mathematics students ready for automated research workflows Why CI/CD for Mathematical Research? Mathematical computing benefits enormously from automation: - Automated Testing: Verify mathematical algorithms produce correct results - Reproducibl",
+      "url": "/course-project/cicd/"
+    },
+    {
+      "id": 7,
+      "title": "Cmake environment :: Course Project",
+      "content": "Edit this Page Download as .pdf Cmake environment The CMakeLists.txt is setup with Feel++. A sample Feel++ application is available in src. 1. Building The CMakeLists.txt is configured to build the application in src. The following commands can be used to build the application: $ cmake --preset default (1) $ cmake --build --preset default (2) $ cmake --build --preset default -t install (3) 1 Configure the project 2 Build the project 3 Install the project 2. Packaging CPack is configured and allows to generate a binary and source package. Use the following commands to generate the binary package: $ cmake --build --preset default -t package Use the following commands to generate the source package: $ cmake --build --preset default -t package_source 3. Testing CTest is configured. Use the following command to run the tests: $ cmake --build --preset default -t test",
+      "url": "/course-project/cmake.html"
+    },
+    {
+      "id": 8,
+      "title": "Installing Apptainer :: Course Project",
+      "content": "Edit this Page Download as .pdf Installing Apptainer Since this guide assumes you are building Apptainer from source, it walks you through the installation process. For alternative installation methods, including pre-compiled binaries, refer to the [installation section of the admin guide](apptainer.org/docs/admin/main/installation.html). 1. Install System Dependencies On Debian-based systems (e.g., Ubuntu): sudo apt-get update sudo apt-get install -y \\ build-essential \\ libseccomp-dev \\ pkg-config \\ uidmap \\ squashfs-tools \\ fakeroot \\ cryptsetup \\ tzdata \\ dh-apparmor \\ curl wget git On RHEL or its derivatives: sudo dnf groupinstall -y 'Development Tools' sudo dnf install -y epel-release sudo dnf install -y \\ libseccomp-devel \\ squashfs-tools \\ fakeroot \\ cryptsetup \\ wget git On SLE/openSUSE: sudo zypper install -y \\ libseccomp-devel \\ libuuid-devel \\ openssl-devel \\ cryptsetup sysuser-tools \\ gcc go 2. Install Go Apptainer is written in Go, so you may need to install a newer versio",
+      "url": "/course-project/containers/apptainer/apptainer-install.html"
+    },
+    {
+      "id": 9,
+      "title": "Introduction to Apptainer :: Course Project",
+      "content": "Edit this Page Download as .pdf Introduction to Apptainer Apptainer (formerly Singularity) is a container platform specifically designed for high-performance computing (HPC), scientific computing, and data science. Unlike Docker, Apptainer containers run without requiring root privileges, making them more suitable for multi-user environments like university clusters or supercomputers. 1. Why Apptainer? Rootless security: Apptainer is designed with non-privileged users in mind, increasing security in shared environments. Performance: Ideal for workloads in HPC, where performance and security are critical. Mobility of Compute: Easily transport workloads between environments, including HPC clusters and cloud infrastructure. 2. Getting Started with Apptainer To get started with Apptainer, you can install it on your system using Installing Apptainer. # Pulling a container from a registry apptainer pull library://alpine # Running the container apptainer exec alpine_latest.sif /bin/sh 3. Use ",
+      "url": "/course-project/containers/apptainer/"
+    },
+    {
+      "id": 10,
+      "title": "Apptainer Quick Start Guide :: Course Project",
+      "content": "Edit this Page Download as .pdf Apptainer Quick Start Guide This guide provides a concise introduction to using Apptainer, a container platform optimized for High Performance Computing (HPC) and Enterprise Performance Computing (EPC). Apptainer allows you to build and interact with containers seamlessly, enabling the execution of programs within a container as if they were running on your host system. ￼ 1. Installation Apptainer requires a Linux system for operation. Root access is not mandatory if user namespaces are available. To install Apptainer from source, follow the instructions in the INSTALL.md file on GitHub. Alternative installation methods, including using pre-built RPMs, building RPM or Debian packages, installing without root privileges, and utilizing Apptainer on macOS and Windows, are detailed in the installation section of the admin guide. 2. Overview of the Apptainer Interface Apptainer’s command-line interface facilitates transparent interaction with containers. You ",
+      "url": "/course-project/containers/apptainer/tutorial.html"
+    },
+    {
+      "id": 11,
+      "title": "Docker Architecture :: Course Project",
+      "content": "Edit this Page Download as .pdf Docker Architecture 1. Separation of Concerns Docker separates the roles of developers and sysadmins by using containers as the interface between these roles. This concept is particularly valuable for scientific computing and data science, where developers can create isolated environments that encapsulate complex computational workflows, ensuring reproducibility. For scientific ML and digital twins, containers help streamline model deployment, making it easier to manage models across different computational platforms, from HPC clusters to edge devices. 2. Containers vs VMs Containers use fewer resources since they share the OS kernel, a crucial advantage in scientific computing and scientific ML, where heavy computation demands efficiency. Digital twins can simulate real-world environments more effectively with containers, ensuring that resource allocation is optimized for simulation fidelity. 3. Lightweight by Design Docker’s lightweight design makes it",
+      "url": "/course-project/containers/docker/docker-architecture.html"
+    },
+    {
+      "id": 12,
+      "title": "Untitled :: Course Project",
+      "content": "Edit this Page Download as .pdf 1. Docker Compose: Orchestrating Containers Docker Compose is a tool used for defining and running multi-container Docker applications. It simplifies the process of managing multiple containers as a single service. With Docker Compose, you can define all the services your application needs in a single YAML file and start them with a single command. 1.1. Why Docker Compose? Multi-container applications: It simplifies managing applications that require multiple services like a web server, database, and cache. Declarative configuration: Compose uses a declarative docker-compose.yml file to describe the services, volumes, networks, and configurations needed. Consistency: Ensures all containers in a service are started in the correct order with the proper dependencies. Portability: Easily share and distribute your configuration across different environments (development, testing, and production). 1.2. Getting Started with Docker Compose First, ensure that Doc",
+      "url": "/course-project/containers/docker/docker-compose.html"
+    },
+    {
+      "id": 13,
+      "title": "Step-by-Step Guide: Building a Dockerized Data Pipeline with PostgreSQL, Computation, and Visualization using Dash :: Course Project",
+      "content": "Edit this Page Download as .pdf Step-by-Step Guide: Building a Dockerized Data Pipeline with PostgreSQL, Computation, and Visualization using Dash In this practical session, you will learn how to build and deploy a Docker image that: Injects time-series data into a PostgreSQL database. Enables computations on the data using Python. Provides a web server using Dash (Plotly) to visualize the results. Deploys the services using Docker Compose. Optionally, deploys the services to a server or cloud environment. 1. Prerequisites Ensure the following are installed on your machine: Docker Docker Compose Python 3.x (optional for local testing) PostgreSQL client (optional for local testing) 2. Step 1: Setting Up the Project Directory Structure Create a directory structure for your project with the following command: mkdir docker-data-pipeline cd docker-data-pipeline mkdir -p app db touch app/__init__.py app/data_injector.py app/compute.py app/web_visualizer.py Dockerfile docker-compose.yml The p",
+      "url": "/course-project/containers/docker/docker-deploy.html"
+    },
+    {
+      "id": 14,
+      "title": "Docker Overview :: Course Project",
+      "content": "Edit this Page Download as .pdf Docker Overview Docker is an open platform that allows developers to automate the deployment of applications inside lightweight, portable containers. This makes it easy to manage and scale applications across different environments. 1. What is a Container? A container is a standard unit of software that packages code and all its dependencies, ensuring the application runs quickly and reliably from one computing environment to another. Containers isolate the application environment. Unlike VMs, containers share the host system’s OS kernel, making them lightweight.",
+      "url": "/course-project/containers/docker/docker-overview.html"
+    },
+    {
+      "id": 15,
+      "title": "The Problem Docker Solves :: Course Project",
+      "content": "Edit this Page Download as .pdf The Problem Docker Solves 1. The Challenge The Challenge The diagram illustrates the complexity of modern applications, which are composed of many stacks and run across multiple environments. Each component (web frontend, API endpoint, background workers, etc.) relies on different technologies (e.g., Python, PostgreSQL, Redis). These applications must operate across various hardware environments, from development VMs to production clusters, and they need to migrate between them smoothly. In traditional environments, developers often face the challenge of dealing with dependencies and compatibility issues between development, testing, and production environments. Docker simplifies this by providing consistent environments through containers, allowing seamless migration, scalability, and isolation for different services and stacks. 1.1. What about Scientific Computing and Data Science? The diagram highlights the complexity of modern applications across mul",
+      "url": "/course-project/containers/docker/docker-problems-solved.html"
+    },
+    {
+      "id": 16,
+      "title": "Docker System Basics :: Course Project",
+      "content": "Edit this Page Download as .pdf Docker System Basics The basic components of the Docker system are: - Images: Blueprints of the application and its dependencies. - Containers: Running instances of images. - Volumes: Persistent data storage. - Networks: Isolated environments for containers to communicate. - Dockerfile: A file used to create Docker images. 1. Docker Hello World Example docker run hello-world This command pulls the hello-world image from Docker Hub and runs it in a container. 2. Running Ubuntu in a Container docker run -it ubuntu bash The -it flag starts the container in interactive mode with a terminal attached. This runs an Ubuntu image with the Bash shell.",
+      "url": "/course-project/containers/docker/hands-on/01-getting-started.html"
+    },
+    {
+      "id": 17,
+      "title": "Advanced Docker Usage :: Course Project",
+      "content": "Edit this Page Download as .pdf Advanced Docker Usage 1. Volumes: Persistent Storage Use volumes to store data that persists even after a container is removed. Here’s an example of running an Ubuntu container with a mounted volume from your local /tmp directory: docker run -it -v /tmp:/tmp ubuntu bash You can view the volume by running the df command inside the container. 2. Docker Images and Updates Docker images can be updated and modified easily by creating new image layers. The ability to roll back and forward to different layers simplifies testing and updates.",
+      "url": "/course-project/containers/docker/hands-on/02-advanced-usage.html"
+    },
+    {
+      "id": 18,
+      "title": "Practical Session: Using PostgreSQL with Docker and Injecting a Dataset :: Course Project",
+      "content": "Edit this Page Download as .pdf Practical Session: Using PostgreSQL with Docker and Injecting a Dataset The objective of this session is to demonstrate how to set up PostgreSQL using Docker, inject a dataset into the database, and perform basic queries including with python Pandas. 1. Step 1: Set up PostgreSQL with Docker Pull the official PostgreSQL image and start a container. docker pull postgres docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres 2. Step 2: Prepare the Dataset Let’s use a small CSV dataset for this session. Create a data.csv file with the following content: Table 1. data.csv id name age 1 John Doe 30 2 Jane Smith 25 3 Emily Johnson 22 3. Step 3: Create a Docker Volume for Persistence We’ll create a volume to persist PostgreSQL data and mount it to the container: Using Docker Volumes to Persist Data docker volume create pgdata docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -v pgdata:/var/lib/postgresql/data -d pos",
+      "url": "/course-project/containers/docker/hands-on/03-usecase-db.html"
+    },
+    {
+      "id": 19,
+      "title": "Untitled :: Course Project",
+      "content": "Edit this Page Download as .pdf 1. Docker Compose: Orchestrating Containers Docker Compose is a tool used for defining and running multi-container Docker applications. It simplifies the process of managing multiple containers as a single service. With Docker Compose, you can define all the services your application needs in a single YAML file and start them with a single command. 1.1. Why Docker Compose? Multi-container applications: It simplifies managing applications that require multiple services like a web server, database, and cache. Declarative configuration: Compose uses a declarative docker-compose.yml file to describe the services, volumes, networks, and configurations needed. Consistency: Ensures all containers in a service are started in the correct order with the proper dependencies. Portability: Easily share and distribute your configuration across different environments (development, testing, and production). 1.2. Getting Started with Docker Compose First, ensure that Doc",
+      "url": "/course-project/containers/docker/hands-on/04-compose.html"
+    },
+    {
+      "id": 20,
+      "title": "Tutorial: Building Docker Images Using GitHub Actions :: Course Project",
+      "content": "Edit this Page Download as .pdf Tutorial: Building Docker Images Using GitHub Actions This tutorial will guide you through building and pushing Docker images using GitHub Actions. You’ll learn how to use GitHub Actions to set up QEMU, Docker Buildx, and push images to the GitHub Container Registry (GHCR). 1. Prerequisites A GitHub repository. A Dockerfile for the service you want to build. Access to the GitHub Container Registry (GHCR). A GitHub personal access token (PAT) stored as a secret in your repository (CR_PAT). 2. Step-by-Step Guide 2.1. 1. Setting Up the GitHub Workflow Create a file called .github/workflows/docker-build.yml in your repository. This file will define the workflow to build and push Docker images using GitHub Actions. 2.1.1. Example GitHub Actions Workflow name: Build and Push Docker Image on: push: branches: - main tags: - 'v*' jobs: build: runs-on: ubuntu-latest strategy: matrix: service: [service-name] tag: [latest, v1.0.0] dir: [path-to-dockerfile-directory]",
+      "url": "/course-project/containers/docker/hands-on/06-githubactions.html"
+    },
+    {
+      "id": 21,
+      "title": "Using the Postgres Docker Official Image :: Course Project",
+      "content": "Edit this Page Download as .pdf Using the Postgres Docker Official Image This section explains how to work with the Postgres Docker Official Image to set up a Postgres container quickly and efficiently. 1. Why Use Postgres in Docker? Quick and easy setup. Better isolation between the application and database. Easier to spin up in various environments (local development, testing, etc.). 2. Pulling the Postgres Image You can pull the Postgres image from Docker Hub with: docker pull postgres To use a specific version, add the version tag (e.g., :14.5). 3. Running Postgres in a Container To start a Postgres container with environment variables: docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres 4. Using Docker Compose You can manage multiple services, including Postgres, with Docker Compose. Here is a basic docker-compose.yml example: This Docker Compose file defines a two-service setup using PostgreSQL and Adminer. Below is a breakdown of each section: servi",
+      "url": "/course-project/containers/docker/hands-on/docker-postgres.html"
+    },
+    {
+      "id": 22,
+      "title": "Introduction to Docker :: Course Project",
+      "content": "Edit this Page Download as .pdf Introduction to Docker Welcome to the Introduction to Docker course. This course will cover everything from Docker basics, architecture, practical commands, and advanced topics like Docker Compose. Use the navigation to explore each section.",
+      "url": "/course-project/containers/docker/"
+    },
+    {
+      "id": 23,
+      "title": "Advanced CI/CD Techniques for HPC using GitHub Actions :: Course Project",
+      "content": "Edit this Page Download as .pdf Advanced CI/CD Techniques for HPC using GitHub Actions Table of Contents 1. Overview (5 minutes) 2. Integrating Spack for HPC Dependency Management (15 minutes) 3. What is Spack? 3.1. Motivations for Spack 3.2. Spack Environments 3.3. Workflow: From Spack Environment to Apptainer Container 3.4. Spack in CI/CD Workflows 3.5. Conclusion on Spack 4. Composite Actions and Modular Workflows (15 minutes) 4.1. Why Use Composite Actions? 4.2. How to Create and Use a Composite Action 5. Caching and Artifact Management (15 minutes) 5.1. Caching 5.2. Artifact Management 6. Integrating with HPC Schedulers (10 minutes) 6.1. Example: Submitting a Job with Slurm 7. Security Best Practices (5 minutes) 7.1. Example: Managing Secrets 8. Performance Optimization (5 minutes) 8.1. Example: Parallelizing Tasks 9. Triggering Workflows Dynamically (5 minutes) 10. Monitoring and Logging (5 minutes) 10.1. Example: Setting Up Logging 11. Conclusion and Q&A (10 minutes) In this ses",
+      "url": "/course-project/containers/hpc/advanced.html"
+    },
+    {
+      "id": 24,
+      "title": "Untitled :: Course Project",
+      "content": "Edit this Page Download as .pdf 1. Best Practices and Performance Considerations (10 min) 1.1. Optimizing Container Images Keep images small and lean: Use minimal base images. Remove unnecessary packages and files after installation. Pin package versions: Specify exact versions for all dependencies to ensure consistency. Separate build and runtime stages: Utilize multi-stage builds to compile code in one stage and run it in another, reducing final image size. 1.2. Performance Considerations Minimize container startup overhead: Optimize entrypoint scripts and image initialization. Efficient GPU and MPI integration: Ensure that GPU drivers, MPI libraries, and other performance-critical components are correctly mounted and compatible. Adapt for HPC workloads: Recognize that HPC jobs are typically long-running, bulk-synchronous operations rather than short-lived microservices. Adjust design and tuning accordingly. 1.3. Security & DevOps in HPC Avoid root access in containers: Run container",
+      "url": "/course-project/containers/hpc/best-practices.html"
+    },
+    {
+      "id": 25,
+      "title": "Introduction to CI/CD Fundamentals with GitHub Actions :: Course Project",
+      "content": "Edit this Page Download as .pdf Introduction to CI/CD Fundamentals with GitHub Actions Table of Contents 1. Overview 2. Introduction: The CI/CD Problem 2.1. The Software Development Challenge 2.2. HPC Considerations: What Does It Mean for HPC and How Does It Help? 2.3. Why CI/CD? 2.4. CI/CD Platform Choices and Development Platforms 3. GitHub Actions: Overview and Fundamentals 3.1. What is GitHub Actions? 3.2. A Sample GitHub Actions Workflow 3.3. Benefits of Using GitHub Actions 4. 3. Containers in CI/CD 4.1. Why Use Containers in CI/CD? 4.2. Using Containers with GitHub Actions 5. Q&A and Discussion 6. Summary and Closing 1. Overview Duration: 1h30 Learning Objectives Understand the challenges of traditional software development and deployment. Learn the fundamentals of CI/CD and why automation is critical. Explore GitHub Actions as an integrated CI/CD solution. Discover how containerization enhances CI/CD workflows. Discuss the impact and benefits of CI/CD in HPC environments. 2. In",
+      "url": "/course-project/containers/hpc/cicd.html"
+    },
+    {
+      "id": 26,
+      "title": "GitHub Classroom and Codespaces: Empowering Personalized Development Environments :: Course Project",
+      "content": "Edit this Page Download as .pdf GitHub Classroom and Codespaces: Empowering Personalized Development Environments Table of Contents 1. Overview 2. GitHub Classroom 3. GitHub Codespaces 4. Your repository 5. Summary This session introduces GitHub Classroom and Codespaces, frameworks that enable educators to deliver personalized, reproducible development environments for training sessions. These tools help ensure that every trainee starts from a consistent baseline and can focus on learning without worrying about local environment issues. 1. Overview GitHub Classroom and Codespaces together allow instructors to: Automate Repository Creation: Personalized repositories are generated for each student from a central template (e.g., c3b-template). Provide Instant Development Environments: Students can launch cloud-based Codespaces pre-configured with all required tools and dependencies. Maintain Consistency: Every student’s environment is identical, reducing setup issues and enabling smooth c",
+      "url": "/course-project/containers/hpc/hands-on/00-classroom.html"
+    },
+    {
+      "id": 27,
+      "title": "Docker System Basics :: Course Project",
+      "content": "Edit this Page Download as .pdf Docker System Basics Table of Contents 1. Overview 2. Docker System Components 3. Docker Hello World Example 4. Running Ubuntu in a Container 5. Essential Docker Commands 5.1. Listing Containers and Images 5.2. Running Containers in Detached Mode 5.3. Logging into and Out of Docker Registries 6. Advanced Docker Usage 6.1. Volumes: Persistent Storage 6.2. Docker Images and Updates 7. Docker for HPC 8. Conclusion A 30-minute hands-on session to introduce Docker fundamentals with a focus on HPC development. 1. Overview In this session, you will learn: The basic components of the Docker system. How to run containers interactively and in detached mode. Key Docker commands such as docker ps, docker images, and how to manage container lifecycles. How Docker concepts translate to HPC containerization workflows. 2. Docker System Components The basic components of the Docker system are: Images: Blueprints of the application and its dependencies. Containers: Runnin",
+      "url": "/course-project/containers/hpc/hands-on/01-docker.html"
+    },
+    {
+      "id": 28,
+      "title": "Untitled :: Course Project",
+      "content": "Edit this Page Download as .pdf 1. Connecting to Karolina HPC and Using Apptainer Because Apptainer does not run within a Docker Codespace, you’ll need to connect to the Karolina HPC system (EuroHPC) to work with Apptainer. In this section, we’ll cover: How to SSH into Karolina. How to remotely log in to GHCR. How to pull, inspect, and run your Apptainer (SIF) image. How to bind host directories and launch an interactive shell. 1.1. Connecting to Karolina HPC First, connect to the Karolina HPC system. Replace your_username and adjust the hostname as needed: ssh your_username@karolina.it4i.cz I use the follow ssh configuration to connect to Karolina HPC: Host karolina Hostname karolina.it4i.cz User it4i-<login> ForwardAgent Yes and of course I have my SSH key added to the ssh-agent and the public key added to the ~/.ssh/authorized_keys file on the Karolina HPC system using the ssh-copy-id command. In vscode with the Remote - SSH extension, I can connect to Karolina HPC by selecting the ",
+      "url": "/course-project/containers/hpc/hands-on/02-apptainer.html"
+    },
+    {
+      "id": 29,
+      "title": "Hands-on: CI Workflow for HPC Application :: Course Project",
+      "content": "Edit this Page Download as .pdf Hands-on: CI Workflow for HPC Application Table of Contents 1. Overview 2. GitHub Actions Workflow 3. Running the Workflow 4. Add step to install the application 5. Add step to package the application 6. Matrix strategy to build on multiple platforms 7. Add a step to upload the package 8. Conclusion In this session, you will create a simple GitHub Actions workflow that automates the configuration, building, and testing of your HPC application using CMake presets. This workflow runs on a runner labeled self-ubuntu-24.04. Each step is explained with callouts. 1. Overview In this tutorial, you will learn to: Check out your repository. Configure the build system using CMake presets. Build the project with CMake. Run tests using CTest. Understand each step through detailed callouts. 2. GitHub Actions Workflow Below is the complete YAML for the workflow, with callouts explaining each section: name: CI - Configure, Build, Test (1) on: push: (2) branches: [ main",
+      "url": "/course-project/containers/hpc/hands-on/03-cicd-githubactions.html"
+    },
+    {
+      "id": 30,
+      "title": "Hands-on: Building the Docker Image for Our MPI Application :: Course Project",
+      "content": "Edit this Page Download as .pdf Hands-on: Building the Docker Image for Our MPI Application Table of Contents 1. The Dockerfile 2. Callout Explanations 3. Would You Do the Image Differently? 4. Conclusion on Dockerfile Explanation 5. Multi-Stage Build modification 5.1. Hands-on: Building a Multi-Stage Docker Image for an MPI Application 5.2. Multi-Stage Dockerfile 6. Conclusion on Multi-Stage Dockerfile 7. Upload to GitHub Container Registry (GHCR) 8. References In this session, we will walk through the Dockerfile used to build the Docker image for our MPI application. Each step is explained using callouts to help you understand the purpose of the instructions. 1. The Dockerfile Below is the complete Dockerfile we will explain: FROM ubuntu:24.04 (1) RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \\ (2) && apt-get -y install --no-install-recommends \\ (3) git cmake g++ ninja-build openmpi-bin libopenmpi-dev python3 python3-pip python3-dev \\ (4) libboost-test-dev libboost-seri",
+      "url": "/course-project/containers/hpc/hands-on/03-docker-mpi.html"
+    },
+    {
+      "id": 31,
+      "title": "Hands-on: Generating the Apptainer Job for HPC Deployment :: Course Project",
+      "content": "Edit this Page Download as .pdf Hands-on: Generating the Apptainer Job for HPC Deployment Table of Contents 1. Workflow Key Steps 2. GitHub Actions Job: Convert and Upload Apptainer SIF 3. Conclusion In this session, we will generate a GitHub Actions job that converts our Docker image into an Apptainer SIF file and pushes it to GitHub Container Registry (GHCR). Each step is explained using callouts. 1. Workflow Key Steps This job automates the conversion of your Docker image into an Apptainer SIF file and then uploads the SIF file to GHCR. The key steps are: Authentication: Log in to GHCR via Apptainer. Conversion: Use Apptainer to pull the Docker image and convert it to SIF. Verification: Inspect the SIF file to verify its contents. Upload: Push the SIF file back to GHCR for later deployment. 2. GitHub Actions Job: Convert and Upload Apptainer SIF Below is the complete YAML for the build-apptainer job: build-apptainer: runs-on: self-apptainer (1) needs: build-docker (2) env: apptainer",
+      "url": "/course-project/containers/hpc/hands-on/04-apptainer-cicd-app.html"
+    },
+    {
+      "id": 32,
+      "title": "Dockerized MPI Training Session: From Docker to Apptainer on a Supercomputer :: Course Project",
+      "content": "Edit this Page Download as .pdf Dockerized MPI Training Session: From Docker to Apptainer on a Supercomputer Table of Contents 1. Overview 2. Prerequisites 3. Step 1: Clone and Build the Docker Image 4. Step 2: Push the Docker Image to GHCR 5. Step 3: Convert the Docker Image to an Apptainer SIF File on the Supercomputer 6. Step 4: Running the MPI Application with Apptainer on HPC 6.1. Interactive Mode 6.2. Running with MPI 6.3. Mounting a Host Directory 7. Conclusion This session shows how to dockerize an MPI application, push it to GHCR, and then convert and run it with Apptainer on a supercomputer. It assumes you have completed the Docker and Apptainer basics session. 1. Overview In this session, you will learn: - How to build a Docker image for an MPI application. - How to test the Docker image locally. - How to push the Docker image to GitHub Container Registry (GHCR). - How to convert the Docker image to an Apptainer SIF file on a supercomputer. - How to run the MPI application u",
+      "url": "/course-project/containers/hpc/hands-on/04-docker-cicd-app.html"
+    },
+    {
+      "id": 33,
+      "title": "Hands-on: Deploying Apptainer Images on HPC Environments :: Course Project",
+      "content": "Edit this Page Download as .pdf Hands-on: Deploying Apptainer Images on HPC Environments Table of Contents 1. Overview 2. The Deploy Workflow 3. Triggering the Deploy Workflow Automatically 4. Conclusion This session demonstrates how to deploy your Apptainer image to run a parallel MPI job on two environments: a local runner (self-ubuntu-24.04) and the Karolina HPC system. We will also show how to automatically trigger the deploy job when the Apptainer image is updated. 1. Overview In this session, you will learn: How to configure a GitHub Actions workflow (deploy.yml) that uses a matrix strategy to run on both self-ubuntu-24.04 and karolina. How to pull, inspect, and run the Apptainer image on these environments. How to trigger the deploy workflow automatically from another job (e.g., when the Apptainer image is pushed). How to monitor and run parallel jobs in HPC using Apptainer and MPI. 2. The Deploy Workflow Below is the complete deploy.yml file used to deploy the Apptainer image: ",
+      "url": "/course-project/containers/hpc/hands-on/05-deploy.html"
+    },
+    {
+      "id": 34,
+      "title": "HPC Containers Hands-on :: Course Project",
+      "content": "Edit this Page Download as .pdf HPC Containers Hands-on This hands-on tutorial provides an introduction to containerization in high-performance computing (HPC) environments. You will learn how to use Docker to containerize applications and run them in HPC clusters.",
+      "url": "/course-project/containers/hpc/hands-on/"
+    },
+    {
+      "id": 35,
+      "title": "Introduction to Containers for High-Performance Computing (HPC) :: Course Project",
+      "content": "Edit this Page Download as .pdf Introduction to Containers for High-Performance Computing (HPC) Table of Contents 1. Overview 2. But first who are we and why are we here ? 2.1. Feel++ Overview 2.2. Some Feel++ Applications 2.3. Cemosis Projects 2.4. CoE Hidalgo2: Urban Building Pilot 2.5. Feel++ Continuous Integration/Continuous Delivery (CI/CD) 2.6. Feel++ Continous Benchmarking (CB) 3. Introduction to Containers 3.1. What are Containers? 3.2. Hypervisors and Containers 3.3. Background of Virtualization 4. Why Containers for HPC? 4.1. HPC Software Deployment Challenges 4.2. The HPC Environment Matrix from Hell 4.3. HPC Environment Modules: Helpful but Still Broken 4.4. Why Containers Help 4.5. Benefits of Containerization for HPC 5. Container Technologies in HPC 5.1. Overview of Container Runtimes 5.2. Docker in a Nutshell 5.3. The Shipping Container Metaphor 5.4. Why Docker Is (Not Always) Ideal for HPC 5.5. Apptainer (Formerly Singularity) 5.6. Comparing Docker and Apptainer 5.7. Co",
+      "url": "/course-project/containers/hpc/"
+    },
+    {
+      "id": 36,
+      "title": "Containers for Mathematical Computing :: Course Project",
+      "content": "Containers for Mathematical Computing 🟡 INTERMEDIATE LEVEL | Prerequisites: Linux basics, Git fundamentals | Time: 4-6 hours | For: Mathematics students ready for reproducible computing workflows Why Containers for Mathematics? Mathematical research increasingly requires: - Reproducible Computations: Ensure your numerical results can be replicated by others - Complex Software Stacks: Manage dependencies for mathematical libraries (NumPy, SciPy, MATLAB, Mathematica) - Cross-Platform Compatibility: Share mathematical code that works on different operating systems - Collaboration: Provide colleagues with identical computing environments - Long-term Preservation: Archive computational environments for future reference Containers solve the \"it works on my machine\" problem that plagues mathematical computing. Containers provide lightweight, portable, and consistent environments for mathematical applications. They package mathematical software with all dependencies, ensuring computations run",
+      "url": "/course-project/containers/"
+    },
+    {
+      "id": 37,
+      "title": "Git Basics for Mathematical Research :: Course Project",
+      "content": "Edit this Page Download as .pdf Git Basics for Mathematical Research 🟢 FOUNDATIONAL LEVEL | Prerequisites: Basic Linux navigation | Time: 3-4 hours | For: Mathematics students starting collaborative research Why Version Control for Mathematics? As a mathematics student, you work with: Research papers and LaTeX documents that evolve through multiple drafts Mathematical code and scripts (Python, MATLAB, R) for computations Data analysis notebooks with experimental results Collaborative research projects with advisors and peers Version control helps you track changes, collaborate safely, and never lose important work. This document introduces version control concepts specifically for mathematical research and explains why Git is essential for modern mathematical collaboration. 1. What is Version Control? Version control is a system that tracks changes to files over time. It allows multiple people to work on the same project while keeping track of each modification, ensuring that past ver",
+      "url": "/course-project/git & github/git-basics.html"
+    },
+    {
+      "id": 38,
+      "title": "Git Branching :: Course Project",
+      "content": "Edit this Page Download as .pdf Git Branching 1. Branching Basics Branches are essential for managing workflows in Git. A branch represents a separate line of development and allows you to work on features or fixes without affecting the main codebase. A few key terms: * Main branch: The default branch in a Git repository (commonly main or master). * Feature branch: A branch created for developing new features or fixes. 2. Creating a Branch To create a new branch from the current branch: $ git branch <branch-name> For example, to create a branch called feature/new-ui: $ git branch feature/new-ui This command creates the branch, but you’re still on your current branch. To switch to the new branch: $ git checkout feature/new-ui Alternatively, you can create and switch to the new branch in one step: $ git checkout -b feature/new-ui This is a best practice for starting new features or fixes in isolated branches, ensuring the main codebase remains stable. 3. Renaming a Branch To rename the c",
+      "url": "/course-project/git & github/git-branch.html"
+    },
+    {
+      "id": 39,
+      "title": "Merge Strategies in Git :: Course Project",
+      "content": "Edit this Page Download as .pdf Merge Strategies in Git This document explains the different merge strategies available in Git. You will learn about fast-forward vs non-fast-forward merges, how to rebase, squash commits, handle conflicts, and cherry-pick specific commits. 1. Fast-Forward vs Non-Fast-Forward Merges When you merge two branches in Git, you can either perform a fast-forward merge or a non-fast-forward merge, depending on whether the two branches have diverged. 1.1. Fast-Forward Merge A fast-forward merge occurs when the current branch has no new commits and can be \"fast-forwarded\" to the tip of the target branch. This happens when there is a direct linear path between the two branches. To perform a fast-forward merge: $ git checkout main $ git merge feature-branch If there are no new commits on main, Git will simply move the main branch pointer to the tip of feature-branch. 1.2. Non-Fast-Forward Merge A non-fast-forward merge occurs when the branches have diverged, meaning",
+      "url": "/course-project/git & github/git-merges.html"
+    },
+    {
+      "id": 40,
+      "title": "Git Remotes :: Course Project",
+      "content": "Edit this Page Download as .pdf Git Remotes This tutorial explains how to work with remotes in Git. Remotes are versions of your project that are hosted on the internet or network, allowing you to collaborate with others. We’ll cover how to clone repositories, manage remotes, push/pull changes, and fetch without merging. 1. Cloning Repositories Cloning a repository means creating a local copy of a remote repository. This is often the first step when working with existing projects hosted on Git platforms like GitHub or GitLab. To clone a repository, run: $ git clone https://github.com/<username>/<repository-name>.git This command will create a directory named after the repository and initialize it with all of the project’s files, commits, and branches from the remote repository. After cloning, navigate into the repository folder: $ cd <repository-name> You now have a local copy of the project, which is linked to the remote repository (typically named origin). 2. Managing Remotes Remotes",
+      "url": "/course-project/git & github/git-remotes.html"
+    },
+    {
+      "id": 41,
+      "title": "What is a Git Repository? :: Course Project",
+      "content": "Edit this Page Download as .pdf What is a Git Repository? A Git repository is the core of every Git project, where all the project’s files, changes, and history are tracked. This guide introduces Git repositories and key concepts such as repository initialization, configuration, working directory, staging area, and commit history.t is a Git Repository? 1. Git Repository Basics A Git repository stores your project’s files and tracks all changes made to them. Git uses a three-part architecture: the working directory, the staging area, and the repository itself. Together, these help manage and track changes across versions of the project. 1.1. Initializing a Repository (git init) The first step to using Git is initializing a repository. You can create a new Git repository with the following command: $ git init This creates a .git directory inside your project folder. The .git directory stores all the metadata and history related to your project. You can now begin tracking files, making ch",
+      "url": "/course-project/git & github/git-repository-basics.html"
+    },
+    {
+      "id": 42,
+      "title": "Git for Beginners :: Course Project",
+      "content": "Edit this Page Download as .pdf Git for Beginners This tutorial introduces the basic concepts of Git, a version control system used for tracking changes in software development. 1. What is Git? Git is a distributed version control system that allows multiple developers to work on a project simultaneously. It tracks changes to files, enables collaboration, and makes it easy to revert changes when needed. 2. Git Basics 2.1. Installing Git To check if Git is already installed, open a terminal and run: $ git --version If Git is not installed, follow these instructions based on your operating system: Linux: Use the package manager (e.g., apt, dnf, or yum). $ sudo apt install git macOS: Install Git using Homebrew: $ brew install git Windows: Download and install Git from the official Git website: git-scm.com 2.2. Configuring Git Before you start using Git, you need to configure your user information. This information will be used in your commits. $ git config --global user.name \"Your Name\" $",
+      "url": "/course-project/git & github/git-starter.html"
+    },
+    {
+      "id": 43,
+      "title": "GitHub Actions Tutorial for Scientific Computing with Eigen3 and CMake Presets :: Course Project",
+      "content": "Edit this Page Download as .pdf GitHub Actions Tutorial for Scientific Computing with Eigen3 and CMake Presets This tutorial demonstrates how to set up a continuous integration (CI) workflow for a simple scientific computing project using Eigen3 and CMake Presets. GitHub Actions will compile and test a C++ program using different compilers and build configurations (Debug and Release). 1. Project Structure The project directory structure looks like this: eigen-example/ ├── CMakeLists.txt # CMake configuration file ├── CMakePresets.json # CMake presets file ├── src/ │ └── main.cpp # C++ code using Eigen └── .github/ └── workflows/ └── ci.yml # GitHub Actions workflow file 2. Step 1: CMakeLists.txt File The CMakeLists.txt file defines the project, finds the Eigen3 package, and compiles the program. We updated the minimum required version of CMake to 3.22 to use CMake Presets. # CMakeLists.txt cmake_minimum_required(VERSION 3.22) # Updated to support CMake Presets project(EigenExample) # F",
+      "url": "/course-project/git & github/github-actions-cmake-eigen3.html"
+    },
+    {
+      "id": 44,
+      "title": "Tutorial: Using GitHub Actions for Scientific Computing :: Course Project",
+      "content": "Edit this Page Download as .pdf Tutorial: Using GitHub Actions for Scientific Computing This tutorial explains how to use GitHub Actions to automate essential tasks in scientific computing projects, such as building code, testing, benchmarking, and deploying documentation. Before starting this tutorial, please study the following resources on Package Managers. 1. 1. Introduction to GitHub Actions GitHub Actions is an automation tool that allows you to create custom workflows directly in your GitHub repositories. For scientific computing, this is particularly useful for continuous integration (CI) tasks like: Automatically building your code when a new commit is pushed. Running tests to ensure code correctness. Running benchmarks to track performance. Each workflow is defined in a YAML file under the .github/workflows/ directory of your repository. A typical GitHub Actions workflow consists of jobs that run on specific runners (virtual machines). Below is an example of a basic workflow:",
+      "url": "/course-project/git & github/github-actions.html"
+    },
+    {
+      "id": 45,
+      "title": "Collaboration on GitHub :: Course Project",
+      "content": "Edit this Page Download as .pdf Collaboration on GitHub This page introduces key GitHub features for collaboration, including forking vs cloning, issues, pull requests, labeling issues/PRs, and more. These tools help streamline collaboration and code review in open source and team projects. 1. Forking vs Cloning GitHub provides two ways to work with repositories: forking and cloning. Forking: Creates a copy of someone else’s repository under your GitHub account. You can modify this copy and later propose changes to the original repository via a pull request (PR). Cloning: Downloads a local copy of a repository on your machine so you can work on it. You can clone both your own and other users' repositories (public repositories). 1.1. Forking a Repository Figure 1. Forking a Repository To fork a repository: Navigate to the repository on GitHub. Click the Fork button in the upper-right corner. Choose the location (your account) to create the fork. After forking, you can clone it to your l",
+      "url": "/course-project/git & github/github-collaborations.html"
+    },
+    {
+      "id": 46,
+      "title": "GitHub Essentials :: Course Project",
+      "content": "Edit this Page Download as .pdf GitHub Essentials This page introduces the essential GitHub concepts and actions for beginners. Learn how to set up your GitHub account, explore the GitHub interface, create repositories, and manage your profile. 1. Creating a GitHub Account To get started with GitHub, you need to create an account. Follow these steps: Go to github.com. Click on \"Sign up\" in the top-right corner. Fill in your details such as username, email address, and password. Verify your email and complete any other steps requested by GitHub. Once your account is created, you’re ready to start collaborating on repositories and exploring GitHub. 2. GitHub Interface GitHub’s interface is user-friendly and offers a wide range of functionalities. Here’s a breakdown of some key areas: Dashboard: Once logged in, the dashboard is where you see your repositories, issues, pull requests, and activities. Repositories: This tab shows all the repositories you own or contribute to. Pull Requests: ",
+      "url": "/course-project/git & github/github-essentials.html"
+    },
+    {
+      "id": 47,
+      "title": "How to Write a GitHub Issue :: Course Project",
+      "content": "Edit this Page Download as .pdf How to Write a GitHub Issue This guideline explains how to create effective GitHub issues for reporting bugs, requesting features, or asking questions. A well-written issue helps project maintainers understand and resolve the problem more quickly. 1. Steps to Create a GitHub Issue To create a new issue on GitHub: Navigate to the repository where you want to report an issue. Click the Issues tab. Click New issue. Fill out the issue template if the repository provides one, or follow the structure below for general guidance. 2. Issue Structure A well-written issue should include the following sections: 2.1. 1. Title The title should be a brief, clear description of the issue. It should summarize the problem or request in one line. Bug: \"Login page crashes after form submission\" Feature: \"Add dark mode support to the website\" Question: \"How to configure the app for multi-tenancy?\" 2.2. 2. Description Provide a clear and detailed description of the issue. For",
+      "url": "/course-project/git & github/github-how-to-write-issues.html"
+    },
+    {
+      "id": 48,
+      "title": "GitHub for Beginners :: Course Project",
+      "content": "Edit this Page Download as .pdf GitHub for Beginners This tutorial introduces the basic concepts of GitHub, a web-based platform for version control and collaboration. 1. What is GitHub? GitHub is a cloud-based platform that uses Git, a distributed version control system. It allows developers to collaborate on projects, track changes, and manage code versions in a centralized repository. 2. GitHub Basics 2.1. Creating a GitHub Account To start using GitHub, you need to create an account: Go to github.com. Click on \"Sign up\". Follow the instructions to create your GitHub account. Once your account is set up, you can create repositories, contribute to projects, and collaborate with others. 2.2. Creating a Repository A repository (repo) is where your project’s files are stored. To create a new repository: Go to github.com and log in. Click on the \"+\" icon in the upper-right corner and select \"New repository\". Fill in the repository name, description (optional), and choose whether it will ",
+      "url": "/course-project/git & github/github-start.html"
+    },
+    {
+      "id": 49,
+      "title": "Git & GitHub Fundamentals :: Course Project",
+      "content": "Git & GitHub Fundamentals Learn the essential skills for version control and collaborative software development using Git and GitHub. From basic repository management to advanced collaboration workflows. 1. Git & GitHub Learning Modules The following modules cover everything from basic Git concepts to advanced GitHub collaboration:",
+      "url": "/course-project/git & github/"
+    },
+    {
+      "id": 50,
+      "title": "GitHub :: Course Project",
+      "content": "Edit this Page Download as .pdf GitHub 1. GitHub: Overview GitHub is a web-based Git repository hosting service GitHub offers all of the distributed revision control and source code management (SCM) functionality of Git as well as adding its own features GitHub provides a web-based graphical interface and desktop as well as mobile integration GitHub is used by individuals and enterprises to host software projects GitHub is the largest code host in the world The main features of GitHub are Issues, Pull Requests, Projects, Actions 2. GitHub Issues GitHub Issues are a great way to keep track of tasks, enhancements, and bugs for your projects. They’re kind of like email—except they can be shared and discussed with the rest of your team. Most software projects have a bug tracker of some kind. GitHub’s tracker is called Issues, and has its own section in every repository. Issues can act as more than just a place to report software bugs. They’re great for tracking ideas and enhancements, task",
+      "url": "/course-project/github.html"
+    },
+    {
+      "id": 51,
+      "title": "Github Actions :: Course Project",
+      "content": "Edit this Page Download as .pdf Github Actions Github actions are setup to build the documentation using Antora and upload them to docs.feelpp.org[Feel++ docs] upon any change in the repo. build, install, package and deliver the Feel++ code See the [workflow file](.github/workflows/ci.yml) for more details. 1. Skipping a job You can skip the CI by adding the following line in the commit message: [skip ci] You can skip the job that build the documentation by adding the following line in the commit message: doc skip. You can skip the job that build the code by adding the following line in the commit message: code skip.",
+      "url": "/course-project/githubactions.html"
+    },
+    {
+      "id": 52,
+      "title": "Course Project :: Course Project",
+      "content": "Course Project This course is designed to introduce mathematicians and scientific computing students to essential software development tools and practices. No prior programming or Linux experience required. 1. Learning Path for Mathematics Students The course is organized in three progressive levels with clear prerequisites and difficulty indicators: 🟢 FOUNDATIONAL Prerequisites: None Essential tools every mathematician needs for computational work 🟡 INTERMEDIATE Prerequisites: Linux basics, Git fundamentals Collaborative development and project management 🔴 ADVANCED Prerequisites: All previous modules High-performance computing and automation 2. Course Modules by Difficulty Level 2.1. 🟢 Level 1: Essential Foundations (Weeks 1-4) For students with no prior programming or Linux experience: Linux Essentials for Mathematics Learn command-line basics for mathematical computing. Navigate file systems, manage mathematical datasets, and access remote computing resources. → Start Learning ",
+      "url": "/course-project/"
+    },
+    {
+      "id": 53,
+      "title": "Instructor Guide: Week-by-Week Curriculum :: Course Project",
+      "content": "Edit this Page Download as .pdf Instructor Guide: Week-by-Week Curriculum This comprehensive guide helps instructors deliver the Course Project effectively to mathematics students (CSMI program). The curriculum is designed for a 12-week semester with flexible pacing based on student backgrounds. 1. Course Overview for Mathematics Students Key Teaching Principles for Mathematics Students: Start with \"Why\" - Always explain the mathematical relevance before diving into technical details Use Mathematical Examples - Replace generic programming examples with numerical analysis, LaTeX, data analysis Build Confidence Gradually - Many students may feel intimidated by command-line interfaces Connect to Research - Show how tools apply to mathematical research and collaboration 2. Pre-Course Preparation (Week 0) 2.1. Instructor Tasks Before the semester begins: Setup and Assessment Send prerequisites assessment to all students 2 weeks before class Prepare 3 different lesson plans based on student ",
+      "url": "/course-project/instructor-guide.html"
+    },
+    {
+      "id": 54,
+      "title": "Course Project Notebook :: Course Project",
+      "content": "Edit this Page Download as .pdf .ipynb Course Project Notebook This is a Jupyter notebook for the Course Project project. 1. Introduction You write your notebook in AsciiDoc including LaTeX math and thanks to the :page-jupyter: true attribute, the notebook is converted to a Jupyter notebook when the book is built. 2. Code cells You can include code cells in your notebook using the [source,python] block macro. import sys, os print(\"Hello, world!\") 3. Feel++ Code cells You can include Feel++ code cells in your notebook using the [source,python] block macro. import feelpp app = feelpp.Environment([\"myapp\"],config=feelpp.globalRepository(\"myapp\")) geo=feelpp.download( \"github:{repo:feelpp,path:feelpp/quickstart/laplacian/cases/feelpp2d/feelpp2d.geo}\", worldComm=app.worldCommPtr() )[0] print(\"geo file: {}\".format(geo)) mesh = feelpp.load(feelpp.mesh(dim=2,realdim=2), geo, 0.1) Xh=feelpp.functionSpace(mesh=mesh, space=\"Pchv\") f = Xh.element() f.on(range=feelpp.elements(mesh),expr=feelpp.expr",
+      "url": "/course-project/jupyter.html"
+    },
+    {
+      "id": 55,
+      "title": "File Editing in Linux :: Course Project",
+      "content": "Edit this Page Download as .pdf .ipynb File Editing in Linux The pages can be downloaded via the green button at the top right of the page. The commands are shell commands and can be executed in a terminal, however, do not copy the %%bash magic command that is used to execute the commands in the Jupyter Notebook environment. Linux, like other operating systems, allows file editing for numerous purposes, such as configuring system settings or writing scripts. There’s a wide variety of text editors available in Linux, and these editors come with different capabilities and levels of complexity. Whether you’re editing configuration files or writing code, choosing the right editor can make a significant difference in your workflow. 1. Popular Text Editors in Linux Some commonly used text editors in Linux include: Nano: A basic text editor that’s easy to use, especially for beginners. Vi/Vim: A powerful editor with an extensive set of commands for advanced users. Emacs: Another powerful edit",
+      "url": "/course-project/linux/editing.html"
+    },
+    {
+      "id": 56,
+      "title": "Working with Files in Linux :: Course Project",
+      "content": "Edit this Page Download as .pdf .ipynb Working with Files in Linux The pages can be downloaded via the green button at the top right of the page. The commands are shell commands and can be executed in a terminal, however, do not copy the %%bash magic command that is used to execute the commands in the Jupyter Notebook environment. Working with files is an essential part of Linux, and it’s a skill every Linux user must master. In Linux, everything is considered a file: text documents, images, system files, devices, and even directories. Linux provides numerous command-line utilities to create, view, move, or search files. Some of the basic commands for file handling in the Linux terminal include touch for creating files, mv for moving files, cp for copying files, rm for removing files, and ls for listing files and directories. For example, to create a file named example.txt, you can use the following command: %%bash cd /tmp/ mkdir documents cd documents touch example.txt Results To list",
+      "url": "/course-project/linux/files.html"
+    },
+    {
+      "id": 57,
+      "title": "Linux Essentials for Mathematics Students :: Course Project",
+      "content": "Linux Essentials for Mathematics Students 🟢 FOUNDATIONAL LEVEL | Prerequisites: None | Time: 2-3 hours | For: Mathematics students new to command-line interfaces Why Linux for Mathematicians? Most mathematical software (MATLAB, Mathematica, SageMath), high-performance computing clusters, and research computing environments run on Linux systems. Understanding basic Linux commands enables you to: Access and use computational clusters for large-scale mathematical computations Manage mathematical datasets and simulation results efficiently Collaborate with computational scientists and engineers Use powerful mathematical software packages available only on Linux The pages can be downloaded via the green button at the top right of the page. The commands are shell commands and can be executed in a terminal, however, do not copy the %%bash magic command that is used to execute the commands in the Jupyter Notebook environment. As a mathematics student, you’ll frequently need to work with compu",
+      "url": "/course-project/linux/"
+    },
+    {
+      "id": 58,
+      "title": "Linux Shell Basics :: Course Project",
+      "content": "Edit this Page Download as .pdf .ipynb Linux Shell Basics The pages can be downloaded via the green button at the top right of the page. The commands are shell commands and can be executed in a terminal, however, do not copy the %%bash magic command that is used to execute the commands in the Jupyter Notebook environment. The Linux shell is a command-line interface or terminal used to interact directly with the operating system. The shell helps facilitate system commands and acts as an intermediary interface between the user and the system’s kernel. The shell can perform complex tasks efficiently and quickly. There are many types of shells available in Linux, including the Bourne Shell (sh), the C Shell (csh), and the Bourne-Again Shell (bash). The basics of using a Linux shell include navigating between directories, creating, renaming, and deleting files and directories, and executing system commands. This introductory knowledge is crucial for Linux system administration, scripting, a",
+      "url": "/course-project/linux/shell.html"
+    },
+    {
+      "id": 59,
+      "title": "SSH and Remote-SSH in VS Code :: Course Project",
+      "content": "Edit this Page Download as .pdf SSH and Remote-SSH in VS Code Welcome to the SSH and Remote-SSH tutorial for VS Code. This guide will walk you through the setup of SSH on your system, basic SSH commands, and using the Remote-SSH extension in VS Code for remote development. 1. Table of Contents Setting Up SSH Basic SSH Commands Remote-SSH Extension for VS Code Start by setting up SSH on your machine and then proceed to learn how to use it within VS Code.",
+      "url": "/course-project/linux/ssh/"
+    },
+    {
+      "id": 60,
+      "title": "Remote-SSH Extension for VS Code :: Course Project",
+      "content": "Edit this Page Download as .pdf Remote-SSH Extension for VS Code The Remote-SSH extension in VS Code enables you to work on remote projects as if they were on your local machine. With Remote-SSH, you can connect to a remote server, edit files, run commands, and use VS Code’s development features. 1. Installing the Remote-SSH Extension Open VS Code. Go to the Extensions panel (Ctrl+Shift+X on Windows/Linux or Cmd+Shift+X on macOS). Search for Remote - SSH and click Install. 2. Connecting to a Remote Machine After installing the extension, follow these steps to connect to a remote server via SSH: Press F1 or Ctrl+Shift+P to open the Command Palette. Type Remote-SSH: Connect to Host and select it. Enter the SSH connection details, e.g., user@remote-server.com. Select your preferred remote OS when prompted (Linux, macOS, or Windows). Once connected, a new VS Code window will open, and you’ll be working within the remote environment. 3. Using the SSH Config File in VS Code If you have an SS",
+      "url": "/course-project/linux/ssh/remote-ssh-vscode.html"
+    },
+    {
+      "id": 61,
+      "title": "Basic SSH Commands :: Course Project",
+      "content": "Edit this Page Download as .pdf Basic SSH Commands 1. Common SSH Commands Once you’ve set up SSH, here are some common commands for connecting to and managing remote servers. 1.1. Connecting to a Remote Server To connect to a remote server via SSH: ssh user@remote-server Replace user with your username and remote-server with the IP address or domain name of the server. 1.2. Using SSH Config File for Convenience You can configure the SSH client to simplify connections by using a ~/.ssh/config file. Host myserver HostName remote-server.com User myusername IdentityFile ~/.ssh/id_rsa Now, you can connect simply by typing: ssh myserver 1.3. Running Remote Commands with SSH You can execute commands directly on the remote server without starting an interactive session. For example: ssh user@remote-server 'uptime' This will run the uptime command on the remote server and return the result. 1.4. Secure Copying Files with SCP The scp (Secure Copy Protocol) command allows you to copy files betwee",
+      "url": "/course-project/linux/ssh/ssh-commands.html"
+    },
+    {
+      "id": 62,
+      "title": "Setting Up SSH :: Course Project",
+      "content": "Edit this Page Download as .pdf Setting Up SSH 1. What is SSH? SSH (Secure Shell) is a protocol used to securely connect to remote machines. It allows encrypted data transmission, enabling you to access a remote machine’s shell and execute commands as if you were using the local terminal. 2. Installing SSH Before using SSH, ensure that it is installed on both the client (your local machine) and the server (remote machine). # On Linux or macOS, SSH is typically pre-installed. To check if it's installed, use: ssh -V # To install SSH on Ubuntu or Debian-based systems: sudo apt update sudo apt install openssh-client openssh-server # On CentOS or Fedora: sudo dnf install openssh-clients openssh-server # On Windows, use the built-in OpenSSH client (available from Windows 10) or download PuTTY. 3. Enabling SSH Service on Linux (Server-Side) If you are connecting to a remote Linux server, ensure that the SSH service is enabled and running: # To start the SSH service (Linux): sudo systemctl ena",
+      "url": "/course-project/linux/ssh/ssh-setup.html"
+    },
+    {
+      "id": 63,
+      "title": "Text Processing in Linux :: Course Project",
+      "content": "Edit this Page Download as .pdf .ipynb Text Processing in Linux The pages can be downloaded via the green button at the top right of the page. The commands are shell commands and can be executed in a terminal, however, do not copy the %%bash magic command that is used to execute the commands in the Jupyter Notebook environment. Text processing is an essential task for system administrators and developers. Linux, being a robust operating system, provides powerful tools for text searching, manipulation, and processing. The ability to handle and manipulate text files directly from the command line is one of Linux’s greatest strengths. Users can utilize commands like awk, sed, grep, and cut for text filtering, substitution, and handling regular expressions. Additionally, shell scripting and programming languages such as Python and Perl offer remarkable text processing capabilities on Linux. Though Linux is primarily a command-line-based system, it also offers numerous GUI-based text editor",
+      "url": "/course-project/linux/text-processing.html"
+    },
+    {
+      "id": 64,
+      "title": "Overview of Course Project :: Course Project",
+      "content": "Edit this Page Download as .pdf Overview of Course Project 1. Organisation The directory structure of the project is as follows: . ├── docs │ ├── antora │ └── modules └── src └── cases 5 directories The docs directory contains the documentation of the project and uses antora to generate the documentation. The src directory contains initially some C++ and Python Feel++ source code of the project to help you get started. Feel++ is a C++ library for the numerical simulation of partial differential equations. It is designed to be easy to use and to extend. {feelpp }is a free software distributed under the terms of the GNU General Public License version 3. The documentation is available > here. 2. How to build the project You need first to follow the quickstart to get the Feel++ environment. The installation procedure uses Cmake for the C++ programs and create a bundle of this project. The steps are as follows: $ cmake --preset default (1) $ cmake --build --preset default (2) $ cmake --buil",
+      "url": "/course-project/overview.html"
+    },
+    {
+      "id": 65,
+      "title": "Prerequisites and Self-Assessment :: Course Project",
+      "content": "Edit this Page Download as .pdf Prerequisites and Self-Assessment This course is designed for mathematics students with varying levels of computational experience. Use this self-assessment to determine your starting point. 1. Quick Self-Assessment 1.1. 🖥️ Computer Skills Assessment Check all that apply to you: Basic Computer Use I can navigate folders and files on my computer using a graphical interface I know how to install software on my computer I’m comfortable using a web browser and email Command Line Experience I have used a terminal or command prompt before I know basic commands like cd, ls, mkdir I can navigate directories using the command line Programming Background I have written programs in any language (Python, MATLAB, R, etc.) I understand concepts like variables, functions, and loops I have worked with mathematical software packages Version Control I know what version control is I have used Git or similar tools before I have collaborated on code or documents using versi",
+      "url": "/course-project/prerequisites.html"
+    },
+    {
+      "id": 66,
+      "title": "Methods and Best Practices for Agile Project Management :: Course Project",
+      "content": "Edit this Page Download as .pdf Methods and Best Practices for Agile Project Management 1. Agile Methodologies in Software Projects Agile programming: Projects are small, adaptable tasks Continuous iteration and feedback Extreme programming (XP): Focus on flexibility, quality, and customer involvement Agile and XP approaches prioritize adaptability and iterative development, making them suitable for dynamic software projects. — NOTE 2. Best Practices for Agile Project Management Agile project management is centered around adaptability, iterative development, and close collaboration between team members. Here are the key best practices to follow for Agile success, focusing on essential rituals like sprint planning, stand-ups, and retrospectives. 2.1. Sprint Planning Sprint planning is the backbone of Agile development. During this meeting, the team agrees on what work will be completed in the upcoming sprint (usually 1-4 weeks). Goals of Sprint Planning: Define the sprint goal, ensuring",
+      "url": "/course-project/project-management/agile-best-practices.html"
+    },
+    {
+      "id": 67,
+      "title": "Case Study: Building a Digital Twin for a Manufacturing System :: Course Project",
+      "content": "Edit this Page Download as .pdf Case Study: Building a Digital Twin for a Manufacturing System In this case study, we explore how a structured project management approach was used to develop a digital twin for a manufacturing system to optimize production efficiency. 1. Project Overview Objective: Develop a digital twin for a smart factory to monitor and optimize production processes in real-time. Stakeholders: Manufacturing company, digital twin developers, IoT specialists, production managers. Budget: $500,000 Timeline: 12 months Outcome: A fully functional digital twin integrated into the production line, capable of real-time monitoring and predictive analytics. The project’s goal was to build a system that provides real-time insights into the production line, enabling optimization and predictive maintenance. — NOTE 2. Phase 1: Initiating Tasks: Initial meeting with stakeholders to define project scope and deliverables. Identify data sources from production line (e.g., sensors, IoT ",
+      "url": "/course-project/project-management/case-studies.html"
+    },
+    {
+      "id": 68,
+      "title": "GitHub :: Course Project",
+      "content": "Edit this Page Download as .pdf GitHub 1. GitHub: Overview GitHub is a web-based Git repository hosting service GitHub offers all of the distributed revision control and source code management (SCM) functionality of Git as well as adding its own features GitHub provides a web-based graphical interface and desktop as well as mobile integration GitHub is used by individuals and enterprises to host software projects GitHub is the largest code host in the world The main features of GitHub are Issues, Pull Requests, Projects, Actions 2. GitHub Issues GitHub Issues are a great way to keep track of tasks, enhancements, and bugs for your projects. They’re kind of like email—except they can be shared and discussed with the rest of your team. Most software projects have a bug tracker of some kind. GitHub’s tracker is called Issues, and has its own section in every repository. Issues can act as more than just a place to report software bugs. They’re great for tracking ideas and enhancements, task",
+      "url": "/course-project/project-management/github.html"
+    },
+    {
+      "id": 69,
+      "title": "Project Management for Mathematical Research :: Course Project",
+      "content": "Project Management for Mathematical Research 🟡 INTERMEDIATE LEVEL | Prerequisites: Basic Git and collaboration tools | Time: 3-4 hours | For: Mathematics students managing research projects and collaborative work Why Project Management for Mathematics? Mathematical research projects have unique characteristics: - Long-term investigations that may span months or years - Iterative discovery process where goals evolve based on findings - Collaborative elements involving advisors, peers, and external researchers - Multiple deliverables: papers, presentations, code, data analysis - Publication timelines with conference and journal deadlines Project management helps structure the inherent complexity of mathematical research. Project management for mathematics involves organizing mathematical research activities, managing collaborative relationships, and coordinating timelines to achieve research goals within academic constraints. Mathematical research presents unique project management chal",
+      "url": "/course-project/project-management/"
+    },
+    {
+      "id": 70,
+      "title": "What is a Project? :: Course Project",
+      "content": "Edit this Page Download as .pdf What is a Project? 1. Definition of a Project A sequence of tasks: Planned from beginning to end Bounded by time, resources, & specific results Defined outcomes and \"deliverables\" Has a deadline and a budget Limits number of people, supplies, and capital A project is a structured, goal-driven effort with clear boundaries and constraints. Outlining these elements clearly from the start is crucial for success. — NOTE 2. Tasks vs. Projects Routine tasks: Responding to email Making coffee Hooking up a printer Projects: Producing a customer newsletter Catering a party Writing a book Implementing a computer network Tasks are often short-term and repetitive, while projects are complex, unique, and require strategic planning and coordination. — NOTE 3. Five Features of a Project Defined beginning, end, schedule, and approach Use of specific resources allocated to the work Achievement of defined goals (time, cost, performance/quality) Follows a planned, organized",
+      "url": "/course-project/project-management/introduction.html"
+    },
+    {
+      "id": 71,
+      "title": "Practical Examples in Scientific Computing and Digital Twins :: Course Project",
+      "content": "Edit this Page Download as .pdf Practical Examples in Scientific Computing and Digital Twins To understand how project management principles apply in scientific computing and digital twins, let’s explore a few examples where structured approaches are crucial for project success. 1. Example 1: Developing a Digital Twin for Predictive Maintenance Project Goal: Develop a digital twin of a wind turbine to predict maintenance needs. Tasks: Collect historical performance data of the turbine. Develop a computational model to simulate wear and tear. Use machine learning algorithms to predict maintenance intervals. Integrate the digital twin into the SCADA (Supervisory Control and Data Acquisition) system. Resources: Data scientists, computational engineers, and SCADA system experts. Computing power for simulation and model training. Outcome: A functional digital twin capable of real-time performance monitoring and failure prediction. This project involves complex simulations and real-time data",
+      "url": "/course-project/project-management/practical-examples.html"
+    },
+    {
+      "id": 72,
+      "title": "Phases of a Project :: Course Project",
+      "content": "Edit this Page Download as .pdf Phases of a Project 1. Overview of Project Phases The typical phases of a project include: Conceptualization Feasibility Preliminary planning Detailed planning Execution Testing Termination Understanding each phase is crucial for navigating the project lifecycle from idea to completion. — NOTE 2. Phase 1: Initiating Identify the need for the project Determine what the project should accomplish Define the overall goal Identify key stakeholders and initial team members Outline the general scope The initiation phase sets the foundation for the project by clarifying its objectives and assembling the team. — NOTE 3. Phase 2: Planning Refine the project scope List tasks and activities Sequence activities optimally Develop a schedule and budget Get approval from stakeholders Detailed planning ensures that the project is feasible and that all stakeholders are aligned on expectations and resources. — NOTE 4. Phase 3: Executing Lead the project team Hold regular m",
+      "url": "/course-project/project-management/project-phases.html"
+    },
+    {
+      "id": 73,
+      "title": "Project Management :: Course Project",
+      "content": "Edit this Page Download as .pdf Project Management 1. Introduction to Project Management Project management involves organizing resources, tasks, and people to achieve specific goals within time and budget constraints. This introduction explores the key elements, phases, and tools required for successful project management.",
+      "url": "/course-project/project-management/project.html"
+    },
+    {
+      "id": 74,
+      "title": "Tools in Project Management :: Course Project",
+      "content": "Edit this Page Download as .pdf Tools in Project Management 1. What is a Milestone? A milestone in project management is a significant event or point in the project timeline that marks the completion of a major phase or task. Milestones are often used to: Measure progress: By marking important points, you can assess if the project is on schedule. Highlight deadlines: Milestones represent key deadlines that need to be met to move the project forward. Reflect achievements: Reaching a milestone signifies the completion of a critical part of the project. For example, in a software project, some common milestones might include: Requirements completion: All necessary features and requirements for the software have been defined. Design approval: The software’s architecture and design are approved for development. First working prototype: A functional version of the software, even if limited in scope, is built and can be demonstrated. 2. Gantt Charts A Gantt Chart is an essential tool for proj",
+      "url": "/course-project/project-management/tools-gantt.html"
+    },
+    {
+      "id": 75,
+      "title": "Quick Start Guide :: Course Project",
+      "content": "Edit this Page Download as .pdf Quick Start Guide Ready to begin? This guide gets you started in the Course Project based on your mathematical background and computational experience. 1. 🚀 In 5 Minutes: Find Your Starting Point 1.1. Step 1: Take the Assessment Navigate to Prerequisites & Self-Assessment and complete the quick skills checklist (2 minutes). 1.2. Step 2: Choose Your Track Based on your assessment results: 🟢 Beginner Track (0-3 checkboxes) Start with Linux Essentials for Mathematics Students 🟡 Intermediate Track (4-7 checkboxes) Jump to Project Management for Research 🔴 Advanced Track (8+ checkboxes) Begin with Containers for Mathematical Computing 1.3. Step 3: Set Up Your Environment Follow the setup instructions in your chosen starting module. 1.4. Step 4: Join the Community Connect with other students on Slack for questions and collaboration. 2. 📖 For Instructors: Teaching This Course New to teaching computational tools to mathematics students? Review the Instructo",
+      "url": "/course-project/quick-start.html"
+    },
+    {
+      "id": 76,
+      "title": "Quickstart Guide :: Course Project",
+      "content": "Edit this Page Download as .pdf Quickstart Guide To get started with compiling and using Course Project, you can either install Feel++ Debian or Ubuntu packages if you use such systems or use DevContainers in Visual Studio Code as described below. To get started with viewing and creating documentation, checkout the project Antora page. 1. Using DevContainers in Visual Studio Code Please ensure that you have Visual Studio Code and Docker installed before proceeding. 1.1. Getting Started To start using DevContainers in Visual Studio Code, follow these steps: Open your project in Visual Studio Code. A devcontainer.json file in the root of your project in .devcontainer directory A configuration similar to the following one is available: { \"name\": \"Feel++ Dev Jammy\", \"image\": \"ghcr.io/feelpp/feelpp-dev:jammy\", \"extensions\": [ \"ms-vscode.cpptools\", \"ms-vscode.cmake-tools\", \"josetr.cmake-language-support-vscode\", \"asciidoctor.asciidoctor-vscode\", \"ms-python.python\", \"ms-toolsai.jupyter\" ] } C",
+      "url": "/course-project/quickstart.html"
+    },
+    {
+      "id": 77,
+      "title": "Renaming the project :: Course Project",
+      "content": "Edit this Page Download as .pdf Renaming the project The script rename.sh renames the project. You have to answer a few questions to setup a new project out of this template.",
+      "url": "/course-project/rename.html"
+    },
+    {
+      "id": 78,
+      "title": "Software Installation: From Package Managers to Building from Source :: Course Project",
+      "content": "Software Installation: From Package Managers to Building from Source 1. Introduction to Software Installation Learn comprehensive software installation methods through these focused modules: 1.1. Understanding Package Managers What is apt? Advantages of using package managers. 1.2. Why Build from Source? Latest features and updates. Customization and optimization. Situations where packages aren’t available. 1.3. Build Systems Overview Introduction to build systems like Autotools and CMake. Differences and use cases. 2. Setting Up the Development Environment with Codespaces 2.1. Introduction to GitHub Codespaces What is Codespaces? Benefits over traditional VMs. 2.2. Getting Started # Create a Codespace from a repository git clone <repository-url> # Open it in GitHub Codespaces 2.3. Environment Configuration Install necessary extensions and tools within Codespaces. 3. Installing Software Using apt in Codespaces 3.1. Using the Terminal in Codespaces Accessing the terminal. Running apt co",
+      "url": "/course-project/software/"
+    },
+    {
+      "id": 79,
+      "title": "Understanding Package Managers :: Course Project",
+      "content": "Edit this Page Download as .pdf Understanding Package Managers Package managers are essential tools for managing software installations, upgrades, and dependencies. They can be categorized into two main types: System Package Managers: These manage software at the operating system level, handling native applications and system libraries. Examples include apt, yum, and brew. These package managers deal with system-wide installations, making software available to all users and applications on the system. Software-Specific Package Managers: Many software ecosystems, such as Python, C++, and Node.js, have their own package managers, which handle dependencies and libraries specifically for that language or platform. Examples include pip and conda for Python, and conan for C++. While system package managers are responsible for global software installations, software-specific package managers allow for more granular control over project-specific dependencies, often within isolated environments",
+      "url": "/course-project/software/package-managers.html"
+    },
+    {
+      "id": 80,
+      "title": "Repository Organization for a C++20 Project Using CMake and CTest :: Course Project",
+      "content": "Edit this Page Download as .pdf Repository Organization for a C++20 Project Using CMake and CTest Table of Contents 1. Overview 2. Recommended Directory Structure 3. Top-Level CMake Configuration 4. Library Configuration (src/libs/lib1/CMakeLists.txt) 5. Application Configuration (src/apps/app1/CMakeLists.txt) 6. Tests Configuration (tests/CMakeLists.txt) 7. GitHub Actions CI Workflow 8. Additional Best Practices 1. Overview This document outlines a recommended repository organization for a C++20 project that uses CMake for build configuration and CTest for testing. In this structure, source files—including both library code and application code—are placed under the src/ directory. Libraries and applications are organized into separate subdirectories to clearly delineate reusable components from executable projects. 2. Recommended Directory Structure my_project/ ├── .github/ │ └── workflows/ │ └── ci.yml # GitHub Actions CI configuration file ├── build/ # Out-of-source build directory ",
+      "url": "/course-project/software/repo/organization.html"
+    },
+    {
+      "id": 81,
+      "title": "Dash for Scientific Computing :: Course Project",
+      "content": "Edit this Page Download as .pdf Dash for Scientific Computing A tutorial to use Dash for building interactive web applications focused on scientific computing Dash provides a flexible and powerful platform for scientists and engineers to create interactive web-based applications. This tutorial expands on the basics and focuses on how to integrate Dash with scientific computing libraries such as NumPy, SciPy, and Matplotlib, while using Plotly for interactive visualizations. 1. Prerequisites Ensure that you have Python installed, and install the following packages: pip install dash dash-bootstrap-components pandas plotly numpy scipy matplotlib 2. Scientific Libraries Overview Dash integrates well with libraries used for scientific computing. Here are some essential libraries: NumPy A fundamental package for numerical computing in Python. SciPy Builds on NumPy to provide a collection of algorithms and functions for scientific computing. Matplotlib A comprehensive library for creating sta",
+      "url": "/course-project/visualisation/dash.html"
+    },
+    {
+      "id": 82,
+      "title": "Homework :: Course Project",
+      "content": "Edit this Page Download as .pdf Homework 1. Solving the heat equation in a thermal fin We consider the problem of designing a thermal fin to effectively remove heat from a surface. The two-dimensional fin, shown in Figure #fig:1[1], consists of a vertical central “post” and four horizontal “subfins”; the fin conducts heat from a prescribed uniform flux “source” at the root, \\(\\Gamma_{\\mathrm{root}}\\) , through the large-surface-area subfins to surrounding flowing air. The fin is characterized by a five-component parameter vector, or “input,” \\(\\mu_ = (\\mu_1 , \\mu_2, \\ldots, \\mu_5 )\\),where \\(\\mu_i = k^i , i = 1, \\ldots , 4\\), and \\(\\mu_5 = \\mathrm{Bi}\\); \\(\\mu\\) may take on any value in a specified design set \\(D \\subset \\mathbb{R}^5\\). Figure 1. Thermal fin Here \\(k^i\\) is the thermal conductivity of the ith subfin (normalized relative to the post conductivity \\(k^0 \\equiv 1\\)); and \\(\\mathrm{Bi}\\) is the Biot number, a nondimensional heat transfer coefficient reflecting convective tr",
+      "url": "/course-project/visualisation/hw.html"
+    },
+    {
+      "id": 83,
+      "title": "Data Visualization and Interactive Dashboards :: Course Project",
+      "content": "Data Visualization and Interactive Dashboards Explore modern data visualization techniques and create interactive dashboards that effectively communicate insights from complex datasets. From basic charts to advanced interactive applications. 1. Visualization Learning Modules Master data visualization through these comprehensive modules:",
+      "url": "/course-project/visualisation/"
+    },
+    {
+      "id": 84,
+      "title": "Basic Usage and Commands :: Course Project",
+      "content": "Edit this Page Download as .pdf Basic Usage and Commands 1. Getting Started with VS Code Once installed, you can open VS Code using the launcher or from the terminal: code . This opens the current directory in VS Code. 2. Basic Interface Overview The VS Code interface consists of the following key sections: Explorer: The left-hand panel where you can navigate files and folders. Editor: The main area where you open and edit files. Terminal: Built-in terminal for running commands directly from VS Code. 3. Common Commands Here are a few essential VS Code commands: Open Command Palette: Ctrl+Shift+P or Cmd+Shift+P on macOS. This gives access to all VS Code features via quick commands. Open a new file: Ctrl+N (Windows/Linux) or Cmd+N (macOS). Toggle terminal: Ctrl+` (Windows/Linux) or Cmd+` (macOS). These basic commands help you get started with coding or file management.",
+      "url": "/course-project/vscode/basic-usage.html"
+    },
+    {
+      "id": 85,
+      "title": "VSCode Basic Cheatsheet :: Course Project",
+      "content": "Edit this Page Download as .pdf VSCode Basic Cheatsheet 1. Navigation Description Linux Windows Mac Open Command Palette Ctrl+Shift+P Ctrl+Shift+P Cmd+Shift+P Open File Ctrl+P Ctrl+P Cmd+P Toggle Sidebar Ctrl+B Ctrl+B Cmd+B Close Editor Ctrl+W Ctrl+W Cmd+W Switch between Tabs Ctrl+Tab Ctrl+Tab Cmd+Tab Split Editor Ctrl+\\ Ctrl+\\ Cmd+\\ Navigate between Editor Groups Ctrl+1, Ctrl+2…​ Ctrl+1, Ctrl+2…​ Cmd+1, Cmd+2…​ Navigate Forward Ctrl+Alt+→ Alt+→ Option+→ Navigate Backward Ctrl+Alt+← Alt+← Option+← Go to Symbol Ctrl+Shift+O Ctrl+Shift+O Cmd+Shift+O Go to Definition F12 F12 F12 2. Editing Description Linux Windows Mac Copy Line Up/Down Shift+Alt+↑/↓ Shift+Alt+↑/↓ Shift+Option+↑/↓ Move Line Up/Down Alt+↑/↓ Alt+↑/↓ Option+↑/↓ Duplicate Line Shift+Alt+↓ Shift+Alt+↓ Option+Shift+↓ Delete Line Ctrl+Shift+K Ctrl+Shift+K Cmd+Shift+K Add Line Comment Ctrl+/ Ctrl+/ Cmd+/ Add Block Comment Shift+Alt+A Shift+Alt+A Shift+Option+A Format Document Shift+Alt+F Shift+Alt+F Shift+Option+F Rename Symbol F",
+      "url": "/course-project/vscode/cheatsheet.html"
+    },
+    {
+      "id": 86,
+      "title": "How to Configure VS Code with .vscode :: Course Project",
+      "content": "Edit this Page Download as .pdf How to Configure VS Code with .vscode 1. Configuring Projects with .vscode VS Code allows you to configure project-specific settings using a .vscode folder. This folder can include settings, tasks, and debug configurations. 1.1. Adding a .vscode/settings.json Create a .vscode/settings.json file in your project directory to customize settings for the current project. Example configuration: { \"python.pythonPath\": \"/usr/bin/python3\", \"editor.formatOnSave\": true, \"files.exclude\": { \"**/*.log\": true, \"**/node_modules\": true } } 1.2. Task Configuration with .vscode/tasks.json You can automate tasks like running build scripts by configuring tasks in .vscode/tasks.json. Example: { \"version\": \"2.0.0\", \"tasks\": [ { \"label\": \"Run Build\", \"type\": \"shell\", \"command\": \"npm run build\", \"group\": { \"kind\": \"build\", \"isDefault\": true } } ] } Tasks and settings configured in the .vscode folder apply only to the current project.",
+      "url": "/course-project/vscode/configure-vscode.html"
+    },
+    {
+      "id": 87,
+      "title": "Extension Installation and Key Extensions :: Course Project",
+      "content": "Edit this Page Download as .pdf Extension Installation and Key Extensions 1. Installing Extensions One of the strengths of VS Code is its rich ecosystem of extensions. Extensions enhance your development environment by providing extra features like language support, debugging tools, and integration with cloud services. To install extensions, follow these steps: Open the Extensions panel using Ctrl+Shift+X or Cmd+Shift+X on macOS. In the search bar, type the name of the extension you want to install. Click Install on the extension. You can also search and install extensions from the marketplace: > marketplace.visualstudio.com/vscode. Here are some key extensions that are useful for development: Remote SSH WSL (Windows Subsystem for Linux) Python and Jupyter Extensions",
+      "url": "/course-project/vscode/extemsions.html"
+    },
+    {
+      "id": 88,
+      "title": "VS Code for Mathematical Computing :: Course Project",
+      "content": "VS Code for Mathematical Computing 🟢 FOUNDATIONAL LEVEL | Prerequisites: Basic computer skills | Time: 2-3 hours | For: Mathematics students setting up development environment Why VS Code for Mathematics? An integrated development environment helps mathematicians: - Write LaTeX documents with syntax highlighting and live preview - Develop mathematical code in Python, R, or MATLAB with debugging support - Manage version control visually with Git integration - Work with Jupyter notebooks for mathematical analysis - Collaborate efficiently with shared workspace configurations VS Code unifies all your mathematical computing tools in one interface. Learn to use Visual Studio Code as your primary environment for mathematical research, LaTeX document preparation, and computational mathematics projects. 1. VS Code Learning Modules Master VS Code through these comprehensive learning modules:",
+      "url": "/course-project/vscode/"
+    },
+    {
+      "id": 89,
+      "title": "VS Code Installation :: Course Project",
+      "content": "Edit this Page Download as .pdf VS Code Installation 1. Download and Installation You can download VS Code from the official website: Download URL: code.visualstudio.com/Download VS Code supports Windows, macOS, and Linux. Below are the steps for installing on each platform. 1.1. Windows Installation Download the .exe installer from the VS Code website. Run the installer and follow the on-screen prompts. Select the option to add VS Code to your PATH (this allows you to open VS Code from the terminal). 1.2. macOS Installation Download the .dmg file from the VS Code website. Open the .dmg file and drag the VS Code icon to the Applications folder. Launch VS Code from the Applications folder or the terminal using code if you add it to the PATH. 1.3. Linux Installation Download the appropriate package (.deb or .rpm) from the VS Code website. Install it using your distribution’s package manager: For Debian-based systems (e.g., Ubuntu): ` sudo dpkg -i <path-to-package>.deb sudo apt-get instal",
+      "url": "/course-project/vscode/install.html"
+    },
+    {
+      "id": 90,
+      "title": "Python and Jupyter Extensions :: Course Project",
+      "content": "Edit this Page Download as .pdf Python and Jupyter Extensions 1. Python Extension The Python extension in VS Code provides rich support for Python development, including: IntelliSense (autocompletion) Debugging Code linting Jupyter integration 1.1. Installing the Python Extension Open the Extensions panel (Ctrl+Shift+X). Search for \"Python\" and click Install. Once installed, you’ll have access to Python development features. 2. Jupyter Notebook Support The Jupyter extension integrates Jupyter Notebooks directly into VS Code. This allows you to write, run, and visualize notebook cells within VS Code. 2.1. Installing the Jupyter Extension Open the Extensions panel (Ctrl+Shift+X). Search for \"Jupyter\" and click Install. You can now create or open .ipynb notebook files within VS Code.",
+      "url": "/course-project/vscode/python-jupyter.html"
+    },
+    {
+      "id": 91,
+      "title": "Remote SSH Extension :: Course Project",
+      "content": "Edit this Page Download as .pdf Remote SSH Extension 1. What is Remote SSH? The Remote SSH extension allows you to connect to a remote server and work on files, debug, and run commands directly on the remote machine. 2. Installing the Remote SSH Extension Open the Extensions panel in VS Code (Ctrl+Shift+X). Search for \"Remote - SSH\" and click Install. 3. Setting up Remote SSH Press F1 or Ctrl+Shift+P or on MacOS Cmd+Shift+P and type \"Remote-SSH: Connect to Host\" in the Command Palette. Enter the SSH connection details, e.g., ssh user@remote-server.com. VS Code will connect to the remote machine, allowing you to use it as if it were local. You can also edit your SSH config file to save the connection details for quick access.",
+      "url": "/course-project/vscode/remote-ssh.html"
+    },
+    {
+      "id": 92,
+      "title": "WSL (Windows Subsystem for Linux) Extension :: Course Project",
+      "content": "Edit this Page Download as .pdf WSL (Windows Subsystem for Linux) Extension 1. What is WSL? Windows Subsystem for Linux (WSL) allows you to run a Linux distribution natively on Windows. With the Remote - WSL extension, you can use VS Code to develop within a WSL environment. 2. Installing WSL and the Extension Install WSL on your Windows machine: docs.microsoft.com/windows/wsl/install Install your preferred Linux distribution (e.g., Ubuntu). In VS Code, open the Extensions panel (Ctrl+Shift+X) and install the \"Remote - WSL\" extension. 3. Using WSL in VS Code Once installed, you can open a WSL session in VS Code by pressing F1 and selecting Remote-WSL: New Window. This will open VS Code in the WSL environment, allowing you to code and run commands directly in Linux.",
+      "url": "/course-project/vscode/wsl.html"
+    },
+    {
+      "id": 93,
+      "title": "Using VSCode :: Course Project",
+      "content": "Edit this Page Download as .pdf Using VSCode The project is configured to integrate VSCode using Docker Container. The Docker image can be set from feelpp/feelpp or feelpp/feelpp-toolboxes, simply edit .devcontainer/Dockerfile and choose the image you want. ssh-keyscan is used on github.com to register the public key of github in $HOME/.ssh/known_hosts and avoid having git auth issues the first time we log into the container and push/pull to/from github. The following extensions are installed in Docker: cpptools cmaketools cmake asciidoctor-vscode",
+      "url": "/course-project/vscode.html"
+    },
+    {
+      "id": 94,
+      "title": "Admonition Styles :: Course Project",
+      "content": "Edit this Page Download as .pdf Admonition Styles An admonition, also known as a notice, helps draw attention to content with a special label or icon. 1. Admonition blocks An admonition block is a table. The table title element is specified by the block class: tip, note, important, warning, or caution. Here’s an AsciiDoc source example that produces an admonition with the table title warning: WARNING: Watch out! If font-based icons are enabled (icons=font), the table title text is replaced by the associated icon. <div class=\"admonitionblock warning\"> <table> <tr> <td class=\"icon\"> <i class=\"fa icon-warning\" title=\"Warning\"></i> </td> <td class=\"content\"> <div class=\"paragraph\"> <p>Watch out!</p> </div> </td> </tr> </table> </div> Here’s how it might appear when the title is displayed as text: Watch out! 2. Mathematical blocks When writing mathematical documents you can use the following style labels: Problem statement prob Exercise exer Example examp Lemma lem Definition def Proof proo",
+      "url": "/feelpp-antora-ui/admonition-styles.html"
+    },
+    {
+      "id": 95,
+      "title": "Admonitions :: Course Project",
+      "content": "Edit this Page Download as .pdf Admonitions On this page, you’ll learn: How to mark up an admonition with AsciiDoc. How to create an admonition with complex content. 1. Admonition styles An admonition, also known as a notice, helps draw attention to content with a special label or icon. There are five built-in admonition labels. NOTE TIP IMPORTANT CAUTION WARNING 2. Basic admonition If the admonition content is not interrupted by blank lines, start the first line with a style label. The label must be all uppercase and followed by a colon (:) and a single blank space. Basic admonition syntax CAUTION: Don't stick forks in electric sockets. TIP: After someone sticks a fork in a socket, you'll need to reset the circuit in the dark basement. WARNING: Never go into the basement. IMPORTANT: A monster lives in the basement. NOTE: If you go into the basement, see if you can find Kenny's parka. The result of Basic admonition syntax is displayed below. Don’t stick forks in electric sockets. After",
+      "url": "/feelpp-antora-ui/asciidoc/admonitions.html"
+    },
+    {
+      "id": 96,
+      "title": "Bold :: Course Project",
+      "content": "Edit this Page Download as .pdf Bold On this page, you’ll learn: How to make text bold in AsciiDoc. Where to modify your site’s bold text styling. Text that is marked up as bold will stand out against the regular, surrounding text due to the application of a thicker or darker font. Bold is useful when the text needs to catch the attention of a site visitor quickly scanning a page. 1. Bold syntax A word or phrase is marked as bold when it’s enclosed in a single set of asterisks (e.g., *word*) (constrained formatting). Bounded characters are marked as bold when they’re enclosed in a set of double asterisks (e.g., char**act**ers) (unconstrained formatting). Bounded characters are characters that are: directly preceded by a non-whitespace character, or directly followed by a non-whitespace character. You don’t need to use double asterisks when an entire word or phrase marked as bold is directly followed by a common punctuation mark, such as ;, \", and !. Bold inline formatting A bold *word*",
+      "url": "/feelpp-antora-ui/asciidoc/bold.html"
+    },
+    {
+      "id": 97,
+      "title": "Example Blocks :: Course Project",
+      "content": "Edit this Page Download as .pdf Example Blocks On this page, you’ll learn: How to mark up an example with AsciiDoc. 1. Example syntax An example paragraph or delimited block is useful for visually delineating content that illustrates a concept or showing the result of an operation. An example can contain any type of content and AsciiDoc syntax. Normal substitutions are applied to example content. 1.1. Example paragraph If the example content is contiguous, i.e., not interrupted by blank lines, the block name example can be placed directly on top of the text in an attribute list ([]). Example paragraph syntax .Optional title [example] This is an example paragraph. Here’s the result of Example paragraph syntax. Example 1. Optional title This is an example paragraph. 1.2. Delimited example block If the example content contains elements separated by blank lines, place the content between delimiter lines consisting of four equals signs (====). You don’t need to set the block name when you u",
+      "url": "/feelpp-antora-ui/asciidoc/examples.html"
+    },
+    {
+      "id": 98,
+      "title": "Highlight :: Course Project",
+      "content": "Edit this Page Download as .pdf Highlight On this page, you’ll learn: How to highlight text with AsciiDoc. Where to modify your site’s highlighting styles. 1. Highlight syntax To highlight (or mark) a word or phrase, place a hash (#) at the beginning and end of the text you wish to format (constrained formatting). To highlight one or more characters bounded by other characters, place two hashes (##) before and after the characters (unconstrained formatting). Highlight inline formatting Let's #highlight this phrase# and the i and s in th##is##. The result of Highlight inline formatting is displayed below. Let’s highlight this phrase and the i and the s in this. 2. Site styles How highlighted text appears on your site depends on the CSS styles applied to the <mark> HTML tag. You can learn more about customizing how highlighted text appears in your site in the UI documentation. AsciiDoc and Asciidoctor resources Highlighted text formatting Formatting marks and pairs Constrained versus unc",
+      "url": "/feelpp-antora-ui/asciidoc/highlight.html"
+    },
+    {
+      "id": 99,
+      "title": "Italic :: Course Project",
+      "content": "Edit this Page Download as .pdf Italic On this page, you’ll learn: How to italicize text in AsciiDoc. Where to modify your site’s italic text styling. Text is often italicized in order to stress a word or phrase, quote a speaker, or introduce a term. Italic type slants slightly to the right, and depending on the font, may have cursive swashes and flourishes. 1. Italic syntax A word or phrase is marked as italic when it is enclosed in a single set of underscores (_word_) (constrained formatting). Bounded characters are marked as italic when they’re enclosed in a set of double underscores (char__act__ers) (unconstrained formatting). Bounded characters are characters that are: directly preceded by a non-whitespace character, or directly followed by a non-whitespace character. You don’t need to use double underscores when an entire word or phrase marked as italic is directly followed by a common punctuation mark, such as ;, \", and !. Italic inline formatting An italic _word_, and an italic",
+      "url": "/feelpp-antora-ui/asciidoc/italic.html"
+    },
+    {
+      "id": 100,
+      "title": "Monospace :: Course Project",
+      "content": "Edit this Page Download as .pdf Monospace On this page, you’ll learn: How to apply monospace formatting to inline text in AsciiDoc. Where to modify your site’s inline monospace text styling. Technical content often requires text to be styled in a way that indicates it is a command or source code. Such text is usually emphasized using a fixed-width, i.e., monospace, font. 1. Inline monospace syntax A word or phrase is marked as monospace when it is enclosed in a single set of backticks (`word`) (constrained formatting). Bounded characters are marked as monospace when they’re enclosed in a set of double backticks (char``act``ers) (unconstrained formatting). Bounded characters are characters that are: directly preceded by a non-whitespace character, or directly followed by a non-whitespace character. You don’t need to use double backticks when an entire word or phrase marked as monospace is directly followed by a common punctuation mark, such as ;, \", and !. Monospace inline formatting A ",
+      "url": "/feelpp-antora-ui/asciidoc/monospace.html"
+    },
+    {
+      "id": 101,
+      "title": "Card System Documentation :: Course Project",
+      "content": "Edit this Page Download as .pdf Card System Documentation The Feel++ Antora UI features a sophisticated card-based navigation system that automatically generates visual cards for related content based on page attributes and tagging. 1. System Overview The card system consists of several key components: Page Card Partial Renders individual cards with illustrations, titles, and descriptions Get Page Cards Helper JavaScript helper that finds and filters pages for card display Manuals Layout Handlebars layout that orchestrates card rendering CSS Styling Responsive card layouts with hover effects and proper spacing 2. Card Generation Process Page Discovery: The system searches for pages based on parent-catalogs and page-tags attributes Filtering: Pages are filtered by the page-cards-tag criteria Illustration Processing: Font Awesome icons are detected and processed differently from images Card Rendering: Each page is rendered as a card with title, description, and illustration Layout Applic",
+      "url": "/feelpp-antora-ui/card-system.html"
+    },
+    {
+      "id": 102,
+      "title": "Untitled :: Course Project",
+      "content": "Edit this Page Download as .pdf 1. Catalog Application Page Application content example.",
+      "url": "/feelpp-antora-ui/catalogExample/application.html"
+    },
+    {
+      "id": 103,
+      "title": "Untitled :: Course Project",
+      "content": "Edit this Page Download as .pdf 1. Catalog Benchmark Page Benchmark content example.",
+      "url": "/feelpp-antora-ui/catalogExample/benchmark.html"
+    },
+    {
+      "id": 104,
+      "title": "Heat Transfer Case Study :: Course Project",
+      "content": "Edit this Page Download as .pdf Heat Transfer Case Study This is an example case study page that demonstrates the case category functionality. 1. Overview This case study focuses on solving heat transfer problems using Feel++ libraries. 2. Problem Description The problem involves: - 2D heat conduction - Dirichlet boundary conditions - Material properties variation 3. Solution Method We use finite element methods to solve the heat equation. 4. Results The simulation produces temperature distributions across the domain.",
+      "url": "/feelpp-antora-ui/catalogExample/case-example.html"
+    },
+    {
+      "id": 105,
+      "title": "Catalog Example :: Course Project",
+      "content": "Catalog Example This page demonstrates the manuals layout functioning as a catalog. It automatically displays cards for all pages that have this page listed in their parent-catalogs attribute. 1. How It Works The catalog layout uses the following mechanism: This page has page-layout: manuals and page-tags: catalog-example,catalog Child pages reference this catalog with parent-catalogs: catalog-example The layout automatically finds and displays matching pages as cards Cards show the page title, description, and illustration (Font Awesome icon or image) 2. Card Generation Cards are generated for pages with: - parent-catalogs: catalog-example (matching this page’s primary tag) - Appropriate page-tags that match the page-cards-tag criteria - Valid description and page-illustration attributes for display 3. Visual Features Font Awesome Icons Pages can use Font Awesome classes like fa-solid fa-gear for illustrations Image Support Traditional images are also supported using standard Antora i",
+      "url": "/feelpp-antora-ui/catalogExample/catalog.html"
+    },
+    {
+      "id": 106,
+      "title": "Untitled :: Course Project",
+      "content": "Edit this Page Download as .pdf 1. Catalog Example Page This is a minimal example page that appears as a card in the catalog example.",
+      "url": "/feelpp-antora-ui/catalogExample/example.html"
+    },
+    {
+      "id": 107,
+      "title": "Manual B: Image Example :: Course Project",
+      "content": "Edit this Page Download as .pdf Manual B: Image Example This manual demonstrates how traditional images are rendered in page cards when not using Font Awesome icons. 1. Image Handling When the page illustration doesn’t contain fa-, the system treats it as an image path: :page-illustration: ROOT:A.png This renders as: <img alt=\"\" src=\"path/to/image.png\"/> 2. Image vs Font Awesome The page-card partial automatically detects the content type: Font Awesome Detection Uses regexMatch \"fa-\" to detect Font Awesome classes Image Fallback Any non-FA content is treated as an image reference Antora Resolution Images are resolved using Antora’s resolveResourceURL helper 3. Best Practices Font Awesome Icons Use for consistent, scalable iconography across the documentation Custom Images Use for specific illustrations, logos, or complex graphics Accessibility Both approaches support proper alt text and semantic markup",
+      "url": "/feelpp-antora-ui/catalogExample/itemA.html"
+    },
+    {
+      "id": 108,
+      "title": "Manual C: Advanced Features :: Course Project",
+      "content": "Edit this Page Download as .pdf Manual C: Advanced Features This manual showcases advanced features of the catalog system including tag-based organization and card grouping. 1. Multi-Tag Support The catalog system supports multiple organizational approaches: Single Tag Filtering Filter cards by a single tag (e.g., manual) Multi-Tag Grouping Group cards by different tags with optional group titles Cross-Module Search Search for cards across different Antora modules 2. Tag-Based Organization This page demonstrates the use of multiple tags: :page-tags: manual, example-content, advanced Tags serve different purposes: manual Primary content type classification example-content Content category for this demonstration advanced Feature level indicator 3. Card Grouping The catalog layout can group cards by tags and display group titles using the page-cards-<tag>-title attribute pattern on the parent catalog page. 4. Module Scope Control The page-cards-within-module attribute controls search scop",
+      "url": "/feelpp-antora-ui/catalogExample/itemB.html"
+    },
+    {
+      "id": 109,
+      "title": "Item C :: Course Project",
+      "content": "Edit this Page Download as .pdf Item C This is a leaf item, shared between the Item B and the catalog base. Note that this page appears twice, without duplicating the content. To replicate this page structure: Base page :page-layout: toolboxes :page-tags: catalog, catalog-base Item B :page-layout: toolboxes :page-tags: catalog, itemB :parent-catalogs: catalog-base Item C :page-tags: catalog, itemC :parent-catalogs: catalog-base, itemB",
+      "url": "/feelpp-antora-ui/catalogExample/itemC.html"
+    },
+    {
+      "id": 110,
+      "title": "Untitled :: Course Project",
+      "content": "Edit this Page Download as .pdf 1. Catalog Machine Page Machine content example.",
+      "url": "/feelpp-antora-ui/catalogExample/machine.html"
+    },
+    {
+      "id": 111,
+      "title": "Manual A: Font Awesome Example :: Course Project",
+      "content": "Edit this Page Download as .pdf Manual A: Font Awesome Example This manual demonstrates how Font Awesome icons are automatically detected and rendered in page cards. 1. Font Awesome Integration The page illustration fa-solid fa-cog is automatically detected by the regexMatch \"fa-\" helper in the page-card partial and rendered as: <i class=\"fa-solid fa-cog\"></i> 2. Card Attributes This page uses the following attributes for card generation: page-tags manual, example-content - Identifies this as manual content parent-catalogs catalog-example - Links this page to the catalog description Brief text shown on the card preview page-illustration fa-solid fa-cog - Font Awesome icon for the card 3. Content Organization Pages with parent-catalogs: catalog-example automatically appear as cards on the catalog page. The catalog layout handles: Automatic card generation Icon/image rendering Responsive card layout Interactive hover effects",
+      "url": "/feelpp-antora-ui/catalogExample/manualA.html"
+    },
+    {
+      "id": 112,
+      "title": "Untitled :: Course Project",
+      "content": "Edit this Page Download as .pdf 1. Catalog Report Page Report content example.",
+      "url": "/feelpp-antora-ui/catalogExample/report.html"
+    },
+    {
+      "id": 113,
+      "title": "Subitem A-1 :: Course Project",
+      "content": "Edit this Page Download as .pdf Subitem A-1 1. Leaf Item This is a leaf item of the catalog. It is a children from Item A, which is a children from the catalog base. To replicate this page structure: Base page :page-layout: toolboxes :page-tags: catalog, catalog-base Item A :page-layout: toolboxes :page-tags: catalog, itemA :parent-catalogs: catalog-base Subitem A-1 :page-tags: catalog, subitemA-1 :parent-catalogs: itemA",
+      "url": "/feelpp-antora-ui/catalogExample/subitemA1.html"
+    },
+    {
+      "id": 114,
+      "title": "Subitem A-2 :: Course Project",
+      "content": "Edit this Page Download as .pdf Subitem A-2 1. Leaf Item This is a leaf item of the catalog. It is a children from Item A, which is a children from the catalog base. To replicate this page structure: Base page :page-layout: toolboxes :page-tags: catalog, catalog-base Item A :page-layout: toolboxes :page-tags: catalog, itemA :parent-catalogs: catalog-base Subitem A-2 :page-tags: catalog, subitemA-2 :parent-catalogs: itemA",
+      "url": "/feelpp-antora-ui/catalogExample/subitemA2.html"
+    },
+    {
+      "id": 115,
+      "title": "Untitled :: Course Project",
+      "content": "Edit this Page Download as .pdf 1. Catalog Use Case Page Use case content example.",
+      "url": "/feelpp-antora-ui/catalogExample/usecase.html"
+    },
+    {
+      "id": 116,
+      "title": "Cookie Policy :: Course Project",
+      "content": "Edit this Page Download as .pdf Cookie Policy This cookie policy explains how we use cookies and similar technologies on Feel++ websites and documentation. 1. What Are Cookies Cookies are small text files that are placed on your device when you visit a website. They help websites remember your preferences and improve your browsing experience. 2. Types of Cookies We Use 2.1. Essential Cookies These cookies are necessary for the website to function properly: Cookie Name Purpose Duration Type session_id Maintain user session Session Essential csrf_token Security protection Session Essential ui_preferences Remember UI settings 1 year Functional 2.2. Analytics Cookies We use analytics cookies to understand how visitors use our websites: Cookie Name Purpose Duration Type _ga Google Analytics - distinguish users 2 years Analytics ga* Google Analytics - session information 2 years Analytics _gid Google Analytics - distinguish users 24 hours Analytics _gat Google Analytics - throttle requests 1",
+      "url": "/feelpp-antora-ui/cookie-policy.html"
+    },
+    {
+      "id": 117,
+      "title": "Copy to Clipboard :: Course Project",
+      "content": "Edit this Page Download as .pdf Copy to Clipboard This page describes the copy to clipboard feature added to source blocks when using the default UI. 1. Source blocks The default UI provides JavaScript that adds a clipboard button to all source blocks. The clipboard button shows up next to the language label when the mouse is hovered over the block. When the user clicks the clipboard button, the contents of the source block will be copied to the user’s clipboard. You can try this behavior below: puts 'Take me to your clipboard!' Copy to clipboard only works for a local site or if the site is hosted over https (SSL). The copy to clipboard does not work on an insecure site (http) since the clipboard API is not available in that environment. In that case, the behavior gracefully degrades so the user will not see the clipboard button or an error. 2. Console blocks The default UI also adds a clipboard button to all console blocks. A console block is either a literal paragraph that begins wi",
+      "url": "/feelpp-antora-ui/copy-to-clipboard.html"
+    },
+    {
+      "id": 118,
+      "title": "Dynamic processor :: Course Project",
+      "content": "Edit this Page Download as .pdf Dynamic processor This extension allows you to compile and run code snippets in different languages (C and C++ at this time), and with different compilers. 1. Usage We present the different options that you can use with the dynamic processor. %dynamic: The block should start with the %dynamic directive, so that the processor can identify it. language: The programming language of the code block. It is usefull on the one hand because it allows the processor to display correctly the code block, and on the other hand because it allows the processor to know which compiler to use. filename: The name of the file where the code block will be saved. If the file already exists, it will be overwritten. If nothing is specified, the file will be of the tmp_1738748912630.cpp (depending on the date and the file format specified). compile: The type of compilation that will be done, in one of the following: sh or cpp: The code will be compiled with the g++ compiler. Defa",
+      "url": "/feelpp-antora-ui/dynamic-processor.html"
+    },
+    {
+      "id": 119,
+      "title": "Cemosis UI Extensions :: Course Project",
+      "content": "Edit this Page Download as .pdf Cemosis UI Extensions {cemosis} and Feel++ use some extension for the document pseudocode plot.ly visu-vtk",
+      "url": "/feelpp-antora-ui/feelpp/"
+    },
+    {
+      "id": 120,
+      "title": "Plotting with Feel++ antora-ui :: Course Project",
+      "content": "Edit this Page Download as .pdf Plotting with Feel++ antora-ui",
+      "url": "/feelpp-antora-ui/feelpp/plot.html"
+    },
+    {
+      "id": 121,
+      "title": "Pseudocode :: Course Project",
+      "content": "Edit this Page Download as .pdf Pseudocode The documentation embeds some algorithms written using pseudocode.js whose syntax is mostly compatible with latex package algorithmic. The documentation and in particular the grammar is here. Example of the pseudocode for the quicksort algorithm rendered by pseudocode.js <pre id=\"quicksort\" style=\"display:hidden;\"> % This quicksort algorithm is extracted from Chapter 7, Introduction to Algorithms (3rd edition) \\begin{algorithm} \\caption{Quicksort} \\begin{algorithmic} \\PROCEDURE{Quicksort}{$A, p, r$} \\IF{$p < r$} \\STATE $q = $ \\CALL{Partition}{$A, p, r$} \\STATE \\CALL{Quicksort}{$A, p, q - 1$} \\STATE \\CALL{Quicksort}{$A, q + 1, r$} \\ENDIF \\ENDPROCEDURE \\PROCEDURE{Partition}{$A, p, r$} \\STATE $x = A[r]$ \\STATE $i = p - 1$ \\FOR{$j = p$ \\TO $r - 1$} \\IF{$A[j] < x$} \\STATE $i = i + 1$ \\STATE exchange $A[i]$ with $A[j]$ \\ENDIF \\STATE exchange $A[i]$ with $A[r]$ \\ENDFOR \\ENDPROCEDURE \\end{algorithmic} \\end{algorithm} </pre> In order to display it prop",
+      "url": "/feelpp-antora-ui/feelpp/pseudocode.html"
+    },
+    {
+      "id": 122,
+      "title": "Layout Helpers (Grid) :: Course Project",
+      "content": "Edit this Page Download as .pdf Layout Helpers (Grid) This page demonstrates the grid and image utility classes bundled with this UI. Use these helpers to build simple, responsive layouts quickly. 1. Quick Overview Grid .grid container with .grid-2, .grid-3, or .grid-4 for columns; add gaps with .gap-1, .gap-2, .gap-3. Alignment .items-start|center|end sets vertical alignment; .justify-start|center|end sets horizontal alignment for all items; use .justify-self-* on a single item. Images img-fluid (responsive), img-shadow (subtle depth), img-rounded (rounded corners); width helpers w-10, w-20, w-30, w-40, w-50, w-60, w-70; floats float-right and float-left. 2. Two‑Column: Text | Image Clean two‑column layout Use .grid.grid-2 to create two columns that collapse to one column on small screens. Add .items-center to vertically center content and justify-self-* to align a single cell. Responsive: below 768px, columns stack. Spacing: .gap-2 adds comfortable spacing between columns. Image: img",
+      "url": "/feelpp-antora-ui/grid.html"
+    },
+    {
+      "id": 123,
+      "title": "Images & Icons :: Course Project",
+      "content": "Edit this Page Download as .pdf Images & Icons Use these roles to present small screenshots and icons cleanly inside paragraphs when documenting menus, buttons, and UI flows. They complement AsciiDoc’s built‑in ], menu:[, and kbd:[] macros. 1. Inline Icons Role: icon — inline SVG/PNG aligned with text. Sizes: icon-sm, icon (default), icon-lg, icon-xl. Example (inline in a sentence): See the icon next to the Save button. Sizes: . AsciiDoc: See the image:sample-3.svg[role=icon,alt=\"icon\"] icon next to the btn:[Save] button. Sizes: image:sample-3.svg[role=\"icon-sm\"] image:sample-3.svg[role=\"icon\"] image:sample-3.svg[role=\"icon-lg\"] image:sample-3.svg[role=\"icon-xl\"]. 2. Inline Screenshot (Framed) Role: img-inline + img-frame — small screenshot with a subtle frame. Example: . image:sample-1.svg[role=\"img-inline img-frame\",alt=\"small framed screenshot\"] 3. Pill/Badge Screenshot Role: img-inline + img-chip (alias: img-badge) — pill‑shaped frame around a tiny snapshot. Example: . image:sample",
+      "url": "/feelpp-antora-ui/images.html"
+    },
+    {
+      "id": 124,
+      "title": "Antora Feel++ UI :: Course Project",
+      "content": "Edit this Page Download as .pdf Antora Feel++ UI This project produces the Feel++ UI bundle for documentation sites generated with Antora. It contains the UI assets (page templates, CSS, JavaScript, images, etc.) and a Gulp build script. The build can be used to preview the UI locally (featuring live updates), or to package it for consumption by the Antora site generator. 1. Key Features The Feel++ Antora UI provides several advanced features beyond the standard Antora UI: Card-Based Navigation Sophisticated catalog system with automatic card generation for related content Font Awesome Integration First-class support for Font Awesome icons in page illustrations Multiple Layout Types Specialized layouts for manuals, catalogs, case studies, and reports Responsive Design Mobile-first design with adaptive layouts across all device sizes Enhanced Styling Custom CSS for scientific documentation including math rendering support This documentation explains how to use this project to set up, cu",
+      "url": "/feelpp-antora-ui/"
+    },
+    {
+      "id": 125,
+      "title": "Inline Text Styles :: Course Project",
+      "content": "Edit this Page Download as .pdf Inline Text Styles This page describes how to style text in the contents of the page which is visually emphasized. 1. Bold text (<strong>) How text marked as bold appears on your site depends on the fonts loaded by the UI and the CSS styles the UI applies to the <strong> HTML tag. A bold <strong>word</strong>, or a bold <strong>phrase of text</strong>. Since <strong> is a semantic HTML element, it automatically inherits default styling (font-weight: bold) from the browser. If you want to override the browser styles, you’ll need to define properties on the strong selector in the stylesheet for your UI. In the default UI, the <strong> element is styled in the 500 font weight of the current typeface (Roboto). For example: A bold word, or a bold phrase of text. 2. Italic text (<em>) How italicized text appears on your site depends on the fonts loaded by the UI and the CSS styles the UI applies to the <em> HTML tag. An italic <em>word</em>, or an italic <em>p",
+      "url": "/feelpp-antora-ui/inline-text-styles.html"
+    },
+    {
+      "id": 126,
+      "title": "Applications Catalog (via manuals) :: Course Project",
+      "content": "Applications Catalog (via manuals) Use the generic manuals layout and set :page-cards-tag: to application. Tag each child page with application. 1. Quick Start // Parent page :page-layout: manuals :page-cards-tag: application :page-cards-within-module: true // Child page :page-tags: application :description: Short application summary :page-illustration: fa-solid fa-diagram-project // or image path Application Pages Guidance for single application pages and how they appear in application catalogs",
+      "url": "/feelpp-antora-ui/layout-applications.html"
+    },
+    {
+      "id": 127,
+      "title": "Benchmarks Catalog (via manuals) :: Course Project",
+      "content": "Benchmarks Catalog (via manuals) Use the generic manuals layout for all catalogs. Control what appears with :page-cards-tag:. 1. Quick Start // Parent benchmarks page :page-layout: manuals :page-cards-tag: benchmark :page-cards-within-module: true // Child benchmark page :page-tags: benchmark :description: Short summary shown on card :page-illustration: fa-solid fa-gauge // or image path 2. Attributes page-layout: always manuals for catalogs page-cards-tag: tag(s) to collect (default benchmark) page-cards-within-module: true to limit to current module; false for site‑wide page-cards-<tag>-title: optional group titles if you collect multiple tags Benchmark Page Benchmark page to showcase performance",
+      "url": "/feelpp-antora-ui/layout-benchmarks.html"
+    },
+    {
+      "id": 128,
+      "title": "Examples Catalog (via manuals) :: Course Project",
+      "content": "Examples Catalog (via manuals) Use the generic manuals layout for all catalogs. Control what appears with :page-cards-tag:. 1. Quick Start // Parent examples page :page-layout: manuals :page-cards-tag: example :page-cards-within-module: true // Child example page :page-tags: example :description: Short summary shown on card :page-illustration: fa-solid fa-gauge // or image path 2. Attributes page-layout: always manuals for catalogs page-cards-tag: tag(s) to collect (default example) page-cards-within-module: true to limit to current module; false for site‑wide page-cards-<tag>-title: optional group titles if you collect multiple tags Example Page Example page to showcase features or concepts",
+      "url": "/feelpp-antora-ui/layout-examples.html"
+    },
+    {
+      "id": 129,
+      "title": "Machines Catalog (via manuals) :: Course Project",
+      "content": "Machines Catalog (via manuals) Use the generic manuals layout and set :page-cards-tag: to machine. Tag each child page with machine. 1. Quick Start // Parent page :page-layout: manuals :page-cards-tag: machine :page-cards-within-module: true // Child page :page-tags: machine :description: Short machine summary :page-illustration: fa-solid fa-server // or image path Machine Pages Guidance for single machine pages and how they appear in machine catalogs",
+      "url": "/feelpp-antora-ui/layout-machines.html"
+    },
+    {
+      "id": 130,
+      "title": "Reports Catalog (via manuals) :: Course Project",
+      "content": "Reports Catalog (via manuals) Use the generic manuals layout for all catalogs. Control what appears with :page-cards-tag:. Each child report is a normal page tagged report. 1. Quick Start // In the parent page :page-layout: manuals :page-cards-tag: report // displays report pages :page-cards-within-module: true // limit search to current component/module // On each report page :page-tags: report :description: Short blurb shown on the card :page-illustration: fa-solid fa-chart-line // or image path (ROOT:diagram.png) 2. Attributes page-layout: set to manuals on the parent page. page-cards-tag: tag to collect (default: report). page-cards-within-module: true to look in current module only; set false to search the whole site. page-cards-<tag>-title: optional per-tag heading when grouping by multiple tags. 3. Card Content (child pages) page-tags: include report so the page is collected. page-illustration: Font Awesome (e.g., fa-solid fa-chart-line) or image path. description: short text sh",
+      "url": "/feelpp-antora-ui/layout-reports.html"
+    },
+    {
+      "id": 131,
+      "title": "Use Cases Catalog (via manuals) :: Course Project",
+      "content": "Use Cases Catalog (via manuals) Use the generic manuals layout and set :page-cards-tag: to usecase. Tag each child page with usecase. 1. Quick Start // Parent page :page-layout: manuals :page-cards-tag: usecase :page-cards-within-module: true // Child page :page-tags: usecase :description: Short use case summary :page-illustration: fa-solid fa-briefcase // or image path Use Case page Guidance for single use case pages and how they appear in use case catalogs",
+      "url": "/feelpp-antora-ui/layout-usecases.html"
+    },
+    {
+      "id": 132,
+      "title": "Lead Paragraph Styles :: Course Project",
+      "content": "Edit this Page Download as .pdf Lead Paragraph Styles Use a lead paragraph to introduce a page or section with a short summary. It can be plain, framed, rounded, or themed to match the site’s palette. 1. Quick Reference Base: [.lead] — slightly larger text only Framed: [.lead.panel] — subtle background, thin border, accent bar Rounded: add .rounded to any framed variant Admonition themes: .note, .tip, .warning, .important, .caution Brand themes: .theme-accent, .theme-blue, .theme-purple, .theme-orange, .theme-silver 2. Plain Lead This is a plain lead paragraph. It increases the font size for a softer, introductory tone. 3. Framed Lead This framed lead uses a subtle panel background, thin border, and a small accent bar on the left. 4. Framed + Rounded Rounded corners create a friendlier, card-like feel while keeping the same framing. 5. Framed Intensities Subtle frame: slightly thinner accent bar and the default soft background and border. Strong frame: a touch darker background and bor",
+      "url": "/feelpp-antora-ui/lead.html"
+    },
+    {
+      "id": 133,
+      "title": "Manuals and Catalogs Layout :: Course Project",
+      "content": "Manuals and Catalogs Layout The manuals layout provides a powerful card-based system for organizing and displaying related content in catalogs. This layout is the single, generic catalog engine used for all card catalogs (manuals, reports, examples, benchmarks, applications, machines, use cases, nested catalogs). Parent pages act as catalogs; child pages appear as cards. 1. Key Features Card-Based Navigation Automatically generates visual cards for related pages based on tags and parent-catalog relationships. Font Awesome Integration Supports both image illustrations and Font Awesome icons for page cards using the page-illustration attribute. Flexible Tagging System Uses page-tags and page-cards-tag attributes to control which pages appear in catalogs. page-cards-tag accepts one or more tags. Hierarchical Organization Implements parent-catalog relationships for nested content organization. A catalog can list page types or other catalogs. Multi-Tag Support Can group cards by different t",
+      "url": "/feelpp-antora-ui/manuals.html"
+    },
+    {
+      "id": 134,
+      "title": "Application Pages :: Course Project",
+      "content": "Edit this Page Download as .pdf Application Pages : An application is a normal page tagged application so it can be collected by a parent applications catalog page. 1. Minimal Application Page = Title of the Application :page-tags: application :description: Single‑line summary used by application catalogs :page-illustration: fa-solid fa-chart-column // or image path Intro paragraph explaining the application… 2. Fields Used by Cards description: shown under the card title page-illustration: Font Awesome class list (e.g., fa-solid fa-chart-column) or image path Tag the page with application so it appears in Applications Layout pages.",
+      "url": "/feelpp-antora-ui/page-application.html"
+    },
+    {
+      "id": 135,
+      "title": "Benchmark Page :: Course Project",
+      "content": "Edit this Page Download as .pdf Benchmark Page Use the benchmarks layout to showcase performance or comparison pages in a card grid. 1. Quick Start :page-tags: benchmark :description: Short summary shown on card :page-illustration: fa-solid fa-gauge // or image path",
+      "url": "/feelpp-antora-ui/page-benchmark.html"
+    },
+    {
+      "id": 136,
+      "title": "Example Page :: Course Project",
+      "content": "Edit this Page Download as .pdf Example Page Use example pages to showcase features or concepts. 1. Quick Start :page-tags: example :description: Short card summary :page-illustration: fa-solid fa-flask // or image path 2. Child Page Fields page-illustration: Font Awesome or image path (see Card System Documentation) description: one‑line summary",
+      "url": "/feelpp-antora-ui/page-example.html"
+    },
+    {
+      "id": 137,
+      "title": "Untitled :: Course Project",
+      "content": "Edit this Page Download as .pdf = Page Layouts :navtitle: Page Layouts :page-layout: manuals :page-tags: catalog, page-layouts :page-cards-tag: catalog :page-cards-within-module: false :page-cards-title: Available Layouts :page-illustration: fa-solid fa-th-large The Antora Feel++ UI provides a small set of page layouts. The manuals layout is the single, generic catalog engine used to render all card grids. Use it for catalogs of any type by setting :page-cards-tag:. 1. Available Layouts default Standard article layout for regular documentation pages manuals Generic card catalog (use for manuals, reports, examples, benchmarks, applications, machines, use cases, nested catalogs) toolboxes Alternative catalog layout for toolbox-style content organization case-study Specialized layout for case studies and detailed examples 2. Layout Usage To use a specific layout, add the page-layout attribute to your AsciiDoc file: = Page Title :page-layout: manuals 3. Catalogs with manuals Use manuals fo",
+      "url": "/feelpp-antora-ui/page-layouts.html"
+    },
+    {
+      "id": 138,
+      "title": "Machine Pages :: Course Project",
+      "content": "Edit this Page Download as .pdf Machine Pages A machine is a normal page tagged machine so it can be collected by a parent machines catalog page. 1. Minimal Machine Page = Title of the Machine :page-layout: machine // optional (default layout also works) :page-tags: machine :description: Single‑line summary used by machine catalogs :page-illustration: fa-solid fa-chart-column // or image path Intro paragraph explaining the machine… 2. Fields Used by Cards description: shown under the card title page-illustration: Font Awesome class list (e.g., fa-solid fa-chart-column) or image path Tag the page with machine so it appears in Machines Layout pages.",
+      "url": "/feelpp-antora-ui/page-machine.html"
+    },
+    {
+      "id": 139,
+      "title": "Report Pages :: Course Project",
+      "content": "Edit this Page Download as .pdf Report Pages A report is a normal page tagged report so it can be collected by a parent reports catalog page. 1. Minimal Report Page = Title of the Report :page-tags: report :description: Single‑line summary used by report catalogs :page-illustration: fa-solid fa-chart-column // or image path Intro paragraph explaining the report… 2. Fields Used by Cards description: shown under the card title page-illustration: Font Awesome class list (e.g., fa-solid fa-chart-column) or image path Tag the page with report so it appears in Reports Layout pages.",
+      "url": "/feelpp-antora-ui/page-report.html"
+    },
+    {
+      "id": 140,
+      "title": "Use Case page :: Course Project",
+      "content": "Edit this Page Download as .pdf Use Case page A use case is a normal page tagged usecase so it can be collected by a parent usecases catalog page. 1. Minimal Use Case Page = Title of the Use Case :page-tags: usecase :description: Single‑line summary used by use case catalogs :page-illustration: fa-solid fa-chart-column // or image path Intro paragraph explaining the use case… 2. Fields Used by Cards description: shown under the card title page-illustration: Font Awesome class list (e.g., fa-solid fa-chart-column) or image path Tag the page with usecase so it appears in Use Cases Layout pages.",
+      "url": "/feelpp-antora-ui/page-usecase.html"
+    },
+    {
+      "id": 141,
+      "title": "Policy Page Templates :: Course Project",
+      "content": "Edit this Page Download as .pdf Policy Page Templates This Antora UI includes ready-to-use policy page templates to help you create legally compliant documentation sites. 1. Overview The UI bundle includes template policy pages that you can copy and customize for your project: Terms of Use - Usage terms and conditions Privacy Policy - Data protection and privacy practices Cookie Policy - Website cookie usage and consent Support Policy - Support channels and expectations These templates are designed for: GDPR compliance (EU privacy regulations) Academic and research projects Open-source software projects General web application legal requirements 2. Quick Start 2.1. 1. Extract Templates The policy templates are included in your UI bundle at: _/templates/policy-pages/ ├── README.md ├── terms-of-use.adoc ├── privacy-policy.adoc ├── cookie-policy.adoc └── support-policy.adoc After building your site, copy the templates to your content directory: # Copy templates to your Antora pages direct",
+      "url": "/feelpp-antora-ui/policy-templates.html"
+    },
+    {
+      "id": 142,
+      "title": "Privacy Policy :: Course Project",
+      "content": "Edit this Page Download as .pdf Privacy Policy This privacy policy explains how we collect, use, and protect your personal information when you use Feel++ software, documentation, and related services. 1. Who We Are Feel++ is developed by Cemosis (Centre de Modélisation et de Simulation de Strasbourg) at Université de Strasbourg, France. Data Controller: Université de Strasbourg Contact: privacy@cemosis.fr 2. Information We Collect 2.1. Website Usage Data When you visit our documentation or websites, we may collect: IP address and browser information Pages visited and time spent Referring websites Device and operating system information 2.2. Software Usage Data Feel++ software may collect: Error reports and crash data (if you opt-in) Performance metrics (anonymized) Feature usage statistics (anonymized) 2.3. User Contributions When you contribute to Feel++ (code, documentation, issues): GitHub/GitLab profile information Email address and name (as provided) Contribution content and meta",
+      "url": "/feelpp-antora-ui/privacy-policy.html"
+    },
+    {
+      "id": 143,
+      "title": "Pseudocode :: Course Project",
+      "content": "Edit this Page Download as .pdf Pseudocode The documentation embeds some algorithms written using pseudocode.js whose syntax is mostly compatible with LaTeX package algorithmic. The complete documentation and grammar is available at pseudocode.js grammar reference. In order to display pseudocode properly you have to use [.pseudocode] on a literal block. 1. Basic Structure Every pseudocode block follows this basic structure: AsciiDoc Source [.pseudocode] .... \\begin{algorithm} \\caption{Simple Example} \\begin{algorithmic} \\STATE $x \\leftarrow 0$ \\STATE $y \\leftarrow 1$ \\RETURN{$x + y$} \\end{algorithmic} \\end{algorithm} .... Rendered Result \\begin{algorithm} \\caption{Simple Example} \\begin{algorithmic} \\STATE $x \\leftarrow 0$ \\STATE $y \\leftarrow 1$ \\RETURN{$x + y$} \\end{algorithmic} \\end{algorithm} 2. Available Commands 2.1. Control Structures Command Syntax Description \\IF{condition} \\IF{condition} …​ \\ENDIF Conditional statement \\ELSIF{condition} \\ELSIF{condition} …​ Else-if branch \\EL",
+      "url": "/feelpp-antora-ui/pseudocode.html"
+    },
+    {
+      "id": 144,
+      "title": "Search Setup :: Course Project",
+      "content": "Edit this Page Download as .pdf Search Setup The Feel++ Antora UI provides two search options: Lunr.js for client-side search and Algolia DocSearch for server-based search. The UI automatically detects which search system to use based on your site configuration. Search functionality is now fully automated through the @feelpp/antora-extensions package, eliminating the need for manual search index generation. 1. Search Options Overview Search Type Best For Requirements Lunr.js (Default) Small to medium sites, self-hosted sites, privacy-focused environments @feelpp/antora-extensions package (automatic) Algolia DocSearch Large sites, sites with complex search requirements, existing Algolia integration Algolia account and DocSearch configuration 2. Lunr.js Client-Side Search Lunr.js provides full-text search capabilities directly in the browser without requiring any external services. Search index generation is completely automated through the @feelpp/antora-extensions package. 2.1. Automat",
+      "url": "/feelpp-antora-ui/search-setup.html"
+    },
+    {
+      "id": 145,
+      "title": "Source Highlighting :: Course Project",
+      "content": "Edit this Page Download as .pdf Source Highlighting Source highlighting is applied to text that’s assigned the source block style (either explicitly or implicitly) and a source language. The source language is defined either on the block or inherited from the source-language document attribute. Source Highlighting is provided by Highlight.js. Source block with source highlighting [#hello,python] ---- print('Hello World') ---- Here’s the result: print('Hello World') In addition, mpirun commands are also highlighted using a custom syntax highlighter: [,mpirun] ---- mpirun -np 4 feelpp_toolbox_electric \\ --case \"github:{path:toolboxes/electric/cvg}\" \\ --case.config-file 2d.cfg ---- Here’s the result: mpirun -np 4 feelpp_toolbox_electric \\ --case \"github:{path:toolboxes/electric/cvg}\" \\ --case.config-file 2d.cfg Case option --case \"github:{path:toolboxes/electric/cvg}\" Case config file option --case.config-file 2d.cfg As you can see, the command mpirun and the command line options are high",
+      "url": "/feelpp-antora-ui/source-highlighting.html"
+    },
+    {
+      "id": 146,
+      "title": "UI Element Style Guide :: Course Project",
+      "content": "Edit this Page Download as .pdf UI Element Style Guide When creating a UI theme for Antora, there are certain elements in the UI that require support from the CSS to work correctly. This list includes elements in the shell (i.e., frame) and in the document content. This document identifies these UI elements. 1. Document Content The HTML in the main content area is generated from AsciiDoc using Asciidoctor. AsciiDoc has numerous content elements that require assistance from CSS to render properly. These elements include: Inline text emphasis Admonitions Source Highlighting Copy to Clipboard Pseudocode",
+      "url": "/feelpp-antora-ui/style-guide.html"
+    },
+    {
+      "id": 147,
+      "title": "Support Policy :: Course Project",
+      "content": "Edit this Page Download as .pdf Support Policy This support policy outlines the available support channels for Feel++ users and sets expectations for response times and support scope. 1. Support Philosophy Feel++ is an open-source scientific computing platform developed primarily for research and education. Our support model reflects this mission: Community-driven: Primary support through user community Educational focus: Priority on learning and knowledge sharing Research-oriented: Support for academic and scientific applications Best-effort basis: Volunteer-based support with no guarantees 2. Support Channels 2.1. Community Support (Free) 2.1.1. GitHub Issues Purpose: Bug reports, feature requests, technical questions URL: github.com/feelpp/feelpp/issues Response time: Best effort, typically 1-7 days Who responds: Maintainers and community members 2.1.2. Discussions Forum Purpose: General questions, usage help, troubleshooting URL: github.com/orgs/feelpp/discussions Response time: Be",
+      "url": "/feelpp-antora-ui/support-policy.html"
+    },
+    {
+      "id": 148,
+      "title": "Terms of Use :: Course Project",
+      "content": "Edit this Page Download as .pdf Terms of Use These terms of use govern your access to and use of Feel++ software, documentation, and related services provided by Cemosis and Université de Strasbourg. 1. Acceptance of Terms By accessing or using Feel++ software, documentation, or any related services, you agree to be bound by these Terms of Use and all applicable laws and regulations. 2. License and Software Use 2.1. Open Source License Feel++ is distributed under open source licenses. The specific license terms for each component are included with the software distribution and take precedence over these general terms where applicable. 2.2. Permitted Use You may: Use Feel++ software for research, educational, and commercial purposes in accordance with the applicable licenses Modify and distribute the software according to license terms Access and use the documentation for learning and reference purposes Contribute to the project development following our contribution guidelines 2.3. Res",
+      "url": "/feelpp-antora-ui/terms-of-use.html"
+    },
+    {
+      "id": 149,
+      "title": "Redirect Notice",
+      "content": "Redirect Notice The page you requested has been relocated to https://feelpp.github.io/course-project/course-project/index.html.",
+      "url": "/index.html"
+    }
+  ]
+}
