@@ -1,0 +1,15 @@
+= Git & GitHub Fundamentals
+:page-tags: catalog
+:parent-catalogs: ROOT:index
+:page-layout: manuals
+:page-cards-tag: manual
+:page-cards-within-module: true
+:page-illustration: fa-solid fa-code-branch
+:description: Master version control with Git and collaborative development with GitHub. Learn branching, merging, remote repositories, and team collaboration workflows.
+
+[.lead]
+Learn the essential skills for version control and collaborative software development using **Git** and **GitHub**. From basic repository management to advanced collaboration workflows.
+
+== Git & GitHub Learning Modules
+
+The following modules cover everything from basic Git concepts to advanced GitHub collaboration:

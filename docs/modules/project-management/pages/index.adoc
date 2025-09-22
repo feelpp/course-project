@@ -1,6 +1,16 @@
 = Introduction to Project Management
-
+:page-layout: manuals
+:page-tags: catalog,projectmanagement
+:parent-catalogs: project
+:page-cards-tag: manual
+:page-cards-within-module: true
+:page-illustration: fa-solid fa-project-diagram
+:description: Learn the fundamentals of project management including organizing resources, managing tasks, and leading teams to achieve specific goals within time and budget constraints.
 
 [.lead]
 **Project management** involves organizing resources, tasks, and people to achieve specific goals within time and budget constraints.
  This introduction explores the key elements, phases, and tools required for successful project management.
+
+== Project Management Learning Modules
+
+Explore comprehensive project management concepts through these specialized modules:

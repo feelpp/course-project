@@ -1,0 +1,15 @@
+= Data Visualization and Interactive Dashboards
+:page-tags: catalog
+:parent-catalogs: ROOT:index
+:page-layout: manuals
+:page-cards-tag: manual
+:page-cards-within-module: true
+:page-illustration: fa-solid fa-chart-line
+:description: Learn to create compelling data visualizations and interactive dashboards. Master tools and techniques for effective data communication and analysis.
+
+[.lead]
+Explore modern **data visualization** techniques and create interactive dashboards that effectively communicate insights from complex datasets. From basic charts to advanced interactive applications.
+
+== Visualization Learning Modules
+
+Master data visualization through these comprehensive modules:

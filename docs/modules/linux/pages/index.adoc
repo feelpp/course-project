@@ -1,11 +1,21 @@
 = Learning Linux Basics
 :page-jupyter: true
 :jupyter-language-name: python
+:page-tags: catalog
+:parent-catalogs: ROOT:index
+:page-layout: manuals
+:page-cards-tag: manual
+:page-cards-within-module: true
+:page-illustration: fa-solid fa-terminal
+:description: Master essential Linux navigation commands and file system operations. Learn to navigate directories, manipulate files, and use the command-line interface effectively for data science and software development.
 
 include::partial$bash-commands.adoc[]
 
-
 Navigating directories and files in Linux is a fundamental skill that allows you to fully exploit the power of the command-line interface (CLI). Mastering essential Linux navigation commands such as `cd`, `pwd`, `ls`, and `tree` enables you to effortlessly move through the filesystem, display the contents of directories, and understand your location within the system.
+
+== Linux Learning Modules
+
+The following modules will guide you through essential Linux skills:
 
 == Basic Linux Navigation Commands
 

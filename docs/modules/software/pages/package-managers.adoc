@@ -1,6 +1,10 @@
 = Understanding Package Managers
 Christophe Prud'homme
 :icons: font
+:page-tags: software-manual
+:parent-catalogs: software:index
+:page-illustration: fa-solid fa-box
+:description: Learn about system and software-specific package managers including apt, yum, pip, conda, and dependency management strategies.
 
 Package managers are essential tools for managing software installations, upgrades, and dependencies. They can be categorized into two main types:
 

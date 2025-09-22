@@ -1,5 +1,9 @@
 = VS Code Installation
 :page-toclevels: 3
+:page-tags: vscode-manual
+:parent-catalogs: vscode:index
+:page-illustration: fa-solid fa-download
+:description: Learn how to download and install Visual Studio Code on Windows, macOS, and Linux with step-by-step instructions.
 
 == Download and Installation
 

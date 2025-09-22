@@ -1,0 +1,15 @@
+= Visual Studio Code Essentials
+:page-tags: catalog
+:parent-catalogs: ROOT:index
+:page-layout: manuals
+:page-cards-tag: manual
+:page-cards-within-module: true
+:page-illustration: fa-solid fa-code
+:description: Master Visual Studio Code for data science and software development. Learn installation, configuration, extensions, and advanced features for productive coding.
+
+[.lead]
+Learn to use **Visual Studio Code** as your primary development environment for data science, scientific computing, and software development projects. From basic usage to advanced productivity features.
+
+== VS Code Learning Modules
+
+Master VS Code through these comprehensive learning modules:

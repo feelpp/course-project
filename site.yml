@@ -21,6 +21,7 @@ output:
 antora:
   extensions:
   - '@antora/collector-extension'
+  - '@feelpp/antora-extensions'
 asciidoc:
   attributes:
     project_name: Course Project
@@ -39,5 +40,6 @@ asciidoc:
     swimmer: Swimmer
     python: Python
     cpp: C++
+    repository-url: https://github.com/feelpp/course-project
   extensions:
   - '@feelpp/asciidoctor-extensions'

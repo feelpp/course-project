@@ -5,10 +5,19 @@ Your Name <your.email@example.com>
 :revealjs_slideNumber: true
 :toc: left
 :source-highlighter: pygments
+:page-tags: catalog
+:parent-catalogs: ROOT:index
+:page-layout: manuals
+:page-cards-tag: manual
+:page-cards-within-module: true
+:page-illustration: fa-solid fa-sync-alt
+:description: Master Continuous Integration and Continuous Deployment with GitHub Actions. Learn automation pipelines, containerization, and best practices for HPC and software development.
 
 == Overview
 
 *Duration: 1h30*
+
+Learn CI/CD concepts through these comprehensive modules:
 
 Learning Objectives::
 - Understand the challenges of traditional software development and deployment.

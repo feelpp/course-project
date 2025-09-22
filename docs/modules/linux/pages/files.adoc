@@ -1,6 +1,10 @@
 = Working with Files in Linux
 :page-jupyter: true
 :jupyter-language-name: python
+:page-tags: manual
+:parent-catalogs: linux:index
+:page-illustration: fa-solid fa-file
+:description: Learn essential file operations in Linux including creating, copying, moving, and removing files using command-line utilities.
 
 include::partial$bash-commands.adoc[]
 

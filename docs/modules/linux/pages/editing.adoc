@@ -1,6 +1,10 @@
 = File Editing in Linux
 :page-jupyter: true
 :jupyter-language-name: python
+:page-tags: manual
+:parent-catalogs: linux:index
+:page-illustration: fa-solid fa-edit
+:description: Master text editing in Linux using various editors from simple nano to powerful vim and emacs for configuration files and code.
 
 include::partial$bash-commands.adoc[]
 

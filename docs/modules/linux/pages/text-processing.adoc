@@ -1,6 +1,10 @@
 = Text Processing in Linux
 :page-jupyter: true
 :juputer-language-name: shell
+:page-tags: manual
+:parent-catalogs: linux:index
+:page-illustration: fa-solid fa-search
+:description: Master text processing tools in Linux including grep, sed, awk, and cut for searching, filtering, and manipulating text files efficiently.
 
 include::partial$bash-commands.adoc[]
 

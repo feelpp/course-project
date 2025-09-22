@@ -1,4 +1,8 @@
 = Methods and Best Practices for Agile Project Management
+:page-tags: pm-manual
+:parent-catalogs: project-management:index
+:page-illustration: fa-solid fa-sync
+:description: Learn agile methodologies including scrum, extreme programming, iterative development, and continuous feedback practices.
 
 [.slide]
 == Agile Methodologies in Software Projects

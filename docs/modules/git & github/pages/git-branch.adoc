@@ -1,3 +1,9 @@
+= Git Branching
+:page-tags: git-manual
+:parent-catalogs: git & github:index
+:page-illustration: fa-solid fa-code-branch
+:description: Master Git branching concepts including creating, switching, merging branches, and managing parallel development workflows.
+
 === Branching Basics
 
 Branches are essential for managing workflows in Git. A branch represents a separate line of development and allows you to work on features or fixes without affecting the main codebase.

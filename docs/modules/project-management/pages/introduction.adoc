@@ -1,4 +1,8 @@
 = What is a Project?
+:page-tags: pm-manual
+:parent-catalogs: project-management:index
+:page-illustration: fa-solid fa-lightbulb
+:description: Understand project fundamentals including definition, characteristics, deliverables, constraints, and key success factors.
 
 [.slide]
 == Definition of a Project

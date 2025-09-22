@@ -1,6 +1,10 @@
 = Linux Shell Basics
 :page-jupyter: true
 :jupyter-language-name: python
+:page-tags: manual
+:parent-catalogs: linux:index
+:page-illustration: fa-solid fa-terminal
+:description: Learn Linux shell fundamentals including bash, command execution, environment variables, and shell scripting basics.
 
 include::partial$bash-commands.adoc[]
 

@@ -1,6 +1,10 @@
 = CI/CD through Gitlab 
 Sameer Haroon <sameer.haroon@hlrs.de>
 :toc:
+:page-tags: cicd-manual
+:parent-catalogs: cicd:index
+:page-illustration: fa-brands fa-gitlab
+:description: Learn GitLab CI/CD pipelines, automation workflows, and DevOps practices for continuous integration and deployment.
 
 == Review of CI/CD as a concept
 

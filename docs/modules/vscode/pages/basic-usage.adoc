@@ -1,6 +1,10 @@
 = Basic Usage and Commands
 :page-toclevels: 3
 :experimental:
+:page-tags: vscode-manual
+:parent-catalogs: vscode:index
+:page-illustration: fa-solid fa-play
+:description: Learn essential VS Code usage including opening projects, basic commands, interface navigation, and fundamental workflows.
 
 == Getting Started with VS Code
 

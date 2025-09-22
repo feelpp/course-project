@@ -1,4 +1,8 @@
 = GitHub Essentials
+:page-tags: git-manual
+:parent-catalogs: git & github:index
+:page-illustration: fa-brands fa-github
+:description: Get started with GitHub including account setup, repository creation, interface navigation, and profile management essentials.
 
 This page introduces the essential GitHub concepts and actions for beginners. Learn how to set up your GitHub account, explore the GitHub interface, create repositories, and manage your profile.
 

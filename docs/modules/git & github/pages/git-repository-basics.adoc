@@ -1,8 +1,13 @@
 = What is a Git Repository?
-Git Tutorial Team <tutorial-team@example.com>
-v1.0, 2024-09-23
+:page-tags: manual
+:parent-catalogs: git & github:index
+:page-illustration: fa-solid fa-folder-open
+:description: Understand Git repository structure including working directory, staging area, and commit history. Learn repository initialization and configuration.
 
-A Git repository is the core of every Git project, where all the project’s files, changes, and history are tracked. This guide introduces Git repositories and key concepts such as repository initialization, configuration, working directory, staging area, and commit history.
+A Git repository is the core of every Git project, where all the project's files, changes, and history are tracked. This guide introduces Git repositories and key concepts such as repository initialization, configuration, working directory, staging area, and commit history.t is a Git Repository?
+
+
+
 
 toc::[]
 

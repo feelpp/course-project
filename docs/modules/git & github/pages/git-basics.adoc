@@ -1,4 +1,8 @@
 = Git Basics
+:page-tags: manual
+:parent-catalogs: git & github:index
+:page-illustration: fa-solid fa-git-alt
+:description: Learn fundamental Git concepts including version control principles, installation, and basic workflow understanding.
 
 This document introduces the basic concepts of version control and explains why Git is a widely used tool. You'll also learn how to install Git locally to start using it.
 

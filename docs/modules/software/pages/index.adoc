@@ -1,7 +1,16 @@
 = Software Installation: From Package Managers to Building from Source
 :icons: font
+:page-tags: catalog
+:parent-catalogs: ROOT:index
+:page-layout: manuals
+:page-cards-tag: manual
+:page-cards-within-module: true
+:page-illustration: fa-solid fa-download
+:description: Master software installation techniques from package managers to building from source. Learn dependency management, troubleshooting, and best practices for development environments.
 
 == Introduction to Software Installation
+
+Learn comprehensive software installation methods through these focused modules:
 
 === Understanding Package Managers
 

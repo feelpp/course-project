@@ -1,15 +1,20 @@
 = {project_name}
 :navtitle: home
-:page-layout: home-project
+:page-layout: manuals
+:page-tags: project
+:page-cards-tag: catalog
+:page-cards-within-module: false
 :!numbered:
+
+[.lead.panel.note.rounded.w-70.justify-self-center]
+This course is designed to introduce you to the fundamental concepts of project management in Data science, Scientific Computing and Software production. 
 
 == Syllabus
 
-This course is designed to introduce you to the fundamental concepts of project management in Data science, Scientific Computing and Software production. We will cover the following topics:
 
-- Introduction to Linux, Command Line, and Vscode
-- Introduction to Project Management
-- Introduction to Git and GitHub
+We will cover the following topics through hands-on modules:
+
+The course modules are organized as interactive learning cards below. Each module provides comprehensive coverage of essential skills needed for modern data science and software development projects.
 
 Questions? Comments? Suggestions? https://join.slack.com/t/feelpp/shared_invite/zt-2qe0q9hw-4pVbhohCXUE6Po9Ma8dbiQ[> Use Slack]
 

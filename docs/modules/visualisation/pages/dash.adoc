@@ -1,4 +1,9 @@
 = Dash for Scientific Computing
+:page-tags: viz-manual
+:parent-catalogs: visualisation:index
+:page-illustration: fa-solid fa-chart-bar
+:description: Build interactive web applications for scientific computing using Dash, Plotly, NumPy, and SciPy for dynamic data visualization.
+
 A tutorial to use Dash for building interactive web applications focused on scientific computing
 
 Dash provides a flexible and powerful platform for scientists and engineers to create interactive web-based applications. This tutorial expands on the basics and focuses on how to integrate Dash with scientific computing libraries such as NumPy, SciPy, and Matplotlib, while using Plotly for interactive visualizations.

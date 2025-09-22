@@ -1,7 +1,18 @@
 = Introduction to Containers
+:page-tags: catalog
+:parent-catalogs: ROOT:index
+:page-layout: manuals
+:page-cards-tag: manual
+:page-cards-within-module: true
+:page-illustration: fa-solid fa-cube
+:description: Learn containerization technologies including Docker and Apptainer. Master portable, consistent environments for applications in scientific computing, data science, and software development.
 
 Containers provide a lightweight, portable, and consistent environment for running applications. They package an application with all of its dependencies, ensuring that it runs the same way in development, testing, and production environments.
 
 Unlike virtual machines, containers share the host operating system's kernel, making them more resource-efficient. Containers are used in diverse fields such as web development, **scientific computing**, **data science**, and **digital twins**, helping to standardize software deployment across different platforms and environments.
 
 In this module, we will explore Docker, Apptainer (formerly Singularity), and other container technologies.
+
+== Container Learning Modules
+
+Explore containerization technologies through these focused modules:
