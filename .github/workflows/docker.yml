@@ -1,0 +1,53 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: [fincpp]
+        tag: [latest, v1.0.0]
+        dir: [.]
+        image: [ubuntu:24.04]
+        version: [1.0.0]
+        dockerfile: [Dockerfile]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      # Step 1: Set up QEMU (for multi-platform builds)
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      # Step 2: Set up Docker Buildx (for advanced Docker builds)
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Step 3: Login to GitHub Container Registry
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
+
+      # Step 4: Build and push the main Docker image
+      - name: Build ${{ matrix.image }} image
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.dir }}
+          tags: ghcr.io/${{ github.repository_owner }}/${{ matrix.image }}
+          file: ${{ matrix.dir }}/${{ matrix.dockerfile }}
+          build-args: |
+            IMAGE=${{ matrix.image }}
+            VERSION=${{ matrix.version }}
+          push: true
+          secrets: |
+            GIT_AUTH_TOKEN=${{ secrets.CR_PAT }}
