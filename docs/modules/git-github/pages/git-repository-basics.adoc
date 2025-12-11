@@ -1,6 +1,6 @@
 = What is a Git Repository?
 :page-tags: manual
-:parent-catalogs: git & github:index
+:parent-catalogs: git-github:index
 :page-illustration: fa-solid fa-folder-open
 :description: Understand Git repository structure including working directory, staging area, and commit history. Learn repository initialization and configuration.
 

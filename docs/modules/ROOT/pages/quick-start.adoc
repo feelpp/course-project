@@ -50,6 +50,7 @@ Connect with other students on https://join.slack.com/t/feelpp/shared_invite/zt-
 
 === 🟢 **Foundational Track Goals**
 By completion, students will:
+
 - Navigate Linux systems confidently for mathematical computing
 - Use Git to manage LaTeX documents and research code
 - Set up VS Code for mathematical work
@@ -57,6 +58,7 @@ By completion, students will:
 
 === 🟡 **Intermediate Track Goals**  
 By completion, students will:
+
 - Collaborate effectively on mathematical research projects
 - Create reproducible computational environments
 - Manage complex research projects with multiple collaborators
@@ -64,6 +66,7 @@ By completion, students will:
 
 === 🔴 **Advanced Track Goals**
 By completion, students will:
+
 - Deploy mathematical software on HPC systems
 - Implement sophisticated automation for mathematical research
 - Create production-quality mathematical software workflows
@@ -72,12 +75,14 @@ By completion, students will:
 == 🛠️ **Technical Requirements**
 
 === All Students Need:
+
 - Computer with administrative privileges
 - Internet connection for downloads
 - 20GB free disk space
 - Text editor (VS Code recommended)
 
 === Additional for Advanced Track:
+
 - Access to Linux system (native, VM, or WSL)
 - 8GB+ RAM for container work
 - Basic familiarity with command line
@@ -88,12 +93,14 @@ By completion, students will:
 Modern mathematics increasingly involves computation, collaboration, and data analysis. These tools will make your research more efficient and reproducible, whether you're working on theoretical proofs or applied problems.
 
 **"What if I get stuck or fall behind?"**::
++
 - Use the Slack community for peer support
 - Attend instructor office hours  
 - Form study groups with other mathematics students
 - Remember: you can always go back to review earlier concepts
 
 **"How much time should I expect to spend?"**::
++
 - **Foundational Track**: 4-6 hours per week for 6-8 weeks
 - **Intermediate Track**: 3-4 hours per week for 4-6 weeks  
 - **Advanced Track**: 2-3 hours per week for 3-4 weeks

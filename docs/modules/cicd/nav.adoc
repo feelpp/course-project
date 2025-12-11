@@ -1,6 +1,5 @@
-* CICD
-** xref:index.adoc[CI/CD with GitHub Actions ]
+* 🔴 CI/CD for Mathematical Computing (Level 3)
+** xref:index.adoc[Introduction to CI/CD]
 ** xref:gitlab.adoc[CI/CD with GitLab]
-
-* HandsOn
-** xref:gitlab_handson.adoc[Hands on with GitLab]
+** Hands-On Tutorials
+*** xref:gitlab_handson.adoc[Hands on with GitLab]

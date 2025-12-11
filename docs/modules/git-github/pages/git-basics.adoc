@@ -1,6 +1,6 @@
 = Git Basics for Mathematical Research
 :page-tags: manual
-:parent-catalogs: git & github:index
+:parent-catalogs: git-github:index
 :page-illustration: fa-solid fa-git-alt
 :description: Learn version control for mathematical research - track changes in papers, code, and data analysis. Essential for collaborative mathematical projects and reproducible research.
 

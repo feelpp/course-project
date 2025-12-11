@@ -3,17 +3,83 @@
 * xref:prerequisites.adoc[📋 Prerequisites & Self-Assessment]
 * xref:instructor-guide.adoc[📚 Instructor Guide]
 
-.🟢 Level 1: Essential Foundations
-* xref:linux:index.adoc[Linux Essentials for Mathematics]  
-* Git & GitHub Fundamentals (See Git & GitHub Documentation section)
-* xref:vscode:index.adoc[VS Code for Mathematics]
+* 🐧 xref:linux:index.adoc[Linux]
+** 🟢 Fundamentals
+*** xref:linux:shell.adoc[Shell Basics]
+*** xref:linux:files.adoc[File Operations]
+*** xref:linux:editing.adoc[File Editing]
+*** xref:linux:text-processing.adoc[Text Processing]
+** 🟡 Remote Computing
+*** xref:linux:ssh/index.adoc[SSH Introduction]
+*** xref:linux:ssh/ssh-setup.adoc[SSH Setup]
+*** xref:linux:ssh/ssh-commands.adoc[SSH Commands]
+*** xref:linux:ssh/remote-ssh-vscode.adoc[VS Code Remote-SSH]
 
-.🟡 Level 2: Collaborative Development
-* xref:project-management:index.adoc[Research Project Management]
-* xref:containers:index.adoc[Containers for Mathematics]
+* 🔀 xref:git-github:index.adoc[Git & GitHub]
+** 🟢 Git Fundamentals
+*** xref:git-github:git-starter.adoc[Git Starter Guide]
+*** xref:git-github:git-repository-basics.adoc[Repository Basics]
+** 🟢 GitHub Basics
+*** xref:git-github:github-essentials.adoc[GitHub Essentials]
+*** xref:git-github:github-start.adoc[Getting Started]
+*** xref:git-github:github-how-to-write-issues.adoc[Writing Issues]
+** 🟡 Collaboration
+*** xref:git-github:git-branch.adoc[Git Branching]
+*** xref:git-github:git-merges.adoc[Merging & Conflicts]
+*** xref:git-github:git-remotes.adoc[Git Remotes]
+*** xref:git-github:github-collaborations.adoc[GitHub Collaboration]
+** 🔴 Automation
+*** xref:git-github:github-actions.adoc[GitHub Actions]
+*** xref:git-github:github-actions-cmake-eigen3.adoc[CMake + Eigen3 Example]
 
-.🔴 Level 3: Advanced Automation  
-* xref:cicd:index.adoc[CI/CD for Mathematical Computing]
-* xref:software:index.adoc[Software Distribution]
-* xref:visualisation:index.adoc[Research Visualization]
+* 💻 xref:vscode:index.adoc[VS Code]
+** 🟢 Getting Started
+*** xref:vscode:install.adoc[Installation]
+*** xref:vscode:basic-usage.adoc[Basic Usage]
+*** xref:vscode:extensions.adoc[Extensions]
+*** xref:vscode:configure-vscode.adoc[Configuration]
+*** xref:vscode:cheatsheet.adoc[Cheat Sheet]
+
+* 📓 xref:jupyter.adoc[Jupyter Notebooks]
+
+* 📦 xref:containers:index.adoc[Containers]
+** 🟡 Docker Fundamentals
+*** xref:containers:docker/index.adoc[Docker Introduction]
+*** xref:containers:docker/what-are-containers.adoc[What are Containers?]
+*** xref:containers:docker/docker-install.adoc[Installation]
+*** xref:containers:docker/docker-commands.adoc[Essential Commands]
+*** xref:containers:docker/dockerfile-basics.adoc[Dockerfile Basics]
+*** xref:containers:docker/hands-on/04-compose.adoc[Docker Compose]
+*** xref:containers:docker/hands-on/06-githubactions.adoc[Docker + GitHub Actions]
+** 🔴 HPC Containers
+*** xref:containers:hpc/index.adoc[HPC Containerization]
+*** xref:containers:apptainer/index.adoc[Apptainer/Singularity]
+*** xref:containers:apptainer/tutorial.adoc[Apptainer Tutorial]
+*** xref:containers:hpc/cicd.adoc[CI/CD for HPC]
+*** xref:containers:hpc/best-practices.adoc[HPC Best Practices]
+
+* 📋 xref:project-management:index.adoc[Project Management]
+** 🟡 Fundamentals
+*** xref:project-management:introduction.adoc[What is a Project?]
+*** xref:project-management:project-phases.adoc[Project Phases]
+*** xref:project-management:practical-examples.adoc[Practical Examples]
+** 🟡 Tools & Methods
+*** xref:project-management:tools-gantt.adoc[Tools & Gantt Charts]
+*** xref:project-management:agile-best-practices.adoc[Agile Practices]
+*** xref:project-management:github.adoc[GitHub for PM]
+*** xref:project-management:case-studies.adoc[Case Studies]
+
+* 🔄 xref:cicd:index.adoc[CI/CD]
+** 🔴 Platforms
+*** xref:cicd:gitlab.adoc[GitLab CI/CD]
+*** xref:cicd:gitlab_handson.adoc[GitLab Hands-on]
+
+* 📦 xref:software:index.adoc[Software Distribution]
+** 🔴 Topics
+*** xref:software:package-managers.adoc[Package Managers]
+*** xref:software:repo/organization.adoc[Repository Organization]
+
+* 📊 xref:visualisation:index.adoc[Visualization]
+** 🔴 Web Dashboards
+*** xref:visualisation:dash.adoc[Dash Tutorial]
 

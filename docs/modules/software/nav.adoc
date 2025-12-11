@@ -1,3 +1,4 @@
-* xref:index.adoc[Sofware Installation]
+* 🔴 Software Distribution (Level 3)
+** xref:index.adoc[Software Installation]
 ** xref:package-managers.adoc[Package Managers]
-** xref:repo/organization.adoc[Software Repository]
+** xref:repo/organization.adoc[Software Repository Organization]

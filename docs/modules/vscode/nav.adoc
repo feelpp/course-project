@@ -1,10 +1,10 @@
-* xref:index.adoc[Overview of VS Code]
+* 🟢 VS Code for Mathematics (Level 1)
+** xref:index.adoc[Overview of VS Code]
 ** xref:install.adoc[VS Code Installation]
 ** xref:basic-usage.adoc[Basic Usage and Commands]
-** xref:extemsions.adoc[Extension Installation and Key Extensions]
+** xref:extensions.adoc[Extension Installation and Key Extensions]
 *** xref:remote-ssh.adoc[Remote SSH Extension]
 *** xref:wsl.adoc[WSL Extension]
 *** xref:python-jupyter.adoc[Python and Jupyter Extensions]
 ** xref:configure-vscode.adoc[How to Configure VS Code with .vscode]
-
-* xref:cheatsheet.adoc[VS Code Cheat Sheet]
+** xref:cheatsheet.adoc[VS Code Cheat Sheet]

@@ -31,16 +31,7 @@ ext:
         files: '**/*.ipynb'
         base: modules/project-management/attachments/        
 nav:
-# Primary navigation: unified structure showing learning progression by difficulty level
+# Single unified navigation - all content organized by learning level
 - modules/ROOT/nav.adoc
-# Secondary navigation: detailed module content for reference
-- modules/linux/nav.adoc
-- modules/vscode/nav.adoc  
-- modules/project-management/nav.adoc
-- modules/git & github/nav.adoc
-- modules/containers/nav.adoc
-- modules/cicd/nav.adoc
-- modules/software/nav.adoc
-- modules/visualisation/nav.adoc
 
 

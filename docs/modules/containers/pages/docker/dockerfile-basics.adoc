@@ -1,0 +1,500 @@
+= Dockerfile: Building Custom Images
+:page-tags: docker-manual
+:parent-catalogs: containers:index
+:page-illustration: fa-solid fa-file-code
+:description: Learn to create Dockerfiles to build custom container images for mathematical computing and research.
+
+[.level-indicator.bg-warning.text-white.p-3.rounded.mb-4]
+====
+*🟡 LEVEL 2* | *Time:* 45 minutes | *Prerequisites:* Basic Docker commands
+====
+
+== What is a Dockerfile?
+
+A **Dockerfile** is a text file containing instructions to build a Docker image. Think of it as a recipe that Docker follows to create your container environment.
+
+[source,dockerfile]
+----
+# Simple Dockerfile example
+FROM python:3.11
+RUN pip install numpy scipy matplotlib
+COPY analysis.py /app/
+WORKDIR /app
+CMD ["python", "analysis.py"]
+----
+
+== Dockerfile Instructions
+
+=== FROM - Base Image
+
+Every Dockerfile starts with `FROM`. It specifies the base image to build upon.
+
+[source,dockerfile]
+----
+# Official Python image
+FROM python:3.11
+
+# Slim variant (smaller)
+FROM python:3.11-slim
+
+# Specific version with Debian
+FROM python:3.11.7-bookworm
+
+# Ubuntu base
+FROM ubuntu:24.04
+----
+
+.Choosing a Base Image
+[cols="1,2,1"]
+|===
+| Base | Use Case | Size
+
+| `python:3.11`
+| Full development environment
+| ~1 GB
+
+| `python:3.11-slim`
+| Production, smaller footprint
+| ~150 MB
+
+| `python:3.11-alpine`
+| Minimal, may have compatibility issues
+| ~50 MB
+
+| `ubuntu:24.04`
+| Full control, install what you need
+| ~80 MB
+|===
+
+=== RUN - Execute Commands
+
+Execute commands during image build:
+
+[source,dockerfile]
+----
+# Install system packages
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    gfortran \
+    libopenblas-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python packages
+RUN pip install --no-cache-dir \
+    numpy==1.24.0 \
+    scipy==1.10.0 \
+    matplotlib==3.7.0
+
+# Create directories
+RUN mkdir -p /app/data /app/results
+----
+
+[.callout.tip]
+--
+**Best Practice**: Combine related commands with `&&` to reduce layers. Clean up caches (`rm -rf /var/lib/apt/lists/*`, `--no-cache-dir`) to reduce image size.
+--
+
+=== COPY and ADD - Add Files
+
+Copy files from your local machine into the image:
+
+[source,dockerfile]
+----
+# Copy single file
+COPY requirements.txt /app/
+
+# Copy directory contents
+COPY src/ /app/src/
+
+# Copy with different name
+COPY local_config.yml /app/config.yml
+
+# Copy multiple files
+COPY script1.py script2.py /app/
+----
+
+`ADD` has extra features (URL download, auto-extract tar), but `COPY` is preferred for clarity.
+
+=== WORKDIR - Set Working Directory
+
+[source,dockerfile]
+----
+WORKDIR /app
+
+# All subsequent commands run from /app
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["python", "main.py"]
+----
+
+=== ENV - Environment Variables
+
+[source,dockerfile]
+----
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV APP_ENV=production
+
+# Use variables
+ENV DATA_DIR=/app/data
+RUN mkdir -p $DATA_DIR
+----
+
+=== EXPOSE - Document Ports
+
+[source,dockerfile]
+----
+# Document that container listens on port 8888
+EXPOSE 8888
+
+# Multiple ports
+EXPOSE 8080 8443
+----
+
+Note: `EXPOSE` is documentation only. You still need `-p` when running.
+
+=== CMD and ENTRYPOINT - Default Command
+
+[source,dockerfile]
+----
+# CMD: Default command (can be overridden)
+CMD ["python", "main.py"]
+
+# ENTRYPOINT: Fixed command
+ENTRYPOINT ["python"]
+CMD ["main.py"]  # Default argument, can be overridden
+----
+
+With the ENTRYPOINT example:
+
+[source,shell]
+----
+docker run myimage              # Runs: python main.py
+docker run myimage other.py     # Runs: python other.py
+----
+
+== Complete Dockerfile Examples
+
+=== Example 1: Python Scientific Computing
+
+[source,dockerfile]
+----
+# Dockerfile for numerical analysis with Python
+FROM python:3.11-slim
+
+# Install system dependencies for scientific libraries
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    gfortran \
+    libopenblas-dev \
+    liblapack-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY src/ ./src/
+COPY main.py .
+
+# Environment variables
+ENV PYTHONUNBUFFERED=1
+
+# Default command
+CMD ["python", "main.py"]
+----
+
+With `requirements.txt`:
+
+[source,text]
+----
+numpy==1.24.0
+scipy==1.10.0
+matplotlib==3.7.0
+pandas==2.0.0
+----
+
+=== Example 2: Jupyter Notebook Environment
+
+[source,dockerfile]
+----
+# Dockerfile for Jupyter-based mathematical research
+FROM python:3.11
+
+# Install Jupyter and scientific stack
+RUN pip install --no-cache-dir \
+    jupyterlab \
+    numpy \
+    scipy \
+    matplotlib \
+    sympy \
+    pandas
+
+# Create non-root user for security
+RUN useradd -m -s /bin/bash researcher
+USER researcher
+
+# Set working directory
+WORKDIR /home/researcher/notebooks
+
+# Expose Jupyter port
+EXPOSE 8888
+
+# Start Jupyter Lab
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--no-browser"]
+----
+
+=== Example 3: C++/CMake Mathematical Library
+
+[source,dockerfile]
+----
+# Dockerfile for C++ mathematical computing with Eigen
+FROM ubuntu:24.04
+
+# Install build tools and libraries
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    git \
+    libeigen3-dev \
+    libboost-all-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /project
+
+# Copy project files
+COPY CMakeLists.txt .
+COPY src/ ./src/
+COPY include/ ./include/
+
+# Build the project
+RUN mkdir build && cd build && \
+    cmake .. -DCMAKE_BUILD_TYPE=Release && \
+    make -j$(nproc)
+
+# Set the built executable as entry point
+ENTRYPOINT ["/project/build/mymath"]
+----
+
+== Building Images
+
+=== Basic Build
+
+[source,shell]
+----
+# Build from current directory (Dockerfile must exist)
+docker build -t myimage .
+
+# Build with specific Dockerfile
+docker build -t myimage -f Dockerfile.dev .
+
+# Build with tag/version
+docker build -t myimage:v1.0 .
+docker build -t myimage:latest .
+----
+
+=== Build Context
+
+The `.` at the end specifies the **build context** - the directory containing files available to COPY/ADD.
+
+[source,shell]
+----
+# Build context is current directory
+docker build -t myimage .
+
+# Build context is parent directory
+docker build -t myimage -f docker/Dockerfile ..
+----
+
+=== .dockerignore
+
+Create `.dockerignore` to exclude files from build context:
+
+[source,text]
+----
+# .dockerignore
+.git
+.gitignore
+__pycache__
+*.pyc
+.venv
+venv
+*.egg-info
+.pytest_cache
+.mypy_cache
+data/
+results/
+*.log
+.DS_Store
+----
+
+== Multi-Stage Builds
+
+Reduce image size by separating build and runtime stages:
+
+[source,dockerfile]
+----
+# Stage 1: Build
+FROM python:3.11 AS builder
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir --target=/app/deps -r requirements.txt
+
+# Stage 2: Runtime (smaller image)
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Copy only the installed packages
+COPY --from=builder /app/deps /usr/local/lib/python3.11/site-packages/
+
+# Copy application
+COPY src/ ./src/
+COPY main.py .
+
+CMD ["python", "main.py"]
+----
+
+== Best Practices
+
+=== 1. Order Instructions by Change Frequency
+
+[source,dockerfile]
+----
+# Good: Rarely changing instructions first
+FROM python:3.11
+RUN apt-get update && apt-get install -y build-essential
+
+# Dependencies change sometimes
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# Code changes frequently - put last!
+COPY src/ ./src/
+----
+
+=== 2. Use Specific Versions
+
+[source,dockerfile]
+----
+# Bad: Unpredictable
+FROM python:latest
+RUN pip install numpy
+
+# Good: Reproducible
+FROM python:3.11.7-slim
+RUN pip install numpy==1.24.0
+----
+
+=== 3. Minimize Layers
+
+[source,dockerfile]
+----
+# Bad: Multiple layers
+RUN apt-get update
+RUN apt-get install -y build-essential
+RUN apt-get install -y cmake
+RUN rm -rf /var/lib/apt/lists/*
+
+# Good: Single layer
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    && rm -rf /var/lib/apt/lists/*
+----
+
+=== 4. Don't Run as Root (Production)
+
+[source,dockerfile]
+----
+# Create non-root user
+RUN useradd -m -s /bin/bash appuser
+USER appuser
+WORKDIR /home/appuser/app
+----
+
+== Hands-On Exercise
+
+Create a Dockerfile for a numerical analysis project:
+
+1. Create a project directory:
++
+[source,shell]
+----
+mkdir docker-math-demo && cd docker-math-demo
+----
+
+2. Create `requirements.txt`:
++
+[source,text]
+----
+numpy==1.24.0
+scipy==1.10.0
+matplotlib==3.7.0
+----
+
+3. Create `analysis.py`:
++
+[source,python]
+----
+import numpy as np
+from scipy import integrate
+import matplotlib.pyplot as plt
+
+# Numerical integration example
+f = lambda x: np.sin(x) * np.exp(-x)
+result, error = integrate.quad(f, 0, np.pi)
+print(f"Integral result: {result:.6f} ± {error:.2e}")
+
+# Generate plot
+x = np.linspace(0, np.pi, 100)
+plt.figure(figsize=(8, 5))
+plt.plot(x, f(x), 'b-', linewidth=2)
+plt.fill_between(x, f(x), alpha=0.3)
+plt.title(f'∫sin(x)e^(-x)dx from 0 to π = {result:.4f}')
+plt.xlabel('x')
+plt.ylabel('f(x)')
+plt.savefig('/output/integral_plot.png', dpi=150)
+print("Plot saved to /output/integral_plot.png")
+----
+
+4. Create `Dockerfile`:
++
+[source,dockerfile]
+----
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY analysis.py .
+
+RUN mkdir /output
+VOLUME /output
+
+CMD ["python", "analysis.py"]
+----
+
+5. Build and run:
++
+[source,shell]
+----
+docker build -t math-demo .
+docker run -v $(pwd)/output:/output math-demo
+ls output/  # Should see integral_plot.png
+----
+
+== Next Steps
+
+1. xref:hands-on/06-githubactions.adoc[Automate builds with GitHub Actions]
+2. Learn xref:hands-on/04-compose.adoc[Docker Compose] for multi-container setups
+3. Explore xref:../hpc/index.adoc[containers on HPC] with Apptainer

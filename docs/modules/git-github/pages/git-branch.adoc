@@ -1,6 +1,6 @@
 = Git Branching
 :page-tags: git-manual
-:parent-catalogs: git & github:index
+:parent-catalogs: git-github:index
 :page-illustration: fa-solid fa-code-branch
 :description: Master Git branching concepts including creating, switching, merging branches, and managing parallel development workflows.
 

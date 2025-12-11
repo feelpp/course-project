@@ -17,6 +17,7 @@
 **Why Containers for Mathematics?**
 
 Mathematical research increasingly requires:
+
 - **Reproducible Computations**: Ensure your numerical results can be replicated by others
 - **Complex Software Stacks**: Manage dependencies for mathematical libraries (NumPy, SciPy, MATLAB, Mathematica)
 - **Cross-Platform Compatibility**: Share mathematical code that works on different operating systems

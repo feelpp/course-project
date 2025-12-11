@@ -1,13 +1,13 @@
 * 🟢 Linux Essentials for Mathematics (Level 1)
 ** xref:index.adoc[Introduction & Overview]
-** Command Line Fundamentals
+** 🟢 Command Line Fundamentals
 *** xref:shell.adoc[Linux Shell Basics]
+*** xref:files.adoc[File Operations]
 *** xref:editing.adoc[File Editing in Linux]
 *** xref:text-processing.adoc[Text Processing]
-*** xref:files.adoc[File Operations]
 
-** 🟡 Remote Computing (Level 2)
-*** xref:ssh/index.adoc[Introduction to SSH and Remote-SSH]
-*** xref:ssh/ssh-setup.adoc[Setting Up SSH]
-*** xref:ssh/ssh-commands.adoc[Basic SSH Commands]
-*** xref:ssh/remote-ssh-vscode.adoc[Remote-SSH Extension for VS Code]
+* 🟡 Remote Computing (Level 2)
+** xref:ssh/index.adoc[Introduction to SSH]
+** xref:ssh/ssh-setup.adoc[Setting Up SSH]
+** xref:ssh/ssh-commands.adoc[Basic SSH Commands]
+** xref:ssh/remote-ssh-vscode.adoc[Remote-SSH Extension for VS Code]

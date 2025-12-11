@@ -1,0 +1,386 @@
+= Essential Docker Commands
+:page-tags: docker-manual
+:parent-catalogs: containers:index
+:page-illustration: fa-solid fa-terminal
+:description: Master the essential Docker commands for managing containers and images in mathematical computing workflows.
+
+[.level-indicator.bg-warning.text-white.p-3.rounded.mb-4]
+====
+*🟡 LEVEL 2* | *Time:* 30 minutes | *Prerequisites:* Docker installed
+====
+
+== Command Overview
+
+Docker commands follow a consistent pattern:
+
+[source,text]
+----
+docker <object> <command> [options] [arguments]
+
+Examples:
+docker container run ...
+docker image pull ...
+docker volume create ...
+----
+
+== Working with Images
+
+=== Pulling Images
+
+[source,shell]
+----
+# Pull an image from Docker Hub
+docker pull python:3.11
+
+# Pull from GitHub Container Registry
+docker pull ghcr.io/owner/image:tag
+
+# Pull specific version
+docker pull python:3.11.7-slim
+----
+
+=== Listing Images
+
+[source,shell]
+----
+# List all images
+docker images
+
+# Example output:
+# REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+# python        3.11      abc123def456   2 weeks ago    1.01GB
+# ubuntu        22.04     def456abc789   3 weeks ago    77.8MB
+----
+
+=== Removing Images
+
+[source,shell]
+----
+# Remove specific image
+docker rmi python:3.11
+
+# Remove by image ID
+docker rmi abc123def456
+
+# Remove all unused images
+docker image prune -a
+----
+
+== Running Containers
+
+=== Basic Run
+
+[source,shell]
+----
+# Run a container (simplest form)
+docker run python:3.11 python --version
+# Output: Python 3.11.7
+
+# Run with a command
+docker run python:3.11 python -c "import numpy; print(numpy.__version__)"
+----
+
+=== Interactive Mode
+
+[source,shell]
+----
+# Interactive terminal (-it)
+docker run -it python:3.11 bash
+
+# You're now inside the container!
+# root@abc123:/# python
+# >>> import sys
+# >>> print(sys.version)
+# >>> exit()
+# root@abc123:/# exit
+----
+
+=== Detached Mode (Background)
+
+[source,shell]
+----
+# Run in background (-d)
+docker run -d --name my-jupyter -p 8888:8888 jupyter/scipy-notebook
+
+# Container runs in background, returns container ID
+----
+
+=== Common Run Options
+
+[cols="1,2,2"]
+|===
+| Option | Purpose | Example
+
+| `-it`
+| Interactive terminal
+| `docker run -it ubuntu bash`
+
+| `-d`
+| Detached (background)
+| `docker run -d nginx`
+
+| `--name`
+| Name the container
+| `docker run --name myapp python`
+
+| `-p`
+| Port mapping
+| `docker run -p 8080:80 nginx`
+
+| `-v`
+| Volume mount
+| `docker run -v /data:/app/data python`
+
+| `--rm`
+| Remove after exit
+| `docker run --rm python python -c "print('hi')"`
+
+| `-e`
+| Environment variable
+| `docker run -e DEBUG=1 myapp`
+
+| `-w`
+| Working directory
+| `docker run -w /app python`
+|===
+
+== Managing Running Containers
+
+=== Listing Containers
+
+[source,shell]
+----
+# List running containers
+docker ps
+
+# List all containers (including stopped)
+docker ps -a
+
+# Example output:
+# CONTAINER ID   IMAGE     COMMAND   STATUS         NAMES
+# abc123def456   python    "bash"    Up 2 minutes   my-python
+----
+
+=== Starting and Stopping
+
+[source,shell]
+----
+# Stop a running container
+docker stop my-python
+
+# Start a stopped container
+docker start my-python
+
+# Restart a container
+docker restart my-python
+----
+
+=== Executing Commands in Running Containers
+
+[source,shell]
+----
+# Execute command in running container
+docker exec my-python python --version
+
+# Get interactive shell in running container
+docker exec -it my-python bash
+----
+
+=== Viewing Logs
+
+[source,shell]
+----
+# View container logs
+docker logs my-python
+
+# Follow logs in real-time
+docker logs -f my-python
+
+# Last 100 lines
+docker logs --tail 100 my-python
+----
+
+=== Removing Containers
+
+[source,shell]
+----
+# Remove stopped container
+docker rm my-python
+
+# Force remove running container
+docker rm -f my-python
+
+# Remove all stopped containers
+docker container prune
+----
+
+== Data Persistence with Volumes
+
+=== The Problem: Ephemeral Container Filesystem
+
+[source,shell]
+----
+# Data created inside container is LOST when container is removed
+docker run -it python:3.11 bash
+# root@abc:/# echo "important data" > /data.txt
+# root@abc:/# exit
+
+docker run -it python:3.11 bash  
+# root@xyz:/# cat /data.txt
+# cat: /data.txt: No such file or directory  <-- GONE!
+----
+
+=== Solution 1: Bind Mounts
+
+Mount a host directory into the container:
+
+[source,shell]
+----
+# Syntax: -v /host/path:/container/path
+docker run -it -v $(pwd):/workspace python:3.11 bash
+
+# Now /workspace in container = current directory on host
+# Changes persist on your host filesystem
+----
+
+.Mathematical Computing Example
+[source,shell]
+----
+# Mount your project directory
+docker run -it \
+  -v ~/projects/thesis:/thesis \
+  -w /thesis \
+  python:3.11 \
+  python run_simulation.py
+
+# Results are saved to ~/projects/thesis on your host
+----
+
+=== Solution 2: Named Volumes
+
+Docker-managed volumes (preferred for databases):
+
+[source,shell]
+----
+# Create a named volume
+docker volume create mydata
+
+# Use the volume
+docker run -v mydata:/app/data python:3.11
+
+# List volumes
+docker volume ls
+
+# Inspect volume
+docker volume inspect mydata
+----
+
+=== Comparison
+
+[cols="1,1,1"]
+|===
+| Feature | Bind Mount | Named Volume
+
+| Location
+| You control
+| Docker manages
+
+| Portability
+| Host-dependent
+| Docker handles
+
+| Performance
+| Native
+| Slightly optimized
+
+| Use case
+| Development, sharing code
+| Databases, persistent data
+|===
+
+== Port Mapping
+
+Expose container ports to the host:
+
+[source,shell]
+----
+# Map host port 8888 to container port 8888
+docker run -p 8888:8888 jupyter/scipy-notebook
+
+# Map different ports
+docker run -p 9000:8888 jupyter/scipy-notebook
+# Access at localhost:9000
+
+# Map to specific interface
+docker run -p 127.0.0.1:8888:8888 jupyter/scipy-notebook
+----
+
+== Practical Examples for Mathematics
+
+=== Run Python with NumPy
+
+[source,shell]
+----
+docker run -it --rm \
+  -v $(pwd):/workspace \
+  -w /workspace \
+  python:3.11 \
+  bash -c "pip install numpy scipy matplotlib && python analysis.py"
+----
+
+=== Run Jupyter Notebook
+
+[source,shell]
+----
+docker run -it --rm \
+  -p 8888:8888 \
+  -v $(pwd):/home/jovyan/work \
+  jupyter/scipy-notebook
+----
+
+=== Run R for Statistical Computing
+
+[source,shell]
+----
+docker run -it --rm \
+  -v $(pwd):/workspace \
+  -w /workspace \
+  r-base \
+  Rscript analysis.R
+----
+
+== Quick Reference Card
+
+[source,text]
+----
+# Images
+docker pull <image>          # Download image
+docker images                # List images
+docker rmi <image>           # Remove image
+
+# Containers
+docker run <image>           # Create and start container
+docker ps                    # List running containers
+docker ps -a                 # List all containers
+docker stop <container>      # Stop container
+docker start <container>     # Start stopped container
+docker rm <container>        # Remove container
+docker exec -it <c> bash     # Shell into running container
+docker logs <container>      # View logs
+
+# Volumes
+docker volume create <name>  # Create volume
+docker volume ls             # List volumes
+docker volume rm <name>      # Remove volume
+
+# Cleanup
+docker system prune          # Remove unused resources
+docker image prune -a        # Remove all unused images
+docker container prune       # Remove stopped containers
+----
+
+== Next Steps
+
+1. Practice these commands with the xref:hands-on/01-getting-started.adoc[hands-on exercises]
+2. Learn to xref:dockerfile-basics.adoc[create your own images with Dockerfile]
+3. Explore xref:hands-on/04-compose.adoc[Docker Compose] for multi-container applications

@@ -138,6 +138,7 @@ Introduction to Version Control (30 min)::
 - Demo: Git for LaTeX document collaboration
 
 Git Basics Hands-on (60 min)::
++
 - Initialize repository for a mathematical paper
 - Basic commands: `add`, `commit`, `status`
 - **Mathematical Exercise:** Version control a LaTeX document
@@ -145,11 +146,13 @@ Git Basics Hands-on (60 min)::
 **Wednesday: Collaborative Mathematics with Git** _(90 minutes)_
 
 Branching for Research (45 min)::
++
 - Creating branches for different paper sections
 - Merging collaborative work
 - Resolving conflicts in mathematical documents
 
 GitHub for Academic Work (45 min)::
++
 - Setting up academic GitHub account
 - Creating repositories for mathematical projects
 - **Exercise:** Collaborate on a mathematical proof document
@@ -157,6 +160,7 @@ GitHub for Academic Work (45 min)::
 **Friday: Git Workshop & Project** _(90 minutes)_
 
 Mathematical Project Setup (90 min)::
++
 - **Group Project:** Set up shared repository for mathematical analysis
 - Practice collaborative workflows
 - Code review for mathematical scripts
@@ -177,11 +181,13 @@ Mathematical Project Setup (90 min)::
 **Monday: VS Code for Mathematics Students** _(90 minutes)_
 
 IDE Introduction (30 min)::
++
 - Why use an integrated development environment
 - Overview of VS Code for mathematical work
 - Comparison with mathematical software interfaces
 
 VS Code Setup and Configuration (60 min)::
++
 - Installation and basic configuration
 - Essential extensions for mathematics: LaTeX, Python, Jupyter
 - **Exercise:** Set up workspace for mathematical project
@@ -189,11 +195,13 @@ VS Code Setup and Configuration (60 min)::
 **Wednesday: LaTeX and Document Management** _(90 minutes)_
 
 LaTeX in VS Code (45 min)::
++
 - LaTeX extension setup and configuration
 - Writing mathematical documents with live preview
 - Bibliography management integration
 
 Version Control Integration (45 min)::
++
 - Git integration in VS Code
 - Managing mathematical document versions
 - **Exercise:** Write and version a mathematical report
@@ -201,11 +209,13 @@ Version Control Integration (45 min)::
 **Friday: Data Analysis Environment** _(90 minutes)_
 
 Python and Jupyter Setup (45 min)::
++
 - Python extension configuration
 - Jupyter notebook integration
 - Mathematical libraries overview
 
 Mathematical Computing Workflow (45 min)::
++
 - **Project:** Set up complete mathematical analysis environment
 - Integration with external mathematical software
 - Best practices for reproducible research
@@ -225,11 +235,13 @@ Mathematical Computing Workflow (45 min)::
 **Monday: Research Project Management** _(90 minutes)_
 
 Academic Project Management (45 min)::
++
 - Adapting project management for mathematical research
 - Timeline management for research projects
 - Milestone setting for mathematical investigations
 
 GitHub Projects for Research (45 min)::
++
 - Setting up research project boards
 - Issue tracking for mathematical tasks
 - **Exercise:** Plan a semester research project
@@ -237,6 +249,7 @@ GitHub Projects for Research (45 min)::
 **Wednesday: Collaborative Research Methods** _(90 minutes)_
 
 Research Team Workflows (45 min)::
++
 - Organizing collaborative mathematical research
 - Code review for mathematical scripts
 - Documentation standards for mathematical projects

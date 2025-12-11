@@ -1,0 +1,240 @@
+= Docker Installation Guide
+:page-tags: docker-manual
+:parent-catalogs: containers:index
+:page-illustration: fa-solid fa-download
+:description: Install Docker on Windows, macOS, or Linux for mathematical computing environments.
+
+[.level-indicator.bg-warning.text-white.p-3.rounded.mb-4]
+====
+*🟡 LEVEL 2* | *Time:* 15-30 minutes | *Prerequisites:* None
+====
+
+== Choose Your Installation Method
+
+[cols="1,1,2"]
+|===
+| Platform | Recommended | Notes
+
+| **Windows**
+| Docker Desktop
+| Requires WSL2
+
+| **macOS**
+| Docker Desktop
+| Intel or Apple Silicon
+
+| **Linux**
+| Docker Engine
+| Native performance, production-ready
+|===
+
+== Docker Desktop (Windows & macOS)
+
+Docker Desktop provides:
+
+- Graphical user interface
+- Easy installation and updates
+- Built-in Kubernetes
+- Volume management UI
+
+=== Windows Installation
+
+.Prerequisites
+- Windows 10/11 (64-bit)
+- WSL2 enabled
+- Hardware virtualization enabled in BIOS
+
+[source,powershell]
+----
+# Step 1: Enable WSL2 (run as Administrator)
+wsl --install
+
+# Step 2: Restart your computer
+
+# Step 3: Download and install Docker Desktop
+# https://www.docker.com/products/docker-desktop/
+----
+
+After installation:
+[source,powershell]
+----
+# Verify installation
+docker --version
+docker run hello-world
+----
+
+=== macOS Installation
+
+.Prerequisites
+- macOS 12 or newer
+- Apple Silicon (M1/M2/M3) or Intel
+
+[source,shell]
+----
+# Option 1: Download from website
+# https://www.docker.com/products/docker-desktop/
+
+# Option 2: Use Homebrew
+brew install --cask docker
+----
+
+After installation:
+[source,shell]
+----
+# Start Docker Desktop from Applications
+
+# Verify installation
+docker --version
+docker run hello-world
+----
+
+== Docker Engine (Linux)
+
+For production environments and HPC, install Docker Engine directly.
+
+=== Ubuntu/Debian
+
+[source,shell]
+----
+# Remove old versions
+sudo apt-get remove docker docker-engine docker.io containerd runc
+
+# Install prerequisites
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+
+# Add Docker's official GPG key
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+# Add the repository
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Install Docker Engine
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+----
+
+=== Post-Installation (Linux)
+
+Run Docker without `sudo`:
+
+[source,shell]
+----
+# Create docker group and add your user
+sudo groupadd docker
+sudo usermod -aG docker $USER
+
+# Log out and back in, then verify
+docker run hello-world
+----
+
+=== Fedora/RHEL/CentOS
+
+[source,shell]
+----
+# Install prerequisites
+sudo dnf install dnf-plugins-core
+
+# Add Docker repository
+sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+
+# Install Docker Engine
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Start and enable Docker
+sudo systemctl start docker
+sudo systemctl enable docker
+----
+
+== Verify Your Installation
+
+Run these commands to verify Docker is working:
+
+[source,shell]
+----
+# Check Docker version
+docker --version
+# Expected: Docker version 24.x.x or newer
+
+# Check Docker Compose version
+docker compose version
+# Expected: Docker Compose version v2.x.x
+
+# Run test container
+docker run hello-world
+----
+
+Expected output for `hello-world`:
+[source,text]
+----
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+...
+----
+
+== Useful Configuration
+
+=== Resource Limits (Docker Desktop)
+
+For mathematical computing, you may need more resources:
+
+1. Open Docker Desktop → Settings → Resources
+2. Adjust:
+   - **CPUs**: At least 4 for parallel computations
+   - **Memory**: At least 8 GB for large datasets
+   - **Disk**: At least 50 GB for images
+
+=== Configure Default Registry
+
+For using GitHub Container Registry (GHCR):
+
+[source,shell]
+----
+# Login to GitHub Container Registry
+echo $GITHUB_TOKEN | docker login ghcr.io -u USERNAME --password-stdin
+----
+
+== Troubleshooting
+
+=== Docker daemon not running
+
+[source,shell]
+----
+# Linux: Start the service
+sudo systemctl start docker
+
+# macOS/Windows: Start Docker Desktop application
+----
+
+=== Permission denied
+
+[source,shell]
+----
+# Linux: Add user to docker group
+sudo usermod -aG docker $USER
+# Then log out and back in
+----
+
+=== Disk space issues
+
+[source,shell]
+----
+# Clean up unused resources
+docker system prune -a
+
+# Check disk usage
+docker system df
+----
+
+== Next Steps
+
+Now that Docker is installed:
+
+1. xref:hands-on/01-getting-started.adoc[Run your first containers]
+2. Learn xref:docker-commands.adoc[essential Docker commands]
+3. Create your first xref:dockerfile-basics.adoc[Dockerfile]

@@ -1,5 +1,145 @@
 = Introduction to Docker
+:page-tags: docker-manual
+:parent-catalogs: containers:index
+:page-illustration: fa-brands fa-docker
+:page-layout: manuals
+:page-cards-tag: docker-manual
+:page-cards-within-module: true
+:description: Master Docker for mathematical computing - from basic concepts to building and deploying containerized applications.
 
-Welcome to the Introduction to Docker course.
+[.level-indicator.bg-warning.text-white.p-3.rounded.mb-4]
+====
+*🟡 LEVEL 2* | *Prerequisites:* Linux basics | *Time:* 4-6 hours total
+====
 
-This course will cover everything from Docker basics, architecture, practical commands, and advanced topics like Docker Compose. Use the navigation to explore each section.
+image::docker/docker.png[Docker Logo,200,align="center"]
+
+== Learning Path
+
+This module teaches Docker through a structured progression designed for master students in mathematics and scientific computing:
+
+[.cards.grid-2]
+[cols="1,1"]
+|===
+^.^a|
+[.card]
+====
+*📚 Concepts*
+
+. xref:what-are-containers.adoc[What are Containers?]
+. xref:docker-problems-solved.adoc[Problems Docker Solves]
+. xref:docker-architecture.adoc[Docker Architecture]
+====
+
+^.^a|
+[.card]
+====
+*🛠️ Setup*
+
+. xref:docker-install.adoc[Installation Guide]
+. xref:docker-commands.adoc[Essential Commands]
+====
+|===
+
+[.cards.grid-2]
+[cols="1,1"]
+|===
+^.^a|
+[.card]
+====
+*📝 Building Images*
+
+. xref:dockerfile-basics.adoc[Dockerfile Fundamentals]
+. xref:hands-on/01-getting-started.adoc[Hands-on: First Steps]
+. xref:hands-on/02-advanced-usage.adoc[Advanced Usage]
+====
+
+^.^a|
+[.card]
+====
+*🚀 Automation & Orchestration*
+
+. xref:hands-on/04-compose.adoc[Docker Compose]
+. xref:hands-on/06-githubactions.adoc[GitHub Actions + Docker]
+====
+|===
+
+== Quick Start
+
+If you're in a hurry, here's the minimum path:
+
+[source,text]
+----
+1. Install Docker       → 15 min
+2. Basic commands       → 30 min  
+3. Dockerfile basics    → 45 min
+4. GitHub Actions       → 30 min
+                        --------
+   Total:                 2 hours
+----
+
+== Module Contents
+
+=== Concepts (Why Containers?)
+
+xref:what-are-containers.adoc[**What are Containers?**]::
+Understand containers vs. VMs, images vs. containers, OCI standards.
+
+xref:docker-problems-solved.adoc[**Problems Docker Solves**]::
+The "matrix from hell", reproducibility challenges, and how Docker addresses them.
+
+xref:docker-architecture.adoc[**Docker Architecture**]::
+Client-server model, Docker daemon, registries, and how containers work.
+
+=== Hands-On Skills
+
+xref:docker-install.adoc[**Installation Guide**]::
+Install Docker Desktop (Windows/macOS) or Docker Engine (Linux).
+
+xref:docker-commands.adoc[**Essential Commands**]::
+`docker run`, `docker build`, `docker exec`, volumes, ports, and more.
+
+xref:dockerfile-basics.adoc[**Dockerfile Fundamentals**]::
+Create custom images for your mathematical computing projects.
+
+=== Advanced Topics
+
+xref:hands-on/04-compose.adoc[**Docker Compose**]::
+Orchestrate multi-container applications (e.g., Jupyter + database).
+
+xref:hands-on/06-githubactions.adoc[**GitHub Actions + Docker**]::
+Automate image building and publishing with CI/CD.
+
+== Why Docker for Mathematics Students?
+
+[cols="1,3"]
+|===
+| Challenge | Docker Solution
+
+| *"Works on my machine"*
+| Package exact versions of Python, NumPy, MATLAB in a container
+
+| *Complex dependencies*
+| Dockerfile captures all setup steps reproducibly
+
+| *Sharing research*
+| `docker pull yourimage` gives collaborators your exact environment
+
+| *HPC deployment*
+| Build locally, run on clusters (via Apptainer/Singularity)
+
+| *Long-term preservation*
+| Archive container images with published papers
+|===
+
+== Prerequisites Check
+
+Before starting, ensure you have:
+
+[%interactive]
+* [ ] Basic Linux command-line skills (cd, ls, mkdir)
+* [ ] A computer with 8GB+ RAM and 20GB+ free disk space
+* [ ] Administrator/sudo access for installation
+* [ ] A GitHub account (for the Actions tutorial)
+
+Ready? Start with xref:what-are-containers.adoc[What are Containers?] →
