@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>The Problem Docker Solves :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/docker/docker-problems-solved.html">
+    <title>Essential Docker Commands :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/docker/docker-commands.html">
+    <link rel="prev" href="docker-install.html">
+    <link rel="next" href="dockerfile-basics.html">
+    <meta name="description" content="Master the essential Docker commands for managing containers and images in mathematical computing workflows.">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../../_/css/site.css">
 
@@ -311,7 +314,7 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="docker-install.html">Installation</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="docker-commands.html">Essential Commands</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -467,12 +470,14 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../../index.html">Course Project</a></li>
-    <li><a href="docker-problems-solved.html">The Problem Docker Solves</a></li>
+    <li><a href="../index.html">Containers</a></li>
+    <li>🟡 Docker Fundamentals</li>
+    <li><a href="docker-commands.html">Essential Commands</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/docker-problems-solved.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/docker-commands.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -492,113 +497,491 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">The Problem Docker Solves</h1>
-<div class="sect1">
-<h2 id="_the_challenge"><a class="anchor" href="#_the_challenge"></a>1. The Challenge</h2>
+<h1 class="page">Essential Docker Commands</h1>
+<div id="preamble">
 <div class="sectionbody">
+<div class="exampleblock level-indicator bg-warning text-white p-3 rounded mb-4">
+<div class="content">
 <div class="paragraph">
-<div class="title">The Challenge</div>
-<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../_images/docker/the-challenge.png" alt="the challenge" title="The Challenge"></a></span></p>
+<p><strong>🟡 LEVEL 2</strong> | <strong>Time:</strong> 30 minutes | <strong>Prerequisites:</strong> Docker installed</p>
 </div>
-<div class="paragraph">
-<p>The diagram illustrates the complexity of modern applications, which are composed of many stacks and run across multiple environments.
-Each component (web frontend, API endpoint, background workers, etc.) relies on different technologies (e.g., Python, PostgreSQL, Redis).
-These applications must operate across various hardware environments, from development VMs to production clusters, and they need to migrate between them smoothly.</p>
-</div>
-<div class="paragraph">
-<p>In traditional environments, developers often face the challenge of dealing with dependencies and compatibility issues between development, testing, and production environments.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Docker simplifies this by providing consistent environments through containers, allowing seamless migration, scalability, and isolation for different services and stacks.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_what_about_scientific_computing_and_data_science"><a class="anchor" href="#_what_about_scientific_computing_and_data_science"></a>1.1. What about Scientific Computing and Data Science?</h3>
-<div class="paragraph">
-<p>The diagram highlights the complexity of modern applications across multiple stacks and hardware environments. This challenge is particularly relevant for <strong>scientific computing</strong> and <strong>data science</strong>, where different computational environments (e.g., Python, R, SQL databases) must be reliably replicated across various machines (e.g., development VMs, public cloud, customer data centers).</p>
-</div>
-<div class="paragraph">
-<p>For example, data science pipelines often rely on specific versions of libraries (e.g., <code>numpy</code>, <code>pandas</code>, <code>scipy</code>) and databases.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Docker ensures that these environments are consistent across hardware, reducing dependency conflicts and improving reproducibility.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-In <strong>digital twins</strong>, Docker helps simulate the same digital model across different environments (like public clouds, local clusters, and IoT hardware) without worrying about differences in software dependencies or configurations.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_matrix_from_hell"><a class="anchor" href="#_the_matrix_from_hell"></a>2. The Matrix From Hell</h2>
+<h2 id="_command_overview"><a class="anchor" href="#_command_overview"></a>1. Command Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../_images/docker/the-matrix-from-hell.png" alt="the matrix from hell" title="The Matrix From Hell"></a></span></p>
+<p>Docker commands follow a consistent pattern:</p>
 </div>
-<div class="paragraph">
-<p>The image illustrates the complexity of deploying multiple application services (e.g., Static website, Web frontend, User DB, Queue, etc.) across various hardware environments like development VMs, QA servers, public clouds, and customer servers. Each environment may have different dependencies, configurations, and challenges, leading to a "matrix from hell" where managing consistency across environments becomes a difficult and error-prone task.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">docker &lt;object&gt; &lt;command&gt; [options] [arguments]
+
+Examples:
+docker container run ...
+docker image pull ...
+docker volume create ...</code></pre>
 </div>
-<div class="paragraph">
-<p>Managing applications across different environments and platforms can lead to inconsistencies, resulting in delays, bugs, and issues. Docker simplifies this problem by providing a consistent runtime environment.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Docker solves this problem by providing a consistent, containerized environment across all platforms, reducing variability and improving deployment reliability.
-</td>
-</tr>
-</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_working_with_images"><a class="anchor" href="#_working_with_images"></a>2. Working with Images</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_pulling_images"><a class="anchor" href="#_pulling_images"></a>2.1. Pulling Images</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Pull an image from Docker Hub
+docker pull python:3.11
+
+# Pull from GitHub Container Registry
+docker pull ghcr.io/owner/image:tag
+
+# Pull specific version
+docker pull python:3.11.7-slim</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_what_about_scientific_computing_and_data_science_2"><a class="anchor" href="#_what_about_scientific_computing_and_data_science_2"></a>2.1. What  about Scientific Computing and Data Science?</h3>
-<div class="paragraph">
-<p>The matrix illustrates the challenges of deploying complex, multi-stack applications in different environments. For <strong>scientific computing</strong> and <strong>data science</strong>, this often involves managing diverse workloads (data processing, machine learning models, simulations) across environments like local development VMs, QA servers, and public clouds.</p>
+<h3 id="_listing_images"><a class="anchor" href="#_listing_images"></a>2.2. Listing Images</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># List all images
+docker images
+
+# Example output:
+# REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+# python        3.11      abc123def456   2 weeks ago    1.01GB
+# ubuntu        22.04     def456abc789   3 weeks ago    77.8MB</code></pre>
 </div>
-<div class="admonitionblock tip">
-<table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_removing_images"><a class="anchor" href="#_removing_images"></a>2.3. Removing Images</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Remove specific image
+docker rmi python:3.11
+
+# Remove by image ID
+docker rmi abc123def456
+
+# Remove all unused images
+docker image prune -a</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_running_containers"><a class="anchor" href="#_running_containers"></a>3. Running Containers</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_basic_run"><a class="anchor" href="#_basic_run"></a>3.1. Basic Run</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Run a container (simplest form)
+docker run python:3.11 python --version
+# Output: Python 3.11.7
+
+# Run with a command
+docker run python:3.11 python -c "import numpy; print(numpy.__version__)"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_interactive_mode"><a class="anchor" href="#_interactive_mode"></a>3.2. Interactive Mode</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Interactive terminal (-it)
+docker run -it python:3.11 bash
+
+# You're now inside the container!
+# root@abc123:/# python
+# &gt;&gt;&gt; import sys
+# &gt;&gt;&gt; print(sys.version)
+# &gt;&gt;&gt; exit()
+# root@abc123:/# exit</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_detached_mode_background"><a class="anchor" href="#_detached_mode_background"></a>3.3. Detached Mode (Background)</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Run in background (-d)
+docker run -d --name my-jupyter -p 8888:8888 jupyter/scipy-notebook
+
+# Container runs in background, returns container ID</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_common_run_options"><a class="anchor" href="#_common_run_options"></a>3.4. Common Run Options</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
 <tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Docker simplifies the deployment of scientific applications and ensures consistency, which is critical for <strong>digital twins</strong>. These applications require simulating real-world processes with high fidelity across multiple environments. Docker ensures that all dependencies (data processing frameworks, models, etc.) remain consistent, facilitating smooth deployment of digital twin systems.
-</td>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Purpose</th>
+<th class="tableblock halign-left valign-top">Example</th>
 </tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-it</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interactive terminal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docker run -it ubuntu bash</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-d</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Detached (background)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docker run -d nginx</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name the container</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docker run --name myapp python</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-p</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port mapping</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docker run -p 8080:80 nginx</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-v</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Volume mount</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docker run -v /data:/app/data python</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--rm</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Remove after exit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docker run --rm python python -c "print('hi')"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-e</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Environment variable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docker run -e DEBUG=1 myapp</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-w</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Working directory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docker run -w /app python</code></p></td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_managing_running_containers"><a class="anchor" href="#_managing_running_containers"></a>4. Managing Running Containers</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_listing_containers"><a class="anchor" href="#_listing_containers"></a>4.1. Listing Containers</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># List running containers
+docker ps
+
+# List all containers (including stopped)
+docker ps -a
+
+# Example output:
+# CONTAINER ID   IMAGE     COMMAND   STATUS         NAMES
+# abc123def456   python    "bash"    Up 2 minutes   my-python</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_starting_and_stopping"><a class="anchor" href="#_starting_and_stopping"></a>4.2. Starting and Stopping</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Stop a running container
+docker stop my-python
+
+# Start a stopped container
+docker start my-python
+
+# Restart a container
+docker restart my-python</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_executing_commands_in_running_containers"><a class="anchor" href="#_executing_commands_in_running_containers"></a>4.3. Executing Commands in Running Containers</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Execute command in running container
+docker exec my-python python --version
+
+# Get interactive shell in running container
+docker exec -it my-python bash</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_viewing_logs"><a class="anchor" href="#_viewing_logs"></a>4.4. Viewing Logs</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># View container logs
+docker logs my-python
+
+# Follow logs in real-time
+docker logs -f my-python
+
+# Last 100 lines
+docker logs --tail 100 my-python</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_removing_containers"><a class="anchor" href="#_removing_containers"></a>4.5. Removing Containers</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Remove stopped container
+docker rm my-python
+
+# Force remove running container
+docker rm -f my-python
+
+# Remove all stopped containers
+docker container prune</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_data_persistence_with_volumes"><a class="anchor" href="#_data_persistence_with_volumes"></a>5. Data Persistence with Volumes</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_the_problem_ephemeral_container_filesystem"><a class="anchor" href="#_the_problem_ephemeral_container_filesystem"></a>5.1. The Problem: Ephemeral Container Filesystem</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Data created inside container is LOST when container is removed
+docker run -it python:3.11 bash
+# root@abc:/# echo "important data" &gt; /data.txt
+# root@abc:/# exit
+
+docker run -it python:3.11 bash
+# root@xyz:/# cat /data.txt
+# cat: /data.txt: No such file or directory  &lt;-- GONE!</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_solution_1_bind_mounts"><a class="anchor" href="#_solution_1_bind_mounts"></a>5.2. Solution 1: Bind Mounts</h3>
+<div class="paragraph">
+<p>Mount a host directory into the container:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Syntax: -v /host/path:/container/path
+docker run -it -v $(pwd):/workspace python:3.11 bash
+
+# Now /workspace in container = current directory on host
+# Changes persist on your host filesystem</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Mathematical Computing Example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Mount your project directory
+docker run -it \
+  -v ~/projects/thesis:/thesis \
+  -w /thesis \
+  python:3.11 \
+  python run_simulation.py
+
+# Results are saved to ~/projects/thesis on your host</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_solution_2_named_volumes"><a class="anchor" href="#_solution_2_named_volumes"></a>5.3. Solution 2: Named Volumes</h3>
+<div class="paragraph">
+<p>Docker-managed volumes (preferred for databases):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Create a named volume
+docker volume create mydata
+
+# Use the volume
+docker run -v mydata:/app/data python:3.11
+
+# List volumes
+docker volume ls
+
+# Inspect volume
+docker volume inspect mydata</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_comparison"><a class="anchor" href="#_comparison"></a>5.4. Comparison</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Feature</th>
+<th class="tableblock halign-left valign-top">Bind Mount</th>
+<th class="tableblock halign-left valign-top">Named Volume</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Location</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">You control</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker manages</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Portability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Host-dependent</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker handles</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Performance</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Native</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Slightly optimized</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use case</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Development, sharing code</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Databases, persistent data</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_port_mapping"><a class="anchor" href="#_port_mapping"></a>6. Port Mapping</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Expose container ports to the host:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Map host port 8888 to container port 8888
+docker run -p 8888:8888 jupyter/scipy-notebook
+
+# Map different ports
+docker run -p 9000:8888 jupyter/scipy-notebook
+# Access at localhost:9000
+
+# Map to specific interface
+docker run -p 127.0.0.1:8888:8888 jupyter/scipy-notebook</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_practical_examples_for_mathematics"><a class="anchor" href="#_practical_examples_for_mathematics"></a>7. Practical Examples for Mathematics</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_run_python_with_numpy"><a class="anchor" href="#_run_python_with_numpy"></a>7.1. Run Python with NumPy</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run -it --rm \
+  -v $(pwd):/workspace \
+  -w /workspace \
+  python:3.11 \
+  bash -c "pip install numpy scipy matplotlib &amp;&amp; python analysis.py"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_run_jupyter_notebook"><a class="anchor" href="#_run_jupyter_notebook"></a>7.2. Run Jupyter Notebook</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run -it --rm \
+  -p 8888:8888 \
+  -v $(pwd):/home/jovyan/work \
+  jupyter/scipy-notebook</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_run_r_for_statistical_computing"><a class="anchor" href="#_run_r_for_statistical_computing"></a>7.3. Run R for Statistical Computing</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run -it --rm \
+  -v $(pwd):/workspace \
+  -w /workspace \
+  r-base \
+  Rscript analysis.R</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_quick_reference_card"><a class="anchor" href="#_quick_reference_card"></a>8. Quick Reference Card</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text"># Images
+docker pull &lt;image&gt;          # Download image
+docker images                # List images
+docker rmi &lt;image&gt;           # Remove image
+
+# Containers
+docker run &lt;image&gt;           # Create and start container
+docker ps                    # List running containers
+docker ps -a                 # List all containers
+docker stop &lt;container&gt;      # Stop container
+docker start &lt;container&gt;     # Start stopped container
+docker rm &lt;container&gt;        # Remove container
+docker exec -it &lt;c&gt; bash     # Shell into running container
+docker logs &lt;container&gt;      # View logs
+
+# Volumes
+docker volume create &lt;name&gt;  # Create volume
+docker volume ls             # List volumes
+docker volume rm &lt;name&gt;      # Remove volume
+
+# Cleanup
+docker system prune          # Remove unused resources
+docker image prune -a        # Remove all unused images
+docker container prune       # Remove stopped containers</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_next_steps"><a class="anchor" href="#_next_steps"></a>9. Next Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Practice these commands with the <a href="#hands-on/01-getting-started.adoc" class="xref unresolved">hands-on exercises</a></p>
+</li>
+<li>
+<p>Learn to <a href="#dockerfile-basics.adoc" class="xref unresolved">create your own images with Dockerfile</a></p>
+</li>
+<li>
+<p>Explore <a href="#hands-on/04-compose.adoc" class="xref unresolved">Docker Compose</a> for multi-container applications</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="docker-install.html">Installation</a></span>
+  <span class="next"><a href="dockerfile-basics.html">Dockerfile Basics</a></span>
+</nav>
 </article>
   </div>
 </main>

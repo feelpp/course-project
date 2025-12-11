@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>The Problem Docker Solves :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/docker/docker-problems-solved.html">
+    <title>What are Containers? :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/docker/what-are-containers.html">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="docker-install.html">
+    <meta name="description" content="Understand what containers are and why they matter for mathematical computing and scientific research.">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../../_/css/site.css">
 
@@ -305,7 +308,7 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="index.html">Docker Introduction</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="what-are-containers.html">What are Containers?</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -467,12 +470,14 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../../index.html">Course Project</a></li>
-    <li><a href="docker-problems-solved.html">The Problem Docker Solves</a></li>
+    <li><a href="../index.html">Containers</a></li>
+    <li>🟡 Docker Fundamentals</li>
+    <li><a href="what-are-containers.html">What are Containers?</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/docker-problems-solved.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/what-are-containers.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -492,113 +497,401 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">The Problem Docker Solves</h1>
-<div class="sect1">
-<h2 id="_the_challenge"><a class="anchor" href="#_the_challenge"></a>1. The Challenge</h2>
+<h1 class="page">What are Containers?</h1>
+<div id="preamble">
 <div class="sectionbody">
+<div class="exampleblock level-indicator bg-warning text-white p-3 rounded mb-4">
+<div class="content">
 <div class="paragraph">
-<div class="title">The Challenge</div>
-<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../_images/docker/the-challenge.png" alt="the challenge" title="The Challenge"></a></span></p>
+<p><strong>🟡 LEVEL 2</strong> | <strong>Time:</strong> 20 minutes | <strong>Prerequisites:</strong> Basic Linux knowledge</p>
 </div>
-<div class="paragraph">
-<p>The diagram illustrates the complexity of modern applications, which are composed of many stacks and run across multiple environments.
-Each component (web frontend, API endpoint, background workers, etc.) relies on different technologies (e.g., Python, PostgreSQL, Redis).
-These applications must operate across various hardware environments, from development VMs to production clusters, and they need to migrate between them smoothly.</p>
-</div>
-<div class="paragraph">
-<p>In traditional environments, developers often face the challenge of dealing with dependencies and compatibility issues between development, testing, and production environments.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Docker simplifies this by providing consistent environments through containers, allowing seamless migration, scalability, and isolation for different services and stacks.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_what_about_scientific_computing_and_data_science"><a class="anchor" href="#_what_about_scientific_computing_and_data_science"></a>1.1. What about Scientific Computing and Data Science?</h3>
-<div class="paragraph">
-<p>The diagram highlights the complexity of modern applications across multiple stacks and hardware environments. This challenge is particularly relevant for <strong>scientific computing</strong> and <strong>data science</strong>, where different computational environments (e.g., Python, R, SQL databases) must be reliably replicated across various machines (e.g., development VMs, public cloud, customer data centers).</p>
-</div>
-<div class="paragraph">
-<p>For example, data science pipelines often rely on specific versions of libraries (e.g., <code>numpy</code>, <code>pandas</code>, <code>scipy</code>) and databases.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Docker ensures that these environments are consistent across hardware, reducing dependency conflicts and improving reproducibility.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-In <strong>digital twins</strong>, Docker helps simulate the same digital model across different environments (like public clouds, local clusters, and IoT hardware) without worrying about differences in software dependencies or configurations.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_matrix_from_hell"><a class="anchor" href="#_the_matrix_from_hell"></a>2. The Matrix From Hell</h2>
+<h2 id="_the_problem_it_works_on_my_machine"><a class="anchor" href="#_the_problem_it_works_on_my_machine"></a>1. The Problem: "It Works on My Machine"</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../_images/docker/the-matrix-from-hell.png" alt="the matrix from hell" title="The Matrix From Hell"></a></span></p>
+<p>As a mathematics student, you&#8217;ve likely encountered this scenario:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+You develop a numerical simulation in Python with NumPy, SciPy, and matplotlib. It runs perfectly on your laptop. You share your code with your advisor or submit it for a paper&#8230;&#8203; and it fails.
+</blockquote>
 </div>
 <div class="paragraph">
-<p>The image illustrates the complexity of deploying multiple application services (e.g., Static website, Web frontend, User DB, Queue, etc.) across various hardware environments like development VMs, QA servers, public clouds, and customer servers. Each environment may have different dependencies, configurations, and challenges, leading to a "matrix from hell" where managing consistency across environments becomes a difficult and error-prone task.</p>
+<p>Why? Different library versions, missing dependencies, or different operating system configurations.</p>
 </div>
 <div class="paragraph">
-<p>Managing applications across different environments and platforms can lead to inconsistencies, resulting in delays, bugs, and issues. Docker simplifies this problem by providing a consistent runtime environment.</p>
+<p><strong>Containers solve this problem.</strong></p>
 </div>
-<div class="admonitionblock tip">
-<table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_is_a_container"><a class="anchor" href="#_what_is_a_container"></a>2. What is a Container?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A container is a <strong>lightweight, standalone package</strong> that includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Your application code</p>
+</li>
+<li>
+<p>All dependencies and libraries</p>
+</li>
+<li>
+<p>Configuration files</p>
+</li>
+<li>
+<p>Runtime environment</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch cards grid-2">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
 <tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Docker solves this problem by providing a consistent, containerized environment across all platforms, reducing variability and improving deployment reliability.
-</td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="exampleblock card">
+<div class="content">
+<div class="paragraph">
+<p><strong>📦 Think of it like&#8230;&#8203;</strong></p>
+</div>
+<div class="paragraph">
+<p>A shipping container. Just as a shipping container can hold any cargo and be transported on any ship, truck, or train, a software container holds your application and can run on any computer with Docker installed.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="exampleblock card">
+<div class="content">
+<div class="paragraph">
+<p><strong>🔬 For Mathematics&#8230;&#8203;</strong></p>
+</div>
+<div class="paragraph">
+<p>Package your entire computational environment:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Python 3.11 + NumPy 1.24.0 + SciPy 1.10.0</p>
+</li>
+<li>
+<p>Your mathematical algorithms</p>
+</li>
+<li>
+<p>Test data and configuration</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Share it with anyone, anywhere.</p>
+</div>
+</div>
+</div></div></td>
 </tr>
+</tbody>
 </table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_containers_vs_virtual_machines"><a class="anchor" href="#_containers_vs_virtual_machines"></a>3. Containers vs. Virtual Machines</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Virtual Machine</th>
+<th class="tableblock halign-left valign-top">Container</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Size</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gigabytes (includes full OS)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Megabytes (shares host OS kernel)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Startup Time</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minutes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seconds</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Resource Usage</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Heavy (full OS per VM)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Light (shared kernel)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Isolation</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Complete (hardware-level)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Process-level</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Portability</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Limited</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Excellent</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use Case</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Different OS needed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Same OS, isolated apps</p></td>
+</tr>
+</tbody>
+</table>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/docker/containers-vs-vms.png" alt="Containers vs VMs" width="600">
+</div>
+<div class="title">Figure 1. Visual Comparison</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_containers_for_scientific_computing"><a class="anchor" href="#_why_containers_for_scientific_computing"></a>4. Why Containers for Scientific Computing?</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_1_reproducible_research"><a class="anchor" href="#_1_reproducible_research"></a>4.1. 1. Reproducible Research</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Paper from 2020: "Our simulation uses Python 3.8, NumPy 1.19, custom library v2.3"
+
+Without containers: Good luck recreating that exact environment!
+With containers: docker pull myresearch/simulation:paper-2020 ✓</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_what_about_scientific_computing_and_data_science_2"><a class="anchor" href="#_what_about_scientific_computing_and_data_science_2"></a>2.1. What  about Scientific Computing and Data Science?</h3>
+<h3 id="_2_dependency_management"><a class="anchor" href="#_2_dependency_management"></a>4.2. 2. Dependency Management</h3>
 <div class="paragraph">
-<p>The matrix illustrates the challenges of deploying complex, multi-stack applications in different environments. For <strong>scientific computing</strong> and <strong>data science</strong>, this often involves managing diverse workloads (data processing, machine learning models, simulations) across environments like local development VMs, QA servers, and public clouds.</p>
+<p>Mathematical software often has complex dependencies:</p>
 </div>
-<div class="admonitionblock tip">
-<table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Your numerical analysis project needs:
+├── Python 3.11
+├── NumPy 1.24.0 (requires specific BLAS)
+├── SciPy 1.10.0 (must match NumPy version)
+├── matplotlib 3.7.0
+├── Your custom library
+└── Specific compiler flags for performance</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Containers capture ALL of this.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_collaboration"><a class="anchor" href="#_3_collaboration"></a>4.3. 3. Collaboration</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Your advisor can run your exact environment:
+docker pull ghcr.io/yourusername/thesis-simulation:latest
+docker run thesis-simulation python run_experiment.py</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_hpc_portability"><a class="anchor" href="#_4_hpc_portability"></a>4.4. 4. HPC Portability</h3>
+<div class="paragraph">
+<p>Run the same container on:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Your laptop (development)</p>
+</li>
+<li>
+<p>University cluster (testing)</p>
+</li>
+<li>
+<p>National HPC center (production)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_key_concepts"><a class="anchor" href="#_key_concepts"></a>5. Key Concepts</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_images_vs_containers"><a class="anchor" href="#_images_vs_containers"></a>5.1. Images vs. Containers</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
 <tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Docker simplifies the deployment of scientific applications and ensures consistency, which is critical for <strong>digital twins</strong>. These applications require simulating real-world processes with high fidelity across multiple environments. Docker ensures that all dependencies (data processing frameworks, models, etc.) remain consistent, facilitating smooth deployment of digital twin systems.
-</td>
+<th class="tableblock halign-left valign-top"><strong>Image</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Container</strong></th>
 </tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Blueprint/template</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Running instance</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read-only</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read-write layer on top</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stored on disk</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Running in memory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Like a class in OOP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Like an object/instance</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Image: the template
+docker pull python:3.11
+
+# Container: running instance of the image
+docker run python:3.11 python -c "print('Hello, Math!')"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_layers_and_efficiency"><a class="anchor" href="#_layers_and_efficiency"></a>5.2. Layers and Efficiency</h3>
+<div class="paragraph">
+<p>Docker images are built in <strong>layers</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Layer 4: Your Python script (2 KB)        ← Changes frequently
+Layer 3: pip install numpy scipy (200 MB) ← Changes sometimes
+Layer 2: Python 3.11 (100 MB)             ← Rarely changes
+Layer 1: Ubuntu base (50 MB)              ← Almost never changes</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Only changed layers are rebuilt/downloaded, making updates fast.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_docker_and_oci_standards"><a class="anchor" href="#_docker_and_oci_standards"></a>6. Docker and OCI Standards</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Docker popularized containers, but the technology is now standardized:</p>
+</div>
+<div class="paragraph">
+<p><strong>OCI (Open Container Initiative)</strong> defines:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Image format</strong>: How container images are structured</p>
+</li>
+<li>
+<p><strong>Runtime specification</strong>: How containers execute</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This means Docker images work with:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Docker</p>
+</li>
+<li>
+<p>Podman</p>
+</li>
+<li>
+<p>containerd</p>
+</li>
+<li>
+<p>Apptainer/Singularity (for HPC)</p>
+</li>
+</ul>
+</div>
+<div class="openblock callout tip">
+<div class="content">
+<div class="paragraph">
+<p><strong>For master students</strong>: Understanding that Docker follows OCI standards means your containerized research is portable across different container runtimes - especially important when moving from Docker (development) to Apptainer (HPC clusters).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary"><a class="anchor" href="#_summary"></a>7. Summary</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Concept</th>
+<th class="tableblock halign-left valign-top">Key Point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Container</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lightweight package with app + dependencies</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Image</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read-only template for creating containers</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">vs. VM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Containers share OS kernel, faster and lighter</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Open standards ensure portability</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For Math</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reproducible research, easy collaboration</p></td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_next_steps"><a class="anchor" href="#_next_steps"></a>8. Next Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="#docker-install.adoc" class="xref unresolved">Install Docker</a> on your machine</p>
+</li>
+<li>
+<p><a href="#hands-on/01-getting-started.adoc" class="xref unresolved">Run your first container</a></p>
+</li>
+<li>
+<p>Learn <a href="#dockerfile-basics.adoc" class="xref unresolved">how to build images with Dockerfile</a></p>
+</li>
+</ol>
 </div>
 </div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="index.html">Docker Introduction</a></span>
+  <span class="next"><a href="docker-install.html">Installation</a></span>
+</nav>
 </article>
   </div>
 </main>

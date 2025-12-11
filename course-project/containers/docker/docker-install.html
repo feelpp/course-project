@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>The Problem Docker Solves :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/docker/docker-problems-solved.html">
+    <title>Docker Installation Guide :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/docker/docker-install.html">
+    <link rel="prev" href="what-are-containers.html">
+    <link rel="next" href="docker-commands.html">
+    <meta name="description" content="Install Docker on Windows, macOS, or Linux for mathematical computing environments.">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../../_/css/site.css">
 
@@ -308,7 +311,7 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="what-are-containers.html">What are Containers?</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="docker-install.html">Installation</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -467,12 +470,14 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../../index.html">Course Project</a></li>
-    <li><a href="docker-problems-solved.html">The Problem Docker Solves</a></li>
+    <li><a href="../index.html">Containers</a></li>
+    <li>🟡 Docker Fundamentals</li>
+    <li><a href="docker-install.html">Installation</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/docker-problems-solved.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/docker-install.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -492,113 +497,363 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">The Problem Docker Solves</h1>
-<div class="sect1">
-<h2 id="_the_challenge"><a class="anchor" href="#_the_challenge"></a>1. The Challenge</h2>
+<h1 class="page">Docker Installation Guide</h1>
+<div id="preamble">
 <div class="sectionbody">
+<div class="exampleblock level-indicator bg-warning text-white p-3 rounded mb-4">
+<div class="content">
 <div class="paragraph">
-<div class="title">The Challenge</div>
-<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../_images/docker/the-challenge.png" alt="the challenge" title="The Challenge"></a></span></p>
+<p><strong>🟡 LEVEL 2</strong> | <strong>Time:</strong> 15-30 minutes | <strong>Prerequisites:</strong> None</p>
 </div>
-<div class="paragraph">
-<p>The diagram illustrates the complexity of modern applications, which are composed of many stacks and run across multiple environments.
-Each component (web frontend, API endpoint, background workers, etc.) relies on different technologies (e.g., Python, PostgreSQL, Redis).
-These applications must operate across various hardware environments, from development VMs to production clusters, and they need to migrate between them smoothly.</p>
-</div>
-<div class="paragraph">
-<p>In traditional environments, developers often face the challenge of dealing with dependencies and compatibility issues between development, testing, and production environments.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Docker simplifies this by providing consistent environments through containers, allowing seamless migration, scalability, and isolation for different services and stacks.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_what_about_scientific_computing_and_data_science"><a class="anchor" href="#_what_about_scientific_computing_and_data_science"></a>1.1. What about Scientific Computing and Data Science?</h3>
-<div class="paragraph">
-<p>The diagram highlights the complexity of modern applications across multiple stacks and hardware environments. This challenge is particularly relevant for <strong>scientific computing</strong> and <strong>data science</strong>, where different computational environments (e.g., Python, R, SQL databases) must be reliably replicated across various machines (e.g., development VMs, public cloud, customer data centers).</p>
-</div>
-<div class="paragraph">
-<p>For example, data science pipelines often rely on specific versions of libraries (e.g., <code>numpy</code>, <code>pandas</code>, <code>scipy</code>) and databases.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Docker ensures that these environments are consistent across hardware, reducing dependency conflicts and improving reproducibility.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-In <strong>digital twins</strong>, Docker helps simulate the same digital model across different environments (like public clouds, local clusters, and IoT hardware) without worrying about differences in software dependencies or configurations.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_matrix_from_hell"><a class="anchor" href="#_the_matrix_from_hell"></a>2. The Matrix From Hell</h2>
+<h2 id="_choose_your_installation_method"><a class="anchor" href="#_choose_your_installation_method"></a>1. Choose Your Installation Method</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Platform</th>
+<th class="tableblock halign-left valign-top">Recommended</th>
+<th class="tableblock halign-left valign-top">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Windows</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker Desktop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Requires WSL2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>macOS</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker Desktop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Intel or Apple Silicon</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Linux</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker Engine</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Native performance, production-ready</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_docker_desktop_windows_macos"><a class="anchor" href="#_docker_desktop_windows_macos"></a>2. Docker Desktop (Windows &amp; macOS)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../_images/docker/the-matrix-from-hell.png" alt="the matrix from hell" title="The Matrix From Hell"></a></span></p>
+<p>Docker Desktop provides:</p>
 </div>
-<div class="paragraph">
-<p>The image illustrates the complexity of deploying multiple application services (e.g., Static website, Web frontend, User DB, Queue, etc.) across various hardware environments like development VMs, QA servers, public clouds, and customer servers. Each environment may have different dependencies, configurations, and challenges, leading to a "matrix from hell" where managing consistency across environments becomes a difficult and error-prone task.</p>
-</div>
-<div class="paragraph">
-<p>Managing applications across different environments and platforms can lead to inconsistencies, resulting in delays, bugs, and issues. Docker simplifies this problem by providing a consistent runtime environment.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Docker solves this problem by providing a consistent, containerized environment across all platforms, reducing variability and improving deployment reliability.
-</td>
-</tr>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Graphical user interface</p>
+</li>
+<li>
+<p>Easy installation and updates</p>
+</li>
+<li>
+<p>Built-in Kubernetes</p>
+</li>
+<li>
+<p>Volume management UI</p>
+</li>
+</ul>
 </div>
 <div class="sect2">
-<h3 id="_what_about_scientific_computing_and_data_science_2"><a class="anchor" href="#_what_about_scientific_computing_and_data_science_2"></a>2.1. What  about Scientific Computing and Data Science?</h3>
+<h3 id="_windows_installation"><a class="anchor" href="#_windows_installation"></a>2.1. Windows Installation</h3>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Windows 10/11 (64-bit)</p>
+</li>
+<li>
+<p>WSL2 enabled</p>
+</li>
+<li>
+<p>Hardware virtualization enabled in BIOS</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-powershell hljs" data-lang="powershell"># Step 1: Enable WSL2 (run as Administrator)
+wsl --install
+
+# Step 2: Restart your computer
+
+# Step 3: Download and install Docker Desktop
+# https://www.docker.com/products/docker-desktop/</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>The matrix illustrates the challenges of deploying complex, multi-stack applications in different environments. For <strong>scientific computing</strong> and <strong>data science</strong>, this often involves managing diverse workloads (data processing, machine learning models, simulations) across environments like local development VMs, QA servers, and public clouds.</p>
+<p>After installation:</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Docker simplifies the deployment of scientific applications and ensures consistency, which is critical for <strong>digital twins</strong>. These applications require simulating real-world processes with high fidelity across multiple environments. Docker ensures that all dependencies (data processing frameworks, models, etc.) remain consistent, facilitating smooth deployment of digital twin systems.
-</td>
-</tr>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-powershell hljs" data-lang="powershell"># Verify installation
+docker --version
+docker run hello-world</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_macos_installation"><a class="anchor" href="#_macos_installation"></a>2.2. macOS Installation</h3>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>macOS 12 or newer</p>
+</li>
+<li>
+<p>Apple Silicon (M1/M2/M3) or Intel</p>
+</li>
+</ul>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Option 1: Download from website
+# https://www.docker.com/products/docker-desktop/
+
+# Option 2: Use Homebrew
+brew install --cask docker</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After installation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Start Docker Desktop from Applications
+
+# Verify installation
+docker --version
+docker run hello-world</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_docker_engine_linux"><a class="anchor" href="#_docker_engine_linux"></a>3. Docker Engine (Linux)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For production environments and HPC, install Docker Engine directly.</p>
+</div>
+<div class="sect2">
+<h3 id="_ubuntudebian"><a class="anchor" href="#_ubuntudebian"></a>3.1. Ubuntu/Debian</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Remove old versions
+sudo apt-get remove docker docker-engine docker.io containerd runc
+
+# Install prerequisites
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+
+# Add Docker's official GPG key
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+# Add the repository
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release &amp;&amp; echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+
+# Install Docker Engine
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_post_installation_linux"><a class="anchor" href="#_post_installation_linux"></a>3.2. Post-Installation (Linux)</h3>
+<div class="paragraph">
+<p>Run Docker without <code>sudo</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Create docker group and add your user
+sudo groupadd docker
+sudo usermod -aG docker $USER
+
+# Log out and back in, then verify
+docker run hello-world</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fedorarhelcentos"><a class="anchor" href="#_fedorarhelcentos"></a>3.3. Fedora/RHEL/CentOS</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Install prerequisites
+sudo dnf install dnf-plugins-core
+
+# Add Docker repository
+sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+
+# Install Docker Engine
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Start and enable Docker
+sudo systemctl start docker
+sudo systemctl enable docker</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verify_your_installation"><a class="anchor" href="#_verify_your_installation"></a>4. Verify Your Installation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Run these commands to verify Docker is working:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Check Docker version
+docker --version
+# Expected: Docker version 24.x.x or newer
+
+# Check Docker Compose version
+docker compose version
+# Expected: Docker Compose version v2.x.x
+
+# Run test container
+docker run hello-world</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Expected output for <code>hello-world</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Hello from Docker!
+This message shows that your installation appears to be working correctly.
+...</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_useful_configuration"><a class="anchor" href="#_useful_configuration"></a>5. Useful Configuration</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_resource_limits_docker_desktop"><a class="anchor" href="#_resource_limits_docker_desktop"></a>5.1. Resource Limits (Docker Desktop)</h3>
+<div class="paragraph">
+<p>For mathematical computing, you may need more resources:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open Docker Desktop → Settings → Resources</p>
+</li>
+<li>
+<p>Adjust:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>CPUs</strong>: At least 4 for parallel computations</p>
+</li>
+<li>
+<p><strong>Memory</strong>: At least 8 GB for large datasets</p>
+</li>
+<li>
+<p><strong>Disk</strong>: At least 50 GB for images</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configure_default_registry"><a class="anchor" href="#_configure_default_registry"></a>5.2. Configure Default Registry</h3>
+<div class="paragraph">
+<p>For using GitHub Container Registry (GHCR):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Login to GitHub Container Registry
+echo $GITHUB_TOKEN | docker login ghcr.io -u USERNAME --password-stdin</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>6. Troubleshooting</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_docker_daemon_not_running"><a class="anchor" href="#_docker_daemon_not_running"></a>6.1. Docker daemon not running</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Linux: Start the service
+sudo systemctl start docker
+
+# macOS/Windows: Start Docker Desktop application</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_permission_denied"><a class="anchor" href="#_permission_denied"></a>6.2. Permission denied</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Linux: Add user to docker group
+sudo usermod -aG docker $USER
+# Then log out and back in</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_disk_space_issues"><a class="anchor" href="#_disk_space_issues"></a>6.3. Disk space issues</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Clean up unused resources
+docker system prune -a
+
+# Check disk usage
+docker system df</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_next_steps"><a class="anchor" href="#_next_steps"></a>7. Next Steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that Docker is installed:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="#hands-on/01-getting-started.adoc" class="xref unresolved">Run your first containers</a></p>
+</li>
+<li>
+<p>Learn <a href="#docker-commands.adoc" class="xref unresolved">essential Docker commands</a></p>
+</li>
+<li>
+<p>Create your first <a href="#dockerfile-basics.adoc" class="xref unresolved">Dockerfile</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="what-are-containers.html">What are Containers?</a></span>
+  <span class="next"><a href="docker-commands.html">Essential Commands</a></span>
+</nav>
 </article>
   </div>
 </main>

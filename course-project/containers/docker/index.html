@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
+<head>
+      <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Introduction to Docker :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/docker/index.html">
     <link rel="prev" href="../index.html">
-    <link rel="next" href="docker-overview.html">
+    <link rel="next" href="what-are-containers.html">
+    <meta name="description" content="Master Docker for mathematical computing - from basic concepts to building and deploying containerized applications.">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../../_/css/site.css">
 
@@ -100,8 +101,8 @@ MathJax.Hub.Config({
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
 <script>var uiRootPath = '../../../_'</script>
 
-  </head>
-  <body class="article">
+</head>
+<body class="article docs-manuals-catalog docs-cards-layout ">
 <header class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
         style="border-top: 4px solid #9E9E9E">
@@ -138,8 +139,9 @@ MathJax.Hub.Config({
             </div>
         </div>
     </nav>
-</header><div class="body">
-<a href="#" class="menu-expand-toggle"></a>
+</header>
+<div class="body">
+  <a href="#" class="menu-expand-toggle"></a>
 <div class="nav-container" data-component="course-project" data-version="">
   <aside class="nav">
     <div class="panels">
@@ -161,405 +163,280 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../../instructor-guide.html">📚 Instructor Guide</a>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">🟢 Level 1: Essential Foundations</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../linux/index.html">Linux Essentials for Mathematics</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <span class="nav-text">Git &amp; GitHub Fundamentals (See Git &amp; GitHub Documentation section)</span>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../vscode/index.html">VS Code for Mathematics</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">🟡 Level 2: Collaborative Development</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../project-management/index.html">Research Project Management</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../index.html">Containers for Mathematics</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">🔴 Level 3: Advanced Automation</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../cicd/index.html">CI/CD for Mathematical Computing</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../software/index.html">Software Distribution</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../visualisation/index.html">Research Visualization</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">🟢 Linux Essentials for Mathematics (Level 1)</span>
+    <a class="nav-link" href="../../linux/index.html">Linux</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../linux/index.html">Introduction &amp; Overview</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Command Line Fundamentals</span>
+    <span class="nav-text">🟢 Fundamentals</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../linux/shell.html">Linux Shell Basics</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../linux/editing.html">File Editing in Linux</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../linux/text-processing.html">Text Processing</a>
+    <a class="nav-link" href="../../linux/shell.html">Shell Basics</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../linux/files.html">File Operations</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../linux/editing.html">File Editing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../linux/text-processing.html">Text Processing</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">🟡 Remote Computing (Level 2)</span>
+    <span class="nav-text">🟡 Remote Computing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../linux/ssh/index.html">Introduction to SSH and Remote-SSH</a>
+    <a class="nav-link" href="../../linux/ssh/index.html">SSH Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../linux/ssh/ssh-setup.html">Setting Up SSH</a>
+    <a class="nav-link" href="../../linux/ssh/ssh-setup.html">SSH Setup</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../linux/ssh/ssh-commands.html">Basic SSH Commands</a>
+    <a class="nav-link" href="../../linux/ssh/ssh-commands.html">SSH Commands</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../linux/ssh/remote-ssh-vscode.html">Remote-SSH Extension for VS Code</a>
+    <a class="nav-link" href="../../linux/ssh/remote-ssh-vscode.html">VS Code Remote-SSH</a>
   </li>
 </ul>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../vscode/index.html">Overview of VS Code</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../vscode/install.html">VS Code Installation</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../vscode/basic-usage.html">Basic Usage and Commands</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../vscode/extemsions.html">Extension Installation and Key Extensions</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../vscode/remote-ssh.html">Remote SSH Extension</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../vscode/wsl.html">WSL Extension</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../vscode/python-jupyter.html">Python and Jupyter Extensions</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../vscode/configure-vscode.html">How to Configure VS Code with .vscode</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../vscode/cheatsheet.html">VS Code Cheat Sheet</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../git-github/index.html">Git &amp; GitHub</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟢 Git Fundamentals</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/git-starter.html">Git Starter Guide</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/git-repository-basics.html">Repository Basics</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="0">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟢 GitHub Basics</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/github-essentials.html">GitHub Essentials</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/github-start.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/github-how-to-write-issues.html">Writing Issues</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Collaboration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/git-branch.html">Git Branching</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/git-merges.html">Merging &amp; Conflicts</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/git-remotes.html">Git Remotes</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/github-collaborations.html">GitHub Collaboration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🔴 Automation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/github-actions.html">GitHub Actions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/github-actions-cmake-eigen3.html">CMake + Eigen3 Example</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../project-management/index.html">Introduction to Project Management</a>
+    <a class="nav-link" href="../../vscode/index.html">VS Code</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../project-management/introduction.html">What is Project?</a>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟢 Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../vscode/install.html">Installation</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../project-management/project-phases.html">Phases of a Project</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../vscode/basic-usage.html">Basic Usage</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../project-management/practical-examples.html">Practical Examples in Scientific Computing</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../vscode/extensions.html">Extensions</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../project-management/case-studies.html">Case Studies</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../vscode/configure-vscode.html">Configuration</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../project-management/tools-gantt.html">Project Management Tools and Gantt Charts</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../project-management/agile-best-practices.html">Agile Best Practices</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../project-management/github.html">GitHub and Project Management</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../vscode/cheatsheet.html">Cheat Sheet</a>
   </li>
 </ul>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../jupyter.html">Jupyter Notebooks</a>
+  </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Git &amp; GitHub Documentation</span>
+    <a class="nav-link" href="../index.html">Containers</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">🟢 Git Fundamentals (Level 1)</span>
+    <span class="nav-text">🟡 Docker Fundamentals</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../git%20&%20github/git-basics.html">Git Basics for Mathematical Research</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../git%20&%20github/git-starter.html">Git Starter Guide</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../git%20&%20github/git-repository-basics.html">Git Repository Basics</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">🟡 Intermediate Git (Level 2)</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../git%20&%20github/git-branch.html">Git Branching</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../git%20&%20github/git-merges.html">Git Merge &amp; Conflicts</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../git%20&%20github/git-remotes.html">Git Remotes</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">🟢 GitHub Basics (Level 1)</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../git%20&%20github/github-essentials.html">GitHub Essentials</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../git%20&%20github/github-start.html">GitHub Getting Started</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../git%20&%20github/github-how-to-write-issues.html">Writing Issues</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">🟡 Advanced GitHub (Level 2)</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../git%20&%20github/github-collaborations.html">GitHub Collaborations</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../git%20&%20github/github-actions.html">GitHub Actions Intro</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../git%20&%20github/github-actions-cmake-eigen3.html">GitHub Actions: CMake + Eigen3</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Containers for Mathematical Computing</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">🟡 Container Fundamentals (Level 2)</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../index.html">Introduction to Containers</a>
-  </li>
   <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="index.html">Docker for Mathematics</a>
+    <a class="nav-link" href="index.html">Docker Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="docker-overview.html">Docker Overview</a>
+    <a class="nav-link" href="what-are-containers.html">What are Containers?</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="docker-problems-solved.html">Problems Docker Solves</a>
+    <a class="nav-link" href="docker-install.html">Installation</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="docker-architecture.html">Docker Architecture</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">🟡 Basic Container Usage (Level 2)</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="hands-on/index.html">Docker Hands-on Tutorials</a>
+    <a class="nav-link" href="docker-commands.html">Essential Commands</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="hands-on/01-getting-started.html">Getting Started with Docker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="hands-on/02-advanced-usage.html">Advanced Docker Usage</a>
+    <a class="nav-link" href="dockerfile-basics.html">Dockerfile Basics</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="hands-on/04-compose.html">Docker Compose</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/06-githubactions.html">Docker + GitHub Actions</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">🔴 HPC Containerization (Level 3)</span>
+    <span class="nav-text">🔴 HPC Containers</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../hpc/index.html">Containers for HPC</a>
+    <a class="nav-link" href="../hpc/index.html">HPC Containerization</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../apptainer/index.html">Apptainer/Singularity</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../apptainer/apptainer-install.html">Installing Apptainer</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../apptainer/tutorial.html">Apptainer Tutorial</a>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">🔴 Advanced HPC Workflows (Level 3)</span>
-<ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../hpc/cicd.html">CI/CD for HPC</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../hpc/best-practices.html">HPC Best Practices</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../hpc/advanced.html">Advanced HPC Techniques</a>
-  </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">🔴 Production Deployment (Level 3)</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../hpc/hands-on/index.html">HPC Hands-on Tutorials</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../hpc/hands-on/00-classroom.html">C3B Classroom Setup</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../hpc/hands-on/01-docker.html">Docker on HPC</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../hpc/hands-on/02-apptainer.html">Apptainer on HPC</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../hpc/hands-on/03-docker-mpi.html">Docker and MPI</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../hpc/hands-on/03-cicd-githubactions.html">CI/CD with GitHub Actions</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../hpc/hands-on/05-deploy.html">Deploy with Apptainer</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">CICD</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../cicd/index.html">CI/CD with GitHub Actions </a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../cicd/gitlab.html">CI/CD with GitLab</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">HandsOn</span>
+    <a class="nav-link" href="../../project-management/index.html">Project Management</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../cicd/gitlab_handson.html">Hands on with GitLab</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Fundamentals</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../project-management/introduction.html">What is a Project?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../project-management/project-phases.html">Project Phases</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../project-management/practical-examples.html">Practical Examples</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Tools &amp; Methods</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../project-management/tools-gantt.html">Tools &amp; Gantt Charts</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../project-management/agile-best-practices.html">Agile Practices</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../project-management/github.html">GitHub for PM</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../project-management/case-studies.html">Case Studies</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../software/index.html">Sofware Installation</a>
+    <a class="nav-link" href="../../cicd/index.html">CI/CD</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🔴 Platforms</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../cicd/gitlab.html">GitLab CI/CD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../cicd/gitlab_handson.html">GitLab Hands-on</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../software/index.html">Software Distribution</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🔴 Topics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../software/package-managers.html">Package Managers</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../software/repo/organization.html">Software Repository</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../software/repo/organization.html">Repository Organization</a>
   </li>
 </ul>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Visualisation</span>
+    <a class="nav-link" href="../../visualisation/index.html">Visualization</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Web based</span>
+    <span class="nav-text">🔴 Web Dashboards</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../visualisation/dash.html">Dash Turorial</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../visualisation/hw.html">Dash Homework</a>
+    <a class="nav-link" href="../../visualisation/dash.html">Dash Tutorial</a>
   </li>
 </ul>
   </li>
@@ -587,55 +464,289 @@ MathJax.Hub.Config({
     </div>
   </aside>
 </div>
-<main class="article">
-<div class="toolbar" role="navigation">
-  <button class="nav-toggle"></button>
-    <a href="../../index.html" class="home-link"></a>
-  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <main class="article">
+    <div class="toolbar" role="navigation">
+      <button class="nav-toggle"></button>
+       <a href="../../index.html" class="home-link"></a> 
+      <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../../index.html">Course Project</a></li>
-    <li>Containers for Mathematical Computing</li>
-    <li>🟡 Container Fundamentals (Level 2)</li>
-    <li><a href="index.html">Docker for Mathematics</a></li>
+    <li><a href="../index.html">Containers</a></li>
+    <li>🟡 Docker Fundamentals</li>
+    <li><a href="index.html">Docker Introduction</a></li>
   </ul>
 </nav>
+    </div>
 
-  
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/index.adoc">Edit this Page</a></div>
-  
-  <div class="page-downloads">
-  <span class="label">Download as</span>
-  <ul class="download-options">
-    <li>
-      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
-         class="pdf-download">
-        <img class="pdf-file-icon icon" src="../../../_/img/pdf.svg"/> .pdf
-      </a>
-    </li>
-  </ul>
+    <div class="content">
+      <article class="doc">
+         <h1 class="page">Introduction to Docker</h1> 
+        <div id="preamble">
+<div class="sectionbody">
+<div class="exampleblock level-indicator bg-warning text-white p-3 rounded mb-4">
+<div class="content">
+<div class="paragraph">
+<p><strong>🟡 LEVEL 2</strong> | <strong>Prerequisites:</strong> Linux basics | <strong>Time:</strong> 4-6 hours total</p>
+</div>
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="../_images/docker/docker.png" alt="Docker Logo" width="200">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_learning_path"><a class="anchor" href="#_learning_path"></a>1. Learning Path</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This module teaches Docker through a structured progression designed for master students in mathematics and scientific computing:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch cards grid-2">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="exampleblock card">
+<div class="content">
+<div class="paragraph">
+<p><strong>📚 Concepts</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="#what-are-containers.adoc" class="xref unresolved">What are Containers?</a></p>
+</li>
+<li>
+<p><a href="#docker-problems-solved.adoc" class="xref unresolved">Problems Docker Solves</a></p>
+</li>
+<li>
+<p><a href="#docker-architecture.adoc" class="xref unresolved">Docker Architecture</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="exampleblock card">
+<div class="content">
+<div class="paragraph">
+<p><strong>🛠️ Setup</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="#docker-install.adoc" class="xref unresolved">Installation Guide</a></p>
+</li>
+<li>
+<p><a href="#docker-commands.adoc" class="xref unresolved">Essential Commands</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch cards grid-2">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="exampleblock card">
+<div class="content">
+<div class="paragraph">
+<p><strong>📝 Building Images</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="#dockerfile-basics.adoc" class="xref unresolved">Dockerfile Fundamentals</a></p>
+</li>
+<li>
+<p><a href="#hands-on/01-getting-started.adoc" class="xref unresolved">Hands-on: First Steps</a></p>
+</li>
+<li>
+<p><a href="#hands-on/02-advanced-usage.adoc" class="xref unresolved">Advanced Usage</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="exampleblock card">
+<div class="content">
+<div class="paragraph">
+<p><strong>🚀 Automation &amp; Orchestration</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="#hands-on/04-compose.adoc" class="xref unresolved">Docker Compose</a></p>
+</li>
+<li>
+<p><a href="#hands-on/06-githubactions.adoc" class="xref unresolved">GitHub Actions + Docker</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_quick_start"><a class="anchor" href="#_quick_start"></a>2. Quick Start</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you&#8217;re in a hurry, here&#8217;s the minimum path:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">1. Install Docker       → 15 min
+2. Basic commands       → 30 min
+3. Dockerfile basics    → 45 min
+4. GitHub Actions       → 30 min
+                        --------
+   Total:                 2 hours</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_module_contents"><a class="anchor" href="#_module_contents"></a>3. Module Contents</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_concepts_why_containers"><a class="anchor" href="#_concepts_why_containers"></a>3.1. Concepts (Why Containers?)</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="#what-are-containers.adoc" class="xref unresolved"><strong>What are Containers?</strong></a></dt>
+<dd>
+<p>Understand containers vs. VMs, images vs. containers, OCI standards.</p>
+</dd>
+<dt class="hdlist1"><a href="#docker-problems-solved.adoc" class="xref unresolved"><strong>Problems Docker Solves</strong></a></dt>
+<dd>
+<p>The "matrix from hell", reproducibility challenges, and how Docker addresses them.</p>
+</dd>
+<dt class="hdlist1"><a href="#docker-architecture.adoc" class="xref unresolved"><strong>Docker Architecture</strong></a></dt>
+<dd>
+<p>Client-server model, Docker daemon, registries, and how containers work.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_hands_on_skills"><a class="anchor" href="#_hands_on_skills"></a>3.2. Hands-On Skills</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="#docker-install.adoc" class="xref unresolved"><strong>Installation Guide</strong></a></dt>
+<dd>
+<p>Install Docker Desktop (Windows/macOS) or Docker Engine (Linux).</p>
+</dd>
+<dt class="hdlist1"><a href="#docker-commands.adoc" class="xref unresolved"><strong>Essential Commands</strong></a></dt>
+<dd>
+<p><code>docker run</code>, <code>docker build</code>, <code>docker exec</code>, volumes, ports, and more.</p>
+</dd>
+<dt class="hdlist1"><a href="#dockerfile-basics.adoc" class="xref unresolved"><strong>Dockerfile Fundamentals</strong></a></dt>
+<dd>
+<p>Create custom images for your mathematical computing projects.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_advanced_topics"><a class="anchor" href="#_advanced_topics"></a>3.3. Advanced Topics</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="#hands-on/04-compose.adoc" class="xref unresolved"><strong>Docker Compose</strong></a></dt>
+<dd>
+<p>Orchestrate multi-container applications (e.g., Jupyter + database).</p>
+</dd>
+<dt class="hdlist1"><a href="#hands-on/06-githubactions.adoc" class="xref unresolved"><strong>GitHub Actions + Docker</strong></a></dt>
+<dd>
+<p>Automate image building and publishing with CI/CD.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_docker_for_mathematics_students"><a class="anchor" href="#_why_docker_for_mathematics_students"></a>4. Why Docker for Mathematics Students?</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Challenge</th>
+<th class="tableblock halign-left valign-top">Docker Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>"Works on my machine"</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Package exact versions of Python, NumPy, MATLAB in a container</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Complex dependencies</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dockerfile captures all setup steps reproducibly</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Sharing research</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docker pull yourimage</code> gives collaborators your exact environment</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>HPC deployment</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Build locally, run on clusters (via Apptainer/Singularity)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Long-term preservation</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Archive container images with published papers</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_check"><a class="anchor" href="#_prerequisites_check"></a>5. Prerequisites Check</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before starting, ensure you have:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><input type="checkbox" data-item-complete="0"> Basic Linux command-line skills (cd, ls, mkdir)</p>
+</li>
+<li>
+<p><input type="checkbox" data-item-complete="0"> A computer with 8GB+ RAM and 20GB+ free disk space</p>
+</li>
+<li>
+<p><input type="checkbox" data-item-complete="0"> Administrator/sudo access for installation</p>
+</li>
+<li>
+<p><input type="checkbox" data-item-complete="0"> A GitHub account (for the Actions tutorial)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Ready? Start with <a href="#what-are-containers.adoc" class="xref unresolved">What are Containers?</a> →</p>
+</div>
 </div>
 </div>
 
-  <div class="content">
-<aside class="toc sidebar" data-title="Contents" data-levels="2">
-  <div class="toc-menu"></div>
-</aside>
-<article class="doc">
-<h1 class="page">Introduction to Docker</h1>
-<div class="paragraph">
-<p>Welcome to the Introduction to Docker course.</p>
+      </article>
+    </div>
+  </main>
 </div>
-<div class="paragraph">
-<p>This course will cover everything from Docker basics, architecture, practical commands, and advanced topics like Docker Compose. Use the navigation to explore each section.</p>
-</div>
-<nav class="pagination">
-  <span class="prev"><a href="../index.html">Introduction to Containers</a></span>
-  <span class="next"><a href="docker-overview.html">Docker Overview</a></span>
-</nav>
-</article>
-  </div>
-</main>
-</div>
+
 <footer class="footer"
     style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
     <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
@@ -675,5 +786,5 @@ function toggleFullScreen() {
    }
 }
 </script>
-  </body>
+</body>
 </html>

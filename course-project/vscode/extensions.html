@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Remote SSH Extension :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/vscode/remote-ssh.html">
+    <title>Extension Installation and Key Extensions :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/vscode/extensions.html">
+    <link rel="prev" href="basic-usage.html">
+    <link rel="next" href="configure-vscode.html">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../_/css/site.css">
 
@@ -278,7 +280,7 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="basic-usage.html">Basic Usage</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="extensions.html">Extensions</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -467,12 +469,14 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Course Project</a></li>
-    <li><a href="remote-ssh.html">Remote SSH Extension</a></li>
+    <li><a href="index.html">VS Code</a></li>
+    <li>🟢 Getting Started</li>
+    <li><a href="extensions.html">Extensions</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/vscode/pages/remote-ssh.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/vscode/pages/extensions.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -492,51 +496,54 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Remote SSH Extension</h1>
+<h1 class="page">Extension Installation and Key Extensions</h1>
 <div class="sect1">
-<h2 id="_what_is_remote_ssh"><a class="anchor" href="#_what_is_remote_ssh"></a>1. What is Remote SSH?</h2>
+<h2 id="_installing_extensions"><a class="anchor" href="#_installing_extensions"></a>1. Installing Extensions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Remote SSH</strong> extension allows you to connect to a remote server and work on files, debug, and run commands directly on the remote machine.</p>
+<p>One of the strengths of VS Code is its rich ecosystem of extensions. Extensions enhance your development environment by providing extra features like language support, debugging tools, and integration with cloud services.</p>
 </div>
+<div class="paragraph">
+<p>To install extensions, follow these steps:</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_installing_the_remote_ssh_extension"><a class="anchor" href="#_installing_the_remote_ssh_extension"></a>2. Installing the Remote SSH Extension</h2>
-<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the Extensions panel in VS Code (<span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></span>).</p>
+<p>Open the Extensions panel using <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></span> or <span class="keyseq"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></span> on macOS.</p>
 </li>
 <li>
-<p>Search for "Remote - SSH" and click <b class="button">Install</b>.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_setting_up_remote_ssh"><a class="anchor" href="#_setting_up_remote_ssh"></a>3. Setting up Remote SSH</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Press <kbd>F1</kbd> or <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> or on MacOS <span class="keyseq"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> and type "Remote-SSH: Connect to Host" in the Command Palette.</p>
+<p>In the search bar, type the name of the extension you want to install.</p>
 </li>
 <li>
-<p>Enter the SSH connection details, e.g., <code>ssh <a href="mailto:user@remote-server.com">user@remote-server.com</a></code>.</p>
-</li>
-<li>
-<p>VS Code will connect to the remote machine, allowing you to use it as if it were local.</p>
+<p>Click <b class="button">Install</b> on the extension.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>You can also edit your SSH config file to save the connection details for quick access.</p>
+<p>You can also search and install extensions from the marketplace: <a href="https://marketplace.visualstudio.com/vscode">&gt; marketplace.visualstudio.com/vscode</a>.</p>
+</div>
+<div class="paragraph">
+<p>Here are some key extensions that are useful for development:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="remote-ssh.html" class="xref page">Remote SSH</a></p>
+</li>
+<li>
+<p><a href="wsl.html" class="xref page">WSL (Windows Subsystem for Linux)</a></p>
+</li>
+<li>
+<p><a href="python-jupyter.html" class="xref page">Python and Jupyter Extensions</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
+<nav class="pagination">
+  <span class="prev"><a href="basic-usage.html">Basic Usage</a></span>
+  <span class="next"><a href="configure-vscode.html">Configuration</a></span>
+</nav>
 </article>
   </div>
 </main>

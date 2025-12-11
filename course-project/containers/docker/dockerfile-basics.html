@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>The Problem Docker Solves :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/docker/docker-problems-solved.html">
+    <title>Dockerfile: Building Custom Images :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/docker/dockerfile-basics.html">
+    <link rel="prev" href="docker-commands.html">
+    <link rel="next" href="hands-on/04-compose.html">
+    <meta name="description" content="Learn to create Dockerfiles to build custom container images for mathematical computing and research.">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../../_/css/site.css">
 
@@ -314,7 +317,7 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="docker-commands.html">Essential Commands</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="dockerfile-basics.html">Dockerfile Basics</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -467,12 +470,14 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../../index.html">Course Project</a></li>
-    <li><a href="docker-problems-solved.html">The Problem Docker Solves</a></li>
+    <li><a href="../index.html">Containers</a></li>
+    <li>🟡 Docker Fundamentals</li>
+    <li><a href="dockerfile-basics.html">Dockerfile Basics</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/docker-problems-solved.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/dockerfile-basics.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -492,113 +497,600 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">The Problem Docker Solves</h1>
-<div class="sect1">
-<h2 id="_the_challenge"><a class="anchor" href="#_the_challenge"></a>1. The Challenge</h2>
+<h1 class="page">Dockerfile: Building Custom Images</h1>
+<div id="preamble">
 <div class="sectionbody">
+<div class="exampleblock level-indicator bg-warning text-white p-3 rounded mb-4">
+<div class="content">
 <div class="paragraph">
-<div class="title">The Challenge</div>
-<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../_images/docker/the-challenge.png" alt="the challenge" title="The Challenge"></a></span></p>
+<p><strong>🟡 LEVEL 2</strong> | <strong>Time:</strong> 45 minutes | <strong>Prerequisites:</strong> Basic Docker commands</p>
 </div>
-<div class="paragraph">
-<p>The diagram illustrates the complexity of modern applications, which are composed of many stacks and run across multiple environments.
-Each component (web frontend, API endpoint, background workers, etc.) relies on different technologies (e.g., Python, PostgreSQL, Redis).
-These applications must operate across various hardware environments, from development VMs to production clusters, and they need to migrate between them smoothly.</p>
-</div>
-<div class="paragraph">
-<p>In traditional environments, developers often face the challenge of dealing with dependencies and compatibility issues between development, testing, and production environments.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Docker simplifies this by providing consistent environments through containers, allowing seamless migration, scalability, and isolation for different services and stacks.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_what_about_scientific_computing_and_data_science"><a class="anchor" href="#_what_about_scientific_computing_and_data_science"></a>1.1. What about Scientific Computing and Data Science?</h3>
-<div class="paragraph">
-<p>The diagram highlights the complexity of modern applications across multiple stacks and hardware environments. This challenge is particularly relevant for <strong>scientific computing</strong> and <strong>data science</strong>, where different computational environments (e.g., Python, R, SQL databases) must be reliably replicated across various machines (e.g., development VMs, public cloud, customer data centers).</p>
-</div>
-<div class="paragraph">
-<p>For example, data science pipelines often rely on specific versions of libraries (e.g., <code>numpy</code>, <code>pandas</code>, <code>scipy</code>) and databases.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Docker ensures that these environments are consistent across hardware, reducing dependency conflicts and improving reproducibility.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-In <strong>digital twins</strong>, Docker helps simulate the same digital model across different environments (like public clouds, local clusters, and IoT hardware) without worrying about differences in software dependencies or configurations.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_matrix_from_hell"><a class="anchor" href="#_the_matrix_from_hell"></a>2. The Matrix From Hell</h2>
+<h2 id="_what_is_a_dockerfile"><a class="anchor" href="#_what_is_a_dockerfile"></a>1. What is a Dockerfile?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../_images/docker/the-matrix-from-hell.png" alt="the matrix from hell" title="The Matrix From Hell"></a></span></p>
+<p>A <strong>Dockerfile</strong> is a text file containing instructions to build a Docker image. Think of it as a recipe that Docker follows to create your container environment.</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Simple Dockerfile example
+FROM python:3.11
+RUN pip install numpy scipy matplotlib
+COPY analysis.py /app/
+WORKDIR /app
+CMD ["python", "analysis.py"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dockerfile_instructions"><a class="anchor" href="#_dockerfile_instructions"></a>2. Dockerfile Instructions</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_from_base_image"><a class="anchor" href="#_from_base_image"></a>2.1. FROM - Base Image</h3>
 <div class="paragraph">
-<p>The image illustrates the complexity of deploying multiple application services (e.g., Static website, Web frontend, User DB, Queue, etc.) across various hardware environments like development VMs, QA servers, public clouds, and customer servers. Each environment may have different dependencies, configurations, and challenges, leading to a "matrix from hell" where managing consistency across environments becomes a difficult and error-prone task.</p>
+<p>Every Dockerfile starts with <code>FROM</code>. It specifies the base image to build upon.</p>
 </div>
-<div class="paragraph">
-<p>Managing applications across different environments and platforms can lead to inconsistencies, resulting in delays, bugs, and issues. Docker simplifies this problem by providing a consistent runtime environment.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Official Python image
+FROM python:3.11
+
+# Slim variant (smaller)
+FROM python:3.11-slim
+
+# Specific version with Debian
+FROM python:3.11.7-bookworm
+
+# Ubuntu base
+FROM ubuntu:24.04</code></pre>
 </div>
-<div class="admonitionblock tip">
-<table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Choosing a Base Image</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
 <tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Docker solves this problem by providing a consistent, containerized environment across all platforms, reducing variability and improving deployment reliability.
-</td>
+<th class="tableblock halign-left valign-top">Base</th>
+<th class="tableblock halign-left valign-top">Use Case</th>
+<th class="tableblock halign-left valign-top">Size</th>
 </tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>python:3.11</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Full development environment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~1 GB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>python:3.11-slim</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Production, smaller footprint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~150 MB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>python:3.11-alpine</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minimal, may have compatibility issues</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~50 MB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ubuntu:24.04</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Full control, install what you need</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~80 MB</p></td>
+</tr>
+</tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_what_about_scientific_computing_and_data_science_2"><a class="anchor" href="#_what_about_scientific_computing_and_data_science_2"></a>2.1. What  about Scientific Computing and Data Science?</h3>
+<h3 id="_run_execute_commands"><a class="anchor" href="#_run_execute_commands"></a>2.2. RUN - Execute Commands</h3>
 <div class="paragraph">
-<p>The matrix illustrates the challenges of deploying complex, multi-stack applications in different environments. For <strong>scientific computing</strong> and <strong>data science</strong>, this often involves managing diverse workloads (data processing, machine learning models, simulations) across environments like local development VMs, QA servers, and public clouds.</p>
+<p>Execute commands during image build:</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Docker simplifies the deployment of scientific applications and ensures consistency, which is critical for <strong>digital twins</strong>. These applications require simulating real-world processes with high fidelity across multiple environments. Docker ensures that all dependencies (data processing frameworks, models, etc.) remain consistent, facilitating smooth deployment of digital twin systems.
-</td>
-</tr>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Install system packages
+RUN apt-get update &amp;&amp; apt-get install -y \
+    build-essential \
+    gfortran \
+    libopenblas-dev \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+# Install Python packages
+RUN pip install --no-cache-dir \
+    numpy==1.24.0 \
+    scipy==1.10.0 \
+    matplotlib==3.7.0
+
+# Create directories
+RUN mkdir -p /app/data /app/results</code></pre>
+</div>
+</div>
+<div class="openblock callout tip">
+<div class="content">
+<div class="paragraph">
+<p><strong>Best Practice</strong>: Combine related commands with <code>&amp;&amp;</code> to reduce layers. Clean up caches (<code>rm -rf /var/lib/apt/lists/*</code>, <code>--no-cache-dir</code>) to reduce image size.</p>
 </div>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_copy_and_add_add_files"><a class="anchor" href="#_copy_and_add_add_files"></a>2.3. COPY and ADD - Add Files</h3>
+<div class="paragraph">
+<p>Copy files from your local machine into the image:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Copy single file
+COPY requirements.txt /app/
+
+# Copy directory contents
+COPY src/ /app/src/
+
+# Copy with different name
+COPY local_config.yml /app/config.yml
+
+# Copy multiple files
+COPY script1.py script2.py /app/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>ADD</code> has extra features (URL download, auto-extract tar), but <code>COPY</code> is preferred for clarity.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_workdir_set_working_directory"><a class="anchor" href="#_workdir_set_working_directory"></a>2.4. WORKDIR - Set Working Directory</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile">WORKDIR /app
+
+# All subsequent commands run from /app
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["python", "main.py"]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_env_environment_variables"><a class="anchor" href="#_env_environment_variables"></a>2.5. ENV - Environment Variables</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV APP_ENV=production
+
+# Use variables
+ENV DATA_DIR=/app/data
+RUN mkdir -p $DATA_DIR</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_expose_document_ports"><a class="anchor" href="#_expose_document_ports"></a>2.6. EXPOSE - Document Ports</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Document that container listens on port 8888
+EXPOSE 8888
+
+# Multiple ports
+EXPOSE 8080 8443</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note: <code>EXPOSE</code> is documentation only. You still need <code>-p</code> when running.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cmd_and_entrypoint_default_command"><a class="anchor" href="#_cmd_and_entrypoint_default_command"></a>2.7. CMD and ENTRYPOINT - Default Command</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># CMD: Default command (can be overridden)
+CMD ["python", "main.py"]
+
+# ENTRYPOINT: Fixed command
+ENTRYPOINT ["python"]
+CMD ["main.py"]  # Default argument, can be overridden</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the ENTRYPOINT example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run myimage              # Runs: python main.py
+docker run myimage other.py     # Runs: python other.py</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_complete_dockerfile_examples"><a class="anchor" href="#_complete_dockerfile_examples"></a>3. Complete Dockerfile Examples</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_example_1_python_scientific_computing"><a class="anchor" href="#_example_1_python_scientific_computing"></a>3.1. Example 1: Python Scientific Computing</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Dockerfile for numerical analysis with Python
+FROM python:3.11-slim
+
+# Install system dependencies for scientific libraries
+RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends \
+    build-essential \
+    gfortran \
+    libopenblas-dev \
+    liblapack-dev \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY src/ ./src/
+COPY main.py .
+
+# Environment variables
+ENV PYTHONUNBUFFERED=1
+
+# Default command
+CMD ["python", "main.py"]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With <code>requirements.txt</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">numpy==1.24.0
+scipy==1.10.0
+matplotlib==3.7.0
+pandas==2.0.0</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example_2_jupyter_notebook_environment"><a class="anchor" href="#_example_2_jupyter_notebook_environment"></a>3.2. Example 2: Jupyter Notebook Environment</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Dockerfile for Jupyter-based mathematical research
+FROM python:3.11
+
+# Install Jupyter and scientific stack
+RUN pip install --no-cache-dir \
+    jupyterlab \
+    numpy \
+    scipy \
+    matplotlib \
+    sympy \
+    pandas
+
+# Create non-root user for security
+RUN useradd -m -s /bin/bash researcher
+USER researcher
+
+# Set working directory
+WORKDIR /home/researcher/notebooks
+
+# Expose Jupyter port
+EXPOSE 8888
+
+# Start Jupyter Lab
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--no-browser"]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example_3_ccmake_mathematical_library"><a class="anchor" href="#_example_3_ccmake_mathematical_library"></a>3.3. Example 3: C++/CMake Mathematical Library</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Dockerfile for C++ mathematical computing with Eigen
+FROM ubuntu:24.04
+
+# Install build tools and libraries
+RUN apt-get update &amp;&amp; apt-get install -y \
+    build-essential \
+    cmake \
+    git \
+    libeigen3-dev \
+    libboost-all-dev \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /project
+
+# Copy project files
+COPY CMakeLists.txt .
+COPY src/ ./src/
+COPY include/ ./include/
+
+# Build the project
+RUN mkdir build &amp;&amp; cd build &amp;&amp; \
+    cmake .. -DCMAKE_BUILD_TYPE=Release &amp;&amp; \
+    make -j$(nproc)
+
+# Set the built executable as entry point
+ENTRYPOINT ["/project/build/mymath"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_building_images"><a class="anchor" href="#_building_images"></a>4. Building Images</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_basic_build"><a class="anchor" href="#_basic_build"></a>4.1. Basic Build</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Build from current directory (Dockerfile must exist)
+docker build -t myimage .
+
+# Build with specific Dockerfile
+docker build -t myimage -f Dockerfile.dev .
+
+# Build with tag/version
+docker build -t myimage:v1.0 .
+docker build -t myimage:latest .</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_context"><a class="anchor" href="#_build_context"></a>4.2. Build Context</h3>
+<div class="paragraph">
+<p>The <code>.</code> at the end specifies the <strong>build context</strong> - the directory containing files available to COPY/ADD.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Build context is current directory
+docker build -t myimage .
+
+# Build context is parent directory
+docker build -t myimage -f docker/Dockerfile ..</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dockerignore"><a class="anchor" href="#_dockerignore"></a>4.3. .dockerignore</h3>
+<div class="paragraph">
+<p>Create <code>.dockerignore</code> to exclude files from build context:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text"># .dockerignore
+.git
+.gitignore
+__pycache__
+*.pyc
+.venv
+venv
+*.egg-info
+.pytest_cache
+.mypy_cache
+data/
+results/
+*.log
+.DS_Store</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_multi_stage_builds"><a class="anchor" href="#_multi_stage_builds"></a>5. Multi-Stage Builds</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Reduce image size by separating build and runtime stages:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Stage 1: Build
+FROM python:3.11 AS builder
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir --target=/app/deps -r requirements.txt
+
+# Stage 2: Runtime (smaller image)
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Copy only the installed packages
+COPY --from=builder /app/deps /usr/local/lib/python3.11/site-packages/
+
+# Copy application
+COPY src/ ./src/
+COPY main.py .
+
+CMD ["python", "main.py"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_best_practices"><a class="anchor" href="#_best_practices"></a>6. Best Practices</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_1_order_instructions_by_change_frequency"><a class="anchor" href="#_1_order_instructions_by_change_frequency"></a>6.1. 1. Order Instructions by Change Frequency</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Good: Rarely changing instructions first
+FROM python:3.11
+RUN apt-get update &amp;&amp; apt-get install -y build-essential
+
+# Dependencies change sometimes
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# Code changes frequently - put last!
+COPY src/ ./src/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_use_specific_versions"><a class="anchor" href="#_2_use_specific_versions"></a>6.2. 2. Use Specific Versions</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Bad: Unpredictable
+FROM python:latest
+RUN pip install numpy
+
+# Good: Reproducible
+FROM python:3.11.7-slim
+RUN pip install numpy==1.24.0</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_minimize_layers"><a class="anchor" href="#_3_minimize_layers"></a>6.3. 3. Minimize Layers</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Bad: Multiple layers
+RUN apt-get update
+RUN apt-get install -y build-essential
+RUN apt-get install -y cmake
+RUN rm -rf /var/lib/apt/lists/*
+
+# Good: Single layer
+RUN apt-get update &amp;&amp; apt-get install -y \
+    build-essential \
+    cmake \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_dont_run_as_root_production"><a class="anchor" href="#_4_dont_run_as_root_production"></a>6.4. 4. Don&#8217;t Run as Root (Production)</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Create non-root user
+RUN useradd -m -s /bin/bash appuser
+USER appuser
+WORKDIR /home/appuser/app</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hands_on_exercise"><a class="anchor" href="#_hands_on_exercise"></a>7. Hands-On Exercise</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create a Dockerfile for a numerical analysis project:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a project directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">mkdir docker-math-demo &amp;&amp; cd docker-math-demo</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create <code>requirements.txt</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">numpy==1.24.0
+scipy==1.10.0
+matplotlib==3.7.0</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create <code>analysis.py</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import numpy as np
+from scipy import integrate
+import matplotlib.pyplot as plt
+
+# Numerical integration example
+f = lambda x: np.sin(x) * np.exp(-x)
+result, error = integrate.quad(f, 0, np.pi)
+print(f"Integral result: {result:.6f} ± {error:.2e}")
+
+# Generate plot
+x = np.linspace(0, np.pi, 100)
+plt.figure(figsize=(8, 5))
+plt.plot(x, f(x), 'b-', linewidth=2)
+plt.fill_between(x, f(x), alpha=0.3)
+plt.title(f'∫sin(x)e^(-x)dx from 0 to π = {result:.4f}')
+plt.xlabel('x')
+plt.ylabel('f(x)')
+plt.savefig('/output/integral_plot.png', dpi=150)
+print("Plot saved to /output/integral_plot.png")</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create <code>Dockerfile</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile">FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY analysis.py .
+
+RUN mkdir /output
+VOLUME /output
+
+CMD ["python", "analysis.py"]</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Build and run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker build -t math-demo .
+docker run -v $(pwd)/output:/output math-demo
+ls output/  # Should see integral_plot.png</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_next_steps"><a class="anchor" href="#_next_steps"></a>8. Next Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="#hands-on/06-githubactions.adoc" class="xref unresolved">Automate builds with GitHub Actions</a></p>
+</li>
+<li>
+<p>Learn <a href="#hands-on/04-compose.adoc" class="xref unresolved">Docker Compose</a> for multi-container setups</p>
+</li>
+<li>
+<p>Explore <a href="../hpc/index.html" class="xref page">containers on HPC</a> with Apptainer</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="docker-commands.html">Essential Commands</a></span>
+  <span class="next"><a href="hands-on/04-compose.html">Docker Compose</a></span>
+</nav>
 </article>
   </div>
 </main>
