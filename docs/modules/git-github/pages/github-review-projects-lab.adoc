@@ -40,7 +40,7 @@ Each group works on the same project in a separate repository:
 
 Project title: `Reproducible Mini Weather Analysis`
 
-Goal: Build a small reproducible weather analysis workflow from an hourly CSV dataset and document how to run it locally and with Docker.
+Goal: Build a small reproducible weather analysis workflow from a one-year hourly CSV dataset and document how to run it locally and with Docker.
 
 Primary dataset columns:
 
@@ -53,6 +53,11 @@ Primary dataset columns:
 - `time` (Unix timestamp in milliseconds)
 - `wind_direction_10m`
 - `wind_speed_10m`
+
+Dataset size and coverage:
+
+- `8760` hourly records (one full year)
+- Time range in this file: 2022-12-31 23:00 UTC to 2023-12-31 22:00 UTC
 
 Suggested repository structure:
 
@@ -74,7 +79,7 @@ Download the starter CSV from this page attachment:
 
 - xref:attachment$weather_hourly.csv[weather_hourly.csv]
 
-NOTE: The `time` column intentionally mixes standard integers and scientific notation (for example `1672538400000` and `1.672542e+12`). Normalizing this field is part of the exercise.
+NOTE: The `time` column is in Unix milliseconds. Students should convert it to readable datetime to support time-based analysis and plots.
 
 == CSV Column Reference
 
@@ -108,7 +113,7 @@ NOTE: The `time` column intentionally mixes standard integers and scientific not
 
 |`time`
 |`ms since Unix epoch`
-|Timestamp of the measurement. Values may appear as standard integers or scientific notation.
+|Timestamp of the measurement, stored as Unix milliseconds.
 
 |`wind_direction_10m`
 |`deg`
@@ -155,21 +160,21 @@ NOTE: The `time` column intentionally mixes standard integers and scientific not
 |enhancement
 |P1
 |M
-|`src/analyze_weather.py` computes min/max/mean for `temperature_2m`, mean for `relative_humidity_2m`, and max for `wind_speed_10m`.
+|`src/analyze_weather.py` computes min/max/mean for `temperature_2m`, mean for `relative_humidity_2m`, max for `wind_speed_10m`, and one monthly aggregate.
 
 |4
 |Add input argument and filtering options
 |enhancement
 |P2
 |S
-|Script supports `--input <file>` and at least one filter option (`--start`, `--end`, or `--min-temp`).
+|Script supports `--input <file>` and time filters (`--start`, `--end`) for sub-period analysis.
 
 |5
-|Normalize and validate timestamp format
+|Convert and validate timestamps
 |bug
 |P1
 |M
-|Script correctly parses `time` when values appear as both integer and scientific notation and converts to readable datetime.
+|Script converts `time` from Unix milliseconds to datetime and handles invalid/missing timestamps safely.
 
 |6
 |Containerize analysis
@@ -204,7 +209,7 @@ NOTE: The `time` column intentionally mixes standard integers and scientific not
 |enhancement
 |P3
 |M
-|Analysis generates one figure in `results/` (for example `temperature_2m` over time) and documents it in README.
+|Analysis generates one figure in `results/` (for example daily or monthly `temperature_2m` trend) and documents it in README.
 |===
 
 == Workload Rules by Group Size
