@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>GitHub :: Course Project</title>
+    <title>GitHub for Project Management :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/project-management/github.html">
     <link rel="prev" href="agile-best-practices.html">
     <link rel="next" href="case-studies.html">
+    <meta name="description" content="Use GitHub Issues, Pull Requests, and Projects to plan, track, and deliver team work in a structured way.">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../_/css/site.css">
 
@@ -251,7 +252,7 @@ MathJax.Hub.Config({
     <a class="nav-link" href="../git-github/github-collaborations.html">GitHub Collaboration</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../git-github/github-review-projects-lab.html">GitHub Review Lab: Projects</a>
+    <a class="nav-link" href="../git-github/github-review-projects-lab.html">GitHub Intro Lab: Projects</a>
   </li>
 </ul>
   </li>
@@ -496,61 +497,81 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">GitHub</h1>
+<h1 class="page">GitHub for Project Management</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>GitHub can be used as a lightweight but robust project management system for student teams: define tasks, assign ownership, track progress, review work, and deliver increments.</p>
+</div>
+</div>
+</div>
 <div class="sect1">
-<h2 id="_github_overview"><a class="anchor" href="#_github_overview"></a>1. GitHub:  Overview</h2>
+<h2 id="_why_use_github_for_pm_in_m1"><a class="anchor" href="#_why_use_github_for_pm_in_m1"></a>1. Why Use GitHub for PM in M1</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>GitHub is a web-based Git repository hosting service</p>
+<p>One platform for code, tasks, reviews, and automation.</p>
 </li>
 <li>
-<p>GitHub offers all of the distributed revision control and source code management (SCM) functionality of Git as well as adding its own features</p>
+<p>Traceability from idea to merged contribution.</p>
 </li>
 <li>
-<p>GitHub provides a web-based graphical interface and desktop as well as mobile integration</p>
+<p>Good habits for research and engineering collaboration.</p>
 </li>
 <li>
-<p>GitHub is used by individuals and enterprises to host software projects</p>
-</li>
-<li>
-<p>GitHub is the largest code host in the world</p>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">The main features of GitHub are</dt>
-<dd>
-<p>Issues, Pull Requests, Projects, Actions</p>
-</dd>
-</dl>
-</div>
+<p>Works for small teams without heavy tooling overhead.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_github_issues"><a class="anchor" href="#_github_issues"></a>2. GitHub Issues</h2>
+<h2 id="_core_building_blocks"><a class="anchor" href="#_core_building_blocks"></a>2. Core Building Blocks</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_issues"><a class="anchor" href="#_issues"></a>2.1. Issues</h3>
+<div class="paragraph">
+<p>Use issues to represent work items:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>GitHub Issues are a great way to keep track of tasks, enhancements, and bugs for your projects.</p>
+<p>Feature tasks</p>
 </li>
 <li>
-<p>They’re kind of like email—except they can be shared and discussed with the rest of your team.</p>
+<p>Bug reports</p>
 </li>
 <li>
-<p>Most software projects have a bug tracker of some kind. GitHub’s tracker is called Issues, and has its own section in every repository.</p>
+<p>Documentation tasks</p>
 </li>
 <li>
-<p>Issues can act as more than just a place to report software bugs. They’re great for tracking ideas and enhancements, tasks, or even a place to discuss ongoing development.</p>
+<p>Technical debt and maintenance</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Recommended issue fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Clear title</p>
 </li>
 <li>
-<p>Issues are easy to create. Within a repository, click the Issues tab, then the big green New Issue button.</p>
+<p>Short context/problem statement</p>
 </li>
 <li>
-<p>You’ll then see the issue editor page</p>
+<p>Acceptance criteria</p>
+</li>
+<li>
+<p>Labels (<code>bug</code>, <code>enhancement</code>, <code>documentation</code>, <code>chore</code>)</p>
+</li>
+<li>
+<p>Assignee(s)</p>
+</li>
+<li>
+<p>Milestone (for sprint/release grouping)</p>
 </li>
 </ul>
 </div>
@@ -561,173 +582,38 @@ MathJax.Hub.Config({
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-more information <a href="https://guides.github.com/features/issues/">&gt; guides.github.com</a> !
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_labels"><a class="anchor" href="#_labels"></a>2.1. Labels</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Labels are a great way to organize different types of issues. For example, you could use labels to tag issues as bugs, features, or questions.</p>
-</li>
-<li>
-<p>You can apply multiple labels to each issue. For example, if a feature request also happens to be a question, you can apply both the <code>question</code> and <code>enhancement</code> labels.</p>
-</li>
-<li>
-<p>You can filter issues based on their labels. For example, you can filter the issues in the above screenshot by clicking the <code>enhancement</code> label underneath the Labels heading on the right.</p>
-</li>
-<li>
-<p>You can also filter issues based on multiple labels. For example, you can filter the issues in the above screenshot by clicking the <code>enhancement</code> and <code>question</code> labels underneath the Labels heading on the right.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-more information <a href="https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels">&gt; guides.github.com</a> !
+Milestones can track both issues and pull requests.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_milestones"><a class="anchor" href="#_milestones"></a>2.2. Milestones</h3>
+<h3 id="_pull_requests"><a class="anchor" href="#_pull_requests"></a>2.2. Pull Requests</h3>
+<div class="paragraph">
+<p>Use pull requests as your quality gate:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Milestones are groups of issues that correspond to a project, feature, or time period.</p>
+<p>Link PRs to issues (<code>Closes #123</code>)</p>
 </li>
 <li>
-<p>People use them in many different ways. Some plan releases around them, while others use them to track the progress of a feature or project.</p>
+<p>Request at least one review</p>
 </li>
 <li>
-<p>Milestones are like issues: they have titles and descriptions, and can be assigned to a user. Here’s an example of a milestone that’s tracking the progress of a feature:</p>
+<p>Require checks to pass before merge</p>
 </li>
 <li>
-<p>Milestones are only available on repositories that have them enabled.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-more information <a href="https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/about-milestones">&gt; guides.github.com</a> !
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_assignees"><a class="anchor" href="#_assignees"></a>2.3. Assignees</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Assignees are the GitHub users who are responsible for working on the issue.</p>
-</li>
-<li>
-<p>Assignees are selected the same way as labels. Start typing a username, then click their name once it appears to select them.</p>
-</li>
-<li>
-<p>You can assign multiple people to an issue. For example, if you’re working on a feature with another user, you can assign both of yourselves to the issue.</p>
-</li>
-<li>
-<p>You can also assign people who aren’t collaborators on the repository. For example, if you’re working on a feature with a designer, you can assign them to the issue even if they don’t have push access to the repository.</p>
-</li>
-<li>
-<p>Assignees are a great way to clarify who’s responsible for what. They’re also used to filter issues based on who’s working on them.</p>
+<p>Keep PRs small and focused</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_mentions"><a class="anchor" href="#_mentions"></a>2.4. Mentions</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>You can mention a person or team on GitHub by typing @ plus their username or team name. This will trigger a notification and bring their attention to the conversation.</p>
-</li>
-<li>
-<p>You can also mention teams within an organization. For example, you can mention the @github/owners team within the GitHub organization.</p>
-</li>
-<li>
-<p>Mentions are a great way to get feedback from specific people or teams, draw attention to potential problems, or ask for help.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_github_pull_requests"><a class="anchor" href="#_github_pull_requests"></a>3. GitHub Pull Requests</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Pull Requests are the heart of collaboration on GitHub.</p>
-</li>
-<li>
-<p>When you open a pull request, you’re proposing your changes and requesting that someone review and pull in your contribution and merge them into their branch.</p>
-</li>
-<li>
-<p>Pull requests show diffs, or differences, of the content from both branches. The changes, additions, and subtractions are shown in green and red.</p>
-</li>
-<li>
-<p>As soon as you make a commit, you can open a pull request and start a discussion, even before the code is finished.</p>
-</li>
-<li>
-<p>You can even open pull requests in your own repository and merge them yourself. It’s a great way to learn the GitHub Flow before working on larger projects.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-more information <a href="https://guides.github.com/activities/hello-world/">&gt; guides.github.com</a> !
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_github_project"><a class="anchor" href="#_github_project"></a>4. GitHub Project</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>GitHub Projects help you organize and prioritize your work.</p>
-</li>
-<li>
-<p>You can create Project boards for specific feature work, comprehensive roadmaps, or even release checklists.</p>
-</li>
-<li>
-<p>With Projects, you have the flexibility to create customized workflows that suit your needs.</p>
-</li>
-<li>
-<p>Projects are made up of issues, pull requests, and notes that are categorized as cards in columns of your choosing. You can drag and drop or use keyboard shortcuts to reorder cards within a column, move cards from column to column, and change the order of columns.</p>
-</li>
-<li>
-<p>You can also filter the cards displayed on your project board by label, assignee, and milestone.</p>
-</li>
-<li>
-<p>You can create as many project boards as you want within an organization or repository.</p>
-</li>
-</ul>
+<h3 id="_github_projects_current_version"><a class="anchor" href="#_github_projects_current_version"></a>2.3. GitHub Projects (current version)</h3>
+<div class="paragraph">
+<p>Use GitHub Projects (table/board/roadmap) to organize and prioritize team work.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -736,220 +622,193 @@ more information <a href="https://guides.github.com/activities/hello-world/">&gt
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-more information <a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects">&gt; docs.github.com</a> !
+Projects (classic) was sunset on GitHub.com in 2024 and removed in GitHub Enterprise Server 3.17 (June 3, 2025). Use the current GitHub Projects experience.
 </td>
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="_planning"><a class="anchor" href="#_planning"></a>4.1. Planning</h3>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_recommended_team_setup_week_2"><a class="anchor" href="#_recommended_team_setup_week_2"></a>3. Recommended Team Setup (Week 2)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For a 3-5 student team:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create labels: <code>bug</code>, <code>enhancement</code>, <code>documentation</code>, <code>chore</code>.</p>
+</li>
+<li>
+<p>Create one milestone: <code>Sprint-1</code>.</p>
+</li>
+<li>
+<p>Create one project at organization/user level: <code>M1 Team Board</code>.</p>
+</li>
+<li>
+<p>Add fields:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Create issues (tasks),</p>
+<p><code>Status</code>: <code>Todo</code>, <code>In Progress</code>, <code>In Review</code>, <code>Done</code></p>
 </li>
 <li>
-<p>Break them into tasks,</p>
+<p><code>Priority</code>: <code>P1</code>, <code>P2</code>, <code>P3</code></p>
 </li>
 <li>
-<p>Track relationships,</p>
-</li>
-<li>
-<p>Add/use custom fields,</p>
-</li>
-<li>
-<p>And have conversations.</p>
+<p><code>Effort</code>: <code>XS</code>, <code>S</code>, <code>M</code>, <code>L</code></p>
 </li>
 </ul>
+</div>
+</li>
+<li>
+<p>Create views:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Backlog</code> (table)</p>
+</li>
+<li>
+<p><code>Current Sprint</code> (board grouped by <code>Status</code>)</p>
+</li>
+<li>
+<p><code>Roadmap</code> (roadmap layout, grouped by milestone/date)</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_suggested_weekly_ritual_30_45_min"><a class="anchor" href="#_suggested_weekly_ritual_30_45_min"></a>4. Suggested Weekly Ritual (30-45 min)</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Triage new issues.</p>
+</li>
+<li>
+<p>Prioritize <code>P1</code> work.</p>
+</li>
+<li>
+<p>Ensure each active item has an owner.</p>
+</li>
+<li>
+<p>Move max 2-3 items/person to <code>In Progress</code>.</p>
+</li>
+<li>
+<p>Review blocked items and add explicit unblock actions.</p>
+</li>
+<li>
+<p>Merge completed PRs and move linked project items to <code>Done</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_practical_workflow_issue_pr_project"><a class="anchor" href="#_practical_workflow_issue_pr_project"></a>5. Practical Workflow (Issue &#8594; PR &#8594; Project)</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create an issue for each task.</p>
+</li>
+<li>
+<p>Assign owner and labels; add milestone.</p>
+</li>
+<li>
+<p>Add issue to project.</p>
+</li>
+<li>
+<p>Open branch and implement change.</p>
+</li>
+<li>
+<p>Open PR with <code>Closes #issue_number</code>.</p>
+</li>
+<li>
+<p>Review + pass checks + merge.</p>
+</li>
+<li>
+<p>Verify issue closed and project item updated.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Visualize large projects as spreadsheets or boards, and automate everything with code.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://docs.github.com/assets/cb-102381/mw-1440/images/help/projects-v2/example-table.webp" alt="GitHub Project Board">
+<p>This keeps planning and execution synchronized.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_table_vs_board_views"><a class="anchor" href="#_table_vs_board_views"></a>4.2. Table vs Board Views</h3>
+<div class="sect1">
+<h2 id="_common_pitfalls"><a class="anchor" href="#_common_pitfalls"></a>6. Common Pitfalls</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>Built like a spreadsheet, project tables give a live workspace to filter, sort, and group issues and pull requests.</p>
+<p>Tasks too large (split into smaller issues).</p>
 </li>
 <li>
-<p>We can tailor them to your needs with custom fields and saved views.</p>
+<p>Missing ownership (no assignee, unclear responsibility).</p>
 </li>
 <li>
-<p>Boards can display group issues using custom fields (e.g. Status)</p>
+<p>Project board not maintained after merges.</p>
 </li>
 <li>
-<p>We can drag and drop issues between columns to change their status.</p>
+<p>PRs opened without linked issue.</p>
 </li>
 <li>
-<p>Built like a spreadsheet, project tables give a live workspace to filter, sort, and group issues and pull requests.</p>
-</li>
-<li>
-<p>We can tailor them to your needs with custom fields and saved views.</p>
-</li>
-<li>
-<p>boards can display group issues using custom fields (e.g. Status)</p>
+<p>Labels used inconsistently across the team.</p>
 </li>
 </ul>
 </div>
-<div class="openblock float-group">
-<div class="content">
-<div class="imageblock">
-<div class="content">
-<img src="https://docs.github.com/assets/cb-102381/mw-1440/images/help/projects-v2/example-board.webp" alt="example board" width="600">
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_roadmap"><a class="anchor" href="#_roadmap"></a>4.3. Roadmap</h3>
+<div class="sect1">
+<h2 id="_learning_path_in_this_course"><a class="anchor" href="#_learning_path_in_this_course"></a>7. Learning Path in This Course</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>Roadmaps help you plan and communicate the big picture.</p>
+<p><a href="../git-github/github-how-to-write-issues.html" class="xref page">Writing Issues</a></p>
 </li>
 <li>
-<p>They’re built from issues and pull requests, so you can organize work the way you want.</p>
+<p><a href="../git-github/github-collaborations.html" class="xref page">GitHub Collaborations</a></p>
 </li>
 <li>
-<p>Roadmaps are a great way to communicate your team’s plans and progress to stakeholders.</p>
+<p><a href="../git-github/github-review-projects-lab.html" class="xref page">GitHub Intro Lab: Issues, PRs, and Projects</a></p>
+</li>
+<li>
+<p><a href="../git-github/github-actions.html" class="xref page">GitHub Actions</a></p>
 </li>
 </ul>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="https://docs.github.com/assets/cb-102381/mw-1440/images/help/projects-v2/example-roadmap.webp" alt="example roadmap" width="600">
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_break_issues_into_actionable_tasks"><a class="anchor" href="#_break_issues_into_actionable_tasks"></a>4.4. Break issues into actionable tasks</h3>
+<div class="sect1">
+<h2 id="_further_reading_official_docs"><a class="anchor" href="#_further_reading_official_docs"></a>8. Further Reading (Official Docs)</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>Tackle complex issues with task lists</p>
+<p><a href="https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues">About issues</a></p>
 </li>
 <li>
-<p>track their status with new progressindicators.</p>
+<p><a href="https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/about-milestones">About milestones</a></p>
 </li>
 <li>
-<p>Convert tasks into their own issues</p>
+<p><a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests">About pull requests</a></p>
 </li>
 <li>
-<p>navigate your work hierarchy.</p>
+<p><a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects">About GitHub Projects</a></p>
+</li>
+<li>
+<p><a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/quickstart-for-projects">Quickstart for Projects</a></p>
 </li>
 </ul>
-</div>
-<div class="openblock float-group">
-<div class="content">
-<div class="imageblock left">
-<div class="content">
-<img src="_images/github-project-actionable-tasks-1.png" alt="github project actionable tasks 1" width="400">
-</div>
-</div>
-<div class="imageblock left">
-<div class="content">
-<img src="_images/github-project-actionable-tasks-2.png" alt="github project actionable tasks 2" width="400">
-</div>
-</div>
-<div class="imageblock left">
-<div class="content">
-<img src="_images/github-project-actionable-tasks-3.png" alt="github project actionable tasks 3" width="400">
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_conversations"><a class="anchor" href="#_conversations"></a>4.5. Conversations</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Move conversations forward</p>
-</li>
-<li>
-<p>Express ideas with GitHub Flavored Markdown,</p>
-</li>
-<li>
-<p>mention contributors,</p>
-</li>
-<li>
-<p>react with emoji,</p>
-</li>
-<li>
-<p>clarify with attachments(videos, pdf, images&#8230;&#8203;),</p>
-</li>
-<li>
-<p>see references from commits, pull requests, releases, and deploys.</p>
-</li>
-<li>
-<p>Coordinate by assigning contributors and teams,</p>
-</li>
-<li>
-<p>or by adding them to milestones and projects.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/github-project-conversations.png" alt="github project conversations" width="600">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_views_and_fields"><a class="anchor" href="#_views_and_fields"></a>4.6. Views and Fields</h3>
-<div class="sect3">
-<h4 id="_create_views"><a class="anchor" href="#_create_views"></a>4.6.1. Create views</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>Save views for sprints, backlogs, teams, or releases.</p>
-</li>
-<li>
-<p>Rank, group, sort, and filter issues to suit the occasion.</p>
-</li>
-<li>
-<p>Choose between tables, boards, and timelines.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/github-project-views.png" alt="github project views" width="600">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_extend_with_fields"><a class="anchor" href="#_extend_with_fields"></a>4.6.2. Extend with Fields</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>Add custom fields to track anything you want.</p>
-</li>
-<li>
-<p>Choose from a variety of field types, including checkboxes, dates, and dropdowns.</p>
-</li>
-<li>
-<p>Use fields to track priority, effort, cost, and more.</p>
-</li>
-<li>
-<p>Add fields to issues and pull requests.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/github-project-fields.png" alt="github project fields" width="600">
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>

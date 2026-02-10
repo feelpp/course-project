@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>GitHub Review Lab: Issues, PRs, and Projects (90 minutes) :: Course Project</title>
+    <title>GitHub Intro Lab: Issues, PRs, and Projects (90 minutes) :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/git-github/github-review-projects-lab.html">
     <link rel="prev" href="github-collaborations.html">
     <link rel="next" href="github-actions.html">
-    <meta name="description" content="Consolidate GitHub fundamentals with a practical 90-minute lab centered on Issues, Pull Requests, and GitHub Projects.">
+    <meta name="description" content="Introduce GitHub collaboration with a practical 90-minute lab centered on Issues, Pull Requests, and GitHub Projects.">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../_/css/site.css">
 
@@ -252,7 +252,7 @@ MathJax.Hub.Config({
     <a class="nav-link" href="github-collaborations.html">GitHub Collaboration</a>
   </li>
   <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="github-review-projects-lab.html">GitHub Review Lab: Projects</a>
+    <a class="nav-link" href="github-review-projects-lab.html">GitHub Intro Lab: Projects</a>
   </li>
 </ul>
   </li>
@@ -472,7 +472,7 @@ MathJax.Hub.Config({
     <li><a href="../index.html">Course Project</a></li>
     <li><a href="index.html">Git &amp; GitHub</a></li>
     <li>🟡 Collaboration</li>
-    <li><a href="github-review-projects-lab.html">GitHub Review Lab: Projects</a></li>
+    <li><a href="github-review-projects-lab.html">GitHub Intro Lab: Projects</a></li>
   </ul>
 </nav>
 
@@ -497,11 +497,11 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">GitHub Review Lab: Issues, PRs, and Projects (90 minutes)</h1>
+<h1 class="page">GitHub Intro Lab: Issues, PRs, and Projects (90 minutes)</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph lead">
-<p>This review lab is designed for M1 students who already covered Linux, GitHub basics, GitHub Actions, and Docker. The goal is to strengthen collaboration habits before moving to more advanced CI/CD and project workflow topics.</p>
+<p>This intro lab is designed for M1 students who covered Linux and GitHub basics and are discovering structured team workflows. The goal is to build collaboration habits before moving to advanced CI/CD and project workflow topics.</p>
 </div>
 </div>
 </div>
@@ -523,7 +523,7 @@ MathJax.Hub.Config({
 <p>Organize work using GitHub Projects (table + board views).</p>
 </li>
 <li>
-<p>Run a short weekly triage workflow as a team.</p>
+<p>Run a short triage workflow as a team.</p>
 </li>
 </ul>
 </div>
@@ -548,139 +548,452 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_plan_90_minutes"><a class="anchor" href="#_lab_plan_90_minutes"></a>3. Lab Plan (90 minutes)</h2>
+<h2 id="_class_setup"><a class="anchor" href="#_class_setup"></a>3. Class Setup</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_part_0_setup_10_min"><a class="anchor" href="#_part_0_setup_10_min"></a>3.1. Part 0: Setup (10 min)</h3>
+<div class="paragraph">
+<p>This session uses:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>3 groups of 2 students</p>
+</li>
+<li>
+<p>1 group of 3 students</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Each group works on the same project in a separate repository:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>m1-g1-project</code></p>
+</li>
+<li>
+<p><code>m1-g2-project</code></p>
+</li>
+<li>
+<p><code>m1-g3-project</code></p>
+</li>
+<li>
+<p><code>m1-g4-project</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_project_proposal"><a class="anchor" href="#_project_proposal"></a>4. Project Proposal</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Project title: <code>Reproducible Mini Weather Analysis</code></p>
+</div>
+<div class="paragraph">
+<p>Goal: Build a small reproducible weather analysis workflow from an hourly CSV dataset and document how to run it locally and with Docker.</p>
+</div>
+<div class="paragraph">
+<p>Primary dataset columns:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>cloud_cover</code></p>
+</li>
+<li>
+<p><code>diffuse_radiation</code></p>
+</li>
+<li>
+<p><code>direct_radiation</code></p>
+</li>
+<li>
+<p><code>relative_humidity_2m</code></p>
+</li>
+<li>
+<p><code>surface_pressure</code></p>
+</li>
+<li>
+<p><code>temperature_2m</code></p>
+</li>
+<li>
+<p><code>time</code> (Unix timestamp in milliseconds)</p>
+</li>
+<li>
+<p><code>wind_direction_10m</code></p>
+</li>
+<li>
+<p><code>wind_speed_10m</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Suggested repository structure:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">.
+|-- README.md
+|-- data/
+|   `-- weather_hourly.csv
+|-- src/
+|   `-- analyze_weather.py
+|-- results/
+`-- Dockerfile</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_starter_weather_dataset"><a class="anchor" href="#_starter_weather_dataset"></a>5. Starter Weather Dataset</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Download the starter CSV from this page attachment:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="_attachments/weather_hourly.csv" class="xref attachment">weather_hourly.csv</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>time</code> column intentionally mixes standard integers and scientific notation (for example <code>1672538400000</code> and <code>1.672542e+12</code>). Normalizing this field is part of the exercise.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_csv_column_reference"><a class="anchor" href="#_csv_column_reference"></a>6. CSV Column Reference</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 62.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column</th>
+<th class="tableblock halign-left valign-top">Unit</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cloud_cover</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>%</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloud coverage of the sky (<code>0</code> = clear sky, <code>100</code> = fully overcast).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>diffuse_radiation</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>W/m^2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solar radiation scattered by the atmosphere and clouds (not direct beam).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>direct_radiation</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>W/m^2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Direct beam solar radiation reaching the surface.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>relative_humidity_2m</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>%</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Relative humidity measured around 2 meters above ground.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>surface_pressure</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hPa</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Atmospheric pressure at the surface.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>temperature_2m</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deg C</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Air temperature measured around 2 meters above ground.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>time</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ms since Unix epoch</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Timestamp of the measurement. Values may appear as standard integers or scientific notation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wind_direction_10m</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wind direction at 10 meters (<code>0/360</code> = North, <code>90</code> = East, <code>180</code> = South, <code>270</code> = West).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wind_speed_10m</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>km/h</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wind speed at 10 meters above ground.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_students_have_to_do"><a class="anchor" href="#_what_students_have_to_do"></a>7. What Students Have To Do</h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Use a shared repository for the class or team.</p>
+<p>Create a project board named <code>M1 Team Board</code> with statuses <code>Todo</code>, <code>In Progress</code>, <code>In Review</code>, <code>Done</code>.</p>
 </li>
+<li>
+<p>Create all mandatory issues from the issue list below.</p>
+</li>
+<li>
+<p>Assign owners, labels, priorities, effort, and milestone <code>Sprint-1</code>.</p>
+</li>
+<li>
+<p>Work with one branch per issue.</p>
+</li>
+<li>
+<p>Open PRs using <code>Closes #issue_number</code> in the PR description.</p>
+</li>
+<li>
+<p>Review teammate PRs before merge.</p>
+</li>
+<li>
+<p>Keep project status updated while work progresses.</p>
+</li>
+<li>
+<p>Submit links to board, issues, and merged PRs.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_issue_list_create_these_first"><a class="anchor" href="#_issue_list_create_these_first"></a>8. Issue List (Create These First)</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 8.3333%;">
+<col style="width: 25%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 41.6668%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">ID</th>
+<th class="tableblock halign-left valign-top">Issue title</th>
+<th class="tableblock halign-left valign-top">Label</th>
+<th class="tableblock halign-left valign-top">Priority</th>
+<th class="tableblock halign-left valign-top">Effort</th>
+<th class="tableblock halign-left valign-top">Done when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Initialize repository skeleton</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>README.md</code>, <code>src/</code>, <code>data/</code>, <code>results/</code>, and <code>.gitignore</code> are committed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add weather dataset and data description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">documentation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data/weather_hourly.csv</code> and <code>data/README.md</code> describe all columns and units.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Implement weather summary script</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">enhancement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/analyze_weather.py</code> computes min/max/mean for <code>temperature_2m</code>, mean for <code>relative_humidity_2m</code>, and max for <code>wind_speed_10m</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add input argument and filtering options</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">enhancement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Script supports <code>--input &lt;file&gt;</code> and at least one filter option (<code>--start</code>, <code>--end</code>, or <code>--min-temp</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Normalize and validate timestamp format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Script correctly parses <code>time</code> when values appear as both integer and scientific notation and converts to readable datetime.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Containerize analysis</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Dockerfile</code> builds and runs analysis successfully.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Document run instructions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">documentation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">README includes local run, Docker run, and expected outputs.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configure project board views and fields</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Board has <code>Backlog</code> (table), <code>Current Sprint</code> (board), and <code>My Tasks</code> views with fields <code>Status</code>, <code>Priority</code>, <code>Effort</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional: add basic GitHub Actions workflow</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">enhancement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A workflow runs a basic check (for example script execution or lint).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional: add one weather trend plot</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">enhancement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Analysis generates one figure in <code>results/</code> (for example <code>temperature_2m</code> over time) and documents it in README.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_workload_rules_by_group_size"><a class="anchor" href="#_workload_rules_by_group_size"></a>9. Workload Rules by Group Size</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Groups of 2: complete issues <code>1-8</code>, plus at least one optional issue (<code>9</code> or <code>10</code>).</p>
+</li>
+<li>
+<p>Group of 3: complete issues <code>1-8</code>, plus both optional issues (<code>9</code> and <code>10</code>).</p>
+</li>
+<li>
+<p>Every student must author at least one merged PR and review at least one teammate PR.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lab_plan_90_minutes"><a class="anchor" href="#_lab_plan_90_minutes"></a>10. Lab Plan (90 minutes)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_part_0_setup_10_min"><a class="anchor" href="#_part_0_setup_10_min"></a>10.1. Part 0: Setup (10 min)</h3>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>Create labels: <code>bug</code>, <code>enhancement</code>, <code>documentation</code>, <code>chore</code>.</p>
 </li>
 <li>
-<p>Create one milestone: <code>Sprint-1</code>.</p>
+<p>Create milestone: <code>Sprint-1</code>.</p>
 </li>
 <li>
-<p>Create one project: <code>M1 Review Board</code>.</p>
+<p>Create project: <code>M1 Team Board</code>.</p>
+</li>
+<li>
+<p>Add fields: <code>Status</code>, <code>Priority</code>, <code>Effort</code>.</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_part_1_issues_and_pr_review_20_min"><a class="anchor" href="#_part_1_issues_and_pr_review_20_min"></a>3.2. Part 1: Issues and PR Review (20 min)</h3>
+<h3 id="_part_1_backlog_creation_and_assignment_20_min"><a class="anchor" href="#_part_1_backlog_creation_and_assignment_20_min"></a>10.2. Part 1: Backlog Creation and Assignment (20 min)</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create 4 issues (one per label).</p>
+<p>Create issues <code>1-10</code> from the list above.</p>
 </li>
 <li>
-<p>Assign owners to issues and attach the <code>Sprint-1</code> milestone.</p>
+<p>Assign issues to team members.</p>
 </li>
 <li>
-<p>For one issue, create a branch, push a change, and open a PR.</p>
+<p>Add all issues to <code>M1 Team Board</code>.</p>
 </li>
 <li>
-<p>Link the PR to the issue with a closing keyword.</p>
+<p>Set <code>Priority</code> and <code>Effort</code> for each issue.</p>
 </li>
 </ol>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ git checkout -b feat/readme-review
-$ git add README.md
-$ git commit -m "Improve README examples. Closes #12"
-$ git push origin feat/readme-review</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ git checkout -b feat/weather-summary
+$ git add src/analyze_weather.py
+$ git commit -m "Add weather summary script. Closes #3"
+$ git push origin feat/weather-summary</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_part_2_project_configuration_25_min"><a class="anchor" href="#_part_2_project_configuration_25_min"></a>3.3. Part 2: Project Configuration (25 min)</h3>
+<h3 id="_part_2_implementation_and_prs_35_min"><a class="anchor" href="#_part_2_implementation_and_prs_35_min"></a>10.3. Part 2: Implementation and PRs (35 min)</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add all issues and PRs to <code>M1 Review Board</code>.</p>
+<p>Start with all <code>P1</code> issues.</p>
 </li>
 <li>
-<p>Create custom fields:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>Status</code> (Todo, In Progress, In Review, Done)</p>
+<p>Move active items to <code>In Progress</code>.</p>
 </li>
 <li>
-<p><code>Priority</code> (P1, P2, P3)</p>
+<p>Open PRs linked to issues (<code>Closes #&#8230;&#8203;</code>).</p>
 </li>
 <li>
-<p><code>Effort</code> (XS, S, M, L)</p>
-</li>
-<li>
-<p><code>Sprint</code> (Sprint-1)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Create three views:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>Backlog</code> (table)</p>
-</li>
-<li>
-<p><code>Current Sprint</code> (board grouped by <code>Status</code>)</p>
-</li>
-<li>
-<p><code>My Tasks</code> (filtered by assignee)</p>
-</li>
-</ul>
-</div>
+<p>Review and merge teammate PRs.</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_part_3_workflow_integration_20_min"><a class="anchor" href="#_part_3_workflow_integration_20_min"></a>3.4. Part 3: Workflow Integration (20 min)</h3>
+<h3 id="_part_3_project_views_and_triage_15_min"><a class="anchor" href="#_part_3_project_views_and_triage_15_min"></a>10.4. Part 3: Project Views and Triage (15 min)</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Move one item from <code>Todo</code> to <code>In Progress</code>.</p>
+<p>Ensure board has <code>Backlog</code>, <code>Current Sprint</code>, and <code>My Tasks</code>.</p>
 </li>
 <li>
-<p>Link one PR to one issue and verify references in both directions.</p>
+<p>Verify merged PRs close linked issues.</p>
 </li>
 <li>
-<p>Merge one PR and verify issue auto-closes when keyword is used.</p>
+<p>Move completed items to <code>Done</code>.</p>
 </li>
 <li>
-<p>Update corresponding project item to <code>Done</code>.</p>
+<p>Leave one triage comment on a blocked or pending item.</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_part_4_triage_ritual_15_min"><a class="anchor" href="#_part_4_triage_ritual_15_min"></a>3.5. Part 4: Triage Ritual (15 min)</h3>
-<div class="paragraph">
-<p>Run this weekly triage checklist:</p>
-</div>
+<h3 id="_part_4_wrap_up_10_min"><a class="anchor" href="#_part_4_wrap_up_10_min"></a>10.5. Part 4: Wrap-Up (10 min)</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Review open <code>P1</code> issues first.</p>
+<p>Verify workload rule compliance (group of 2 vs group of 3).</p>
 </li>
 <li>
-<p>Assign owners to any unassigned issues.</p>
+<p>Prepare final links for submission.</p>
 </li>
 <li>
-<p>Move max 3 items/person to <code>In Progress</code>.</p>
-</li>
-<li>
-<p>Flag blocked items with a comment and mention.</p>
-</li>
-<li>
-<p>Close or archive completed items.</p>
+<p>Write a short retrospective.</p>
 </li>
 </ol>
 </div>
@@ -688,7 +1001,7 @@ $ git push origin feat/readme-review</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deliverables"><a class="anchor" href="#_deliverables"></a>4. Deliverables</h2>
+<h2 id="_deliverables"><a class="anchor" href="#_deliverables"></a>11. Deliverables</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>At the end of the lab, each team should provide:</p>
@@ -696,26 +1009,26 @@ $ git push origin feat/readme-review</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Link to the project (board view).</p>
+<p>Link to <code>M1 Team Board</code>.</p>
 </li>
 <li>
-<p>Link to one issue with labels, assignee, milestone.</p>
+<p>Link to all created issues (or issue filter).</p>
 </li>
 <li>
-<p>Link to one merged PR closing its issue.</p>
+<p>Link to merged PRs showing <code>Closes #&#8230;&#8203;</code>.</p>
 </li>
 <li>
-<p>Short note (3-5 lines): what worked, what blocked progress.</p>
+<p>Short retrospective (3-5 lines): what worked and what blocked progress.</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_next_step"><a class="anchor" href="#_next_step"></a>5. Next Step</h2>
+<h2 id="_next_step"><a class="anchor" href="#_next_step"></a>12. Next Step</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After this review, continue with:</p>
+<p>After this intro, continue with:</p>
 </div>
 <div class="ulist">
 <ul>

@@ -314,8 +314,8 @@
     },
     {
       "id": 53,
-      "title": "GitHub Review Lab: Issues, PRs, and Projects (90 minutes) :: Course Project",
-      "content": "Edit this Page Download as .pdf GitHub Review Lab: Issues, PRs, and Projects (90 minutes) This review lab is designed for M1 students who already covered Linux, GitHub basics, GitHub Actions, and Docker. The goal is to strengthen collaboration habits before moving to more advanced CI/CD and project workflow topics. 1. Learning Objectives By the end of this lab, students can: Create and structure issues with labels, assignees, and milestones. Open a pull request linked to an issue and close it using commit keywords. Organize work using GitHub Projects (table + board views). Run a short weekly triage workflow as a team. 2. Prerequisites GitHub Getting Started GitHub Collaborations Optional reference: GitHub for Project Management 3. Lab Plan (90 minutes) 3.1. Part 0: Setup (10 min) Use a shared repository for the class or team. Create labels: bug, enhancement, documentation, chore. Create one milestone: Sprint-1. Create one project: M1 Review Board. 3.2. Part 1: Issues and PR Review (20 ",
+      "title": "GitHub Intro Lab: Issues, PRs, and Projects (90 minutes) :: Course Project",
+      "content": "Edit this Page Download as .pdf GitHub Intro Lab: Issues, PRs, and Projects (90 minutes) This intro lab is designed for M1 students who covered Linux and GitHub basics and are discovering structured team workflows. The goal is to build collaboration habits before moving to advanced CI/CD and project workflow topics. 1. Learning Objectives By the end of this lab, students can: Create and structure issues with labels, assignees, and milestones. Open a pull request linked to an issue and close it using commit keywords. Organize work using GitHub Projects (table + board views). Run a short triage workflow as a team. 2. Prerequisites GitHub Getting Started GitHub Collaborations Optional reference: GitHub for Project Management 3. Class Setup This session uses: 3 groups of 2 students 1 group of 3 students Each group works on the same project in a separate repository: m1-g1-project m1-g2-project m1-g3-project m1-g4-project 4. Project Proposal Project title: Reproducible Mini Weather Analysis ",
       "url": "/course-project/git-github/github-review-projects-lab.html"
     },
     {
@@ -327,7 +327,7 @@
     {
       "id": 55,
       "title": "Git & GitHub Fundamentals :: Course Project",
-      "content": "Git & GitHub Fundamentals Learn the essential skills for version control and collaborative software development using Git and GitHub. From basic repository management to advanced collaboration workflows. 1. Git & GitHub Learning Modules The following modules cover everything from basic Git concepts to advanced GitHub collaboration: 2. Recommended Review Session (M1) If your class already completed GitHub basics and wants a structured recap before advanced automation, run: GitHub Review Lab: Issues, PRs, and Projects (90 minutes)",
+      "content": "Git & GitHub Fundamentals Learn the essential skills for version control and collaborative software development using Git and GitHub. From basic repository management to advanced collaboration workflows. 1. Git & GitHub Learning Modules The following modules cover everything from basic Git concepts to advanced GitHub collaboration: 2. Recommended Intro Session (M1) If your class completed GitHub basics and is ready for first structured team workflow practice, run: GitHub Intro Lab: Issues, PRs, and Projects (90 minutes)",
       "url": "/course-project/git-github/"
     },
     {
@@ -440,8 +440,8 @@
     },
     {
       "id": 74,
-      "title": "GitHub :: Course Project",
-      "content": "Edit this Page Download as .pdf GitHub 1. GitHub: Overview GitHub is a web-based Git repository hosting service GitHub offers all of the distributed revision control and source code management (SCM) functionality of Git as well as adding its own features GitHub provides a web-based graphical interface and desktop as well as mobile integration GitHub is used by individuals and enterprises to host software projects GitHub is the largest code host in the world The main features of GitHub are Issues, Pull Requests, Projects, Actions 2. GitHub Issues GitHub Issues are a great way to keep track of tasks, enhancements, and bugs for your projects. They’re kind of like email—except they can be shared and discussed with the rest of your team. Most software projects have a bug tracker of some kind. GitHub’s tracker is called Issues, and has its own section in every repository. Issues can act as more than just a place to report software bugs. They’re great for tracking ideas and enhancements, task",
+      "title": "GitHub for Project Management :: Course Project",
+      "content": "Edit this Page Download as .pdf GitHub for Project Management GitHub can be used as a lightweight but robust project management system for student teams: define tasks, assign ownership, track progress, review work, and deliver increments. 1. Why Use GitHub for PM in M1 One platform for code, tasks, reviews, and automation. Traceability from idea to merged contribution. Good habits for research and engineering collaboration. Works for small teams without heavy tooling overhead. 2. Core Building Blocks 2.1. Issues Use issues to represent work items: Feature tasks Bug reports Documentation tasks Technical debt and maintenance Recommended issue fields: Clear title Short context/problem statement Acceptance criteria Labels (bug, enhancement, documentation, chore) Assignee(s) Milestone (for sprint/release grouping) Milestones can track both issues and pull requests. 2.2. Pull Requests Use pull requests as your quality gate: Link PRs to issues (Closes #123) Request at least one review Require",
       "url": "/course-project/project-management/github.html"
     },
     {
