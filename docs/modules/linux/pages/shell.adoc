@@ -6,7 +6,10 @@
 :page-illustration: fa-solid fa-terminal
 :description: Learn Linux shell fundamentals including bash, command execution, environment variables, and shell scripting basics.
 
-include::partial$bash-commands.adoc[]
+[IMPORTANT]
+====
+The pages can be downloaded via the green button at the top right of the page. Commands are shell commands and can be executed in a terminal, but do not copy the `%%bash` magic command used by Jupyter Notebook.
+====
 
 The Linux shell is a command-line interface or terminal used to interact directly with the operating system. 
 The shell helps facilitate system commands and acts as an intermediary interface between the user and the system’s kernel.

@@ -495,6 +495,6 @@ ls output/  # Should see integral_plot.png
 
 == Next Steps
 
-1. xref:hands-on/06-githubactions.adoc[Automate builds with GitHub Actions]
-2. Learn xref:hands-on/04-compose.adoc[Docker Compose] for multi-container setups
-3. Explore xref:../hpc/index.adoc[containers on HPC] with Apptainer
+1. xref:docker/hands-on/06-githubactions.adoc[Automate builds with GitHub Actions]
+2. Learn xref:docker/hands-on/04-compose.adoc[Docker Compose] for multi-container setups
+3. Explore xref:hpc/index.adoc[containers on HPC] with Apptainer

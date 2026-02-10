@@ -386,13 +386,13 @@ Apptainer (originally Singularity) is a container platform built with HPC in min
 apptainer pull -F my_app.sif docker://ubuntu:24.04
 ----
 
-2. **Run** (on the HPC cluster, no root required):
+1. **Run** (on the HPC cluster, no root required):
 [source,sh]
 ----
 apptainer exec my_app.sif python my_script.py
 ----
 
-3. **MPI Integration** (using native host libraries):
+1. **MPI Integration** (using native host libraries):
 [source,sh]
 ----
 mpirun -np 4 apptainer exec --mpi my_app.sif ./mpi_program
@@ -465,5 +465,4 @@ See the hands-on section for practical examples of running containers in an HPC 
 * EuroHPC offers a comprehensive portal with detailed information on HPC initiatives and training resources.  
    - Official website: https://www.eurohpc-project.eu/  
    - Training documentation: Available through the EuroHPC portal and affiliated training programs.
-
 

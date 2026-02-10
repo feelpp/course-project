@@ -4,13 +4,13 @@
 == Review of CI/CD as a concept
 
 === DevOps and CI/CD (1/3)
-image::../images/Gitlab_CI-Page-3-1.drawio.svg[DevOps_CICD]
+image::Gitlab_CI-Page-3-1.drawio.svg[DevOps_CICD]
 
 === DevOps and CI/CD (2/3)
-image::../images/Gitlab_CI-Page-3-2.drawio.svg[DevOps_CICD]
+image::Gitlab_CI-Page-3-2.drawio.svg[DevOps_CICD]
 
 === DevOps and CI/CD (3/3)
-image::../images/Gitlab_CI-Page-3-3.drawio.svg[DevOps_CICD]
+image::Gitlab_CI-Page-3-3.drawio.svg[DevOps_CICD]
 
 === CI (Continuous Integration)
 
@@ -71,7 +71,7 @@ image::../images/Gitlab_CI-Page-3-3.drawio.svg[DevOps_CICD]
 == Overview of Gitlab CI
 
 .GitLab CI Diagram
-image::../images/Gitlab_CI-Page-1.drawio.svg[Gitlab_CI]
+image::Gitlab_CI-Page-1.drawio.svg[Gitlab_CI]
 
 
 === The three major parts of a Gitlab CI/CD pipeline
@@ -132,7 +132,7 @@ image::../images/Gitlab_CI-Page-1.drawio.svg[Gitlab_CI]
 == Parts of a pipeline (1/5)
 
 .Anatomy of a Pipeline Workflow
-image::../images/Gitlab_CI-Page-2.drawio.svg[Workflow_File]
+image::Gitlab_CI-Page-2.drawio.svg[Workflow_File]
 
 === Parts of a pipeline (2/5)
 
@@ -208,7 +208,7 @@ image::../images/Gitlab_CI-Page-2.drawio.svg[Workflow_File]
 == Karlina and IT4I's CI/CD setup
 
 .IT4I's CI/CD setup
-image::../images/it4i-ci.svg[IT4I_CICD]
+image::it4i-ci.svg[IT4I_CICD]
 
 Documentation::
 * https://docs.it4i.cz/general/tools/cicd/#cicd
@@ -334,4 +334,3 @@ documentation::
 ** github has integrated secrets management
 ** gitlab encourages 3rd party tools (like Vault)
 ** or have to use masked and protected ci/cd variables 
-

@@ -13,3 +13,9 @@ Learn the essential skills for version control and collaborative software develo
 == Git & GitHub Learning Modules
 
 The following modules cover everything from basic Git concepts to advanced GitHub collaboration:
+
+== Recommended Review Session (M1)
+
+If your class already completed GitHub basics and wants a structured recap before advanced automation, run:
+
+- xref:github-review-projects-lab.adoc[GitHub Review Lab: Issues, PRs, and Projects (90 minutes)]

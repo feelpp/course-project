@@ -13,6 +13,7 @@
 *** xref:github-how-to-write-issues.adoc[Writing Issues]
 ** 🟡 GitHub Collaboration (Level 2)
 *** xref:github-collaborations.adoc[GitHub Collaborations]
+*** xref:github-review-projects-lab.adoc[GitHub Review Lab: Projects]
 ** 🔴 GitHub Actions (Level 3)
 *** xref:github-actions.adoc[GitHub Actions Intro]
 *** xref:github-actions-cmake-eigen3.adoc[GitHub Actions: CMake + Eigen3]

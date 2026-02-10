@@ -8,7 +8,7 @@
     "copy": "cp -r css fonts images reveal.js videos html",
     "slides": "./render;npm run copy",
     "start": "http-server public/ -d -i",
-    "antora": "npx antora --stacktrace generate --cache-dir cache --clean site.yml; zip -r cours-project.zip .vscode notebooks  -x \"*.pyc\" -x \"*/__pycache__/\"; mkdir -p public/cours-project/_attachments; cp cours-project.zip public/cours-project/_attachments/",
+    "antora": "./build-antora.sh",
     "preview:build": "node_modules/.bin/antora --stacktrace --fetch site-dev.yml ; node-srv -p 8010 build/site"
   },
   "repository": {

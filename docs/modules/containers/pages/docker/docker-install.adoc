@@ -235,6 +235,6 @@ docker system df
 
 Now that Docker is installed:
 
-1. xref:hands-on/01-getting-started.adoc[Run your first containers]
-2. Learn xref:docker-commands.adoc[essential Docker commands]
-3. Create your first xref:dockerfile-basics.adoc[Dockerfile]
+1. xref:docker/hands-on/01-getting-started.adoc[Run your first containers]
+2. Learn xref:docker/docker-commands.adoc[essential Docker commands]
+3. Create your first xref:docker/dockerfile-basics.adoc[Dockerfile]

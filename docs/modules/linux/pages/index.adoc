@@ -26,7 +26,10 @@ Most mathematical software (MATLAB, Mathematica, SageMath), high-performance com
 - Use powerful mathematical software packages available only on Linux
 --
 
-include::partial$bash-commands.adoc[]
+[IMPORTANT]
+====
+The pages can be downloaded via the green button at the top right of the page. Commands are shell commands and can be executed in a terminal, but do not copy the `%%bash` magic command used by Jupyter Notebook.
+====
 
 As a mathematics student, you'll frequently need to work with computational tools and high-performance computing systems. Linux skills are essential for accessing mathematical software, managing research data, and running computational experiments.
 
@@ -160,4 +163,3 @@ ls -l
 cd /var/log
 tree
 ----
-

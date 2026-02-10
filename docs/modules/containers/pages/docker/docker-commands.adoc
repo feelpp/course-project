@@ -381,6 +381,6 @@ docker container prune       # Remove stopped containers
 
 == Next Steps
 
-1. Practice these commands with the xref:hands-on/01-getting-started.adoc[hands-on exercises]
-2. Learn to xref:dockerfile-basics.adoc[create your own images with Dockerfile]
-3. Explore xref:hands-on/04-compose.adoc[Docker Compose] for multi-container applications
+1. Practice these commands with the xref:docker/hands-on/01-getting-started.adoc[hands-on exercises]
+2. Learn to xref:docker/dockerfile-basics.adoc[create your own images with Dockerfile]
+3. Explore xref:docker/hands-on/04-compose.adoc[Docker Compose] for multi-container applications

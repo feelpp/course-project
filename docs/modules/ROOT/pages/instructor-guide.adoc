@@ -157,19 +157,33 @@ GitHub for Academic Work (45 min)::
 - Creating repositories for mathematical projects
 - **Exercise:** Collaborate on a mathematical proof document
 
-**Friday: Git Workshop & Project** _(90 minutes)_
+**Friday: GitHub Review Lab (Issues, PRs, Projects)** _(90 minutes)_
 
-Mathematical Project Setup (90 min)::
+Structured Review Lab (90 min)::
 +
-- **Group Project:** Set up shared repository for mathematical analysis
-- Practice collaborative workflows
-- Code review for mathematical scripts
-- Issue tracking for research tasks
+- Run xref:git-github:github-review-projects-lab.adoc[GitHub Review Lab: Issues, PRs, and Projects (90 minutes)]
+- Create and triage issues with labels, assignees, and milestone
+- Open, review, and merge one PR that closes an issue
+- Organize work in GitHub Project views (table + board)
+
+Expected Outputs::
++
+- Link to one project board configured with Status/Priority/Effort fields
+- Link to one issue with labels, assignee, and milestone
+- Link to one merged PR that closes its linked issue
+- Short team retrospective (3-5 lines): what worked, what blocked progress
+
+Quick Rubric for the Lab::
++
+- **Project organization (30%)**: fields, views, and issue hygiene are correctly configured
+- **Workflow correctness (30%)**: issue -> branch -> PR -> merge -> closed issue
+- **Collaboration quality (20%)**: clear ownership, comments, and mentions
+- **Reflection quality (20%)**: concise, actionable retrospective
 
 **Week 2 Assessment:**
 - Git workflow demonstration
 - Collaborative exercise evaluation
-- Repository organization quality
+- Repository/project organization quality
 
 === Week 3: Development Environment (VS Code)
 

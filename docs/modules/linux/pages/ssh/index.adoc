@@ -7,10 +7,8 @@ Welcome to the SSH and Remote-SSH tutorial for VS Code. This guide will walk you
 
 == Table of Contents
 
-* xref:ssh-setup.adoc[Setting Up SSH]
-* xref:ssh-commands.adoc[Basic SSH Commands]
-* xref:remote-ssh-vscode.adoc[Remote-SSH Extension for VS Code]
-
-----
+* xref:ssh/ssh-setup.adoc[Setting Up SSH]
+* xref:ssh/ssh-commands.adoc[Basic SSH Commands]
+* xref:ssh/remote-ssh-vscode.adoc[Remote-SSH Extension for VS Code]
 
 Start by setting up SSH on your machine and then proceed to learn how to use it within VS Code.

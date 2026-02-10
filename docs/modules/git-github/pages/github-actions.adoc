@@ -3,7 +3,7 @@ Author: Christophe Prud'homme
 
 This tutorial explains how to use GitHub Actions to automate essential tasks in scientific computing projects, such as building code, testing, benchmarking, and deploying documentation.
 
-TIP: Before starting this tutorial, please study the following resources on xref:software/package-managers.adoc[Package Managers].
+TIP: Before starting this tutorial, please study the following resources on xref:software:package-managers.adoc[Package Managers].
 
 == 1. Introduction to GitHub Actions
 
@@ -33,7 +33,6 @@ jobs: <3>
 <.> **`runs-on:`**: Specifies the runner environment (e.g., `ubuntu-latest`).
 <.> **`steps:`**: Contains a list of actions to perform in the job.
 <.> **`uses:`**: Specifies the action to use (e.g., `actions/checkout@v4`).
-<.> **`actions/checkout@v4`**: An action that checks out your repository code.
 
 == 2. Setting Up a Simple GitHub Actions Workflow
 

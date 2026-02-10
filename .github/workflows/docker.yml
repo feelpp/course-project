@@ -12,9 +12,9 @@ jobs:
     strategy:
       matrix:
         service: [fincpp]
-        tag: [latest, v1.0.0]
+        tag: [latest]
         dir: [.]
-        image: [ubuntu:24.04]
+        image: [ubuntu:24.04,debian:13]
         version: [1.0.0]
         dockerfile: [Dockerfile]
 

@@ -26,9 +26,9 @@ This module teaches Docker through a structured progression designed for master 
 ====
 *📚 Concepts*
 
-. xref:what-are-containers.adoc[What are Containers?]
-. xref:docker-problems-solved.adoc[Problems Docker Solves]
-. xref:docker-architecture.adoc[Docker Architecture]
+. xref:docker/what-are-containers.adoc[What are Containers?]
+. xref:docker/docker-problems-solved.adoc[Problems Docker Solves]
+. xref:docker/docker-architecture.adoc[Docker Architecture]
 ====
 
 ^.^a|
@@ -36,8 +36,8 @@ This module teaches Docker through a structured progression designed for master 
 ====
 *🛠️ Setup*
 
-. xref:docker-install.adoc[Installation Guide]
-. xref:docker-commands.adoc[Essential Commands]
+. xref:docker/docker-install.adoc[Installation Guide]
+. xref:docker/docker-commands.adoc[Essential Commands]
 ====
 |===
 
@@ -49,9 +49,9 @@ This module teaches Docker through a structured progression designed for master 
 ====
 *📝 Building Images*
 
-. xref:dockerfile-basics.adoc[Dockerfile Fundamentals]
-. xref:hands-on/01-getting-started.adoc[Hands-on: First Steps]
-. xref:hands-on/02-advanced-usage.adoc[Advanced Usage]
+. xref:docker/dockerfile-basics.adoc[Dockerfile Fundamentals]
+. xref:docker/hands-on/01-getting-started.adoc[Hands-on: First Steps]
+. xref:docker/hands-on/02-advanced-usage.adoc[Advanced Usage]
 ====
 
 ^.^a|
@@ -59,8 +59,8 @@ This module teaches Docker through a structured progression designed for master 
 ====
 *🚀 Automation & Orchestration*
 
-. xref:hands-on/04-compose.adoc[Docker Compose]
-. xref:hands-on/06-githubactions.adoc[GitHub Actions + Docker]
+. xref:docker/hands-on/04-compose.adoc[Docker Compose]
+. xref:docker/hands-on/06-githubactions.adoc[GitHub Actions + Docker]
 ====
 |===
 
@@ -82,32 +82,32 @@ If you're in a hurry, here's the minimum path:
 
 === Concepts (Why Containers?)
 
-xref:what-are-containers.adoc[**What are Containers?**]::
+xref:docker/what-are-containers.adoc[**What are Containers?**]::
 Understand containers vs. VMs, images vs. containers, OCI standards.
 
-xref:docker-problems-solved.adoc[**Problems Docker Solves**]::
+xref:docker/docker-problems-solved.adoc[**Problems Docker Solves**]::
 The "matrix from hell", reproducibility challenges, and how Docker addresses them.
 
-xref:docker-architecture.adoc[**Docker Architecture**]::
+xref:docker/docker-architecture.adoc[**Docker Architecture**]::
 Client-server model, Docker daemon, registries, and how containers work.
 
 === Hands-On Skills
 
-xref:docker-install.adoc[**Installation Guide**]::
+xref:docker/docker-install.adoc[**Installation Guide**]::
 Install Docker Desktop (Windows/macOS) or Docker Engine (Linux).
 
-xref:docker-commands.adoc[**Essential Commands**]::
+xref:docker/docker-commands.adoc[**Essential Commands**]::
 `docker run`, `docker build`, `docker exec`, volumes, ports, and more.
 
-xref:dockerfile-basics.adoc[**Dockerfile Fundamentals**]::
+xref:docker/dockerfile-basics.adoc[**Dockerfile Fundamentals**]::
 Create custom images for your mathematical computing projects.
 
 === Advanced Topics
 
-xref:hands-on/04-compose.adoc[**Docker Compose**]::
+xref:docker/hands-on/04-compose.adoc[**Docker Compose**]::
 Orchestrate multi-container applications (e.g., Jupyter + database).
 
-xref:hands-on/06-githubactions.adoc[**GitHub Actions + Docker**]::
+xref:docker/hands-on/06-githubactions.adoc[**GitHub Actions + Docker**]::
 Automate image building and publishing with CI/CD.
 
 == Why Docker for Mathematics Students?
@@ -142,4 +142,4 @@ Before starting, ensure you have:
 * [ ] Administrator/sudo access for installation
 * [ ] A GitHub account (for the Actions tutorial)
 
-Ready? Start with xref:what-are-containers.adoc[What are Containers?] →
+Ready? Start with xref:docker/what-are-containers.adoc[What are Containers?] →

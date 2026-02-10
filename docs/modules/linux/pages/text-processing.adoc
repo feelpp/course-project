@@ -1,12 +1,15 @@
 = Text Processing in Linux
 :page-jupyter: true
-:juputer-language-name: shell
+:jupyter-language-name: shell
 :page-tags: manual
 :parent-catalogs: linux:index
 :page-illustration: fa-solid fa-search
 :description: Master text processing tools in Linux including grep, sed, awk, and cut for searching, filtering, and manipulating text files efficiently.
 
-include::partial$bash-commands.adoc[]
+[IMPORTANT]
+====
+The pages can be downloaded via the green button at the top right of the page. Commands are shell commands and can be executed in a terminal, but do not copy the `%%bash` magic command used by Jupyter Notebook.
+====
 
 Text processing is an essential task for system administrators and developers. Linux, being a robust operating system, provides powerful tools for text searching, manipulation, and processing. The ability to handle and manipulate text files directly from the command line is one of Linux's greatest strengths.
 

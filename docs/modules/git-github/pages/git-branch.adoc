@@ -4,7 +4,7 @@
 :page-illustration: fa-solid fa-code-branch
 :description: Master Git branching concepts including creating, switching, merging branches, and managing parallel development workflows.
 
-=== Branching Basics
+== Branching Basics
 
 Branches are essential for managing workflows in Git. A branch represents a separate line of development and allows you to work on features or fixes without affecting the main codebase.
 
@@ -12,7 +12,7 @@ A few key terms:
 * **Main branch**: The default branch in a Git repository (commonly `main` or `master`).
 * **Feature branch**: A branch created for developing new features or fixes.
 
-=== Creating a Branch
+== Creating a Branch
 
 To create a new branch from the current branch:
 
@@ -44,7 +44,7 @@ $ git checkout -b feature/new-ui
 
 This is a best practice for starting new features or fixes in isolated branches, ensuring the main codebase remains stable.
 
-=== Renaming a Branch
+== Renaming a Branch
 
 To rename the current branch:
 
@@ -75,7 +75,7 @@ $ git push origin -u <new-branch-name>
 $ git push origin --delete <old-branch-name>
 ----
 
-=== Deleting a Branch
+== Deleting a Branch
 
 Once a feature branch has been merged or is no longer needed, it’s good practice to delete it to keep the repository clean.
 
@@ -108,7 +108,7 @@ $ git branch -d feature/new-ui
 $ git push origin --delete feature/new-ui
 ----
 
-=== Checking Out a Branch
+== Checking Out a Branch
 
 Switching between branches is called "checking out" a branch. To switch to another branch:
 
@@ -124,7 +124,7 @@ For example, to switch to the `develop` branch:
 $ git checkout develop
 ----
 
-=== Merging Basics
+== Merging Basics
 
 Once your feature or fix is complete, you’ll want to merge it back into the main branch (e.g., `main` or `develop`).
 

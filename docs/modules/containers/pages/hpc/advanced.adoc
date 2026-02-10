@@ -56,7 +56,7 @@ This flexibility makes Spack indispensable for maintaining consistent software e
 ^.^|Built time error, fails fast ^.^| Seems Ok but not quite, failures later
 ^.^|image:spack/spack-built-time-failure.png[width=37%,title="Spack Build Time",link="https://spack.io/"]
 ^.^|image:spack/spack-seems-ok-but-no.png[width=37%,title="Spack Build Time",link="https://spack.io/"]
-|==
+|===
 --
 +
 . *Manual integration is infeasible*  
@@ -64,8 +64,7 @@ This flexibility makes Spack indispensable for maintaining consistent software e
 +
 --
 .Spack Dependency Graph for E4S
-image:spack/graph-e4s.png[title="Spack Dependency Graph", l
-ink="https://spack.io/",width=75%]
+image:spack/graph-e4s.png[title="Spack Dependency Graph",link="https://spack.io/",width=75%]
 --
 +
 . *Modern software mixes open source and internal packages*  

@@ -1,0 +1,93 @@
+= GitHub Review Lab: Issues, PRs, and Projects (90 minutes)
+:page-tags: git-manual
+:parent-catalogs: git-github:index
+:page-illustration: fa-brands fa-github
+:description: Consolidate GitHub fundamentals with a practical 90-minute lab centered on Issues, Pull Requests, and GitHub Projects.
+
+[.lead]
+This review lab is designed for M1 students who already covered Linux, GitHub basics, GitHub Actions, and Docker. The goal is to strengthen collaboration habits before moving to more advanced CI/CD and project workflow topics.
+
+== Learning Objectives
+
+By the end of this lab, students can:
+
+- Create and structure issues with labels, assignees, and milestones.
+- Open a pull request linked to an issue and close it using commit keywords.
+- Organize work using GitHub Projects (table + board views).
+- Run a short weekly triage workflow as a team.
+
+== Prerequisites
+
+- xref:github-start.adoc[GitHub Getting Started]
+- xref:github-collaborations.adoc[GitHub Collaborations]
+- Optional reference: xref:project-management:github.adoc[GitHub for Project Management]
+
+== Lab Plan (90 minutes)
+
+=== Part 0: Setup (10 min)
+
+1. Use a shared repository for the class or team.
+2. Create labels: `bug`, `enhancement`, `documentation`, `chore`.
+3. Create one milestone: `Sprint-1`.
+4. Create one project: `M1 Review Board`.
+
+=== Part 1: Issues and PR Review (20 min)
+
+1. Create 4 issues (one per label).
+2. Assign owners to issues and attach the `Sprint-1` milestone.
+3. For one issue, create a branch, push a change, and open a PR.
+4. Link the PR to the issue with a closing keyword.
+
+[source,console]
+----
+$ git checkout -b feat/readme-review
+$ git add README.md
+$ git commit -m "Improve README examples. Closes #12"
+$ git push origin feat/readme-review
+----
+
+=== Part 2: Project Configuration (25 min)
+
+1. Add all issues and PRs to `M1 Review Board`.
+2. Create custom fields:
+- `Status` (Todo, In Progress, In Review, Done)
+- `Priority` (P1, P2, P3)
+- `Effort` (XS, S, M, L)
+- `Sprint` (Sprint-1)
+3. Create three views:
+- `Backlog` (table)
+- `Current Sprint` (board grouped by `Status`)
+- `My Tasks` (filtered by assignee)
+
+=== Part 3: Workflow Integration (20 min)
+
+1. Move one item from `Todo` to `In Progress`.
+2. Link one PR to one issue and verify references in both directions.
+3. Merge one PR and verify issue auto-closes when keyword is used.
+4. Update corresponding project item to `Done`.
+
+=== Part 4: Triage Ritual (15 min)
+
+Run this weekly triage checklist:
+
+1. Review open `P1` issues first.
+2. Assign owners to any unassigned issues.
+3. Move max 3 items/person to `In Progress`.
+4. Flag blocked items with a comment and mention.
+5. Close or archive completed items.
+
+== Deliverables
+
+At the end of the lab, each team should provide:
+
+1. Link to the project (board view).
+2. Link to one issue with labels, assignee, milestone.
+3. Link to one merged PR closing its issue.
+4. Short note (3-5 lines): what worked, what blocked progress.
+
+== Next Step
+
+After this review, continue with:
+
+- xref:github-actions.adoc[GitHub Actions Intro]
+- xref:containers:docker/hands-on/06-githubactions.adoc[Docker + GitHub Actions]

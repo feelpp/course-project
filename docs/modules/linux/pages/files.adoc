@@ -6,7 +6,10 @@
 :page-illustration: fa-solid fa-file
 :description: Learn essential file operations in Linux including creating, copying, moving, and removing files using command-line utilities.
 
-include::partial$bash-commands.adoc[]
+[IMPORTANT]
+====
+The pages can be downloaded via the green button at the top right of the page. Commands are shell commands and can be executed in a terminal, but do not copy the `%%bash` magic command used by Jupyter Notebook.
+====
 
 Working with files is an essential part of Linux, and it’s a skill every Linux user must master. In Linux, everything is considered a file: text documents, images, system files, devices, and even directories. Linux provides numerous command-line utilities to create, view, move, or search files. Some of the basic commands for file handling in the Linux terminal include `touch` for creating files, `mv` for moving files, `cp` for copying files, `rm` for removing files, and `ls` for listing files and directories.
 

@@ -224,6 +224,6 @@ This means Docker images work with:
 
 == Next Steps
 
-. xref:docker-install.adoc[Install Docker] on your machine
-. xref:hands-on/01-getting-started.adoc[Run your first container]
-. Learn xref:dockerfile-basics.adoc[how to build images with Dockerfile]
+. xref:docker/docker-install.adoc[Install Docker] on your machine
+. xref:docker/hands-on/01-getting-started.adoc[Run your first container]
+. Learn xref:docker/dockerfile-basics.adoc[how to build images with Dockerfile]

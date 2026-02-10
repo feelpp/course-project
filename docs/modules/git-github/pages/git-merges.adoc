@@ -92,14 +92,14 @@ This is the feature branch
 >>>>>>>
 ----
 
-2. Manually edit the file to include the correct changes, then stage the resolved files:
+1. Manually edit the file to include the correct changes, then stage the resolved files:
 
 [source,console]
 ----
 $ git add <file-name>
 ----
 
-3. After resolving all conflicts, commit the merge:
+1. After resolving all conflicts, commit the merge:
 
 [source,console]
 ----
