@@ -1,164 +1,110 @@
-= GitHub
+= GitHub for Project Management
+:page-tags: project-management
+:description: Use GitHub Issues, Pull Requests, and Projects to plan, track, and deliver team work in a structured way.
 
-== GitHub:  Overview
+[.lead]
+GitHub can be used as a lightweight but robust project management system for student teams: define tasks, assign ownership, track progress, review work, and deliver increments.
 
-- GitHub is a web-based Git repository hosting service
-- GitHub offers all of the distributed revision control and source code management (SCM) functionality of Git as well as adding its own features
-- GitHub provides a web-based graphical interface and desktop as well as mobile integration
-- GitHub is used by individuals and enterprises to host software projects
-- GitHub is the largest code host in the world
+== Why Use GitHub for PM in M1
 
-The main features of GitHub are:: Issues, Pull Requests, Projects, Actions
+- One platform for code, tasks, reviews, and automation.
+- Traceability from idea to merged contribution.
+- Good habits for research and engineering collaboration.
+- Works for small teams without heavy tooling overhead.
 
-== GitHub Issues
+== Core Building Blocks
 
-* GitHub Issues are a great way to keep track of tasks, enhancements, and bugs for your projects.
-* They’re kind of like email—except they can be shared and discussed with the rest of your team.
-* Most software projects have a bug tracker of some kind. GitHub’s tracker is called Issues, and has its own section in every repository.
-* Issues can act as more than just a place to report software bugs. They’re great for tracking ideas and enhancements, tasks, or even a place to discuss ongoing development.
-* Issues are easy to create. Within a repository, click the Issues tab, then the big green New Issue button.
-* You’ll then see the issue editor page
+=== Issues
 
-NOTE: more information https://guides.github.com/features/issues/[> guides.github.com] !
+Use issues to represent work items:
 
-=== Labels
+- Feature tasks
+- Bug reports
+- Documentation tasks
+- Technical debt and maintenance
 
-* Labels are a great way to organize different types of issues. For example, you could use labels to tag issues as bugs, features, or questions.
-* You can apply multiple labels to each issue. For example, if a feature request also happens to be a question, you can apply both the `question` and `enhancement` labels.
-* You can filter issues based on their labels. For example, you can filter the issues in the above screenshot by clicking the `enhancement` label underneath the Labels heading on the right.
-* You can also filter issues based on multiple labels. For example, you can filter the issues in the above screenshot by clicking the `enhancement` and `question` labels underneath the Labels heading on the right.
+Recommended issue fields:
 
-NOTE: more information https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels[> guides.github.com] !
+- Clear title
+- Short context/problem statement
+- Acceptance criteria
+- Labels (`bug`, `enhancement`, `documentation`, `chore`)
+- Assignee(s)
+- Milestone (for sprint/release grouping)
 
-=== Milestones
+NOTE: Milestones can track both issues and pull requests.
 
-* Milestones are groups of issues that correspond to a project, feature, or time period.
-* People use them in many different ways. Some plan releases around them, while others use them to track the progress of a feature or project.
-* Milestones are like issues: they have titles and descriptions, and can be assigned to a user. Here’s an example of a milestone that’s tracking the progress of a feature:
-* Milestones are only available on repositories that have them enabled.
+=== Pull Requests
 
-NOTE: more information https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/about-milestones[> guides.github.com] !
+Use pull requests as your quality gate:
 
-=== Assignees
+- Link PRs to issues (`Closes #123`)
+- Request at least one review
+- Require checks to pass before merge
+- Keep PRs small and focused
 
-* Assignees are the GitHub users who are responsible for working on the issue.
-* Assignees are selected the same way as labels. Start typing a username, then click their name once it appears to select them.
-* You can assign multiple people to an issue. For example, if you’re working on a feature with another user, you can assign both of yourselves to the issue.
-* You can also assign people who aren’t collaborators on the repository. For example, if you’re working on a feature with a designer, you can assign them to the issue even if they don’t have push access to the repository.
-* Assignees are a great way to clarify who’s responsible for what. They’re also used to filter issues based on who’s working on them.
+=== GitHub Projects (current version)
 
-=== Mentions
+Use GitHub Projects (table/board/roadmap) to organize and prioritize team work.
 
-* You can mention a person or team on GitHub by typing @ plus their username or team name. This will trigger a notification and bring their attention to the conversation.
-* You can also mention teams within an organization. For example, you can mention the @github/owners team within the GitHub organization.
-* Mentions are a great way to get feedback from specific people or teams, draw attention to potential problems, or ask for help.
+IMPORTANT: Projects (classic) was sunset on GitHub.com in 2024 and removed in GitHub Enterprise Server 3.17 (June 3, 2025). Use the current GitHub Projects experience.
 
-== GitHub Pull Requests
+== Recommended Team Setup (Week 2)
 
-* Pull Requests are the heart of collaboration on GitHub.
-* When you open a pull request, you’re proposing your changes and requesting that someone review and pull in your contribution and merge them into their branch.
-* Pull requests show diffs, or differences, of the content from both branches. The changes, additions, and subtractions are shown in green and red.
-* As soon as you make a commit, you can open a pull request and start a discussion, even before the code is finished.
-* You can even open pull requests in your own repository and merge them yourself. It’s a great way to learn the GitHub Flow before working on larger projects.
+For a 3-5 student team:
 
-NOTE: more information https://guides.github.com/activities/hello-world/[> guides.github.com] !
+1. Create labels: `bug`, `enhancement`, `documentation`, `chore`.
+2. Create one milestone: `Sprint-1`.
+3. Create one project at organization/user level: `M1 Team Board`.
+4. Add fields:
+- `Status`: `Todo`, `In Progress`, `In Review`, `Done`
+- `Priority`: `P1`, `P2`, `P3`
+- `Effort`: `XS`, `S`, `M`, `L`
+5. Create views:
+- `Backlog` (table)
+- `Current Sprint` (board grouped by `Status`)
+- `Roadmap` (roadmap layout, grouped by milestone/date)
 
-== GitHub Project
+== Suggested Weekly Ritual (30-45 min)
 
-* GitHub Projects help you organize and prioritize your work.
-* You can create Project boards for specific feature work, comprehensive roadmaps, or even release checklists.
-* With Projects, you have the flexibility to create customized workflows that suit your needs.
-* Projects are made up of issues, pull requests, and notes that are categorized as cards in columns of your choosing. You can drag and drop or use keyboard shortcuts to reorder cards within a column, move cards from column to column, and change the order of columns.
-* You can also filter the cards displayed on your project board by label, assignee, and milestone.
-* You can create as many project boards as you want within an organization or repository.
+1. Triage new issues.
+2. Prioritize `P1` work.
+3. Ensure each active item has an owner.
+4. Move max 2-3 items/person to `In Progress`.
+5. Review blocked items and add explicit unblock actions.
+6. Merge completed PRs and move linked project items to `Done`.
 
-IMPORTANT: more information https://docs.github.com/en/issues/planning-and-tracking-with-projects[> docs.github.com] !
+== Practical Workflow (Issue -> PR -> Project)
 
-=== Planning
+1. Create an issue for each task.
+2. Assign owner and labels; add milestone.
+3. Add issue to project.
+4. Open branch and implement change.
+5. Open PR with `Closes #issue_number`.
+6. Review + pass checks + merge.
+7. Verify issue closed and project item updated.
 
-* Create issues (tasks),
-* Break them into tasks,
-* Track relationships,
-* Add/use custom fields,
-* And have conversations.
+This keeps planning and execution synchronized.
 
-Visualize large projects as spreadsheets or boards, and automate everything with code.
+== Common Pitfalls
 
-image::https://docs.github.com/assets/cb-102381/mw-1440/images/help/projects-v2/example-table.webp[GitHub Project Board]
+- Tasks too large (split into smaller issues).
+- Missing ownership (no assignee, unclear responsibility).
+- Project board not maintained after merges.
+- PRs opened without linked issue.
+- Labels used inconsistently across the team.
 
+== Learning Path in This Course
 
-=== Table vs Board Views
+- xref:git-github:github-how-to-write-issues.adoc[Writing Issues]
+- xref:git-github:github-collaborations.adoc[GitHub Collaborations]
+- xref:git-github:github-review-projects-lab.adoc[GitHub Intro Lab: Issues, PRs, and Projects]
+- xref:git-github:github-actions.adoc[GitHub Actions]
 
-* Built like a spreadsheet, project tables give a live workspace to filter, sort, and group issues and pull requests.
-* We can tailor them to your needs with custom fields and saved views.
-* Boards can display group issues using custom fields (e.g. Status)
-* We can drag and drop issues between columns to change their status.
+== Further Reading (Official Docs)
 
-* Built like a spreadsheet, project tables give a live workspace to filter, sort, and group issues and pull requests.
-* We can tailor them to your needs with custom fields and saved views.
-* boards can display group issues using custom fields (e.g. Status)
-
-[.float-group]
---
-image::https://docs.github.com/assets/cb-102381/mw-1440/images/help/projects-v2/example-board.webp[width=600]
---
-
-
-=== Roadmap
-
-* Roadmaps help you plan and communicate the big picture.
-* They’re built from issues and pull requests, so you can organize work the way you want.
-* Roadmaps are a great way to communicate your team’s plans and progress to stakeholders.
-
-image::https://docs.github.com/assets/cb-102381/mw-1440/images/help/projects-v2/example-roadmap.webp[width=600]
-
-=== Break issues into actionable tasks
-
-* Tackle complex issues with task lists
-* track their status with new progressindicators.
-* Convert tasks into their own issues
-* navigate your work hierarchy.
-
-[.float-group]
---
-[.left]
-image::github-project-actionable-tasks-1.png[width=400]
-[.left]
-image::github-project-actionable-tasks-2.png[width=400]
-[.left]
-image::github-project-actionable-tasks-3.png[width=400]
---
-
-
-=== Conversations
-
-* Move conversations forward
-* Express ideas with GitHub Flavored Markdown,
-* mention contributors,
-* react with emoji,
-* clarify with attachments(videos, pdf, images...),
-* see references from commits, pull requests, releases, and deploys.
-* Coordinate by assigning contributors and teams,
-* or by adding them to milestones and projects.
-
-image::github-project-conversations.png[width=600]
-
-
-=== Views and Fields
-
-==== Create views
-
-* Save views for sprints, backlogs, teams, or releases.
-*  Rank, group, sort, and filter issues to suit the occasion.
-* Choose between tables, boards, and timelines.
-
-image::github-project-views.png[width=600]
-
-==== Extend with Fields
-
-* Add custom fields to track anything you want.
-* Choose from a variety of field types, including checkboxes, dates, and dropdowns.
-* Use fields to track priority, effort, cost, and more.
-* Add fields to issues and pull requests.
-
-image::github-project-fields.png[width=600]
+- https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues[About issues]
+- https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/about-milestones[About milestones]
+- https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests[About pull requests]
+- https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects[About GitHub Projects]
+- https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/quickstart-for-projects[Quickstart for Projects]

@@ -157,13 +157,13 @@ GitHub for Academic Work (45 min)::
 - Creating repositories for mathematical projects
 - **Exercise:** Collaborate on a mathematical proof document
 
-**Friday: GitHub Review Lab (Issues, PRs, Projects)** _(90 minutes)_
+**Friday: GitHub Intro Lab (Issues, PRs, Projects)** _(90 minutes)_
 
-Structured Review Lab (90 min)::
+Guided Intro Lab (90 min)::
 +
-- Run xref:git-github:github-review-projects-lab.adoc[GitHub Review Lab: Issues, PRs, and Projects (90 minutes)]
+- Run xref:git-github:github-review-projects-lab.adoc[GitHub Intro Lab: Issues, PRs, and Projects (90 minutes)]
 - Create and triage issues with labels, assignees, and milestone
-- Open, review, and merge one PR that closes an issue
+- Open and merge one PR that closes an issue
 - Organize work in GitHub Project views (table + board)
 
 Expected Outputs::

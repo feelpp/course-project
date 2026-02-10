@@ -1,11 +1,11 @@
-= GitHub Review Lab: Issues, PRs, and Projects (90 minutes)
+= GitHub Intro Lab: Issues, PRs, and Projects (90 minutes)
 :page-tags: git-manual
 :parent-catalogs: git-github:index
 :page-illustration: fa-brands fa-github
-:description: Consolidate GitHub fundamentals with a practical 90-minute lab centered on Issues, Pull Requests, and GitHub Projects.
+:description: Introduce GitHub collaboration with a practical 90-minute lab centered on Issues, Pull Requests, and GitHub Projects.
 
 [.lead]
-This review lab is designed for M1 students who already covered Linux, GitHub basics, GitHub Actions, and Docker. The goal is to strengthen collaboration habits before moving to more advanced CI/CD and project workflow topics.
+This intro lab is designed for M1 students who covered Linux and GitHub basics and are discovering structured team workflows. The goal is to build collaboration habits before moving to advanced CI/CD and project workflow topics.
 
 == Learning Objectives
 
@@ -14,7 +14,7 @@ By the end of this lab, students can:
 - Create and structure issues with labels, assignees, and milestones.
 - Open a pull request linked to an issue and close it using commit keywords.
 - Organize work using GitHub Projects (table + board views).
-- Run a short weekly triage workflow as a team.
+- Run a short triage workflow as a team.
 
 == Prerequisites
 
@@ -22,72 +22,253 @@ By the end of this lab, students can:
 - xref:github-collaborations.adoc[GitHub Collaborations]
 - Optional reference: xref:project-management:github.adoc[GitHub for Project Management]
 
+== Class Setup
+
+This session uses:
+
+- 3 groups of 2 students
+- 1 group of 3 students
+
+Each group works on the same project in a separate repository:
+
+- `m1-g1-project`
+- `m1-g2-project`
+- `m1-g3-project`
+- `m1-g4-project`
+
+== Project Proposal
+
+Project title: `Reproducible Mini Weather Analysis`
+
+Goal: Build a small reproducible weather analysis workflow from an hourly CSV dataset and document how to run it locally and with Docker.
+
+Primary dataset columns:
+
+- `cloud_cover`
+- `diffuse_radiation`
+- `direct_radiation`
+- `relative_humidity_2m`
+- `surface_pressure`
+- `temperature_2m`
+- `time` (Unix timestamp in milliseconds)
+- `wind_direction_10m`
+- `wind_speed_10m`
+
+Suggested repository structure:
+
+[source,text]
+----
+.
+|-- README.md
+|-- data/
+|   `-- weather_hourly.csv
+|-- src/
+|   `-- analyze_weather.py
+|-- results/
+`-- Dockerfile
+----
+
+== Starter Weather Dataset
+
+Download the starter CSV from this page attachment:
+
+- xref:attachment$weather_hourly.csv[weather_hourly.csv]
+
+NOTE: The `time` column intentionally mixes standard integers and scientific notation (for example `1672538400000` and `1.672542e+12`). Normalizing this field is part of the exercise.
+
+== CSV Column Reference
+
+[cols="2,1,5",options="header"]
+|===
+|Column |Unit |Description
+
+|`cloud_cover`
+|`%`
+|Cloud coverage of the sky (`0` = clear sky, `100` = fully overcast).
+
+|`diffuse_radiation`
+|`W/m^2`
+|Solar radiation scattered by the atmosphere and clouds (not direct beam).
+
+|`direct_radiation`
+|`W/m^2`
+|Direct beam solar radiation reaching the surface.
+
+|`relative_humidity_2m`
+|`%`
+|Relative humidity measured around 2 meters above ground.
+
+|`surface_pressure`
+|`hPa`
+|Atmospheric pressure at the surface.
+
+|`temperature_2m`
+|`deg C`
+|Air temperature measured around 2 meters above ground.
+
+|`time`
+|`ms since Unix epoch`
+|Timestamp of the measurement. Values may appear as standard integers or scientific notation.
+
+|`wind_direction_10m`
+|`deg`
+|Wind direction at 10 meters (`0/360` = North, `90` = East, `180` = South, `270` = West).
+
+|`wind_speed_10m`
+|`km/h`
+|Wind speed at 10 meters above ground.
+|===
+
+== What Students Have To Do
+
+1. Create a project board named `M1 Team Board` with statuses `Todo`, `In Progress`, `In Review`, `Done`.
+2. Create all mandatory issues from the issue list below.
+3. Assign owners, labels, priorities, effort, and milestone `Sprint-1`.
+4. Work with one branch per issue.
+5. Open PRs using `Closes #issue_number` in the PR description.
+6. Review teammate PRs before merge.
+7. Keep project status updated while work progresses.
+8. Submit links to board, issues, and merged PRs.
+
+== Issue List (Create These First)
+
+[cols="1,3,1,1,1,5",options="header"]
+|===
+|ID |Issue title |Label |Priority |Effort |Done when
+
+|1
+|Initialize repository skeleton
+|chore
+|P1
+|S
+|`README.md`, `src/`, `data/`, `results/`, and `.gitignore` are committed.
+
+|2
+|Add weather dataset and data description
+|documentation
+|P1
+|S
+|`data/weather_hourly.csv` and `data/README.md` describe all columns and units.
+
+|3
+|Implement weather summary script
+|enhancement
+|P1
+|M
+|`src/analyze_weather.py` computes min/max/mean for `temperature_2m`, mean for `relative_humidity_2m`, and max for `wind_speed_10m`.
+
+|4
+|Add input argument and filtering options
+|enhancement
+|P2
+|S
+|Script supports `--input <file>` and at least one filter option (`--start`, `--end`, or `--min-temp`).
+
+|5
+|Normalize and validate timestamp format
+|bug
+|P1
+|M
+|Script correctly parses `time` when values appear as both integer and scientific notation and converts to readable datetime.
+
+|6
+|Containerize analysis
+|chore
+|P1
+|M
+|`Dockerfile` builds and runs analysis successfully.
+
+|7
+|Document run instructions
+|documentation
+|P1
+|S
+|README includes local run, Docker run, and expected outputs.
+
+|8
+|Configure project board views and fields
+|chore
+|P1
+|S
+|Board has `Backlog` (table), `Current Sprint` (board), and `My Tasks` views with fields `Status`, `Priority`, `Effort`.
+
+|9
+|Optional: add basic GitHub Actions workflow
+|enhancement
+|P3
+|M
+|A workflow runs a basic check (for example script execution or lint).
+
+|10
+|Optional: add one weather trend plot
+|enhancement
+|P3
+|M
+|Analysis generates one figure in `results/` (for example `temperature_2m` over time) and documents it in README.
+|===
+
+== Workload Rules by Group Size
+
+- Groups of 2: complete issues `1-8`, plus at least one optional issue (`9` or `10`).
+- Group of 3: complete issues `1-8`, plus both optional issues (`9` and `10`).
+- Every student must author at least one merged PR and review at least one teammate PR.
+
 == Lab Plan (90 minutes)
 
 === Part 0: Setup (10 min)
 
-1. Use a shared repository for the class or team.
-2. Create labels: `bug`, `enhancement`, `documentation`, `chore`.
-3. Create one milestone: `Sprint-1`.
-4. Create one project: `M1 Review Board`.
+1. Create labels: `bug`, `enhancement`, `documentation`, `chore`.
+2. Create milestone: `Sprint-1`.
+3. Create project: `M1 Team Board`.
+4. Add fields: `Status`, `Priority`, `Effort`.
 
-=== Part 1: Issues and PR Review (20 min)
+=== Part 1: Backlog Creation and Assignment (20 min)
 
-1. Create 4 issues (one per label).
-2. Assign owners to issues and attach the `Sprint-1` milestone.
-3. For one issue, create a branch, push a change, and open a PR.
-4. Link the PR to the issue with a closing keyword.
+1. Create issues `1-10` from the list above.
+2. Assign issues to team members.
+3. Add all issues to `M1 Team Board`.
+4. Set `Priority` and `Effort` for each issue.
 
 [source,console]
 ----
-$ git checkout -b feat/readme-review
-$ git add README.md
-$ git commit -m "Improve README examples. Closes #12"
-$ git push origin feat/readme-review
+$ git checkout -b feat/weather-summary
+$ git add src/analyze_weather.py
+$ git commit -m "Add weather summary script. Closes #3"
+$ git push origin feat/weather-summary
 ----
 
-=== Part 2: Project Configuration (25 min)
+=== Part 2: Implementation and PRs (35 min)
 
-1. Add all issues and PRs to `M1 Review Board`.
-2. Create custom fields:
-- `Status` (Todo, In Progress, In Review, Done)
-- `Priority` (P1, P2, P3)
-- `Effort` (XS, S, M, L)
-- `Sprint` (Sprint-1)
-3. Create three views:
-- `Backlog` (table)
-- `Current Sprint` (board grouped by `Status`)
-- `My Tasks` (filtered by assignee)
+1. Start with all `P1` issues.
+2. Move active items to `In Progress`.
+3. Open PRs linked to issues (`Closes #...`).
+4. Review and merge teammate PRs.
 
-=== Part 3: Workflow Integration (20 min)
+=== Part 3: Project Views and Triage (15 min)
 
-1. Move one item from `Todo` to `In Progress`.
-2. Link one PR to one issue and verify references in both directions.
-3. Merge one PR and verify issue auto-closes when keyword is used.
-4. Update corresponding project item to `Done`.
+1. Ensure board has `Backlog`, `Current Sprint`, and `My Tasks`.
+2. Verify merged PRs close linked issues.
+3. Move completed items to `Done`.
+4. Leave one triage comment on a blocked or pending item.
 
-=== Part 4: Triage Ritual (15 min)
+=== Part 4: Wrap-Up (10 min)
 
-Run this weekly triage checklist:
-
-1. Review open `P1` issues first.
-2. Assign owners to any unassigned issues.
-3. Move max 3 items/person to `In Progress`.
-4. Flag blocked items with a comment and mention.
-5. Close or archive completed items.
+1. Verify workload rule compliance (group of 2 vs group of 3).
+2. Prepare final links for submission.
+3. Write a short retrospective.
 
 == Deliverables
 
 At the end of the lab, each team should provide:
 
-1. Link to the project (board view).
-2. Link to one issue with labels, assignee, milestone.
-3. Link to one merged PR closing its issue.
-4. Short note (3-5 lines): what worked, what blocked progress.
+1. Link to `M1 Team Board`.
+2. Link to all created issues (or issue filter).
+3. Link to merged PRs showing `Closes #...`.
+4. Short retrospective (3-5 lines): what worked and what blocked progress.
 
 == Next Step
 
-After this review, continue with:
+After this intro, continue with:
 
 - xref:github-actions.adoc[GitHub Actions Intro]
 - xref:containers:docker/hands-on/06-githubactions.adoc[Docker + GitHub Actions]

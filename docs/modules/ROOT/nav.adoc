@@ -28,7 +28,7 @@
 *** xref:git-github:git-merges.adoc[Merging & Conflicts]
 *** xref:git-github:git-remotes.adoc[Git Remotes]
 *** xref:git-github:github-collaborations.adoc[GitHub Collaboration]
-*** xref:git-github:github-review-projects-lab.adoc[GitHub Review Lab: Projects]
+*** xref:git-github:github-review-projects-lab.adoc[GitHub Intro Lab: Projects]
 ** 🔴 Automation
 *** xref:git-github:github-actions.adoc[GitHub Actions]
 *** xref:git-github:github-actions-cmake-eigen3.adoc[CMake + Eigen3 Example]
