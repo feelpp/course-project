@@ -453,9 +453,6 @@ MathJax.Hub.Config({
     <span class="version"></span>
   </div>
   <ul class="components">
-      <li class="component">
-        <a class="title" href="../../feelpp-antora-ui/index.html">Antora Feel++ UI</a>
-      </li>
       <li class="component is-current">
         <a class="title" href="../index.html">Course Project</a>
       </li>
@@ -521,7 +518,9 @@ MathJax.Hub.Config({
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-The pages can be downloaded via the green button at the top right of the page. The commands are shell commands and can be executed in a terminal, however, do not copy the <code>%%bash</code> magic command that is used to execute the commands in the Jupyter Notebook environment.
+<div class="paragraph">
+<p>The pages can be downloaded via the green button at the top right of the page. Commands are shell commands and can be executed in a terminal, but do not copy the <code>%%bash</code> magic command used by Jupyter Notebook.</p>
+</div>
 </td>
 </tr>
 </table>
@@ -673,13 +672,13 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 8
--rw-r--r-- 1 runner runner  150 Dec 11 08:52 archive.tar.gz
--rw-r--r-- 1 runner runner    0 Dec 11 08:52 example.txt
--rwxr-xr-x 2 runner runner    0 Dec 11 08:52 file.txt
--rw-r--r-- 1 runner runner    0 Dec 11 08:52 file1.txt
--rwxr-xr-x 2 runner runner    0 Dec 11 08:52 newlink.txt
-lrwxrwxrwx 1 runner runner    8 Dec 11 08:52 softlink.txt -> file.txt
-drwxr-xr-x 2 runner runner 4096 Dec 11 08:52 temp</pre>
+-rw-r--r-- 1 runner runner  150 Feb 10 05:10 archive.tar.gz
+-rw-r--r-- 1 runner runner    0 Feb 10 05:10 example.txt
+-rwxr-xr-x 2 runner runner    0 Feb 10 05:10 file.txt
+-rw-r--r-- 1 runner runner    0 Feb 10 05:10 file1.txt
+-rwxr-xr-x 2 runner runner    0 Feb 10 05:10 newlink.txt
+lrwxrwxrwx 1 runner runner    8 Feb 10 05:10 softlink.txt -> file.txt
+drwxr-xr-x 2 runner runner 4096 Feb 10 05:10 temp</pre>
 </div>
 </div>
 </div>
@@ -732,28 +731,28 @@ tree ..</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>..
-├── clr-debug-pipe-1770-9440-in
-├── clr-debug-pipe-1770-9440-out
-├── clr-debug-pipe-1785-9591-in
-├── clr-debug-pipe-1785-9591-out
+├── clr-debug-pipe-1850-22407-in
+├── clr-debug-pipe-1850-22407-out
+├── clr-debug-pipe-1865-22527-in
+├── clr-debug-pipe-1865-22527-out
 ├── documents
 │   ├── archive.tar.gz
 │   ├── example.txt
 │   ├── file.txt
 │   ├── file1.txt
-│   ├── newlink.txt
+���   ├── newlink.txt
 │   ├── softlink.txt -> file.txt
 │   └── temp
 │       ├── file.txt
 │       └── file1.txt
-├── dotnet-diagnostic-1770-9440-socket
-���── dotnet-diagnostic-1785-9591-socket
+├── dotnet-diagnostic-1850-22407-socket
+├── dotnet-diagnostic-1865-22527-socket
 ├── newname.txt
 ├── snap-private-tmp  [error opening dir]
-├── systemd-private-82bfddf61d7e494987335441d1947c47-chrony.service-yf32CM  [error opening dir]
-├── systemd-private-82bfddf61d7e494987335441d1947c47-haveged.service-crtofa  [error opening dir]
-├── systemd-private-82bfddf61d7e494987335441d1947c47-systemd-logind.service-FYdipC  [error opening dir]
-├── systemd-private-82bfddf61d7e494987335441d1947c47-systemd-resolved.service-AUC0JX  [error opening dir]
+├── systemd-private-45aa002442a044caadef1763908d0994-chrony.service-S5KJ42  [error opening dir]
+├── systemd-private-45aa002442a044caadef1763908d0994-haveged.service-pNnDcB  [error opening dir]
+├── systemd-private-45aa002442a044caadef1763908d0994-systemd-logind.service-DVBTn1  [error opening dir]
+├── systemd-private-45aa002442a044caadef1763908d0994-systemd-resolved.service-3OBYnR  [error opening dir]
 └── www-data-temp-aspnet-0
     └── cc117660
 
@@ -763,7 +762,7 @@ CalledProcessError                        Traceback (most recent call last)
 File <ipython-input-1-bb284c5f7525>:1
 ----> 1 get_ipython().run_cell_magic('bash', '', 'cd /tmp/documents\ntree ..\n')
 
-File ~/work/course-project/course-project/.venv/lib/python3.10/site-packages/IPython/core/interactiveshell.py:2543, in InteractiveShell.run_cell_magic(self, magic_name, line, cell)
+File ~/work/course-project/course-project/.venv-antora/lib/python3.10/site-packages/IPython/core/interactiveshell.py:2543, in InteractiveShell.run_cell_magic(self, magic_name, line, cell)
    2541 with self.builtin_trap:
    2542     args = (magic_arg_s, cell)
 -> 2543     result = fn(*args, **kwargs)
@@ -772,12 +771,12 @@ File ~/work/course-project/course-project/.venv/lib/python3.10/site-packages/IPy
    2547 # when the last Python token in the expression is a ';'.
    2548 if getattr(fn, magic.MAGIC_OUTPUT_CAN_BE_SILENCED, False):
 
-File ~/work/course-project/course-project/.venv/lib/python3.10/site-packages/IPython/core/magics/script.py:159, in ScriptMagics._make_script_magic.<locals>.named_script_magic(line, cell)
+File ~/work/course-project/course-project/.venv-antora/lib/python3.10/site-packages/IPython/core/magics/script.py:159, in ScriptMagics._make_script_magic.<locals>.named_script_magic(line, cell)
     157 else:
     158     line = script
 --> 159 return self.shebang(line, cell)
 
-File ~/work/course-project/course-project/.venv/lib/python3.10/site-packages/IPython/core/magics/script.py:336, in ScriptMagics.shebang(self, line, cell)
+File ~/work/course-project/course-project/.venv-antora/lib/python3.10/site-packages/IPython/core/magics/script.py:336, in ScriptMagics.shebang(self, line, cell)
     331 if args.raise_error and p.returncode != 0:
     332     # If we get here and p.returncode is still None, we must have
     333     # killed it but not yet seen its return code. We don't wait for it,
@@ -868,40 +867,35 @@ ls -l</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>total 552
--rw-r--r--  1 root         root               208 Dec 11 08:50 alternatives.log
-drwxr-x---  2 root         adm               4096 Nov 25 21:11 apache2
-drwxr-xr-x  2 root         root              4096 Nov 25 21:50 apt
--rw-r-----  1 syslog       adm               4651 Dec 11 08:50 auth.log
--rw-r-----  1 syslog       adm               1749 Dec 11 08:50 auth.log.1
-drwxr-xr-x  4 root         root              4096 Dec 11 08:50 azure
--rw-rw----  1 root         utmp                 0 Dec 11 08:50 btmp
--rw-rw----  1 root         utmp                 0 Nov 26 09:08 btmp.1
-drwxr-x---  2 _chrony      _chrony           4096 Nov 25 21:03 chrony
--rw-r-----  1 root         adm               4430 Dec 11 08:50 cloud-init-output.log
--rw-r-----  1 syslog       adm             131142 Dec 11 08:50 cloud-init.log
+<pre>total 532
+-rw-r--r--  1 root         root               208 Feb 10 05:06 alternatives.log
+drwxr-x---  2 root         adm               4096 Feb  1 21:16 apache2
+drwxr-xr-x  2 root         root              4096 Feb  1 21:52 apt
+-rw-r-----  1 syslog       adm               5456 Feb 10 05:09 auth.log
+drwxr-xr-x  4 root         root              4096 Feb 10 05:06 azure
+-rw-rw----  1 root         utmp                 0 Feb  1 22:23 btmp
+drwxr-x---  2 _chrony      _chrony           4096 Feb  1 21:08 chrony
+-rw-r-----  1 root         adm               4439 Feb 10 05:06 cloud-init-output.log
+-rw-r-----  1 syslog       adm             118152 Feb 10 05:06 cloud-init.log
 drwxr-xr-x  2 root         root              4096 Sep 10  2024 dist-upgrade
--rw-r-----  1 root         adm              47302 Dec 11 08:50 dmesg
--rw-r--r--  1 root         root                 0 Nov 26 09:08 dpkg.log
--rw-r--r--  1 root         root                 0 Nov 26 09:08 fontconfig.log
-drwxr-sr-x+ 3 root         systemd-journal   4096 Nov 25 21:03 journal
--rw-r-----  1 syslog       adm               1776 Dec 11 08:50 kern.log
--rw-r-----  1 syslog       adm              57628 Dec 11 08:50 kern.log.1
-drwxr-xr-x  2 landscape    landscape         4096 Nov 25 21:03 landscape
--rw-rw-r--  1 root         utmp                 0 Nov 26 09:08 lastlog
-drwxr-x---  2 mysql        adm               4096 Dec 11 08:50 mysql
-drwxr-xr-x  2 root         adm               4096 Nov 25 21:32 nginx
--rw-------  1 root         root               185 Dec 11 08:50 php8.1-fpm.log
--rw-------  1 root         root                96 Nov 26 09:09 php8.1-fpm.log.1
-drwxrwxr-t  2 root         postgres          4096 Nov 25 21:34 postgresql
-drwx------  2 root         root              4096 Nov 25 21:03 private
+-rw-r-----  1 root         adm              43468 Feb 10 05:06 dmesg
+-rw-r--r--  1 root         root                 0 Feb  1 22:23 dpkg.log
+-rw-r--r--  1 root         root                 0 Feb  1 22:23 fontconfig.log
+drwxr-sr-x+ 3 root         systemd-journal   4096 Feb  1 21:08 journal
+-rw-r-----  1 syslog       adm              54080 Feb 10 05:06 kern.log
+drwxr-xr-x  2 landscape    landscape         4096 Feb  1 21:09 landscape
+-rw-rw-r--  1 root         utmp                 0 Feb  1 22:23 lastlog
+drwxr-x---  2 mysql        adm               4096 Feb  1 21:31 mysql
+drwxr-xr-x  2 root         adm               4096 Feb  1 21:32 nginx
+-rw-------  1 root         root               281 Feb 10 05:06 php8.1-fpm.log
+drwxrwxr-t  2 root         postgres          4096 Feb  1 21:34 postgresql
+drwx------  2 root         root              4096 Feb  1 21:08 private
 drwxr-xr-x  2 sphinxsearch root              4096 Dec  3  2021 sphinxsearch
--rw-r-----  1 syslog       adm              78201 Dec 11 08:51 syslog
--rw-r-----  1 syslog       adm             108118 Dec 11 08:50 syslog.1
-drwxr-xr-x  2 root         root              4096 Dec 11 08:50 sysstat
-drwxr-x---  2 root         adm               4096 Nov 25 21:03 unattended-upgrades
--rw-r--r--  1 root         root             22499 Dec 11 08:50 waagent.log
--rw-rw-r--  1 root         utmp              2688 Dec 11 08:50 wtmp</pre>
+-rw-r-----  1 syslog       adm             209297 Feb 10 05:10 syslog
+drwxr-xr-x  2 root         root              4096 Feb 10 05:06 sysstat
+drwxr-x---  2 root         adm               4096 Feb  1 21:08 unattended-upgrades
+-rw-r--r--  1 root         root             22816 Feb 10 05:06 waagent.log
+-rw-rw-r--  1 root         utmp              2688 Feb 10 05:06 wtmp</pre>
 </div>
 </div>
 </div>
@@ -936,7 +930,6 @@ tree</code></pre>
 │   ��── history.log
 │   └── term.log
 ├── auth.log
-├── auth.log.1
 ├── azure
 │   ├── Microsoft.CPlat.Core.RunCommandLinux
 │   │   ├── CommandExecution.log
@@ -944,54 +937,48 @@ tree</code></pre>
 │   └── run-command
 │       └── handler.log
 ├── btmp
-├── btmp.1
 ├── chrony  [error opening dir]
-├─��� cloud-init-output.log
+├── cloud-init-output.log
 ├── cloud-init.log
 ├── dist-upgrade
 ├── dmesg
 ├── dpkg.log
 ├── fontconfig.log
-├── journal
-│   └── 33a74e53623f4cf3986c65281bd41e0f
+├��─ journal
+│   └── 48d6a5f0730045de852517d327130f2c
 │       ├── system.journal
 │       ├── user-1000.journal
 │       └── user-1001.journal
 ├── kern.log
-├── kern.log.1
 ├── landscape
 │   └── sysinfo.log
 ├── lastlog
 ├── mysql
-│   ├── error.log
-│   └── error.log.1.gz
+│   └─�� error.log
 ├── nginx
 │   ├── access.log
 │   └── error.log
 ├── php8.1-fpm.log
-├── php8.1-fpm.log.1
 ├── postgresql
 │   └── postgresql-14-main.log
 ├── private  [error opening dir]
 ├── sphinxsearch
 ├── syslog
-├── syslog.1
 ├── sysstat
-│   ├── sa11
-│   ├── sa25
-│   └── sa26
+│   ├── sa01
+│   └── sa10
 ├── unattended-upgrades
 │   └── unattended-upgrades-shutdown.log
-├── waagent.log
+├���─ waagent.log
 └── wtmp
 
-18 directories, 40 files
+18 directories, 33 files
 ---------------------------------------------------------------------------
 CalledProcessError                        Traceback (most recent call last)
 File <ipython-input-1-a4a9f5dead09>:1
 ----> 1 get_ipython().run_cell_magic('bash', '', 'cd /var/log\ntree\n')
 
-File ~/work/course-project/course-project/.venv/lib/python3.10/site-packages/IPython/core/interactiveshell.py:2543, in InteractiveShell.run_cell_magic(self, magic_name, line, cell)
+File ~/work/course-project/course-project/.venv-antora/lib/python3.10/site-packages/IPython/core/interactiveshell.py:2543, in InteractiveShell.run_cell_magic(self, magic_name, line, cell)
    2541 with self.builtin_trap:
    2542     args = (magic_arg_s, cell)
 -> 2543     result = fn(*args, **kwargs)
@@ -1000,12 +987,12 @@ File ~/work/course-project/course-project/.venv/lib/python3.10/site-packages/IPy
    2547 # when the last Python token in the expression is a ';'.
    2548 if getattr(fn, magic.MAGIC_OUTPUT_CAN_BE_SILENCED, False):
 
-File ~/work/course-project/course-project/.venv/lib/python3.10/site-packages/IPython/core/magics/script.py:159, in ScriptMagics._make_script_magic.<locals>.named_script_magic(line, cell)
+File ~/work/course-project/course-project/.venv-antora/lib/python3.10/site-packages/IPython/core/magics/script.py:159, in ScriptMagics._make_script_magic.<locals>.named_script_magic(line, cell)
     157 else:
     158     line = script
 --> 159 return self.shebang(line, cell)
 
-File ~/work/course-project/course-project/.venv/lib/python3.10/site-packages/IPython/core/magics/script.py:336, in ScriptMagics.shebang(self, line, cell)
+File ~/work/course-project/course-project/.venv-antora/lib/python3.10/site-packages/IPython/core/magics/script.py:336, in ScriptMagics.shebang(self, line, cell)
     331 if args.raise_error and p.returncode != 0:
     332     # If we get here and p.returncode is still None, we must have
     333     # killed it but not yet seen its return code. We don't wait for it,
@@ -1038,7 +1025,7 @@ CalledProcessError: Command 'b'cd /var/log\ntree\n'' returned non-zero exit stat
                 <img src="../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
             </a>
         </div>
-        <span style="font-size: 0.8rem; color: #9e9e9e">© 2025 <a href="https://www.cemosis.fr"
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2026 <a href="https://www.cemosis.fr"
                 style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
     </div>
 </footer><script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
