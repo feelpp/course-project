@@ -675,13 +675,13 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 8
--rw-r--r-- 1 runner runner  148 Feb 10 07:36 archive.tar.gz
--rw-r--r-- 1 runner runner    0 Feb 10 07:36 example.txt
--rwxr-xr-x 2 runner runner    0 Feb 10 07:36 file.txt
--rw-r--r-- 1 runner runner    0 Feb 10 07:36 file1.txt
--rwxr-xr-x 2 runner runner    0 Feb 10 07:36 newlink.txt
-lrwxrwxrwx 1 runner runner    8 Feb 10 07:36 softlink.txt -> file.txt
-drwxr-xr-x 2 runner runner 4096 Feb 10 07:36 temp</pre>
+-rw-r--r-- 1 runner runner  150 Feb 10 08:50 archive.tar.gz
+-rw-r--r-- 1 runner runner    0 Feb 10 08:50 example.txt
+-rwxr-xr-x 2 runner runner    0 Feb 10 08:50 file.txt
+-rw-r--r-- 1 runner runner    0 Feb 10 08:50 file1.txt
+-rwxr-xr-x 2 runner runner    0 Feb 10 08:50 newlink.txt
+lrwxrwxrwx 1 runner runner    8 Feb 10 08:50 softlink.txt -> file.txt
+drwxr-xr-x 2 runner runner 4096 Feb 10 08:50 temp</pre>
 </div>
 </div>
 </div>
@@ -734,10 +734,10 @@ tree ..</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>..
-├── clr-debug-pipe-1882-42537-in
-├── clr-debug-pipe-1882-42537-out
-├── clr-debug-pipe-1897-42684-in
-├── clr-debug-pipe-1897-42684-out
+├── clr-debug-pipe-1806-39774-in
+├── clr-debug-pipe-1806-39774-out
+├── clr-debug-pipe-1821-39958-in
+├── clr-debug-pipe-1821-39958-out
 ├── documents
 │   ├── archive.tar.gz
 │   ├── example.txt
@@ -748,14 +748,14 @@ tree ..</code></pre>
 │   └── temp
 │       ├── file.txt
 │       └── file1.txt
-├── dotnet-diagnostic-1882-42537-socket
-├── dotnet-diagnostic-1897-42684-socket
+├── dotnet-diagnostic-1806-39774-socket
+├── dotnet-diagnostic-1821-39958-socket
 ├── newname.txt
 ├── snap-private-tmp  [error opening dir]
-├── systemd-private-cdce30ab40c94eeab60a05fdbefc313d-chrony.service-TiHo6n  [error opening dir]
-├── systemd-private-cdce30ab40c94eeab60a05fdbefc313d-haveged.service-mH5sex  [error opening dir]
-├── systemd-private-cdce30ab40c94eeab60a05fdbefc313d-systemd-logind.service-owZvKW  [error opening dir]
-├── systemd-private-cdce30ab40c94eeab60a05fdbefc313d-systemd-resolved.service-7APX9H  [error opening dir]
+├── systemd-private-47be6954395c4218b817f338b76b80c5-chrony.service-ikJwOo  [error opening dir]
+├── systemd-private-47be6954395c4218b817f338b76b80c5-haveged.service-4xgAFI  [error opening dir]
+├── systemd-private-47be6954395c4218b817f338b76b80c5-systemd-logind.service-44yqhY  [error opening dir]
+├── systemd-private-47be6954395c4218b817f338b76b80c5-systemd-resolved.service-NT26uJ  [error opening dir]
 └── www-data-temp-aspnet-0
     └── cc117660
 
@@ -870,35 +870,35 @@ ls -l</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>total 592
--rw-r--r--  1 root         root               208 Feb 10 07:28 alternatives.log
+<pre>total 596
+-rw-r--r--  1 root         root               208 Feb 10 08:43 alternatives.log
 drwxr-x---  2 root         adm               4096 Feb  1 21:16 apache2
 drwxr-xr-x  2 root         root              4096 Feb  1 21:52 apt
--rw-r-----  1 syslog       adm               3941 Feb 10 07:35 auth.log
-drwxr-xr-x  4 root         root              4096 Feb 10 07:28 azure
+-rw-r-----  1 syslog       adm               3941 Feb 10 08:45 auth.log
+drwxr-xr-x  4 root         root              4096 Feb 10 08:43 azure
 -rw-rw----  1 root         utmp                 0 Feb  1 22:23 btmp
 drwxr-x---  2 _chrony      _chrony           4096 Feb  1 21:08 chrony
--rw-r-----  1 root         adm               4430 Feb 10 07:28 cloud-init-output.log
--rw-r-----  1 syslog       adm             131135 Feb 10 07:28 cloud-init.log
+-rw-r-----  1 root         adm               4438 Feb 10 08:43 cloud-init-output.log
+-rw-r-----  1 syslog       adm             131270 Feb 10 08:43 cloud-init.log
 drwxr-xr-x  2 root         root              4096 Sep 10  2024 dist-upgrade
--rw-r-----  1 root         adm              44051 Feb 10 07:28 dmesg
+-rw-r-----  1 root         adm              44141 Feb 10 08:43 dmesg
 -rw-r--r--  1 root         root                 0 Feb  1 22:23 dpkg.log
 -rw-r--r--  1 root         root                 0 Feb  1 22:23 fontconfig.log
 drwxr-sr-x+ 3 root         systemd-journal   4096 Feb  1 21:08 journal
--rw-r-----  1 syslog       adm              54743 Feb 10 07:29 kern.log
+-rw-r-----  1 syslog       adm              54863 Feb 10 08:43 kern.log
 drwxr-xr-x  2 landscape    landscape         4096 Feb  1 21:09 landscape
 -rw-rw-r--  1 root         utmp                 0 Feb  1 22:23 lastlog
 drwxr-x---  2 mysql        adm               4096 Feb  1 21:31 mysql
 drwxr-xr-x  2 root         adm               4096 Feb  1 21:32 nginx
--rw-------  1 root         root               281 Feb 10 07:28 php8.1-fpm.log
+-rw-------  1 root         root               281 Feb 10 08:43 php8.1-fpm.log
 drwxrwxr-t  2 root         postgres          4096 Feb  1 21:34 postgresql
 drwx------  2 root         root              4096 Feb  1 21:08 private
 drwxr-xr-x  2 sphinxsearch root              4096 Dec  3  2021 sphinxsearch
--rw-r-----  1 syslog       adm             257390 Feb 10 07:35 syslog
-drwxr-xr-x  2 root         root              4096 Feb 10 07:28 sysstat
+-rw-r-----  1 syslog       adm             256969 Feb 10 08:50 syslog
+drwxr-xr-x  2 root         root              4096 Feb 10 08:43 sysstat
 drwxr-x---  2 root         adm               4096 Feb  1 21:08 unattended-upgrades
--rw-r--r--  1 root         root             26012 Feb 10 07:33 waagent.log
--rw-rw-r--  1 root         utmp              2688 Feb 10 07:28 wtmp</pre>
+-rw-r--r--  1 root         root             25840 Feb 10 08:48 waagent.log
+-rw-rw-r--  1 root         utmp              2688 Feb 10 08:43 wtmp</pre>
 </div>
 </div>
 </div>

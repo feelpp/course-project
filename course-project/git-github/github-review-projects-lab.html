@@ -591,7 +591,7 @@ MathJax.Hub.Config({
 <p>Project title: <code>Reproducible Mini Weather Analysis</code></p>
 </div>
 <div class="paragraph">
-<p>Goal: Build a small reproducible weather analysis workflow from an hourly CSV dataset and document how to run it locally and with Docker.</p>
+<p>Goal: Build a small reproducible weather analysis workflow from a one-year hourly CSV dataset and document how to run it locally and with Docker.</p>
 </div>
 <div class="paragraph">
 <p>Primary dataset columns:</p>
@@ -624,6 +624,19 @@ MathJax.Hub.Config({
 </li>
 <li>
 <p><code>wind_speed_10m</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dataset size and coverage:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>8760</code> hourly records (one full year)</p>
+</li>
+<li>
+<p>Time range in this file: 2022-12-31 23:00 UTC to 2023-12-31 22:00 UTC</p>
 </li>
 </ul>
 </div>
@@ -664,7 +677,7 @@ MathJax.Hub.Config({
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The <code>time</code> column intentionally mixes standard integers and scientific notation (for example <code>1672538400000</code> and <code>1.672542e+12</code>). Normalizing this field is part of the exercise.
+The <code>time</code> column is in Unix milliseconds. Students should convert it to readable datetime to support time-based analysis and plots.
 </td>
 </tr>
 </table>
@@ -721,7 +734,7 @@ The <code>time</code> column intentionally mixes standard integers and scientifi
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>time</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ms since Unix epoch</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Timestamp of the measurement. Values may appear as standard integers or scientific notation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Timestamp of the measurement, stored as Unix milliseconds.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>wind_direction_10m</code></p></td>
@@ -815,7 +828,7 @@ The <code>time</code> column intentionally mixes standard integers and scientifi
 <td class="tableblock halign-left valign-top"><p class="tableblock">enhancement</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/analyze_weather.py</code> computes min/max/mean for <code>temperature_2m</code>, mean for <code>relative_humidity_2m</code>, and max for <code>wind_speed_10m</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/analyze_weather.py</code> computes min/max/mean for <code>temperature_2m</code>, mean for <code>relative_humidity_2m</code>, max for <code>wind_speed_10m</code>, and one monthly aggregate.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
@@ -823,15 +836,15 @@ The <code>time</code> column intentionally mixes standard integers and scientifi
 <td class="tableblock halign-left valign-top"><p class="tableblock">enhancement</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">S</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Script supports <code>--input &lt;file&gt;</code> and at least one filter option (<code>--start</code>, <code>--end</code>, or <code>--min-temp</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Script supports <code>--input &lt;file&gt;</code> and time filters (<code>--start</code>, <code>--end</code>) for sub-period analysis.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Normalize and validate timestamp format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Convert and validate timestamps</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bug</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Script correctly parses <code>time</code> when values appear as both integer and scientific notation and converts to readable datetime.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Script converts <code>time</code> from Unix milliseconds to datetime and handles invalid/missing timestamps safely.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
@@ -871,7 +884,7 @@ The <code>time</code> column intentionally mixes standard integers and scientifi
 <td class="tableblock halign-left valign-top"><p class="tableblock">enhancement</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">P3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Analysis generates one figure in <code>results/</code> (for example <code>temperature_2m</code> over time) and documents it in README.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Analysis generates one figure in <code>results/</code> (for example daily or monthly <code>temperature_2m</code> trend) and documents it in README.</p></td>
 </tr>
 </tbody>
 </table>
