@@ -495,7 +495,7 @@
     {
       "id": 83,
       "title": "Software Installation: From Package Managers to Building from Source :: Course Project",
-      "content": "Software Installation: From Package Managers to Building from Source 1. Introduction to Software Installation Learn comprehensive software installation methods through these focused modules: 1.1. Understanding Package Managers What is apt? Advantages of using package managers. 1.2. Why Build from Source? Latest features and updates. Customization and optimization. Situations where packages aren’t available. 1.3. Build Systems Overview Introduction to build systems like Autotools and CMake. Differences and use cases. 2. Setting Up the Development Environment with Codespaces 2.1. Introduction to GitHub Codespaces What is Codespaces? Benefits over traditional VMs. 2.2. Getting Started # Create a Codespace from a repository git clone <repository-url> # Open it in GitHub Codespaces 2.3. Environment Configuration Install necessary extensions and tools within Codespaces. 3. Installing Software Using apt in Codespaces 3.1. Using the Terminal in Codespaces Accessing the terminal. Running apt co",
+      "content": "Software Installation: From Package Managers to Building from Source 1. Introduction to Software Installation Learn comprehensive software installation methods through these focused modules: Python End-to-End Workshop 1.1. Understanding Package Managers What is apt? Advantages of using package managers. 1.2. Why Build from Source? Latest features and updates. Customization and optimization. Situations where packages aren’t available. 1.3. Build Systems Overview Introduction to build systems like Autotools and CMake. Differences and use cases. 2. Setting Up the Development Environment with Codespaces 2.1. Introduction to GitHub Codespaces What is Codespaces? Benefits over traditional VMs. 2.2. Getting Started # Create a Codespace from a repository git clone <repository-url> # Open it in GitHub Codespaces 2.3. Environment Configuration Install necessary extensions and tools within Codespaces. 3. Installing Software Using apt in Codespaces 3.1. Using the Terminal in Codespaces Accessing t",
       "url": "/course-project/software/"
     },
     {
@@ -506,90 +506,96 @@
     },
     {
       "id": 85,
+      "title": "End-to-End Python Weather App Workshop :: Course Project",
+      "content": "Edit this Page Download as .pdf End-to-End Python Weather App Workshop This workshop extends the GitHub intro lab into a small end-to-end product: a Python package with a CLI, CI, Docker image, and optional web dashboard. 1. Why This Session Students already learned Linux, GitHub, GitHub Actions, and Docker. This session connects these topics into one coherent workflow: from raw data to reusable Python package from local script to installable CLI command from tested code to container image in GHCR optionally from CLI tool to interactive dashboard 2. Prerequisites GitHub Intro Lab: Issues, PRs, and Projects GitHub Actions Docker Introduction Package Managers 3. Learning Objectives By the end of the workshop, students can: structure a Python project with pyproject.toml expose a CLI command via [project.scripts] run tests in CI for each pull request build and publish a Docker image to GitHub Container Registry (GHCR) explain the difference between package release and container release 4. ",
+      "url": "/course-project/software/python-e2e-weather-workshop.html"
+    },
+    {
+      "id": 86,
       "title": "Repository Organization for a C++20 Project Using CMake and CTest :: Course Project",
       "content": "Edit this Page Download as .pdf Repository Organization for a C++20 Project Using CMake and CTest Table of Contents 1. Overview 2. Recommended Directory Structure 3. Top-Level CMake Configuration 4. Library Configuration (src/libs/lib1/CMakeLists.txt) 5. Application Configuration (src/apps/app1/CMakeLists.txt) 6. Tests Configuration (tests/CMakeLists.txt) 7. GitHub Actions CI Workflow 8. Additional Best Practices 1. Overview This document outlines a recommended repository organization for a C++20 project that uses CMake for build configuration and CTest for testing. In this structure, source files—including both library code and application code—are placed under the src/ directory. Libraries and applications are organized into separate subdirectories to clearly delineate reusable components from executable projects. 2. Recommended Directory Structure my_project/ ├── .github/ │ └── workflows/ │ └── ci.yml # GitHub Actions CI configuration file ├── build/ # Out-of-source build directory ",
       "url": "/course-project/software/repo/organization.html"
     },
     {
-      "id": 86,
+      "id": 87,
       "title": "Dash for Scientific Computing :: Course Project",
       "content": "Edit this Page Download as .pdf Dash for Scientific Computing A tutorial to use Dash for building interactive web applications focused on scientific computing Dash provides a flexible and powerful platform for scientists and engineers to create interactive web-based applications. This tutorial expands on the basics and focuses on how to integrate Dash with scientific computing libraries such as NumPy, SciPy, and Matplotlib, while using Plotly for interactive visualizations. 1. Prerequisites Ensure that you have Python installed, and install the following packages: pip install dash dash-bootstrap-components pandas plotly numpy scipy matplotlib 2. Scientific Libraries Overview Dash integrates well with libraries used for scientific computing. Here are some essential libraries: NumPy A fundamental package for numerical computing in Python. SciPy Builds on NumPy to provide a collection of algorithms and functions for scientific computing. Matplotlib A comprehensive library for creating sta",
       "url": "/course-project/visualisation/dash.html"
     },
     {
-      "id": 87,
+      "id": 88,
       "title": "Homework :: Course Project",
       "content": "Edit this Page Download as .pdf Homework 1. Solving the heat equation in a thermal fin We consider the problem of designing a thermal fin to effectively remove heat from a surface. The two-dimensional fin, shown in Figure #fig:1[1], consists of a vertical central “post” and four horizontal “subfins”; the fin conducts heat from a prescribed uniform flux “source” at the root, \\(\\Gamma_{\\mathrm{root}}\\) , through the large-surface-area subfins to surrounding flowing air. The fin is characterized by a five-component parameter vector, or “input,” \\(\\mu_ = (\\mu_1 , \\mu_2, \\ldots, \\mu_5 )\\),where \\(\\mu_i = k^i , i = 1, \\ldots , 4\\), and \\(\\mu_5 = \\mathrm{Bi}\\); \\(\\mu\\) may take on any value in a specified design set \\(D \\subset \\mathbb{R}^5\\). Figure 1. Thermal fin Here \\(k^i\\) is the thermal conductivity of the ith subfin (normalized relative to the post conductivity \\(k^0 \\equiv 1\\)); and \\(\\mathrm{Bi}\\) is the Biot number, a nondimensional heat transfer coefficient reflecting convective tr",
       "url": "/course-project/visualisation/hw.html"
     },
     {
-      "id": 88,
+      "id": 89,
       "title": "Data Visualization and Interactive Dashboards :: Course Project",
       "content": "Data Visualization and Interactive Dashboards Explore modern data visualization techniques and create interactive dashboards that effectively communicate insights from complex datasets. From basic charts to advanced interactive applications. 1. Visualization Learning Modules Master data visualization through these comprehensive modules:",
       "url": "/course-project/visualisation/"
     },
     {
-      "id": 89,
+      "id": 90,
       "title": "Basic Usage and Commands :: Course Project",
       "content": "Edit this Page Download as .pdf Basic Usage and Commands 1. Getting Started with VS Code Once installed, you can open VS Code using the launcher or from the terminal: code . This opens the current directory in VS Code. 2. Basic Interface Overview The VS Code interface consists of the following key sections: Explorer: The left-hand panel where you can navigate files and folders. Editor: The main area where you open and edit files. Terminal: Built-in terminal for running commands directly from VS Code. 3. Common Commands Here are a few essential VS Code commands: Open Command Palette: Ctrl+Shift+P or Cmd+Shift+P on macOS. This gives access to all VS Code features via quick commands. Open a new file: Ctrl+N (Windows/Linux) or Cmd+N (macOS). Toggle terminal: Ctrl+` (Windows/Linux) or Cmd+` (macOS). These basic commands help you get started with coding or file management.",
       "url": "/course-project/vscode/basic-usage.html"
     },
     {
-      "id": 90,
+      "id": 91,
       "title": "VSCode Basic Cheatsheet :: Course Project",
       "content": "Edit this Page Download as .pdf VSCode Basic Cheatsheet 1. Navigation Description Linux Windows Mac Open Command Palette Ctrl+Shift+P Ctrl+Shift+P Cmd+Shift+P Open File Ctrl+P Ctrl+P Cmd+P Toggle Sidebar Ctrl+B Ctrl+B Cmd+B Close Editor Ctrl+W Ctrl+W Cmd+W Switch between Tabs Ctrl+Tab Ctrl+Tab Cmd+Tab Split Editor Ctrl+\\ Ctrl+\\ Cmd+\\ Navigate between Editor Groups Ctrl+1, Ctrl+2…​ Ctrl+1, Ctrl+2…​ Cmd+1, Cmd+2…​ Navigate Forward Ctrl+Alt+→ Alt+→ Option+→ Navigate Backward Ctrl+Alt+← Alt+← Option+← Go to Symbol Ctrl+Shift+O Ctrl+Shift+O Cmd+Shift+O Go to Definition F12 F12 F12 2. Editing Description Linux Windows Mac Copy Line Up/Down Shift+Alt+↑/↓ Shift+Alt+↑/↓ Shift+Option+↑/↓ Move Line Up/Down Alt+↑/↓ Alt+↑/↓ Option+↑/↓ Duplicate Line Shift+Alt+↓ Shift+Alt+↓ Option+Shift+↓ Delete Line Ctrl+Shift+K Ctrl+Shift+K Cmd+Shift+K Add Line Comment Ctrl+/ Ctrl+/ Cmd+/ Add Block Comment Shift+Alt+A Shift+Alt+A Shift+Option+A Format Document Shift+Alt+F Shift+Alt+F Shift+Option+F Rename Symbol F",
       "url": "/course-project/vscode/cheatsheet.html"
     },
     {
-      "id": 91,
+      "id": 92,
       "title": "How to Configure VS Code with .vscode :: Course Project",
       "content": "Edit this Page Download as .pdf How to Configure VS Code with .vscode 1. Configuring Projects with .vscode VS Code allows you to configure project-specific settings using a .vscode folder. This folder can include settings, tasks, and debug configurations. 1.1. Adding a .vscode/settings.json Create a .vscode/settings.json file in your project directory to customize settings for the current project. Example configuration: { \"python.pythonPath\": \"/usr/bin/python3\", \"editor.formatOnSave\": true, \"files.exclude\": { \"**/*.log\": true, \"**/node_modules\": true } } 1.2. Task Configuration with .vscode/tasks.json You can automate tasks like running build scripts by configuring tasks in .vscode/tasks.json. Example: { \"version\": \"2.0.0\", \"tasks\": [ { \"label\": \"Run Build\", \"type\": \"shell\", \"command\": \"npm run build\", \"group\": { \"kind\": \"build\", \"isDefault\": true } } ] } Tasks and settings configured in the .vscode folder apply only to the current project.",
       "url": "/course-project/vscode/configure-vscode.html"
     },
     {
-      "id": 92,
+      "id": 93,
       "title": "Extension Installation and Key Extensions :: Course Project",
       "content": "Edit this Page Download as .pdf Extension Installation and Key Extensions 1. Installing Extensions One of the strengths of VS Code is its rich ecosystem of extensions. Extensions enhance your development environment by providing extra features like language support, debugging tools, and integration with cloud services. To install extensions, follow these steps: Open the Extensions panel using Ctrl+Shift+X or Cmd+Shift+X on macOS. In the search bar, type the name of the extension you want to install. Click Install on the extension. You can also search and install extensions from the marketplace: > marketplace.visualstudio.com/vscode. Here are some key extensions that are useful for development: Remote SSH WSL (Windows Subsystem for Linux) Python and Jupyter Extensions",
       "url": "/course-project/vscode/extensions.html"
     },
     {
-      "id": 93,
+      "id": 94,
       "title": "VS Code for Mathematical Computing :: Course Project",
       "content": "VS Code for Mathematical Computing 🟢 FOUNDATIONAL LEVEL | Prerequisites: Basic computer skills | Time: 2-3 hours | For: Mathematics students setting up development environment Why VS Code for Mathematics? An integrated development environment helps mathematicians: - Write LaTeX documents with syntax highlighting and live preview - Develop mathematical code in Python, R, or MATLAB with debugging support - Manage version control visually with Git integration - Work with Jupyter notebooks for mathematical analysis - Collaborate efficiently with shared workspace configurations VS Code unifies all your mathematical computing tools in one interface. Learn to use Visual Studio Code as your primary environment for mathematical research, LaTeX document preparation, and computational mathematics projects. 1. VS Code Learning Modules Master VS Code through these comprehensive learning modules:",
       "url": "/course-project/vscode/"
     },
     {
-      "id": 94,
+      "id": 95,
       "title": "VS Code Installation :: Course Project",
       "content": "Edit this Page Download as .pdf VS Code Installation 1. Download and Installation You can download VS Code from the official website: Download URL: code.visualstudio.com/Download VS Code supports Windows, macOS, and Linux. Below are the steps for installing on each platform. 1.1. Windows Installation Download the .exe installer from the VS Code website. Run the installer and follow the on-screen prompts. Select the option to add VS Code to your PATH (this allows you to open VS Code from the terminal). 1.2. macOS Installation Download the .dmg file from the VS Code website. Open the .dmg file and drag the VS Code icon to the Applications folder. Launch VS Code from the Applications folder or the terminal using code if you add it to the PATH. 1.3. Linux Installation Download the appropriate package (.deb or .rpm) from the VS Code website. Install it using your distribution’s package manager: For Debian-based systems (e.g., Ubuntu): ` sudo dpkg -i <path-to-package>.deb sudo apt-get instal",
       "url": "/course-project/vscode/install.html"
     },
     {
-      "id": 95,
+      "id": 96,
       "title": "Python and Jupyter Extensions :: Course Project",
       "content": "Edit this Page Download as .pdf Python and Jupyter Extensions 1. Python Extension The Python extension in VS Code provides rich support for Python development, including: IntelliSense (autocompletion) Debugging Code linting Jupyter integration 1.1. Installing the Python Extension Open the Extensions panel (Ctrl+Shift+X). Search for \"Python\" and click Install. Once installed, you’ll have access to Python development features. 2. Jupyter Notebook Support The Jupyter extension integrates Jupyter Notebooks directly into VS Code. This allows you to write, run, and visualize notebook cells within VS Code. 2.1. Installing the Jupyter Extension Open the Extensions panel (Ctrl+Shift+X). Search for \"Jupyter\" and click Install. You can now create or open .ipynb notebook files within VS Code.",
       "url": "/course-project/vscode/python-jupyter.html"
     },
     {
-      "id": 96,
+      "id": 97,
       "title": "Remote SSH Extension :: Course Project",
       "content": "Edit this Page Download as .pdf Remote SSH Extension 1. What is Remote SSH? The Remote SSH extension allows you to connect to a remote server and work on files, debug, and run commands directly on the remote machine. 2. Installing the Remote SSH Extension Open the Extensions panel in VS Code (Ctrl+Shift+X). Search for \"Remote - SSH\" and click Install. 3. Setting up Remote SSH Press F1 or Ctrl+Shift+P or on MacOS Cmd+Shift+P and type \"Remote-SSH: Connect to Host\" in the Command Palette. Enter the SSH connection details, e.g., ssh user@remote-server.com. VS Code will connect to the remote machine, allowing you to use it as if it were local. You can also edit your SSH config file to save the connection details for quick access.",
       "url": "/course-project/vscode/remote-ssh.html"
     },
     {
-      "id": 97,
+      "id": 98,
       "title": "WSL (Windows Subsystem for Linux) Extension :: Course Project",
       "content": "Edit this Page Download as .pdf WSL (Windows Subsystem for Linux) Extension 1. What is WSL? Windows Subsystem for Linux (WSL) allows you to run a Linux distribution natively on Windows. With the Remote - WSL extension, you can use VS Code to develop within a WSL environment. 2. Installing WSL and the Extension Install WSL on your Windows machine: docs.microsoft.com/windows/wsl/install Install your preferred Linux distribution (e.g., Ubuntu). In VS Code, open the Extensions panel (Ctrl+Shift+X) and install the \"Remote - WSL\" extension. 3. Using WSL in VS Code Once installed, you can open a WSL session in VS Code by pressing F1 and selecting Remote-WSL: New Window. This will open VS Code in the WSL environment, allowing you to code and run commands directly in Linux.",
       "url": "/course-project/vscode/wsl.html"
     },
     {
-      "id": 98,
+      "id": 99,
       "title": "Using VSCode :: Course Project",
       "content": "Edit this Page Download as .pdf Using VSCode The project is configured to integrate VSCode using Docker Container. The Docker image can be set from feelpp/feelpp or feelpp/feelpp-toolboxes, simply edit .devcontainer/Dockerfile and choose the image you want. ssh-keyscan is used on github.com to register the public key of github in $HOME/.ssh/known_hosts and avoid having git auth issues the first time we log into the container and push/pull to/from github. The following extensions are installed in Docker: cpptools cmaketools cmake asciidoctor-vscode",
       "url": "/course-project/vscode.html"
     },
     {
-      "id": 99,
+      "id": 100,
       "title": "Redirect Notice",
       "content": "Redirect Notice The page you requested has been relocated to https://feelpp.github.io/course-project/course-project/index.html.",
       "url": "/index.html"
