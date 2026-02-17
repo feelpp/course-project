@@ -88,10 +88,51 @@ name = "weather-app" # Distribution name users install with pip.
 version = "0.1.0" # Initial semantic version for the package release.
 description = "Mini weather analysis app for M1 course" # Short project summary shown in package metadata.
 requires-python = ">=3.10" # Minimum Python interpreter version supported by the project.
-dependencies = ["pandas>=2.0"] # Runtime dependencies installed with the package.
+dependencies = ["pandas>=2.0"] # Core runtime dependency for CSV loading and tabular analysis.
+
+[project.optional-dependencies] # Optional dependency groups installed only when needed.
+dev = ["pytest>=8.0", "ruff>=0.6", "build>=1.2"] # Test/lint/build tooling for local dev and CI.
+plot = ["plotly>=5.20"] # Plot support for `weather-cli plot`.
+dash = ["dash>=2.17", "dash-bootstrap-components>=1.6", "plotly>=5.20"] # Web dashboard stack.
 
 [project.scripts] # Console command entry points exported at installation time.
 weather-cli = "weather_app.cli:main" # Creates `weather-cli` command mapped to weather_app.cli.main().
+----
+
+== Dependency Map by Section
+
+[cols="2,5",options="header"]
+|===
+|Workshop section |Python dependencies
+
+|Project setup + package metadata
+|`setuptools`, `wheel`, `pandas`
+
+|CLI implementation
+|`pandas` + Python standard library (`argparse`, `datetime`, `pathlib`)
+
+|Testing and CI
+|`pytest`, `ruff`, `build` (from `dev` extra)
+
+|CLI plotting command (optional)
+|`plotly` (from `plot` extra)
+
+|Dash web app (optional)
+|`dash`, `dash-bootstrap-components`, `plotly` (from `dash` extra)
+|===
+
+Recommended install commands:
+
+[source,bash]
+----
+# core package + CLI
+pip install -e .
+
+# add development and CI tooling
+pip install -e ".[dev]"
+
+# add dashboard dependencies when needed
+pip install -e ".[dev,dash]"
 ----
 
 == CLI Scope (Required)
@@ -125,6 +166,12 @@ source .venv/bin/activate
 pip install -e .
 weather-cli --help
 ----
+
+Dependencies used in this section:
+
+- Required: `pandas`
+- Standard library: `argparse`, `datetime`, `pathlib`
+- Optional (for `plot` subcommand): `plotly`
 
 === Expected Interface (v1)
 
@@ -210,6 +257,11 @@ Interface expectation:
 
 == CI/CD Scope (Required)
 
+Dependencies used in this section:
+
+- `pytest`, `ruff`, `build` (install with `pip install -e ".[dev]"`)
+- Keep Dash dependencies out of CI unless you test dashboard code in CI
+
 Workflow on pull requests:
 
 - install dependencies
@@ -221,7 +273,20 @@ Workflow on tags (for example `v0.1.0`):
 - build Docker image
 - push to GHCR (for example `ghcr.io/org/weather-app:v0.1.0`)
 
-== Optional Dash Extension
+== Dash Extension
+
+Dependencies used in this section:
+
+- `dash`
+- `dash-bootstrap-components`
+- `plotly`
+
+Install when starting this section:
+
+[source,bash]
+----
+pip install -e ".[dash]"
+----
 
 Add a small dashboard with:
 
