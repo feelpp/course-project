@@ -581,34 +581,10 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect1">
-<h2 id="_where_to_put_the_course_notes"><a class="anchor" href="#_where_to_put_the_course_notes"></a>4. Where To Put The Course Notes</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Use this page as the main teaching note and keep implementation files in the student project repository:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Course explanation: <code>docs/modules/software/pages/python-e2e-weather-workshop.adoc</code></p>
-</li>
-<li>
-<p>Student code: <code>m1-gX-project</code> repositories</p>
-</li>
-<li>
-<p>Optional starter template repo: one shared class repository copied by teams</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>This avoids mixing pedagogical notes with runnable application code.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_session_formats"><a class="anchor" href="#_session_formats"></a>5. Session Formats</h2>
+<h2 id="_session_formats"><a class="anchor" href="#_session_formats"></a>4. Session Formats</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_option_a_60_minute_session_overview_essential_practice"><a class="anchor" href="#_option_a_60_minute_session_overview_essential_practice"></a>5.1. Option A: 60-minute session (overview + essential practice)</h3>
+<h3 id="_option_a_60_minute_session_overview_essential_practice"><a class="anchor" href="#_option_a_60_minute_session_overview_essential_practice"></a>4.1. Option A: 60-minute session (overview + essential practice)</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -630,7 +606,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect2">
-<h3 id="_option_b_120_minute_session_full_hands_on"><a class="anchor" href="#_option_b_120_minute_session_full_hands_on"></a>5.2. Option B: 120-minute session (full hands-on)</h3>
+<h3 id="_option_b_120_minute_session_full_hands_on"><a class="anchor" href="#_option_b_120_minute_session_full_hands_on"></a>4.2. Option B: 120-minute session (full hands-on)</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -657,7 +633,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect1">
-<h2 id="_target_project_structure"><a class="anchor" href="#_target_project_structure"></a>6. Target Project Structure</h2>
+<h2 id="_target_project_structure"><a class="anchor" href="#_target_project_structure"></a>5. Target Project Structure</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -680,33 +656,117 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect1">
-<h2 id="_minimal_pyproject_toml"><a class="anchor" href="#_minimal_pyproject_toml"></a>7. Minimal <code>pyproject.toml</code></h2>
+<h2 id="_minimal_pyproject_toml"><a class="anchor" href="#_minimal_pyproject_toml"></a>6. Minimal <code>pyproject.toml</code></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p><code>pyproject.toml</code> is the standard project manifest for modern Python packaging. It defines how the project is built, core metadata (name/version/dependencies), and entry points such as CLI commands. Package tools (<code>pip</code>, <code>build</code>, CI jobs, and publishing workflows) rely on this file.</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[build-system]
-requires = ["setuptools&gt;=68", "wheel"]
-build-backend = "setuptools.build_meta"
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[build-system] # PEP 517 build configuration section.
+requires = ["setuptools&gt;=68", "wheel"] # Build-time packages needed to create sdist/wheel.
+build-backend = "setuptools.build_meta" # Backend that implements the package build hooks.
 
-[project]
-name = "weather-app"
-version = "0.1.0"
-description = "Mini weather analysis app for M1 course"
-requires-python = "&gt;=3.10"
-dependencies = ["pandas&gt;=2.0"]
+[project] # Core package metadata used by installers and indexes.
+name = "weather-app" # Distribution name users install with pip.
+version = "0.1.0" # Initial semantic version for the package release.
+description = "Mini weather analysis app for M1 course" # Short project summary shown in package metadata.
+requires-python = "&gt;=3.10" # Minimum Python interpreter version supported by the project.
+dependencies = ["pandas&gt;=2.0"] # Runtime dependencies installed with the package.
 
-[project.scripts]
-weather-cli = "weather_app.cli:main"</code></pre>
+[project.scripts] # Console command entry points exported at installation time.
+weather-cli = "weather_app.cli:main" # Creates `weather-cli` command mapped to weather_app.cli.main().</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_cli_scope_required"><a class="anchor" href="#_cli_scope_required"></a>8. CLI Scope (Required)</h2>
+<h2 id="_cli_scope_required"><a class="anchor" href="#_cli_scope_required"></a>7. CLI Scope (Required)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Minimum command:</p>
+<p>This is the first CLI for many students, so start from vocabulary and usage.</p>
 </div>
+<div class="sect2">
+<h3 id="_cli_basics_beginner"><a class="anchor" href="#_cli_basics_beginner"></a>7.1. CLI Basics (Beginner)</h3>
+<div class="paragraph">
+<p>A CLI (Command Line Interface) is a program you run from a terminal by typing a command.</p>
+</div>
+<div class="paragraph">
+<p>Example structure:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Program name: <code>weather-cli</code></p>
+</li>
+<li>
+<p>Subcommand: <code>summary</code> (what action to run)</p>
+</li>
+<li>
+<p>Options: <code>--input</code>, <code>--start</code>, <code>--end</code> (parameters for the action)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Use help first:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">weather-cli --help
+weather-cli summary --help</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Recommended first run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">python -m venv .venv
+source .venv/bin/activate
+pip install -e .
+weather-cli --help</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_expected_interface_v1"><a class="anchor" href="#_expected_interface_v1"></a>7.2. Expected Interface (v1)</h3>
+<div class="paragraph">
+<p>Teams should implement at least the following interface:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 30%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Options</th>
+<th class="tableblock halign-left valign-top">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>weather-cli summary</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--input</code>, <code>--start</code>, <code>--end</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compute summary metrics on a selected time range.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>weather-cli check-data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--input</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validate required columns, missing values, and timestamp conversion.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>weather-cli plot</code> (optional)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--input</code>, <code>--metric</code>, <code>--output</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generate one figure (PNG) in <code>results/</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_minimum_command_to_pass_workshop"><a class="anchor" href="#_minimum_command_to_pass_workshop"></a>7.3. Minimum Command To Pass Workshop</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">weather-cli summary --input data/weather_hourly.csv --start 2023-01-01 --end 2023-01-31</code></pre>
@@ -732,9 +792,69 @@ weather-cli = "weather_app.cli:main"</code></pre>
 </ul>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_starter_framework_srcweather_appcli_py"><a class="anchor" href="#_starter_framework_srcweather_appcli_py"></a>7.4. Starter Framework (<code>src/weather_app/cli.py</code>)</h3>
+<div class="paragraph">
+<p>Use this starter structure and fill in handlers gradually:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import argparse
+from weather_app.analysis import summary_metrics, check_dataset
+
+
+def build_parser() -&gt; argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(prog="weather-cli", description="Weather analysis CLI")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    summary = subparsers.add_parser("summary", help="Compute summary metrics")
+    summary.add_argument("--input", required=True, help="Path to weather CSV")
+    summary.add_argument("--start", required=False, help="Start date YYYY-MM-DD")
+    summary.add_argument("--end", required=False, help="End date YYYY-MM-DD")
+
+    check = subparsers.add_parser("check-data", help="Validate input dataset")
+    check.add_argument("--input", required=True, help="Path to weather CSV")
+
+    return parser
+
+
+def main() -&gt; None:
+    parser = build_parser()
+    args = parser.parse_args()
+
+    if args.command == "summary":
+        result = summary_metrics(args.input, start=args.start, end=args.end)
+        print(result)
+    elif args.command == "check-data":
+        report = check_dataset(args.input)
+        print(report)
+
+
+if __name__ == "__main__":
+    main()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Interface expectation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>cli.py</code> handles user input and dispatching.</p>
+</li>
+<li>
+<p><code>analysis.py</code> contains computation logic.</p>
+</li>
+<li>
+<p>Tests should target <code>analysis.py</code> first, then basic CLI behavior.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div class="sect1">
-<h2 id="_cicd_scope_required"><a class="anchor" href="#_cicd_scope_required"></a>9. CI/CD Scope (Required)</h2>
+<h2 id="_cicd_scope_required"><a class="anchor" href="#_cicd_scope_required"></a>8. CI/CD Scope (Required)</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Workflow on pull requests:</p>
@@ -768,7 +888,7 @@ weather-cli = "weather_app.cli:main"</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_optional_dash_extension"><a class="anchor" href="#_optional_dash_extension"></a>10. Optional Dash Extension</h2>
+<h2 id="_optional_dash_extension"><a class="anchor" href="#_optional_dash_extension"></a>9. Optional Dash Extension</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Add a small dashboard with:</p>
@@ -792,7 +912,7 @@ weather-cli = "weather_app.cli:main"</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_team_expectations_2_vs_3_students"><a class="anchor" href="#_team_expectations_2_vs_3_students"></a>11. Team Expectations (2 vs 3 students)</h2>
+<h2 id="_team_expectations_2_vs_3_students"><a class="anchor" href="#_team_expectations_2_vs_3_students"></a>10. Team Expectations (2 vs 3 students)</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Each student opens at least one PR and reviews at least one PR.</p>
@@ -800,7 +920,7 @@ weather-cli = "weather_app.cli:main"</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deliverables"><a class="anchor" href="#_deliverables"></a>12. Deliverables</h2>
+<h2 id="_deliverables"><a class="anchor" href="#_deliverables"></a>11. Deliverables</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -824,7 +944,7 @@ weather-cli = "weather_app.cli:main"</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_suggested_follow_up"><a class="anchor" href="#_suggested_follow_up"></a>13. Suggested Follow-Up</h2>
+<h2 id="_suggested_follow_up"><a class="anchor" href="#_suggested_follow_up"></a>12. Suggested Follow-Up</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
