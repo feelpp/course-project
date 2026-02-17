@@ -12,6 +12,8 @@
 
 Learn comprehensive software installation methods through these focused modules:
 
+- xref:python-e2e-weather-workshop.adoc[Python End-to-End Workshop]
+
 === Understanding Package Managers
 
 - What is `apt`?

@@ -2,3 +2,4 @@
 ** xref:index.adoc[Software Installation]
 ** xref:package-managers.adoc[Package Managers]
 ** xref:repo/organization.adoc[Software Repository Organization]
+** xref:python-e2e-weather-workshop.adoc[Python End-to-End Workshop]

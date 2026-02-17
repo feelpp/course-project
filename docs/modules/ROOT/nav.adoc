@@ -79,6 +79,7 @@
 ** 🔴 Topics
 *** xref:software:package-managers.adoc[Package Managers]
 *** xref:software:repo/organization.adoc[Repository Organization]
+*** xref:software:python-e2e-weather-workshop.adoc[Python End-to-End Workshop]
 
 * 📊 xref:visualisation:index.adoc[Visualization]
 ** 🔴 Web Dashboards

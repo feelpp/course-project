@@ -275,5 +275,6 @@ At the end of the lab, each team should provide:
 
 After this intro, continue with:
 
+- xref:software:python-e2e-weather-workshop.adoc[Python End-to-End Workshop]
 - xref:github-actions.adoc[GitHub Actions Intro]
 - xref:containers:docker/hands-on/06-githubactions.adoc[Docker + GitHub Actions]

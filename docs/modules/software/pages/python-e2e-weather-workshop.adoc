@@ -1,0 +1,159 @@
+= End-to-End Python Weather App Workshop
+:page-tags: software-manual
+:parent-catalogs: software:index
+:page-illustration: fa-brands fa-python
+:description: Build, package, test, containerize, and publish a Python weather app with an optional Dash interface.
+
+[.lead]
+This workshop extends the GitHub intro lab into a small end-to-end product: a Python package with a CLI, CI, Docker image, and optional web dashboard.
+
+== Why This Session
+
+Students already learned Linux, GitHub, GitHub Actions, and Docker. This session connects these topics into one coherent workflow:
+
+- from raw data to reusable Python package
+- from local script to installable CLI command
+- from tested code to container image in GHCR
+- optionally from CLI tool to interactive dashboard
+
+== Prerequisites
+
+- xref:git-github:github-review-projects-lab.adoc[GitHub Intro Lab: Issues, PRs, and Projects]
+- xref:git-github:github-actions.adoc[GitHub Actions]
+- xref:containers:docker/index.adoc[Docker Introduction]
+- xref:software:package-managers.adoc[Package Managers]
+
+== Learning Objectives
+
+By the end of the workshop, students can:
+
+- structure a Python project with `pyproject.toml`
+- expose a CLI command via `[project.scripts]`
+- run tests in CI for each pull request
+- build and publish a Docker image to GitHub Container Registry (GHCR)
+- explain the difference between package release and container release
+
+== Where To Put The Course Notes
+
+Use this page as the main teaching note and keep implementation files in the student project repository:
+
+- Course explanation: `docs/modules/software/pages/python-e2e-weather-workshop.adoc`
+- Student code: `m1-gX-project` repositories
+- Optional starter template repo: one shared class repository copied by teams
+
+This avoids mixing pedagogical notes with runnable application code.
+
+== Session Formats
+
+=== Option A: 60-minute session (overview + essential practice)
+
+1. 10 min: Architecture and goals (package, CLI, CI, Docker, GHCR)
+2. 15 min: `pyproject.toml` + package layout
+3. 15 min: CLI command + one test
+4. 10 min: CI workflow (run tests on PR)
+5. 10 min: Docker build + push concept
+
+=== Option B: 120-minute session (full hands-on)
+
+1. 15 min: Architecture and delivery flow
+2. 25 min: Python package and CLI scaffolding
+3. 20 min: tests + local quality checks
+4. 20 min: GitHub Actions workflow
+5. 20 min: Docker + GHCR publish
+6. 20 min: optional Dash app + wrap-up
+
+== Target Project Structure
+
+[source,text]
+----
+weather-app/
+|-- pyproject.toml
+|-- README.md
+|-- src/
+|   `-- weather_app/
+|       |-- __init__.py
+|       |-- cli.py
+|       |-- analysis.py
+|       `-- dash_app.py
+|-- tests/
+|   `-- test_analysis.py
+|-- data/
+|   `-- weather_hourly.csv
+`-- Dockerfile
+----
+
+== Minimal `pyproject.toml`
+
+[source,toml]
+----
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "weather-app"
+version = "0.1.0"
+description = "Mini weather analysis app for M1 course"
+requires-python = ">=3.10"
+dependencies = ["pandas>=2.0"]
+
+[project.scripts]
+weather-cli = "weather_app.cli:main"
+----
+
+== CLI Scope (Required)
+
+Minimum command:
+
+[source,bash]
+----
+weather-cli summary --input data/weather_hourly.csv --start 2023-01-01 --end 2023-01-31
+----
+
+Expected output:
+
+- number of rows used
+- mean/min/max `temperature_2m`
+- mean `relative_humidity_2m`
+- max `wind_speed_10m`
+
+== CI/CD Scope (Required)
+
+Workflow on pull requests:
+
+- install dependencies
+- run tests
+- fail on regression
+
+Workflow on tags (for example `v0.1.0`):
+
+- build Docker image
+- push to GHCR (for example `ghcr.io/org/weather-app:v0.1.0`)
+
+== Optional Dash Extension
+
+Add a small dashboard with:
+
+- time-range selector
+- temperature/humidity/wind plots
+- one derived metric card (for example monthly mean temperature)
+
+This should be optional for groups short on time.
+
+== Team Expectations (2 vs 3 students)
+
+
+Each student opens at least one PR and reviews at least one PR.
+
+== Deliverables
+
+1. Repository with `pyproject.toml` and working `weather-cli`
+2. CI passing on main branch
+3. Docker image published to GHCR
+4. Short demo (3-5 minutes) of CLI workflow
+5. Optional: running Dash app in container
+
+== Suggested Follow-Up
+
+- xref:visualisation:dash.adoc[Dash Tutorial]
+- xref:software:repo/organization.adoc[Software Repository Organization]
