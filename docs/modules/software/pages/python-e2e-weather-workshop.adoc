@@ -33,15 +33,6 @@ By the end of the workshop, students can:
 - build and publish a Docker image to GitHub Container Registry (GHCR)
 - explain the difference between package release and container release
 
-== Where To Put The Course Notes
-
-Use this page as the main teaching note and keep implementation files in the student project repository:
-
-- Course explanation: `docs/modules/software/pages/python-e2e-weather-workshop.adoc`
-- Student code: `m1-gX-project` repositories
-- Optional starter template repo: one shared class repository copied by teams
-
-This avoids mixing pedagogical notes with runnable application code.
 
 == Session Formats
 
@@ -84,26 +75,79 @@ weather-app/
 
 == Minimal `pyproject.toml`
 
+`pyproject.toml` is the standard project manifest for modern Python packaging. It defines how the project is built, core metadata (name/version/dependencies), and entry points such as CLI commands. Package tools (`pip`, `build`, CI jobs, and publishing workflows) rely on this file.
+
 [source,toml]
 ----
-[build-system]
-requires = ["setuptools>=68", "wheel"]
-build-backend = "setuptools.build_meta"
+[build-system] # PEP 517 build configuration section.
+requires = ["setuptools>=68", "wheel"] # Build-time packages needed to create sdist/wheel.
+build-backend = "setuptools.build_meta" # Backend that implements the package build hooks.
 
-[project]
-name = "weather-app"
-version = "0.1.0"
-description = "Mini weather analysis app for M1 course"
-requires-python = ">=3.10"
-dependencies = ["pandas>=2.0"]
+[project] # Core package metadata used by installers and indexes.
+name = "weather-app" # Distribution name users install with pip.
+version = "0.1.0" # Initial semantic version for the package release.
+description = "Mini weather analysis app for M1 course" # Short project summary shown in package metadata.
+requires-python = ">=3.10" # Minimum Python interpreter version supported by the project.
+dependencies = ["pandas>=2.0"] # Runtime dependencies installed with the package.
 
-[project.scripts]
-weather-cli = "weather_app.cli:main"
+[project.scripts] # Console command entry points exported at installation time.
+weather-cli = "weather_app.cli:main" # Creates `weather-cli` command mapped to weather_app.cli.main().
 ----
 
 == CLI Scope (Required)
 
-Minimum command:
+This is the first CLI for many students, so start from vocabulary and usage.
+
+=== CLI Basics (Beginner)
+
+A CLI (Command Line Interface) is a program you run from a terminal by typing a command.
+
+Example structure:
+
+- Program name: `weather-cli`
+- Subcommand: `summary` (what action to run)
+- Options: `--input`, `--start`, `--end` (parameters for the action)
+
+Use help first:
+
+[source,bash]
+----
+weather-cli --help
+weather-cli summary --help
+----
+
+Recommended first run:
+
+[source,bash]
+----
+python -m venv .venv
+source .venv/bin/activate
+pip install -e .
+weather-cli --help
+----
+
+=== Expected Interface (v1)
+
+Teams should implement at least the following interface:
+
+[cols="2,3,5",options="header"]
+|===
+|Command |Options |Purpose
+
+|`weather-cli summary`
+|`--input`, `--start`, `--end`
+|Compute summary metrics on a selected time range.
+
+|`weather-cli check-data`
+|`--input`
+|Validate required columns, missing values, and timestamp conversion.
+
+|`weather-cli plot` (optional)
+|`--input`, `--metric`, `--output`
+|Generate one figure (PNG) in `results/`.
+|===
+
+=== Minimum Command To Pass Workshop
 
 [source,bash]
 ----
@@ -116,6 +160,53 @@ Expected output:
 - mean/min/max `temperature_2m`
 - mean `relative_humidity_2m`
 - max `wind_speed_10m`
+
+=== Starter Framework (`src/weather_app/cli.py`)
+
+Use this starter structure and fill in handlers gradually:
+
+[source,python]
+----
+import argparse
+from weather_app.analysis import summary_metrics, check_dataset
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(prog="weather-cli", description="Weather analysis CLI")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    summary = subparsers.add_parser("summary", help="Compute summary metrics")
+    summary.add_argument("--input", required=True, help="Path to weather CSV")
+    summary.add_argument("--start", required=False, help="Start date YYYY-MM-DD")
+    summary.add_argument("--end", required=False, help="End date YYYY-MM-DD")
+
+    check = subparsers.add_parser("check-data", help="Validate input dataset")
+    check.add_argument("--input", required=True, help="Path to weather CSV")
+
+    return parser
+
+
+def main() -> None:
+    parser = build_parser()
+    args = parser.parse_args()
+
+    if args.command == "summary":
+        result = summary_metrics(args.input, start=args.start, end=args.end)
+        print(result)
+    elif args.command == "check-data":
+        report = check_dataset(args.input)
+        print(report)
+
+
+if __name__ == "__main__":
+    main()
+----
+
+Interface expectation:
+
+- `cli.py` handles user input and dispatching.
+- `analysis.py` contains computation logic.
+- Tests should target `analysis.py` first, then basic CLI behavior.
 
 == CI/CD Scope (Required)
 
