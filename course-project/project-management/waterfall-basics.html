@@ -3,20 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/hpc/hands-on/02-apptainer.html">
+    <title>Waterfall Model Basics :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/project-management/waterfall-basics.html">
+    <link rel="prev" href="agile-best-practices.html">
+    <link rel="next" href="github.html">
+    <meta name="description" content="Understand the Waterfall collaboration model, its phases, strengths, limitations, and when to use it.">
     <meta name="generator" content="Antora 3.1.7">
-<link rel="stylesheet" href="../../../../_/css/site.css">
+<link rel="stylesheet" href="../../_/css/site.css">
 
 <!-- Font Awesome webfont CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <link rel="stylesheet" href="../../../../_/css/listing.css">
-<link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../_/css/listing.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
 <script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
 
-<script src="../../../../_/js/vendor/tabs-block-extension.js"></script>
-<script src="../../../../_/js/vendor/tabs-block-behavior.js"></script>
+<script src="../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../_/js/vendor/tabs-block-behavior.js"></script>
 
 
 
@@ -96,7 +99,7 @@ MathJax.Hub.Config({
 
 <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
-<script>var uiRootPath = '../../../../_'</script>
+<script>var uiRootPath = '../../_'</script>
 
   </head>
   <body class="article">
@@ -117,20 +120,20 @@ MathJax.Hub.Config({
         <div id="topbar-nav" class="navbar-menu">
             <div class="navbar-end">
                <!--<div class="navbar-item">
-                    <a href="../../../../_/../cours-project/python/index.html">Documentation Reference</a>
+                    <a href="../../_/../cours-project/python/index.html">Documentation Reference</a>
                 </div>-->
                 <div class="navbar-item has-dropdown is-hoverable download-item">
-                    <div class="navbar-item"><a href="../../../../_/../cours-project/_attachments/cours-project.zip"
+                    <div class="navbar-item"><a href="../../_/../cours-project/_attachments/cours-project.zip"
                             class="download-btn">Download the Notebooks</a></div>
                 </div>
                 <div class="navbar-item">
                     <a class="navbar-brand" href="https://www.cemosis.fr">
-                        <img class="cemosis-logo" src="../../../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                        <img class="cemosis-logo" src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
                     </a>
                 </div>
                 <div class="navbar-item">
                     <a class="navbar-brand" href="https://www.unistra.fr">
-                        <img class="cemosis-logo" src="../../../../_/img/logo-unistra.png" alt="Unistra logo" />
+                        <img class="cemosis-logo" src="../../_/img/logo-unistra.png" alt="Unistra logo" />
                     </a>
                 </div>
             </div>
@@ -143,41 +146,41 @@ MathJax.Hub.Config({
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="../../../index.html">Course Project</a></h3>
+    <h3 class="title"><a href="../index.html">Course Project</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../../index.html">🏠 Course Home</a>
+    <a class="nav-link" href="../index.html">🏠 Course Home</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../../quick-start.html">🚀 Quick Start Guide</a>
+    <a class="nav-link" href="../quick-start.html">🚀 Quick Start Guide</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../../prerequisites.html">📋 Prerequisites &amp; Self-Assessment</a>
+    <a class="nav-link" href="../prerequisites.html">📋 Prerequisites &amp; Self-Assessment</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../../instructor-guide.html">📚 Instructor Guide</a>
+    <a class="nav-link" href="../instructor-guide.html">📚 Instructor Guide</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../../linux/index.html">Linux</a>
+    <a class="nav-link" href="../linux/index.html">Linux</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">🟢 Fundamentals</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../linux/shell.html">Shell Basics</a>
+    <a class="nav-link" href="../linux/shell.html">Shell Basics</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../linux/files.html">File Operations</a>
+    <a class="nav-link" href="../linux/files.html">File Operations</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../linux/editing.html">File Editing</a>
+    <a class="nav-link" href="../linux/editing.html">File Editing</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../linux/text-processing.html">Text Processing</a>
+    <a class="nav-link" href="../linux/text-processing.html">Text Processing</a>
   </li>
 </ul>
   </li>
@@ -186,16 +189,16 @@ MathJax.Hub.Config({
     <span class="nav-text">🟡 Remote Computing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../linux/ssh/index.html">SSH Introduction</a>
+    <a class="nav-link" href="../linux/ssh/index.html">SSH Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../linux/ssh/ssh-setup.html">SSH Setup</a>
+    <a class="nav-link" href="../linux/ssh/ssh-setup.html">SSH Setup</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../linux/ssh/ssh-commands.html">SSH Commands</a>
+    <a class="nav-link" href="../linux/ssh/ssh-commands.html">SSH Commands</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../linux/ssh/remote-ssh-vscode.html">VS Code Remote-SSH</a>
+    <a class="nav-link" href="../linux/ssh/remote-ssh-vscode.html">VS Code Remote-SSH</a>
   </li>
 </ul>
   </li>
@@ -203,17 +206,17 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../../git-github/index.html">Git &amp; GitHub</a>
+    <a class="nav-link" href="../git-github/index.html">Git &amp; GitHub</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">🟢 Git Fundamentals</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../git-github/git-starter.html">Git Starter Guide</a>
+    <a class="nav-link" href="../git-github/git-starter.html">Git Starter Guide</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../git-github/git-repository-basics.html">Repository Basics</a>
+    <a class="nav-link" href="../git-github/git-repository-basics.html">Repository Basics</a>
   </li>
 </ul>
   </li>
@@ -222,13 +225,13 @@ MathJax.Hub.Config({
     <span class="nav-text">🟢 GitHub Basics</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../git-github/github-essentials.html">GitHub Essentials</a>
+    <a class="nav-link" href="../git-github/github-essentials.html">GitHub Essentials</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../git-github/github-start.html">Getting Started</a>
+    <a class="nav-link" href="../git-github/github-start.html">Getting Started</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../git-github/github-how-to-write-issues.html">Writing Issues</a>
+    <a class="nav-link" href="../git-github/github-how-to-write-issues.html">Writing Issues</a>
   </li>
 </ul>
   </li>
@@ -237,19 +240,19 @@ MathJax.Hub.Config({
     <span class="nav-text">🟡 Collaboration</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../git-github/git-branch.html">Git Branching</a>
+    <a class="nav-link" href="../git-github/git-branch.html">Git Branching</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../git-github/git-merges.html">Merging &amp; Conflicts</a>
+    <a class="nav-link" href="../git-github/git-merges.html">Merging &amp; Conflicts</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../git-github/git-remotes.html">Git Remotes</a>
+    <a class="nav-link" href="../git-github/git-remotes.html">Git Remotes</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../git-github/github-collaborations.html">GitHub Collaboration</a>
+    <a class="nav-link" href="../git-github/github-collaborations.html">GitHub Collaboration</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../git-github/github-review-projects-lab.html">GitHub Intro Lab: Projects</a>
+    <a class="nav-link" href="../git-github/github-review-projects-lab.html">GitHub Intro Lab: Projects</a>
   </li>
 </ul>
   </li>
@@ -258,10 +261,10 @@ MathJax.Hub.Config({
     <span class="nav-text">🔴 Automation</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../git-github/github-actions.html">GitHub Actions</a>
+    <a class="nav-link" href="../git-github/github-actions.html">GitHub Actions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../git-github/github-actions-cmake-eigen3.html">CMake + Eigen3 Example</a>
+    <a class="nav-link" href="../git-github/github-actions-cmake-eigen3.html">CMake + Eigen3 Example</a>
   </li>
 </ul>
   </li>
@@ -269,62 +272,62 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../../vscode/index.html">VS Code</a>
+    <a class="nav-link" href="../vscode/index.html">VS Code</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">🟢 Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../vscode/install.html">Installation</a>
+    <a class="nav-link" href="../vscode/install.html">Installation</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../vscode/basic-usage.html">Basic Usage</a>
+    <a class="nav-link" href="../vscode/basic-usage.html">Basic Usage</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../vscode/extensions.html">Extensions</a>
+    <a class="nav-link" href="../vscode/extensions.html">Extensions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../vscode/configure-vscode.html">Configuration</a>
+    <a class="nav-link" href="../vscode/configure-vscode.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../vscode/cheatsheet.html">Cheat Sheet</a>
+    <a class="nav-link" href="../vscode/cheatsheet.html">Cheat Sheet</a>
   </li>
 </ul>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../../jupyter.html">Jupyter Notebooks</a>
+    <a class="nav-link" href="../jupyter.html">Jupyter Notebooks</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../index.html">Containers</a>
+    <a class="nav-link" href="../containers/index.html">Containers</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">🟡 Docker Fundamentals</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../docker/index.html">Docker Introduction</a>
+    <a class="nav-link" href="../containers/docker/index.html">Docker Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../docker/what-are-containers.html">What are Containers?</a>
+    <a class="nav-link" href="../containers/docker/what-are-containers.html">What are Containers?</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../docker/docker-install.html">Installation</a>
+    <a class="nav-link" href="../containers/docker/docker-install.html">Installation</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../docker/docker-commands.html">Essential Commands</a>
+    <a class="nav-link" href="../containers/docker/docker-commands.html">Essential Commands</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../docker/dockerfile-basics.html">Dockerfile Basics</a>
+    <a class="nav-link" href="../containers/docker/dockerfile-basics.html">Dockerfile Basics</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../docker/hands-on/04-compose.html">Docker Compose</a>
+    <a class="nav-link" href="../containers/docker/hands-on/04-compose.html">Docker Compose</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../docker/hands-on/06-githubactions.html">Docker + GitHub Actions</a>
+    <a class="nav-link" href="../containers/docker/hands-on/06-githubactions.html">Docker + GitHub Actions</a>
   </li>
 </ul>
   </li>
@@ -333,19 +336,19 @@ MathJax.Hub.Config({
     <span class="nav-text">🔴 HPC Containers</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../index.html">HPC Containerization</a>
+    <a class="nav-link" href="../containers/hpc/index.html">HPC Containerization</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../apptainer/index.html">Apptainer/Singularity</a>
+    <a class="nav-link" href="../containers/apptainer/index.html">Apptainer/Singularity</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../apptainer/tutorial.html">Apptainer Tutorial</a>
+    <a class="nav-link" href="../containers/apptainer/tutorial.html">Apptainer Tutorial</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../cicd.html">CI/CD for HPC</a>
+    <a class="nav-link" href="../containers/hpc/cicd.html">CI/CD for HPC</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../best-practices.html">HPC Best Practices</a>
+    <a class="nav-link" href="../containers/hpc/best-practices.html">HPC Best Practices</a>
   </li>
 </ul>
   </li>
@@ -353,20 +356,20 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../../project-management/index.html">Project Management</a>
+    <a class="nav-link" href="index.html">Project Management</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">🟡 Fundamentals</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../project-management/introduction.html">What is a Project?</a>
+    <a class="nav-link" href="introduction.html">What is a Project?</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../project-management/project-phases.html">Project Phases</a>
+    <a class="nav-link" href="project-phases.html">Project Phases</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../project-management/practical-examples.html">Practical Examples</a>
+    <a class="nav-link" href="practical-examples.html">Practical Examples</a>
   </li>
 </ul>
   </li>
@@ -375,22 +378,22 @@ MathJax.Hub.Config({
     <span class="nav-text">🟡 Tools &amp; Methods</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../project-management/tools-gantt.html">Tools &amp; Gantt Charts</a>
+    <a class="nav-link" href="tools-gantt.html">Tools &amp; Gantt Charts</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../project-management/agile-best-practices.html">Agile Practices</a>
+    <a class="nav-link" href="agile-best-practices.html">Agile Practices</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="waterfall-basics.html">Waterfall Basics</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../project-management/waterfall-basics.html">Waterfall Basics</a>
+    <a class="nav-link" href="github.html">GitHub for PM</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../project-management/github.html">GitHub for PM</a>
+    <a class="nav-link" href="collaboration-models-weather-lab.html">Agile vs Waterfall Lab</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../project-management/collaboration-models-weather-lab.html">Agile vs Waterfall Lab</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../project-management/case-studies.html">Case Studies</a>
+    <a class="nav-link" href="case-studies.html">Case Studies</a>
   </li>
 </ul>
   </li>
@@ -398,17 +401,17 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../../cicd/index.html">CI/CD</a>
+    <a class="nav-link" href="../cicd/index.html">CI/CD</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">🔴 Platforms</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../cicd/gitlab.html">GitLab CI/CD</a>
+    <a class="nav-link" href="../cicd/gitlab.html">GitLab CI/CD</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../cicd/gitlab_handson.html">GitLab Hands-on</a>
+    <a class="nav-link" href="../cicd/gitlab_handson.html">GitLab Hands-on</a>
   </li>
 </ul>
   </li>
@@ -416,23 +419,23 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../../software/index.html">Software Distribution</a>
+    <a class="nav-link" href="../software/index.html">Software Distribution</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">🔴 Topics</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../software/package-managers.html">Package Managers</a>
+    <a class="nav-link" href="../software/package-managers.html">Package Managers</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../software/repo/organization.html">Repository Organization</a>
+    <a class="nav-link" href="../software/repo/organization.html">Repository Organization</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../software/python-e2e-weather-workshop.html">Python End-to-End Workshop</a>
+    <a class="nav-link" href="../software/python-e2e-weather-workshop.html">Python End-to-End Workshop</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../software/release-engineering-weather.html">Release Engineering (Weather App)</a>
+    <a class="nav-link" href="../software/release-engineering-weather.html">Release Engineering (Weather App)</a>
   </li>
 </ul>
   </li>
@@ -440,17 +443,17 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../../visualisation/index.html">Visualization</a>
+    <a class="nav-link" href="../visualisation/index.html">Visualization</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">🔴 Web Dashboards</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../visualisation/dash.html">Dash Tutorial</a>
+    <a class="nav-link" href="../visualisation/dash.html">Dash Tutorial</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../visualisation/dash-weather.html">Dash Weather Project Tutorial</a>
+    <a class="nav-link" href="../visualisation/dash-weather.html">Dash Weather Project Tutorial</a>
   </li>
 </ul>
   </li>
@@ -468,7 +471,7 @@ MathJax.Hub.Config({
   </div>
   <ul class="components">
       <li class="component is-current">
-        <a class="title" href="../../../index.html">Course Project</a>
+        <a class="title" href="../index.html">Course Project</a>
       </li>
   </ul>
 </div>
@@ -478,12 +481,18 @@ MathJax.Hub.Config({
 <main class="article">
 <div class="toolbar" role="navigation">
   <button class="nav-toggle"></button>
-    <a href="../../../index.html" class="home-link"></a>
+    <a href="../index.html" class="home-link"></a>
   <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Course Project</a></li>
+    <li><a href="index.html">Project Management</a></li>
+    <li>🟡 Tools &amp; Methods</li>
+    <li><a href="waterfall-basics.html">Waterfall Basics</a></li>
+  </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/hpc/hands-on/02-apptainer.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/project-management/pages/waterfall-basics.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -491,7 +500,7 @@ MathJax.Hub.Config({
     <li>
       <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
          class="pdf-download">
-        <img class="pdf-file-icon icon" src="../../../../_/img/pdf.svg"/> .pdf
+        <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
       </a>
     </li>
   </ul>
@@ -503,176 +512,153 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<div class="sect1">
-<h2 id="_connecting_to_karolina_hpc_and_using_apptainer"><a class="anchor" href="#_connecting_to_karolina_hpc_and_using_apptainer"></a>1. Connecting to Karolina HPC and Using Apptainer</h2>
+<h1 class="page">Waterfall Model Basics</h1>
+<div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>Because Apptainer does not run within a Docker Codespace, you&#8217;ll need to connect to the Karolina HPC system (EuroHPC) to work with Apptainer.
-In this section, we&#8217;ll cover:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>How to SSH into Karolina.</p>
-</li>
-<li>
-<p>How to remotely log in to GHCR.</p>
-</li>
-<li>
-<p>How to pull, inspect, and run your Apptainer (SIF) image.</p>
-</li>
-<li>
-<p>How to bind host directories and launch an interactive shell.</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="_connecting_to_karolina_hpc"><a class="anchor" href="#_connecting_to_karolina_hpc"></a>1.1. Connecting to Karolina HPC</h3>
-<div class="paragraph">
-<p>First, connect to the Karolina HPC system. Replace <code>your_username</code> and adjust the hostname as needed:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ssh your_username@karolina.it4i.cz</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>I use the follow <code>ssh</code> configuration to connect to Karolina HPC:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">Host karolina
-    Hostname karolina.it4i.cz
-    User it4i-&lt;login&gt;
-    ForwardAgent Yes</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>and of course I have my SSH key added to the <code>ssh-agent</code> and the public key added to the <code>~/.ssh/authorized_keys</code> file on the Karolina HPC system using the <code>ssh-copy-id</code> command.
-In vscode with the Remote - SSH extension, I can connect to Karolina HPC by selecting the <code>karolina</code> host.
-In a terminal, I can connect to Karolina HPC by running <code>ssh karolina</code>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_remote_login_to_github_container_registry"><a class="anchor" href="#_remote_login_to_github_container_registry"></a>1.2. Remote Login to GitHub Container Registry</h3>
-<div class="paragraph">
-<p>Before pulling your image, you need to log in to GHCR using Apptainer’s remote login command.
-Replace <code>&lt;username&gt;</code> and <code>&lt;GHCR_PAT&gt;</code> with your GitHub username and Personal Access Token respectively:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">apptainer remote login -u &lt;username&gt; -p &lt;GHCR_PAT&gt; oras://ghcr.io</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_pulling_and_inspecting_the_docker_package_as_a_sif_image"><a class="anchor" href="#_pulling_and_inspecting_the_docker_package_as_a_sif_image"></a>1.3. Pulling and Inspecting the Docker Package as a SIF Image</h3>
-<div class="paragraph">
-<p>Pull the Docker image (from GHCR) and convert it to an Apptainer SIF file:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">apptainer pull -F myapp.sif docker://ghcr.io/&lt;username&gt;/myapp:latest</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>After pulling, inspect the SIF image to verify its contents:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">apptainer inspect myapp.sif</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_running_the_apptainer_container"><a class="anchor" href="#_running_the_apptainer_container"></a>1.4. Running the Apptainer Container</h3>
-<div class="paragraph">
-<p>You can run your container in several ways on Karolina:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Interactive Mode (Shell):</strong></p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">apptainer shell myapp.sif</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Default Command:</strong></p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">apptainer run myapp.sif</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>MPI Batch Execution:</strong></p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">mpirun -np 4 apptainer exec myapp.sif ./my_mpi_app</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_mounting_directories_and_using_an_interactive_shell"><a class="anchor" href="#_mounting_directories_and_using_an_interactive_shell"></a>1.5. Mounting Directories and Using an Interactive Shell</h3>
-<div class="paragraph">
-<p>Often in HPC, you need to access data stored on the host.
-Use the <code>--bind</code> option to mount directories into your container.
-For example, to mount <code>/data</code> from the host to <code>/mnt/data</code> inside the container and then launch a Bash shell:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">apptainer exec --bind /data:/mnt/data myapp.sif /bin/bash</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This command allows you to interact with your data within the container environment.</p>
-</div>
+<div class="paragraph lead">
+<p>Waterfall is a sequential project model: each phase is completed before the next phase starts.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_conclusion"><a class="anchor" href="#_conclusion"></a>2. Conclusion</h2>
+<h2 id="_what_is_the_waterfall_model"><a class="anchor" href="#_what_is_the_waterfall_model"></a>1. What Is the Waterfall Model?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this section, you learned how to:
-- Connect to the Karolina HPC system via SSH.
-- Remotely log in to GHCR to retrieve your Docker-based Apptainer image.
-- Pull, inspect, and run your Apptainer SIF image.
-- Bind host directories and launch an interactive shell within the container.</p>
+<p>In Waterfall, work progresses through ordered phases with formal checkpoints:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Requirements</p>
+</li>
+<li>
+<p>Design</p>
+</li>
+<li>
+<p>Implementation</p>
+</li>
+<li>
+<p>Verification/Testing</p>
+</li>
+<li>
+<p>Release/Maintenance</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>These steps ensure that your HPC applications run in a reproducible, containerized environment on Karolina HPC.</p>
-</div>
-<div class="paragraph center">
-<p>Questions? Let&#8217;s discuss how to integrate these steps into your HPC workflows!</p>
+<p>Teams try to stabilize requirements early and reduce mid-project changes.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_typical_workflow"><a class="anchor" href="#_typical_workflow"></a>2. Typical Workflow</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Define requirements in writing.</p>
+</li>
+<li>
+<p>Validate scope and approve plan.</p>
+</li>
+<li>
+<p>Implement according to approved design.</p>
+</li>
+<li>
+<p>Run verification against requirements.</p>
+</li>
+<li>
+<p>Release only when validation is complete.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_strengths"><a class="anchor" href="#_strengths"></a>3. Strengths</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Clear structure and milestones</p>
+</li>
+<li>
+<p>Strong traceability from requirements to delivery</p>
+</li>
+<li>
+<p>Useful when requirements are stable and regulated</p>
+</li>
+<li>
+<p>Easier documentation and reporting</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_limitations"><a class="anchor" href="#_limitations"></a>4. Limitations</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Late feedback from users/stakeholders</p>
+</li>
+<li>
+<p>Expensive changes when requirements evolve</p>
+</li>
+<li>
+<p>Slow adaptation in uncertain or research contexts</p>
+</li>
+<li>
+<p>Risk of delivering the wrong thing if early assumptions are incorrect</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_when_waterfall_fits"><a class="anchor" href="#_when_waterfall_fits"></a>5. When Waterfall Fits</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Well-defined scope at project start</p>
+</li>
+<li>
+<p>Low expected change rate</p>
+</li>
+<li>
+<p>Strong compliance/documentation constraints</p>
+</li>
+<li>
+<p>Contract-driven delivery</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_waterfall_vs_agile_quick_contrast"><a class="anchor" href="#_waterfall_vs_agile_quick_contrast"></a>6. Waterfall vs Agile (Quick Contrast)</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Waterfall: plan first, execute sequentially, change is controlled formally.</p>
+</li>
+<li>
+<p>Agile: iterate quickly, adapt continuously, change is expected.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For Agile model details, see <a href="agile-best-practices.html" class="xref page">Agile Best Practices</a>.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="agile-best-practices.html">Agile Practices</a></span>
+  <span class="next"><a href="github.html">GitHub for PM</a></span>
+</nav>
 </article>
   </div>
 </main>
@@ -682,23 +668,23 @@ For example, to mount <code>/data</code> from the host to <code>/mnt/data</code>
     <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
         <div>
             <a href="https://www.cemosis.fr">
-                <img src="../../../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+                <img src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
             </a>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <a href="https://www.unistra.fr">
-                <img src="../../../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+                <img src="../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
             </a>
         </div>
         <span style="font-size: 0.8rem; color: #9e9e9e">© 2026 <a href="https://www.cemosis.fr"
                 style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
     </div>
-</footer><script id="site-script" src="../../../../_/js/site.js" data-ui-root-path="../../../../_"></script>
+</footer><script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
 
 
 <!-- Font Awesome JS removed to use webfont icons only -->
-<script async src="../../../../_/js/vendor/highlight.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
 
-<script src="../../../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
 
 <script type="text/javascript">
 function toggleFullScreen() {
