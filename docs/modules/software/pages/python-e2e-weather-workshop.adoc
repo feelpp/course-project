@@ -316,5 +316,7 @@ Each student opens at least one PR and reviews at least one PR.
 == Suggested Follow-Up
 
 - xref:visualisation:dash-weather.adoc[Dash Weather Project Tutorial]
+- xref:software:release-engineering-weather.adoc[Release Engineering (Weather App)]
+- xref:project-management:collaboration-models-weather-lab.adoc[Agile vs Waterfall Lab (Weather)]
 - xref:visualisation:dash.adoc[Dash Tutorial (General Scientific Computing)]
 - xref:software:repo/organization.adoc[Software Repository Organization]

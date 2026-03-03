@@ -53,3 +53,5 @@ Statistical investigation of mathematical datasets with reproducible methodology
 == Project Management Learning Modules
 
 Explore comprehensive project management concepts through these specialized modules:
+
+- xref:collaboration-models-weather-lab.adoc[Collaboration Models Lab: Agile vs Waterfall (Weather)]

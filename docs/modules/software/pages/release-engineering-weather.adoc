@@ -1,0 +1,213 @@
+= Release Engineering Lesson (60 min): Weather App
+:page-tags: software-manual
+:parent-catalogs: software:index
+:page-illustration: fa-solid fa-box-open
+:description: Teach release engineering fundamentals with semantic versioning, changelog, GitHub Release, and GHCR for the weather app.
+
+[.lead]
+This lesson prepares students to ship their weather project in a reproducible and traceable way using tags, releases, and container publishing.
+
+== Where It Goes
+
+This lesson belongs in the `Software Distribution` track, right after:
+
+- xref:software:python-e2e-weather-workshop.adoc[Python End-to-End Workshop]
+- xref:visualisation:dash-weather.adoc[Dash Weather Project Tutorial] (optional extension)
+
+Reason: release engineering is about packaging, versioning, publishing, and distribution lifecycle.
+
+== Learning Objectives
+
+By the end of the lesson, students can:
+
+- apply semantic versioning (`MAJOR.MINOR.PATCH`)
+- write a minimal changelog for a release
+- create an annotated Git tag
+- create a GitHub Release from a tag
+- publish a Docker image to GHCR with versioned tags
+- automate the whole release flow with GitHub Actions on tag push
+
+== 60-Minute Morning Plan
+
+1. `10 min` Release engineering concepts
+2. `15 min` Versioning + changelog practice
+3. `15 min` Tag + GitHub Release hands-on
+4. `15 min` GHCR image tagging and push flow
+5. `5 min` rollback and hotfix discussion
+
+== Minimal Theory
+
+Release engineering answers 3 questions:
+
+1. What exactly was delivered?
+2. Can we reproduce it?
+3. Can we roll back safely?
+
+Key artifacts:
+
+- `pyproject.toml` version
+- Git tag (`v0.1.0`)
+- changelog entry
+- GitHub Release notes
+- container image tags (`v0.1.0`, `latest`)
+
+== Hands-On Checklist (Class)
+
+=== Step 1: Choose release scope
+
+- Freeze one feature set for release (CLI required, Dash optional)
+- Ensure tests pass on default branch
+
+=== Step 2: Update version and changelog
+
+- Update `pyproject.toml` version (example `0.1.0`)
+- Add `CHANGELOG.md` entry:
+1. added
+2. changed
+3. fixed
+
+=== Step 3: Create tag and release
+
+[source,bash]
+----
+git tag -a v0.1.0 -m "First release of weather app"
+git push origin v0.1.0
+----
+
+Then either create GitHub Release manually (first run) or let automation do it:
+
+- title: `v0.1.0`
+- notes from changelog
+- include known limitations
+
+=== Step 4: Publish Docker image to GHCR
+
+Expected tags:
+
+- `ghcr.io/<org-or-user>/weather-app:v0.1.0`
+- `ghcr.io/<org-or-user>/weather-app:latest`
+
+If using CI workflow on tag, verify:
+
+- image build successful
+- image published to GHCR
+- release notes linked to container tag
+
+== Automate Release with GitHub Actions
+
+Use a dedicated workflow file:
+
+- `.github/workflows/release.yml`
+
+Trigger strategy:
+
+- CI workflow runs on pull requests
+- release workflow runs only on version tags (example `v0.1.0`)
+
+Minimal release workflow example:
+
+[source,yaml]
+----
+name: release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+
+      - name: Build Python package
+        run: python -m build
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository_owner }}/weather-app
+          tags: |
+            type=raw,value=latest
+            type=ref,event=tag
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            dist/*
+----
+
+What students should verify after pushing a tag:
+
+1. Workflow succeeded in Actions tab
+2. GitHub Release exists for the tag
+3. GHCR contains both `vX.Y.Z` and `latest` tags
+4. Release includes built package artifacts (`dist/*`)
+
+== At-Home Completion
+
+Students complete:
+
+1. patch release `v0.1.1` after one bug fix
+2. updated changelog entry
+3. new GitHub Release
+4. GHCR image with `v0.1.1`
+5. automated workflow run URL for that release
+
+== Common Mistakes
+
+- version changed without matching tag
+- tag pushed but no release notes
+- `latest` updated without versioned tag
+- release created from untested commit
+- missing rollback instructions
+- release workflow also running on PRs (should run only on tags)
+
+== Deliverables
+
+1. Link to tag `v0.1.0`
+2. Link to GitHub Release page
+3. Link to GHCR package
+4. Link to GitHub Actions run for the release
+5. Short note: rollback strategy (3-5 lines)
+
+== Follow-Up
+
+- xref:git-github:github-actions.adoc[GitHub Actions]
+- xref:containers:docker/hands-on/06-githubactions.adoc[Docker + GitHub Actions]
+- xref:software:repo/organization.adoc[Software Repository Organization]
+- xref:cicd:index.adoc[CI/CD]

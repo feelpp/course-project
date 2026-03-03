@@ -13,6 +13,7 @@
 Learn comprehensive software installation methods through these focused modules:
 
 - xref:python-e2e-weather-workshop.adoc[Python End-to-End Workshop]
+- xref:release-engineering-weather.adoc[Release Engineering (Weather App)]
 
 === Understanding Package Managers
 

@@ -1,0 +1,106 @@
+= Collaboration Models Lab: Agile vs Waterfall (Weather Project)
+:page-tags: projectmanagement
+:parent-catalogs: project-management:index
+:page-illustration: fa-solid fa-people-arrows
+:description: Compare Agile and Waterfall collaboration models on the same weather-software project with two student groups.
+
+[.lead]
+This 1-hour lab is designed for the end of a session. Two groups work on the same weather project with different collaboration models, then finish implementation at home and compare outcomes.
+
+== Setup
+
+Team split:
+
+- Group A: `Agile/Kanban` model
+- Group B: `Waterfall` model
+
+Shared project context:
+
+- Repository: weather app from xref:software:python-e2e-weather-workshop.adoc[Python End-to-End Workshop]
+- Dataset: `data/weather_hourly.csv`
+- Scope: CLI + tests + optional Dash extension
+
+== Learning Goals
+
+By the end, students should be able to:
+
+- explain practical differences between Agile and Waterfall
+- observe how each model handles change requests
+- evaluate collaboration quality using evidence (issues, PRs, cycle time, rework)
+
+== In-Class Plan (60 minutes)
+
+1. `10 min` briefing and model rules
+2. `35 min` implementation sprint
+3. `5 min` change request injection
+4. `10 min` checkpoint and evidence capture
+
+== Shared Backlog for Both Groups
+
+Each group receives the same 6 tasks:
+
+1. Add CLI summary option for date range filtering (`--start`, `--end`)
+2. Add a validation command (`weather-cli check-data`)
+3. Add one test for timestamp conversion
+4. Add one test for summary metrics
+5. Update README with run instructions
+6. Add one plot output (CLI or Dash)
+
+Midway change request (at minute 45):
+
+- New requirement: include monthly mean `temperature_2m` in outputs
+
+== Group Rules
+
+=== Group A: Agile/Kanban
+
+- Use GitHub Project board with `Todo`, `In Progress`, `In Review`, `Done`
+- Keep WIP limit of 2 tasks maximum
+- Re-prioritize immediately when change request arrives
+- Use short PRs and frequent merges
+
+=== Group B: Waterfall
+
+- Start with fixed mini-spec before coding
+- Execute phases in order:
+1. requirements
+2. design
+3. implementation
+4. verification
+- Change request handled as formal scope change note
+- Merge after verification phase only
+
+== Evidence to Collect During Class
+
+Each group must capture:
+
+- link to project board or plan document
+- list of opened/closed issues
+- list of opened/merged PRs
+- notes on how change request was handled
+
+== At-Home Completion (Expected 60-90 minutes)
+
+Finish remaining backlog and submit:
+
+1. final repo link
+2. final board/spec artifact
+3. 1-page comparison report:
+- what worked
+- what failed
+- change request handling quality
+- recommendation for future student software projects
+
+== Debrief Questions
+
+1. Which model produced faster useful output in 1 hour?
+2. Which model handled the change request with less rework?
+3. Which model gave better visibility for teamwork and ownership?
+4. Which model is better for evolving research software?
+
+== Suggested Evaluation Rubric
+
+- Delivery completeness (30%)
+- Collaboration traceability (issues/PRs/board or plan) (25%)
+- Change management quality (25%)
+- Quality of final comparison argument (20%)
