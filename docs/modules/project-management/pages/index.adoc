@@ -54,4 +54,6 @@ Statistical investigation of mathematical datasets with reproducible methodology
 
 Explore comprehensive project management concepts through these specialized modules:
 
+- xref:agile-best-practices.adoc[Agile Best Practices]
+- xref:waterfall-basics.adoc[Waterfall Model Basics]
 - xref:collaboration-models-weather-lab.adoc[Collaboration Models Lab: Agile vs Waterfall (Weather)]

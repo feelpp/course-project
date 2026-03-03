@@ -5,7 +5,18 @@
 :description: Compare Agile and Waterfall collaboration models on the same weather-software project with two student groups.
 
 [.lead]
-This 1-hour lab is designed for the end of a session. Two groups work on the same weather project with different collaboration models, then finish implementation at home and compare outcomes.
+This is a 1-hour lab. Two groups work on the same weather project with different collaboration models, then finish implementation at home and compare outcomes during the next session.
+
+== Required Pre-Reading (Study First)
+
+Before starting this lab, students must read:
+
+1. xref:agile-best-practices.adoc[Agile Best Practices]
+2. xref:waterfall-basics.adoc[Waterfall Model Basics]
+
+Optional refresher:
+
+- xref:project-phases.adoc[Phases of a Project]
 
 == Setup
 

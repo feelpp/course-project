@@ -1,0 +1,56 @@
+= Waterfall Model Basics
+:page-tags: projectmanagement
+:parent-catalogs: project-management:index
+:page-illustration: fa-solid fa-stairs
+:description: Understand the Waterfall collaboration model, its phases, strengths, limitations, and when to use it.
+
+[.lead]
+Waterfall is a sequential project model: each phase is completed before the next phase starts.
+
+== What Is the Waterfall Model?
+
+In Waterfall, work progresses through ordered phases with formal checkpoints:
+
+1. Requirements
+2. Design
+3. Implementation
+4. Verification/Testing
+5. Release/Maintenance
+
+Teams try to stabilize requirements early and reduce mid-project changes.
+
+== Typical Workflow
+
+1. Define requirements in writing.
+2. Validate scope and approve plan.
+3. Implement according to approved design.
+4. Run verification against requirements.
+5. Release only when validation is complete.
+
+== Strengths
+
+- Clear structure and milestones
+- Strong traceability from requirements to delivery
+- Useful when requirements are stable and regulated
+- Easier documentation and reporting
+
+== Limitations
+
+- Late feedback from users/stakeholders
+- Expensive changes when requirements evolve
+- Slow adaptation in uncertain or research contexts
+- Risk of delivering the wrong thing if early assumptions are incorrect
+
+== When Waterfall Fits
+
+- Well-defined scope at project start
+- Low expected change rate
+- Strong compliance/documentation constraints
+- Contract-driven delivery
+
+== Waterfall vs Agile (Quick Contrast)
+
+- Waterfall: plan first, execute sequentially, change is controlled formally.
+- Agile: iterate quickly, adapt continuously, change is expected.
+
+For Agile model details, see xref:agile-best-practices.adoc[Agile Best Practices].

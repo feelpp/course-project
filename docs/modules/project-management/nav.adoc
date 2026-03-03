@@ -7,6 +7,7 @@
 ** 🟡 Tools & Techniques
 *** xref:tools-gantt.adoc[Project Management Tools and Gantt Charts]
 *** xref:agile-best-practices.adoc[Agile Best Practices]
+*** xref:waterfall-basics.adoc[Waterfall Basics]
 *** xref:github.adoc[GitHub for Project Management]
 *** xref:collaboration-models-weather-lab.adoc[Agile vs Waterfall Lab (Weather)]
 ** 🟡 Case Studies
