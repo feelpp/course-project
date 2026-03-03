@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-      <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Data Visualization and Interactive Dashboards :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/visualisation/index.html">
-    <link rel="prev" href="../software/release-engineering-weather.html">
-    <link rel="next" href="dash.html">
-    <meta name="description" content="Learn to create compelling data visualizations and interactive dashboards. Master tools and techniques for effective data communication and analysis.">
+    <title>Release Engineering Lesson (60 min): Weather App :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/software/release-engineering-weather.html">
+    <link rel="prev" href="python-e2e-weather-workshop.html">
+    <link rel="next" href="../visualisation/index.html">
+    <meta name="description" content="Teach release engineering fundamentals with semantic versioning, changelog, GitHub Release, and GHCR for the weather app.">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../_/css/site.css">
 
@@ -101,8 +101,8 @@ MathJax.Hub.Config({
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
 <script>var uiRootPath = '../../_'</script>
 
-</head>
-<body class="article docs-manuals-catalog docs-cards-layout ">
+  </head>
+  <body class="article">
 <header class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
         style="border-top: 4px solid #9E9E9E">
@@ -139,9 +139,8 @@ MathJax.Hub.Config({
             </div>
         </div>
     </nav>
-</header>
-<div class="body">
-  <a href="#" class="menu-expand-toggle"></a>
+</header><div class="body">
+<a href="#" class="menu-expand-toggle"></a>
 <div class="nav-container" data-component="course-project" data-version="">
   <aside class="nav">
     <div class="panels">
@@ -417,41 +416,41 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../software/index.html">Software Distribution</a>
+    <a class="nav-link" href="index.html">Software Distribution</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">🔴 Topics</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../software/package-managers.html">Package Managers</a>
+    <a class="nav-link" href="package-managers.html">Package Managers</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../software/repo/organization.html">Repository Organization</a>
+    <a class="nav-link" href="repo/organization.html">Repository Organization</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../software/python-e2e-weather-workshop.html">Python End-to-End Workshop</a>
+    <a class="nav-link" href="python-e2e-weather-workshop.html">Python End-to-End Workshop</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../software/release-engineering-weather.html">Release Engineering (Weather App)</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="release-engineering-weather.html">Release Engineering (Weather App)</a>
   </li>
 </ul>
   </li>
 </ul>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Visualization</a>
+    <a class="nav-link" href="../visualisation/index.html">Visualization</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">🔴 Web Dashboards</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="dash.html">Dash Tutorial</a>
+    <a class="nav-link" href="../visualisation/dash.html">Dash Tutorial</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="dash-weather.html">Dash Weather Project Tutorial</a>
+    <a class="nav-link" href="../visualisation/dash-weather.html">Dash Weather Project Tutorial</a>
   </li>
 </ul>
   </li>
@@ -476,55 +475,489 @@ MathJax.Hub.Config({
     </div>
   </aside>
 </div>
-  <main class="article">
-    <div class="toolbar" role="navigation">
-      <button class="nav-toggle"></button>
-       <a href="../index.html" class="home-link"></a> 
-      <nav class="breadcrumbs" aria-label="breadcrumbs">
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Course Project</a></li>
-    <li><a href="index.html">Visualization</a></li>
+    <li><a href="index.html">Software Distribution</a></li>
+    <li>🔴 Topics</li>
+    <li><a href="release-engineering-weather.html">Release Engineering (Weather App)</a></li>
   </ul>
 </nav>
-    </div>
 
-    <div class="content">
-      <article class="doc">
-         <h1 class="page">Data Visualization and Interactive Dashboards</h1> 
-        <div id="preamble">
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/software/pages/release-engineering-weather.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Release Engineering Lesson (60 min): Weather App</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph lead">
-<p>Explore modern <strong>data visualization</strong> techniques and create interactive dashboards that effectively communicate insights from complex datasets. From basic charts to advanced interactive applications.</p>
+<p>This lesson prepares students to ship their weather project in a reproducible and traceable way using tags, releases, and container publishing.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_visualization_learning_modules"><a class="anchor" href="#_visualization_learning_modules"></a>1. Visualization Learning Modules</h2>
+<h2 id="_where_it_goes"><a class="anchor" href="#_where_it_goes"></a>1. Where It Goes</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Master data visualization through these comprehensive modules:</p>
+<p>This lesson belongs in the <code>Software Distribution</code> track, right after:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="dash.html" class="xref page">Dash Tutorial</a></p>
+<p><a href="python-e2e-weather-workshop.html" class="xref page">Python End-to-End Workshop</a></p>
 </li>
 <li>
-<p><a href="dash-weather.html" class="xref page">Dash Weather Project Tutorial</a></p>
+<p><a href="../visualisation/dash-weather.html" class="xref page">Dash Weather Project Tutorial</a> (optional extension)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Reason: release engineering is about packaging, versioning, publishing, and distribution lifecycle.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_learning_objectives"><a class="anchor" href="#_learning_objectives"></a>2. Learning Objectives</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By the end of the lesson, students can:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>apply semantic versioning (<code>MAJOR.MINOR.PATCH</code>)</p>
 </li>
 <li>
-<p><a href="hw.html" class="xref page">Dash Homework</a></p>
+<p>write a minimal changelog for a release</p>
+</li>
+<li>
+<p>create an annotated Git tag</p>
+</li>
+<li>
+<p>create a GitHub Release from a tag</p>
+</li>
+<li>
+<p>publish a Docker image to GHCR with versioned tags</p>
+</li>
+<li>
+<p>automate the whole release flow with GitHub Actions on tag push</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
-
-      </article>
-    </div>
-  </main>
+<div class="sect1">
+<h2 id="_60_minute_morning_plan"><a class="anchor" href="#_60_minute_morning_plan"></a>3. 60-Minute Morning Plan</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>10 min</code> Release engineering concepts</p>
+</li>
+<li>
+<p><code>15 min</code> Versioning + changelog practice</p>
+</li>
+<li>
+<p><code>15 min</code> Tag + GitHub Release hands-on</p>
+</li>
+<li>
+<p><code>15 min</code> GHCR image tagging and push flow</p>
+</li>
+<li>
+<p><code>5 min</code> rollback and hotfix discussion</p>
+</li>
+</ol>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_minimal_theory"><a class="anchor" href="#_minimal_theory"></a>4. Minimal Theory</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Release engineering answers 3 questions:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>What exactly was delivered?</p>
+</li>
+<li>
+<p>Can we reproduce it?</p>
+</li>
+<li>
+<p>Can we roll back safely?</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Key artifacts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>pyproject.toml</code> version</p>
+</li>
+<li>
+<p>Git tag (<code>v0.1.0</code>)</p>
+</li>
+<li>
+<p>changelog entry</p>
+</li>
+<li>
+<p>GitHub Release notes</p>
+</li>
+<li>
+<p>container image tags (<code>v0.1.0</code>, <code>latest</code>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hands_on_checklist_class"><a class="anchor" href="#_hands_on_checklist_class"></a>5. Hands-On Checklist (Class)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_step_1_choose_release_scope"><a class="anchor" href="#_step_1_choose_release_scope"></a>5.1. Step 1: Choose release scope</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Freeze one feature set for release (CLI required, Dash optional)</p>
+</li>
+<li>
+<p>Ensure tests pass on default branch</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_2_update_version_and_changelog"><a class="anchor" href="#_step_2_update_version_and_changelog"></a>5.2. Step 2: Update version and changelog</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Update <code>pyproject.toml</code> version (example <code>0.1.0</code>)</p>
+</li>
+<li>
+<p>Add <code>CHANGELOG.md</code> entry:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>added</p>
+</li>
+<li>
+<p>changed</p>
+</li>
+<li>
+<p>fixed</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_3_create_tag_and_release"><a class="anchor" href="#_step_3_create_tag_and_release"></a>5.3. Step 3: Create tag and release</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git tag -a v0.1.0 -m "First release of weather app"
+git push origin v0.1.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then either create GitHub Release manually (first run) or let automation do it:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>title: <code>v0.1.0</code></p>
+</li>
+<li>
+<p>notes from changelog</p>
+</li>
+<li>
+<p>include known limitations</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_4_publish_docker_image_to_ghcr"><a class="anchor" href="#_step_4_publish_docker_image_to_ghcr"></a>5.4. Step 4: Publish Docker image to GHCR</h3>
+<div class="paragraph">
+<p>Expected tags:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ghcr.io/&lt;org-or-user&gt;/weather-app:v0.1.0</code></p>
+</li>
+<li>
+<p><code>ghcr.io/&lt;org-or-user&gt;/weather-app:latest</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If using CI workflow on tag, verify:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>image build successful</p>
+</li>
+<li>
+<p>image published to GHCR</p>
+</li>
+<li>
+<p>release notes linked to container tag</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_automate_release_with_github_actions"><a class="anchor" href="#_automate_release_with_github_actions"></a>6. Automate Release with GitHub Actions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use a dedicated workflow file:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>.github/workflows/release.yml</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Trigger strategy:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>CI workflow runs on pull requests</p>
+</li>
+<li>
+<p>release workflow runs only on version tags (example <code>v0.1.0</code>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Minimal release workflow example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: release
 
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+
+      - name: Build Python package
+        run: python -m build
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository_owner }}/weather-app
+          tags: |
+            type=raw,value=latest
+            type=ref,event=tag
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            dist/*</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>What students should verify after pushing a tag:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Workflow succeeded in Actions tab</p>
+</li>
+<li>
+<p>GitHub Release exists for the tag</p>
+</li>
+<li>
+<p>GHCR contains both <code>vX.Y.Z</code> and <code>latest</code> tags</p>
+</li>
+<li>
+<p>Release includes built package artifacts (<code>dist/*</code>)</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_at_home_completion"><a class="anchor" href="#_at_home_completion"></a>7. At-Home Completion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Students complete:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>patch release <code>v0.1.1</code> after one bug fix</p>
+</li>
+<li>
+<p>updated changelog entry</p>
+</li>
+<li>
+<p>new GitHub Release</p>
+</li>
+<li>
+<p>GHCR image with <code>v0.1.1</code></p>
+</li>
+<li>
+<p>automated workflow run URL for that release</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_common_mistakes"><a class="anchor" href="#_common_mistakes"></a>8. Common Mistakes</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>version changed without matching tag</p>
+</li>
+<li>
+<p>tag pushed but no release notes</p>
+</li>
+<li>
+<p><code>latest</code> updated without versioned tag</p>
+</li>
+<li>
+<p>release created from untested commit</p>
+</li>
+<li>
+<p>missing rollback instructions</p>
+</li>
+<li>
+<p>release workflow also running on PRs (should run only on tags)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deliverables"><a class="anchor" href="#_deliverables"></a>9. Deliverables</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Link to tag <code>v0.1.0</code></p>
+</li>
+<li>
+<p>Link to GitHub Release page</p>
+</li>
+<li>
+<p>Link to GHCR package</p>
+</li>
+<li>
+<p>Link to GitHub Actions run for the release</p>
+</li>
+<li>
+<p>Short note: rollback strategy (3-5 lines)</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_follow_up"><a class="anchor" href="#_follow_up"></a>10. Follow-Up</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../git-github/github-actions.html" class="xref page">GitHub Actions</a></p>
+</li>
+<li>
+<p><a href="../containers/docker/hands-on/06-githubactions.html" class="xref page">Docker + GitHub Actions</a></p>
+</li>
+<li>
+<p><a href="repo/organization.html" class="xref page">Software Repository Organization</a></p>
+</li>
+<li>
+<p><a href="../cicd/index.html" class="xref page">CI/CD</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="python-e2e-weather-workshop.html">Python End-to-End Workshop</a></span>
+  <span class="next"><a href="../visualisation/index.html">Visualization</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
 <footer class="footer"
     style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
     <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
@@ -564,5 +997,5 @@ function toggleFullScreen() {
    }
 }
 </script>
-</body>
+  </body>
 </html>

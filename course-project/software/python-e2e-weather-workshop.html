@@ -6,7 +6,7 @@
     <title>End-to-End Python Weather App Workshop :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/software/python-e2e-weather-workshop.html">
     <link rel="prev" href="repo/organization.html">
-    <link rel="next" href="../visualisation/index.html">
+    <link rel="next" href="release-engineering-weather.html">
     <meta name="description" content="Build, package, test, containerize, and publish a Python weather app with an optional Dash interface.">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -387,6 +387,9 @@ MathJax.Hub.Config({
     <a class="nav-link" href="../project-management/github.html">GitHub for PM</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../project-management/collaboration-models-weather-lab.html">Agile vs Waterfall Lab</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../project-management/case-studies.html">Case Studies</a>
   </li>
 </ul>
@@ -428,6 +431,9 @@ MathJax.Hub.Config({
   <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="python-e2e-weather-workshop.html">Python End-to-End Workshop</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="release-engineering-weather.html">Release Engineering (Weather App)</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -442,6 +448,9 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../visualisation/dash.html">Dash Tutorial</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../visualisation/dash-weather.html">Dash Weather Project Tutorial</a>
   </li>
 </ul>
   </li>
@@ -672,7 +681,12 @@ name = "weather-app" # Distribution name users install with pip.
 version = "0.1.0" # Initial semantic version for the package release.
 description = "Mini weather analysis app for M1 course" # Short project summary shown in package metadata.
 requires-python = "&gt;=3.10" # Minimum Python interpreter version supported by the project.
-dependencies = ["pandas&gt;=2.0"] # Runtime dependencies installed with the package.
+dependencies = ["pandas&gt;=2.0"] # Core runtime dependency for CSV loading and tabular analysis.
+
+[project.optional-dependencies] # Optional dependency groups installed only when needed.
+dev = ["pytest&gt;=8.0", "ruff&gt;=0.6", "build&gt;=1.2"] # Test/lint/build tooling for local dev and CI.
+plot = ["plotly&gt;=5.20"] # Plot support for `weather-cli plot`.
+dash = ["dash&gt;=2.17", "dash-bootstrap-components&gt;=1.6", "plotly&gt;=5.20"] # Web dashboard stack.
 
 [project.scripts] # Console command entry points exported at installation time.
 weather-cli = "weather_app.cli:main" # Creates `weather-cli` command mapped to weather_app.cli.main().</code></pre>
@@ -681,13 +695,67 @@ weather-cli = "weather_app.cli:main" # Creates `weather-cli` command mapped to w
 </div>
 </div>
 <div class="sect1">
-<h2 id="_cli_scope_required"><a class="anchor" href="#_cli_scope_required"></a>7. CLI Scope (Required)</h2>
+<h2 id="_dependency_map_by_section"><a class="anchor" href="#_dependency_map_by_section"></a>7. Dependency Map by Section</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 71.4286%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Workshop section</th>
+<th class="tableblock halign-left valign-top">Python dependencies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project setup + package metadata</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>setuptools</code>, <code>wheel</code>, <code>pandas</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLI implementation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pandas</code> + Python standard library (<code>argparse</code>, <code>datetime</code>, <code>pathlib</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Testing and CI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pytest</code>, <code>ruff</code>, <code>build</code> (from <code>dev</code> extra)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLI plotting command (optional)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>plotly</code> (from <code>plot</code> extra)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dash web app (optional)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dash</code>, <code>dash-bootstrap-components</code>, <code>plotly</code> (from <code>dash</code> extra)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Recommended install commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># core package + CLI
+pip install -e .
+
+# add development and CI tooling
+pip install -e ".[dev]"
+
+# add dashboard dependencies when needed
+pip install -e ".[dev,dash]"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cli_scope_required"><a class="anchor" href="#_cli_scope_required"></a>8. CLI Scope (Required)</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This is the first CLI for many students, so start from vocabulary and usage.</p>
 </div>
 <div class="sect2">
-<h3 id="_cli_basics_beginner"><a class="anchor" href="#_cli_basics_beginner"></a>7.1. CLI Basics (Beginner)</h3>
+<h3 id="_cli_basics_beginner"><a class="anchor" href="#_cli_basics_beginner"></a>8.1. CLI Basics (Beginner)</h3>
 <div class="paragraph">
 <p>A CLI (Command Line Interface) is a program you run from a terminal by typing a command.</p>
 </div>
@@ -727,9 +795,25 @@ pip install -e .
 weather-cli --help</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Dependencies used in this section:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Required: <code>pandas</code></p>
+</li>
+<li>
+<p>Standard library: <code>argparse</code>, <code>datetime</code>, <code>pathlib</code></p>
+</li>
+<li>
+<p>Optional (for <code>plot</code> subcommand): <code>plotly</code></p>
+</li>
+</ul>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_expected_interface_v1"><a class="anchor" href="#_expected_interface_v1"></a>7.2. Expected Interface (v1)</h3>
+<h3 id="_expected_interface_v1"><a class="anchor" href="#_expected_interface_v1"></a>8.2. Expected Interface (v1)</h3>
 <div class="paragraph">
 <p>Teams should implement at least the following interface:</p>
 </div>
@@ -766,7 +850,7 @@ weather-cli --help</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_minimum_command_to_pass_workshop"><a class="anchor" href="#_minimum_command_to_pass_workshop"></a>7.3. Minimum Command To Pass Workshop</h3>
+<h3 id="_minimum_command_to_pass_workshop"><a class="anchor" href="#_minimum_command_to_pass_workshop"></a>8.3. Minimum Command To Pass Workshop</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">weather-cli summary --input data/weather_hourly.csv --start 2023-01-01 --end 2023-01-31</code></pre>
@@ -793,7 +877,7 @@ weather-cli --help</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_starter_framework_srcweather_appcli_py"><a class="anchor" href="#_starter_framework_srcweather_appcli_py"></a>7.4. Starter Framework (<code>src/weather_app/cli.py</code>)</h3>
+<h3 id="_starter_framework_srcweather_appcli_py"><a class="anchor" href="#_starter_framework_srcweather_appcli_py"></a>8.4. Starter Framework (<code>src/weather_app/cli.py</code>)</h3>
 <div class="paragraph">
 <p>Use this starter structure and fill in handlers gradually:</p>
 </div>
@@ -854,8 +938,21 @@ if __name__ == "__main__":
 </div>
 </div>
 <div class="sect1">
-<h2 id="_cicd_scope_required"><a class="anchor" href="#_cicd_scope_required"></a>8. CI/CD Scope (Required)</h2>
+<h2 id="_cicd_scope_required"><a class="anchor" href="#_cicd_scope_required"></a>9. CI/CD Scope (Required)</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Dependencies used in this section:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>pytest</code>, <code>ruff</code>, <code>build</code> (install with <code>pip install -e ".[dev]"</code>)</p>
+</li>
+<li>
+<p>Keep Dash dependencies out of CI unless you test dashboard code in CI</p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p>Workflow on pull requests:</p>
 </div>
@@ -888,8 +985,42 @@ if __name__ == "__main__":
 </div>
 </div>
 <div class="sect1">
-<h2 id="_optional_dash_extension"><a class="anchor" href="#_optional_dash_extension"></a>9. Optional Dash Extension</h2>
+<h2 id="_dash_extension"><a class="anchor" href="#_dash_extension"></a>10. Dash Extension</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>For the weather project implementation details, use:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../visualisation/dash-weather.html" class="xref page">Dash Weather Project Tutorial</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dependencies used in this section:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>dash</code></p>
+</li>
+<li>
+<p><code>dash-bootstrap-components</code></p>
+</li>
+<li>
+<p><code>plotly</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Install when starting this section:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pip install -e ".[dash]"</code></pre>
+</div>
+</div>
 <div class="paragraph">
 <p>Add a small dashboard with:</p>
 </div>
@@ -912,7 +1043,7 @@ if __name__ == "__main__":
 </div>
 </div>
 <div class="sect1">
-<h2 id="_team_expectations_2_vs_3_students"><a class="anchor" href="#_team_expectations_2_vs_3_students"></a>10. Team Expectations (2 vs 3 students)</h2>
+<h2 id="_team_expectations_2_vs_3_students"><a class="anchor" href="#_team_expectations_2_vs_3_students"></a>11. Team Expectations (2 vs 3 students)</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Each student opens at least one PR and reviews at least one PR.</p>
@@ -920,7 +1051,7 @@ if __name__ == "__main__":
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deliverables"><a class="anchor" href="#_deliverables"></a>11. Deliverables</h2>
+<h2 id="_deliverables"><a class="anchor" href="#_deliverables"></a>12. Deliverables</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -944,12 +1075,21 @@ if __name__ == "__main__":
 </div>
 </div>
 <div class="sect1">
-<h2 id="_suggested_follow_up"><a class="anchor" href="#_suggested_follow_up"></a>12. Suggested Follow-Up</h2>
+<h2 id="_suggested_follow_up"><a class="anchor" href="#_suggested_follow_up"></a>13. Suggested Follow-Up</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><a href="../visualisation/dash.html" class="xref page">Dash Tutorial</a></p>
+<p><a href="../visualisation/dash-weather.html" class="xref page">Dash Weather Project Tutorial</a></p>
+</li>
+<li>
+<p><a href="release-engineering-weather.html" class="xref page">Release Engineering (Weather App)</a></p>
+</li>
+<li>
+<p><a href="../project-management/collaboration-models-weather-lab.html" class="xref page">Agile vs Waterfall Lab (Weather)</a></p>
+</li>
+<li>
+<p><a href="../visualisation/dash.html" class="xref page">Dash Tutorial (General Scientific Computing)</a></p>
 </li>
 <li>
 <p><a href="repo/organization.html" class="xref page">Software Repository Organization</a></p>
@@ -960,7 +1100,7 @@ if __name__ == "__main__":
 </div>
 <nav class="pagination">
   <span class="prev"><a href="repo/organization.html">Repository Organization</a></span>
-  <span class="next"><a href="../visualisation/index.html">Visualization</a></span>
+  <span class="next"><a href="release-engineering-weather.html">Release Engineering (Weather App)</a></span>
 </nav>
 </article>
   </div>

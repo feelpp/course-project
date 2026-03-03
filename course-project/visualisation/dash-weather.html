@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-      <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Data Visualization and Interactive Dashboards :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/visualisation/index.html">
-    <link rel="prev" href="../software/release-engineering-weather.html">
-    <link rel="next" href="dash.html">
-    <meta name="description" content="Learn to create compelling data visualizations and interactive dashboards. Master tools and techniques for effective data communication and analysis.">
+    <title>Dash Tutorial: Weather Dashboard (Beginner) :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/visualisation/dash-weather.html">
+    <link rel="prev" href="dash.html">
+    <meta name="description" content="Build a beginner-friendly Dash app for hourly weather data, with filters, plots, and summary metrics.">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../_/css/site.css">
 
@@ -101,8 +100,8 @@ MathJax.Hub.Config({
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
 <script>var uiRootPath = '../../_'</script>
 
-</head>
-<body class="article docs-manuals-catalog docs-cards-layout ">
+  </head>
+  <body class="article">
 <header class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
         style="border-top: 4px solid #9E9E9E">
@@ -139,9 +138,8 @@ MathJax.Hub.Config({
             </div>
         </div>
     </nav>
-</header>
-<div class="body">
-  <a href="#" class="menu-expand-toggle"></a>
+</header><div class="body">
+<a href="#" class="menu-expand-toggle"></a>
 <div class="nav-container" data-component="course-project" data-version="">
   <aside class="nav">
     <div class="panels">
@@ -439,7 +437,7 @@ MathJax.Hub.Config({
   </li>
 </ul>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="index.html">Visualization</a>
 <ul class="nav-list">
@@ -450,7 +448,7 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="dash.html">Dash Tutorial</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="dash-weather.html">Dash Weather Project Tutorial</a>
   </li>
 </ul>
@@ -476,55 +474,462 @@ MathJax.Hub.Config({
     </div>
   </aside>
 </div>
-  <main class="article">
-    <div class="toolbar" role="navigation">
-      <button class="nav-toggle"></button>
-       <a href="../index.html" class="home-link"></a> 
-      <nav class="breadcrumbs" aria-label="breadcrumbs">
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Course Project</a></li>
     <li><a href="index.html">Visualization</a></li>
+    <li>🔴 Web Dashboards</li>
+    <li><a href="dash-weather.html">Dash Weather Project Tutorial</a></li>
   </ul>
 </nav>
-    </div>
 
-    <div class="content">
-      <article class="doc">
-         <h1 class="page">Data Visualization and Interactive Dashboards</h1> 
-        <div id="preamble">
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/visualisation/pages/dash-weather.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Dash Tutorial: Weather Dashboard (Beginner)</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph lead">
-<p>Explore modern <strong>data visualization</strong> techniques and create interactive dashboards that effectively communicate insights from complex datasets. From basic charts to advanced interactive applications.</p>
+<p>This tutorial is aligned with the <code>weather_hourly.csv</code> project used in the course. It shows how to go from Python package + CLI to a simple interactive Dash dashboard.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_visualization_learning_modules"><a class="anchor" href="#_visualization_learning_modules"></a>1. Visualization Learning Modules</h2>
+<h2 id="_where_this_fits_in_the_course"><a class="anchor" href="#_where_this_fits_in_the_course"></a>1. Where This Fits in the Course</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Master data visualization through these comprehensive modules:</p>
+<p>Use this tutorial after:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="dash.html" class="xref page">Dash Tutorial</a></p>
+<p><a href="../software/python-e2e-weather-workshop.html" class="xref page">Python End-to-End Workshop</a></p>
 </li>
 <li>
-<p><a href="dash-weather.html" class="xref page">Dash Weather Project Tutorial</a></p>
+<p><a href="../git-github/github-review-projects-lab.html" class="xref page">GitHub Intro Lab: Issues, PRs, and Projects</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You will implement <code>src/weather_app/dash_app.py</code> in the same project where you already built <code>weather-cli</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>2. Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create and activate a virtual environment, then install project dependencies:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">python -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dash]"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Expected dataset location in your repository:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>data/weather_hourly.csv</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Expected columns:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>cloud_cover</code></p>
 </li>
 <li>
-<p><a href="hw.html" class="xref page">Dash Homework</a></p>
+<p><code>diffuse_radiation</code></p>
+</li>
+<li>
+<p><code>direct_radiation</code></p>
+</li>
+<li>
+<p><code>relative_humidity_2m</code></p>
+</li>
+<li>
+<p><code>surface_pressure</code></p>
+</li>
+<li>
+<p><code>temperature_2m</code></p>
+</li>
+<li>
+<p><code>time</code> (Unix milliseconds)</p>
+</li>
+<li>
+<p><code>wind_direction_10m</code></p>
+</li>
+<li>
+<p><code>wind_speed_10m</code></p>
 </li>
 </ul>
 </div>
 </div>
 </div>
-
-      </article>
-    </div>
-  </main>
+<div class="sect1">
+<h2 id="_dash_basics_beginner"><a class="anchor" href="#_dash_basics_beginner"></a>3. Dash Basics (Beginner)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before coding, understand the 4 core concepts:</p>
 </div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Layout</dt>
+<dd>
+<p>The static structure of the page (titles, controls, graphs).</p>
+</dd>
+<dt class="hdlist1">Components</dt>
+<dd>
+<p>UI elements such as dropdowns, date pickers, and graphs.</p>
+</dd>
+<dt class="hdlist1">Callbacks</dt>
+<dd>
+<p>Python functions that react to user input and update outputs.</p>
+</dd>
+<dt class="hdlist1">Figure</dt>
+<dd>
+<p>The Plotly chart object displayed in <code>dcc.Graph</code>.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Mental model:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User changes an input (example: date range).</p>
+</li>
+<li>
+<p>Dash calls your callback function.</p>
+</li>
+<li>
+<p>Your function filters data and computes outputs.</p>
+</li>
+<li>
+<p>Dash redraws graph/cards with returned values.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_1_minimal_working_app"><a class="anchor" href="#_step_1_minimal_working_app"></a>4. Step 1: Minimal Working App</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create <code>src/weather_app/dash_app.py</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import pandas as pd
+import plotly.express as px
+from dash import Dash, dcc, html
 
+
+df = pd.read_csv("data/weather_hourly.csv")
+df["time"] = pd.to_datetime(df["time"], unit="ms", errors="coerce")
+df = df.dropna(subset=["time"]).sort_values("time")
+
+app = Dash(__name__)
+server = app.server
+
+fig = px.line(df.head(300), x="time", y="temperature_2m", title="Temperature (first 300 rows)")
+
+app.layout = html.Div(
+    [
+        html.H1("Weather Dashboard"),
+        dcc.Graph(figure=fig),
+    ]
+)
+
+if __name__ == "__main__":
+    app.run(debug=True, port=8050)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Run it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">python -m weather_app.dash_app</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Open <a href="http://127.0.0.1:8050" class="bare">127.0.0.1:8050</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_2_add_interactive_controls_recommended_v1_interface"><a class="anchor" href="#_step_2_add_interactive_controls_recommended_v1_interface"></a>5. Step 2: Add Interactive Controls (Recommended v1 Interface)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now replace the minimal app with filters and summary metrics:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import pandas as pd
+import plotly.express as px
+from dash import Dash, dcc, html, Input, Output
+
+METRICS = {
+    "temperature_2m": "Temperature (deg C)",
+    "relative_humidity_2m": "Relative Humidity (%)",
+    "wind_speed_10m": "Wind Speed (km/h)",
+    "surface_pressure": "Surface Pressure (hPa)",
+}
+
+df = pd.read_csv("data/weather_hourly.csv")
+df["time"] = pd.to_datetime(df["time"], unit="ms", errors="coerce")
+df = df.dropna(subset=["time"]).sort_values("time")
+
+app = Dash(__name__)
+server = app.server
+
+app.layout = html.Div(
+    [
+        html.H1("Weather Dashboard"),
+        dcc.DatePickerRange(
+            id="date-range",
+            start_date=df["time"].min().date(),
+            end_date=df["time"].max().date(),
+            display_format="YYYY-MM-DD",
+        ),
+        dcc.Dropdown(
+            id="metric",
+            options=[{"label": label, "value": key} for key, label in METRICS.items()],
+            value="temperature_2m",
+            clearable=False,
+            style={"width": "420px", "marginTop": "12px"},
+        ),
+        html.Div(id="stats", style={"marginTop": "16px"}),
+        dcc.Graph(id="weather-graph"),
+    ],
+    style={"maxWidth": "1100px", "margin": "0 auto", "padding": "16px"},
+)
+
+
+@app.callback(
+    Output("weather-graph", "figure"),
+    Output("stats", "children"),
+    Input("date-range", "start_date"),
+    Input("date-range", "end_date"),
+    Input("metric", "value"),
+)
+def update_dashboard(start_date, end_date, metric):
+    filtered = df[(df["time"] &gt;= start_date) &amp; (df["time"] &lt;= end_date)]
+    filtered = filtered.dropna(subset=[metric])
+
+    if filtered.empty:
+        return px.line(title="No data for selected filters"), html.Div("No rows in selected range.")
+
+    fig = px.line(filtered, x="time", y=metric, title=f"{METRICS[metric]} over time")
+    stats = html.Ul(
+        [
+            html.Li(f"Rows: {len(filtered)}"),
+            html.Li(f"Mean: {filtered[metric].mean():.2f}"),
+            html.Li(f"Min: {filtered[metric].min():.2f}"),
+            html.Li(f"Max: {filtered[metric].max():.2f}"),
+        ]
+    )
+    return fig, stats
+
+
+if __name__ == "__main__":
+    app.run(debug=True, port=8050)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>What this gives students immediately:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>one time-range filter</p>
+</li>
+<li>
+<p>one metric selector</p>
+</li>
+<li>
+<p>one interactive graph</p>
+</li>
+<li>
+<p>one summary card/list for quick interpretation</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_project_integration_checklist"><a class="anchor" href="#_project_integration_checklist"></a>6. Project Integration Checklist</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Keep Dash code in <code>src/weather_app/dash_app.py</code>.</p>
+</li>
+<li>
+<p>Keep data loading/parsing helpers in <code>analysis.py</code> if possible.</p>
+</li>
+<li>
+<p>Add a README section: "Run dashboard locally".</p>
+</li>
+<li>
+<p>Add one screenshot/GIF in <code>results/</code> for project demo.</p>
+</li>
+<li>
+<p>Optional: add a CLI command that exports aggregated data used by Dash.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_run_in_docker"><a class="anchor" href="#_run_in_docker"></a>7. Run in Docker</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Example Docker command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker build -t weather-app:dash .
+docker run --rm -p 8050:8050 weather-app:dash</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If your Dockerfile already installs extras, ensure it includes Dash dependencies:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile">RUN pip install --no-cache-dir -e ".[dash]"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_production_note_optional"><a class="anchor" href="#_production_note_optional"></a>8. Production Note (Optional)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For production deployments, run through Gunicorn instead of Dash debug mode.</p>
+</div>
+<div class="paragraph">
+<p>Example command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">gunicorn weather_app.dash_app:server --bind 0.0.0.0:8050</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_common_beginner_mistakes"><a class="anchor" href="#_common_beginner_mistakes"></a>9. Common Beginner Mistakes</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Forgetting to convert <code>time</code> from Unix milliseconds.</p>
+</li>
+<li>
+<p>Not dropping invalid/missing rows before plotting.</p>
+</li>
+<li>
+<p>Mismatch between callback Output IDs and layout component IDs.</p>
+</li>
+<li>
+<p>Returning wrong number/order of callback outputs.</p>
+</li>
+<li>
+<p>Running with <code>debug=True</code> in production container.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_official_dash_links"><a class="anchor" href="#_official_dash_links"></a>10. Official Dash Links</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://dash.plotly.com/minimal-app">Dash minimal app</a></p>
+</li>
+<li>
+<p><a href="https://dash.plotly.com/basic-callbacks">Dash basic callbacks</a></p>
+</li>
+<li>
+<p><a href="https://dash.plotly.com/dash-core-components/datepickerrange">DatePickerRange</a></p>
+</li>
+<li>
+<p><a href="https://dash.plotly.com/dash-core-components/dropdown">Dropdown</a></p>
+</li>
+<li>
+<p><a href="https://dash.plotly.com/datatable">Dash DataTable</a></p>
+</li>
+<li>
+<p><a href="https://dash.plotly.com/deployment">Deployment</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_next_step"><a class="anchor" href="#_next_step"></a>11. Next Step</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connect this dashboard to your course project deliverables:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add Dash app link/instructions in README.</p>
+</li>
+<li>
+<p>Include dashboard in Docker image.</p>
+</li>
+<li>
+<p>Demonstrate one use case in final project demo.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="dash.html">Dash Tutorial</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
 <footer class="footer"
     style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
     <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
@@ -564,5 +969,5 @@ function toggleFullScreen() {
    }
 }
 </script>
-</body>
+  </body>
 </html>

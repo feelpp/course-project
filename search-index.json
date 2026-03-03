@@ -440,162 +440,180 @@
     },
     {
       "id": 74,
+      "title": "Collaboration Models Lab: Agile vs Waterfall (Weather Project) :: Course Project",
+      "content": "Edit this Page Download as .pdf Collaboration Models Lab: Agile vs Waterfall (Weather Project) This 1-hour lab is designed for the end of a session. Two groups work on the same weather project with different collaboration models, then finish implementation at home and compare outcomes. 1. Setup Team split: Group A: Agile/Kanban model Group B: Waterfall model Shared project context: Repository: weather app from Python End-to-End Workshop Dataset: data/weather_hourly.csv Scope: CLI + tests + optional Dash extension 2. Learning Goals By the end, students should be able to: explain practical differences between Agile and Waterfall observe how each model handles change requests evaluate collaboration quality using evidence (issues, PRs, cycle time, rework) 3. In-Class Plan (60 minutes) 10 min briefing and model rules 35 min implementation sprint 5 min change request injection 10 min checkpoint and evidence capture 4. Shared Backlog for Both Groups Each group receives the same 6 tasks: Add C",
+      "url": "/course-project/project-management/collaboration-models-weather-lab.html"
+    },
+    {
+      "id": 75,
       "title": "GitHub for Project Management :: Course Project",
       "content": "Edit this Page Download as .pdf GitHub for Project Management GitHub can be used as a lightweight but robust project management system for student teams: define tasks, assign ownership, track progress, review work, and deliver increments. 1. Why Use GitHub for PM in M1 One platform for code, tasks, reviews, and automation. Traceability from idea to merged contribution. Good habits for research and engineering collaboration. Works for small teams without heavy tooling overhead. 2. Core Building Blocks 2.1. Issues Use issues to represent work items: Feature tasks Bug reports Documentation tasks Technical debt and maintenance Recommended issue fields: Clear title Short context/problem statement Acceptance criteria Labels (bug, enhancement, documentation, chore) Assignee(s) Milestone (for sprint/release grouping) Milestones can track both issues and pull requests. 2.2. Pull Requests Use pull requests as your quality gate: Link PRs to issues (Closes #123) Request at least one review Require",
       "url": "/course-project/project-management/github.html"
     },
     {
-      "id": 75,
+      "id": 76,
       "title": "Project Management for Mathematical Research :: Course Project",
       "content": "Project Management for Mathematical Research 🟡 INTERMEDIATE LEVEL | Prerequisites: Basic Git and collaboration tools | Time: 3-4 hours | For: Mathematics students managing research projects and collaborative work Why Project Management for Mathematics? Mathematical research projects have unique characteristics: - Long-term investigations that may span months or years - Iterative discovery process where goals evolve based on findings - Collaborative elements involving advisors, peers, and external researchers - Multiple deliverables: papers, presentations, code, data analysis - Publication timelines with conference and journal deadlines Project management helps structure the inherent complexity of mathematical research. Project management for mathematics involves organizing mathematical research activities, managing collaborative relationships, and coordinating timelines to achieve research goals within academic constraints. Mathematical research presents unique project management chal",
       "url": "/course-project/project-management/"
     },
     {
-      "id": 76,
+      "id": 77,
       "title": "What is a Project? :: Course Project",
       "content": "Edit this Page Download as .pdf What is a Project? 1. Definition of a Project A sequence of tasks: Planned from beginning to end Bounded by time, resources, & specific results Defined outcomes and \"deliverables\" Has a deadline and a budget Limits number of people, supplies, and capital A project is a structured, goal-driven effort with clear boundaries and constraints. Outlining these elements clearly from the start is crucial for success. — NOTE 2. Tasks vs. Projects Routine tasks: Responding to email Making coffee Hooking up a printer Projects: Producing a customer newsletter Catering a party Writing a book Implementing a computer network Tasks are often short-term and repetitive, while projects are complex, unique, and require strategic planning and coordination. — NOTE 3. Five Features of a Project Defined beginning, end, schedule, and approach Use of specific resources allocated to the work Achievement of defined goals (time, cost, performance/quality) Follows a planned, organized",
       "url": "/course-project/project-management/introduction.html"
     },
     {
-      "id": 77,
+      "id": 78,
       "title": "Practical Examples in Scientific Computing and Digital Twins :: Course Project",
       "content": "Edit this Page Download as .pdf Practical Examples in Scientific Computing and Digital Twins To understand how project management principles apply in scientific computing and digital twins, let’s explore a few examples where structured approaches are crucial for project success. 1. Example 1: Developing a Digital Twin for Predictive Maintenance Project Goal: Develop a digital twin of a wind turbine to predict maintenance needs. Tasks: Collect historical performance data of the turbine. Develop a computational model to simulate wear and tear. Use machine learning algorithms to predict maintenance intervals. Integrate the digital twin into the SCADA (Supervisory Control and Data Acquisition) system. Resources: Data scientists, computational engineers, and SCADA system experts. Computing power for simulation and model training. Outcome: A functional digital twin capable of real-time performance monitoring and failure prediction. This project involves complex simulations and real-time data",
       "url": "/course-project/project-management/practical-examples.html"
     },
     {
-      "id": 78,
+      "id": 79,
       "title": "Phases of a Project :: Course Project",
       "content": "Edit this Page Download as .pdf Phases of a Project 1. Overview of Project Phases The typical phases of a project include: Conceptualization Feasibility Preliminary planning Detailed planning Execution Testing Termination Understanding each phase is crucial for navigating the project lifecycle from idea to completion. — NOTE 2. Phase 1: Initiating Identify the need for the project Determine what the project should accomplish Define the overall goal Identify key stakeholders and initial team members Outline the general scope The initiation phase sets the foundation for the project by clarifying its objectives and assembling the team. — NOTE 3. Phase 2: Planning Refine the project scope List tasks and activities Sequence activities optimally Develop a schedule and budget Get approval from stakeholders Detailed planning ensures that the project is feasible and that all stakeholders are aligned on expectations and resources. — NOTE 4. Phase 3: Executing Lead the project team Hold regular m",
       "url": "/course-project/project-management/project-phases.html"
     },
     {
-      "id": 79,
+      "id": 80,
       "title": "Project Management :: Course Project",
       "content": "Edit this Page Download as .pdf Project Management 1. Introduction to Project Management Project management involves organizing resources, tasks, and people to achieve specific goals within time and budget constraints. This introduction explores the key elements, phases, and tools required for successful project management.",
       "url": "/course-project/project-management/project.html"
     },
     {
-      "id": 80,
+      "id": 81,
       "title": "Tools in Project Management :: Course Project",
       "content": "Edit this Page Download as .pdf Tools in Project Management 1. What is a Milestone? A milestone in project management is a significant event or point in the project timeline that marks the completion of a major phase or task. Milestones are often used to: Measure progress: By marking important points, you can assess if the project is on schedule. Highlight deadlines: Milestones represent key deadlines that need to be met to move the project forward. Reflect achievements: Reaching a milestone signifies the completion of a critical part of the project. For example, in a software project, some common milestones might include: Requirements completion: All necessary features and requirements for the software have been defined. Design approval: The software’s architecture and design are approved for development. First working prototype: A functional version of the software, even if limited in scope, is built and can be demonstrated. 2. Gantt Charts A Gantt Chart is an essential tool for proj",
       "url": "/course-project/project-management/tools-gantt.html"
     },
     {
-      "id": 81,
+      "id": 82,
       "title": "Quick Start Guide :: Course Project",
       "content": "Edit this Page Download as .pdf Quick Start Guide Ready to begin? This guide gets you started in the Course Project based on your mathematical background and computational experience. 1. 🚀 In 5 Minutes: Find Your Starting Point 1.1. Step 1: Take the Assessment Navigate to Prerequisites & Self-Assessment and complete the quick skills checklist (2 minutes). 1.2. Step 2: Choose Your Track Based on your assessment results: 🟢 Beginner Track (0-3 checkboxes) Start with Linux Essentials for Mathematics Students 🟡 Intermediate Track (4-7 checkboxes) Jump to Project Management for Research 🔴 Advanced Track (8+ checkboxes) Begin with Containers for Mathematical Computing 1.3. Step 3: Set Up Your Environment Follow the setup instructions in your chosen starting module. 1.4. Step 4: Join the Community Connect with other students on Slack for questions and collaboration. 2. 📖 For Instructors: Teaching This Course New to teaching computational tools to mathematics students? Review the Instructo",
       "url": "/course-project/quick-start.html"
     },
     {
-      "id": 82,
+      "id": 83,
       "title": "Renaming the project :: Course Project",
       "content": "Edit this Page Download as .pdf Renaming the project The script rename.sh renames the project. You have to answer a few questions to setup a new project out of this template.",
       "url": "/course-project/rename.html"
     },
     {
-      "id": 83,
+      "id": 84,
       "title": "Software Installation: From Package Managers to Building from Source :: Course Project",
-      "content": "Software Installation: From Package Managers to Building from Source 1. Introduction to Software Installation Learn comprehensive software installation methods through these focused modules: Python End-to-End Workshop 1.1. Understanding Package Managers What is apt? Advantages of using package managers. 1.2. Why Build from Source? Latest features and updates. Customization and optimization. Situations where packages aren’t available. 1.3. Build Systems Overview Introduction to build systems like Autotools and CMake. Differences and use cases. 2. Setting Up the Development Environment with Codespaces 2.1. Introduction to GitHub Codespaces What is Codespaces? Benefits over traditional VMs. 2.2. Getting Started # Create a Codespace from a repository git clone <repository-url> # Open it in GitHub Codespaces 2.3. Environment Configuration Install necessary extensions and tools within Codespaces. 3. Installing Software Using apt in Codespaces 3.1. Using the Terminal in Codespaces Accessing t",
+      "content": "Software Installation: From Package Managers to Building from Source 1. Introduction to Software Installation Learn comprehensive software installation methods through these focused modules: Python End-to-End Workshop Release Engineering (Weather App) 1.1. Understanding Package Managers What is apt? Advantages of using package managers. 1.2. Why Build from Source? Latest features and updates. Customization and optimization. Situations where packages aren’t available. 1.3. Build Systems Overview Introduction to build systems like Autotools and CMake. Differences and use cases. 2. Setting Up the Development Environment with Codespaces 2.1. Introduction to GitHub Codespaces What is Codespaces? Benefits over traditional VMs. 2.2. Getting Started # Create a Codespace from a repository git clone <repository-url> # Open it in GitHub Codespaces 2.3. Environment Configuration Install necessary extensions and tools within Codespaces. 3. Installing Software Using apt in Codespaces 3.1. Using the ",
       "url": "/course-project/software/"
     },
     {
-      "id": 84,
+      "id": 85,
       "title": "Understanding Package Managers :: Course Project",
       "content": "Edit this Page Download as .pdf Understanding Package Managers Package managers are essential tools for managing software installations, upgrades, and dependencies. They can be categorized into two main types: System Package Managers: These manage software at the operating system level, handling native applications and system libraries. Examples include apt, yum, and brew. These package managers deal with system-wide installations, making software available to all users and applications on the system. Software-Specific Package Managers: Many software ecosystems, such as Python, C++, and Node.js, have their own package managers, which handle dependencies and libraries specifically for that language or platform. Examples include pip and conda for Python, and conan for C++. While system package managers are responsible for global software installations, software-specific package managers allow for more granular control over project-specific dependencies, often within isolated environments",
       "url": "/course-project/software/package-managers.html"
     },
     {
-      "id": 85,
+      "id": 86,
       "title": "End-to-End Python Weather App Workshop :: Course Project",
       "content": "Edit this Page Download as .pdf End-to-End Python Weather App Workshop This workshop extends the GitHub intro lab into a small end-to-end product: a Python package with a CLI, CI, Docker image, and optional web dashboard. 1. Why This Session Students already learned Linux, GitHub, GitHub Actions, and Docker. This session connects these topics into one coherent workflow: from raw data to reusable Python package from local script to installable CLI command from tested code to container image in GHCR optionally from CLI tool to interactive dashboard 2. Prerequisites GitHub Intro Lab: Issues, PRs, and Projects GitHub Actions Docker Introduction Package Managers 3. Learning Objectives By the end of the workshop, students can: structure a Python project with pyproject.toml expose a CLI command via [project.scripts] run tests in CI for each pull request build and publish a Docker image to GitHub Container Registry (GHCR) explain the difference between package release and container release 4. ",
       "url": "/course-project/software/python-e2e-weather-workshop.html"
     },
     {
-      "id": 86,
+      "id": 87,
+      "title": "Release Engineering Lesson (60 min): Weather App :: Course Project",
+      "content": "Edit this Page Download as .pdf Release Engineering Lesson (60 min): Weather App This lesson prepares students to ship their weather project in a reproducible and traceable way using tags, releases, and container publishing. 1. Where It Goes This lesson belongs in the Software Distribution track, right after: Python End-to-End Workshop Dash Weather Project Tutorial (optional extension) Reason: release engineering is about packaging, versioning, publishing, and distribution lifecycle. 2. Learning Objectives By the end of the lesson, students can: apply semantic versioning (MAJOR.MINOR.PATCH) write a minimal changelog for a release create an annotated Git tag create a GitHub Release from a tag publish a Docker image to GHCR with versioned tags automate the whole release flow with GitHub Actions on tag push 3. 60-Minute Morning Plan 10 min Release engineering concepts 15 min Versioning + changelog practice 15 min Tag + GitHub Release hands-on 15 min GHCR image tagging and push flow 5 min ",
+      "url": "/course-project/software/release-engineering-weather.html"
+    },
+    {
+      "id": 88,
       "title": "Repository Organization for a C++20 Project Using CMake and CTest :: Course Project",
       "content": "Edit this Page Download as .pdf Repository Organization for a C++20 Project Using CMake and CTest Table of Contents 1. Overview 2. Recommended Directory Structure 3. Top-Level CMake Configuration 4. Library Configuration (src/libs/lib1/CMakeLists.txt) 5. Application Configuration (src/apps/app1/CMakeLists.txt) 6. Tests Configuration (tests/CMakeLists.txt) 7. GitHub Actions CI Workflow 8. Additional Best Practices 1. Overview This document outlines a recommended repository organization for a C++20 project that uses CMake for build configuration and CTest for testing. In this structure, source files—including both library code and application code—are placed under the src/ directory. Libraries and applications are organized into separate subdirectories to clearly delineate reusable components from executable projects. 2. Recommended Directory Structure my_project/ ├── .github/ │ └── workflows/ │ └── ci.yml # GitHub Actions CI configuration file ├── build/ # Out-of-source build directory ",
       "url": "/course-project/software/repo/organization.html"
     },
     {
-      "id": 87,
+      "id": 89,
+      "title": "Dash Tutorial: Weather Dashboard (Beginner) :: Course Project",
+      "content": "Edit this Page Download as .pdf Dash Tutorial: Weather Dashboard (Beginner) This tutorial is aligned with the weather_hourly.csv project used in the course. It shows how to go from Python package + CLI to a simple interactive Dash dashboard. 1. Where This Fits in the Course Use this tutorial after: Python End-to-End Workshop GitHub Intro Lab: Issues, PRs, and Projects You will implement src/weather_app/dash_app.py in the same project where you already built weather-cli. 2. Prerequisites Create and activate a virtual environment, then install project dependencies: python -m venv .venv source .venv/bin/activate pip install -e \".[dash]\" Expected dataset location in your repository: data/weather_hourly.csv Expected columns: cloud_cover diffuse_radiation direct_radiation relative_humidity_2m surface_pressure temperature_2m time (Unix milliseconds) wind_direction_10m wind_speed_10m 3. Dash Basics (Beginner) Before coding, understand the 4 core concepts: Layout The static structure of the pag",
+      "url": "/course-project/visualisation/dash-weather.html"
+    },
+    {
+      "id": 90,
       "title": "Dash for Scientific Computing :: Course Project",
-      "content": "Edit this Page Download as .pdf Dash for Scientific Computing A tutorial to use Dash for building interactive web applications focused on scientific computing Dash provides a flexible and powerful platform for scientists and engineers to create interactive web-based applications. This tutorial expands on the basics and focuses on how to integrate Dash with scientific computing libraries such as NumPy, SciPy, and Matplotlib, while using Plotly for interactive visualizations. 1. Prerequisites Ensure that you have Python installed, and install the following packages: pip install dash dash-bootstrap-components pandas plotly numpy scipy matplotlib 2. Scientific Libraries Overview Dash integrates well with libraries used for scientific computing. Here are some essential libraries: NumPy A fundamental package for numerical computing in Python. SciPy Builds on NumPy to provide a collection of algorithms and functions for scientific computing. Matplotlib A comprehensive library for creating sta",
+      "content": "Edit this Page Download as .pdf Dash for Scientific Computing A tutorial to use Dash for building interactive web applications focused on scientific computing Dash provides a flexible and powerful platform for scientists and engineers to create interactive web-based applications. This tutorial expands on the basics and focuses on how to integrate Dash with scientific computing libraries such as NumPy, SciPy, and Matplotlib, while using Plotly for interactive visualizations. For the course weather-analysis project (weather_hourly.csv), use Dash Weather Project Tutorial. 1. Prerequisites Ensure that you have Python installed, and install the following packages: pip install dash dash-bootstrap-components pandas plotly numpy scipy matplotlib 2. Scientific Libraries Overview Dash integrates well with libraries used for scientific computing. Here are some essential libraries: NumPy A fundamental package for numerical computing in Python. SciPy Builds on NumPy to provide a collection of algor",
       "url": "/course-project/visualisation/dash.html"
     },
     {
-      "id": 88,
+      "id": 91,
       "title": "Homework :: Course Project",
       "content": "Edit this Page Download as .pdf Homework 1. Solving the heat equation in a thermal fin We consider the problem of designing a thermal fin to effectively remove heat from a surface. The two-dimensional fin, shown in Figure #fig:1[1], consists of a vertical central “post” and four horizontal “subfins”; the fin conducts heat from a prescribed uniform flux “source” at the root, \\(\\Gamma_{\\mathrm{root}}\\) , through the large-surface-area subfins to surrounding flowing air. The fin is characterized by a five-component parameter vector, or “input,” \\(\\mu_ = (\\mu_1 , \\mu_2, \\ldots, \\mu_5 )\\),where \\(\\mu_i = k^i , i = 1, \\ldots , 4\\), and \\(\\mu_5 = \\mathrm{Bi}\\); \\(\\mu\\) may take on any value in a specified design set \\(D \\subset \\mathbb{R}^5\\). Figure 1. Thermal fin Here \\(k^i\\) is the thermal conductivity of the ith subfin (normalized relative to the post conductivity \\(k^0 \\equiv 1\\)); and \\(\\mathrm{Bi}\\) is the Biot number, a nondimensional heat transfer coefficient reflecting convective tr",
       "url": "/course-project/visualisation/hw.html"
     },
     {
-      "id": 89,
+      "id": 92,
       "title": "Data Visualization and Interactive Dashboards :: Course Project",
-      "content": "Data Visualization and Interactive Dashboards Explore modern data visualization techniques and create interactive dashboards that effectively communicate insights from complex datasets. From basic charts to advanced interactive applications. 1. Visualization Learning Modules Master data visualization through these comprehensive modules:",
+      "content": "Data Visualization and Interactive Dashboards Explore modern data visualization techniques and create interactive dashboards that effectively communicate insights from complex datasets. From basic charts to advanced interactive applications. 1. Visualization Learning Modules Master data visualization through these comprehensive modules: Dash Tutorial Dash Weather Project Tutorial Dash Homework",
       "url": "/course-project/visualisation/"
     },
     {
-      "id": 90,
+      "id": 93,
       "title": "Basic Usage and Commands :: Course Project",
       "content": "Edit this Page Download as .pdf Basic Usage and Commands 1. Getting Started with VS Code Once installed, you can open VS Code using the launcher or from the terminal: code . This opens the current directory in VS Code. 2. Basic Interface Overview The VS Code interface consists of the following key sections: Explorer: The left-hand panel where you can navigate files and folders. Editor: The main area where you open and edit files. Terminal: Built-in terminal for running commands directly from VS Code. 3. Common Commands Here are a few essential VS Code commands: Open Command Palette: Ctrl+Shift+P or Cmd+Shift+P on macOS. This gives access to all VS Code features via quick commands. Open a new file: Ctrl+N (Windows/Linux) or Cmd+N (macOS). Toggle terminal: Ctrl+` (Windows/Linux) or Cmd+` (macOS). These basic commands help you get started with coding or file management.",
       "url": "/course-project/vscode/basic-usage.html"
     },
     {
-      "id": 91,
+      "id": 94,
       "title": "VSCode Basic Cheatsheet :: Course Project",
       "content": "Edit this Page Download as .pdf VSCode Basic Cheatsheet 1. Navigation Description Linux Windows Mac Open Command Palette Ctrl+Shift+P Ctrl+Shift+P Cmd+Shift+P Open File Ctrl+P Ctrl+P Cmd+P Toggle Sidebar Ctrl+B Ctrl+B Cmd+B Close Editor Ctrl+W Ctrl+W Cmd+W Switch between Tabs Ctrl+Tab Ctrl+Tab Cmd+Tab Split Editor Ctrl+\\ Ctrl+\\ Cmd+\\ Navigate between Editor Groups Ctrl+1, Ctrl+2…​ Ctrl+1, Ctrl+2…​ Cmd+1, Cmd+2…​ Navigate Forward Ctrl+Alt+→ Alt+→ Option+→ Navigate Backward Ctrl+Alt+← Alt+← Option+← Go to Symbol Ctrl+Shift+O Ctrl+Shift+O Cmd+Shift+O Go to Definition F12 F12 F12 2. Editing Description Linux Windows Mac Copy Line Up/Down Shift+Alt+↑/↓ Shift+Alt+↑/↓ Shift+Option+↑/↓ Move Line Up/Down Alt+↑/↓ Alt+↑/↓ Option+↑/↓ Duplicate Line Shift+Alt+↓ Shift+Alt+↓ Option+Shift+↓ Delete Line Ctrl+Shift+K Ctrl+Shift+K Cmd+Shift+K Add Line Comment Ctrl+/ Ctrl+/ Cmd+/ Add Block Comment Shift+Alt+A Shift+Alt+A Shift+Option+A Format Document Shift+Alt+F Shift+Alt+F Shift+Option+F Rename Symbol F",
       "url": "/course-project/vscode/cheatsheet.html"
     },
     {
-      "id": 92,
+      "id": 95,
       "title": "How to Configure VS Code with .vscode :: Course Project",
       "content": "Edit this Page Download as .pdf How to Configure VS Code with .vscode 1. Configuring Projects with .vscode VS Code allows you to configure project-specific settings using a .vscode folder. This folder can include settings, tasks, and debug configurations. 1.1. Adding a .vscode/settings.json Create a .vscode/settings.json file in your project directory to customize settings for the current project. Example configuration: { \"python.pythonPath\": \"/usr/bin/python3\", \"editor.formatOnSave\": true, \"files.exclude\": { \"**/*.log\": true, \"**/node_modules\": true } } 1.2. Task Configuration with .vscode/tasks.json You can automate tasks like running build scripts by configuring tasks in .vscode/tasks.json. Example: { \"version\": \"2.0.0\", \"tasks\": [ { \"label\": \"Run Build\", \"type\": \"shell\", \"command\": \"npm run build\", \"group\": { \"kind\": \"build\", \"isDefault\": true } } ] } Tasks and settings configured in the .vscode folder apply only to the current project.",
       "url": "/course-project/vscode/configure-vscode.html"
     },
     {
-      "id": 93,
+      "id": 96,
       "title": "Extension Installation and Key Extensions :: Course Project",
       "content": "Edit this Page Download as .pdf Extension Installation and Key Extensions 1. Installing Extensions One of the strengths of VS Code is its rich ecosystem of extensions. Extensions enhance your development environment by providing extra features like language support, debugging tools, and integration with cloud services. To install extensions, follow these steps: Open the Extensions panel using Ctrl+Shift+X or Cmd+Shift+X on macOS. In the search bar, type the name of the extension you want to install. Click Install on the extension. You can also search and install extensions from the marketplace: > marketplace.visualstudio.com/vscode. Here are some key extensions that are useful for development: Remote SSH WSL (Windows Subsystem for Linux) Python and Jupyter Extensions",
       "url": "/course-project/vscode/extensions.html"
     },
     {
-      "id": 94,
+      "id": 97,
       "title": "VS Code for Mathematical Computing :: Course Project",
       "content": "VS Code for Mathematical Computing 🟢 FOUNDATIONAL LEVEL | Prerequisites: Basic computer skills | Time: 2-3 hours | For: Mathematics students setting up development environment Why VS Code for Mathematics? An integrated development environment helps mathematicians: - Write LaTeX documents with syntax highlighting and live preview - Develop mathematical code in Python, R, or MATLAB with debugging support - Manage version control visually with Git integration - Work with Jupyter notebooks for mathematical analysis - Collaborate efficiently with shared workspace configurations VS Code unifies all your mathematical computing tools in one interface. Learn to use Visual Studio Code as your primary environment for mathematical research, LaTeX document preparation, and computational mathematics projects. 1. VS Code Learning Modules Master VS Code through these comprehensive learning modules:",
       "url": "/course-project/vscode/"
     },
     {
-      "id": 95,
+      "id": 98,
       "title": "VS Code Installation :: Course Project",
       "content": "Edit this Page Download as .pdf VS Code Installation 1. Download and Installation You can download VS Code from the official website: Download URL: code.visualstudio.com/Download VS Code supports Windows, macOS, and Linux. Below are the steps for installing on each platform. 1.1. Windows Installation Download the .exe installer from the VS Code website. Run the installer and follow the on-screen prompts. Select the option to add VS Code to your PATH (this allows you to open VS Code from the terminal). 1.2. macOS Installation Download the .dmg file from the VS Code website. Open the .dmg file and drag the VS Code icon to the Applications folder. Launch VS Code from the Applications folder or the terminal using code if you add it to the PATH. 1.3. Linux Installation Download the appropriate package (.deb or .rpm) from the VS Code website. Install it using your distribution’s package manager: For Debian-based systems (e.g., Ubuntu): ` sudo dpkg -i <path-to-package>.deb sudo apt-get instal",
       "url": "/course-project/vscode/install.html"
     },
     {
-      "id": 96,
+      "id": 99,
       "title": "Python and Jupyter Extensions :: Course Project",
       "content": "Edit this Page Download as .pdf Python and Jupyter Extensions 1. Python Extension The Python extension in VS Code provides rich support for Python development, including: IntelliSense (autocompletion) Debugging Code linting Jupyter integration 1.1. Installing the Python Extension Open the Extensions panel (Ctrl+Shift+X). Search for \"Python\" and click Install. Once installed, you’ll have access to Python development features. 2. Jupyter Notebook Support The Jupyter extension integrates Jupyter Notebooks directly into VS Code. This allows you to write, run, and visualize notebook cells within VS Code. 2.1. Installing the Jupyter Extension Open the Extensions panel (Ctrl+Shift+X). Search for \"Jupyter\" and click Install. You can now create or open .ipynb notebook files within VS Code.",
       "url": "/course-project/vscode/python-jupyter.html"
     },
     {
-      "id": 97,
+      "id": 100,
       "title": "Remote SSH Extension :: Course Project",
       "content": "Edit this Page Download as .pdf Remote SSH Extension 1. What is Remote SSH? The Remote SSH extension allows you to connect to a remote server and work on files, debug, and run commands directly on the remote machine. 2. Installing the Remote SSH Extension Open the Extensions panel in VS Code (Ctrl+Shift+X). Search for \"Remote - SSH\" and click Install. 3. Setting up Remote SSH Press F1 or Ctrl+Shift+P or on MacOS Cmd+Shift+P and type \"Remote-SSH: Connect to Host\" in the Command Palette. Enter the SSH connection details, e.g., ssh user@remote-server.com. VS Code will connect to the remote machine, allowing you to use it as if it were local. You can also edit your SSH config file to save the connection details for quick access.",
       "url": "/course-project/vscode/remote-ssh.html"
     },
     {
-      "id": 98,
+      "id": 101,
       "title": "WSL (Windows Subsystem for Linux) Extension :: Course Project",
       "content": "Edit this Page Download as .pdf WSL (Windows Subsystem for Linux) Extension 1. What is WSL? Windows Subsystem for Linux (WSL) allows you to run a Linux distribution natively on Windows. With the Remote - WSL extension, you can use VS Code to develop within a WSL environment. 2. Installing WSL and the Extension Install WSL on your Windows machine: docs.microsoft.com/windows/wsl/install Install your preferred Linux distribution (e.g., Ubuntu). In VS Code, open the Extensions panel (Ctrl+Shift+X) and install the \"Remote - WSL\" extension. 3. Using WSL in VS Code Once installed, you can open a WSL session in VS Code by pressing F1 and selecting Remote-WSL: New Window. This will open VS Code in the WSL environment, allowing you to code and run commands directly in Linux.",
       "url": "/course-project/vscode/wsl.html"
     },
     {
-      "id": 99,
+      "id": 102,
       "title": "Using VSCode :: Course Project",
       "content": "Edit this Page Download as .pdf Using VSCode The project is configured to integrate VSCode using Docker Container. The Docker image can be set from feelpp/feelpp or feelpp/feelpp-toolboxes, simply edit .devcontainer/Dockerfile and choose the image you want. ssh-keyscan is used on github.com to register the public key of github in $HOME/.ssh/known_hosts and avoid having git auth issues the first time we log into the container and push/pull to/from github. The following extensions are installed in Docker: cpptools cmaketools cmake asciidoctor-vscode",
       "url": "/course-project/vscode.html"
     },
     {
-      "id": 100,
+      "id": 103,
       "title": "Redirect Notice",
       "content": "Redirect Notice The page you requested has been relocated to https://feelpp.github.io/course-project/course-project/index.html.",
       "url": "/index.html"

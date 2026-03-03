@@ -387,6 +387,9 @@ MathJax.Hub.Config({
     <a class="nav-link" href="../project-management/github.html">GitHub for PM</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../project-management/collaboration-models-weather-lab.html">Agile vs Waterfall Lab</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../project-management/case-studies.html">Case Studies</a>
   </li>
 </ul>
@@ -428,6 +431,9 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../software/python-e2e-weather-workshop.html">Python End-to-End Workshop</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../software/release-engineering-weather.html">Release Engineering (Weather App)</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -442,6 +448,9 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../visualisation/dash.html">Dash Tutorial</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../visualisation/dash-weather.html">Dash Weather Project Tutorial</a>
   </li>
 </ul>
   </li>
@@ -608,7 +617,7 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 0
--rw-r--r-- 1 runner runner 0 Feb 17 06:57 example.txt</pre>
+-rw-r--r-- 1 runner runner 0 Mar  3 05:12 example.txt</pre>
 </div>
 </div>
 </div>
@@ -635,10 +644,10 @@ ls -l file.txt</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>-rw-r--r-- 1 runner runner 0 Feb 17 06:57 file.txt
--rwxr-xr-x 1 runner runner 0 Feb 17 06:57 file.txt
--rwxr-xr-x 1 runner runner 0 Feb 17 06:57 file.txt
--rwxr-xr-x 1 runner runner 0 Feb 17 06:57 file.txt</pre>
+<pre>-rw-r--r-- 1 runner runner 0 Mar  3 05:12 file.txt
+-rwxr-xr-x 1 runner runner 0 Mar  3 05:12 file.txt
+-rwxr-xr-x 1 runner runner 0 Mar  3 05:12 file.txt
+-rwxr-xr-x 1 runner runner 0 Mar  3 05:12 file.txt</pre>
 </div>
 </div>
 </div>
@@ -674,10 +683,10 @@ ls -l</code></pre>
 <pre>file.txt
 file1.txt
 total 12
--rw-r--r-- 1 runner runner 10240 Feb 17 06:57 archive.tar
--rw-r--r-- 1 runner runner     0 Feb 17 06:57 example.txt
--rwxr-xr-x 1 runner runner     0 Feb 17 06:57 file.txt
--rw-r--r-- 1 runner runner     0 Feb 17 06:57 file1.txt</pre>
+-rw-r--r-- 1 runner runner 10240 Mar  3 05:12 archive.tar
+-rw-r--r-- 1 runner runner     0 Mar  3 05:12 example.txt
+-rwxr-xr-x 1 runner runner     0 Mar  3 05:12 file.txt
+-rw-r--r-- 1 runner runner     0 Mar  3 05:12 file1.txt</pre>
 </div>
 </div>
 </div>
@@ -699,10 +708,10 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 4
--rw-r--r-- 1 runner runner 150 Feb 17 06:57 archive.tar.gz
--rw-r--r-- 1 runner runner   0 Feb 17 06:57 example.txt
--rwxr-xr-x 1 runner runner   0 Feb 17 06:57 file.txt
--rw-r--r-- 1 runner runner   0 Feb 17 06:57 file1.txt</pre>
+-rw-r--r-- 1 runner runner 150 Mar  3 05:12 archive.tar.gz
+-rw-r--r-- 1 runner runner   0 Mar  3 05:12 example.txt
+-rwxr-xr-x 1 runner runner   0 Mar  3 05:12 file.txt
+-rw-r--r-- 1 runner runner   0 Mar  3 05:12 file1.txt</pre>
 </div>
 </div>
 </div>
@@ -731,8 +740,8 @@ ls -lrt</code></pre>
 <pre>file.txt
 file1.txt
 total 0
--rw-r--r-- 1 runner runner 0 Feb 17 06:57 file1.txt
--rwxr-xr-x 1 runner runner 0 Feb 17 06:57 file.txt</pre>
+-rw-r--r-- 1 runner runner 0 Mar  3 05:12 file1.txt
+-rwxr-xr-x 1 runner runner 0 Mar  3 05:12 file.txt</pre>
 </div>
 </div>
 </div>
@@ -761,19 +770,19 @@ ls /tmp</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>clr-debug-pipe-1932-122309-in
-clr-debug-pipe-1932-122309-out
-clr-debug-pipe-1947-122432-in
-clr-debug-pipe-1947-122432-out
+<pre>clr-debug-pipe-1910-9716-in
+clr-debug-pipe-1910-9716-out
+clr-debug-pipe-1925-9864-in
+clr-debug-pipe-1925-9864-out
 documents
-dotnet-diagnostic-1932-122309-socket
-dotnet-diagnostic-1947-122432-socket
+dotnet-diagnostic-1910-9716-socket
+dotnet-diagnostic-1925-9864-socket
 file.txt
 snap-private-tmp
-systemd-private-a633efe611d0447cab480feba3cfdd74-chrony.service-XpM3WB
-systemd-private-a633efe611d0447cab480feba3cfdd74-haveged.service-OWFEFp
-systemd-private-a633efe611d0447cab480feba3cfdd74-systemd-logind.service-GMFv0r
-systemd-private-a633efe611d0447cab480feba3cfdd74-systemd-resolved.service-8Q7hMp
+systemd-private-8ef9fce5f26f4af9b3ed8ae5db714b5b-chrony.service-e27S2y
+systemd-private-8ef9fce5f26f4af9b3ed8ae5db714b5b-haveged.service-J7RAQS
+systemd-private-8ef9fce5f26f4af9b3ed8ae5db714b5b-systemd-logind.service-7nbe77
+systemd-private-8ef9fce5f26f4af9b3ed8ae5db714b5b-systemd-resolved.service-N09UKM
 www-data-temp-aspnet-0</pre>
 </div>
 </div>
@@ -821,19 +830,19 @@ ls /tmp</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>clr-debug-pipe-1932-122309-in
-clr-debug-pipe-1932-122309-out
-clr-debug-pipe-1947-122432-in
-clr-debug-pipe-1947-122432-out
+<pre>clr-debug-pipe-1910-9716-in
+clr-debug-pipe-1910-9716-out
+clr-debug-pipe-1925-9864-in
+clr-debug-pipe-1925-9864-out
 documents
-dotnet-diagnostic-1932-122309-socket
-dotnet-diagnostic-1947-122432-socket
+dotnet-diagnostic-1910-9716-socket
+dotnet-diagnostic-1925-9864-socket
 newname.txt
 snap-private-tmp
-systemd-private-a633efe611d0447cab480feba3cfdd74-chrony.service-XpM3WB
-systemd-private-a633efe611d0447cab480feba3cfdd74-haveged.service-OWFEFp
-systemd-private-a633efe611d0447cab480feba3cfdd74-systemd-logind.service-GMFv0r
-systemd-private-a633efe611d0447cab480feba3cfdd74-systemd-resolved.service-8Q7hMp
+systemd-private-8ef9fce5f26f4af9b3ed8ae5db714b5b-chrony.service-e27S2y
+systemd-private-8ef9fce5f26f4af9b3ed8ae5db714b5b-haveged.service-J7RAQS
+systemd-private-8ef9fce5f26f4af9b3ed8ae5db714b5b-systemd-logind.service-7nbe77
+systemd-private-8ef9fce5f26f4af9b3ed8ae5db714b5b-systemd-resolved.service-N09UKM
 www-data-temp-aspnet-0</pre>
 </div>
 </div>
