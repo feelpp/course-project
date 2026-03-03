@@ -84,3 +84,4 @@
 * 📊 xref:visualisation:index.adoc[Visualization]
 ** 🔴 Web Dashboards
 *** xref:visualisation:dash.adoc[Dash Tutorial]
+*** xref:visualisation:dash-weather.adoc[Dash Weather Project Tutorial]

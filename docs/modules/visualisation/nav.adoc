@@ -2,4 +2,5 @@
 ** xref:index.adoc[Introduction to Visualization]
 ** Web-based Dashboards
 *** xref:dash.adoc[Dash Tutorial]
+*** xref:dash-weather.adoc[Dash Weather Project Tutorial]
 *** xref:hw.adoc[Dash Homework]

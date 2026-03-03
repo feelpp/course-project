@@ -1,0 +1,245 @@
+= Dash Tutorial: Weather Dashboard (Beginner)
+:page-tags: viz-manual
+:parent-catalogs: visualisation:index
+:page-illustration: fa-solid fa-chart-bar
+:description: Build a beginner-friendly Dash app for hourly weather data, with filters, plots, and summary metrics.
+
+[.lead]
+This tutorial is aligned with the `weather_hourly.csv` project used in the course. It shows how to go from Python package + CLI to a simple interactive Dash dashboard.
+
+== Where This Fits in the Course
+
+Use this tutorial after:
+
+- xref:software:python-e2e-weather-workshop.adoc[Python End-to-End Workshop]
+- xref:git-github:github-review-projects-lab.adoc[GitHub Intro Lab: Issues, PRs, and Projects]
+
+You will implement `src/weather_app/dash_app.py` in the same project where you already built `weather-cli`.
+
+== Prerequisites
+
+Create and activate a virtual environment, then install project dependencies:
+
+[source,bash]
+----
+python -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dash]"
+----
+
+Expected dataset location in your repository:
+
+- `data/weather_hourly.csv`
+
+Expected columns:
+
+- `cloud_cover`
+- `diffuse_radiation`
+- `direct_radiation`
+- `relative_humidity_2m`
+- `surface_pressure`
+- `temperature_2m`
+- `time` (Unix milliseconds)
+- `wind_direction_10m`
+- `wind_speed_10m`
+
+== Dash Basics (Beginner)
+
+Before coding, understand the 4 core concepts:
+
+Layout:: The static structure of the page (titles, controls, graphs).
+Components:: UI elements such as dropdowns, date pickers, and graphs.
+Callbacks:: Python functions that react to user input and update outputs.
+Figure:: The Plotly chart object displayed in `dcc.Graph`.
+
+Mental model:
+
+1. User changes an input (example: date range).
+2. Dash calls your callback function.
+3. Your function filters data and computes outputs.
+4. Dash redraws graph/cards with returned values.
+
+== Step 1: Minimal Working App
+
+Create `src/weather_app/dash_app.py`:
+
+[source,python]
+----
+import pandas as pd
+import plotly.express as px
+from dash import Dash, dcc, html
+
+
+df = pd.read_csv("data/weather_hourly.csv")
+df["time"] = pd.to_datetime(df["time"], unit="ms", errors="coerce")
+df = df.dropna(subset=["time"]).sort_values("time")
+
+app = Dash(__name__)
+server = app.server
+
+fig = px.line(df.head(300), x="time", y="temperature_2m", title="Temperature (first 300 rows)")
+
+app.layout = html.Div(
+    [
+        html.H1("Weather Dashboard"),
+        dcc.Graph(figure=fig),
+    ]
+)
+
+if __name__ == "__main__":
+    app.run(debug=True, port=8050)
+----
+
+Run it:
+
+[source,bash]
+----
+python -m weather_app.dash_app
+----
+
+Open http://127.0.0.1:8050[]
+
+== Step 2: Add Interactive Controls (Recommended v1 Interface)
+
+Now replace the minimal app with filters and summary metrics:
+
+[source,python]
+----
+import pandas as pd
+import plotly.express as px
+from dash import Dash, dcc, html, Input, Output
+
+METRICS = {
+    "temperature_2m": "Temperature (deg C)",
+    "relative_humidity_2m": "Relative Humidity (%)",
+    "wind_speed_10m": "Wind Speed (km/h)",
+    "surface_pressure": "Surface Pressure (hPa)",
+}
+
+df = pd.read_csv("data/weather_hourly.csv")
+df["time"] = pd.to_datetime(df["time"], unit="ms", errors="coerce")
+df = df.dropna(subset=["time"]).sort_values("time")
+
+app = Dash(__name__)
+server = app.server
+
+app.layout = html.Div(
+    [
+        html.H1("Weather Dashboard"),
+        dcc.DatePickerRange(
+            id="date-range",
+            start_date=df["time"].min().date(),
+            end_date=df["time"].max().date(),
+            display_format="YYYY-MM-DD",
+        ),
+        dcc.Dropdown(
+            id="metric",
+            options=[{"label": label, "value": key} for key, label in METRICS.items()],
+            value="temperature_2m",
+            clearable=False,
+            style={"width": "420px", "marginTop": "12px"},
+        ),
+        html.Div(id="stats", style={"marginTop": "16px"}),
+        dcc.Graph(id="weather-graph"),
+    ],
+    style={"maxWidth": "1100px", "margin": "0 auto", "padding": "16px"},
+)
+
+
+@app.callback(
+    Output("weather-graph", "figure"),
+    Output("stats", "children"),
+    Input("date-range", "start_date"),
+    Input("date-range", "end_date"),
+    Input("metric", "value"),
+)
+def update_dashboard(start_date, end_date, metric):
+    filtered = df[(df["time"] >= start_date) & (df["time"] <= end_date)]
+    filtered = filtered.dropna(subset=[metric])
+
+    if filtered.empty:
+        return px.line(title="No data for selected filters"), html.Div("No rows in selected range.")
+
+    fig = px.line(filtered, x="time", y=metric, title=f"{METRICS[metric]} over time")
+    stats = html.Ul(
+        [
+            html.Li(f"Rows: {len(filtered)}"),
+            html.Li(f"Mean: {filtered[metric].mean():.2f}"),
+            html.Li(f"Min: {filtered[metric].min():.2f}"),
+            html.Li(f"Max: {filtered[metric].max():.2f}"),
+        ]
+    )
+    return fig, stats
+
+
+if __name__ == "__main__":
+    app.run(debug=True, port=8050)
+----
+
+What this gives students immediately:
+
+- one time-range filter
+- one metric selector
+- one interactive graph
+- one summary card/list for quick interpretation
+
+== Project Integration Checklist
+
+1. Keep Dash code in `src/weather_app/dash_app.py`.
+2. Keep data loading/parsing helpers in `analysis.py` if possible.
+3. Add a README section: "Run dashboard locally".
+4. Add one screenshot/GIF in `results/` for project demo.
+5. Optional: add a CLI command that exports aggregated data used by Dash.
+
+== Run in Docker
+
+Example Docker command:
+
+[source,bash]
+----
+docker build -t weather-app:dash .
+docker run --rm -p 8050:8050 weather-app:dash
+----
+
+If your Dockerfile already installs extras, ensure it includes Dash dependencies:
+
+[source,dockerfile]
+----
+RUN pip install --no-cache-dir -e ".[dash]"
+----
+
+== Production Note (Optional)
+
+For production deployments, run through Gunicorn instead of Dash debug mode.
+
+Example command:
+
+[source,bash]
+----
+gunicorn weather_app.dash_app:server --bind 0.0.0.0:8050
+----
+
+== Common Beginner Mistakes
+
+- Forgetting to convert `time` from Unix milliseconds.
+- Not dropping invalid/missing rows before plotting.
+- Mismatch between callback Output IDs and layout component IDs.
+- Returning wrong number/order of callback outputs.
+- Running with `debug=True` in production container.
+
+== Official Dash Links
+
+- https://dash.plotly.com/minimal-app[Dash minimal app]
+- https://dash.plotly.com/basic-callbacks[Dash basic callbacks]
+- https://dash.plotly.com/dash-core-components/datepickerrange[DatePickerRange]
+- https://dash.plotly.com/dash-core-components/dropdown[Dropdown]
+- https://dash.plotly.com/datatable[Dash DataTable]
+- https://dash.plotly.com/deployment[Deployment]
+
+== Next Step
+
+Connect this dashboard to your course project deliverables:
+
+1. Add Dash app link/instructions in README.
+2. Include dashboard in Docker image.
+3. Demonstrate one use case in final project demo.

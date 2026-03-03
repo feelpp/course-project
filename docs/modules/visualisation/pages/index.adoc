@@ -13,3 +13,7 @@ Explore modern **data visualization** techniques and create interactive dashboar
 == Visualization Learning Modules
 
 Master data visualization through these comprehensive modules:
+
+- xref:dash.adoc[Dash Tutorial]
+- xref:dash-weather.adoc[Dash Weather Project Tutorial]
+- xref:hw.adoc[Dash Homework]

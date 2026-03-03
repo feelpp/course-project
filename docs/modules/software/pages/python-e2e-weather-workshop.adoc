@@ -275,6 +275,10 @@ Workflow on tags (for example `v0.1.0`):
 
 == Dash Extension
 
+For the weather project implementation details, use:
+
+- xref:visualisation:dash-weather.adoc[Dash Weather Project Tutorial]
+
 Dependencies used in this section:
 
 - `dash`
@@ -311,5 +315,6 @@ Each student opens at least one PR and reviews at least one PR.
 
 == Suggested Follow-Up
 
-- xref:visualisation:dash.adoc[Dash Tutorial]
+- xref:visualisation:dash-weather.adoc[Dash Weather Project Tutorial]
+- xref:visualisation:dash.adoc[Dash Tutorial (General Scientific Computing)]
 - xref:software:repo/organization.adoc[Software Repository Organization]

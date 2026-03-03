@@ -8,6 +8,8 @@ A tutorial to use Dash for building interactive web applications focused on scie
 
 Dash provides a flexible and powerful platform for scientists and engineers to create interactive web-based applications. This tutorial expands on the basics and focuses on how to integrate Dash with scientific computing libraries such as NumPy, SciPy, and Matplotlib, while using Plotly for interactive visualizations.
 
+NOTE: For the course weather-analysis project (`weather_hourly.csv`), use xref:dash-weather.adoc[Dash Weather Project Tutorial].
+
 == Prerequisites
 Ensure that you have Python installed, and install the following packages:
 [source,python]
