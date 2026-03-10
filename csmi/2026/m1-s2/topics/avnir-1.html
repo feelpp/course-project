@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>AVNIR-1 — Time-Reversal and Topological Imaging for Ultrasonic Defect Detection :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/csmi/2026/m1-s2/topics/avnir-1.html">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="hid-1.html">
+    <meta name="description" content="M1 CSMI project proposal on time-reversal and topological imaging for defect detection.">
+    <meta name="generator" content="Antora 3.1.7">
+<link rel="stylesheet" href="../../../../_/css/site.css">
+
+<!-- Font Awesome webfont CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../../../../_/css/listing.css">
+<link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../../../_'</script>
+
+</head>
+<body class="article docs-manuals-catalog docs-cards-layout ">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../../../../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../../../../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../../../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../../../../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="body">
+  <a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="csmi" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../../index.html">CSMI Projects</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🎓 CSMI Projects</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../index.html">Module Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../index.html"><span class="icon"><i class="fa fa-calendar"></i></span> 2026 Cohort</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html"><span class="icon"><i class="fa fa-graduation-cap"></i></span> Master 1 - Semester 2 (S2)</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html"><span class="icon"><i class="fa fa-list"></i></span> Topics and Proposals</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="5">
+    <a class="nav-link" href="avnir-1.html"><span class="icon"><i class="fa fa-crosshairs"></i></span> avnir-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="hid-1.html"><span class="icon"><i class="fa fa-city"></i></span> hid-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="hifimagnet-1.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="hifimagnet-2.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-2</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="hifimagnet-3.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-3</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="ooc-1.html"><span class="icon"><i class="fa fa-cube"></i></span> ooc-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="ooc-2.html"><span class="icon"><i class="fa fa-cube"></i></span> ooc-2</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="ooc-3.html"><span class="icon"><i class="fa fa-cube"></i></span> ooc-3</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="sepsis-1.html"><span class="icon"><i class="fa fa-stethoscope"></i></span> sepsis-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="sepsis-2.html"><span class="icon"><i class="fa fa-stethoscope"></i></span> sepsis-2</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="sepsis-3.html"><span class="icon"><i class="fa fa-stethoscope"></i></span> sepsis-3</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">CSMI Projects</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../../../../course-project/index.html">Course Project</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="../../../index.html">CSMI Projects</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="article">
+    <div class="toolbar" role="navigation">
+      <button class="nav-toggle"></button>
+       <a href="../../../../course-project/index.html" class="home-link"></a> 
+      <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../../index.html">CSMI Projects</a></li>
+    <li>🎓 CSMI Projects</li>
+    <li><a href="../../index.html"><span class="icon"><i class="fa fa-calendar"></i></span> 2026 Cohort</a></li>
+    <li><a href="../index.html"><span class="icon"><i class="fa fa-graduation-cap"></i></span> Master 1 - Semester 2 (S2)</a></li>
+    <li><a href="index.html"><span class="icon"><i class="fa fa-list"></i></span> Topics and Proposals</a></li>
+    <li><a href="avnir-1.html"><span class="icon"><i class="fa fa-crosshairs"></i></span> avnir-1</a></li>
+  </ul>
+</nav>
+    </div>
+
+    <div class="content">
+      <article class="doc">
+         <h1 class="page">AVNIR-1 — Time-Reversal and Topological Imaging for Ultrasonic Defect Detection</h1> 
+        <div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_project_snapshot">1. Project Snapshot</a></li>
+<li><a href="#_shared_context">2. Shared Context</a></li>
+<li><a href="#_student_specific_scope">3. Student-Specific Scope</a>
+<ul class="sectlevel2">
+<li><a href="#_baseline_scope_1_student">3.1. Baseline scope (1 student)</a></li>
+<li><a href="#_extended_scope_2_students_or_strong_involvement">3.2. Extended scope (2 students or strong involvement)</a></li>
+<li><a href="#_out_of_scope_for_the_baseline">3.3. Out of scope for the baseline</a></li>
+</ul>
+</li>
+<li><a href="#_objectives">4. Objectives</a></li>
+<li><a href="#_methodological_workflow">5. Methodological Workflow</a>
+<ul class="sectlevel2">
+<li><a href="#_step_1_literature_and_model_choice">5.1. Step 1 — Literature and model choice</a></li>
+<li><a href="#_step_2_forward_simulation_in_a_healthy_medium">5.2. Step 2 — Forward simulation in a healthy medium</a></li>
+<li><a href="#_step_3_synthetic_defective_measurements">5.3. Step 3 — Synthetic defective measurements</a></li>
+<li><a href="#_step_4_adjoint_backpropagation">5.4. Step 4 — Adjoint backpropagation</a></li>
+<li><a href="#_step_5_imaging_functional">5.5. Step 5 — Imaging functional</a></li>
+<li><a href="#_step_6_validation_and_discussion">5.6. Step 6 — Validation and discussion</a></li>
+</ul>
+</li>
+<li><a href="#_expected_deliverables">6. Expected Deliverables</a></li>
+<li><a href="#_validation_targets">7. Validation Targets</a></li>
+<li><a href="#_possible_task_split_for_2_students">8. Possible Task Split for 2 Students</a>
+<ul class="sectlevel2">
+<li><a href="#_student_a_forward_and_data_generation">8.1. Student A — Forward and data generation</a></li>
+<li><a href="#_student_b_inverse_imaging_and_analysis">8.2. Student B — Inverse imaging and analysis</a></li>
+<li><a href="#_common_work">8.3. Common work</a></li>
+</ul>
+</li>
+<li><a href="#_milestones">9. Milestones</a></li>
+<li><a href="#_practical_recommendations">10. Practical Recommendations</a></li>
+<li><a href="#_references_and_starting_resources">11. References and Starting Resources</a></li>
+<li><a href="#_expected_level_and_pedagogical_value">12. Expected Level and Pedagogical Value</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_project_snapshot"><a class="anchor" href="#_project_snapshot"></a>1. Project Snapshot</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Level:</strong> M1 CSMI</p>
+</li>
+<li>
+<p><strong>Team:</strong> 1 student, or 2 students for an extended scope</p>
+</li>
+<li>
+<p><strong>Period:</strong> March 10&#8201;&#8212;&#8201;May 30 (10 weeks)</p>
+</li>
+<li>
+<p><strong>Indicative workload:</strong> 60&#8212;&#8203;80 h total, with possible extension for highly involved students</p>
+</li>
+<li>
+<p><strong>Main themes:</strong> inverse problems, wave propagation, adjoint methods, numerical simulation, imaging</p>
+</li>
+<li>
+<p><strong>Suggested implementation environment:</strong> Python + NumPy/SciPy/Matplotlib/Jupyter</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../_images/2026/m1-s2/topics/Cube_translucide_avec_inclusions.jpg" alt="Translucent specimen with embedded inclusions" width="60%">
+</div>
+<div class="title">Figure 1. Project motivation: specimen with hidden inclusions</div>
+</div>
+<div class="paragraph">
+<p>This project is inspired by time-reversal methods and topological imaging for the detection of hidden defects or inclusions inside a structure. The main pedagogical goal is to connect:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a <strong>forward wave propagation model</strong>,</p>
+</li>
+<li>
+<p>an <strong>adjoint / time-reversed field</strong>,</p>
+</li>
+<li>
+<p>and an <strong>imaging functional</strong> able to reveal the likely position of internal defects.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The project should remain accessible for an M1 CSMI student. Therefore, the recommended baseline is a <strong>simplified 2D time-domain model</strong> with <strong>synthetic data</strong>. A more ambitious version can be developed if two students are involved or if the student shows strong autonomy and motivation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_shared_context"><a class="anchor" href="#_shared_context"></a>2. Shared Context</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The reference scientific context is the detection of internal defects using waves measured by sensors placed on part of the boundary of a structure. The provided article and slides motivate the following workflow:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>simulate the wave field in a <strong>healthy reference medium</strong>,</p>
+</li>
+<li>
+<p>generate or use measurements in a <strong>real / defective medium</strong>,</p>
+</li>
+<li>
+<p>build the <strong>residual</strong> between both signals on the sensor array,</p>
+</li>
+<li>
+<p><strong>time reverse</strong> this residual and backpropagate it as an adjoint field,</p>
+</li>
+<li>
+<p>combine forward and adjoint fields into a <strong>topological energy</strong> map to localize defects.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For this M1 project, the goal is <strong>not</strong> to reproduce the full industrial elastodynamic framework in 2D or 3D. Instead, the goal is to build a clean and reproducible numerical prototype that demonstrates the principle and allows a first quantitative study.</p>
+</div>
+<div class="paragraph">
+<p>A practical imaging functional for the project is the topological energy</p>
+</div>
+<div class="paragraph">
+<p><code>g0(x) = integral from 0 to T of ||U0(x,t)||^2 ||V0(x,t)||^2 dt</code>,</p>
+</div>
+<div class="paragraph">
+<p>where <code>U0</code> is the forward field in the healthy medium and <code>V0</code> is the adjoint (time-reversed) field. The student may also discuss the link with the more rigorous topological gradient, but the implementation target should remain the topological energy or a closely related indicator.</p>
+</div>
+<div class="paragraph">
+<p>Common numerical ingredients:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>2D rectangular domain (plate or block),</p>
+</li>
+<li>
+<p>one or several point-like or line sources,</p>
+</li>
+<li>
+<p>a small array of receivers on one side of the domain,</p>
+</li>
+<li>
+<p>one or several defects/inclusions represented in a simplified way,</p>
+</li>
+<li>
+<p>pulse excitation in time,</p>
+</li>
+<li>
+<p>visualization of wave fields and imaging maps.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Suggested benchmark cases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>one isolated defect,</p>
+</li>
+<li>
+<p>two defects with different sizes,</p>
+</li>
+<li>
+<p>study of the effect of sensor count,</p>
+</li>
+<li>
+<p>optional study of additive noise.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_student_specific_scope"><a class="anchor" href="#_student_specific_scope"></a>3. Student-Specific Scope</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_baseline_scope_1_student"><a class="anchor" href="#_baseline_scope_1_student"></a>3.1. Baseline scope (1 student)</h3>
+<div class="paragraph">
+<p>The student will implement a compact prototype with the following minimal scope:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>choose a simple wave model in time domain (preferably scalar acoustic wave equation, or a very simplified elastic setting),</p>
+</li>
+<li>
+<p>simulate the healthy configuration,</p>
+</li>
+<li>
+<p>simulate a defective configuration to create synthetic measurements,</p>
+</li>
+<li>
+<p>compute the residual on the sensors,</p>
+</li>
+<li>
+<p>solve the adjoint problem by backpropagating the time-reversed residual,</p>
+</li>
+<li>
+<p>compute and visualize a topological energy map,</p>
+</li>
+<li>
+<p>evaluate whether the defect location is recovered correctly.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This baseline scope is realistic for 60&#8212;&#8203;80 h total.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_extended_scope_2_students_or_strong_involvement"><a class="anchor" href="#_extended_scope_2_students_or_strong_involvement"></a>3.2. Extended scope (2 students or strong involvement)</h3>
+<div class="paragraph">
+<p>With two students, or with a very strong individual involvement, the project can be extended in one or several directions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>multiple defects,</p>
+</li>
+<li>
+<p>comparison of several source or sensor configurations,</p>
+</li>
+<li>
+<p>sensitivity to measurement noise,</p>
+</li>
+<li>
+<p>comparison between scalar and vectorial models,</p>
+</li>
+<li>
+<p>first attempt at iterative refinement,</p>
+</li>
+<li>
+<p>estimation of localization error and resolution limits,</p>
+</li>
+<li>
+<p>comparison with a simpler migration/backprojection method.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_out_of_scope_for_the_baseline"><a class="anchor" href="#_out_of_scope_for_the_baseline"></a>3.3. Out of scope for the baseline</h3>
+<div class="paragraph">
+<p>The following items are explicitly considered stretch goals and should not be required for the basic validation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>full 3D modeling,</p>
+</li>
+<li>
+<p>full industrial ultrasonic measurement chain,</p>
+</li>
+<li>
+<p>complete elastodynamic topological gradient implementation,</p>
+</li>
+<li>
+<p>large-scale HPC implementation.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objectives"><a class="anchor" href="#_objectives"></a>4. Objectives</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Understand the principle of time reversal, retropropagation, and focalization in a wave propagation setting.</p>
+</li>
+<li>
+<p>Build a reproducible numerical workflow combining forward simulation, synthetic measurements, and adjoint backpropagation.</p>
+</li>
+<li>
+<p>Implement and analyze a topological-energy-type imaging functional for defect localization.</p>
+</li>
+<li>
+<p>Validate the method on a small number of test cases and discuss its strengths and limitations.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_methodological_workflow"><a class="anchor" href="#_methodological_workflow"></a>5. Methodological Workflow</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_step_1_literature_and_model_choice"><a class="anchor" href="#_step_1_literature_and_model_choice"></a>5.1. Step 1 — Literature and model choice</h3>
+<div class="paragraph">
+<p>The student starts from the provided paper and slides, then reformulates the method at an M1 level. The expected outcome is a short note explaining:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the forward problem,</p>
+</li>
+<li>
+<p>the measurement residual,</p>
+</li>
+<li>
+<p>the adjoint / time-reversal idea,</p>
+</li>
+<li>
+<p>the imaging functional,</p>
+</li>
+<li>
+<p>the expected qualitative behavior of focalization.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_2_forward_simulation_in_a_healthy_medium"><a class="anchor" href="#_step_2_forward_simulation_in_a_healthy_medium"></a>5.2. Step 2 — Forward simulation in a healthy medium</h3>
+<div class="paragraph">
+<p>Implement a simple time-domain solver or use a lightweight existing numerical framework. The emphasis is on clarity and reproducibility rather than sophistication.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_3_synthetic_defective_measurements"><a class="anchor" href="#_step_3_synthetic_defective_measurements"></a>5.3. Step 3 — Synthetic defective measurements</h3>
+<div class="paragraph">
+<p>Create one or several defective configurations and record signals at the receiver locations. These synthetic signals play the role of experimental measurements.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_4_adjoint_backpropagation"><a class="anchor" href="#_step_4_adjoint_backpropagation"></a>5.4. Step 4 — Adjoint backpropagation</h3>
+<div class="paragraph">
+<p>Time reverse the residual between defective and healthy signals and use it as the source term for the adjoint field.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_5_imaging_functional"><a class="anchor" href="#_step_5_imaging_functional"></a>5.5. Step 5 — Imaging functional</h3>
+<div class="paragraph">
+<p>Compute the topological energy map over the computational domain and visualize its maxima. The student should verify whether the maxima correspond to the true defect positions.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_6_validation_and_discussion"><a class="anchor" href="#_step_6_validation_and_discussion"></a>5.6. Step 6 — Validation and discussion</h3>
+<div class="paragraph">
+<p>Analyze a few numerical experiments and discuss:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>localization quality,</p>
+</li>
+<li>
+<p>sensitivity to source/receiver placement,</p>
+</li>
+<li>
+<p>effect of defect size,</p>
+</li>
+<li>
+<p>optional robustness to noise,</p>
+</li>
+<li>
+<p>limitations due to model simplifications.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_expected_deliverables"><a class="anchor" href="#_expected_deliverables"></a>6. Expected Deliverables</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Source code repository with a clear structure (<code>src/</code>, <code>notebooks/</code>, <code>cases/</code>, <code>figures/</code>, <code>README</code>).</p>
+</li>
+<li>
+<p>One reproducible notebook or driver script that runs the main benchmark from start to finish.</p>
+</li>
+<li>
+<p>A short technical note or report explaining the method, numerical choices, and main results.</p>
+</li>
+<li>
+<p>A final presentation with figures illustrating forward fields, adjoint fields, and topological energy maps.</p>
+</li>
+<li>
+<p>A short discussion of what would be needed to move from the prototype to a more realistic structural monitoring setup.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_validation_targets"><a class="anchor" href="#_validation_targets"></a>7. Validation Targets</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The project will be considered successful if the student can demonstrate most of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>one working benchmark with a clearly localized defect,</p>
+</li>
+<li>
+<p>a convincing visualization of the adjoint/time-reversal focusing effect,</p>
+</li>
+<li>
+<p>a topological energy map whose main peak is near the true defect,</p>
+</li>
+<li>
+<p>a short analysis of parameter influence (at least one among defect size, sensor number, or noise),</p>
+</li>
+<li>
+<p>clean and reproducible code.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_possible_task_split_for_2_students"><a class="anchor" href="#_possible_task_split_for_2_students"></a>8. Possible Task Split for 2 Students</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_student_a_forward_and_data_generation"><a class="anchor" href="#_student_a_forward_and_data_generation"></a>8.1. Student A — Forward and data generation</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>numerical model,</p>
+</li>
+<li>
+<p>source signal,</p>
+</li>
+<li>
+<p>healthy and defective simulations,</p>
+</li>
+<li>
+<p>receiver extraction,</p>
+</li>
+<li>
+<p>benchmark preparation.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_student_b_inverse_imaging_and_analysis"><a class="anchor" href="#_student_b_inverse_imaging_and_analysis"></a>8.2. Student B — Inverse imaging and analysis</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>residual construction,</p>
+</li>
+<li>
+<p>adjoint backpropagation,</p>
+</li>
+<li>
+<p>topological energy computation,</p>
+</li>
+<li>
+<p>visualization,</p>
+</li>
+<li>
+<p>validation metrics and discussion.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_common_work"><a class="anchor" href="#_common_work"></a>8.3. Common work</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>literature reading,</p>
+</li>
+<li>
+<p>interpretation of results,</p>
+</li>
+<li>
+<p>report writing,</p>
+</li>
+<li>
+<p>final presentation.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_milestones"><a class="anchor" href="#_milestones"></a>9. Milestones</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Week 1 (March 10&#8212;&#8203;16):</strong> read the paper/slides, define the simplified model, set up repository and numerical environment.</p>
+</li>
+<li>
+<p><strong>Week 2:</strong> implement the source term and a first healthy-medium simulation.</p>
+</li>
+<li>
+<p><strong>Week 3:</strong> implement synthetic defective measurements and validate receiver signals.</p>
+</li>
+<li>
+<p><strong>Week 4:</strong> implement the time-reversed residual and adjoint backpropagation.</p>
+</li>
+<li>
+<p><strong>Week 5:</strong> compute a first topological energy map for a single defect.</p>
+</li>
+<li>
+<p><strong>Week 6:</strong> improve visualization and check localization quality.</p>
+</li>
+<li>
+<p><strong>Week 7:</strong> add one extension: multiple defects, fewer sensors, or noise.</p>
+</li>
+<li>
+<p><strong>Week 8:</strong> consolidate the numerical study and prepare reproducible experiments.</p>
+</li>
+<li>
+<p><strong>Week 9:</strong> write the report and prepare final figures.</p>
+</li>
+<li>
+<p><strong>Week 10 (until May 30):</strong> final presentation, code cleanup, and submission.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_practical_recommendations"><a class="anchor" href="#_practical_recommendations"></a>10. Practical Recommendations</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Start with the simplest possible geometry and a synthetic setup.</p>
+</li>
+<li>
+<p>Favor a robust and readable prototype over an over-ambitious model.</p>
+</li>
+<li>
+<p>Keep all experiments reproducible.</p>
+</li>
+<li>
+<p>Save representative plots at each step: source pulse, receiver signals, residual, adjoint field snapshots, imaging map.</p>
+</li>
+<li>
+<p>If time is short, prioritize <strong>single-defect localization</strong> before any extension.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references_and_starting_resources"><a class="anchor" href="#_references_and_starting_resources"></a>11. References and Starting Resources</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../../../_attachments/2026/m1-s2/topics/2004_DOMINGUEZ_Inverse_method_US_target_detection.pdf" class="xref attachment">Dominguez et al., “Time domain topological gradient and time reversal analogy: an inverse method for ultrasonic target detection”</a></p>
+</li>
+<li>
+<p><a href="../../../_attachments/2026/m1-s2/topics/AVNIREnergyRT_ImagerieTopologique.pptx" class="xref attachment">AVNIR slides on time reversal and topological imaging</a></p>
+</li>
+<li>
+<p><span class="image"><img src="../../../_images/2026/m1-s2/topics/Cube_translucide_avec_inclusions.jpg" alt="Illustrative specimen with inclusions" width="35%"></span></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_expected_level_and_pedagogical_value"><a class="anchor" href="#_expected_level_and_pedagogical_value"></a>12. Expected Level and Pedagogical Value</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This project is well suited to an M1 CSMI profile because it combines:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>PDE-based modeling,</p>
+</li>
+<li>
+<p>numerical simulation,</p>
+</li>
+<li>
+<p>inverse problems,</p>
+</li>
+<li>
+<p>signal interpretation,</p>
+</li>
+<li>
+<p>and scientific visualization.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It also offers a good balance between theory and implementation. The baseline project is manageable in 60&#8212;&#8203;80 h, while the extended version naturally scales to a 2-student project.</p>
+</div>
+</div>
+</div>
+
+                    
+
+                      <div class="manuals" data-cards-tag="manual">
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="avnir-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-crosshairs"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>AVNIR-1 — Time-Reversal and Topological Imaging for Ultrasonic Defect Detection</h4>
+    <p class="page-card-description">M1 CSMI project proposal on time-reversal and topological imaging for defect detection.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="../../index.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-calendar"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>CSMI Projects - 2026</h4>
+    <p class="page-card-description">CSMI project proposals for the 2026 cohort.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="../index.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-graduation-cap"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>CSMI Projects - 2026 - Master 1 - Semester 2 (S2)</h4>
+    <p class="page-card-description">Project proposal workspace for CSMI M1 S2 in 2026.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="index.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-list"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>CSMI Topics - 2026 M1 S2</h4>
+    <p class="page-card-description">Topic list for CSMI project proposals in 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hid-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-city"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hid-1: Modélisation thermo-hydraulique urbaine multi-physique pour la simulation de la ville à l&amp;#8217;échelle Exascale</h4>
+    <p class="page-card-description">Stage HID de modélisation thermo-hydraulique urbaine multi-physique pour 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hifimagnet-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-magnet"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hifimagnet-1: Statistical Characterization of High-Field Magnet Operations</h4>
+    <p class="page-card-description">CSMI Project A statistical characterization proposal for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hifimagnet-2.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-magnet"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hifimagnet-2: Hoop Stress Computation and Mechanical Fatigue Indicators from Operational Data</h4>
+    <p class="page-card-description">CSMI Project B hoop stress and fatigue proposal for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hifimagnet-3.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-magnet"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hifimagnet-3: Time Series Processing and Downsampling for Scientific Operational Data</h4>
+    <p class="page-card-description">CSMI Project C time series processing proposal for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="ooc-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-cube"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>ooc-1: Robust Trajectory Tracking, Verification, Validation, and Trajectory Statistics</h4>
+    <p class="page-card-description">Robust cell trajectory extraction and validation in organ-on-chip imaging with realistic trajectory visualization and statistical analysis.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="ooc-2.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-cube"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>ooc-2: Bulk Flow of One Cell Population Toward Another</h4>
+    <p class="page-card-description">Quantify and model collective bulk flow of a source cell population toward a target population in organ-on-chip experiments.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="ooc-3.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-cube"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>ooc-3: PDE-Based Cell Density Modeling in OOC with Feel++ CFPDE</h4>
+    <p class="page-card-description">Develop and validate PDE cell-density models for organ-on-chip systems using the Feel++ CFPDE toolbox.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="sepsis-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-stethoscope"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>sepsis-1: Data Pipeline and Quality Audit for Sepsis Prediction</h4>
+    <p class="page-card-description">CSMI project sepsis-1 for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="sepsis-2.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-stethoscope"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>sepsis-2: Early Sepsis Prediction and Alert Threshold Design</h4>
+    <p class="page-card-description">CSMI project sepsis-2 for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="sepsis-3.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-stethoscope"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>sepsis-3: Digital Twin Lite for Patient Trajectory and Treatment Scenarios</h4>
+    <p class="page-card-description">CSMI project sepsis-3 for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                      </div>
+      </article>
+    </div>
+  </main>
+</div>
+
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../../../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2026 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../../../../_/js/site.js" data-ui-root-path="../../../../_"></script>
+
+
+<!-- Font Awesome JS removed to use webfont icons only -->
+<script async src="../../../../_/js/vendor/highlight.js"></script>
+
+<script src="../../../../_/js/vendor/lunr.js"></script>
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+</body>
+</html>
