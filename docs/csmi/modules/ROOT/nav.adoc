@@ -4,6 +4,7 @@
 *** xref:2026/m1-s2/index.adoc[icon:graduation-cap[] Master 1 - Semester 2 (S2)]
 **** xref:2026/m1-s2/topics/index.adoc[icon:list[] Topics and Proposals]
 //***** xref:2026/m1-s2/topics/proposal-template.adoc[icon:file-text[] Proposal Template]
+***** xref:2026/m1-s2/topics/avnir-1.adoc[icon:crosshairs[] avnir-1]
 ***** xref:2026/m1-s2/topics/hid-1.adoc[icon:city[] hid-1]
 ***** xref:2026/m1-s2/topics/hifimagnet-1.adoc[icon:magnet[] hifimagnet-1]
 ***** xref:2026/m1-s2/topics/hifimagnet-2.adoc[icon:magnet[] hifimagnet-2]
@@ -14,4 +15,3 @@
 ***** xref:2026/m1-s2/topics/sepsis-1.adoc[icon:stethoscope[] sepsis-1]
 ***** xref:2026/m1-s2/topics/sepsis-2.adoc[icon:stethoscope[] sepsis-2]
 ***** xref:2026/m1-s2/topics/sepsis-3.adoc[icon:stethoscope[] sepsis-3]
-

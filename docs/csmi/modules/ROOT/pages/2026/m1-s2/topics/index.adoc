@@ -17,6 +17,7 @@ Project pages for the 2026 CSMI Master 1 S2 semester.
 
 
 
+- icon:crosshairs[] xref:2026/m1-s2/topics/avnir-1.adoc[avnir-1]
 - icon:city[] xref:2026/m1-s2/topics/hid-1.adoc[hid-1]
 - icon:magnet[] xref:2026/m1-s2/topics/hifimagnet-1.adoc[hifimagnet-1]
 - icon:magnet[] xref:2026/m1-s2/topics/hifimagnet-2.adoc[hifimagnet-2]
