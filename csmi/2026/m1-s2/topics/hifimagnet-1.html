@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>hifimagnet-1: Statistical Characterization of High-Field Magnet Operations :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/csmi/2026/m1-s2/topics/hifimagnet-1.html">
+    <link rel="prev" href="hid-1.html">
+    <link rel="next" href="hifimagnet-2.html">
+    <meta name="description" content="CSMI Project A statistical characterization proposal for 2026 M1 S2.">
+    <meta name="generator" content="Antora 3.1.7">
+<link rel="stylesheet" href="../../../../_/css/site.css">
+
+<!-- Font Awesome webfont CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../../../../_/css/listing.css">
+<link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../../../_'</script>
+
+</head>
+<body class="article docs-manuals-catalog docs-cards-layout ">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../../../../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../../../../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../../../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../../../../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="body">
+  <a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="csmi" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../../index.html">CSMI Projects</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🎓 CSMI Projects</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../index.html">Module Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../index.html"><span class="icon"><i class="fa fa-calendar"></i></span> 2026 Cohort</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html"><span class="icon"><i class="fa fa-graduation-cap"></i></span> Master 1 - Semester 2 (S2)</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html"><span class="icon"><i class="fa fa-list"></i></span> Topics and Proposals</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="hid-1.html"><span class="icon"><i class="fa fa-city"></i></span> hid-1</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="5">
+    <a class="nav-link" href="hifimagnet-1.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="hifimagnet-2.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-2</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="hifimagnet-3.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-3</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="ooc-1.html"><span class="icon"><i class="fa fa-cube"></i></span> ooc-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="ooc-2.html"><span class="icon"><i class="fa fa-cube"></i></span> ooc-2</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="ooc-3.html"><span class="icon"><i class="fa fa-cube"></i></span> ooc-3</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="sepsis-1.html"><span class="icon"><i class="fa fa-stethoscope"></i></span> sepsis-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="sepsis-2.html"><span class="icon"><i class="fa fa-stethoscope"></i></span> sepsis-2</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="sepsis-3.html"><span class="icon"><i class="fa fa-stethoscope"></i></span> sepsis-3</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">CSMI Projects</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../../../../course-project/index.html">Course Project</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="../../../index.html">CSMI Projects</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="article">
+    <div class="toolbar" role="navigation">
+      <button class="nav-toggle"></button>
+       <a href="../../../../course-project/index.html" class="home-link"></a> 
+      <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../../index.html">CSMI Projects</a></li>
+    <li>🎓 CSMI Projects</li>
+    <li><a href="../../index.html"><span class="icon"><i class="fa fa-calendar"></i></span> 2026 Cohort</a></li>
+    <li><a href="../index.html"><span class="icon"><i class="fa fa-graduation-cap"></i></span> Master 1 - Semester 2 (S2)</a></li>
+    <li><a href="index.html"><span class="icon"><i class="fa fa-list"></i></span> Topics and Proposals</a></li>
+    <li><a href="hifimagnet-1.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-1</a></li>
+  </ul>
+</nav>
+    </div>
+
+    <div class="content">
+      <article class="doc">
+         <h1 class="page">hifimagnet-1: Statistical Characterization of High-Field Magnet Operations</h1> 
+        <div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>1. Overview</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Level</strong></th>
+<th class="tableblock halign-left valign-top">M1 Applied Mathematics (Internship or Semester Project)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Duration</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3-4 months (internship) or one semester (project)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Prerequisite knowledge</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multivariate statistics, Python/pandas, basic
+physics (electromagnetism appreciated but not required)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>MagnetDB roadmap mapping</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Phase 1 (RecordStats) + Phase 3
+(CumulativeStats)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Deliverables</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Python module + analysis report</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_context"><a class="anchor" href="#_context"></a>2. Context</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>LNCMI (Laboratoire National des Champs Magnetiques Intenses) operates
+resistive high-field magnets capable of producing magnetic fields up to
+36 Tesla. These magnets are water-cooled polyhelix inserts composed of
+concentric helical conductors carrying tens of thousands of amperes.</p>
+</div>
+<div class="paragraph">
+<p>During operation, a monitoring system records time series of physical
+quantities: magnetic field, coil currents, voltages, temperatures,
+pressures, and water flow rates. Each experimental session produces a
+<strong>record</strong> - a multivariate time series typically containing 50-70
+channels sampled at regular intervals.</p>
+</div>
+<div class="paragraph">
+<p>MagnetDB is the platform that centralizes this data. It organizes
+records by <strong>site</strong> (a physical installation), <strong>magnet</strong> (an assembly of
+parts), and <strong>part</strong> (an individual helix, ring, or current lead). The
+goal of this project is to define and compute meaningful statistical
+summaries of operational data at each level of this hierarchy.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_scientific_objectives"><a class="anchor" href="#_scientific_objectives"></a>3. Scientific Objectives</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="obj-1-define-relevant-statistics-for-operational-records"><a class="anchor" href="#obj-1-define-relevant-statistics-for-operational-records"></a>3.1. 1. Define relevant statistics for operational records</h3>
+<div class="paragraph">
+<p>Not all statistical summaries are equally useful for magnet operations.
+The student must engage with the physical meaning of each measured
+quantity to determine which statistics are scientifically meaningful.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For the magnetic field: the max and mean are directly relevant (the
+max determines the experiment&#8217;s scientific reach); the ramp-up rate
+matters for mechanical stress</p>
+</li>
+<li>
+<p>For temperatures: the max outlet temperature indicates thermal load;
+the temperature differential (Tout - Tin) reflects cooling efficiency;
+time spent above a threshold may indicate stress</p>
+</li>
+<li>
+<p>For currents: the per-coil current distribution reveals the operating
+regime; the deviation between coils feeding the same power supply may
+indicate an electrical issue</p>
+</li>
+<li>
+<p>For pressures and flows: these are health indicators for the cooling
+system rather than scientific outputs</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The student should produce a <strong>taxonomy of statistics</strong> organized by
+physical relevance, not just by mathematical definition.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="obj-2-compute-per-record-summaries"><a class="anchor" href="#obj-2-compute-per-record-summaries"></a>3.2. 2. Compute per-record summaries</h3>
+<div class="paragraph">
+<p>For each record, compute a structured summary at three levels:</p>
+</div>
+<div class="paragraph">
+<p><strong>Site level</strong>: aggregate quantities that characterize the full
+installation during this session - total power, peak field, cooling
+performance, duration, duty cycle.</p>
+</div>
+<div class="paragraph">
+<p><strong>Magnet level</strong>: quantities specific to one magnet within the site -
+currents for the helix power supply, field contribution, operating
+regime identification (ramp-up, plateau, ramp-down, quench).</p>
+</div>
+<div class="paragraph">
+<p><strong>Part level</strong>: quantities specific to an individual helix - its current,
+voltage, resistance variation (DRcoil), and calibration temperature
+(Tcal). The resistance variation is particularly important: it tracks
+conductor aging over the magnet&#8217;s lifetime.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="obj-3-aggregate-across-records-for-lifetime-statistics"><a class="anchor" href="#obj-3-aggregate-across-records-for-lifetime-statistics"></a>3.3. 3. Aggregate across records for lifetime statistics</h3>
+<div class="paragraph">
+<p>Given N records spanning the operational lifetime of a site, magnet, or
+part, compute cumulative statistics:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Total operating hours</p>
+</li>
+<li>
+<p>Lifetime max/mean/std of key quantities</p>
+</li>
+<li>
+<p>Which record holds the overall maximum (for traceability)</p>
+</li>
+<li>
+<p>Distribution of operating regimes across records</p>
+</li>
+<li>
+<p>Trend detection: is the resistance variation drifting over time? Is
+the cooling efficiency degrading?</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="obj-4-exploratory-analysis"><a class="anchor" href="#obj-4-exploratory-analysis"></a>3.4. 4. Exploratory analysis</h3>
+<div class="paragraph">
+<p>With the statistical summaries computed, investigate:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Do operational records cluster into distinct regimes? (PCA or simple
+clustering on summary vectors)</p>
+</li>
+<li>
+<p>Are there correlations between operating conditions and anomalies?</p>
+</li>
+<li>
+<p>Can you identify records that are statistical outliers?</p>
+</li>
+<li>
+<p>For parts that have been in multiple magnet configurations: does the
+operating history differ?</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_mathematical_content"><a class="anchor" href="#_mathematical_content"></a>4. Mathematical Content</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Descriptive statistics</strong>: min, max, mean, std, skewness, kurtosis,
+quantiles - applied to multivariate time series</p>
+</li>
+<li>
+<p><strong>Correlation analysis</strong>: Pearson/Spearman correlation between channels
+within a record; cross-correlation with time lags for causal analysis
+(e.g., current increase &#8594; temperature increase with delay)</p>
+</li>
+<li>
+<p><strong>Weighted aggregation</strong>: when aggregating across records of different
+durations, define appropriate weighting schemes (time-weighted means vs.
+record-count means)</p>
+</li>
+<li>
+<p><strong>Non-stationary series</strong>: operating records are inherently
+non-stationary (ramp-up &#8594; plateau &#8594; ramp-down). The student must decide
+whether to compute statistics over the full record, over identified
+phases, or both</p>
+</li>
+<li>
+<p><strong>Phase identification</strong>: simple segmentation of the time series into
+operating phases using change-point detection or threshold-based rules</p>
+</li>
+<li>
+<p><strong>Dimensionality reduction</strong>: PCA on the per-record summary vectors to
+identify dominant modes of operational variation</p>
+</li>
+<li>
+<p><strong>Trend analysis</strong>: linear regression on lifetime series of key
+indicators (resistance drift, max field evolution)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_technical_environment"><a class="anchor" href="#_technical_environment"></a>5. Technical Environment</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_provided"><a class="anchor" href="#_provided"></a>5.1. Provided</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Docker image</strong> with Python 3.11, pandas, numpy, scipy, matplotlib,
+seaborn, scikit-learn, Jupyter</p>
+</li>
+<li>
+<p><strong>Sample dataset</strong>: 15-20 operational records from 2+ magnet
+configurations, with geometry and material data</p>
+</li>
+<li>
+<p><strong><code>student_helpers</code> module</strong>: record parser, configuration loader</p>
+</li>
+<li>
+<p><strong>Starter notebooks</strong>: data loading, basic exploration, multi-record
+analysis</p>
+</li>
+<li>
+<p><strong>Data README</strong>: column reference with units, coil-to-helix mapping,
+physics context</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_not_required"><a class="anchor" href="#_not_required"></a>5.2. Not required</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Django, MagnetDB, Docker infrastructure knowledge</p>
+</li>
+<li>
+<p>MagnetTools (not needed for raw statistics - only for Project B)</p>
+</li>
+<li>
+<p>Web development, database skills</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_development_workflow"><a class="anchor" href="#_development_workflow"></a>5.3. Development workflow</h3>
+<div class="paragraph">
+<p>The student works in Jupyter notebooks for exploration, then refactors
+validated code into a Python module with tests. All work is done with
+pandas DataFrames and Python dicts - no database interaction.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="input--output-specification"><a class="anchor" href="#input--output-specification"></a>6. Input / Output Specification</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_input"><a class="anchor" href="#_input"></a>6.1. Input</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">def compute_record_stats(
+    df: pd.DataFrame,
+    site_config: dict,
+    column_info: dict
+) -&gt; dict:
+    """Compute statistics for a single record.
+
+    Args:
+        df: Parsed record DataFrame with columns including 't' (seconds),
+            'timestamp', 'Field', 'Icoil1'...'Icoil16', 'Tin1', 'Tout', etc.
+        site_config: Site configuration dict with structure:
+            {
+                "site": "M9_M19061901",
+                "magnet": {
+                    "name": "M19061901",
+                    "parts": [
+                        {"name": "H15101601", "type": "helix",
+                         "coil_index": 1, "material": "MA15101601"},
+                        ...
+                    ]
+                }
+            }
+        column_info: Column name -&gt; unit mapping dict.
+
+    Returns:
+        Nested dict of statistics at site, magnet, and part levels.
+    """</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_output"><a class="anchor" href="#_output"></a>6.2. Output</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">{
+    "site": {
+        "duration_seconds": 3621.0,
+        "operating_phases": {
+            "ramp_up": {"start_t": 0, "end_t": 120, "duration_s": 120},
+            "plateau": {"start_t": 120, "end_t": 3500, "duration_s": 3380},
+            "ramp_down": {"start_t": 3500, "end_t": 3621, "duration_s": 121}
+        },
+        "field": {
+            "max": 32.5, "mean": 28.1, "std": 3.2, "unit": "T",
+            "plateau_mean": 31.8, "ramp_rate_T_per_s": 0.27
+        },
+        "power": {"max": 24.1, "mean": 18.7, "unit": "MW"},
+        "cooling": {
+            "delta_T_max": 23.5, "delta_T_mean": 14.2, "unit": "degC",
+            "flow1_mean": 12.3, "flow2_mean": 11.8, "unit_flow": "l/s"
+        }
+    },
+    "magnets": {
+        "M19061901": {
+            "field_contribution_estimated": 32.5,  # if only magnet in site
+            "total_current": {"max": 336000, "unit": "A"},
+            # ... per-magnet aggregate
+        }
+    },
+    "parts": {
+        "H15101601": {
+            "current": {"max": 28500, "mean": 24000, "min": 0, "unit": "A"},
+            "voltage": {"max": 45.2, "mean": 38.1, "unit": "V"},
+            "resistance_variation": {"max": 12.3, "mean": 8.5, "unit": "%"},
+            "temperature_cal": {"max": 85.2, "mean": 62.1, "unit": "degC"}
+        },
+        "H15061703": {
+            # ... same structure
+        }
+    },
+    "metadata": {
+        "record_name": "M9_M19061901_2023-03-15.tsv",
+        "started_at": "2023-03-15T09:12:00",
+        "num_points": 500,
+        "sampling_period_s": 7.2,
+        "active_coils": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cumulative_statistics_function"><a class="anchor" href="#_cumulative_statistics_function"></a>6.3. Cumulative statistics function</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">def compute_cumulative_stats(
+    record_stats_list: list[dict],
+    entity_type: str,   # "site", "magnet", or "part"
+    entity_name: str
+) -&gt; dict:
+    """Aggregate per-record stats into a lifetime summary.
+
+    Args:
+        record_stats_list: List of dicts from compute_record_stats(),
+            ordered chronologically.
+        entity_type: Which level to aggregate.
+        entity_name: Name of the entity (e.g., "M9_M19061901" for site).
+
+    Returns:
+        Cumulative statistics dict.
+    """</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">{
+    "total_operating_hours": 1245.6,
+    "num_records": 87,
+    "time_range": {
+        "first_record": "2020-01-15T08:00:00",
+        "last_record": "2023-11-22T14:30:00"
+    },
+    "field": {
+        "global_max": 33.1, "lifetime_mean": 27.5, "std": 4.1,
+        "max_at_record": "M9_M19061901_2022-06-10.tsv"
+    },
+    "trends": {
+        "resistance_variation_H15101601": {
+            "slope_per_hour": 0.0012,
+            "r_squared": 0.78,
+            "interpretation": "slow upward drift consistent with conductor aging"
+        }
+    },
+    "regime_distribution": {
+        "high_field_above_30T": {"count": 23, "total_hours": 312},
+        "medium_field_20_30T": {"count": 51, "total_hours": 780},
+        "low_field_below_20T": {"count": 13, "total_hours": 153}
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_suggested_timeline"><a class="anchor" href="#_suggested_timeline"></a>7. Suggested Timeline</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Period</th>
+<th class="tableblock halign-left valign-top">Activities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Weeks 1-2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Onboarding: run starter notebooks, understand the data, read
+physics background</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Weeks 3-4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design the taxonomy of statistics. Define what to compute at
+each level. Discuss with supervisor</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Weeks 5-7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Implement <code>compute_record_stats()</code>. Test on sample
+records. Iterate on the output schema</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Weeks 8-9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Implement <code>compute_cumulative_stats()</code>. Test on
+multi-record sequences</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Weeks 10-11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exploratory analysis: clustering, PCA, trend detection</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Weeks 12-14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write report. Clean up code. Final presentation</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_evaluation_criteria"><a class="anchor" href="#_evaluation_criteria"></a>8. Evaluation Criteria</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Scientific relevance</strong>: Are the chosen statistics physically
+meaningful? Do they capture what matters for magnet operations?</p>
+</li>
+<li>
+<p><strong>Code quality</strong>: Is the module well-structured, tested, documented, and
+usable as a library?</p>
+</li>
+<li>
+<p><strong>Analysis depth</strong>: Does the exploratory analysis reveal genuine
+patterns in the data?</p>
+</li>
+<li>
+<p><strong>Report quality</strong>: Is the mathematical formulation rigorous? Are
+results clearly presented?</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references"><a class="anchor" href="#_references"></a>9. References</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Polyhelix magnet design: Debray, F. et al., "High magnetic field
+facilities," IEEE Trans. Appl. Supercond. (2012)</p>
+</li>
+<li>
+<p>Time series statistics: Hamilton, J.D., "Time Series Analysis" (1994)</p>
+</li>
+<li>
+<p>Change-point detection: Aminikhanghahi, S. and Cook, D.J., "A Survey
+of Methods for Time Series Change Point Detection," KAIS (2017)</p>
+</li>
+<li>
+<p>LTTB downsampling: Steinarsson, S., "Downsampling Time Series for
+Visual Representation" (2013) - relevant background for understanding
+data reduction</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+                    
+
+                      <div class="manuals" data-cards-tag="manual">
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="../../index.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-calendar"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>CSMI Projects - 2026</h4>
+    <p class="page-card-description">CSMI project proposals for the 2026 cohort.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="../index.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-graduation-cap"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>CSMI Projects - 2026 - Master 1 - Semester 2 (S2)</h4>
+    <p class="page-card-description">Project proposal workspace for CSMI M1 S2 in 2026.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="index.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-list"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>CSMI Topics - 2026 M1 S2</h4>
+    <p class="page-card-description">Topic list for CSMI project proposals in 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hid-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-city"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hid-1: Modélisation thermo-hydraulique urbaine multi-physique pour la simulation de la ville à l&amp;#8217;échelle Exascale</h4>
+    <p class="page-card-description">Stage HID de modélisation thermo-hydraulique urbaine multi-physique pour 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hifimagnet-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-magnet"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hifimagnet-1: Statistical Characterization of High-Field Magnet Operations</h4>
+    <p class="page-card-description">CSMI Project A statistical characterization proposal for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hifimagnet-2.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-magnet"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hifimagnet-2: Hoop Stress Computation and Mechanical Fatigue Indicators from Operational Data</h4>
+    <p class="page-card-description">CSMI Project B hoop stress and fatigue proposal for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hifimagnet-3.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-magnet"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hifimagnet-3: Time Series Processing and Downsampling for Scientific Operational Data</h4>
+    <p class="page-card-description">CSMI Project C time series processing proposal for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="ooc-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-cube"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>ooc-1: Robust Trajectory Tracking, Verification, Validation, and Trajectory Statistics</h4>
+    <p class="page-card-description">Robust cell trajectory extraction and validation in organ-on-chip imaging with realistic trajectory visualization and statistical analysis.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="ooc-2.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-cube"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>ooc-2: Bulk Flow of One Cell Population Toward Another</h4>
+    <p class="page-card-description">Quantify and model collective bulk flow of a source cell population toward a target population in organ-on-chip experiments.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="ooc-3.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-cube"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>ooc-3: PDE-Based Cell Density Modeling in OOC with Feel++ CFPDE</h4>
+    <p class="page-card-description">Develop and validate PDE cell-density models for organ-on-chip systems using the Feel++ CFPDE toolbox.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="sepsis-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-stethoscope"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>sepsis-1: Data Pipeline and Quality Audit for Sepsis Prediction</h4>
+    <p class="page-card-description">CSMI project sepsis-1 for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="sepsis-2.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-stethoscope"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>sepsis-2: Early Sepsis Prediction and Alert Threshold Design</h4>
+    <p class="page-card-description">CSMI project sepsis-2 for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="sepsis-3.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-stethoscope"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>sepsis-3: Digital Twin Lite for Patient Trajectory and Treatment Scenarios</h4>
+    <p class="page-card-description">CSMI project sepsis-3 for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                      </div>
+      </article>
+    </div>
+  </main>
+</div>
+
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../../../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2026 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../../../../_/js/site.js" data-ui-root-path="../../../../_"></script>
+
+
+<!-- Font Awesome JS removed to use webfont icons only -->
+<script async src="../../../../_/js/vendor/highlight.js"></script>
+
+<script src="../../../../_/js/vendor/lunr.js"></script>
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+</body>
+</html>

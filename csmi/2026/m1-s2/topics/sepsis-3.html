@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>sepsis-3: Digital Twin Lite for Patient Trajectory and Treatment Scenarios :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/csmi/2026/m1-s2/topics/sepsis-3.html">
+    <link rel="prev" href="sepsis-2.html">
+    <meta name="description" content="CSMI project sepsis-3 for 2026 M1 S2.">
+    <meta name="generator" content="Antora 3.1.7">
+<link rel="stylesheet" href="../../../../_/css/site.css">
+
+<!-- Font Awesome webfont CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../../../../_/css/listing.css">
+<link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../../../_'</script>
+
+</head>
+<body class="article docs-manuals-catalog docs-cards-layout ">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../../../../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../../../../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../../../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../../../../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="body">
+  <a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="csmi" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../../index.html">CSMI Projects</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🎓 CSMI Projects</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../index.html">Module Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../index.html"><span class="icon"><i class="fa fa-calendar"></i></span> 2026 Cohort</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html"><span class="icon"><i class="fa fa-graduation-cap"></i></span> Master 1 - Semester 2 (S2)</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html"><span class="icon"><i class="fa fa-list"></i></span> Topics and Proposals</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="hid-1.html"><span class="icon"><i class="fa fa-city"></i></span> hid-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="hifimagnet-1.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="hifimagnet-2.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-2</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="hifimagnet-3.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-3</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="ooc-1.html"><span class="icon"><i class="fa fa-cube"></i></span> ooc-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="ooc-2.html"><span class="icon"><i class="fa fa-cube"></i></span> ooc-2</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="ooc-3.html"><span class="icon"><i class="fa fa-cube"></i></span> ooc-3</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="sepsis-1.html"><span class="icon"><i class="fa fa-stethoscope"></i></span> sepsis-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="sepsis-2.html"><span class="icon"><i class="fa fa-stethoscope"></i></span> sepsis-2</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="5">
+    <a class="nav-link" href="sepsis-3.html"><span class="icon"><i class="fa fa-stethoscope"></i></span> sepsis-3</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">CSMI Projects</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../../../../course-project/index.html">Course Project</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="../../../index.html">CSMI Projects</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="article">
+    <div class="toolbar" role="navigation">
+      <button class="nav-toggle"></button>
+       <a href="../../../../course-project/index.html" class="home-link"></a> 
+      <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../../index.html">CSMI Projects</a></li>
+    <li>🎓 CSMI Projects</li>
+    <li><a href="../../index.html"><span class="icon"><i class="fa fa-calendar"></i></span> 2026 Cohort</a></li>
+    <li><a href="../index.html"><span class="icon"><i class="fa fa-graduation-cap"></i></span> Master 1 - Semester 2 (S2)</a></li>
+    <li><a href="index.html"><span class="icon"><i class="fa fa-list"></i></span> Topics and Proposals</a></li>
+    <li><a href="sepsis-3.html"><span class="icon"><i class="fa fa-stethoscope"></i></span> sepsis-3</a></li>
+  </ul>
+</nav>
+    </div>
+
+    <div class="content">
+      <article class="doc">
+         <h1 class="page">sepsis-3: Digital Twin Lite for Patient Trajectory and Treatment Scenarios</h1> 
+        <div class="sect1">
+<h2 id="_shared_context"><a class="anchor" href="#_shared_context"></a>1. Shared Context</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This project is designed for M1 CSMI Semester 2 students in 2026.
+It uses the same ICU sepsis context (PhysioNet challenge format) but shifts focus from classification to short-term trajectory modeling.
+The expected workload is 60 to 80 hours (maximum 100 hours) between March 10, 2026 and May 30, 2026 (oral defense).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_student_specific_scope"><a class="anchor" href="#_student_specific_scope"></a>2. Student-Specific Scope</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Assigned student(s): <em>to be filled</em></p>
+</li>
+<li>
+<p>Specific scientific question: Can we build a simplified digital twin to forecast short-term physiological evolution and compare intervention scenarios?</p>
+</li>
+<li>
+<p>Specific constraints: Keep claims exploratory; no causal or clinical deployment claims beyond observed-data simulation.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objectives"><a class="anchor" href="#_objectives"></a>3. Objectives</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Build a compact patient-state representation from recent vital signs and laboratory trends.</p>
+</li>
+<li>
+<p>Train a short-horizon forecasting model (for example 1 to 6 hour horizon for MAP, lactate, or SOFA proxy).</p>
+</li>
+<li>
+<p>Implement scenario-based simulation (for example intervention timing/intensity variants) and quantify uncertainty.</p>
+</li>
+<li>
+<p>Analyze limitations, potential confounding, and safe interpretation boundaries.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_work_plan_and_time_budget"><a class="anchor" href="#_work_plan_and_time_budget"></a>4. Work Plan and Time Budget</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Phase 1 (March 10 to March 23): data understanding and target trajectory definition (10 to 12h).</p>
+</li>
+<li>
+<p>Phase 2 (March 24 to April 20): state construction and forecasting model implementation (24 to 30h).</p>
+</li>
+<li>
+<p>Phase 3 (April 21 to May 11): scenario simulation, uncertainty, and sensitivity analysis (20 to 24h).</p>
+</li>
+<li>
+<p>Phase 4 (May 12 to May 24): final report, visual storytelling, slides, rehearsal (10 to 14h).</p>
+</li>
+<li>
+<p>Oral defense: May 30, 2026.</p>
+</li>
+<li>
+<p>Total target: 60 to 80h (up to 100h with optional methodological extensions).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_expected_deliverables"><a class="anchor" href="#_expected_deliverables"></a>5. Expected Deliverables</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Reproducible notebook/script pipeline for trajectory modeling and simulation.</p>
+</li>
+<li>
+<p>Scenario analysis report with clear assumptions and non-causal interpretation.</p>
+</li>
+<li>
+<p>Visualization set (trajectory forecasts, uncertainty bands, scenario comparisons).</p>
+</li>
+<li>
+<p>Reproducibility guide (<code>README</code> with environment and run instructions).</p>
+</li>
+<li>
+<p>Final written report and oral presentation slides.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_optional_extension_if_time_allows"><a class="anchor" href="#_optional_extension_if_time_allows"></a>6. Optional Extension (if time allows)</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Add uncertainty-aware forecasting (for example quantile or Bayesian-style interval output).</p>
+</li>
+<li>
+<p>Prototype a minimal dashboard for interactive scenario exploration.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+                    
+
+                      <div class="manuals" data-cards-tag="manual">
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="../../index.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-calendar"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>CSMI Projects - 2026</h4>
+    <p class="page-card-description">CSMI project proposals for the 2026 cohort.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="../index.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-graduation-cap"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>CSMI Projects - 2026 - Master 1 - Semester 2 (S2)</h4>
+    <p class="page-card-description">Project proposal workspace for CSMI M1 S2 in 2026.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="index.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-list"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>CSMI Topics - 2026 M1 S2</h4>
+    <p class="page-card-description">Topic list for CSMI project proposals in 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hid-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-city"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hid-1: Modélisation thermo-hydraulique urbaine multi-physique pour la simulation de la ville à l&amp;#8217;échelle Exascale</h4>
+    <p class="page-card-description">Stage HID de modélisation thermo-hydraulique urbaine multi-physique pour 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hifimagnet-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-magnet"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hifimagnet-1: Statistical Characterization of High-Field Magnet Operations</h4>
+    <p class="page-card-description">CSMI Project A statistical characterization proposal for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hifimagnet-2.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-magnet"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hifimagnet-2: Hoop Stress Computation and Mechanical Fatigue Indicators from Operational Data</h4>
+    <p class="page-card-description">CSMI Project B hoop stress and fatigue proposal for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hifimagnet-3.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-magnet"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hifimagnet-3: Time Series Processing and Downsampling for Scientific Operational Data</h4>
+    <p class="page-card-description">CSMI Project C time series processing proposal for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="ooc-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-cube"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>ooc-1: Robust Trajectory Tracking, Verification, Validation, and Trajectory Statistics</h4>
+    <p class="page-card-description">Robust cell trajectory extraction and validation in organ-on-chip imaging with realistic trajectory visualization and statistical analysis.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="ooc-2.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-cube"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>ooc-2: Bulk Flow of One Cell Population Toward Another</h4>
+    <p class="page-card-description">Quantify and model collective bulk flow of a source cell population toward a target population in organ-on-chip experiments.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="ooc-3.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-cube"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>ooc-3: PDE-Based Cell Density Modeling in OOC with Feel++ CFPDE</h4>
+    <p class="page-card-description">Develop and validate PDE cell-density models for organ-on-chip systems using the Feel++ CFPDE toolbox.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="sepsis-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-stethoscope"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>sepsis-1: Data Pipeline and Quality Audit for Sepsis Prediction</h4>
+    <p class="page-card-description">CSMI project sepsis-1 for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="sepsis-2.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-stethoscope"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>sepsis-2: Early Sepsis Prediction and Alert Threshold Design</h4>
+    <p class="page-card-description">CSMI project sepsis-2 for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="sepsis-3.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-stethoscope"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>sepsis-3: Digital Twin Lite for Patient Trajectory and Treatment Scenarios</h4>
+    <p class="page-card-description">CSMI project sepsis-3 for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                      </div>
+      </article>
+    </div>
+  </main>
+</div>
+
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../../../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2026 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../../../../_/js/site.js" data-ui-root-path="../../../../_"></script>
+
+
+<!-- Font Awesome JS removed to use webfont icons only -->
+<script async src="../../../../_/js/vendor/highlight.js"></script>
+
+<script src="../../../../_/js/vendor/lunr.js"></script>
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+</body>
+</html>

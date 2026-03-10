@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>hifimagnet-3: Time Series Processing and Downsampling for Scientific Operational Data :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/csmi/2026/m1-s2/topics/hifimagnet-3.html">
+    <link rel="prev" href="hifimagnet-2.html">
+    <link rel="next" href="ooc-1.html">
+    <meta name="description" content="CSMI Project C time series processing proposal for 2026 M1 S2.">
+    <meta name="generator" content="Antora 3.1.7">
+<link rel="stylesheet" href="../../../../_/css/site.css">
+
+<!-- Font Awesome webfont CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../../../../_/css/listing.css">
+<link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../../../_'</script>
+
+</head>
+<body class="article docs-manuals-catalog docs-cards-layout ">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../../../../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../../../../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../../../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../../../../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="body">
+  <a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="csmi" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../../index.html">CSMI Projects</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🎓 CSMI Projects</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../index.html">Module Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../index.html"><span class="icon"><i class="fa fa-calendar"></i></span> 2026 Cohort</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html"><span class="icon"><i class="fa fa-graduation-cap"></i></span> Master 1 - Semester 2 (S2)</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html"><span class="icon"><i class="fa fa-list"></i></span> Topics and Proposals</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="hid-1.html"><span class="icon"><i class="fa fa-city"></i></span> hid-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="hifimagnet-1.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="hifimagnet-2.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-2</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="5">
+    <a class="nav-link" href="hifimagnet-3.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-3</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="ooc-1.html"><span class="icon"><i class="fa fa-cube"></i></span> ooc-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="ooc-2.html"><span class="icon"><i class="fa fa-cube"></i></span> ooc-2</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="ooc-3.html"><span class="icon"><i class="fa fa-cube"></i></span> ooc-3</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="sepsis-1.html"><span class="icon"><i class="fa fa-stethoscope"></i></span> sepsis-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="sepsis-2.html"><span class="icon"><i class="fa fa-stethoscope"></i></span> sepsis-2</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="sepsis-3.html"><span class="icon"><i class="fa fa-stethoscope"></i></span> sepsis-3</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">CSMI Projects</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../../../../course-project/index.html">Course Project</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="../../../index.html">CSMI Projects</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="article">
+    <div class="toolbar" role="navigation">
+      <button class="nav-toggle"></button>
+       <a href="../../../../course-project/index.html" class="home-link"></a> 
+      <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../../index.html">CSMI Projects</a></li>
+    <li>🎓 CSMI Projects</li>
+    <li><a href="../../index.html"><span class="icon"><i class="fa fa-calendar"></i></span> 2026 Cohort</a></li>
+    <li><a href="../index.html"><span class="icon"><i class="fa fa-graduation-cap"></i></span> Master 1 - Semester 2 (S2)</a></li>
+    <li><a href="index.html"><span class="icon"><i class="fa fa-list"></i></span> Topics and Proposals</a></li>
+    <li><a href="hifimagnet-3.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-3</a></li>
+  </ul>
+</nav>
+    </div>
+
+    <div class="content">
+      <article class="doc">
+         <h1 class="page">hifimagnet-3: Time Series Processing and Downsampling for Scientific Operational Data</h1> 
+        <div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>1. Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>|==
+|<strong>Level</strong> |M1 Applied Mathematics (Internship or Semester Project)</p>
+</div>
+<div class="paragraph">
+<p>|<strong>Duration</strong> |3-4 months (internship) or one semester (project)</p>
+</div>
+<div class="paragraph">
+<p>|<strong>Prerequisite knowledge</strong> |Signal processing or numerical analysis,
+algorithms, Python</p>
+</div>
+<div class="paragraph">
+<p>|<strong>MagnetDB roadmap mapping</strong> |Phase 2 (ProcessedTimeSeries / ETL)<br>
+Phase 3 (stitched series)</p>
+</div>
+<div class="paragraph">
+<p>|<strong>Deliverables</strong> |Python module + benchmark report
+|==</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_context"><a class="anchor" href="#_context"></a>2. Context</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MagnetDB stores operational records as raw data files - time series of
+50-70 physical channels recorded during magnet experiments. These
+records need to be served to users through a web interface for
+interactive visualization and analysis. This creates two distinct
+challenges:</p>
+</div>
+<div class="paragraph">
+<p><strong>The visualization challenge</strong>: a record with 5000 data points and 70
+columns is too large to send to a browser for plotting. The current
+MagnetDB implementation uses naive modulo subsampling (keep every Nth
+point), which discards peaks and distorts the visual representation.
+Better algorithms exist - the goal is to implement and benchmark them.</p>
+</div>
+<div class="paragraph">
+<p><strong>The lifetime challenge</strong>: a magnet part may have operated across
+100+ records over several years. To visualize trends (how did the
+max stress evolve? is the resistance drifting?), these records must be
+<strong>stitched</strong> into a coherent long-term series, handling gaps,
+configuration changes, and varying sampling rates.</p>
+</div>
+<div class="paragraph">
+<p>This project addresses both challenges by building a processing pipeline
+for scientific time series data, with an emphasis on preserving the
+physical fidelity of the signals.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_scientific_objectives"><a class="anchor" href="#_scientific_objectives"></a>3. Scientific Objectives</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="obj-1-study-and-implement-downsampling-algorithms"><a class="anchor" href="#obj-1-study-and-implement-downsampling-algorithms"></a>3.1. 1. Study and implement downsampling algorithms</h3>
+<div class="paragraph">
+<p>The core question: <strong>given N data points, reduce to M much less than N points
+while preserving the visual and statistical properties of the signal.</strong></p>
+</div>
+<div class="paragraph">
+<p>Algorithms to implement and compare:</p>
+</div>
+<div class="paragraph">
+<p><strong>Naive subsampling</strong> (baseline): keep every floor(N/M)-th point. Simple but
+loses peaks, valleys, and transients. This is what MagnetDB currently
+does.</p>
+</div>
+<div class="paragraph">
+<p><strong>Min-max bucketing</strong>: divide the time axis into M/2 buckets, keep the min
+and max from each bucket. Preserves extrema but doubles the number of
+points per bucket and creates artificial oscillations.</p>
+</div>
+<div class="paragraph">
+<p><strong>LTTB (Largest-Triangle-Three-Buckets)</strong>: Steinarsson&#8217;s algorithm (2013).
+Divides data into M buckets and selects the point in each bucket that
+maximizes the triangle area with the selected points in the adjacent
+buckets. Has a geometric interpretation: it maximizes the visual
+"importance" of each kept point. O(N) complexity.</p>
+</div>
+<div class="paragraph">
+<p><strong>Douglas-Peucker</strong> (Ramer-Douglas-Peucker): recursive simplification of
+the polyline formed by the time series. Keeps points that deviate most
+from the line connecting their neighbors. O(N log N) in best case, O(N^2)
+in worst case.</p>
+</div>
+<div class="paragraph">
+<p><strong>M4 aggregation</strong>: for each bucket of data points, keep four values: min,
+max, first, last. Designed specifically for time series visualization.
+Produces 4M points but guarantees that the visual envelope is preserved.</p>
+</div>
+<div class="paragraph">
+<p>For each algorithm, the student should:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement it in Python (some have existing libraries; implement from
+scratch for understanding, then validate against libraries)</p>
+</li>
+<li>
+<p>Analyze the computational complexity (theoretical and measured)</p>
+</li>
+<li>
+<p>Define appropriate error metrics</p>
+</li>
+<li>
+<p>Benchmark on real operational data</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="obj-2-define-error-metrics-for-scientific-data"><a class="anchor" href="#obj-2-define-error-metrics-for-scientific-data"></a>3.2. 2. Define error metrics for scientific data</h3>
+<div class="paragraph">
+<p>A key contribution of this project is defining what "faithful
+downsampling" means for scientific time series. Standard image/graphics
+metrics (e.g., Hausdorff distance between polylines) are not sufficient.
+For magnet operational data, we care about:</p>
+</div>
+<div class="paragraph">
+<p><strong>Peak preservation error</strong>: abs(max(original) - max(downsampled)) /
+max(original). For the magnetic field channel, losing the peak means
+losing the most scientifically important datum.</p>
+</div>
+<div class="paragraph">
+<p><strong>Integral preservation error</strong>: abs(integral_original - integral_downsampled) /
+abs(integral_original). For power or energy-related channels, the
+integral represents total energy deposited.</p>
+</div>
+<div class="paragraph">
+<p><strong>Frequency content preservation</strong>: compare the power spectral density of
+original and downsampled signals. Important for detecting oscillations
+or instabilities.</p>
+</div>
+<div class="paragraph">
+<p><strong>Statistical moment preservation</strong>: compare mean, std, skewness, kurtosis
+before and after downsampling.</p>
+</div>
+<div class="paragraph">
+<p><strong>Visual fidelity</strong>: overlay original and downsampled plots and compute
+pixel-level difference (renders the time series as a rasterized image
+and compares). This captures what the user actually sees.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="obj-3-handle-multi-rate-and-irregular-time-series"><a class="anchor" href="#obj-3-handle-multi-rate-and-irregular-time-series"></a>3.3. 3. Handle multi-rate and irregular time series</h3>
+<div class="paragraph">
+<p>Operational records may have:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Varying sampling rates</strong>: different channels sampled at different
+frequencies, or the sampling rate changes during a record (faster during
+transients)</p>
+</li>
+<li>
+<p><strong>Gaps</strong>: missing data points due to sensor dropout or acquisition
+system issues</p>
+</li>
+<li>
+<p><strong>Timestamp irregularities</strong>: jitter, duplicate timestamps,
+non-monotonic timestamps</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The student should implement:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Regularity detection</strong>: given a time column, classify it as regular,
+quasi-regular (with jitter), or irregular</p>
+</li>
+<li>
+<p><strong>Resampling</strong>: align all channels to a common regular grid using
+appropriate interpolation (linear for smooth channels, zero-order hold
+for step-like channels such as coil currents)</p>
+</li>
+<li>
+<p><strong>Gap handling</strong>: detect gaps (periods where Delta t exceeds a threshold),
+mark them explicitly, and decide whether to interpolate or leave as NaN</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="obj-4-cross-record-stitching"><a class="anchor" href="#obj-4-cross-record-stitching"></a>3.4. 4. Cross-record stitching</h3>
+<div class="paragraph">
+<p>Given a sequence of records for the same entity (site, magnet, or part),
+build a coherent long-term series:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Temporal alignment</strong>: records have absolute timestamps (Date<br>
+Time columns). Stitch them chronologically with explicit gaps between
+records.</p>
+</li>
+<li>
+<p><strong>Per-record aggregation</strong>: for each record, extract a summary value
+(max, mean, or a more complex statistic from Project A) to produce a
+"one point per record" lifetime series.</p>
+</li>
+<li>
+<p><strong>Full stitching</strong>: concatenate the full time series from all records
+into a single series with gap markers. This is useful for detecting slow
+drifts (resistance aging) that span multiple records.</p>
+</li>
+<li>
+<p><strong>Change-point detection</strong>: identify records where the magnet
+configuration changed (e.g., a helix was replaced). This can be detected
+from discontinuities in baseline resistance or from metadata.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="obj-5-anomaly-detection-exploratory"><a class="anchor" href="#obj-5-anomaly-detection-exploratory"></a>3.5. 5. Anomaly detection (exploratory)</h3>
+<div class="paragraph">
+<p>With the processed time series, apply basic statistical process control
+methods:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>CUSUM (Cumulative Sum)</strong>: detect persistent shifts in the mean of a
+channel</p>
+</li>
+<li>
+<p><strong>EWMA (Exponentially Weighted Moving Average)</strong>: detect gradual drifts</p>
+</li>
+<li>
+<p><strong>Threshold-based alerts</strong>: flag records where a channel exceeds N
+standard deviations from the historical mean</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This objective is exploratory and secondary to objectives 1-4.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_mathematical_content"><a class="anchor" href="#_mathematical_content"></a>4. Mathematical Content</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Approximation theory</strong>: piecewise-linear approximation of functions,
+error bounds, optimal point selection</p>
+</li>
+<li>
+<p><strong>Computational geometry</strong>: triangle area maximization (LTTB), polyline
+simplification (Douglas-Peucker), convex hull concepts</p>
+</li>
+<li>
+<p><strong>Signal processing</strong>: resampling theory, Nyquist criterion for
+downsampling scientific data, anti-aliasing, spectral analysis (PSD
+estimation via Welch&#8217;s method)</p>
+</li>
+<li>
+<p><strong>Interpolation</strong>: linear, cubic spline, zero-order hold; choice of
+interpolation method based on signal physics</p>
+</li>
+<li>
+<p><strong>Algorithm analysis</strong>: time and space complexity, benchmarking
+methodology, statistical significance of benchmark results</p>
+</li>
+<li>
+<p><strong>Time series analysis</strong>: change-point detection (CUSUM, PELT
+algorithm), trend estimation, stationarity tests</p>
+</li>
+<li>
+<p><strong>Statistical process control</strong>: CUSUM charts, EWMA charts, control
+limits</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_technical_environment"><a class="anchor" href="#_technical_environment"></a>5. Technical Environment</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_provided"><a class="anchor" href="#_provided"></a>5.1. Provided</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Docker image</strong> with Python 3.11, pandas, numpy, scipy, matplotlib,
+pyarrow, Jupyter</p>
+</li>
+<li>
+<p><strong>Sample dataset</strong>: 15-20 operational records from 2+ magnet
+configurations, with configuration metadata</p>
+</li>
+<li>
+<p><strong><code>student_helpers</code> module</strong>: record parser, configuration loader</p>
+</li>
+<li>
+<p><strong>Starter notebooks</strong>: data loading, basic visualization, multi-record
+loading</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_useful_python_libraries_pre_installed"><a class="anchor" href="#_useful_python_libraries_pre_installed"></a>5.2. Useful Python libraries (pre-installed)</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>pandas</code>: DataFrame manipulation, resampling</p>
+</li>
+<li>
+<p><code>numpy</code>: array operations</p>
+</li>
+<li>
+<p><code>scipy.signal</code>: spectral analysis, interpolation</p>
+</li>
+<li>
+<p><code>scipy.interpolate</code>: spline interpolation</p>
+</li>
+<li>
+<p><code>pyarrow</code>: Parquet file I/O (the target storage format)</p>
+</li>
+<li>
+<p><code>matplotlib</code>: visualization and visual fidelity benchmarking</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_not_required"><a class="anchor" href="#_not_required"></a>5.3. Not required</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>MagnetTools (not needed - this project works with parsed DataFrames
+only)</p>
+</li>
+<li>
+<p>Django, database knowledge</p>
+</li>
+<li>
+<p>Web development</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="input--output-specification"><a class="anchor" href="#input--output-specification"></a>6. Input / Output Specification</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_downsampling_function"><a class="anchor" href="#_downsampling_function"></a>6.1. Downsampling function</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">def downsample(
+    t: np.ndarray,
+    values: np.ndarray,
+    target_points: int,
+    algorithm: str = 'lttb'
+) -&gt; tuple[np.ndarray, np.ndarray]:
+    """Downsample a single-channel time series.
+
+    Args:
+        t: Time array (N points).
+        values: Value array (N points).
+        target_points: Desired number of output points (M &lt;&lt; N).
+        algorithm: One of 'naive', 'minmax', 'lttb', 'douglas_peucker', 'm4'.
+
+    Returns:
+        Tuple of (t_downsampled, values_downsampled).
+    """</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_multi_channel_downsampling"><a class="anchor" href="#_multi_channel_downsampling"></a>6.2. Multi-channel downsampling</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">def downsample_dataframe(
+    df: pd.DataFrame,
+    time_column: str,
+    columns: list[str],
+    target_points: int,
+    algorithm: str = 'lttb'
+) -&gt; pd.DataFrame:
+    """Downsample multiple channels from a DataFrame.
+
+    Note: different channels may have different optimal retained points.
+    The function must decide how to handle this (e.g., compute the union
+    of important points across channels, or downsample each independently
+    and re-align).
+
+    Args:
+        df: Input DataFrame.
+        time_column: Name of the time column.
+        columns: List of channel names to downsample.
+        target_points: Target number of output points.
+        algorithm: Downsampling algorithm.
+
+    Returns:
+        Downsampled DataFrame with time_column and selected channels.
+    """</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_record_processing_pipeline"><a class="anchor" href="#_record_processing_pipeline"></a>6.3. Record processing pipeline</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">def process_record(
+    df: pd.DataFrame,
+    config: dict = None,
+    resample_period_s: float = None,
+    fill_gaps: bool = False,
+    output_format: str = 'parquet'
+) -&gt; tuple[pd.DataFrame, dict]:
+    """Full processing pipeline for a single record.
+
+    Steps:
+        1. Detect and handle timestamp irregularities
+        2. Remove zero-only columns
+        3. Optionally resample to regular grid
+        4. Detect and mark gaps
+        5. Compute derived columns (if config provided)
+
+    Args:
+        df: Raw parsed record DataFrame.
+        config: Optional site configuration for derived column computation.
+        resample_period_s: If set, resample to this period. If None, keep original.
+        fill_gaps: If True, interpolate short gaps. If False, mark as NaN.
+        output_format: 'dataframe' or 'parquet' (returns bytes).
+
+    Returns:
+        Tuple of (processed_df, metadata_dict).
+        metadata_dict contains: columns catalog, time bounds, num_points,
+        sampling info, gap locations, processing parameters used.
+    """</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_record_stitching"><a class="anchor" href="#_record_stitching"></a>6.4. Record stitching</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">def stitch_records(
+    records: list[tuple[pd.DataFrame, dict]],
+    column: str,
+    aggregation: str = 'max',
+    mode: str = 'summary'
+) -&gt; pd.DataFrame:
+    """Stitch multiple records into a long-term series.
+
+    Args:
+        records: List of (DataFrame, metadata) tuples, chronologically ordered.
+            metadata must contain 'started_at' and 'ended_at'.
+        column: Which channel to stitch.
+        aggregation: For 'summary' mode - how to summarize each record:
+            'max', 'mean', 'min', 'std', 'last', or a callable.
+        mode:
+            'summary' - one point per record (for trend analysis)
+            'full' - concatenate all points with gap markers (for drift detection)
+
+    Returns:
+        DataFrame with columns:
+            'timestamp': absolute datetime
+            '{column}_{aggregation}': the stitched values
+            'record_index': which record each point came from
+            'is_gap': True for gap markers between records
+    """</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_benchmark_function"><a class="anchor" href="#_benchmark_function"></a>6.5. Benchmark function</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">def benchmark_downsampling(
+    t: np.ndarray,
+    values: np.ndarray,
+    algorithms: list[str],
+    target_points_range: list[int],
+    metrics: list[str] = None
+) -&gt; pd.DataFrame:
+    """Benchmark downsampling algorithms on a given signal.
+
+    Args:
+        t, values: Original time series.
+        algorithms: List of algorithm names to compare.
+        target_points_range: List of target point counts (e.g., [50, 100, 200, 500, 1000]).
+        metrics: List of error metrics to compute. Default: all available
+            ('peak_error', 'integral_error', 'spectral_error',
+             'moment_error', 'visual_fidelity', 'computation_time_ms').
+
+    Returns:
+        DataFrame with one row per (algorithm, target_points) combination,
+        columns for each metric.
+    """</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_suggested_timeline"><a class="anchor" href="#_suggested_timeline"></a>7. Suggested Timeline</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>|==
+|Period |Activities
+|Weeks 1-2 |Onboarding: run starter notebooks, understand the data.
+Literature review on downsampling algorithms</p>
+</div>
+<div class="paragraph">
+<p>|Weeks 3-5 |Implement 4-5 downsampling algorithms. Validate against
+reference implementations where available</p>
+</div>
+<div class="paragraph">
+<p>|Weeks 5-7 |Define error metrics. Build benchmarking framework. Run
+benchmarks on sample records</p>
+</div>
+<div class="paragraph">
+<p>|Weeks 7-9 |Implement <code>process_record()</code>: timestamp handling,
+resampling, gap detection</p>
+</div>
+<div class="paragraph">
+<p>|Weeks 9-11 |Implement <code>stitch_records()</code>: temporal alignment,
+aggregation modes, change-point detection</p>
+</div>
+<div class="paragraph">
+<p>|Weeks 11-12 |(If time permits) Anomaly detection on stitched series</p>
+</div>
+<div class="paragraph">
+<p>|Weeks 12-14 |Write report with benchmark analysis and recommendations.
+Clean up code. Final presentation
+|==</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_evaluation_criteria"><a class="anchor" href="#_evaluation_criteria"></a>8. Evaluation Criteria</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Algorithm understanding</strong>: Can the student explain the geometric or
+mathematical basis of each algorithm? Are the implementations correct?</p>
+</li>
+<li>
+<p><strong>Benchmark rigor</strong>: Are the error metrics well-defined and physically
+justified? Are benchmarks statistically sound (multiple runs, confidence
+intervals)?</p>
+</li>
+<li>
+<p><strong>Practical recommendations</strong>: Based on benchmarks, which algorithm
+should MagnetDB use, with what parameters, for which types of channels?</p>
+</li>
+<li>
+<p><strong>Pipeline robustness</strong>: Does <code>process_record()</code> handle edge cases
+(empty columns, irregular timestamps, short records)?</p>
+</li>
+<li>
+<p><strong>Code quality</strong>: Well-structured module, tests, documentation</p>
+</li>
+<li>
+<p><strong>Report quality</strong>: Clear algorithm descriptions, insightful benchmark
+analysis, actionable conclusions</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references"><a class="anchor" href="#_references"></a>9. References</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>LTTB: Steinarsson, S., "Downsampling Time Series for Visual
+Representation," MSc thesis, University of Iceland (2013)</p>
+</li>
+<li>
+<p>Douglas-Peucker: Ramer, U., "An iterative procedure for the polygonal
+approximation of plane curves," CGIP (1972); Douglas, D.H. and Peucker,
+T.K., "Algorithms for the reduction of the number of points required to
+represent a digitized line," Cartographica (1973)</p>
+</li>
+<li>
+<p>M4 aggregation: Jugel, U. et al., "M4: A Visualization-Oriented Time
+Series Data Aggregation," VLDB (2014)</p>
+</li>
+<li>
+<p>Signal processing: Oppenheim, A.V. and Schafer, R.W., "Discrete-Time
+Signal Processing" (2010)</p>
+</li>
+<li>
+<p>Change-point detection: Killick, R. et al., "Optimal detection of
+changepoints with a linear computational cost," JASA (2012) - the PELT
+algorithm</p>
+</li>
+<li>
+<p>Statistical process control: Montgomery, D.C., "Introduction to
+Statistical Quality Control" (2012)</p>
+</li>
+<li>
+<p>Parquet format: Apache Parquet specification - columnar storage for
+efficient I/O</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+                    
+
+                      <div class="manuals" data-cards-tag="manual">
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="../../index.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-calendar"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>CSMI Projects - 2026</h4>
+    <p class="page-card-description">CSMI project proposals for the 2026 cohort.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="../index.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-graduation-cap"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>CSMI Projects - 2026 - Master 1 - Semester 2 (S2)</h4>
+    <p class="page-card-description">Project proposal workspace for CSMI M1 S2 in 2026.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="index.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-list"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>CSMI Topics - 2026 M1 S2</h4>
+    <p class="page-card-description">Topic list for CSMI project proposals in 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hid-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-city"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hid-1: Modélisation thermo-hydraulique urbaine multi-physique pour la simulation de la ville à l&amp;#8217;échelle Exascale</h4>
+    <p class="page-card-description">Stage HID de modélisation thermo-hydraulique urbaine multi-physique pour 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hifimagnet-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-magnet"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hifimagnet-1: Statistical Characterization of High-Field Magnet Operations</h4>
+    <p class="page-card-description">CSMI Project A statistical characterization proposal for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hifimagnet-2.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-magnet"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hifimagnet-2: Hoop Stress Computation and Mechanical Fatigue Indicators from Operational Data</h4>
+    <p class="page-card-description">CSMI Project B hoop stress and fatigue proposal for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hifimagnet-3.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-magnet"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hifimagnet-3: Time Series Processing and Downsampling for Scientific Operational Data</h4>
+    <p class="page-card-description">CSMI Project C time series processing proposal for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="ooc-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-cube"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>ooc-1: Robust Trajectory Tracking, Verification, Validation, and Trajectory Statistics</h4>
+    <p class="page-card-description">Robust cell trajectory extraction and validation in organ-on-chip imaging with realistic trajectory visualization and statistical analysis.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="ooc-2.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-cube"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>ooc-2: Bulk Flow of One Cell Population Toward Another</h4>
+    <p class="page-card-description">Quantify and model collective bulk flow of a source cell population toward a target population in organ-on-chip experiments.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="ooc-3.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-cube"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>ooc-3: PDE-Based Cell Density Modeling in OOC with Feel++ CFPDE</h4>
+    <p class="page-card-description">Develop and validate PDE cell-density models for organ-on-chip systems using the Feel++ CFPDE toolbox.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="sepsis-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-stethoscope"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>sepsis-1: Data Pipeline and Quality Audit for Sepsis Prediction</h4>
+    <p class="page-card-description">CSMI project sepsis-1 for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="sepsis-2.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-stethoscope"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>sepsis-2: Early Sepsis Prediction and Alert Threshold Design</h4>
+    <p class="page-card-description">CSMI project sepsis-2 for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="sepsis-3.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-stethoscope"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>sepsis-3: Digital Twin Lite for Patient Trajectory and Treatment Scenarios</h4>
+    <p class="page-card-description">CSMI project sepsis-3 for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                      </div>
+      </article>
+    </div>
+  </main>
+</div>
+
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../../../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2026 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../../../../_/js/site.js" data-ui-root-path="../../../../_"></script>
+
+
+<!-- Font Awesome JS removed to use webfont icons only -->
+<script async src="../../../../_/js/vendor/highlight.js"></script>
+
+<script src="../../../../_/js/vendor/lunr.js"></script>
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+</body>
+</html>

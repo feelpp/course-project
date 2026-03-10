@@ -620,6 +620,96 @@
     },
     {
       "id": 104,
+      "title": "CSMI Projects - 2026 :: Course Project",
+      "content": "CSMI Projects - 2026 This page tracks CSMI project spaces for the 2026 cohort. 1. Active Semester Master 1 - Semester 2 (S2) 2. Topics Folder 2026/m1-s2/topics CSMI Projects - 2026 - Master 1 - Semester 2 (S2) Project proposal workspace for CSMI M1 S2 in 2026.",
+      "url": "/csmi/2026/"
+    },
+    {
+      "id": 105,
+      "title": "CSMI Projects - 2026 - Master 1 - Semester 2 (S2) :: Course Project",
+      "content": "CSMI Projects - 2026 - Master 1 - Semester 2 (S2) This workspace contains project proposals for the 2026 CSMI Master 1 S2 semester. 1. Topics Project list and proposal pages 2. Organization Each student has an individual project page. Projects share common context, methods, and expected deliverables. CSMI Topics - 2026 M1 S2 Topic list for CSMI project proposals in 2026 M1 S2.",
+      "url": "/csmi/2026/m1-s2/"
+    },
+    {
+      "id": 106,
+      "title": "hid-1: Modélisation thermo-hydraulique urbaine multi-physique pour la simulation de la ville à l’échelle Exascale :: Course Project",
+      "content": "hid-1: Modélisation thermo-hydraulique urbaine multi-physique pour la simulation de la ville à l’échelle Exascale 1. Contexte du projet Le projet s’inscrit dans le cadre du projet européen Hidalgo2, visant à porter les simulations complexes vers l’ère de l'Exascale. Vous rejoindrez l’équipe de développement de Ktirio, un logiciel de simulation thermique du bâtiment en pleine mutation pour devenir un simulateur urbain complet. L’enjeu est de dépasser la simple étude du bâti isolé pour intégrer finement dans les simulations son environnement urbain. 2. Thématique et Objectifs de recherche L’objectif central est de développer un modèle de sol 1D multi-physique capable de simuler les interactions complexes thermique et hydraulique. Ce modèle est un chaînon important pour quantifier les îlots de chaleur urbains (ICU) et la résilience hydrologique des quartiers. L’axe majeur du stage : Physique des transferts thermiques échange sol-atmosphère (Modèle de sol) Bilan radiatif : Prise en compte ",
+      "url": "/csmi/2026/m1-s2/topics/hid-1.html"
+    },
+    {
+      "id": 107,
+      "title": "hifimagnet-1: Statistical Characterization of High-Field Magnet Operations :: Course Project",
+      "content": "hifimagnet-1: Statistical Characterization of High-Field Magnet Operations 1. Overview Level M1 Applied Mathematics (Internship or Semester Project) Duration 3-4 months (internship) or one semester (project) Prerequisite knowledge Multivariate statistics, Python/pandas, basic physics (electromagnetism appreciated but not required) MagnetDB roadmap mapping Phase 1 (RecordStats) + Phase 3 (CumulativeStats) Deliverables Python module + analysis report 2. Context LNCMI (Laboratoire National des Champs Magnetiques Intenses) operates resistive high-field magnets capable of producing magnetic fields up to 36 Tesla. These magnets are water-cooled polyhelix inserts composed of concentric helical conductors carrying tens of thousands of amperes. During operation, a monitoring system records time series of physical quantities: magnetic field, coil currents, voltages, temperatures, pressures, and water flow rates. Each experimental session produces a record - a multivariate time series typically c",
+      "url": "/csmi/2026/m1-s2/topics/hifimagnet-1.html"
+    },
+    {
+      "id": 108,
+      "title": "hifimagnet-2: Hoop Stress Computation and Mechanical Fatigue Indicators from Operational Data :: Course Project",
+      "content": "hifimagnet-2: Hoop Stress Computation and Mechanical Fatigue Indicators from Operational Data 1. Overview |== |Level |M1 Applied Mathematics (Internship, preferably 4-5 months) |Duration |4-5 months |Prerequisite knowledge |Continuum mechanics or solid mechanics, PDEs, numerical methods, Python |MagnetDB roadmap mapping |Phase 1 (computed RecordStats) + Phase 2 (derived time series) |Deliverables |Python module + analysis report |== 2. Context LNCMI polyhelix magnets operate under extreme mechanical stress. Each helical conductor carries tens of thousands of amperes in a multi-Tesla magnetic field. The Lorentz force (J x B) produces a radial pressure that generates hoop stress - circumferential tensile stress in the conductor walls, analogous to the stress in a pressurized cylindrical vessel. The hoop stress is the primary mechanical constraint on magnet design: it determines how much current (and therefore how much field) a magnet can safely produce. When the hoop stress exceeds the m",
+      "url": "/csmi/2026/m1-s2/topics/hifimagnet-2.html"
+    },
+    {
+      "id": 109,
+      "title": "hifimagnet-3: Time Series Processing and Downsampling for Scientific Operational Data :: Course Project",
+      "content": "hifimagnet-3: Time Series Processing and Downsampling for Scientific Operational Data 1. Overview |== |Level |M1 Applied Mathematics (Internship or Semester Project) |Duration |3-4 months (internship) or one semester (project) |Prerequisite knowledge |Signal processing or numerical analysis, algorithms, Python |MagnetDB roadmap mapping |Phase 2 (ProcessedTimeSeries / ETL) Phase 3 (stitched series) |Deliverables |Python module + benchmark report |== 2. Context MagnetDB stores operational records as raw data files - time series of 50-70 physical channels recorded during magnet experiments. These records need to be served to users through a web interface for interactive visualization and analysis. This creates two distinct challenges: The visualization challenge: a record with 5000 data points and 70 columns is too large to send to a browser for plotting. The current MagnetDB implementation uses naive modulo subsampling (keep every Nth point), which discards peaks and distorts the visual ",
+      "url": "/csmi/2026/m1-s2/topics/hifimagnet-3.html"
+    },
+    {
+      "id": 110,
+      "title": "CSMI Topics - 2026 M1 S2 :: Course Project",
+      "content": "CSMI Topics - 2026 M1 S2 Project pages for the 2026 CSMI Master 1 S2 semester. 1. Shared Structure Common context and expectations are defined for all projects. Each student works on one project page with project-specific details. 2. Projects hid-1 hifimagnet-1 hifimagnet-2 hifimagnet-3 ooc-1 ooc-2 ooc-3 sepsis-1 sepsis-2 sepsis-3 3. Template Proposal template hid-1: Modélisation thermo-hydraulique urbaine multi-physique pour la simulation de la ville à l&#8217;échelle Exascale Stage HID de modélisation thermo-hydraulique urbaine multi-physique pour 2026 M1 S2. hifimagnet-1: Statistical Characterization of High-Field Magnet Operations CSMI Project A statistical characterization proposal for 2026 M1 S2. hifimagnet-2: Hoop Stress Computation and Mechanical Fatigue Indicators from Operational Data CSMI Project B hoop stress and fatigue proposal for 2026 M1 S2. hifimagnet-3: Time Series Processing and Downsampling for Scientific Operational Data CSMI Project C time series processing propos",
+      "url": "/csmi/2026/m1-s2/topics/"
+    },
+    {
+      "id": 111,
+      "title": "ooc-1: Robust Trajectory Tracking, Verification, Validation, and Trajectory Statistics :: Course Project",
+      "content": "ooc-1: Robust Trajectory Tracking, Verification, Validation, and Trajectory Statistics 1. Shared Context Use organ-on-chip time-lapse microscopy datasets, existing segmentation/tracking code in organ-on-chip, and shared Python analysis tooling for reproducible experiments. 2. Student-Specific Scope Improve trajectory robustness under noise, missed detections, and dense-cell scenarios; define verification and validation protocols; produce realistic and interpretable trajectory visualizations and trajectory-level statistics. 3. Objectives Build a robust tracking pipeline with explicit uncertainty handling. Define quantitative verification and validation benchmarks (manual labels and synthetic perturbations). Deliver statistical trajectory descriptors and biologically meaningful visual analytics. 4. Expected Deliverables Source code repository Documentation and reproducibility notes Final report and presentation 5. Milestones Week 1-2: Data curation, baseline reproduction, metric definiti",
+      "url": "/csmi/2026/m1-s2/topics/ooc-1.html"
+    },
+    {
+      "id": 112,
+      "title": "ooc-2: Bulk Flow of One Cell Population Toward Another :: Course Project",
+      "content": "ooc-2: Bulk Flow of One Cell Population Toward Another 1. Shared Context Use the same organ-on-chip imaging datasets and preprocessing pipeline (segmentation and tracking), with common statistical and visualization tooling. 2. Student-Specific Scope Focus on two identified cell populations and quantify directed collective motion of source cells toward target cells through velocity fields, flux estimates, and significance testing. 3. Objectives Identify and track two cell populations over time. Estimate bulk flow, directional bias, and net flux toward target regions. Validate flow trends statistically across conditions and experiments. 4. Expected Deliverables Source code repository Documentation and reproducibility notes Final report and presentation 5. Milestones Week 1-2: Define populations, labeling strategy, and flow metrics Week 3-6: Implement flow and flux estimation with condition-wise analysis Week 7-9: Statistical validation and interaction-focused visualizations Week 10: Fina",
+      "url": "/csmi/2026/m1-s2/topics/ooc-2.html"
+    },
+    {
+      "id": 113,
+      "title": "ooc-3: PDE-Based Cell Density Modeling in OOC with Feel++ CFPDE :: Course Project",
+      "content": "ooc-3: PDE-Based Cell Density Modeling in OOC with Feel++ CFPDE 1. Shared Context Use organ-on-chip experimental datasets and shared geometry and measurement context, with Feel++ as the common simulation framework. 2. Student-Specific Scope Develop continuum cell-density models (diffusion, advection, reaction, and possibly chemotaxis), implement them in CFPDE, and calibrate against observed OOC cell behavior. 3. Objectives Formulate PDE models for cell density evolution adapted to OOC geometry and flow. Implement and run simulations with Feel++ CFPDE. Calibrate and validate model predictions against experimental trajectory or density data. 4. Expected Deliverables Source code repository Documentation and reproducibility notes Final report and presentation 5. Milestones Week 1-2: Literature review and model specification Week 3-6: CFPDE implementation and baseline simulation setup Week 7-9: Parameter calibration, validation, and sensitivity analysis Week 10: Final presentation CSMI Proj",
+      "url": "/csmi/2026/m1-s2/topics/ooc-3.html"
+    },
+    {
+      "id": 114,
+      "title": "sepsis-1: Data Pipeline and Quality Audit for Sepsis Prediction :: Course Project",
+      "content": "sepsis-1: Data Pipeline and Quality Audit for Sepsis Prediction 1. Shared Context This project is designed for M1 CSMI Semester 2 students in 2026. It is based on ICU sepsis data (PhysioNet challenge format) and a reproducible Python workflow. The expected workload is 60 to 80 hours (maximum 100 hours) between March 10, 2026 and May 30, 2026 (oral defense). 2. Student-Specific Scope Assigned student(s): to be filled Specific scientific question: How do data cleaning and missing-value strategies affect downstream sepsis prediction quality? Specific constraints: Use only de-identified challenge data and provide fully reproducible scripts/notebooks. 3. Objectives Build a reproducible ingestion and preprocessing pipeline for ICU time-series. Quantify missingness, outliers, and feature reliability. Compare at least two imputation strategies and justify the final choice. Train a simple baseline model (for example logistic regression) to validate the prepared dataset. 4. Work Plan and Time Bu",
+      "url": "/csmi/2026/m1-s2/topics/sepsis-1.html"
+    },
+    {
+      "id": 115,
+      "title": "sepsis-2: Early Sepsis Prediction and Alert Threshold Design :: Course Project",
+      "content": "sepsis-2: Early Sepsis Prediction and Alert Threshold Design 1. Shared Context This project is designed for M1 CSMI Semester 2 students in 2026. It uses ICU sepsis data (PhysioNet challenge format) and focuses on supervised prediction in a clinically interpretable setting. The expected workload is 60 to 80 hours (maximum 100 hours) between March 10, 2026 and May 30, 2026 (oral defense). 2. Student-Specific Scope Assigned student(s): to be filled Specific scientific question: How early can sepsis be predicted while maintaining acceptable precision, recall, and calibration? Specific constraints: Compare at least one interpretable model and one higher-capacity model with identical train/test protocol. 3. Objectives Define a prediction target and clinically relevant prediction horizon (for example 4 to 6 hours before onset). Train and compare multiple models (for example logistic regression, random forest, gradient boosting). Evaluate discrimination and calibration (AUROC, AUPRC, calibrati",
+      "url": "/csmi/2026/m1-s2/topics/sepsis-2.html"
+    },
+    {
+      "id": 116,
+      "title": "sepsis-3: Digital Twin Lite for Patient Trajectory and Treatment Scenarios :: Course Project",
+      "content": "sepsis-3: Digital Twin Lite for Patient Trajectory and Treatment Scenarios 1. Shared Context This project is designed for M1 CSMI Semester 2 students in 2026. It uses the same ICU sepsis context (PhysioNet challenge format) but shifts focus from classification to short-term trajectory modeling. The expected workload is 60 to 80 hours (maximum 100 hours) between March 10, 2026 and May 30, 2026 (oral defense). 2. Student-Specific Scope Assigned student(s): to be filled Specific scientific question: Can we build a simplified digital twin to forecast short-term physiological evolution and compare intervention scenarios? Specific constraints: Keep claims exploratory; no causal or clinical deployment claims beyond observed-data simulation. 3. Objectives Build a compact patient-state representation from recent vital signs and laboratory trends. Train a short-horizon forecasting model (for example 1 to 6 hour horizon for MAP, lactate, or SOFA proxy). Implement scenario-based simulation (for ex",
+      "url": "/csmi/2026/m1-s2/topics/sepsis-3.html"
+    },
+    {
+      "id": 117,
+      "title": "CSMI Project Proposals :: Course Project",
+      "content": "CSMI Project Proposals This module organizes CSMI project proposals by academic year, master level, and semester. 1. Current Cohort Year: 2026 Program: Master 1 Semester: S2 2. Yearly Project Spaces CSMI projects for 2026 3. Active Topics Folder 2026/m1-s2/topics CSMI Projects - 2026 CSMI project proposals for the 2026 cohort.",
+      "url": "/csmi/"
+    },
+    {
+      "id": 118,
+      "title": "Proposal Template :: Course Project",
+      "content": "Edit this Page Download as .pdf Proposal Template 1. Shared Context Describe the common scientific background, common datasets, and shared tools. 2. Student-Specific Scope Document what is specific to this project instance. 3. Objectives Objective 1 Objective 2 Objective 3 4. Expected Deliverables Source code repository Documentation and reproducibility notes Final report and presentation 5. Milestones Week 1-2: Scope and setup Week 3-6: Core implementation Week 7-9: Validation and documentation Week 10: Final presentation",
+      "url": "/csmi/proposal-template.html"
+    },
+    {
+      "id": 119,
       "title": "Redirect Notice",
       "content": "Redirect Notice The page you requested has been relocated to https://feelpp.github.io/course-project/course-project/index.html.",
       "url": "/index.html"

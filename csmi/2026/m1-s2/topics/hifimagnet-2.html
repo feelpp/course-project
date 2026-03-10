@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>hifimagnet-2: Hoop Stress Computation and Mechanical Fatigue Indicators from Operational Data :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/csmi/2026/m1-s2/topics/hifimagnet-2.html">
+    <link rel="prev" href="hifimagnet-1.html">
+    <link rel="next" href="hifimagnet-3.html">
+    <meta name="description" content="CSMI Project B hoop stress and fatigue proposal for 2026 M1 S2.">
+    <meta name="generator" content="Antora 3.1.7">
+<link rel="stylesheet" href="../../../../_/css/site.css">
+
+<!-- Font Awesome webfont CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../../../../_/css/listing.css">
+<link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../../../_'</script>
+
+</head>
+<body class="article docs-manuals-catalog docs-cards-layout ">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../../../../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../../../../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../../../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../../../../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="body">
+  <a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="csmi" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../../index.html">CSMI Projects</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🎓 CSMI Projects</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../index.html">Module Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../index.html"><span class="icon"><i class="fa fa-calendar"></i></span> 2026 Cohort</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html"><span class="icon"><i class="fa fa-graduation-cap"></i></span> Master 1 - Semester 2 (S2)</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html"><span class="icon"><i class="fa fa-list"></i></span> Topics and Proposals</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="hid-1.html"><span class="icon"><i class="fa fa-city"></i></span> hid-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="hifimagnet-1.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-1</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="5">
+    <a class="nav-link" href="hifimagnet-2.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-2</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="hifimagnet-3.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-3</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="ooc-1.html"><span class="icon"><i class="fa fa-cube"></i></span> ooc-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="ooc-2.html"><span class="icon"><i class="fa fa-cube"></i></span> ooc-2</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="ooc-3.html"><span class="icon"><i class="fa fa-cube"></i></span> ooc-3</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="sepsis-1.html"><span class="icon"><i class="fa fa-stethoscope"></i></span> sepsis-1</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="sepsis-2.html"><span class="icon"><i class="fa fa-stethoscope"></i></span> sepsis-2</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="sepsis-3.html"><span class="icon"><i class="fa fa-stethoscope"></i></span> sepsis-3</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">CSMI Projects</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../../../../course-project/index.html">Course Project</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="../../../index.html">CSMI Projects</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="article">
+    <div class="toolbar" role="navigation">
+      <button class="nav-toggle"></button>
+       <a href="../../../../course-project/index.html" class="home-link"></a> 
+      <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../../index.html">CSMI Projects</a></li>
+    <li>🎓 CSMI Projects</li>
+    <li><a href="../../index.html"><span class="icon"><i class="fa fa-calendar"></i></span> 2026 Cohort</a></li>
+    <li><a href="../index.html"><span class="icon"><i class="fa fa-graduation-cap"></i></span> Master 1 - Semester 2 (S2)</a></li>
+    <li><a href="index.html"><span class="icon"><i class="fa fa-list"></i></span> Topics and Proposals</a></li>
+    <li><a href="hifimagnet-2.html"><span class="icon"><i class="fa fa-magnet"></i></span> hifimagnet-2</a></li>
+  </ul>
+</nav>
+    </div>
+
+    <div class="content">
+      <article class="doc">
+         <h1 class="page">hifimagnet-2: Hoop Stress Computation and Mechanical Fatigue Indicators from Operational Data</h1> 
+        <div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>1. Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>|==
+|<strong>Level</strong> |M1 Applied Mathematics (Internship, preferably 4-5 months)</p>
+</div>
+<div class="paragraph">
+<p>|<strong>Duration</strong> |4-5 months</p>
+</div>
+<div class="paragraph">
+<p>|<strong>Prerequisite knowledge</strong> |Continuum mechanics or solid mechanics, PDEs,
+numerical methods, Python</p>
+</div>
+<div class="paragraph">
+<p>|<strong>MagnetDB roadmap mapping</strong> |Phase 1 (computed RecordStats) + Phase
+2 (derived time series)</p>
+</div>
+<div class="paragraph">
+<p>|<strong>Deliverables</strong> |Python module + analysis report
+|==</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_context"><a class="anchor" href="#_context"></a>2. Context</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>LNCMI polyhelix magnets operate under extreme mechanical stress. Each
+helical conductor carries tens of thousands of amperes in a multi-Tesla
+magnetic field. The Lorentz force (J x B) produces a radial pressure
+that generates <strong>hoop stress</strong> - circumferential tensile stress in the
+conductor walls, analogous to the stress in a pressurized cylindrical
+vessel.</p>
+</div>
+<div class="paragraph">
+<p>The hoop stress is the primary mechanical constraint on magnet design:
+it determines how much current (and therefore how much field) a magnet
+can safely produce. When the hoop stress exceeds the material&#8217;s elastic
+limit (Rpe), plastic deformation occurs, which can lead to conductor
+failure.</p>
+</div>
+<div class="paragraph">
+<p>Currently, MagnetDB can compute hoop stress at a given operating point
+using MagnetTools (a C++ library with Python bindings).
+However, this computation is performed on-demand and does not leverage
+the full operational history. This project aims to:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Compute hoop stress time series from operational records</p>
+</li>
+<li>
+<p>Extract fatigue-relevant indicators from these time series</p>
+</li>
+<li>
+<p>Investigate whether surrogate models can approximate the computation
+for real-time use</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_scientific_objectives"><a class="anchor" href="#_scientific_objectives"></a>3. Scientific Objectives</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="obj-1-understand-the-electromagnetic-mechanical-coupling"><a class="anchor" href="#obj-1-understand-the-electromagnetic-mechanical-coupling"></a>3.1. 1. Understand the electromagnetic-mechanical coupling</h3>
+<div class="paragraph">
+<p>The student must understand the physics chain:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Coil currents I(t)  -&gt;  Magnetic field B(r,z)  -&gt;  Lorentz force JxB  -&gt;  Hoop stress sigma_theta(r)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For a polyhelix insert magnet:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Each helix carries a current I_i(t) that varies over time
+(recorded in operational data as Icoil_i)</p>
+</li>
+<li>
+<p>The magnetic field at any point is the superposition of contributions
+from all helices (Biot-Savart integral, computed by MagnetTools)</p>
+</li>
+<li>
+<p>The Lorentz force on helix i depends on its own current and the total
+field at its location</p>
+</li>
+<li>
+<p>The hoop stress in helix i depends on the Lorentz force, the helix
+geometry (inner/outer radius, thickness), and the material properties
+(Young&#8217;s modulus, Poisson ratio)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>MagnetTools already implements this computation. The student&#8217;s task is
+not to reimplement it from scratch, but to understand it well enough to
+use it systematically across operational data and to interpret the
+results physically.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="obj-2-compute-per-timestep-hoop-stress-from-operational-records"><a class="anchor" href="#obj-2-compute-per-timestep-hoop-stress-from-operational-records"></a>3.2. 2. Compute per-timestep hoop stress from operational records</h3>
+<div class="paragraph">
+<p>Given an operational record (time series of coil currents), compute the
+hoop stress in each helix at each timestep:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Load the magnet geometry and material properties</p>
+</li>
+<li>
+<p>For each timestep (or a representative subsample), set the currents in
+MagnetTools and compute hoop stress for all helices</p>
+</li>
+<li>
+<p>Produce a derived time series: sigma_theta(t) for each part</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This is computationally intensive: if a record has 500 timesteps and the
+magnet has 14 helices, that&#8217;s 7000 MagnetTools evaluations per record.
+The student must:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Profile the computation time</p>
+</li>
+<li>
+<p>Investigate whether all timesteps need to be computed, or whether
+sampling (e.g., only during plateau, or at local current maxima) is
+sufficient</p>
+</li>
+<li>
+<p>Consider whether the computation can be vectorized or parallelized</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="obj-3-extract-fatigue-indicators"><a class="anchor" href="#obj-3-extract-fatigue-indicators"></a>3.3. 3. Extract fatigue indicators</h3>
+<div class="paragraph">
+<p>From the hoop stress time series, extract indicators relevant to
+mechanical fatigue:</p>
+</div>
+<div class="paragraph">
+<p><strong>Peak stress indicators</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>sigma_max per part per record</p>
+</li>
+<li>
+<p>Ratio sigma_max / Rpe (proximity to elastic limit) - this is the most
+critical safety indicator</p>
+</li>
+<li>
+<p>Time spent above configurable thresholds (e.g., 80% Rpe, 90% Rpe)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Cyclic fatigue indicators</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Apply the <strong>Rainflow counting algorithm</strong> to the stress time series to
+identify stress cycles</p>
+</li>
+<li>
+<p>Compute cycle counts at different stress amplitudes (S-N approach)</p>
+</li>
+<li>
+<p>Estimate cumulative fatigue damage using Miner&#8217;s rule: D = sum(n_i /
+N_i)</p>
+</li>
+<li>
+<p>Track cumulative damage across records (lifetime fatigue accumulation)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Stress rate indicators</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>dsigma/dt during ramp-up and ramp-down (rapid stress changes are more
+damaging)</p>
+</li>
+<li>
+<p>Stress amplitude per cycle</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="obj-4-investigate-surrogate-models-exploratory"><a class="anchor" href="#obj-4-investigate-surrogate-models-exploratory"></a>3.4. 4. Investigate surrogate models (exploratory)</h3>
+<div class="paragraph">
+<p>The MagnetTools computation is accurate but expensive. For real-time
+monitoring or rapid parameter sweeps, a faster approximation would be
+valuable.</p>
+</div>
+<div class="paragraph">
+<p>The student should explore:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Response surface</strong>: for a given magnet geometry, the hoop stress in
+each helix is a smooth function of the input currents. Compute stress at
+a grid of current values and fit a polynomial or radial basis function
+interpolant</p>
+</li>
+<li>
+<p><strong>Reduced model</strong>: given the linearity of the Biot-Savart integral,
+explore whether sigma_theta can be expressed as a linear (or low-order
+polynomial) function of the currents</p>
+</li>
+<li>
+<p><strong>Error quantification</strong>: compare the surrogate model against
+MagnetTools across the operating envelope and quantify the approximation
+error</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This objective is exploratory and secondary to objectives 1-3. It should
+be pursued if time permits and the student has an interest in
+approximation theory.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_mathematical_content"><a class="anchor" href="#_mathematical_content"></a>4. Mathematical Content</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Continuum mechanics</strong>: hoop stress in thick-walled cylinders, Lame
+equations, stress concentration in helical geometries</p>
+</li>
+<li>
+<p><strong>Electromagnetics</strong>: Biot-Savart integral, Lorentz force density,
+superposition principle for multi-coil systems</p>
+</li>
+<li>
+<p><strong>Fatigue analysis</strong>: Rainflow counting algorithm (ASTM E1049), S-N
+curves, Miner&#8217;s linear damage accumulation rule, Goodman diagram</p>
+</li>
+<li>
+<p><strong>Numerical methods</strong>: function evaluation sampling strategies (adaptive
+vs. uniform), computation profiling and optimization</p>
+</li>
+<li>
+<p><strong>Approximation theory</strong> (exploratory): polynomial interpolation, radial
+basis functions, Gaussian process regression, cross-validation for model
+selection</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_technical_environment"><a class="anchor" href="#_technical_environment"></a>5. Technical Environment</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_provided"><a class="anchor" href="#_provided"></a>5.1. Provided</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Docker image</strong> with Python 3.11, MagnetTools, python_magnetgeo,
+pandas, numpy, scipy, matplotlib, Jupyter</p>
+</li>
+<li>
+<p><strong><code>student_helpers</code> module</strong>: record parser, MagnetTools bridge
+function, configuration loader</p>
+</li>
+<li>
+<p><strong>Sample dataset</strong>: 15-20 operational records with matching geometry
+YAML files and material properties</p>
+</li>
+<li>
+<p><strong>Starter notebooks</strong>: data loading, MagnetTools basics (field
+computation, hoop stress at one operating point)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_dependencies"><a class="anchor" href="#_key_dependencies"></a>5.2. Key dependencies</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>MagnetTools</strong> (<code>magnettools.magnettools</code> and <code>magnettools.Bmap</code>):
+C++ library with Python bindings for electromagnetic and
+mechanical computation</p>
+</li>
+<li>
+<p><strong>python_magnetgeo</strong>: Python module for loading magnet geometry
+descriptions from YAML files</p>
+</li>
+<li>
+<p><strong><code>student_helpers.magnettools_bridge</code></strong>: bridge function that
+converts geometry YAML files into MagnetTools objects</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_development_workflow"><a class="anchor" href="#_development_workflow"></a>5.3. Development workflow</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Start with the starter notebook to verify MagnetTools works</p>
+</li>
+<li>
+<p>Explore the computation: vary currents, observe how stress changes</p>
+</li>
+<li>
+<p>Build the time series computation in a notebook</p>
+</li>
+<li>
+<p>Profile and optimize (sampling strategy)</p>
+</li>
+<li>
+<p>Implement fatigue indicators</p>
+</li>
+<li>
+<p>Refactor into a Python module with tests</p>
+</li>
+<li>
+<p>(Optional) Explore surrogate models</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="input--output-specification"><a class="anchor" href="#input--output-specification"></a>6. Input / Output Specification</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_primary_function_stress_time_series_computation"><a class="anchor" href="#_primary_function_stress_time_series_computation"></a>6.1. Primary function: stress time series computation</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">def compute_stress_timeseries(
+    df: pd.DataFrame,
+    mt_data: tuple,
+    parts: list[dict],
+    sampling_strategy: str = 'all',
+    max_timesteps: int = None
+) -&gt; pd.DataFrame:
+    """Compute hoop stress time series for all parts from operational data.
+
+    Args:
+        df: Parsed record DataFrame with 't' and 'Icoil1'...'IcoilN' columns.
+        mt_data: MagnetTools objects tuple
+            (Tubes, Helices, OHelices, BMagnets, UMagnets, Shims)
+            obtained from magnettools_bridge.load_insert_from_yaml().
+        parts: List of part descriptors:
+            [{"name": "H15101601", "type": "helix", "coil_index": 1,
+              "material": {"rpe": 481, "young": 117e9, ...}}, ...]
+        sampling_strategy: How to select timesteps:
+            'all' - every timestep (slow but complete)
+            'peaks' - only local current maxima/minima
+            'uniform' - uniform subsampling
+            'adaptive' - denser sampling where currents change rapidly
+        max_timesteps: Cap on number of timesteps to evaluate
+            (for 'uniform' and 'adaptive' strategies).
+
+    Returns:
+        DataFrame with columns:
+            't': time in seconds
+            'Bz0': central field at each timestep
+            'hoop_{part_name}': hoop stress in MPa for each part
+            'ratio_rpe_{part_name}': sigma / Rpe for each part
+    """</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example output:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>   t      Bz0    hoop_H15101601  ratio_rpe_H15101601  hoop_H15061703  ...
+   0.0    0.00   0.0             0.000                 0.0
+   7.2    5.12   68.3            0.142                 71.2
+   14.4   10.24  136.7           0.284                 142.5
+   ...
+   3600.0 31.80  420.3           0.874                 415.8</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_secondary_function_fatigue_indicators"><a class="anchor" href="#_secondary_function_fatigue_indicators"></a>6.2. Secondary function: fatigue indicators</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">def compute_fatigue_indicators(
+    stress_ts: pd.DataFrame,
+    parts: list[dict]
+) -&gt; dict:
+    """Extract fatigue-relevant indicators from a stress time series.
+
+    Args:
+        stress_ts: DataFrame from compute_stress_timeseries().
+        parts: Same part descriptors as above.
+
+    Returns:
+        Dict of fatigue indicators per part.
+    """</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">{
+    "H15101601": {
+        "peak_stress": {
+            "max_MPa": 420.3,
+            "ratio_to_rpe": 0.874,
+            "time_above_80pct_rpe_seconds": 2850.0,
+            "time_above_90pct_rpe_seconds": 0.0
+        },
+        "stress_rate": {
+            "max_ramp_up_MPa_per_s": 3.8,
+            "max_ramp_down_MPa_per_s": -5.2
+        },
+        "cycles": {
+            "rainflow_cycles": [
+                {"amplitude_MPa": 420.0, "mean_MPa": 210.0, "count": 1},
+                {"amplitude_MPa": 15.3, "mean_MPa": 405.0, "count": 12}
+            ],
+            "total_cycle_count": 13,
+            "miner_damage_increment": 0.00015
+        }
+    },
+    "H15061703": {
+        # ... same structure
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tertiary_function_exploratory_surrogate_model"><a class="anchor" href="#_tertiary_function_exploratory_surrogate_model"></a>6.3. Tertiary function (exploratory): surrogate model</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">def build_stress_surrogate(
+    mt_data: tuple,
+    parts: list[dict],
+    current_ranges: list[tuple],
+    n_samples: int = 500
+) -&gt; callable:
+    """Build a surrogate model for rapid stress estimation.
+
+    Args:
+        mt_data: MagnetTools objects.
+        parts: Part descriptors.
+        current_ranges: [(I_min, I_max)] for each independent current source.
+        n_samples: Number of training points (Latin Hypercube or grid).
+
+    Returns:
+        A callable: surrogate(currents) -&gt; dict of hoop stresses per part.
+    """</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_suggested_timeline"><a class="anchor" href="#_suggested_timeline"></a>7. Suggested Timeline</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>|==
+|Period |Activities
+|Weeks 1-2 |Onboarding: run starter notebooks, understand the physics,
+study the Lame equations and hoop stress in cylinders</p>
+</div>
+<div class="paragraph">
+<p>|Weeks 3-4 |Explore MagnetTools API: compute field profiles, vary
+currents, plot hoop stress vs. current. Understand the sensitivity</p>
+</div>
+<div class="paragraph">
+<p>|Weeks 5-7 |Implement <code>compute_stress_timeseries()</code>. Profile
+computation time. Investigate sampling strategies</p>
+</div>
+<div class="paragraph">
+<p>|Weeks 8-10 |Implement <code>compute_fatigue_indicators()</code>. Study
+Rainflow counting algorithm. Apply to sample records</p>
+</div>
+<div class="paragraph">
+<p>|Weeks 11-13 |Multi-record analysis: lifetime stress envelope,
+cumulative fatigue damage across records</p>
+</div>
+<div class="paragraph">
+<p>|Weeks 14-16 |(If time permits) Surrogate model exploration. Report
+writing. Final presentation
+|==</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_evaluation_criteria"><a class="anchor" href="#_evaluation_criteria"></a>8. Evaluation Criteria</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Physical understanding</strong>: Does the student demonstrate understanding
+of the electromagnetic-mechanical coupling? Can they explain why certain
+helices experience more stress?</p>
+</li>
+<li>
+<p><strong>Computational rigor</strong>: Is the sampling strategy justified? Are
+computation times characterized? Is the accuracy of sampling vs. full
+evaluation quantified?</p>
+</li>
+<li>
+<p><strong>Fatigue analysis quality</strong>: Is the Rainflow counting correctly
+implemented? Are the fatigue indicators physically meaningful?</p>
+</li>
+<li>
+<p><strong>Code quality</strong>: Is the module well-structured, tested, and documented?</p>
+</li>
+<li>
+<p><strong>Report quality</strong>: Clear mathematical formulation, validation against
+known results, insightful analysis of the operational dataset</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references"><a class="anchor" href="#_references"></a>9. References</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Hoop stress in thick cylinders: Timoshenko, S., "Strength of
+Materials" - chapters on thick-walled cylinders</p>
+</li>
+<li>
+<p>Polyhelix magnet mechanics: Debray, F. et al., "Mechanical behaviour
+of polyhelix magnets," J. Phys.: Conf. Ser. (2006)</p>
+</li>
+<li>
+<p>Rainflow counting: ASTM E1049, "Standard Practices for Cycle Counting
+in Fatigue Analysis"</p>
+</li>
+<li>
+<p>Miner&#8217;s rule: Miner, M.A., "Cumulative damage in fatigue," J. Appl.
+Mech. (1945)</p>
+</li>
+<li>
+<p>Surrogate modeling: Forrester, A. et al., "Engineering Design via
+Surrogate Modelling" (2008)</p>
+</li>
+<li>
+<p>MagnetTools documentation: (provided with the Docker image)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+                    
+
+                      <div class="manuals" data-cards-tag="manual">
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="../../index.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-calendar"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>CSMI Projects - 2026</h4>
+    <p class="page-card-description">CSMI project proposals for the 2026 cohort.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="../index.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-graduation-cap"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>CSMI Projects - 2026 - Master 1 - Semester 2 (S2)</h4>
+    <p class="page-card-description">Project proposal workspace for CSMI M1 S2 in 2026.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="index.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-list"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>CSMI Topics - 2026 M1 S2</h4>
+    <p class="page-card-description">Topic list for CSMI project proposals in 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hid-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-city"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hid-1: Modélisation thermo-hydraulique urbaine multi-physique pour la simulation de la ville à l&amp;#8217;échelle Exascale</h4>
+    <p class="page-card-description">Stage HID de modélisation thermo-hydraulique urbaine multi-physique pour 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hifimagnet-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-magnet"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hifimagnet-1: Statistical Characterization of High-Field Magnet Operations</h4>
+    <p class="page-card-description">CSMI Project A statistical characterization proposal for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hifimagnet-2.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-magnet"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hifimagnet-2: Hoop Stress Computation and Mechanical Fatigue Indicators from Operational Data</h4>
+    <p class="page-card-description">CSMI Project B hoop stress and fatigue proposal for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="hifimagnet-3.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-magnet"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>hifimagnet-3: Time Series Processing and Downsampling for Scientific Operational Data</h4>
+    <p class="page-card-description">CSMI Project C time series processing proposal for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="ooc-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-cube"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>ooc-1: Robust Trajectory Tracking, Verification, Validation, and Trajectory Statistics</h4>
+    <p class="page-card-description">Robust cell trajectory extraction and validation in organ-on-chip imaging with realistic trajectory visualization and statistical analysis.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="ooc-2.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-cube"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>ooc-2: Bulk Flow of One Cell Population Toward Another</h4>
+    <p class="page-card-description">Quantify and model collective bulk flow of a source cell population toward a target population in organ-on-chip experiments.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="ooc-3.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-cube"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>ooc-3: PDE-Based Cell Density Modeling in OOC with Feel++ CFPDE</h4>
+    <p class="page-card-description">Develop and validate PDE cell-density models for organ-on-chip systems using the Feel++ CFPDE toolbox.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="sepsis-1.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-stethoscope"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>sepsis-1: Data Pipeline and Quality Audit for Sepsis Prediction</h4>
+    <p class="page-card-description">CSMI project sepsis-1 for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="sepsis-2.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-stethoscope"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>sepsis-2: Early Sepsis Prediction and Alert Threshold Design</h4>
+    <p class="page-card-description">CSMI project sepsis-2 for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                            <div class="manual" data-cards-tag="manual"><a class="page-card manual" href="sepsis-3.html">
+  <div class="page-card-illustration">
+        <i class="fa-solid fa-stethoscope"></i>
+  </div>
+  <div class="page-card-body">
+    <h4>sepsis-3: Digital Twin Lite for Patient Trajectory and Treatment Scenarios</h4>
+    <p class="page-card-description">CSMI project sepsis-3 for 2026 M1 S2.</p>
+  </div>
+</a>
+</div>
+                      </div>
+      </article>
+    </div>
+  </main>
+</div>
+
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../../../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2026 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../../../../_/js/site.js" data-ui-root-path="../../../../_"></script>
+
+
+<!-- Font Awesome JS removed to use webfont icons only -->
+<script async src="../../../../_/js/vendor/highlight.js"></script>
+
+<script src="../../../../_/js/vendor/lunr.js"></script>
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+</body>
+</html>
