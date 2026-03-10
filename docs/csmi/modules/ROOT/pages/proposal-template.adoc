@@ -1,0 +1,31 @@
+= Proposal Template
+//:page-layout: manuals
+//:page-tags: manual,csmi,projects,topics,template
+//:description: Template for adding a CSMI project proposal.
+
+== Shared Context
+
+Describe the common scientific background, common datasets, and shared tools.
+
+== Student-Specific Scope
+
+Document what is specific to this project instance.
+
+== Objectives
+
+- Objective 1
+- Objective 2
+- Objective 3
+
+== Expected Deliverables
+
+- Source code repository
+- Documentation and reproducibility notes
+- Final report and presentation
+
+== Milestones
+
+- Week 1-2: Scope and setup
+- Week 3-6: Core implementation
+- Week 7-9: Validation and documentation
+- Week 10: Final presentation

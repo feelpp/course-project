@@ -1,0 +1,339 @@
+= hifimagnet-1: Statistical Characterization of High-Field Magnet Operations
+:page-layout: manuals
+:page-tags: manual,csmi,projects,topics,2026,m1,s2,hifimagnet,project-a
+:page-illustration: fa-solid fa-magnet
+:description: CSMI Project A statistical characterization proposal for 2026 M1 S2.
+
+== Overview
+
+[cols=",",]
+|===
+|*Level* |M1 Applied Mathematics (Internship or Semester Project)
+
+|*Duration* |3-4 months (internship) or one semester (project)
+
+|*Prerequisite knowledge* |Multivariate statistics, Python/pandas, basic
+physics (electromagnetism appreciated but not required)
+
+|*MagnetDB roadmap mapping* |Phase 1 (RecordStats) + Phase 3
+(CumulativeStats)
+
+|*Deliverables* |Python module + analysis report
+|===
+
+== Context
+
+LNCMI (Laboratoire National des Champs Magnetiques Intenses) operates
+resistive high-field magnets capable of producing magnetic fields up to
+36 Tesla. These magnets are water-cooled polyhelix inserts composed of
+concentric helical conductors carrying tens of thousands of amperes.
+
+During operation, a monitoring system records time series of physical
+quantities: magnetic field, coil currents, voltages, temperatures,
+pressures, and water flow rates. Each experimental session produces a
+*record* - a multivariate time series typically containing 50-70
+channels sampled at regular intervals.
+
+MagnetDB is the platform that centralizes this data. It organizes
+records by *site* (a physical installation), *magnet* (an assembly of
+parts), and *part* (an individual helix, ring, or current lead). The
+goal of this project is to define and compute meaningful statistical
+summaries of operational data at each level of this hierarchy.
+
+== Scientific Objectives
+
+[[obj-1-define-relevant-statistics-for-operational-records]]
+=== 1. Define relevant statistics for operational records
+
+Not all statistical summaries are equally useful for magnet operations.
+The student must engage with the physical meaning of each measured
+quantity to determine which statistics are scientifically meaningful.
+
+For example:
+
+* For the magnetic field: the max and mean are directly relevant (the
+max determines the experiment's scientific reach); the ramp-up rate
+matters for mechanical stress
+* For temperatures: the max outlet temperature indicates thermal load;
+the temperature differential (Tout - Tin) reflects cooling efficiency;
+time spent above a threshold may indicate stress
+* For currents: the per-coil current distribution reveals the operating
+regime; the deviation between coils feeding the same power supply may
+indicate an electrical issue
+* For pressures and flows: these are health indicators for the cooling
+system rather than scientific outputs
+
+The student should produce a *taxonomy of statistics* organized by
+physical relevance, not just by mathematical definition.
+
+[[obj-2-compute-per-record-summaries]]
+=== 2. Compute per-record summaries
+
+For each record, compute a structured summary at three levels:
+
+*Site level*: aggregate quantities that characterize the full
+installation during this session - total power, peak field, cooling
+performance, duration, duty cycle.
+
+*Magnet level*: quantities specific to one magnet within the site -
+currents for the helix power supply, field contribution, operating
+regime identification (ramp-up, plateau, ramp-down, quench).
+
+*Part level*: quantities specific to an individual helix - its current,
+voltage, resistance variation (DRcoil), and calibration temperature
+(Tcal). The resistance variation is particularly important: it tracks
+conductor aging over the magnet's lifetime.
+
+[[obj-3-aggregate-across-records-for-lifetime-statistics]]
+=== 3. Aggregate across records for lifetime statistics
+
+Given N records spanning the operational lifetime of a site, magnet, or
+part, compute cumulative statistics:
+
+* Total operating hours
+* Lifetime max/mean/std of key quantities
+* Which record holds the overall maximum (for traceability)
+* Distribution of operating regimes across records
+* Trend detection: is the resistance variation drifting over time? Is
+the cooling efficiency degrading?
+
+[[obj-4-exploratory-analysis]]
+=== 4. Exploratory analysis
+
+With the statistical summaries computed, investigate:
+
+* Do operational records cluster into distinct regimes? (PCA or simple
+clustering on summary vectors)
+* Are there correlations between operating conditions and anomalies?
+* Can you identify records that are statistical outliers?
+* For parts that have been in multiple magnet configurations: does the
+operating history differ?
+
+== Mathematical Content
+
+* *Descriptive statistics*: min, max, mean, std, skewness, kurtosis,
+quantiles - applied to multivariate time series
+* *Correlation analysis*: Pearson/Spearman correlation between channels
+within a record; cross-correlation with time lags for causal analysis
+(e.g., current increase -> temperature increase with delay)
+* *Weighted aggregation*: when aggregating across records of different
+durations, define appropriate weighting schemes (time-weighted means vs.
+record-count means)
+* *Non-stationary series*: operating records are inherently
+non-stationary (ramp-up -> plateau -> ramp-down). The student must decide
+whether to compute statistics over the full record, over identified
+phases, or both
+* *Phase identification*: simple segmentation of the time series into
+operating phases using change-point detection or threshold-based rules
+* *Dimensionality reduction*: PCA on the per-record summary vectors to
+identify dominant modes of operational variation
+* *Trend analysis*: linear regression on lifetime series of key
+indicators (resistance drift, max field evolution)
+
+== Technical Environment
+
+=== Provided
+
+* *Docker image* with Python 3.11, pandas, numpy, scipy, matplotlib,
+seaborn, scikit-learn, Jupyter
+* *Sample dataset*: 15-20 operational records from 2+ magnet
+configurations, with geometry and material data
+* *`student_helpers` module*: record parser, configuration loader
+* *Starter notebooks*: data loading, basic exploration, multi-record
+analysis
+* *Data README*: column reference with units, coil-to-helix mapping,
+physics context
+
+=== Not required
+
+* Django, MagnetDB, Docker infrastructure knowledge
+* MagnetTools (not needed for raw statistics - only for Project B)
+* Web development, database skills
+
+=== Development workflow
+
+The student works in Jupyter notebooks for exploration, then refactors
+validated code into a Python module with tests. All work is done with
+pandas DataFrames and Python dicts - no database interaction.
+
+[[input--output-specification]]
+== Input / Output Specification
+
+=== Input
+
+[source,python]
+----
+def compute_record_stats(
+    df: pd.DataFrame,
+    site_config: dict,
+    column_info: dict
+) -> dict:
+    """Compute statistics for a single record.
+    
+    Args:
+        df: Parsed record DataFrame with columns including 't' (seconds),
+            'timestamp', 'Field', 'Icoil1'...'Icoil16', 'Tin1', 'Tout', etc.
+        site_config: Site configuration dict with structure:
+            {
+                "site": "M9_M19061901",
+                "magnet": {
+                    "name": "M19061901",
+                    "parts": [
+                        {"name": "H15101601", "type": "helix",
+                         "coil_index": 1, "material": "MA15101601"},
+                        ...
+                    ]
+                }
+            }
+        column_info: Column name -> unit mapping dict.
+        
+    Returns:
+        Nested dict of statistics at site, magnet, and part levels.
+    """
+----
+
+=== Output
+
+[source,python]
+----
+{
+    "site": {
+        "duration_seconds": 3621.0,
+        "operating_phases": {
+            "ramp_up": {"start_t": 0, "end_t": 120, "duration_s": 120},
+            "plateau": {"start_t": 120, "end_t": 3500, "duration_s": 3380},
+            "ramp_down": {"start_t": 3500, "end_t": 3621, "duration_s": 121}
+        },
+        "field": {
+            "max": 32.5, "mean": 28.1, "std": 3.2, "unit": "T",
+            "plateau_mean": 31.8, "ramp_rate_T_per_s": 0.27
+        },
+        "power": {"max": 24.1, "mean": 18.7, "unit": "MW"},
+        "cooling": {
+            "delta_T_max": 23.5, "delta_T_mean": 14.2, "unit": "degC",
+            "flow1_mean": 12.3, "flow2_mean": 11.8, "unit_flow": "l/s"
+        }
+    },
+    "magnets": {
+        "M19061901": {
+            "field_contribution_estimated": 32.5,  # if only magnet in site
+            "total_current": {"max": 336000, "unit": "A"},
+            # ... per-magnet aggregate
+        }
+    },
+    "parts": {
+        "H15101601": {
+            "current": {"max": 28500, "mean": 24000, "min": 0, "unit": "A"},
+            "voltage": {"max": 45.2, "mean": 38.1, "unit": "V"},
+            "resistance_variation": {"max": 12.3, "mean": 8.5, "unit": "%"},
+            "temperature_cal": {"max": 85.2, "mean": 62.1, "unit": "degC"}
+        },
+        "H15061703": {
+            # ... same structure
+        }
+    },
+    "metadata": {
+        "record_name": "M9_M19061901_2023-03-15.tsv",
+        "started_at": "2023-03-15T09:12:00",
+        "num_points": 500,
+        "sampling_period_s": 7.2,
+        "active_coils": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    }
+}
+----
+
+=== Cumulative statistics function
+
+[source,python]
+----
+def compute_cumulative_stats(
+    record_stats_list: list[dict],
+    entity_type: str,   # "site", "magnet", or "part"
+    entity_name: str
+) -> dict:
+    """Aggregate per-record stats into a lifetime summary.
+    
+    Args:
+        record_stats_list: List of dicts from compute_record_stats(),
+            ordered chronologically.
+        entity_type: Which level to aggregate.
+        entity_name: Name of the entity (e.g., "M9_M19061901" for site).
+    
+    Returns:
+        Cumulative statistics dict.
+    """
+----
+
+Output:
+
+[source,python]
+----
+{
+    "total_operating_hours": 1245.6,
+    "num_records": 87,
+    "time_range": {
+        "first_record": "2020-01-15T08:00:00",
+        "last_record": "2023-11-22T14:30:00"
+    },
+    "field": {
+        "global_max": 33.1, "lifetime_mean": 27.5, "std": 4.1,
+        "max_at_record": "M9_M19061901_2022-06-10.tsv"
+    },
+    "trends": {
+        "resistance_variation_H15101601": {
+            "slope_per_hour": 0.0012,
+            "r_squared": 0.78,
+            "interpretation": "slow upward drift consistent with conductor aging"
+        }
+    },
+    "regime_distribution": {
+        "high_field_above_30T": {"count": 23, "total_hours": 312},
+        "medium_field_20_30T": {"count": 51, "total_hours": 780},
+        "low_field_below_20T": {"count": 13, "total_hours": 153}
+    }
+}
+----
+
+== Suggested Timeline
+
+[cols=",",options="header",]
+|===
+|Period |Activities
+|Weeks 1-2 |Onboarding: run starter notebooks, understand the data, read
+physics background
+
+|Weeks 3-4 |Design the taxonomy of statistics. Define what to compute at
+each level. Discuss with supervisor
+
+|Weeks 5-7 |Implement `compute_record_stats()`. Test on sample
+records. Iterate on the output schema
+
+|Weeks 8-9 |Implement `compute_cumulative_stats()`. Test on
+multi-record sequences
+
+|Weeks 10-11 |Exploratory analysis: clustering, PCA, trend detection
+
+|Weeks 12-14 |Write report. Clean up code. Final presentation
+|===
+
+== Evaluation Criteria
+
+* *Scientific relevance*: Are the chosen statistics physically
+meaningful? Do they capture what matters for magnet operations?
+* *Code quality*: Is the module well-structured, tested, documented, and
+usable as a library?
+* *Analysis depth*: Does the exploratory analysis reveal genuine
+patterns in the data?
+* *Report quality*: Is the mathematical formulation rigorous? Are
+results clearly presented?
+
+== References
+
+* Polyhelix magnet design: Debray, F. et al., "High magnetic field
+facilities," IEEE Trans. Appl. Supercond. (2012)
+* Time series statistics: Hamilton, J.D., "Time Series Analysis" (1994)
+* Change-point detection: Aminikhanghahi, S. and Cook, D.J., "A Survey
+of Methods for Time Series Change Point Detection," KAIS (2017)
+* LTTB downsampling: Steinarsson, S., "Downsampling Time Series for
+Visual Representation" (2013) - relevant background for understanding
+data reduction

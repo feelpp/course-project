@@ -1,0 +1,375 @@
+= hifimagnet-2: Hoop Stress Computation and Mechanical Fatigue Indicators from Operational Data
+:page-layout: manuals
+:page-tags: manual,csmi,projects,topics,2026,m1,s2,hifimagnet,project-b
+:page-illustration: fa-solid fa-magnet
+:description: CSMI Project B hoop stress and fatigue proposal for 2026 M1 S2.
+
+
+== Overview
+
+[cols=",",]
+|==
+|*Level* |M1 Applied Mathematics (Internship, preferably 4-5 months)
+
+|*Duration* |4-5 months
+
+|*Prerequisite knowledge* |Continuum mechanics or solid mechanics, PDEs,
+numerical methods, Python
+
+|*MagnetDB roadmap mapping* |Phase 1 (computed RecordStats) + Phase
+2 (derived time series)
+
+|*Deliverables* |Python module + analysis report
+|==
+
+== Context
+
+LNCMI polyhelix magnets operate under extreme mechanical stress. Each
+helical conductor carries tens of thousands of amperes in a multi-Tesla
+magnetic field. The Lorentz force (J x B) produces a radial pressure
+that generates *hoop stress* - circumferential tensile stress in the
+conductor walls, analogous to the stress in a pressurized cylindrical
+vessel.
+
+The hoop stress is the primary mechanical constraint on magnet design:
+it determines how much current (and therefore how much field) a magnet
+can safely produce. When the hoop stress exceeds the material's elastic
+limit (Rpe), plastic deformation occurs, which can lead to conductor
+failure.
+
+Currently, MagnetDB can compute hoop stress at a given operating point
+using MagnetTools (a C++ library with Python bindings).
+However, this computation is performed on-demand and does not leverage
+the full operational history. This project aims to:
+
+[arabic]
+. Compute hoop stress time series from operational records
+. Extract fatigue-relevant indicators from these time series
+. Investigate whether surrogate models can approximate the computation
+for real-time use
+
+== Scientific Objectives
+
+[[obj-1-understand-the-electromagnetic-mechanical-coupling]]
+=== 1. Understand the electromagnetic-mechanical coupling
+
+The student must understand the physics chain:
+
+....
+Coil currents I(t)  ->  Magnetic field B(r,z)  ->  Lorentz force JxB  ->  Hoop stress sigma_theta(r)
+....
+
+For a polyhelix insert magnet:
+
+* Each helix carries a current I_i(t) that varies over time
+(recorded in operational data as Icoil_i)
+* The magnetic field at any point is the superposition of contributions
+from all helices (Biot-Savart integral, computed by MagnetTools)
+* The Lorentz force on helix i depends on its own current and the total
+field at its location
+* The hoop stress in helix i depends on the Lorentz force, the helix
+geometry (inner/outer radius, thickness), and the material properties
+(Young's modulus, Poisson ratio)
+
+MagnetTools already implements this computation. The student's task is
+not to reimplement it from scratch, but to understand it well enough to
+use it systematically across operational data and to interpret the
+results physically.
+
+[[obj-2-compute-per-timestep-hoop-stress-from-operational-records]]
+=== 2. Compute per-timestep hoop stress from operational records
+
+Given an operational record (time series of coil currents), compute the
+hoop stress in each helix at each timestep:
+
+* Load the magnet geometry and material properties
+* For each timestep (or a representative subsample), set the currents in
+MagnetTools and compute hoop stress for all helices
+* Produce a derived time series: sigma_theta(t) for each part
+
+This is computationally intensive: if a record has 500 timesteps and the
+magnet has 14 helices, that's 7000 MagnetTools evaluations per record.
+The student must:
+
+* Profile the computation time
+* Investigate whether all timesteps need to be computed, or whether
+sampling (e.g., only during plateau, or at local current maxima) is
+sufficient
+* Consider whether the computation can be vectorized or parallelized
+
+[[obj-3-extract-fatigue-indicators]]
+=== 3. Extract fatigue indicators
+
+From the hoop stress time series, extract indicators relevant to
+mechanical fatigue:
+
+*Peak stress indicators*:
+
+* sigma_max per part per record
+* Ratio sigma_max / Rpe (proximity to elastic limit) - this is the most
+critical safety indicator
+* Time spent above configurable thresholds (e.g., 80% Rpe, 90% Rpe)
+
+*Cyclic fatigue indicators*:
+
+* Apply the *Rainflow counting algorithm* to the stress time series to
+identify stress cycles
+* Compute cycle counts at different stress amplitudes (S-N approach)
+* Estimate cumulative fatigue damage using Miner's rule: D = sum(n_i /
+N_i)
+* Track cumulative damage across records (lifetime fatigue accumulation)
+
+*Stress rate indicators*:
+
+* dsigma/dt during ramp-up and ramp-down (rapid stress changes are more
+damaging)
+* Stress amplitude per cycle
+
+[[obj-4-investigate-surrogate-models-exploratory]]
+=== 4. Investigate surrogate models (exploratory)
+
+The MagnetTools computation is accurate but expensive. For real-time
+monitoring or rapid parameter sweeps, a faster approximation would be
+valuable.
+
+The student should explore:
+
+* *Response surface*: for a given magnet geometry, the hoop stress in
+each helix is a smooth function of the input currents. Compute stress at
+a grid of current values and fit a polynomial or radial basis function
+interpolant
+* *Reduced model*: given the linearity of the Biot-Savart integral,
+explore whether sigma_theta can be expressed as a linear (or low-order
+polynomial) function of the currents
+* *Error quantification*: compare the surrogate model against
+MagnetTools across the operating envelope and quantify the approximation
+error
+
+This objective is exploratory and secondary to objectives 1-3. It should
+be pursued if time permits and the student has an interest in
+approximation theory.
+
+== Mathematical Content
+
+* *Continuum mechanics*: hoop stress in thick-walled cylinders, Lame
+equations, stress concentration in helical geometries
+* *Electromagnetics*: Biot-Savart integral, Lorentz force density,
+superposition principle for multi-coil systems
+* *Fatigue analysis*: Rainflow counting algorithm (ASTM E1049), S-N
+curves, Miner's linear damage accumulation rule, Goodman diagram
+* *Numerical methods*: function evaluation sampling strategies (adaptive
+vs. uniform), computation profiling and optimization
+* *Approximation theory* (exploratory): polynomial interpolation, radial
+basis functions, Gaussian process regression, cross-validation for model
+selection
+
+== Technical Environment
+
+=== Provided
+
+* *Docker image* with Python 3.11, MagnetTools, python_magnetgeo,
+pandas, numpy, scipy, matplotlib, Jupyter
+* *`student_helpers` module*: record parser, MagnetTools bridge
+function, configuration loader
+* *Sample dataset*: 15-20 operational records with matching geometry
+YAML files and material properties
+* *Starter notebooks*: data loading, MagnetTools basics (field
+computation, hoop stress at one operating point)
+
+=== Key dependencies
+
+* *MagnetTools* (`magnettools.magnettools` and `magnettools.Bmap`):
+C++ library with Python bindings for electromagnetic and
+mechanical computation
+* *python_magnetgeo*: Python module for loading magnet geometry
+descriptions from YAML files
+* *`student_helpers.magnettools_bridge`*: bridge function that
+converts geometry YAML files into MagnetTools objects
+
+=== Development workflow
+
+[arabic]
+. Start with the starter notebook to verify MagnetTools works
+. Explore the computation: vary currents, observe how stress changes
+. Build the time series computation in a notebook
+. Profile and optimize (sampling strategy)
+. Implement fatigue indicators
+. Refactor into a Python module with tests
+. (Optional) Explore surrogate models
+
+[[input--output-specification]]
+== Input / Output Specification
+
+=== Primary function: stress time series computation
+
+[source,python]
+----
+def compute_stress_timeseries(
+    df: pd.DataFrame,
+    mt_data: tuple,
+    parts: list[dict],
+    sampling_strategy: str = 'all',
+    max_timesteps: int = None
+) -> pd.DataFrame:
+    """Compute hoop stress time series for all parts from operational data.
+    
+    Args:
+        df: Parsed record DataFrame with 't' and 'Icoil1'...'IcoilN' columns.
+        mt_data: MagnetTools objects tuple
+            (Tubes, Helices, OHelices, BMagnets, UMagnets, Shims)
+            obtained from magnettools_bridge.load_insert_from_yaml().
+        parts: List of part descriptors:
+            [{"name": "H15101601", "type": "helix", "coil_index": 1,
+              "material": {"rpe": 481, "young": 117e9, ...}}, ...]
+        sampling_strategy: How to select timesteps:
+            'all' - every timestep (slow but complete)
+            'peaks' - only local current maxima/minima
+            'uniform' - uniform subsampling
+            'adaptive' - denser sampling where currents change rapidly
+        max_timesteps: Cap on number of timesteps to evaluate
+            (for 'uniform' and 'adaptive' strategies).
+    
+    Returns:
+        DataFrame with columns:
+            't': time in seconds
+            'Bz0': central field at each timestep
+            'hoop_{part_name}': hoop stress in MPa for each part
+            'ratio_rpe_{part_name}': sigma / Rpe for each part
+    """
+----
+
+Example output:
+
+....
+   t      Bz0    hoop_H15101601  ratio_rpe_H15101601  hoop_H15061703  ...
+   0.0    0.00   0.0             0.000                 0.0
+   7.2    5.12   68.3            0.142                 71.2
+   14.4   10.24  136.7           0.284                 142.5
+   ...
+   3600.0 31.80  420.3           0.874                 415.8
+....
+
+=== Secondary function: fatigue indicators
+
+[source,python]
+----
+def compute_fatigue_indicators(
+    stress_ts: pd.DataFrame,
+    parts: list[dict]
+) -> dict:
+    """Extract fatigue-relevant indicators from a stress time series.
+    
+    Args:
+        stress_ts: DataFrame from compute_stress_timeseries().
+        parts: Same part descriptors as above.
+    
+    Returns:
+        Dict of fatigue indicators per part.
+    """
+----
+
+Output:
+
+[source,python]
+----
+{
+    "H15101601": {
+        "peak_stress": {
+            "max_MPa": 420.3,
+            "ratio_to_rpe": 0.874,
+            "time_above_80pct_rpe_seconds": 2850.0,
+            "time_above_90pct_rpe_seconds": 0.0
+        },
+        "stress_rate": {
+            "max_ramp_up_MPa_per_s": 3.8,
+            "max_ramp_down_MPa_per_s": -5.2
+        },
+        "cycles": {
+            "rainflow_cycles": [
+                {"amplitude_MPa": 420.0, "mean_MPa": 210.0, "count": 1},
+                {"amplitude_MPa": 15.3, "mean_MPa": 405.0, "count": 12}
+            ],
+            "total_cycle_count": 13,
+            "miner_damage_increment": 0.00015
+        }
+    },
+    "H15061703": {
+        # ... same structure
+    }
+}
+----
+
+=== Tertiary function (exploratory): surrogate model
+
+[source,python]
+----
+def build_stress_surrogate(
+    mt_data: tuple,
+    parts: list[dict],
+    current_ranges: list[tuple],
+    n_samples: int = 500
+) -> callable:
+    """Build a surrogate model for rapid stress estimation.
+    
+    Args:
+        mt_data: MagnetTools objects.
+        parts: Part descriptors.
+        current_ranges: [(I_min, I_max)] for each independent current source.
+        n_samples: Number of training points (Latin Hypercube or grid).
+    
+    Returns:
+        A callable: surrogate(currents) -> dict of hoop stresses per part.
+    """
+----
+
+== Suggested Timeline
+
+[cols=",",options="header",]
+|==
+|Period |Activities
+|Weeks 1-2 |Onboarding: run starter notebooks, understand the physics,
+study the Lame equations and hoop stress in cylinders
+
+|Weeks 3-4 |Explore MagnetTools API: compute field profiles, vary
+currents, plot hoop stress vs. current. Understand the sensitivity
+
+|Weeks 5-7 |Implement `compute_stress_timeseries()`. Profile
+computation time. Investigate sampling strategies
+
+|Weeks 8-10 |Implement `compute_fatigue_indicators()`. Study
+Rainflow counting algorithm. Apply to sample records
+
+|Weeks 11-13 |Multi-record analysis: lifetime stress envelope,
+cumulative fatigue damage across records
+
+|Weeks 14-16 |(If time permits) Surrogate model exploration. Report
+writing. Final presentation
+|==
+
+== Evaluation Criteria
+
+* *Physical understanding*: Does the student demonstrate understanding
+of the electromagnetic-mechanical coupling? Can they explain why certain
+helices experience more stress?
+* *Computational rigor*: Is the sampling strategy justified? Are
+computation times characterized? Is the accuracy of sampling vs. full
+evaluation quantified?
+* *Fatigue analysis quality*: Is the Rainflow counting correctly
+implemented? Are the fatigue indicators physically meaningful?
+* *Code quality*: Is the module well-structured, tested, and documented?
+* *Report quality*: Clear mathematical formulation, validation against
+known results, insightful analysis of the operational dataset
+
+== References
+
+* Hoop stress in thick cylinders: Timoshenko, S., "Strength of
+Materials" - chapters on thick-walled cylinders
+* Polyhelix magnet mechanics: Debray, F. et al., "Mechanical behaviour
+of polyhelix magnets," J. Phys.: Conf. Ser. (2006)
+* Rainflow counting: ASTM E1049, "Standard Practices for Cycle Counting
+in Fatigue Analysis"
+* Miner's rule: Miner, M.A., "Cumulative damage in fatigue," J. Appl.
+Mech. (1945)
+* Surrogate modeling: Forrester, A. et al., "Engineering Design via
+Surrogate Modelling" (2008)
+* MagnetTools documentation: (provided with the Docker image)

@@ -72,6 +72,12 @@
 *** xref:project-management:collaboration-models-weather-lab.adoc[Agile vs Waterfall Lab]
 *** xref:project-management:case-studies.adoc[Case Studies]
 
+* 🎓 xref:csmi::index.adoc[CSMI Projects]
+** 📅 2026
+*** xref:csmi::2026/index.adoc[2026 Cohort]
+*** xref:csmi::2026/m1-s2/index.adoc[Master 1 - Semester 2 (S2)]
+*** xref:csmi::2026/m1-s2/topics/index.adoc[Topics and Proposals]
+
 * 🔄 xref:cicd:index.adoc[CI/CD]
 ** 🔴 Platforms
 *** xref:cicd:gitlab.adoc[GitLab CI/CD]

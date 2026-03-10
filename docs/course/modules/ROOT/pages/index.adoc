@@ -106,6 +106,16 @@ Apply project management to mathematical research and thesis projects.
 
 → xref:project-management:index.adoc[Start Learning Project Management]
 
+=== 🎓 CSMI Projects
+
+Project proposal spaces organized by year and semester for CSMI cohorts.
+
+[horizontal]
+📅 2026:: Master 1, Semester 2 (S2) active workspace
+🧩 Topics:: Proposal pages grouped in `topics/` subdirectories
+
+→ xref:csmi::index.adoc[Open CSMI Projects]
+
 === 🔄 CI/CD
 
 Automate testing, building, and deployment of mathematical software.
@@ -149,6 +159,4 @@ Check out the xref:instructor-guide.adoc[📚 Instructor Guide] with week-by-wee
 |===
 
 Questions? https://join.slack.com/t/feelpp/shared_invite/zt-2qe0q9hw-4pVbhohCXUE6Po9Ma8dbiQ[Join us on Slack]
-
-
 

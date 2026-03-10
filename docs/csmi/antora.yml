@@ -1,0 +1,12 @@
+name: csmi
+title: CSMI Projects
+version: ~
+start_page: index.adoc
+asciidoc:
+  attributes:
+    project_name: CSMI Projects
+    experimental: true
+    icons: font
+    source-highlighter: rouge
+nav:
+- modules/ROOT/nav.adoc

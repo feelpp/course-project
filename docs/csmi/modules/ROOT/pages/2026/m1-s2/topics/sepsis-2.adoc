@@ -1,0 +1,46 @@
+= sepsis-2: Early Sepsis Prediction and Alert Threshold Design
+:page-layout: manuals
+:page-tags: manual,csmi,projects,topics,2026,m1,s2
+:page-illustration: fa-solid fa-stethoscope
+:description: CSMI project sepsis-2 for 2026 M1 S2.
+
+== Shared Context
+
+This project is designed for M1 CSMI Semester 2 students in 2026.
+It uses ICU sepsis data (PhysioNet challenge format) and focuses on supervised prediction in a clinically interpretable setting.
+The expected workload is 60 to 80 hours (maximum 100 hours) between March 10, 2026 and May 30, 2026 (oral defense).
+
+== Student-Specific Scope
+
+- Assigned student(s): _to be filled_
+- Specific scientific question: How early can sepsis be predicted while maintaining acceptable precision, recall, and calibration?
+- Specific constraints: Compare at least one interpretable model and one higher-capacity model with identical train/test protocol.
+
+== Objectives
+
+- Define a prediction target and clinically relevant prediction horizon (for example 4 to 6 hours before onset).
+- Train and compare multiple models (for example logistic regression, random forest, gradient boosting).
+- Evaluate discrimination and calibration (AUROC, AUPRC, calibration curve, confusion matrix by threshold).
+- Propose an alert thresholding strategy and discuss expected false-alert burden.
+
+== Work Plan and Time Budget
+
+- Phase 1 (March 10 to March 23): data familiarization, split protocol, baseline setup (10 to 12h).
+- Phase 2 (March 24 to April 20): feature engineering and model training iterations (24 to 30h).
+- Phase 3 (April 21 to May 11): evaluation, calibration, error analysis, subgroup checks (20 to 24h).
+- Phase 4 (May 12 to May 24): final report, model card, slides, rehearsal (10 to 14h).
+- Oral defense: May 30, 2026.
+- Total target: 60 to 80h (up to 100h with optional advanced experiments).
+
+== Expected Deliverables
+
+- Reproducible training/evaluation pipeline with clear experiment tracking.
+- Comparative results table and plots (ROC, PR, calibration, threshold trade-offs).
+- Model card including assumptions, limitations, and potential bias risks.
+- Reproducibility guide (`README` with environment and run instructions).
+- Final written report and oral presentation slides.
+
+== Optional Extension (if time allows)
+
+- External-style validation protocol on a held-out cohort segment.
+- Drift sensitivity check by simulating temporal split shifts.

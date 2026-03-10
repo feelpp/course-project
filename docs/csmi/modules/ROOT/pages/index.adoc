@@ -1,0 +1,26 @@
+= CSMI Project Proposals
+:page-layout: manuals
+:page-tags: catalog,csmi,projects
+:parent-catalogs: ROOT:index
+:page-cards-tag: year-index
+:page-cards-within-module: true
+:page-illustration: fa-solid fa-flask
+:description: Annual CSMI project proposals organized by year and semester.
+
+[.lead]
+This module organizes CSMI project proposals by academic year, master level, and semester.
+
+== Current Cohort
+
+- Year: *2026*
+- Program: *Master 1*
+- Semester: *S2*
+
+== Yearly Project Spaces
+
+- icon:calendar[] xref:2026/index.adoc[CSMI projects for 2026]
+
+
+== Active Topics Folder
+
+- icon:folder-open[] xref:2026/m1-s2/topics/index.adoc[2026/m1-s2/topics]

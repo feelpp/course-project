@@ -1,0 +1,32 @@
+= ooc-3: PDE-Based Cell Density Modeling in OOC with Feel++ CFPDE
+:page-layout: manuals
+:page-tags: manual,csmi,projects,topics,ooc,pde,feelpp,cfpde
+:page-illustration: fa-solid fa-cube
+:description: Develop and validate PDE cell-density models for organ-on-chip systems using the Feel++ CFPDE toolbox.
+
+== Shared Context
+
+Use organ-on-chip experimental datasets and shared geometry and measurement context, with Feel++ as the common simulation framework.
+
+== Student-Specific Scope
+
+Develop continuum cell-density models (diffusion, advection, reaction, and possibly chemotaxis), implement them in CFPDE, and calibrate against observed OOC cell behavior.
+
+== Objectives
+
+- Formulate PDE models for cell density evolution adapted to OOC geometry and flow.
+- Implement and run simulations with Feel++ CFPDE.
+- Calibrate and validate model predictions against experimental trajectory or density data.
+
+== Expected Deliverables
+
+- Source code repository
+- Documentation and reproducibility notes
+- Final report and presentation
+
+== Milestones
+
+- Week 1-2: Literature review and model specification
+- Week 3-6: CFPDE implementation and baseline simulation setup
+- Week 7-9: Parameter calibration, validation, and sensitivity analysis
+- Week 10: Final presentation

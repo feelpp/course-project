@@ -1,0 +1,17 @@
+= CSMI Projects - 2026
+:page-layout: manuals
+:page-tags: manual,csmi,projects,2026,year-index
+:page-cards-tag: semester-index
+:page-cards-within-module: true
+:page-illustration: fa-solid fa-calendar
+:description: CSMI project proposals for the 2026 cohort.
+
+This page tracks CSMI project spaces for the 2026 cohort.
+
+== Active Semester
+
+- icon:graduation-cap[] xref:2026/m1-s2/index.adoc[Master 1 - Semester 2 (S2)]
+
+== Topics Folder
+
+- icon:folder-open[] xref:2026/m1-s2/topics/index.adoc[2026/m1-s2/topics]

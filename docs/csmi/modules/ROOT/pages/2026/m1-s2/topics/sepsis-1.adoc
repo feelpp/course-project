@@ -1,0 +1,46 @@
+= sepsis-1: Data Pipeline and Quality Audit for Sepsis Prediction
+:page-layout: manuals
+:page-tags: manual,csmi,projects,topics,2026,m1,s2
+:page-illustration: fa-solid fa-stethoscope
+:description: CSMI project sepsis-1 for 2026 M1 S2.
+
+== Shared Context
+
+This project is designed for M1 CSMI Semester 2 students in 2026.
+It is based on ICU sepsis data (PhysioNet challenge format) and a reproducible Python workflow.
+The expected workload is 60 to 80 hours (maximum 100 hours) between March 10, 2026 and May 30, 2026 (oral defense).
+
+== Student-Specific Scope
+
+- Assigned student(s): _to be filled_
+- Specific scientific question: How do data cleaning and missing-value strategies affect downstream sepsis prediction quality?
+- Specific constraints: Use only de-identified challenge data and provide fully reproducible scripts/notebooks.
+
+== Objectives
+
+- Build a reproducible ingestion and preprocessing pipeline for ICU time-series.
+- Quantify missingness, outliers, and feature reliability.
+- Compare at least two imputation strategies and justify the final choice.
+- Train a simple baseline model (for example logistic regression) to validate the prepared dataset.
+
+== Work Plan and Time Budget
+
+- Phase 1 (March 10 to March 23): environment setup, data access checks, initial data dictionary (8 to 12h).
+- Phase 2 (March 24 to April 20): exploratory data analysis and quality audit (20 to 25h).
+- Phase 3 (April 21 to May 11): preprocessing pipeline + imputation benchmark + baseline model (22 to 28h).
+- Phase 4 (May 12 to May 24): documentation, final report, slides, rehearsal (10 to 15h).
+- Oral defense: May 30, 2026.
+- Total target: 60 to 80h (up to 100h if optional extensions are developed).
+
+== Expected Deliverables
+
+- Structured repository with scripts/notebooks for data loading, cleaning, and feature extraction.
+- Data quality report (missingness profiles, outlier handling rules, variable selection rationale).
+- Baseline model notebook with evaluation metrics and interpretation.
+- Reproducibility guide (`README` with run order, dependencies, and expected outputs).
+- Final written report and oral presentation slides.
+
+== Optional Extension (if time allows)
+
+- Cross-dataset harmonization draft with a second ICU source (for example MIMIC-IV subset).
+- Lightweight automated data validation checks for incoming batches.

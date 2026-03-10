@@ -1,0 +1,32 @@
+= ooc-1: Robust Trajectory Tracking, Verification, Validation, and Trajectory Statistics
+:page-layout: manuals
+:page-tags: manual,csmi,projects,topics,ooc,tracking,validation,visualization
+:page-illustration: fa-solid fa-cube
+:description: Robust cell trajectory extraction and validation in organ-on-chip imaging with realistic trajectory visualization and statistical analysis.
+
+== Shared Context
+
+Use organ-on-chip time-lapse microscopy datasets, existing segmentation/tracking code in `organ-on-chip`, and shared Python analysis tooling for reproducible experiments.
+
+== Student-Specific Scope
+
+Improve trajectory robustness under noise, missed detections, and dense-cell scenarios; define verification and validation protocols; produce realistic and interpretable trajectory visualizations and trajectory-level statistics.
+
+== Objectives
+
+- Build a robust tracking pipeline with explicit uncertainty handling.
+- Define quantitative verification and validation benchmarks (manual labels and synthetic perturbations).
+- Deliver statistical trajectory descriptors and biologically meaningful visual analytics.
+
+== Expected Deliverables
+
+- Source code repository
+- Documentation and reproducibility notes
+- Final report and presentation
+
+== Milestones
+
+- Week 1-2: Data curation, baseline reproduction, metric definition
+- Week 3-6: Robust tracking improvements and V&V protocol implementation
+- Week 7-9: Visualization module and trajectory statistics study
+- Week 10: Final presentation

@@ -1,0 +1,427 @@
+= hifimagnet-3: Time Series Processing and Downsampling for Scientific Operational Data
+:page-layout: manuals
+:page-tags: manual,csmi,projects,topics,2026,m1,s2,hifimagnet,project-c
+:page-illustration: fa-solid fa-magnet
+:description: CSMI Project C time series processing proposal for 2026 M1 S2.
+
+
+
+== Overview
+
+[cols=",",]
+|==
+|*Level* |M1 Applied Mathematics (Internship or Semester Project)
+
+|*Duration* |3-4 months (internship) or one semester (project)
+
+|*Prerequisite knowledge* |Signal processing or numerical analysis,
+algorithms, Python
+
+|*MagnetDB roadmap mapping* |Phase 2 (ProcessedTimeSeries / ETL) +
+Phase 3 (stitched series)
+
+|*Deliverables* |Python module + benchmark report
+|==
+
+== Context
+
+MagnetDB stores operational records as raw data files - time series of
+50-70 physical channels recorded during magnet experiments. These
+records need to be served to users through a web interface for
+interactive visualization and analysis. This creates two distinct
+challenges:
+
+*The visualization challenge*: a record with 5000 data points and 70
+columns is too large to send to a browser for plotting. The current
+MagnetDB implementation uses naive modulo subsampling (keep every Nth
+point), which discards peaks and distorts the visual representation.
+Better algorithms exist - the goal is to implement and benchmark them.
+
+*The lifetime challenge*: a magnet part may have operated across
+100+ records over several years. To visualize trends (how did the
+max stress evolve? is the resistance drifting?), these records must be
+*stitched* into a coherent long-term series, handling gaps,
+configuration changes, and varying sampling rates.
+
+This project addresses both challenges by building a processing pipeline
+for scientific time series data, with an emphasis on preserving the
+physical fidelity of the signals.
+
+== Scientific Objectives
+
+[[obj-1-study-and-implement-downsampling-algorithms]]
+=== 1. Study and implement downsampling algorithms
+
+The core question: *given N data points, reduce to M much less than N points
+while preserving the visual and statistical properties of the signal.*
+
+Algorithms to implement and compare:
+
+*Naive subsampling* (baseline): keep every floor(N/M)-th point. Simple but
+loses peaks, valleys, and transients. This is what MagnetDB currently
+does.
+
+*Min-max bucketing*: divide the time axis into M/2 buckets, keep the min
+and max from each bucket. Preserves extrema but doubles the number of
+points per bucket and creates artificial oscillations.
+
+*LTTB (Largest-Triangle-Three-Buckets)*: Steinarsson's algorithm (2013).
+Divides data into M buckets and selects the point in each bucket that
+maximizes the triangle area with the selected points in the adjacent
+buckets. Has a geometric interpretation: it maximizes the visual
+"importance" of each kept point. O(N) complexity.
+
+*Douglas-Peucker* (Ramer-Douglas-Peucker): recursive simplification of
+the polyline formed by the time series. Keeps points that deviate most
+from the line connecting their neighbors. O(N log N) in best case, O(N^2)
+in worst case.
+
+*M4 aggregation*: for each bucket of data points, keep four values: min,
+max, first, last. Designed specifically for time series visualization.
+Produces 4M points but guarantees that the visual envelope is preserved.
+
+For each algorithm, the student should:
+
+* Implement it in Python (some have existing libraries; implement from
+scratch for understanding, then validate against libraries)
+* Analyze the computational complexity (theoretical and measured)
+* Define appropriate error metrics
+* Benchmark on real operational data
+
+[[obj-2-define-error-metrics-for-scientific-data]]
+=== 2. Define error metrics for scientific data
+
+A key contribution of this project is defining what "faithful
+downsampling" means for scientific time series. Standard image/graphics
+metrics (e.g., Hausdorff distance between polylines) are not sufficient.
+For magnet operational data, we care about:
+
+*Peak preservation error*: abs(max(original) - max(downsampled)) /
+max(original). For the magnetic field channel, losing the peak means
+losing the most scientifically important datum.
+
+*Integral preservation error*: abs(integral_original - integral_downsampled) /
+abs(integral_original). For power or energy-related channels, the
+integral represents total energy deposited.
+
+*Frequency content preservation*: compare the power spectral density of
+original and downsampled signals. Important for detecting oscillations
+or instabilities.
+
+*Statistical moment preservation*: compare mean, std, skewness, kurtosis
+before and after downsampling.
+
+*Visual fidelity*: overlay original and downsampled plots and compute
+pixel-level difference (renders the time series as a rasterized image
+and compares). This captures what the user actually sees.
+
+[[obj-3-handle-multi-rate-and-irregular-time-series]]
+=== 3. Handle multi-rate and irregular time series
+
+Operational records may have:
+
+* *Varying sampling rates*: different channels sampled at different
+frequencies, or the sampling rate changes during a record (faster during
+transients)
+* *Gaps*: missing data points due to sensor dropout or acquisition
+system issues
+* *Timestamp irregularities*: jitter, duplicate timestamps,
+non-monotonic timestamps
+
+The student should implement:
+
+* *Regularity detection*: given a time column, classify it as regular,
+quasi-regular (with jitter), or irregular
+* *Resampling*: align all channels to a common regular grid using
+appropriate interpolation (linear for smooth channels, zero-order hold
+for step-like channels such as coil currents)
+* *Gap handling*: detect gaps (periods where Delta t exceeds a threshold),
+mark them explicitly, and decide whether to interpolate or leave as NaN
+
+[[obj-4-cross-record-stitching]]
+=== 4. Cross-record stitching
+
+Given a sequence of records for the same entity (site, magnet, or part),
+build a coherent long-term series:
+
+* *Temporal alignment*: records have absolute timestamps (Date +
+Time columns). Stitch them chronologically with explicit gaps between
+records.
+* *Per-record aggregation*: for each record, extract a summary value
+(max, mean, or a more complex statistic from Project A) to produce a
+"one point per record" lifetime series.
+* *Full stitching*: concatenate the full time series from all records
+into a single series with gap markers. This is useful for detecting slow
+drifts (resistance aging) that span multiple records.
+* *Change-point detection*: identify records where the magnet
+configuration changed (e.g., a helix was replaced). This can be detected
+from discontinuities in baseline resistance or from metadata.
+
+[[obj-5-anomaly-detection-exploratory]]
+=== 5. Anomaly detection (exploratory)
+
+With the processed time series, apply basic statistical process control
+methods:
+
+* *CUSUM (Cumulative Sum)*: detect persistent shifts in the mean of a
+channel
+* *EWMA (Exponentially Weighted Moving Average)*: detect gradual drifts
+* *Threshold-based alerts*: flag records where a channel exceeds N
+standard deviations from the historical mean
+
+This objective is exploratory and secondary to objectives 1-4.
+
+== Mathematical Content
+
+* *Approximation theory*: piecewise-linear approximation of functions,
+error bounds, optimal point selection
+* *Computational geometry*: triangle area maximization (LTTB), polyline
+simplification (Douglas-Peucker), convex hull concepts
+* *Signal processing*: resampling theory, Nyquist criterion for
+downsampling scientific data, anti-aliasing, spectral analysis (PSD
+estimation via Welch's method)
+* *Interpolation*: linear, cubic spline, zero-order hold; choice of
+interpolation method based on signal physics
+* *Algorithm analysis*: time and space complexity, benchmarking
+methodology, statistical significance of benchmark results
+* *Time series analysis*: change-point detection (CUSUM, PELT
+algorithm), trend estimation, stationarity tests
+* *Statistical process control*: CUSUM charts, EWMA charts, control
+limits
+
+== Technical Environment
+
+=== Provided
+
+* *Docker image* with Python 3.11, pandas, numpy, scipy, matplotlib,
+pyarrow, Jupyter
+* *Sample dataset*: 15-20 operational records from 2+ magnet
+configurations, with configuration metadata
+* *`student_helpers` module*: record parser, configuration loader
+* *Starter notebooks*: data loading, basic visualization, multi-record
+loading
+
+=== Useful Python libraries (pre-installed)
+
+* `pandas`: DataFrame manipulation, resampling
+* `numpy`: array operations
+* `scipy.signal`: spectral analysis, interpolation
+* `scipy.interpolate`: spline interpolation
+* `pyarrow`: Parquet file I/O (the target storage format)
+* `matplotlib`: visualization and visual fidelity benchmarking
+
+=== Not required
+
+* MagnetTools (not needed - this project works with parsed DataFrames
+only)
+* Django, database knowledge
+* Web development
+
+[[input--output-specification]]
+== Input / Output Specification
+
+=== Downsampling function
+
+[source,python]
+----
+def downsample(
+    t: np.ndarray,
+    values: np.ndarray,
+    target_points: int,
+    algorithm: str = 'lttb'
+) -> tuple[np.ndarray, np.ndarray]:
+    """Downsample a single-channel time series.
+    
+    Args:
+        t: Time array (N points).
+        values: Value array (N points).
+        target_points: Desired number of output points (M << N).
+        algorithm: One of 'naive', 'minmax', 'lttb', 'douglas_peucker', 'm4'.
+    
+    Returns:
+        Tuple of (t_downsampled, values_downsampled).
+    """
+----
+
+=== Multi-channel downsampling
+
+[source,python]
+----
+def downsample_dataframe(
+    df: pd.DataFrame,
+    time_column: str,
+    columns: list[str],
+    target_points: int,
+    algorithm: str = 'lttb'
+) -> pd.DataFrame:
+    """Downsample multiple channels from a DataFrame.
+    
+    Note: different channels may have different optimal retained points.
+    The function must decide how to handle this (e.g., compute the union
+    of important points across channels, or downsample each independently
+    and re-align).
+    
+    Args:
+        df: Input DataFrame.
+        time_column: Name of the time column.
+        columns: List of channel names to downsample.
+        target_points: Target number of output points.
+        algorithm: Downsampling algorithm.
+    
+    Returns:
+        Downsampled DataFrame with time_column and selected channels.
+    """
+----
+
+=== Record processing pipeline
+
+[source,python]
+----
+def process_record(
+    df: pd.DataFrame,
+    config: dict = None,
+    resample_period_s: float = None,
+    fill_gaps: bool = False,
+    output_format: str = 'parquet'
+) -> tuple[pd.DataFrame, dict]:
+    """Full processing pipeline for a single record.
+    
+    Steps:
+        1. Detect and handle timestamp irregularities
+        2. Remove zero-only columns
+        3. Optionally resample to regular grid
+        4. Detect and mark gaps
+        5. Compute derived columns (if config provided)
+    
+    Args:
+        df: Raw parsed record DataFrame.
+        config: Optional site configuration for derived column computation.
+        resample_period_s: If set, resample to this period. If None, keep original.
+        fill_gaps: If True, interpolate short gaps. If False, mark as NaN.
+        output_format: 'dataframe' or 'parquet' (returns bytes).
+    
+    Returns:
+        Tuple of (processed_df, metadata_dict).
+        metadata_dict contains: columns catalog, time bounds, num_points,
+        sampling info, gap locations, processing parameters used.
+    """
+----
+
+=== Record stitching
+
+[source,python]
+----
+def stitch_records(
+    records: list[tuple[pd.DataFrame, dict]],
+    column: str,
+    aggregation: str = 'max',
+    mode: str = 'summary'
+) -> pd.DataFrame:
+    """Stitch multiple records into a long-term series.
+    
+    Args:
+        records: List of (DataFrame, metadata) tuples, chronologically ordered.
+            metadata must contain 'started_at' and 'ended_at'.
+        column: Which channel to stitch.
+        aggregation: For 'summary' mode - how to summarize each record:
+            'max', 'mean', 'min', 'std', 'last', or a callable.
+        mode: 
+            'summary' - one point per record (for trend analysis)
+            'full' - concatenate all points with gap markers (for drift detection)
+    
+    Returns:
+        DataFrame with columns:
+            'timestamp': absolute datetime
+            '{column}_{aggregation}': the stitched values
+            'record_index': which record each point came from
+            'is_gap': True for gap markers between records
+    """
+----
+
+=== Benchmark function
+
+[source,python]
+----
+def benchmark_downsampling(
+    t: np.ndarray,
+    values: np.ndarray,
+    algorithms: list[str],
+    target_points_range: list[int],
+    metrics: list[str] = None
+) -> pd.DataFrame:
+    """Benchmark downsampling algorithms on a given signal.
+    
+    Args:
+        t, values: Original time series.
+        algorithms: List of algorithm names to compare.
+        target_points_range: List of target point counts (e.g., [50, 100, 200, 500, 1000]).
+        metrics: List of error metrics to compute. Default: all available
+            ('peak_error', 'integral_error', 'spectral_error',
+             'moment_error', 'visual_fidelity', 'computation_time_ms').
+    
+    Returns:
+        DataFrame with one row per (algorithm, target_points) combination,
+        columns for each metric.
+    """
+----
+
+== Suggested Timeline
+
+[cols=",",options="header",]
+|==
+|Period |Activities
+|Weeks 1-2 |Onboarding: run starter notebooks, understand the data.
+Literature review on downsampling algorithms
+
+|Weeks 3-5 |Implement 4-5 downsampling algorithms. Validate against
+reference implementations where available
+
+|Weeks 5-7 |Define error metrics. Build benchmarking framework. Run
+benchmarks on sample records
+
+|Weeks 7-9 |Implement `process_record()`: timestamp handling,
+resampling, gap detection
+
+|Weeks 9-11 |Implement `stitch_records()`: temporal alignment,
+aggregation modes, change-point detection
+
+|Weeks 11-12 |(If time permits) Anomaly detection on stitched series
+
+|Weeks 12-14 |Write report with benchmark analysis and recommendations.
+Clean up code. Final presentation
+|==
+
+== Evaluation Criteria
+
+* *Algorithm understanding*: Can the student explain the geometric or
+mathematical basis of each algorithm? Are the implementations correct?
+* *Benchmark rigor*: Are the error metrics well-defined and physically
+justified? Are benchmarks statistically sound (multiple runs, confidence
+intervals)?
+* *Practical recommendations*: Based on benchmarks, which algorithm
+should MagnetDB use, with what parameters, for which types of channels?
+* *Pipeline robustness*: Does `process_record()` handle edge cases
+(empty columns, irregular timestamps, short records)?
+* *Code quality*: Well-structured module, tests, documentation
+* *Report quality*: Clear algorithm descriptions, insightful benchmark
+analysis, actionable conclusions
+
+== References
+
+* LTTB: Steinarsson, S., "Downsampling Time Series for Visual
+Representation," MSc thesis, University of Iceland (2013)
+* Douglas-Peucker: Ramer, U., "An iterative procedure for the polygonal
+approximation of plane curves," CGIP (1972); Douglas, D.H. and Peucker,
+T.K., "Algorithms for the reduction of the number of points required to
+represent a digitized line," Cartographica (1973)
+* M4 aggregation: Jugel, U. et al., "M4: A Visualization-Oriented Time
+Series Data Aggregation," VLDB (2014)
+* Signal processing: Oppenheim, A.V. and Schafer, R.W., "Discrete-Time
+Signal Processing" (2010)
+* Change-point detection: Killick, R. et al., "Optimal detection of
+changepoints with a linear computational cost," JASA (2012) - the PELT
+algorithm
+* Statistical process control: Montgomery, D.C., "Introduction to
+Statistical Quality Control" (2012)
+* Parquet format: Apache Parquet specification - columnar storage for
+efficient I/O

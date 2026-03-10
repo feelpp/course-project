@@ -13,19 +13,19 @@ ext:
   collector:
 
     - run:
-        command: ./generate-jupyter.sh docs/modules/ROOT
+        command: ./generate-jupyter.sh docs/course/modules/ROOT
       scan:
         dir: notebooks/ROOT
         files: '**/*.ipynb'
         base: modules/ROOT/attachments/
     - run:
-        command: ./generate-jupyter.sh docs/modules/linux
+        command: ./generate-jupyter.sh docs/course/modules/linux
       scan:
         dir: notebooks/linux
         files: '**/*.ipynb'
         base: modules/linux/attachments/
     - run:
-        command: ./generate-jupyter.sh docs/modules/project-management
+        command: ./generate-jupyter.sh docs/course/modules/project-management
       scan:
         dir: notebooks/project-management
         files: '**/*.ipynb'
@@ -33,5 +33,3 @@ ext:
 nav:
 # Single unified navigation - all content organized by learning level
 - modules/ROOT/nav.adoc
-
-

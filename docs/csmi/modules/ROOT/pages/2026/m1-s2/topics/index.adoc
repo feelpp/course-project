@@ -1,0 +1,34 @@
+= CSMI Topics - 2026 M1 S2
+:page-layout: manuals
+:page-tags: manual,csmi,projects,2026,m1,s2,topics-index
+:page-cards-tag: topics
+:page-cards-within-module: true
+:page-illustration: fa-solid fa-list
+:description: Topic list for CSMI project proposals in 2026 M1 S2.
+
+Project pages for the 2026 CSMI Master 1 S2 semester.
+
+== Shared Structure
+
+- Common context and expectations are defined for all projects.
+- Each student works on one project page with project-specific details.
+
+== Projects
+
+
+
+- icon:city[] xref:2026/m1-s2/topics/hid-1.adoc[hid-1]
+- icon:magnet[] xref:2026/m1-s2/topics/hifimagnet-1.adoc[hifimagnet-1]
+- icon:magnet[] xref:2026/m1-s2/topics/hifimagnet-2.adoc[hifimagnet-2]
+- icon:magnet[] xref:2026/m1-s2/topics/hifimagnet-3.adoc[hifimagnet-3]
+- icon:cube[] xref:2026/m1-s2/topics/ooc-1.adoc[ooc-1]
+- icon:cube[] xref:2026/m1-s2/topics/ooc-2.adoc[ooc-2]
+- icon:cube[] xref:2026/m1-s2/topics/ooc-3.adoc[ooc-3]
+- icon:stethoscope[] xref:2026/m1-s2/topics/sepsis-1.adoc[sepsis-1]
+- icon:stethoscope[] xref:2026/m1-s2/topics/sepsis-2.adoc[sepsis-2]
+- icon:stethoscope[] xref:2026/m1-s2/topics/sepsis-3.adoc[sepsis-3]
+
+
+== Template
+
+- icon:file-text[] xref:ROOT:proposal-template.adoc[Proposal template]

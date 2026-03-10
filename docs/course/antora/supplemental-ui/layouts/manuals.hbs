@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{> head defaultPageTitle='Catalog'}}
+</head>
+<body class="article docs-manuals-catalog docs-cards-layout {{#with (or page.attributes.role page.role)}} {{{this}}}{{/with}}">
+{{> header}}
+
+<div class="body">
+  {{> nav componentOrder=page.attributes.component-order}}
+  <main class="article">
+    <div class="toolbar" role="navigation">
+      {{> nav-toggle}}
+      {{#with site.homeUrl}} <a href="{{{relativize this}}}" class="home-link{{#if @root.page.home}} is-current{{/if}}"></a> {{/with}}
+      {{> breadcrumbs}}
+    </div>
+
+    <div class="content">
+      <article class="doc">
+        {{#with @root.page.title}} <h1 class="page">{{{this}}}</h1> {{/with}}
+        {{{page.contents}}}
+
+        {{!-- attributes from AsciiDoc (fallback to page.attributes) --}}
+        {{#with (get-attr @root.page 'cards-tag' 'manual') as |cardsTag|}}
+          {{#with (get-attr @root.page 'cards-within-module' 'true') as |withinModuleStr|}}
+            {{!-- Try the multi-tag helper which returns groups per tag --}}
+            {{#if (eq withinModuleStr 'false')}}
+              {{#with (get-page-cards-multi @root.page cardsTag false) as |groups|}}
+                {{#if groups.length}}
+                  {{#each groups}}
+                    {{!-- Render optional per-tag title from parent page attribute `page-cards-<tag>-title` --}}
+                    {{#if this.title}}<h2 class="cards-group-title">{{this.title}}</h2>{{/if}}
+
+                    {{!-- Keep standard manuals/manual classes so default card grid CSS always applies --}}
+                    {{#if this.pages}}
+                      <div class="manuals" data-cards-tag="{{this.tag}}">
+                        {{#each this.pages}}
+                          {{#unless this.empty}}
+                            <div class="manual" data-cards-tag="{{../tag}}">{{> page-card this}}</div>
+                          {{/unless}}
+                        {{/each}}
+                      </div>
+                    {{/if}}
+                  {{/each}}
+                {{else}}
+                  {{#with (get-page-cards @root.page cardsTag false)}} {{> _cards-list pages=this }} {{/with}}
+                {{/if}}
+              {{/with}}
+            {{else}}
+              {{#with (get-page-cards-multi @root.page cardsTag true) as |groups|}}
+                {{#if groups.length}}
+                  {{#each groups}}
+                    {{!-- Render optional per-tag title from parent page attribute `page-cards-<tag>-title` --}}
+                    {{#if this.title}}<h2 class="cards-group-title">{{this.title}}</h2>{{/if}}
+
+                    {{!-- Keep standard manuals/manual classes so default card grid CSS always applies --}}
+                    {{#if this.pages}}
+                      <div class="manuals" data-cards-tag="{{this.tag}}">
+                        {{#each this.pages}}
+                          {{#unless this.empty}}
+                            <div class="manual" data-cards-tag="{{../tag}}">{{> page-card this}}</div>
+                          {{/unless}}
+                        {{/each}}
+                      </div>
+                    {{/if}}
+                  {{/each}}
+                {{else}}
+                  {{#with (get-page-cards @root.page cardsTag true)}}  {{> _cards-list pages=this }} {{/with}}
+                {{/if}}
+              {{/with}}
+            {{/if}}
+          {{/with}}
+        {{/with}}
+      </article>
+    </div>
+  </main>
+</div>
+
+{{> footer}}
+</body>
+</html>

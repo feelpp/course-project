@@ -1,0 +1,46 @@
+= sepsis-3: Digital Twin Lite for Patient Trajectory and Treatment Scenarios
+:page-layout: manuals
+:page-tags: manual,csmi,projects,topics,2026,m1,s2
+:page-illustration: fa-solid fa-stethoscope
+:description: CSMI project sepsis-3 for 2026 M1 S2.
+
+== Shared Context
+
+This project is designed for M1 CSMI Semester 2 students in 2026.
+It uses the same ICU sepsis context (PhysioNet challenge format) but shifts focus from classification to short-term trajectory modeling.
+The expected workload is 60 to 80 hours (maximum 100 hours) between March 10, 2026 and May 30, 2026 (oral defense).
+
+== Student-Specific Scope
+
+- Assigned student(s): _to be filled_
+- Specific scientific question: Can we build a simplified digital twin to forecast short-term physiological evolution and compare intervention scenarios?
+- Specific constraints: Keep claims exploratory; no causal or clinical deployment claims beyond observed-data simulation.
+
+== Objectives
+
+- Build a compact patient-state representation from recent vital signs and laboratory trends.
+- Train a short-horizon forecasting model (for example 1 to 6 hour horizon for MAP, lactate, or SOFA proxy).
+- Implement scenario-based simulation (for example intervention timing/intensity variants) and quantify uncertainty.
+- Analyze limitations, potential confounding, and safe interpretation boundaries.
+
+== Work Plan and Time Budget
+
+- Phase 1 (March 10 to March 23): data understanding and target trajectory definition (10 to 12h).
+- Phase 2 (March 24 to April 20): state construction and forecasting model implementation (24 to 30h).
+- Phase 3 (April 21 to May 11): scenario simulation, uncertainty, and sensitivity analysis (20 to 24h).
+- Phase 4 (May 12 to May 24): final report, visual storytelling, slides, rehearsal (10 to 14h).
+- Oral defense: May 30, 2026.
+- Total target: 60 to 80h (up to 100h with optional methodological extensions).
+
+== Expected Deliverables
+
+- Reproducible notebook/script pipeline for trajectory modeling and simulation.
+- Scenario analysis report with clear assumptions and non-causal interpretation.
+- Visualization set (trajectory forecasts, uncertainty bands, scenario comparisons).
+- Reproducibility guide (`README` with environment and run instructions).
+- Final written report and oral presentation slides.
+
+== Optional Extension (if time allows)
+
+- Add uncertainty-aware forecasting (for example quantile or Bayesian-style interval output).
+- Prototype a minimal dashboard for interactive scenario exploration.

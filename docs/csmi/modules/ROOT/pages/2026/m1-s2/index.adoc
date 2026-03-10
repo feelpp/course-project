@@ -1,0 +1,18 @@
+= CSMI Projects - 2026 - Master 1 - Semester 2 (S2)
+:page-layout: manuals
+:page-tags: manual,csmi,projects,2026,m1,s2,semester-index
+:page-cards-tag: topics-index
+:page-cards-within-module: true
+:page-illustration: fa-solid fa-graduation-cap
+:description: Project proposal workspace for CSMI M1 S2 in 2026.
+
+This workspace contains project proposals for the 2026 CSMI Master 1 S2 semester.
+
+== Topics
+
+- icon:list[] xref:2026/m1-s2/topics/index.adoc[Project list and proposal pages]
+
+== Organization
+
+Each student has an individual project page.
+Projects share common context, methods, and expected deliverables.

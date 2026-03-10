@@ -1,0 +1,32 @@
+= ooc-2: Bulk Flow of One Cell Population Toward Another
+:page-layout: manuals
+:page-tags: manual,csmi,projects,topics,ooc,flow,cell-interactions
+:page-illustration: fa-solid fa-cube
+:description: Quantify and model collective bulk flow of a source cell population toward a target population in organ-on-chip experiments.
+
+== Shared Context
+
+Use the same organ-on-chip imaging datasets and preprocessing pipeline (segmentation and tracking), with common statistical and visualization tooling.
+
+== Student-Specific Scope
+
+Focus on two identified cell populations and quantify directed collective motion of source cells toward target cells through velocity fields, flux estimates, and significance testing.
+
+== Objectives
+
+- Identify and track two cell populations over time.
+- Estimate bulk flow, directional bias, and net flux toward target regions.
+- Validate flow trends statistically across conditions and experiments.
+
+== Expected Deliverables
+
+- Source code repository
+- Documentation and reproducibility notes
+- Final report and presentation
+
+== Milestones
+
+- Week 1-2: Define populations, labeling strategy, and flow metrics
+- Week 3-6: Implement flow and flux estimation with condition-wise analysis
+- Week 7-9: Statistical validation and interaction-focused visualizations
+- Week 10: Final presentation
