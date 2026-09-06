@@ -2,7 +2,7 @@
 
 == Define the scientific contract
 
-The input is a vector of physical parameters; the target is a scalar extracted from a verified Feel++ heat simulation. For the xref:feelpp-gaya.adoc[thermal-bridge case], a starting study varies insulation conductivity and one boundary ambient temperature. Keep geometry, other materials, discretization and solver settings fixed initially.
+The input is a vector of physical parameters; the target is a scalar extracted from a verified {feelpp} heat simulation. For the xref:feelpp-gaya.adoc[thermal-bridge case], a starting study varies insulation conductivity and one boundary ambient temperature. Keep geometry, other materials, discretization and solver settings fixed initially.
 
 A proposed teaching domain is insulation conductivity in `[0.02, 0.06] W/(m K)` and bottom ambient temperature in `[15, 25] degrees C`, with the original top temperature fixed. These are exercise choices for instructor approval, not calibrated material ranges. Agree the domain, units, mesh, sample budget and numerical acceptance tolerance before generating a campaign.
 
@@ -57,6 +57,6 @@ Persist the fitted preprocessing/model pipeline, schema, valid parameter domain,
 
 == Exercise and self-check
 
-Trace a prediction back to its training dataset and the originating Feel++ campaign. Demonstrate that a failed job cannot silently become a training row and that no held-out parameter group enters training or preprocessing fitting.
+Trace a prediction back to its training dataset and the originating {feelpp} campaign. Demonstrate that a failed job cannot silently become a training row and that no held-out parameter group enters training or preprocessing fitting.
 
 Next: xref:mlops/engineering.adoc[automation and inference verification].

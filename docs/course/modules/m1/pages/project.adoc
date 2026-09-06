@@ -2,7 +2,7 @@
 
 == Objectives
 
-Answer a scientific question while demonstrating autonomy in Linux, Python/C++, remote computing and collaborative software practice. Agree the topic and scientific validation with the supervisor. Existing xref:csmi::2026/m1-s2/topics/index.adoc[2026 M1 S2 topics] remain available as that cohort's material; future assignments and deadlines are announced by the teaching team.
+Answer a scientific question while demonstrating autonomy in Linux, Python/{cpp}, remote computing and collaborative software practice. Agree the topic and scientific validation with the supervisor. Existing xref:csmi::2026/m1-s2/topics/index.adoc[2026 M1 S2 topics] remain available as that cohort's material; future assignments and deadlines are announced by the teaching team.
 
 [#workflow]
 == Expected workflow and GitHub organization
@@ -21,4 +21,4 @@ Maintain a repository with source, tests, small fixtures, environment instructio
 [#assessment]
 == Assessment
 
-Demonstrate scientific correctness, a reproducible workflow, code quality and collaboration. In an individual practical/oral check, explain your contribution, operate the shell/Git workflow, run Python, compile a small C++ program and interpret a job or test failure. See xref:ROOT:assessment.adoc[M1 competencies]. Dates and grading weights are supplied with the assignment.
+Demonstrate scientific correctness, a reproducible workflow, code quality and collaboration. In an individual practical/oral check, explain your contribution, operate the shell/Git workflow, run Python, compile a small {cpp} program and interpret a job or test failure. See xref:ROOT:assessment.adoc[M1 competencies]. Dates and grading weights are supplied with the assignment.

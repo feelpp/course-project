@@ -1,6 +1,6 @@
 = Introduction to Containers for High-Performance Computing (HPC)
 
-NOTE: Advanced reference material. The course operational path is xref:m2:feelpp-gaya.adoc[Feel++ on Gaya with Slurm and Apptainer]. MPI launchers and libraries must match the host/container setup; Apptainer has no generic `exec --mpi` switch.
+NOTE: Advanced reference material. The course operational path is xref:m2:feelpp-gaya.adoc[{feelpp} on Gaya with Slurm and Apptainer]. MPI launchers and libraries must match the host/container setup; Apptainer has no generic `exec --mpi` switch.
 Christophe Prud'homme <christophe.prudhomme@cemosis.fr>
 v1.0, 2023-03-24
 :icons: font
@@ -25,19 +25,19 @@ Learning Objectives::
 
 == But first who are we and why are we here ?
 
-Cemosis, the Center for Modeling and Simulation in Strasbourg, plays a critical role in advancing computational research through the development of Feel++ within the Feel++ Consortium. Here's why containerization matters for Cemosis:
+Cemosis, the Center for Modeling and Simulation in Strasbourg, plays a critical role in advancing computational research through the development of {feelpp} within the {feelpp} Consortium. Here's why containerization matters for Cemosis:
 
 * **Enhanced Reproducibility:**  
-  - With Feel++ being a sophisticated framework for finite element analysis, ensuring that every simulation runs in an identical environment is crucial for scientific validation. Containers guarantee that dependencies, libraries, and configurations remain consistent across all testing and production runs.
+  - With {feelpp} being a sophisticated framework for finite element analysis, ensuring that every simulation runs in an identical environment is crucial for scientific validation. Containers guarantee that dependencies, libraries, and configurations remain consistent across all testing and production runs.
 
 * **Simplified Collaboration:**  
-  - The Feel++ Consortium involves collaboration among multiple institutions. Containers enable researchers at Cemosis and partner organizations to share a single, standardized environment, reducing setup complexities and streamlining collaborative development.
+  - The {feelpp} Consortium involves collaboration among multiple institutions. Containers enable researchers at Cemosis and partner organizations to share a single, standardized environment, reducing setup complexities and streamlining collaborative development.
 
 * **Optimized HPC Workflows:**  
   - HPC applications in modeling and simulation often require finely tuned performance optimizations. Containerization encapsulates these optimizations, ensuring that computational experiments run efficiently on various HPC systems without manual reconfiguration.
 
 * **Rapid Deployment and Testing:**  
-  - With containerized workflows, Cemosis can quickly iterate on new features or bug fixes in Feel++, automatically testing changes in a controlled environment. This accelerates development cycles and improves the overall quality of the software.
+  - With containerized workflows, Cemosis can quickly iterate on new features or bug fixes in {feelpp}, automatically testing changes in a controlled environment. This accelerates development cycles and improves the overall quality of the software.
 
 * **Future-Proofing Research:**  
   - As hardware and software evolve, maintaining reproducible environments becomes increasingly challenging. Containers provide a robust solution to preserve the computational environment, ensuring long-term reproducibility and sustainability of research outputs.
@@ -45,7 +45,7 @@ Cemosis, the Center for Modeling and Simulation in Strasbourg, plays a critical 
 [NOTE]
 This section emphasizes that containerization is not just a technical enhancement but a strategic enabler for research and collaboration at Cemosis.
 
-=== Feel++ Overview
+=== {feelpp} Overview
 
 [.left]
 --
@@ -67,7 +67,7 @@ image::feelpp-arch.png[image,width=600]
 * *Tests:* About a thousand  tests  in sequential and parallel {cpp} and Python
 * *Usage:* Research, R&D, Teaching, _Services_
 
-=== Some Feel++ Applications
+=== Some {feelpp} Applications
 
 [cols="1,1,1", options="header", frame="none", grid="none"]
 |===
@@ -127,19 +127,19 @@ image:feelpp/hidalgo2.png[width=45%]
 //
 //image:feelpp-cb-workflow.png[background,size=contain]
 
-=== Feel++ Continuous Integration/Continuous Delivery (CI/CD)
+=== {feelpp} Continuous Integration/Continuous Delivery (CI/CD)
 
 Here is our strategy for CI/CD workflow
 
-.Feel++ CI/CD Workflow
-image:feelpp/cicd/feelpp-cicd.png[title="Feel++ CI/CD Workflow",width=75%]
+.{feelpp} CI/CD Workflow
+image:feelpp/cicd/feelpp-cicd.png[title="{feelpp} CI/CD Workflow",width=75%]
 
-=== Feel++ Continous Benchmarking (CB)
+=== {feelpp} Continous Benchmarking (CB)
 
 Here is our strategy for CB workflow on EuroHPC and a few other systems
 
-.Feel++ CB Workflow
-image:feelpp/cicd/feelpp-cd-hpc.png[title="Feel++ EuroHPC CB",width=75%]
+.{feelpp} CB Workflow
+image:feelpp/cicd/feelpp-cd-hpc.png[title="{feelpp} EuroHPC CB",width=75%]
 
 
 == Introduction to Containers

@@ -11,8 +11,8 @@ Use demonstrations rather than counting familiar tool names. Record a command, s
 |xref:linux:ssh/ssh-setup.adoc[SSH]
 |Stage a selected change, commit it, create a branch and explain a PR.
 |xref:git-github:git-starter.adoc[Git], xref:git-github:github-review-projects-lab.adoc[GitHub lab]
-|Run Python in an isolated environment; compile and explain a C++ program using a function and a standard container.
-|xref:m1:environments.adoc[Python and C++ environments]
+|Run Python in an isolated environment; compile and explain a {cpp} program using a function and a standard container.
+|xref:m1:environments.adoc[Python and {cpp} environments]
 |Open a remote workspace and explain where its terminal runs.
 |xref:linux:ssh/remote-ssh-vscode.adoc[Remote SSH]
 |Submit a short batch job; find its output; explain login versus compute nodes.
@@ -21,4 +21,4 @@ Use demonstrations rather than counting familiar tool names. Record a command, s
 |xref:m1:workflow.adoc[Project workflow]
 |===
 
-Before M1, programming familiarity is expected, including C++. Learn the operational tools throughout M1. At M2 entry, all the checks above are assumed; use xref:m2:transition.adoc[the M1-to-M2 bridge] for targeted revision.
+Before M1, programming familiarity is expected, including {cpp}. Learn the operational tools throughout M1. At M2 entry, all the checks above are assumed; use xref:m2:transition.adoc[the M1-to-M2 bridge] for targeted revision.

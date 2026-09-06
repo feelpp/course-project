@@ -2,7 +2,7 @@
 
 == Why this matters
 
-A project is a sequence of explainable, checked changes. Use Git/GitHub throughout your Linux, Python, C++ and Gaya work rather than saving collaboration for the final submission.
+A project is a sequence of explainable, checked changes. Use Git/GitHub throughout your Linux, Python, {cpp} and Gaya work rather than saving collaboration for the final submission.
 
 == Expected workflow
 
@@ -43,7 +43,7 @@ class MeanTests(unittest.TestCase):
             mean([])
 ----
 
-Run `python -m unittest discover -v` in the xref:environments.adoc[project environment]. Deliberately break the computation and confirm the test detects it before restoring the implementation. For C++, use the existing xref:software:repo/organization.adoc[CTest example].
+Run `python -m unittest discover -v` in the xref:environments.adoc[project environment]. Deliberately break the computation and confirm the test detects it before restoring the implementation. For {cpp}, use the existing xref:software:repo/organization.adoc[CTest example].
 
 [#ci]
 == Basic CI

@@ -2,7 +2,7 @@
 
 == First M2 session: 7 September 2026
 
-Before teaching, verify the allocated Linux host, Apptainer version, available storage, registry access and allowed image-building method. Prepare the tutorial SIF on a supported build host if students cannot build. Validate the Feel++ case and scalar-output column, baseline solver checks, one-rank launch, writable result path and sample resource budget before scaling a campaign.
+Before teaching, verify the allocated Linux host, Apptainer version, available storage, registry access and allowed image-building method. Prepare the tutorial SIF on a supported build host if students cannot build. Validate the {feelpp} case and scalar-output column, baseline solver checks, one-rank launch, writable result path and sample resource budget before scaling a campaign.
 
 Record its SHA-256 and distribute it using the course's normal file channel. Confirm Gaya access, partition/account requirements and module names with administrators; these are deliberately not guessed in the examples.
 
@@ -10,7 +10,7 @@ Suggested 90-minute sequence (adapt to the actual slot):
 
 * 0–10 min: xref:m2:index.adoc[M2 outcomes] and image/process mental model.
 * 10–40 min: xref:containers:apptainer/tutorial.adoc[pull, inspect, execute, bind data and compute a result].
-* 40–55 min: xref:m2:feelpp-gaya.adoc[Feel++ deployment on Gaya] with a preflighted case/SIF and xref:m2:reproducibility.adoc[reproduction evidence].
+* 40–55 min: xref:m2:feelpp-gaya.adoc[{feelpp} deployment on Gaya] with a preflighted case/SIF and xref:m2:reproducibility.adoc[reproduction evidence].
 * 55–70 min: xref:m2:mlops/index.adoc[MLOps lifecycle].
 * 70–90 min: xref:m2:mlops/project.adoc[project brief], first issue and acceptance criteria.
 
@@ -18,7 +18,7 @@ Exit check: each student explains `exec` versus `run`, locates output on the hos
 
 == M1 delivery
 
-Introduce VS Code and Remote SSH early. Reuse a scientific repository across shell, Git, Python/C++, Gaya and project-workflow lessons. Pair brief exercises with individual checks; do not delay C++ until the end of M1.
+Introduce VS Code and Remote SSH early. Reuse a scientific repository across shell, Git, Python/{cpp}, Gaya and project-workflow lessons. Pair brief exercises with individual checks; do not delay {cpp} until the end of M1.
 
 == Assessment and retained material
 

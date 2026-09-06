@@ -1,8 +1,8 @@
-= M2 MLOps project — Feel++ thermal surrogate on Gaya
+= M2 MLOps project — {feelpp} thermal surrogate on Gaya
 
 == Project brief
 
-Build a complete computational-science pipeline: prepare parameterized heat cases, run Feel++ on Gaya using Slurm and Apptainer, assemble a dataset, train a regression model for average temperature, and verify inference against held-out and new Feel++ simulations. A small, traceable model is preferred to sophisticated ML with incomplete provenance.
+Build a complete computational-science pipeline: prepare parameterized heat cases, run {feelpp} on Gaya using Slurm and Apptainer, assemble a dataset, train a regression model for average temperature, and verify inference against held-out and new {feelpp} simulations. A small, traceable model is preferred to sophisticated ML with incomplete provenance.
 
 A technically competent third party should be able to clone the repository, follow the documented procedure, reproduce the environment and execute the pipeline.
 
@@ -47,7 +47,7 @@ python -m thermal_surrogate.verify --predictions artifacts/predictions.csv --ref
 python -m pytest
 ----
 
-Preparation writes per-sample solver inputs and stable IDs. Submission/status records job IDs and attempts. Collection accepts only complete, valid runs. Training keeps preprocessing within the fitted model pipeline and logs configuration, dataset/split identity, metrics and artifacts in MLflow. Prediction must not rerun training. Verification compares predictions with matching Feel++ sample IDs and physical units.
+Preparation writes per-sample solver inputs and stable IDs. Submission/status records job IDs and attempts. Collection accepts only complete, valid runs. Training keeps preprocessing within the fitted model pipeline and logs configuration, dataset/split identity, metrics and artifacts in MLflow. Prediction must not rerun training. Verification compares predictions with matching {feelpp} sample IDs and physical units.
 
 Use a single reproducible driver or documented stage commands with restart/resume semantics. Demonstrate the equivalent containerized ML commands and the actual Slurm simulation script.
 
@@ -64,14 +64,14 @@ Use acceptance criteria, labels, milestones and a Project board. Each student pr
 [cols="1,3,2",options="header"]
 |===
 |Stage |Deliverable |Acceptance evidence
-|1. Deploy Feel++ |Single preflighted heat case, SIF/case hashes, Slurm script, persistent outputs.
+|1. Deploy {feelpp} |Single preflighted heat case, SIF/case hashes, Slurm script, persistent outputs.
 |Successful job and solver checks; repeat-run comparison; explain mounts/resources.
 |2. Produce the dataset |Seeded parameter design, per-sample inputs, campaign jobs and verified scalar extraction.
 |Small smoke campaign; failure/retry handling; schema/units/provenance; expanded budget agreed.
 |3. Learn the response |Frozen dataset/splits, dummy baseline and at least two regression configurations, MLflow comparison.
 |Train-only preprocessing; validation-based selection; final held-out error report in temperature units.
 |4. Infer and verify |Packaged predictor, tests/CI and independent verification set.
-|Reload without retraining; compare with Feel++ references; investigate worst errors and mesh sensitivity.
+|Reload without retraining; compare with {feelpp} references; investigate worst errors and mesh sensitivity.
 |5. Reproduce |Artifact retrieval, complete instructions and partner reproduction report.
 |Clean-checkout demonstration of the pipeline, with HPC access/resource prerequisites explicit.
 |===
@@ -87,7 +87,7 @@ Submit repository commit/tag, issue/PR/review links, CI results, both environmen
 * HPC operation: Slurm/Apptainer use on Gaya, appropriate resource requests, isolated outputs and traceable failures/retries.
 * Engineering: automated/resumable stages, meaningful tests, CI, packaging and artifact handling.
 * Reproducibility/collaboration: independent handoff, focused PRs, reviews and contribution evidence.
-* Individual understanding: explain a dataset row back to its Feel++ run; modify an input safely; diagnose a failed job; defend a prediction and its limits.
+* Individual understanding: explain a dataset row back to its {feelpp} run; modify an input safely; diagnose a failed job; defend a prediction and its limits.
 
 A low prediction error alone is insufficient. Project work may use AI under the xref:ROOT:ai-use.adoc[announced mode]; live individual checks can use another mode. See xref:ROOT:assessment.adoc[course competencies].
 
@@ -95,11 +95,11 @@ A low prediction error alone is insufficient. Project work may use AI under the 
 == Reproducibility checklist
 
 * [ ] Sampling domain, units, seed, sample IDs and complete generated inputs are recorded.
-* [ ] Feel++ SIF, case template, mesh/solver settings and ML environment are identified and retrievable.
+* [ ] {feelpp} SIF, case template, mesh/solver settings and ML environment are identified and retrievable.
 * [ ] Every accepted row traces to a verified simulation; failures/retries are accounted for.
 * [ ] Dataset checksum and disjoint grouped train/validation/test IDs are frozen.
 * [ ] Training/evaluation is automated and tracked; inference reloads the selected artifact.
-* [ ] Held-out and new verification predictions are compared with matched Feel++ results using agreed tolerances.
+* [ ] Held-out and new verification predictions are compared with matched {feelpp} results using agreed tolerances.
 * [ ] Tests/CI cover failures and fixtures; real HPC validation evidence is distinguished.
 * [ ] A partner reproduces the procedure with the documented Gaya access, resources and artifact locations.
 

@@ -6,14 +6,14 @@ A model or simulation is useful to others when its environment, data, code and r
 
 == Learning outcomes
 
-Deploy Feel++ with Apptainer and Slurm on Gaya; prepare parameterized simulations, assemble a verified dataset, train and track regression models, package inference and verify predictions against held-out Feel++ results. Test the stages and build a CI pipeline. Explain and defend the main engineering choices and scientific limitations.
+Deploy {feelpp} with Apptainer and Slurm on Gaya; prepare parameterized simulations, assemble a verified dataset, train and track regression models, package inference and verify predictions against held-out {feelpp} results. Test the stages and build a CI pipeline. Explain and defend the main engineering choices and scientific limitations.
 
 == Start here — session of 7 September 2026
 
 . xref:containers:apptainer/index.adoc[Apptainer: image and execution model].
 . xref:containers:apptainer/tutorial.adoc[Practical: a reproducible scientific computation].
 . xref:hpc-containers.adoc[Execute on HPC with explicit inputs and outputs].
-. xref:feelpp-gaya.adoc[Deploy Feel++ on Gaya with Slurm and generate simulation results].
+. xref:feelpp-gaya.adoc[Deploy {feelpp} on Gaya with Slurm and generate simulation results].
 . xref:reproducibility.adoc[Record the environment and reproduce a result].
 . xref:mlops/index.adoc[MLOps: follow the complete lifecycle].
 . xref:mlops/project.adoc[Start the MLOps project].

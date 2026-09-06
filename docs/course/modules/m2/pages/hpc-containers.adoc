@@ -49,4 +49,4 @@ Submit with `sbatch analysis.sbatch`; note the returned job ID. Inspect `squeue 
 
 Repeat the local analysis as a job and compare the scientific output. Explain which files are in the SIF, which are on shared storage, and which scheduler options bound the job's resource use.
 
-Next: xref:feelpp-gaya.adoc[deploy Feel++ on Gaya], then xref:reproducibility.adoc[reproducible environments]. Further material: xref:containers:hpc/index.adoc[HPC container concepts], xref:containers:hpc/best-practices.adoc[best practices], xref:containers:hpc/hands-on/index.adoc[advanced MPI/Karolina examples].
+Next: xref:feelpp-gaya.adoc[deploy {feelpp} on Gaya], then xref:reproducibility.adoc[reproducible environments]. Further material: xref:containers:hpc/index.adoc[HPC container concepts], xref:containers:hpc/best-practices.adoc[best practices], xref:containers:hpc/hands-on/index.adoc[advanced MPI/Karolina examples].

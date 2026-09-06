@@ -9,9 +9,9 @@ Project output is one source of evidence. Individual practical checks and oral/c
 |Live session: locate an input, connect, submit a short job and retrieve stdout/stderr.
 |M1 |Use staging, branches, remotes, history and a simple conflict resolution; collaborate with issues and PRs.
 |Individual Git exercise and reviewed project PR linked to an issue.
-|M1 |Run Python, compile/run C++, add a test and explain reproducibility.
+|M1 |Run Python, compile/run {cpp}, add a test and explain reproducibility.
 |Clean-checkout demonstration and explanation of a failing/passing test.
-|M2 |Deploy Feel++ on Gaya with Slurm/Apptainer and manage simulation inputs, outputs and execution identity.
+|M2 |Deploy {feelpp} on Gaya with Slurm/Apptainer and manage simulation inputs, outputs and execution identity.
 |Container demonstration with image checksum, bind mounts and recorded commands.
 |M2 |Automate tests/CI; organize data, experiments and model artifacts; reproduce training and inference.
 |Pipeline run, experiment comparison, artifact manifest and independent reproduction.

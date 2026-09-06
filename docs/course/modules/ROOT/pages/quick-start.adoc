@@ -16,7 +16,7 @@ Set your Git author name/email, sign in to GitHub and accept the course organiza
 
 == M1
 
-. Verify the xref:m1:environments.adoc[Python and C++ environments].
+. Verify the xref:m1:environments.adoc[Python and {cpp} environments].
 . Check `ssh gaya` using the institution-issued login and host details.
 . Open your remote working folder with xref:linux:ssh/remote-ssh-vscode.adoc[VS Code Remote SSH].
 . Check xref:m1:gaya.adoc[Gaya access and scheduler instructions].

@@ -4,27 +4,27 @@
 
 Implement explicit commands for input preparation, Slurm submission/status, result collection, dataset assembly, training, evaluation and prediction. The pipeline must resume after a failed stage without overwriting successful runs. Configurations, sample IDs, paths and artifact identities are part of its interface.
 
-The simulation stage runs Feel++ in Apptainer under Slurm on Gaya. The ML stage uses its locked Python environment, containerized for handoff; substantial training on Gaya also needs an allocation. A light local training smoke test can use a committed fixture. Do not label fixture-based CI as a real HPC validation.
+The simulation stage runs {feelpp} in Apptainer under Slurm on Gaya. The ML stage uses its locked Python environment, containerized for handoff; substantial training on Gaya also needs an allocation. A light local training smoke test can use a committed fixture. Do not label fixture-based CI as a real HPC validation.
 
 == Meaningful tests and CI/CD
 
 Test that generated case inputs match their sampled parameters, invalid ranges/non-finite inputs are rejected, and output extraction detects missing columns, failed jobs and mismatched sample IDs. Test split disjointness by parameter group, artifact reload and prediction shape/finite values. Include an end-to-end smoke test from a small recorded simulation-output fixture to inference.
 
-On each PR, GitHub Actions installs the locked ML environment and runs pytest plus the fixture pipeline. It must not need Gaya credentials or submit expensive jobs from an untrusted PR. Run the real Feel++ smoke case through the approved Gaya process and attach the job/solver evidence to the reviewed revision. Automate this stage only when an authorized runner and resource policy are established.
+On each PR, GitHub Actions installs the locked ML environment and runs pytest plus the fixture pipeline. It must not need Gaya credentials or submit expensive jobs from an untrusted PR. Run the real {feelpp} smoke case through the approved Gaya process and attach the job/solver evidence to the reviewed revision. Automate this stage only when an authorized runner and resource policy are established.
 
 CI detects regressions; continuous delivery prepares tested artifacts. The course deployment targets are a scheduled scientific application and a batch predictor, not necessarily a public web service. Reuse xref:git-github:github-actions.adoc[GitHub Actions] and xref:software:release-engineering-weather.adoc[release practices].
 
 == Package two reproducible environments
 
-Record the Feel++ SIF version/checksum and case source. Package the Python application with `pyproject.toml`, a tested dependency lock and an Apptainer definition. Pin verified base digests for releases. Give inference a documented entry point and bind its model/input read-only and output separately. Record model/SIF hashes and retrieval locations; a hash does not preserve an artifact.
+Record the {feelpp} SIF version/checksum and case source. Package the Python application with `pyproject.toml`, a tested dependency lock and an Apptainer definition. Pin verified base digests for releases. Give inference a documented entry point and bind its model/input read-only and output separately. Record model/SIF hashes and retrieval locations; a hash does not preserve an artifact.
 
 == Inference and monitoring
 
-Input is a CSV of physical parameter vectors in the recorded units/order; output is predicted average temperature and model/run identity. Inference reloads the selected fitted pipeline without retraining. Validate the schema and explicitly reject or flag values outside the documented training domain. Compare the prediction against the corresponding held-out Feel++ value using MAE, RMSE, maximum absolute error and residual plots.
+Input is a CSV of physical parameter vectors in the recorded units/order; output is predicted average temperature and model/run identity. Inference reloads the selected fitted pipeline without retraining. Validate the schema and explicitly reject or flag values outside the documented training domain. Compare the prediction against the corresponding held-out {feelpp} value using MAE, RMSE, maximum absolute error and residual plots.
 
-After selection, use a small additional verification set with fresh parameter vectors and Feel++ runs. Report it separately from the frozen test set; do not tune on it and then call it independent verification. Compare mesh-refined reference results for a subset to distinguish ML error from solver discretization error. Define the acceptance tolerance before evaluating, with physical units and a scientific rationale.
+After selection, use a small additional verification set with fresh parameter vectors and {feelpp} runs. Report it separately from the frozen test set; do not tune on it and then call it independent verification. Compare mesh-refined reference results for a subset to distinguish ML error from solver discretization error. Define the acceptance tolerance before evaluating, with physical units and a scientific rationale.
 
-Log sample count, invalid/out-of-domain requests, inference duration and model identity. Monitor input distribution changes and periodic residuals when new Feel++ reference values are available. Input drift signals investigation; it is not itself measured prediction error.
+Log sample count, invalid/out-of-domain requests, inference duration and model identity. Monitor input distribution changes and periodic residuals when new {feelpp} reference values are available. Input drift signals investigation; it is not itself measured prediction error.
 
 == Review exercise
 

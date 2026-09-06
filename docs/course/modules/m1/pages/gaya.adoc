@@ -60,4 +60,4 @@ Add the course's required `--partition`/`--account` directives if the defaults a
 
 Run the short job, retrieve the two logs, and explain why the hostname can differ from the login host. Submit a second job and cancel it if still pending/running. Replace `hostname` with your tested small computation using the approved environment and resource request.
 
-Common errors are an inaccessible working directory, missing module, invalid account/partition, exceeded quota, and heavy work on the login node. Record the message and job ID when requesting help. See https://slurm.schedmd.com/quickstart.html[the Slurm user guide] and xref:m2:feelpp-gaya.adoc[the target Feel++ deployment workflow].
+Common errors are an inaccessible working directory, missing module, invalid account/partition, exceeded quota, and heavy work on the login node. Record the message and job ID when requesting help. See https://slurm.schedmd.com/quickstart.html[the Slurm user guide] and xref:m2:feelpp-gaya.adoc[the target {feelpp} deployment workflow].

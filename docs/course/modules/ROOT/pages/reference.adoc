@@ -94,7 +94,7 @@ Use xref:m1:index.adoc[M1] and xref:m2:index.adoc[M2] for the teaching sequence.
 * xref:software:package-managers.adoc[Understanding Package Managers]
 * xref:software:python-e2e-weather-workshop.adoc[End-to-End Python Weather App Workshop]
 * xref:software:release-engineering-weather.adoc[Release Engineering Lesson (60 min): Weather App]
-* xref:software:repo/organization.adoc[Repository Organization for a C++20 Project Using CMake and CTest]
+* xref:software:repo/organization.adoc[Repository Organization for a {cpp}20 Project Using CMake and CTest]
 
 == Project management
 

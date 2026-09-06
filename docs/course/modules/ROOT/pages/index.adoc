@@ -12,14 +12,14 @@ Reproducible computational science and professional scientific software practice
 |xref:m2:index.adoc[Follow the M2 learning path] · xref:m2:mlops/project.adoc[MLOps project]
 |===
 
-The practical target is to operate on Gaya using Slurm and Apptainer to deploy Feel++, then build a simulation-to-ML pipeline: prepare inputs → HPC simulations → dataset → training → inference → verification.
+The practical target is to operate on Gaya using Slurm and Apptainer to deploy {feelpp}, then build a simulation-to-ML pipeline: prepare inputs → HPC simulations → dataset → training → inference → verification.
 
 == M2 starts here — 7 September 2026
 
 xref:containers:apptainer/index.adoc[Apptainer] →
 xref:containers:apptainer/tutorial.adoc[Run a scientific application] →
 xref:m2:hpc-containers.adoc[HPC execution] →
-xref:m2:feelpp-gaya.adoc[Deploy Feel++ on Gaya] →
+xref:m2:feelpp-gaya.adoc[Deploy {feelpp} on Gaya] →
 xref:m2:reproducibility.adoc[Reproducible environments] →
 xref:m2:mlops/index.adoc[MLOps] →
 xref:m2:mlops/project.adoc[MLOps project].
