@@ -1,154 +1,35 @@
-= Quick Start Guide
-:page-tags: quickstart
-:parent-catalogs: ROOT:index
-:page-illustration: fa-solid fa-rocket
-:description: Get started quickly with the Course Project. Essential first steps for mathematics students beginning their computational journey.
+= Software and accounts
 
-[.lead]
-Ready to begin? This guide gets you started in the Course Project based on your mathematical background and computational experience.
+== Common workspace
 
-== 🚀 **In 5 Minutes: Find Your Starting Point**
+Use a Linux shell locally or on an institution-provided machine. Windows users can use xref:vscode:wsl.adoc[WSL]; macOS users can develop locally and use a Linux host for Apptainer. You need Git, an OpenSSH client, VS Code and the Remote - SSH extension. Follow xref:vscode:install.adoc[VS Code setup] and xref:linux:ssh/ssh-setup.adoc[SSH setup].
 
-[.steps]
-=== Step 1: Take the Assessment
-Navigate to xref:prerequisites.adoc[Prerequisites & Self-Assessment] and complete the quick skills checklist (2 minutes).
+[source,bash]
+----
+git --version
+ssh -V
+python3 --version
+c++ --version
+----
 
-=== Step 2: Choose Your Track
-Based on your assessment results:
+Set your Git author name/email, sign in to GitHub and accept the course organization/repository invitation. Keep a passphrase on your private SSH key; register only the public key. A GitHub account and a Gaya account are separate identities.
 
-🟢 **Beginner Track** (0-3 checkboxes)::
-Start with xref:linux:index.adoc[Linux Essentials for Mathematics Students]
+== M1
 
-🟡 **Intermediate Track** (4-7 checkboxes)::  
-Jump to xref:project-management:index.adoc[Project Management for Research]
+. Verify the xref:m1:environments.adoc[Python and C++ environments].
+. Check `ssh gaya` using the institution-issued login and host details.
+. Open your remote working folder with xref:linux:ssh/remote-ssh-vscode.adoc[VS Code Remote SSH].
+. Check xref:m1:gaya.adoc[Gaya access and scheduler instructions].
 
-🔴 **Advanced Track** (8+ checkboxes)::
-Begin with xref:containers:index.adoc[Containers for Mathematical Computing]
+Do not install system packages or change services on a shared cluster. Use the supplied modules and user environments. Ask the teaching team about missing account access, required network/VPN access, or compiler modules.
 
-=== Step 3: Set Up Your Environment
-Follow the setup instructions in your chosen starting module.
+== M2 — prepare Apptainer first
 
-=== Step 4: Join the Community
-Connect with other students on https://join.slack.com/t/feelpp/shared_invite/zt-2qe0q9hw-4pVbhohCXUE6Po9Ma8dbiQ[Slack] for questions and collaboration.
+On the Linux machine allocated for the session, run:
 
-== 📖 **For Instructors: Teaching This Course**
+[source,bash]
+----
+apptainer --version
+----
 
-**New to teaching computational tools to mathematics students?**
-
-1. **Review the Instructor Guide**: Start with xref:instructor-guide.adoc[📚 Instructor Guide] for comprehensive teaching strategies
-2. **Understand Your Students**: Most CSMI students are mathematicians, not computer scientists
-3. **Emphasize Mathematical Relevance**: Always connect tools to mathematical research applications
-4. **Plan for Mixed Skill Levels**: Use the 3-track system to accommodate different backgrounds
-
-**Key Success Factors:**
-- Begin with mathematical motivation for each tool
-- Provide plenty of hands-on practice with mathematical examples  
-- Support struggling students with peer mentoring
-- Connect tools to real mathematical research workflows
-
-== 🎯 **Learning Objectives by Track**
-
-=== 🟢 **Foundational Track Goals**
-By completion, students will:
-
-- Navigate Linux systems confidently for mathematical computing
-- Use Git to manage LaTeX documents and research code
-- Set up VS Code for mathematical work
-- Apply basic project management to research projects
-
-=== 🟡 **Intermediate Track Goals**  
-By completion, students will:
-
-- Collaborate effectively on mathematical research projects
-- Create reproducible computational environments
-- Manage complex research projects with multiple collaborators
-- Understand automation basics for mathematical workflows
-
-=== 🔴 **Advanced Track Goals**
-By completion, students will:
-
-- Deploy mathematical software on HPC systems
-- Implement sophisticated automation for mathematical research
-- Create production-quality mathematical software workflows
-- Lead computational mathematics projects
-
-== 🛠️ **Technical Requirements**
-
-=== All Students Need:
-
-- Computer with administrative privileges
-- Internet connection for downloads
-- 20GB free disk space
-- Text editor (VS Code recommended)
-
-=== Additional for Advanced Track:
-
-- Access to Linux system (native, VM, or WSL)
-- 8GB+ RAM for container work
-- Basic familiarity with command line
-
-== ❓ **Common Questions**
-
-**"I'm a pure mathematician - do I really need these tools?"**::
-Modern mathematics increasingly involves computation, collaboration, and data analysis. These tools will make your research more efficient and reproducible, whether you're working on theoretical proofs or applied problems.
-
-**"What if I get stuck or fall behind?"**::
-+
-- Use the Slack community for peer support
-- Attend instructor office hours  
-- Form study groups with other mathematics students
-- Remember: you can always go back to review earlier concepts
-
-**"How much time should I expect to spend?"**::
-+
-- **Foundational Track**: 4-6 hours per week for 6-8 weeks
-- **Intermediate Track**: 3-4 hours per week for 4-6 weeks  
-- **Advanced Track**: 2-3 hours per week for 3-4 weeks
-
-**"Can I switch tracks if I chose wrong?"**::
-Absolutely! The tracks are flexible. If you find content too easy or challenging, you can adjust your path at any time.
-
-== 🎉 **Ready to Begin?**
-
-Choose your starting point and dive in:
-
-[.cards.grid-3]
-[cols="1,1,1"]
-|===
-^.^a|
-[.card.bg-success.text-white]
-====
-**🟢 START HERE**
-
-**New to computational tools?**
-
-xref:linux:index.adoc[Linux Essentials] →
-====
-
-^.^a|
-[.card.bg-warning.text-white]
-====
-**🟡 JUMP AHEAD**
-
-**Some programming experience?**
-
-xref:project-management:index.adoc[Project Management] →
-====
-
-^.^a|
-[.card.bg-danger.text-white]
-====
-**🔴 ADVANCED START**
-
-**Ready for HPC workflows?**
-
-xref:containers:index.adoc[Containers & HPC] →
-====
-|===
-
-**Remember**: This is a journey, not a race. Focus on understanding concepts deeply rather than rushing through modules. The tools you learn here will serve you throughout your mathematical career!
-
-[.callout.tip]
---
-**Pro Tip**: Keep a learning journal as you progress through the course. Note which concepts click easily and which require more practice. This will help you identify your strengths and areas for continued development.
---
+Use xref:containers:apptainer/apptainer-install.adoc[the access/install guide] if it is missing. Pulling images needs registry access and enough disk quota; building may require facilities that are disabled on shared clusters. The first exercise can run from a prebuilt SIF supplied by the teaching team. Start with xref:containers:apptainer/tutorial.adoc[the practical tutorial].

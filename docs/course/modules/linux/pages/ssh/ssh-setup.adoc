@@ -1,198 +1,53 @@
-= Setting Up SSH
-:page-toclevels: 3
+= SSH setup for scientific work
 
-== What is SSH?
+== Why this matters and objectives
 
-SSH (Secure Shell) is a protocol used to securely connect to remote machines. It allows encrypted data transmission, enabling you to access a remote machine's shell and execute commands as if you were using the local terminal.
+Connect from your laptop to a scientific Linux host without exposing credentials. Understand key pairs, verify the server and reuse a named configuration in the terminal and VS Code.
 
-== Installing SSH
+== Keys and the agent
 
-Before using SSH, ensure that it is installed on both the client (your local machine) and the server (remote machine).
+Check `ssh -V`. You need a client on the laptop; the institution administers the server. Inspect `~/.ssh` before creating a key so you do not overwrite an existing one.
 
-[source,shell]
+[source,bash]
 ----
-# On Linux or macOS, SSH is typically pre-installed. To check if it's installed, use:
-ssh -V
-
-# To install SSH on Ubuntu or Debian-based systems:
-sudo apt update
-sudo apt install openssh-client openssh-server
-
-# On CentOS or Fedora:
-sudo dnf install openssh-clients openssh-server
-
-# On Windows, use the built-in OpenSSH client (available from Windows 10) or download PuTTY.
+ssh-keygen -t ed25519 -C "your_email@example.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
 ----
 
-== Enabling SSH Service on Linux (Server-Side)
+Choose a passphrase. The private key (`id_ed25519`) stays private; the `.pub` file may be registered with the server. The agent holds an unlocked key for authentication. Reuse an existing agent if your desktop already provides one.
 
-If you are connecting to a remote Linux server, ensure that the SSH service is enabled and running:
+Using your institution-issued login and following its registration policy:
 
-[source,shell]
+[source,bash]
 ----
-# To start the SSH service (Linux):
-sudo systemctl enable ssh
-sudo systemctl start ssh
+ssh-copy-id -i ~/.ssh/id_ed25519.pub your_login@gaya.math.unistra.fr
 ----
 
+This requires an already permitted way to authenticate. If password access or `ssh-copy-id` is unavailable, register the public key through the administrator's procedure. GitHub public-key registration is separate.
 
-== Basic SSH Key Setup
+== Verify the host and configure an alias
 
-=== Step 1: Generating an SSH Key Pair
+Before accepting a first-connection fingerprint, compare it with the administrator's trusted published value. `known_hosts` records server identities. An unexpected changed-host-key warning needs verification; do not bypass it by disabling checks or blindly deleting the record.
 
-To generate an SSH key pair, run the following command in your terminal:
+Save this in `~/.ssh/config`, replacing the login:
 
-[source,shell]
+[source,text]
 ----
-$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-----
-
-- The `-t` option specifies the type of key to create. In this case, we're using RSA.
-- The `-b` option defines the number of bits in the key. 4096 is a good length for strong encryption.
-- The `-C` option is a comment, usually your email address, to label the key.
-
-You will be prompted to choose a file location to save the key (default is `~/.ssh/id_rsa`) and optionally enter a passphrase to protect the private key.
-
-=== Step 2: Adding Your SSH Key to the SSH Agent
-
-After generating the key, you need to add it to the SSH agent, which manages your private keys and passphrases:
-
-[source,shell]
-----
-$ eval "$(ssh-agent -s)"
-$ ssh-add ~/.ssh/id_rsa
-----
-
-This will add your newly created private key to the agent.
-
-=== Step 3: Adding Your Public Key to the Remote Server
-
-To authenticate to a remote server using SSH, you must add your public key to the `~/.ssh/authorized_keys` file on the remote server:
-
-[source,shell]
-----
-$ ssh-copy-id user@remote-server
-----
-
-This command copies your public key to the remote server and adds it to the `authorized_keys` file.
-
-== Types of SSH Keys and Their Security Levels
-
-Not all SSH keys are created equal. There are several types of keys you can generate depending on the desired level of security and compatibility requirements.
-
-=== 1. RSA (Rivest–Shamir–Adleman)
-
-- **Security Level**: High (if using >= 2048 bits, preferably 4096 bits)
-- **Key Size**: Up to 4096 bits (standard: 2048 bits)
-- **Use Cases**: RSA is one of the most widely supported and compatible algorithms used in SSH. It's an asymmetric encryption algorithm and is highly secure when using a large enough key size.
-- **Compatibility**: Supported by most systems and platforms.
-  
-[source,shell]
-----
-$ ssh-keygen -t rsa -b 4096
-----
-
-- **Recommendation**: For most general use cases, RSA with a key size of 4096 bits is highly secure and widely compatible.
-
-=== 2. ECDSA (Elliptic Curve Digital Signature Algorithm)
-
-- **Security Level**: Very High (at smaller key sizes compared to RSA)
-- **Key Size**: 256, 384, or 521 bits
-- **Use Cases**: ECDSA keys are highly secure and generate smaller keys compared to RSA while maintaining a high security level. This makes ECDSA an attractive option for environments where performance and security are critical.
-- **Compatibility**: Supported by most modern systems, but may not work on legacy systems.
-
-[source,shell]
-----
-$ ssh-keygen -t ecdsa -b 521
-----
-
-- **Recommendation**: Use ECDSA for high-security environments, especially when smaller key sizes are desired without compromising security.
-
-=== 3. ED25519 (Edwards-Curve Digital Signature Algorithm)
-
-- **Security Level**: Very High (smallest key size, fastest, highly secure)
-- **Key Size**: 256 bits (fixed)
-- **Use Cases**: ED25519 is a modern, fast, and very secure elliptic curve algorithm. It provides a high level of security with much smaller keys and faster performance compared to RSA or ECDSA.
-- **Compatibility**: Supported by most modern systems, including OpenSSH. May not be supported on very old or less frequently updated systems.
-
-[source,shell]
-----
-$ ssh-keygen -t ed25519
-----
-
-- **Recommendation**: ED25519 is the best choice for modern, high-performance environments where both security and speed are crucial. Use this algorithm when compatibility with newer systems is guaranteed.
-
-=== 4. DSA (Digital Signature Algorithm)
-
-- **Security Level**: Low (not recommended)
-- **Key Size**: 1024 bits (fixed)
-- **Use Cases**: DSA was originally supported for SSH key generation, but due to security concerns, its use is deprecated.
-- **Compatibility**: Not recommended for use in modern environments due to weak security. Modern OpenSSH has deprecated DSA.
-
-[source,shell]
-----
-$ ssh-keygen -t dsa
-----
-
-- **Recommendation**: Avoid using DSA as it is considered insecure by modern standards. Instead, opt for RSA, ECDSA, or ED25519.
-
-== Key Comparison and Recommendations
-
-|===
-| Key Type | Key Size | Security Level | Recommended Use
-| RSA | 2048-4096 bits | High | General use, widely compatible
-| ECDSA | 256-521 bits | Very High | Modern environments, smaller key size for the same security
-| ED25519 | 256 bits | Very High | Best performance and security, use if supported
-| DSA | 1024 bits | Low | Deprecated, avoid using
-|===
-
-=== When to Use Each Key Type
-
-- **RSA**: If you're unsure which to use, RSA with a 4096-bit key is a safe and secure default for most systems.
-- **ECDSA**: Choose ECDSA when compatibility with modern systems is ensured and you want better performance and smaller key sizes compared to RSA.
-- **ED25519**: If you're working in a modern environment with no legacy system requirements, ED25519 is the best choice for its speed and security.
-- **DSA**: Avoid using DSA unless you're working in a very specific legacy environment that requires it.
-
-== Managing Multiple SSH Keys
-
-If you use multiple SSH keys (for example, one for work, one for personal use), you can configure the SSH client to use different keys for different hosts by editing the SSH config file (`~/.ssh/config`).
-
-[source,shell]
-----
-Host github.com
-  HostName github.com
-  User git
-  IdentityFile ~/.ssh/id_rsa_github
-
-Host example.com
-  HostName example.com
-  User user
-  IdentityFile ~/.ssh/id_ed25519_example
-----
-
-This configuration allows you to specify which SSH key to use for each host.
-
-.Configuring SSH Keys for Gaya
-[NOTE]
-====
-Here is an configuration for `gaya.math.unistra.fr`:
-
-[source,shell]
-----
-Host gaya.math.unistra.fr
-  HostName gaya.math.unistra.fr
-  User your_login_on_gaya
-  IdentityFile ~/.ssh/id_rsa
 Host gaya
-  HostName gaya.math.unistra.fr
-  User your_login_on_gaya
-  IdentityFile ~/.ssh/id_rsa
+    HostName gaya.math.unistra.fr
+    User your_login
+    IdentityFile ~/.ssh/id_ed25519
+    IdentitiesOnly yes
+    ForwardAgent no
 ----
 
-Now you can connect to `gaya.math.unistra.fr` using the `gaya` alias.
-====
+Then run `ssh gaya`. Protect private keys with owner-only access (`chmod 600 ~/.ssh/id_ed25519`); the SSH directory should be accessible only to you (`chmod 700 ~/.ssh`). Never copy private keys to GitHub, a repository, an AI service or the cluster to solve a login problem.
 
-== Conclusion
+== Exercise, mistakes and self-check
 
-Understanding the different types of SSH keys and their respective security levels allows you to choose the best key for your environment. 
-Whether you opt for RSA for broad compatibility or ED25519 for speed and security, SSH keys are nowadays a critical part of secure, password-less authentication for remote systems.
+Connect, run `hostname` and `pwd`, then `exit`. Explain which commands ran on the laptop versus the remote machine. A failed login can mean a wrong username, missing public-key registration, wrong identity, inaccessible network or server policy; read `ssh -v gaya` output and redact sensitive details before sharing it.
+
+Ed25519 is the default example. Legacy systems may require an administrator-approved alternative such as RSA; algorithm details are reference material, not the core login workflow. See https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent[the key-generation reference].
+
+Next: xref:ssh/remote-ssh-vscode.adoc[VS Code Remote SSH] and xref:m1:gaya.adoc[Gaya operations].

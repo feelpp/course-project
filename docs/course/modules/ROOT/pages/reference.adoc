@@ -1,0 +1,134 @@
+= Reference library
+
+Use xref:m1:index.adoc[M1] and xref:m2:index.adoc[M2] for the teaching sequence. This library retains deeper tutorials and earlier examples at their existing resource IDs. Karolina/MPI examples and historical installation instructions require their own site/version context; they are not the current Gaya practical.
+
+== Linux and SSH
+
+* xref:linux:editing.adoc[File Editing in Linux]
+* xref:linux:files.adoc[Working with Files in Linux]
+* xref:linux:index.adoc[Linux Essentials for Mathematics Students]
+* xref:linux:shell.adoc[Linux Shell Basics]
+* xref:linux:ssh/index.adoc[SSH and Remote-SSH in VS Code]
+* xref:linux:ssh/remote-ssh-vscode.adoc[Remote-SSH Extension for VS Code]
+* xref:linux:ssh/ssh-commands.adoc[Basic SSH Commands]
+* xref:linux:ssh/ssh-setup.adoc[SSH setup for scientific work]
+* xref:linux:text-processing.adoc[Text Processing in Linux]
+
+== Git and GitHub
+
+* xref:git-github:git-basics.adoc[Git Basics for Mathematical Research]
+* xref:git-github:git-branch.adoc[Git Branching]
+* xref:git-github:git-merges.adoc[Merge Strategies in Git]
+* xref:git-github:git-remotes.adoc[Git Remotes]
+* xref:git-github:git-repository-basics.adoc[What is a Git Repository?]
+* xref:git-github:git-starter.adoc[Git for Beginners]
+* xref:git-github:github-actions-cmake-eigen3.adoc[GitHub Actions Tutorial for Scientific Computing with Eigen3 and CMake Presets]
+* xref:git-github:github-actions.adoc[Tutorial: Using GitHub Actions for Scientific Computing]
+* xref:git-github:github-collaborations.adoc[Collaboration on GitHub]
+* xref:git-github:github-essentials.adoc[GitHub Essentials]
+* xref:git-github:github-how-to-write-issues.adoc[How to Write a GitHub Issue]
+* xref:git-github:github-review-projects-lab.adoc[GitHub Intro Lab: Issues, PRs, and Projects (90 minutes)]
+* xref:git-github:github-start.adoc[GitHub for Beginners]
+* xref:git-github:index.adoc[Git & GitHub Fundamentals]
+
+== VS Code
+
+* xref:vscode:basic-usage.adoc[Basic Usage and Commands]
+* xref:vscode:cheatsheet.adoc[VSCode Basic Cheatsheet]
+* xref:vscode:configure-vscode.adoc[How to Configure VS Code with .vscode]
+* xref:vscode:extensions.adoc[Extension Installation and Key Extensions]
+* xref:vscode:index.adoc[VS Code for Mathematical Computing]
+* xref:vscode:install.adoc[VS Code Installation]
+* xref:vscode:python-jupyter.adoc[Python and Jupyter Extensions]
+* xref:vscode:remote-ssh.adoc[Remote SSH Extension]
+* xref:vscode:wsl.adoc[WSL (Windows Subsystem for Linux) Extension]
+
+== Containers and HPC
+
+* xref:containers:apptainer/apptainer-install.adoc[Access to Apptainer]
+* xref:containers:apptainer/index.adoc[Apptainer for reproducible scientific work]
+* xref:containers:apptainer/install-source-legacy.adoc[Historical Apptainer source-install recipe]
+* xref:containers:apptainer/tutorial.adoc[Practical: a small scientific application with Apptainer]
+* xref:containers:docker/docker-architecture.adoc[Docker Architecture]
+* xref:containers:docker/docker-commands.adoc[Essential Docker Commands]
+* xref:containers:docker/docker-compose.adoc[Docker Compose — reference]
+* xref:containers:docker/docker-deploy.adoc[Step-by-Step Guide: Building a Dockerized Data Pipeline with PostgreSQL, Computation, and Visualization using Dash]
+* xref:containers:docker/docker-install.adoc[Docker Installation Guide]
+* xref:containers:docker/docker-overview.adoc[Docker Overview]
+* xref:containers:docker/docker-problems-solved.adoc[The Problem Docker Solves]
+* xref:containers:docker/dockerfile-basics.adoc[Dockerfile: Building Custom Images]
+* xref:containers:docker/hands-on/01-getting-started.adoc[Docker System Basics]
+* xref:containers:docker/hands-on/02-advanced-usage.adoc[Advanced Docker Usage]
+* xref:containers:docker/hands-on/03-usecase-db.adoc[Practical Session: Using PostgreSQL with Docker and Injecting a Dataset]
+* xref:containers:docker/hands-on/04-compose.adoc[Docker Compose practical]
+* xref:containers:docker/hands-on/06-githubactions.adoc[Tutorial: Building Docker Images Using GitHub Actions]
+* xref:containers:docker/hands-on/docker-postgres.adoc[Using the Postgres Docker Official Image]
+* xref:containers:docker/hands-on/index.adoc[Docker hands-on reference]
+* xref:containers:docker/index.adoc[Introduction to Docker]
+* xref:containers:docker/what-are-containers.adoc[What are Containers?]
+* xref:containers:hpc/advanced.adoc[Advanced CI/CD Techniques for HPC using GitHub Actions]
+* xref:containers:hpc/best-practices.adoc[HPC container best practices]
+* xref:containers:hpc/cicd.adoc[Introduction to CI/CD Fundamentals with GitHub Actions]
+* xref:containers:hpc/hands-on/00-classroom.adoc[GitHub Classroom and Codespaces: Empowering Personalized Development Environments]
+* xref:containers:hpc/hands-on/01-docker.adoc[Docker System Basics]
+* xref:containers:hpc/hands-on/02-apptainer.adoc[Karolina Apptainer example — advanced reference]
+* xref:containers:hpc/hands-on/03-cicd-githubactions.adoc[Hands-on: CI Workflow for HPC Application]
+* xref:containers:hpc/hands-on/03-docker-mpi.adoc[Hands-on: Building the Docker Image for Our MPI Application]
+* xref:containers:hpc/hands-on/04-apptainer-cicd-app.adoc[Hands-on: Generating the Apptainer Job for HPC Deployment]
+* xref:containers:hpc/hands-on/04-docker-cicd-app.adoc[Dockerized MPI Training Session: From Docker to Apptainer on a Supercomputer]
+* xref:containers:hpc/hands-on/05-deploy.adoc[Hands-on: Deploying Apptainer Images on HPC Environments]
+* xref:containers:hpc/hands-on/index.adoc[HPC Containers Hands-on]
+* xref:containers:hpc/index.adoc[Introduction to Containers for High-Performance Computing (HPC)]
+* xref:containers:index.adoc[Containers for Mathematical Computing]
+
+== CI/CD
+
+* xref:cicd:gitlab.adoc[CI/CD through Gitlab]
+* xref:cicd:gitlab_handson.adoc[Hands on: Gitlab CI/CD]
+* xref:cicd:gitlab_slides.adoc[CI/CD through Gitlab]
+* xref:cicd:index.adoc[CI/CD for Mathematical Computing]
+
+== Software distribution
+
+* xref:software:index.adoc[Software Installation: From Package Managers to Building from Source]
+* xref:software:package-managers.adoc[Understanding Package Managers]
+* xref:software:python-e2e-weather-workshop.adoc[End-to-End Python Weather App Workshop]
+* xref:software:release-engineering-weather.adoc[Release Engineering Lesson (60 min): Weather App]
+* xref:software:repo/organization.adoc[Repository Organization for a C++20 Project Using CMake and CTest]
+
+== Project management
+
+* xref:project-management:agile-best-practices.adoc[Methods and Best Practices for Agile Project Management]
+* xref:project-management:case-studies.adoc[Case Study: Building a Digital Twin for a Manufacturing System]
+* xref:project-management:collaboration-models-weather-lab.adoc[Collaboration Models Lab: Agile vs Waterfall (Weather Project)]
+* xref:project-management:github.adoc[GitHub for Project Management]
+* xref:project-management:index.adoc[Project Management for Mathematical Research]
+* xref:project-management:introduction.adoc[What is a Project?]
+* xref:project-management:practical-examples.adoc[Practical Examples in Scientific Computing and Digital Twins]
+* xref:project-management:project-phases.adoc[Phases of a Project]
+* xref:project-management:project.adoc[Project Management]
+* xref:project-management:tools-gantt.adoc[Tools in Project Management]
+* xref:project-management:waterfall-basics.adoc[Waterfall Model Basics]
+
+== Visualization and scientific examples
+
+* xref:visualisation:dash-weather.adoc[Dash Tutorial: Weather Dashboard (Beginner)]
+* xref:visualisation:dash.adoc[Dash for Scientific Computing]
+* xref:visualisation:hw.adoc[Homework (separate thermal-fin/ROM exercise; optional reference)]
+* xref:visualisation:index.adoc[Data Visualization and Interactive Dashboards]
+
+== Other retained resources
+
+* xref:ROOT:antora.adoc[Antora environment]
+* xref:ROOT:cmake.adoc[Cmake environment]
+* xref:ROOT:github.adoc[GitHub]
+* xref:ROOT:githubactions.adoc[Github Actions]
+* xref:ROOT:jupyter.adoc[Course Project Notebook]
+* xref:ROOT:overview.adoc[Overview of Course Project]
+* xref:ROOT:rename.adoc[Renaming the project]
+* xref:ROOT:vscode.adoc[Using VSCode]
+
+== Compatibility resources
+
+The old `git & github` module retains its compatibility page; use xref:git-github:git-basics.adoc[the maintained Git resource].
+

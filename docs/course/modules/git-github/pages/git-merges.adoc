@@ -18,7 +18,7 @@ To perform a fast-forward merge:
 
 [source,console]
 ----
-$ git checkout main
+$ git switch main
 $ git merge feature-branch
 ----
 
@@ -32,7 +32,7 @@ To perform a non-fast-forward merge:
 
 [source,console]
 ----
-$ git checkout main
+$ git switch main
 $ git merge --no-ff feature-branch
 ----
 
@@ -121,7 +121,7 @@ To cherry-pick a commit:
 
 [source,console]
 ----
-$ git checkout main
+$ git switch main
 $ git cherry-pick <commit-hash>
 ----
 

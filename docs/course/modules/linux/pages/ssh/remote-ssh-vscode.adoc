@@ -74,3 +74,9 @@ alias code='/usr/share/code/code'
 == Disconnecting from Remote-SSH
 
 To disconnect from the remote session, simply close the VS Code window that is connected to the remote server.
+
+== M1 workflow: laptop to Gaya
+
+Verify `ssh gaya` in the laptop terminal first. In VS Code select *Remote-SSH: Connect to Host...* and choose `gaya`; open the project directory on the remote host. The editor window is local, while files, the integrated terminal and remote extensions operate on Gaya. Use `hostname` to check where you are and select the remote Python environment/compiler.
+
+A Remote SSH session on a login node is not a compute allocation. Submit work through xref:m1:gaya.adoc[the scheduler]. Save changes in Git and inspect the diff before a PR. Reference: https://code.visualstudio.com/docs/remote/ssh[VS Code Remote SSH].

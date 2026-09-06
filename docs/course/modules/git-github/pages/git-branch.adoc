@@ -32,14 +32,14 @@ This command creates the branch, but you’re still on your current branch. To s
 
 [source,console]
 ----
-$ git checkout feature/new-ui
+$ git switch feature/new-ui
 ----
 
 Alternatively, you can create and switch to the new branch in one step:
 
 [source,console]
 ----
-$ git checkout -b feature/new-ui
+$ git switch -c feature/new-ui
 ----
 
 This is a best practice for starting new features or fixes in isolated branches, ensuring the main codebase remains stable.
@@ -114,7 +114,7 @@ Switching between branches is called "checking out" a branch. To switch to anoth
 
 [source,console]
 ----
-$ git checkout <branch-name>
+$ git switch <branch-name>
 ----
 
 For example, to switch to the `develop` branch:
@@ -139,7 +139,7 @@ For example, if you are on the `main` branch and want to merge changes from the 
 
 [source,console]
 ----
-$ git checkout main
+$ git switch main
 $ git merge feature/new-ui
 ----
 
