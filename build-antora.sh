@@ -11,7 +11,7 @@ if ! python -c "import IPython, ipykernel, jupyter" >/dev/null 2>&1; then
   pip install -r requirements.txt
 fi
 
-npx antora --stacktrace generate --cache-dir cache --clean site.yml
+npx antora --stacktrace generate --log-failure-level warn --cache-dir cache --clean site.yml
 
 zip_inputs=(notebooks)
 if [[ -d .vscode ]]; then
@@ -21,3 +21,5 @@ fi
 zip -r cours-project.zip "${zip_inputs[@]}" -x "*.pyc" -x "*/__pycache__/"
 mkdir -p public/cours-project/_attachments
 cp cours-project.zip public/cours-project/_attachments/
+
+python scripts/check-site-links.py public

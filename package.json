@@ -9,7 +9,7 @@
     "slides": "./render;npm run copy",
     "start": "http-server public/ -d -i",
     "antora": "./build-antora.sh",
-    "preview:build": "node_modules/.bin/antora --stacktrace --fetch site-dev.yml ; node-srv -p 8010 build/site"
+    "preview:build": "npm run antora && http-server public -p 8010 -c-1"
   },
   "repository": {
     "type": "git",
