@@ -138,3 +138,14 @@ Run the original build to establish baseline diagnostics. Build the redesigned s
 ## Refined scientific objective
 
 The user clarified that Gaya + Slurm + Apptainer deployment of Feel++ is the practical target, followed by a parameterized simulation-to-ML pipeline. The final MLOps specification uses Feel++ thermal simulations to generate mean-temperature regression data, followed by held-out and independent solver-based verification. The CSV example is only an initial container smoke exercise.
+
+## Validation outcome
+
+- `master` matched freshly fetched `origin/master` at `35bb89a` before edits (zero ahead/behind). Changes were made on `course-m1-m2-redesign`; pre-existing tracked and untracked work was preserved and excluded from commits.
+- `npm run antora` passes with Antora warning/error failure enabled. Generated local links/fragments: 156 pages / zero failures in the user's working copy; 142 pages / zero failures in an isolated clone containing only committed content. The clone reused installed Node/Python dependencies and a separate cached UI bundle.
+- The installed Antora aggregator rejects a linked Git worktree as a local source; isolated verification therefore used a regular local clone.
+- Browser checks: home/M1–M2 navigation, M2 route, Feel++ deployment and final project content. Corrected AsciiDoc passthrough handling of repeated `Feel++`/`C++` names using existing attributes.
+- Scientific CSV example: expected result verified; empty/non-finite/malformed input rejected. M1 Python tests pass; C++ example compiles with warnings enabled and returns the expected mean. New Bash blocks and the Feel++ Slurm script pass `bash -n`. Link checker accepts valid links and rejects missing files/fragments.
+- Existing notebook-converter `Unsupported nodes [open]` and Node deprecation notices remain; these are not broken page references. External links were researched selectively, not exhaustively crawled.
+- No Apptainer or Slurm runtime is available on this workstation. The Feel++ SIF/case/job needs Gaya preflight; no cluster execution or scientific result is claimed. The MLOps deliverable is a student project specification, not a completed pipeline implementation.
+- Nothing was pushed, merged or published.
