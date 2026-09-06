@@ -1,0 +1,31 @@
+= Reproducible environments and results
+
+== What must be recorded?
+
+An image is one part of a scientific record. Store a run manifest beside each result:
+
+[cols="1,3",options="header"]
+|===
+|Identity |Record
+|Code |Repository URL, commit SHA, whether the working tree was clean, pipeline entry point.
+|Environment |Dependency lock with exact versions, Python/Apptainer versions, base OCI digest, SIF SHA-256 and retrievable artifact location.
+|Data |Source, licence/access conditions, acquisition procedure, content checksum, schema and split identifiers.
+|Execution |Configuration, seed, full command, relevant environment settings, hardware and scheduler resources.
+|Result |Metrics, model/output checksums, logs, units and comparison tolerance.
+|===
+
+A checksum identifies bytes; it does not preserve a file. Store artifacts where a reviewer can retrieve them. Pinning a tag or saving a random seed alone is insufficient. Record expected variation from parallel numerical libraries or different hardware.
+
+== Worked handoff
+
+For the Apptainer exercise, keep `analyze.py`, `analysis.def`, the small CSV and commands in Git. Record `git rev-parse HEAD`, `git status --short`, `apptainer --version` and `sha256sum analysis.sif input/measurements.csv`. Store the SIF separately with its checksum and document retrieval. For release rebuilds replace the mutable definition-file base tag with the verified OCI digest of the chosen image.
+
+== Reproduction exercise
+
+Give a partner only the repository URL, artifact location and documented procedure. In a new directory, they retrieve the exact inputs/environment, run the computation and compare the result. Record missing steps as issues; amend the procedure through review.
+
+== Self-check
+
+Can a reviewer reproduce without your shell history, home-directory packages or private local data? What does an exact byte comparison establish, and when is a numerical tolerance more appropriate?
+
+Next: xref:mlops/index.adoc[MLOps adds a data/model lifecycle to this handoff].

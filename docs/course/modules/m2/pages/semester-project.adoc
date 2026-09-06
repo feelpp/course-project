@@ -1,0 +1,17 @@
+= M2 semester project
+
+The semester project extends the engineering practices of the xref:mlops/project.adoc[MLOps project] to a larger scientific problem agreed with the supervisor. The scientific topic can differ; reuse reproducibility, tests, packaging and review practices. ROM teaching remains in its separate scientific course.
+
+== Expectations and workflow
+
+Define the scientific question, validation strategy, inputs, resource needs and risks before implementation. Maintain a GitHub Project, milestones and actionable issues. Work through branches, PRs, CI and reviews. Document decisions and dependencies on data, hardware or external collaborators.
+
+== Deliverables
+
+Provide the scientific report, source at an identified commit/release, automated tests, CI evidence, environment/container definitions, data/artifact provenance, execution instructions and an independently checked reproduction record. Include individual contributions and AI-use disclosure when applicable. Agree dates and topic-specific requirements with the supervisor.
+
+== Assessment
+
+Demonstrate scientific validity, engineering quality, reproducibility and collaboration. In an individual oral/code walkthrough, explain a major design choice and diagnose or modify part of the application. Use the xref:ROOT:assessment.adoc[M2 competencies] and xref:mlops/project.adoc#reproducibility-checklist[reproducibility checklist] as the common baseline.
+
+Existing topic collections remain at xref:csmi::index.adoc[CSMI Projects], with their original year and semester labels.

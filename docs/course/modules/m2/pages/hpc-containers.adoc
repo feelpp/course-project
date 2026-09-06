@@ -1,0 +1,52 @@
+= Scientific containers on HPC
+
+== Why this matters
+
+The image carries the application environment; the scheduler allocates the resources. A container does not schedule a job or turn a login node into a compute node.
+
+== Mental model
+
+----
+laptop → SSH → login node → Slurm allocation → compute node
+                                                  ↓
+                             SIF + bound input → output directory
+----
+
+Use xref:m1:gaya.adoc[Gaya operations] for access, storage and Slurm basics. Confirm partition, account, module and storage settings with the teaching team. Prepare/copy the SIF and data on storage visible to compute nodes before submitting; do not rely on downloads during the job.
+
+== Worked batch example
+
+After building or receiving `analysis.sif` from the xref:containers:apptainer/tutorial.adoc[practical], create `analysis.sbatch` in the same working directory. This template assumes Apptainer is available on the compute node and the default partition/account is usable; add site-approved settings if required.
+
+[source,bash]
+----
+#!/bin/bash
+#SBATCH --job-name=container-analysis
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=1G
+#SBATCH --time=00:05:00
+#SBATCH --output=analysis-%j.out
+#SBATCH --error=analysis-%j.err
+set -euo pipefail
+cd "$SLURM_SUBMIT_DIR"
+mkdir -p "output/$SLURM_JOB_ID"
+apptainer --version
+srun apptainer run --cleanenv \
+  --bind "$PWD/input:/input:ro,$PWD/output/$SLURM_JOB_ID:/results:rw" \
+  analysis.sif /input/measurements.csv /results/summary.json
+----
+
+Submit with `sbatch analysis.sbatch`; note the returned job ID. Inspect `squeue -u "$USER"`, `analysis-JOBID.out`, `analysis-JOBID.err` and `output/JOBID/summary.json`. Replace `JOBID` with the actual ID. A job leaving the queue is not proof of success: inspect its exit status/accounting where available and its output.
+
+== Common mistakes
+
+* Heavy training/builds on a login node bypass resource allocation. Use the authorized build service or a suitable job allocation.
+* Node-local temporary files may disappear. Copy required artifacts to persistent project storage and record their location.
+* Containers share the host kernel and architecture. GPU drivers and MPI stacks require compatible host/container combinations; they are outside this first CPU-only exercise.
+
+== Exercise and self-check
+
+Repeat the local analysis as a job and compare the scientific output. Explain which files are in the SIF, which are on shared storage, and which scheduler options bound the job's resource use.
+
+Next: xref:feelpp-gaya.adoc[deploy Feel++ on Gaya], then xref:reproducibility.adoc[reproducible environments]. Further material: xref:containers:hpc/index.adoc[HPC container concepts], xref:containers:hpc/best-practices.adoc[best practices], xref:containers:hpc/hands-on/index.adoc[advanced MPI/Karolina examples].

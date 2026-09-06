@@ -1,0 +1,11 @@
+Bootstrap: docker
+From: python:3.12-slim
+
+%files
+    analyze.py /opt/analyze.py
+
+%runscript
+    exec python /opt/analyze.py "$@"
+
+%test
+    python -m py_compile /opt/analyze.py

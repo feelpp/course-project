@@ -1,4 +1,6 @@
 = Introduction to Containers for High-Performance Computing (HPC)
+
+NOTE: Advanced reference material. The course operational path is xref:m2:feelpp-gaya.adoc[Feel++ on Gaya with Slurm and Apptainer]. MPI launchers and libraries must match the host/container setup; Apptainer has no generic `exec --mpi` switch.
 Christophe Prud'homme <christophe.prudhomme@cemosis.fr>
 v1.0, 2023-03-24
 :icons: font
@@ -395,7 +397,7 @@ apptainer exec my_app.sif python my_script.py
 1. **MPI Integration** (using native host libraries):
 [source,sh]
 ----
-mpirun -np 4 apptainer exec --mpi my_app.sif ./mpi_program
+mpirun -np 4 apptainer exec my_app.sif ./mpi_program
 ----
 
 === Comparing Docker and Apptainer

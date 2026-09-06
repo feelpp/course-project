@@ -1,0 +1,9 @@
+= Docker hands-on reference
+
+* xref:docker/hands-on/01-getting-started.adoc[Docker system basics]
+* xref:docker/hands-on/02-advanced-usage.adoc[Advanced usage]
+* xref:docker/hands-on/03-usecase-db.adoc[PostgreSQL data exercise]
+* xref:docker/hands-on/04-compose.adoc[Compose]
+* xref:docker/hands-on/06-githubactions.adoc[Images in GitHub Actions]
+
+The current M2 route begins with xref:apptainer/index.adoc[Apptainer].
