@@ -8,714 +8,846 @@
     },
     {
       "id": 2,
+      "title": "Using AI responsibly :: Course Project",
+      "content": "Edit this Page Download as .pdf Using AI responsibly AI assistants such as ChatGPT/OpenAI, Claude/Anthropic, DeepSeek and GitHub Copilot may be used when the assignment permits them. Students remain responsible for every line of code, result and claim they submit. You must understand, explain, test, reproduce and defend your work. Treat generated code like a contribution from an unknown external contributor: AI suggestion → inspect → git diff → understand → test → validate → commit / PR Never provide credentials, SSH private keys, API secrets, confidential information or protected datasets to external AI services. Do not blindly execute generated shell commands. Explain their paths, expansions, permissions and side effects first. Check generated code, dependencies, citations and scientific results against evidence. A plausible output is not validation. Add tests for the intended behaviour, including failure cases. Check units, data leakage, numerical tolerances and reproducibility inde",
+      "url": "/course-project/ai-use.html"
+    },
+    {
+      "id": 3,
       "title": "Antora environment :: Course Project",
       "content": "Edit this Page Download as .pdf Antora environment Antora is our static website generator. We use it to generate the documentation of the project It is part of the documentation of docs.feelpp.org[Feel++ docs] website. To generate the documentation $ npm install (1) $ npm run antora (2) $ npm run start (3) 1 Install the dependencies 2 Generate the documentation 3 Serve the documentation, the url is provided in the console Additional UI customization examples are available in the antora-ui repository.",
       "url": "/course-project/antora.html"
     },
     {
-      "id": 3,
+      "id": 4,
+      "title": "Competencies and assessment :: Course Project",
+      "content": "Edit this Page Download as .pdf Competencies and assessment Project output is one source of evidence. Individual practical checks and oral/code walkthroughs establish that each student can explain and reproduce their contribution. The teaching team announces timing, grading weights and the AI mode for each assessment. Level Expected competency Evidence M1 Use shell/files/processes, SSH and VS Code Remote SSH; operate on Gaya. Live session: locate an input, connect, submit a short job and retrieve stdout/stderr. M1 Use staging, branches, remotes, history and a simple conflict resolution; collaborate with issues and PRs. Individual Git exercise and reviewed project PR linked to an issue. M1 Run Python, compile/run C++, add a test and explain reproducibility. Clean-checkout demonstration and explanation of a failing/passing test. M2 Deploy Feel++ on Gaya with Slurm/Apptainer and manage simulation inputs, outputs and execution identity. Container demonstration with image checksum, bind mou",
+      "url": "/course-project/assessment.html"
+    },
+    {
+      "id": 5,
       "title": "CI/CD through Gitlab :: Course Project",
       "content": "Edit this Page Download as .pdf CI/CD through Gitlab Table of Contents 1. Review of CI/CD as a concept 2. Overview of Gitlab CI 3. Karlina and IT4I’s CI/CD setup 4. A comparison of Gitlab CI and Github Actions 4.1. What is a Github Action? 5. Gitlab YAML syntax 1. Review of CI/CD as a concept Figure 1. DevOps and CI/CD (1/3) Figure 2. DevOps and CI/CD (2/3) Figure 3. DevOps and CI/CD (3/3) CI (Continuous Integration) Is your code good? earlier you run tests, sooner you find problems makes sure that any file edits made integrate well with the stable code base functional tests security scans code quality scans performance tests license scanning fuzz testing gives everyone on the team an understanding of the state of thesoftware CD (Continuous Delivery / Continous Deployment) more ambiguous finding out where your code should go and putting it there make releases \"boring\" different environments testing/development environments (run against feature branches etc) staging/pre-prodcution (run ",
       "url": "/course-project/cicd/gitlab.html"
     },
     {
-      "id": 4,
+      "id": 6,
       "title": "Hands on: Gitlab CI/CD :: Course Project",
       "content": "Edit this Page Download as .pdf Hands on: Gitlab CI/CD Table of Contents 1. Exercise 1: Connecting with Karolina Runners 1.1. Step I: Making our repository 1.2. Step II: Adding a Hello World CI Job 2. Exercise 2: Converting our Github App 2.1. Step 1: Getting the C++ MPI Application 2.2. Step 2: Converting from GitHub to GitLab 2.3. Step 3: Deploying through JacamarCI to SLURM 2.4. Step 4: Uploading the built package as an artifact 3. (Bonus) Exercise: Self-hosted Runners 3.1. Setting up your personal runner 3.2. Building a simple pipeline 4. (Bonus) Exercise: Containers through GitLab 4.1. Deploying to SLURM 1. Exercise 1: Connecting with Karolina Runners Our first task is to start working the officially provided Gitlab Runners from Karolina. As mentioned before, we have a number of runners available, however, we cannot choose one particular one to run our CI job. Instead, we can \"match\" with one runner, out of a possible group of runners, using the CI job labels, or tags. 1.1. Step I",
       "url": "/course-project/cicd/gitlab_handson.html"
     },
     {
-      "id": 5,
+      "id": 7,
       "title": "CI/CD through Gitlab :: Course Project",
       "content": "Edit this Page Download as .pdf CI/CD through Gitlab 1. Review of CI/CD as a concept 1.1. DevOps and CI/CD (1/3) 1.2. DevOps and CI/CD (2/3) 1.3. DevOps and CI/CD (3/3) 1.4. CI (Continuous Integration) Is your code good? earlier you run tests, sooner you find problems makes sure that any file edits made integrate well with the stable code base functional tests security scans code quality scans performance tests license scanning fuzz testing gives everyone on the team an understanding of the state of thesoftware 1.5. CD (Continuous Delivery / Continous Deployment) more ambiguous finding out where your code should go and putting it there make releases \"boring\" different environments testing/development environments (run against feature branches etc) staging/pre-prodcution (run against main) production envs (run against tags) 1.6. CD (Continuous Delivery / Continous Deployment) continuous delivery automatic deploy to test and dev envs not automatically deployed to production without manua",
       "url": "/course-project/cicd/gitlab_slides.html"
     },
     {
-      "id": 6,
+      "id": 8,
       "title": "CI/CD for Mathematical Computing :: Course Project",
       "content": "CI/CD for Mathematical Computing Table of Contents 1. Overview 2. Introduction: The CI/CD Problem (30 min) 2.1. The Software Development Challenge 2.2. HPC Considerations: What Does It Mean for HPC and How Does It Help? 2.3. Why CI/CD? 2.4. CI/CD Platform Choices and Development Platforms 3. GitHub Actions: Overview and Fundamentals (40 min) 3.1. What is GitHub Actions? 3.2. A Sample GitHub Actions Workflow 3.3. Benefits of Using GitHub Actions 4. 3. Containers in CI/CD (15 min) 4.1. Why Use Containers in CI/CD? 4.2. Using Containers with GitHub Actions 5. Demo / Hands-on (Optional) (5 min) 6. Q&A and Discussion (5 min) 7. Summary and Closing 🔴 ADVANCED LEVEL | Prerequisites: Containers, Git workflows, basic scripting | Time: 6-8 hours | For: Mathematics students ready for automated research workflows Why CI/CD for Mathematical Research? Mathematical computing benefits enormously from automation: - Automated Testing: Verify mathematical algorithms produce correct results - Reproducibl",
       "url": "/course-project/cicd/"
     },
     {
-      "id": 7,
+      "id": 9,
       "title": "Cmake environment :: Course Project",
       "content": "Edit this Page Download as .pdf Cmake environment The CMakeLists.txt is setup with Feel++. A sample Feel++ application is available in src. 1. Building The CMakeLists.txt is configured to build the application in src. The following commands can be used to build the application: $ cmake --preset default (1) $ cmake --build --preset default (2) $ cmake --build --preset default -t install (3) 1 Configure the project 2 Build the project 3 Install the project 2. Packaging CPack is configured and allows to generate a binary and source package. Use the following commands to generate the binary package: $ cmake --build --preset default -t package Use the following commands to generate the source package: $ cmake --build --preset default -t package_source 3. Testing CTest is configured. Use the following command to run the tests: $ cmake --build --preset default -t test",
       "url": "/course-project/cmake.html"
     },
     {
-      "id": 8,
-      "title": "Installing Apptainer :: Course Project",
-      "content": "Edit this Page Download as .pdf Installing Apptainer Since this guide assumes you are building Apptainer from source, it walks you through the installation process. For alternative installation methods, including pre-compiled binaries, refer to the [installation section of the admin guide](apptainer.org/docs/admin/main/installation.html). 1. Install System Dependencies On Debian-based systems (e.g., Ubuntu): sudo apt-get update sudo apt-get install -y \\ build-essential \\ libseccomp-dev \\ pkg-config \\ uidmap \\ squashfs-tools \\ fakeroot \\ cryptsetup \\ tzdata \\ dh-apparmor \\ curl wget git On RHEL or its derivatives: sudo dnf groupinstall -y 'Development Tools' sudo dnf install -y epel-release sudo dnf install -y \\ libseccomp-devel \\ squashfs-tools \\ fakeroot \\ cryptsetup \\ wget git On SLE/openSUSE: sudo zypper install -y \\ libseccomp-devel \\ libuuid-devel \\ openssl-devel \\ cryptsetup sysuser-tools \\ gcc go 2. Install Go Apptainer is written in Go, so you may need to install a newer versio",
+      "id": 10,
+      "title": "Access to Apptainer :: Course Project",
+      "content": "Edit this Page Download as .pdf Access to Apptainer 1. Student route Apptainer runs on Linux. Use the course Linux host, or a supported Linux VM/WSL environment on a personal computer. On Gaya, use the administrator-provided installation/module; confirm its name with the teaching team. command -v apptainer apptainer --version If these fail on a shared host, ask which environment/module to use. A laptop terminal or ordinary hosted development container is not automatically a suitable Apptainer build environment. 2. Personal Linux installation Choose packages and configuration for your distribution from the official installation guide. Install only on a machine you administer. Verify the version and complete the pull/exec exercise before attempting a definition-file build. 3. When building is unavailable Use an image prepared by the instructor on an approved build host. Check its SHA-256 against the supplied manifest. Execution of a SIF does not imply permission or support for every buil",
       "url": "/course-project/containers/apptainer/apptainer-install.html"
     },
     {
-      "id": 9,
-      "title": "Introduction to Apptainer :: Course Project",
-      "content": "Edit this Page Download as .pdf Introduction to Apptainer Apptainer (formerly Singularity) is a container platform specifically designed for high-performance computing (HPC), scientific computing, and data science. Unlike Docker, Apptainer containers run without requiring root privileges, making them more suitable for multi-user environments like university clusters or supercomputers. 1. Why Apptainer? Rootless security: Apptainer is designed with non-privileged users in mind, increasing security in shared environments. Performance: Ideal for workloads in HPC, where performance and security are critical. Mobility of Compute: Easily transport workloads between environments, including HPC clusters and cloud infrastructure. 2. Getting Started with Apptainer To get started with Apptainer, you can install it on your system using Installing Apptainer. # Pulling a container from a registry apptainer pull library://alpine # Running the container apptainer exec alpine_latest.sif /bin/sh 3. Use ",
+      "id": 11,
+      "title": "Apptainer for reproducible scientific work :: Course Project",
+      "content": "Edit this Page Download as .pdf Apptainer for reproducible scientific work 1. Why this matters A colleague should be able to run your computation without reconstructing your laptop. Apptainer packages a Linux application environment in an image and runs it under your user identity on a compatible Linux host. It fits shared scientific/HPC systems where users do not administer the machine. 2. Learning objectives Distinguish an image from an execution; pull and inspect a SIF; run commands; expose inputs and outputs deliberately; record enough information to repeat a run. 3. Mental model image (software environment) + host inputs + command/configuration ↓ running process as you ↓ host output files An image is a file; a container execution is a process using that environment. A normal SIF image is read-only. Your home/current directory and other host paths may be mounted automatically according to site configuration. An explicit bind mount gives a stable path for an input or output director",
       "url": "/course-project/containers/apptainer/"
     },
     {
-      "id": 10,
-      "title": "Apptainer Quick Start Guide :: Course Project",
-      "content": "Edit this Page Download as .pdf Apptainer Quick Start Guide This guide provides a concise introduction to using Apptainer, a container platform optimized for High Performance Computing (HPC) and Enterprise Performance Computing (EPC). Apptainer allows you to build and interact with containers seamlessly, enabling the execution of programs within a container as if they were running on your host system. ￼ 1. Installation Apptainer requires a Linux system for operation. Root access is not mandatory if user namespaces are available. To install Apptainer from source, follow the instructions in the INSTALL.md file on GitHub. Alternative installation methods, including using pre-built RPMs, building RPM or Debian packages, installing without root privileges, and utilizing Apptainer on macOS and Windows, are detailed in the installation section of the admin guide. 2. Overview of the Apptainer Interface Apptainer’s command-line interface facilitates transparent interaction with containers. You ",
+      "id": 12,
+      "title": "Historical Apptainer source-install recipe :: Course Project",
+      "content": "Edit this Page Download as .pdf Historical Apptainer source-install recipe Historical administrator recipe for Apptainer 1.3.4. Versions and security configuration are dated; use the current official administrator guide. This is not the student installation procedure. Since this guide assumes you are building Apptainer from source, it walks you through the installation process. For alternative installation methods, including pre-compiled binaries, refer to the [installation section of the admin guide](apptainer.org/docs/admin/main/installation.html). 1. Install System Dependencies On Debian-based systems (e.g., Ubuntu): sudo apt-get update sudo apt-get install -y \\ build-essential \\ libseccomp-dev \\ pkg-config \\ uidmap \\ squashfs-tools \\ fakeroot \\ cryptsetup \\ tzdata \\ dh-apparmor \\ curl wget git On RHEL or its derivatives: sudo dnf groupinstall -y 'Development Tools' sudo dnf install -y epel-release sudo dnf install -y \\ libseccomp-devel \\ squashfs-tools \\ fakeroot \\ cryptsetup \\ wge",
+      "url": "/course-project/containers/apptainer/install-source-legacy.html"
+    },
+    {
+      "id": 13,
+      "title": "Practical: a small scientific application with Apptainer :: Course Project",
+      "content": "Edit this Page Download as .pdf Practical: a small scientific application with Apptainer 1. Objectives and setup Run a CSV analysis, identify its inputs and outputs, and package its command. Use a Linux machine with Apptainer already available (access instructions). On shared infrastructure, use the execution/build locations authorized by the teaching team. This exercise is small and requires no Python packages beyond the standard library. 2. Pull, inspect and execute mkdir -p apptainer-lab/input apptainer-lab/output cd apptainer-lab apptainer --version apptainer pull python.sif docker://python:3.12-slim apptainer inspect python.sif apptainer exec --cleanenv python.sif python --version apptainer run --cleanenv python.sif -c 'print(\"Hello from the image\")' apptainer shell --cleanenv python.sif Inside the shell run pwd, id and python --version, then exit to return to the host. exec selects a command; run uses the image’s runscript (here derived from the Python image’s default command); s",
       "url": "/course-project/containers/apptainer/tutorial.html"
     },
     {
-      "id": 11,
+      "id": 14,
       "title": "Docker Architecture :: Course Project",
       "content": "Edit this Page Download as .pdf Docker Architecture 1. Separation of Concerns Docker separates the roles of developers and sysadmins by using containers as the interface between these roles. This concept is particularly valuable for scientific computing and data science, where developers can create isolated environments that encapsulate complex computational workflows, ensuring reproducibility. For scientific ML and digital twins, containers help streamline model deployment, making it easier to manage models across different computational platforms, from HPC clusters to edge devices. 2. Containers vs VMs Containers use fewer resources since they share the OS kernel, a crucial advantage in scientific computing and scientific ML, where heavy computation demands efficiency. Digital twins can simulate real-world environments more effectively with containers, ensuring that resource allocation is optimized for simulation fidelity. 3. Lightweight by Design Docker’s lightweight design makes it",
       "url": "/course-project/containers/docker/docker-architecture.html"
     },
     {
-      "id": 12,
+      "id": 15,
       "title": "Essential Docker Commands :: Course Project",
       "content": "Edit this Page Download as .pdf Essential Docker Commands 🟡 LEVEL 2 | Time: 30 minutes | Prerequisites: Docker installed 1. Command Overview Docker commands follow a consistent pattern: docker <object> <command> [options] [arguments] Examples: docker container run ... docker image pull ... docker volume create ... 2. Working with Images 2.1. Pulling Images # Pull an image from Docker Hub docker pull python:3.11 # Pull from GitHub Container Registry docker pull ghcr.io/owner/image:tag # Pull specific version docker pull python:3.11.7-slim 2.2. Listing Images # List all images docker images # Example output: # REPOSITORY TAG IMAGE ID CREATED SIZE # python 3.11 abc123def456 2 weeks ago 1.01GB # ubuntu 22.04 def456abc789 3 weeks ago 77.8MB 2.3. Removing Images # Remove specific image docker rmi python:3.11 # Remove by image ID docker rmi abc123def456 # Remove all unused images docker image prune -a 3. Running Containers 3.1. Basic Run # Run a container (simplest form) docker run python:3.",
       "url": "/course-project/containers/docker/docker-commands.html"
     },
     {
-      "id": 13,
-      "title": "Untitled :: Course Project",
-      "content": "Edit this Page Download as .pdf 1. Docker Compose: Orchestrating Containers Docker Compose is a tool used for defining and running multi-container Docker applications. It simplifies the process of managing multiple containers as a single service. With Docker Compose, you can define all the services your application needs in a single YAML file and start them with a single command. 1.1. Why Docker Compose? Multi-container applications: It simplifies managing applications that require multiple services like a web server, database, and cache. Declarative configuration: Compose uses a declarative docker-compose.yml file to describe the services, volumes, networks, and configurations needed. Consistency: Ensures all containers in a service are started in the correct order with the proper dependencies. Portability: Easily share and distribute your configuration across different environments (development, testing, and production). 1.2. Getting Started with Docker Compose First, ensure that Doc",
+      "id": 16,
+      "title": "Docker Compose — reference :: Course Project",
+      "content": "Edit this Page Download as .pdf Docker Compose — reference The maintained material is the Docker Compose practical. This resource remains available for existing links.",
       "url": "/course-project/containers/docker/docker-compose.html"
     },
     {
-      "id": 14,
+      "id": 17,
       "title": "Step-by-Step Guide: Building a Dockerized Data Pipeline with PostgreSQL, Computation, and Visualization using Dash :: Course Project",
       "content": "Edit this Page Download as .pdf Step-by-Step Guide: Building a Dockerized Data Pipeline with PostgreSQL, Computation, and Visualization using Dash In this practical session, you will learn how to build and deploy a Docker image that: Injects time-series data into a PostgreSQL database. Enables computations on the data using Python. Provides a web server using Dash (Plotly) to visualize the results. Deploys the services using Docker Compose. Optionally, deploys the services to a server or cloud environment. 1. Prerequisites Ensure the following are installed on your machine: Docker Docker Compose Python 3.x (optional for local testing) PostgreSQL client (optional for local testing) 2. Step 1: Setting Up the Project Directory Structure Create a directory structure for your project with the following command: mkdir docker-data-pipeline cd docker-data-pipeline mkdir -p app db touch app/__init__.py app/data_injector.py app/compute.py app/web_visualizer.py Dockerfile docker-compose.yml The p",
       "url": "/course-project/containers/docker/docker-deploy.html"
     },
     {
-      "id": 15,
+      "id": 18,
       "title": "Docker Installation Guide :: Course Project",
       "content": "Edit this Page Download as .pdf Docker Installation Guide 🟡 LEVEL 2 | Time: 15-30 minutes | Prerequisites: None 1. Choose Your Installation Method Platform Recommended Notes Windows Docker Desktop Requires WSL2 macOS Docker Desktop Intel or Apple Silicon Linux Docker Engine Native performance, production-ready 2. Docker Desktop (Windows & macOS) Docker Desktop provides: Graphical user interface Easy installation and updates Built-in Kubernetes Volume management UI 2.1. Windows Installation Prerequisites Windows 10/11 (64-bit) WSL2 enabled Hardware virtualization enabled in BIOS # Step 1: Enable WSL2 (run as Administrator) wsl --install # Step 2: Restart your computer # Step 3: Download and install Docker Desktop # https://www.docker.com/products/docker-desktop/ After installation: # Verify installation docker --version docker run hello-world 2.2. macOS Installation Prerequisites macOS 12 or newer Apple Silicon (M1/M2/M3) or Intel # Option 1: Download from website # https://www.docker.",
       "url": "/course-project/containers/docker/docker-install.html"
     },
     {
-      "id": 16,
+      "id": 19,
       "title": "Docker Overview :: Course Project",
       "content": "Edit this Page Download as .pdf Docker Overview Docker is an open platform that allows developers to automate the deployment of applications inside lightweight, portable containers. This makes it easy to manage and scale applications across different environments. 1. What is a Container? A container is a standard unit of software that packages code and all its dependencies, ensuring the application runs quickly and reliably from one computing environment to another. Containers isolate the application environment. Unlike VMs, containers share the host system’s OS kernel, making them lightweight.",
       "url": "/course-project/containers/docker/docker-overview.html"
     },
     {
-      "id": 17,
+      "id": 20,
       "title": "The Problem Docker Solves :: Course Project",
       "content": "Edit this Page Download as .pdf The Problem Docker Solves 1. The Challenge The Challenge The diagram illustrates the complexity of modern applications, which are composed of many stacks and run across multiple environments. Each component (web frontend, API endpoint, background workers, etc.) relies on different technologies (e.g., Python, PostgreSQL, Redis). These applications must operate across various hardware environments, from development VMs to production clusters, and they need to migrate between them smoothly. In traditional environments, developers often face the challenge of dealing with dependencies and compatibility issues between development, testing, and production environments. Docker simplifies this by providing consistent environments through containers, allowing seamless migration, scalability, and isolation for different services and stacks. 1.1. What about Scientific Computing and Data Science? The diagram highlights the complexity of modern applications across mul",
       "url": "/course-project/containers/docker/docker-problems-solved.html"
     },
     {
-      "id": 18,
+      "id": 21,
       "title": "Dockerfile: Building Custom Images :: Course Project",
       "content": "Edit this Page Download as .pdf Dockerfile: Building Custom Images 🟡 LEVEL 2 | Time: 45 minutes | Prerequisites: Basic Docker commands 1. What is a Dockerfile? A Dockerfile is a text file containing instructions to build a Docker image. Think of it as a recipe that Docker follows to create your container environment. # Simple Dockerfile example FROM python:3.11 RUN pip install numpy scipy matplotlib COPY analysis.py /app/ WORKDIR /app CMD [\"python\", \"analysis.py\"] 2. Dockerfile Instructions 2.1. FROM - Base Image Every Dockerfile starts with FROM. It specifies the base image to build upon. # Official Python image FROM python:3.11 # Slim variant (smaller) FROM python:3.11-slim # Specific version with Debian FROM python:3.11.7-bookworm # Ubuntu base FROM ubuntu:24.04 Table 1. Choosing a Base Image Base Use Case Size python:3.11 Full development environment ~1 GB python:3.11-slim Production, smaller footprint ~150 MB python:3.11-alpine Minimal, may have compatibility issues ~50 MB ubuntu",
       "url": "/course-project/containers/docker/dockerfile-basics.html"
     },
     {
-      "id": 19,
+      "id": 22,
       "title": "Docker System Basics :: Course Project",
       "content": "Edit this Page Download as .pdf Docker System Basics The basic components of the Docker system are: - Images: Blueprints of the application and its dependencies. - Containers: Running instances of images. - Volumes: Persistent data storage. - Networks: Isolated environments for containers to communicate. - Dockerfile: A file used to create Docker images. 1. Docker Hello World Example docker run hello-world This command pulls the hello-world image from Docker Hub and runs it in a container. 2. Running Ubuntu in a Container docker run -it ubuntu bash The -it flag starts the container in interactive mode with a terminal attached. This runs an Ubuntu image with the Bash shell.",
       "url": "/course-project/containers/docker/hands-on/01-getting-started.html"
     },
     {
-      "id": 20,
+      "id": 23,
       "title": "Advanced Docker Usage :: Course Project",
       "content": "Edit this Page Download as .pdf Advanced Docker Usage 1. Volumes: Persistent Storage Use volumes to store data that persists even after a container is removed. Here’s an example of running an Ubuntu container with a mounted volume from your local /tmp directory: docker run -it -v /tmp:/tmp ubuntu bash You can view the volume by running the df command inside the container. 2. Docker Images and Updates Docker images can be updated and modified easily by creating new image layers. The ability to roll back and forward to different layers simplifies testing and updates.",
       "url": "/course-project/containers/docker/hands-on/02-advanced-usage.html"
     },
     {
-      "id": 21,
+      "id": 24,
       "title": "Practical Session: Using PostgreSQL with Docker and Injecting a Dataset :: Course Project",
       "content": "Edit this Page Download as .pdf Practical Session: Using PostgreSQL with Docker and Injecting a Dataset The objective of this session is to demonstrate how to set up PostgreSQL using Docker, inject a dataset into the database, and perform basic queries including with python Pandas. 1. Step 1: Set up PostgreSQL with Docker Pull the official PostgreSQL image and start a container. docker pull postgres docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres 2. Step 2: Prepare the Dataset Let’s use a small CSV dataset for this session. Create a data.csv file with the following content: Table 1. data.csv id name age 1 John Doe 30 2 Jane Smith 25 3 Emily Johnson 22 3. Step 3: Create a Docker Volume for Persistence We’ll create a volume to persist PostgreSQL data and mount it to the container: Using Docker Volumes to Persist Data docker volume create pgdata docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -v pgdata:/var/lib/postgresql/data -d pos",
       "url": "/course-project/containers/docker/hands-on/03-usecase-db.html"
     },
     {
-      "id": 22,
-      "title": "Untitled :: Course Project",
-      "content": "Edit this Page Download as .pdf 1. Docker Compose: Orchestrating Containers Docker Compose is a tool used for defining and running multi-container Docker applications. It simplifies the process of managing multiple containers as a single service. With Docker Compose, you can define all the services your application needs in a single YAML file and start them with a single command. 1.1. Why Docker Compose? Multi-container applications: It simplifies managing applications that require multiple services like a web server, database, and cache. Declarative configuration: Compose uses a declarative docker-compose.yml file to describe the services, volumes, networks, and configurations needed. Consistency: Ensures all containers in a service are started in the correct order with the proper dependencies. Portability: Easily share and distribute your configuration across different environments (development, testing, and production). 1.2. Getting Started with Docker Compose First, ensure that Doc",
+      "id": 25,
+      "title": "Docker Compose practical :: Course Project",
+      "content": "Edit this Page Download as .pdf Docker Compose practical 1. Docker Compose: Orchestrating Containers Docker Compose is a tool used for defining and running multi-container Docker applications. It simplifies the process of managing multiple containers as a single service. With Docker Compose, you can define all the services your application needs in a single YAML file and start them with a single command. 1.1. Why Docker Compose? Multi-container applications: It simplifies managing applications that require multiple services like a web server, database, and cache. Declarative configuration: Compose uses a declarative docker-compose.yml file to describe the services, volumes, networks, and configurations needed. Consistency: Ensures all containers in a service are started in the correct order with the proper dependencies. Portability: Easily share and distribute your configuration across different environments (development, testing, and production). 1.2. Getting Started with Docker Compo",
       "url": "/course-project/containers/docker/hands-on/04-compose.html"
     },
     {
-      "id": 23,
+      "id": 26,
       "title": "Tutorial: Building Docker Images Using GitHub Actions :: Course Project",
       "content": "Edit this Page Download as .pdf Tutorial: Building Docker Images Using GitHub Actions This tutorial will guide you through building and pushing Docker images using GitHub Actions. You’ll learn how to use GitHub Actions to set up QEMU, Docker Buildx, and push images to the GitHub Container Registry (GHCR). 1. Prerequisites A GitHub repository. A Dockerfile for the service you want to build. Access to the GitHub Container Registry (GHCR). A GitHub personal access token (PAT) stored as a secret in your repository (CR_PAT). 2. Step-by-Step Guide 2.1. 1. Setting Up the GitHub Workflow Create a file called .github/workflows/docker-build.yml in your repository. This file will define the workflow to build and push Docker images using GitHub Actions. 2.1.1. Example GitHub Actions Workflow name: Build and Push Docker Image on: push: branches: - main tags: - 'v*' jobs: build: runs-on: ubuntu-latest strategy: matrix: service: [service-name] tag: [latest, v1.0.0] dir: [path-to-dockerfile-directory]",
       "url": "/course-project/containers/docker/hands-on/06-githubactions.html"
     },
     {
-      "id": 24,
+      "id": 27,
       "title": "Using the Postgres Docker Official Image :: Course Project",
       "content": "Edit this Page Download as .pdf Using the Postgres Docker Official Image This section explains how to work with the Postgres Docker Official Image to set up a Postgres container quickly and efficiently. 1. Why Use Postgres in Docker? Quick and easy setup. Better isolation between the application and database. Easier to spin up in various environments (local development, testing, etc.). 2. Pulling the Postgres Image You can pull the Postgres image from Docker Hub with: docker pull postgres To use a specific version, add the version tag (e.g., :14.5). 3. Running Postgres in a Container To start a Postgres container with environment variables: docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres 4. Using Docker Compose You can manage multiple services, including Postgres, with Docker Compose. Here is a basic docker-compose.yml example: This Docker Compose file defines a two-service setup using PostgreSQL and Adminer. Below is a breakdown of each section: servi",
       "url": "/course-project/containers/docker/hands-on/docker-postgres.html"
     },
     {
-      "id": 25,
+      "id": 28,
+      "title": "Docker hands-on reference :: Course Project",
+      "content": "Edit this Page Download as .pdf Docker hands-on reference Docker system basics Advanced usage PostgreSQL data exercise Compose Images in GitHub Actions The current M2 route begins with Apptainer.",
+      "url": "/course-project/containers/docker/hands-on/"
+    },
+    {
+      "id": 29,
       "title": "Introduction to Docker :: Course Project",
       "content": "Introduction to Docker 🟡 LEVEL 2 | Prerequisites: Linux basics | Time: 4-6 hours total 1. Learning Path This module teaches Docker through a structured progression designed for master students in mathematics and scientific computing: 📚 Concepts What are Containers? Problems Docker Solves Docker Architecture 🛠️ Setup Installation Guide Essential Commands 📝 Building Images Dockerfile Fundamentals Hands-on: First Steps Advanced Usage 🚀 Automation & Orchestration Docker Compose GitHub Actions + Docker 2. Quick Start If you’re in a hurry, here’s the minimum path: 1. Install Docker → 15 min 2. Basic commands → 30 min 3. Dockerfile basics → 45 min 4. GitHub Actions → 30 min -------- Total: 2 hours 3. Module Contents 3.1. Concepts (Why Containers?) What are Containers? Understand containers vs. VMs, images vs. containers, OCI standards. Problems Docker Solves The \"matrix from hell\", reproducibility challenges, and how Docker addresses them. Docker Architecture Client-server model, Docker ",
       "url": "/course-project/containers/docker/"
     },
     {
-      "id": 26,
+      "id": 30,
       "title": "What are Containers? :: Course Project",
       "content": "Edit this Page Download as .pdf What are Containers? 🟡 LEVEL 2 | Time: 20 minutes | Prerequisites: Basic Linux knowledge 1. The Problem: \"It Works on My Machine\" As a mathematics student, you’ve likely encountered this scenario: You develop a numerical simulation in Python with NumPy, SciPy, and matplotlib. It runs perfectly on your laptop. You share your code with your advisor or submit it for a paper…​ and it fails. Why? Different library versions, missing dependencies, or different operating system configurations. Containers solve this problem. 2. What is a Container? A container is a lightweight, standalone package that includes: Your application code All dependencies and libraries Configuration files Runtime environment 📦 Think of it like…​ A shipping container. Just as a shipping container can hold any cargo and be transported on any ship, truck, or train, a software container holds your application and can run on any computer with Docker installed. 🔬 For Mathematics…​ Package",
       "url": "/course-project/containers/docker/what-are-containers.html"
     },
     {
-      "id": 27,
+      "id": 31,
       "title": "Advanced CI/CD Techniques for HPC using GitHub Actions :: Course Project",
       "content": "Edit this Page Download as .pdf Advanced CI/CD Techniques for HPC using GitHub Actions Table of Contents 1. Overview (5 minutes) 2. Integrating Spack for HPC Dependency Management (15 minutes) 3. What is Spack? 3.1. Motivations for Spack 3.2. Spack Environments 3.3. Workflow: From Spack Environment to Apptainer Container 3.4. Spack in CI/CD Workflows 3.5. Conclusion on Spack 4. Composite Actions and Modular Workflows (15 minutes) 4.1. Why Use Composite Actions? 4.2. How to Create and Use a Composite Action 5. Caching and Artifact Management (15 minutes) 5.1. Caching 5.2. Artifact Management 6. Integrating with HPC Schedulers (10 minutes) 6.1. Example: Submitting a Job with Slurm 7. Security Best Practices (5 minutes) 7.1. Example: Managing Secrets 8. Performance Optimization (5 minutes) 8.1. Example: Parallelizing Tasks 9. Triggering Workflows Dynamically (5 minutes) 10. Monitoring and Logging (5 minutes) 10.1. Example: Setting Up Logging 11. Conclusion and Q&A (10 minutes) In this ses",
       "url": "/course-project/containers/hpc/advanced.html"
     },
     {
-      "id": 28,
-      "title": "Untitled :: Course Project",
-      "content": "Edit this Page Download as .pdf 1. Best Practices and Performance Considerations (10 min) 1.1. Optimizing Container Images Keep images small and lean: Use minimal base images. Remove unnecessary packages and files after installation. Pin package versions: Specify exact versions for all dependencies to ensure consistency. Separate build and runtime stages: Utilize multi-stage builds to compile code in one stage and run it in another, reducing final image size. 1.2. Performance Considerations Minimize container startup overhead: Optimize entrypoint scripts and image initialization. Efficient GPU and MPI integration: Ensure that GPU drivers, MPI libraries, and other performance-critical components are correctly mounted and compatible. Adapt for HPC workloads: Recognize that HPC jobs are typically long-running, bulk-synchronous operations rather than short-lived microservices. Adjust design and tuning accordingly. 1.3. Security & DevOps in HPC Avoid root access in containers: Run container",
+      "id": 32,
+      "title": "HPC container best practices :: Course Project",
+      "content": "Edit this Page Download as .pdf HPC container best practices 1. Best Practices and Performance Considerations (10 min) 1.1. Optimizing Container Images Keep images small and lean: Use minimal base images. Remove unnecessary packages and files after installation. Pin package versions: Specify exact versions for all dependencies to ensure consistency. Separate build and runtime stages: Utilize multi-stage builds to compile code in one stage and run it in another, reducing final image size. 1.2. Performance Considerations Minimize container startup overhead: Optimize entrypoint scripts and image initialization. Efficient GPU and MPI integration: Ensure that GPU drivers, MPI libraries, and other performance-critical components are correctly mounted and compatible. Adapt for HPC workloads: Recognize that HPC jobs are typically long-running, bulk-synchronous operations rather than short-lived microservices. Adjust design and tuning accordingly. 1.3. Security & DevOps in HPC Avoid root access",
       "url": "/course-project/containers/hpc/best-practices.html"
     },
     {
-      "id": 29,
+      "id": 33,
       "title": "Introduction to CI/CD Fundamentals with GitHub Actions :: Course Project",
       "content": "Edit this Page Download as .pdf Introduction to CI/CD Fundamentals with GitHub Actions Table of Contents 1. Overview 2. Introduction: The CI/CD Problem 2.1. The Software Development Challenge 2.2. HPC Considerations: What Does It Mean for HPC and How Does It Help? 2.3. Why CI/CD? 2.4. CI/CD Platform Choices and Development Platforms 3. GitHub Actions: Overview and Fundamentals 3.1. What is GitHub Actions? 3.2. A Sample GitHub Actions Workflow 3.3. Benefits of Using GitHub Actions 4. 3. Containers in CI/CD 4.1. Why Use Containers in CI/CD? 4.2. Using Containers with GitHub Actions 5. Q&A and Discussion 6. Summary and Closing 1. Overview Duration: 1h30 Learning Objectives Understand the challenges of traditional software development and deployment. Learn the fundamentals of CI/CD and why automation is critical. Explore GitHub Actions as an integrated CI/CD solution. Discover how containerization enhances CI/CD workflows. Discuss the impact and benefits of CI/CD in HPC environments. 2. In",
       "url": "/course-project/containers/hpc/cicd.html"
     },
     {
-      "id": 30,
+      "id": 34,
       "title": "GitHub Classroom and Codespaces: Empowering Personalized Development Environments :: Course Project",
       "content": "Edit this Page Download as .pdf GitHub Classroom and Codespaces: Empowering Personalized Development Environments Table of Contents 1. Overview 2. GitHub Classroom 3. GitHub Codespaces 4. Your repository 5. Summary This session introduces GitHub Classroom and Codespaces, frameworks that enable educators to deliver personalized, reproducible development environments for training sessions. These tools help ensure that every trainee starts from a consistent baseline and can focus on learning without worrying about local environment issues. 1. Overview GitHub Classroom and Codespaces together allow instructors to: Automate Repository Creation: Personalized repositories are generated for each student from a central template (e.g., c3b-template). Provide Instant Development Environments: Students can launch cloud-based Codespaces pre-configured with all required tools and dependencies. Maintain Consistency: Every student’s environment is identical, reducing setup issues and enabling smooth c",
       "url": "/course-project/containers/hpc/hands-on/00-classroom.html"
     },
     {
-      "id": 31,
+      "id": 35,
       "title": "Docker System Basics :: Course Project",
       "content": "Edit this Page Download as .pdf Docker System Basics Table of Contents 1. Overview 2. Docker System Components 3. Docker Hello World Example 4. Running Ubuntu in a Container 5. Essential Docker Commands 5.1. Listing Containers and Images 5.2. Running Containers in Detached Mode 5.3. Logging into and Out of Docker Registries 6. Advanced Docker Usage 6.1. Volumes: Persistent Storage 6.2. Docker Images and Updates 7. Docker for HPC 8. Conclusion A 30-minute hands-on session to introduce Docker fundamentals with a focus on HPC development. 1. Overview In this session, you will learn: The basic components of the Docker system. How to run containers interactively and in detached mode. Key Docker commands such as docker ps, docker images, and how to manage container lifecycles. How Docker concepts translate to HPC containerization workflows. 2. Docker System Components The basic components of the Docker system are: Images: Blueprints of the application and its dependencies. Containers: Runnin",
       "url": "/course-project/containers/hpc/hands-on/01-docker.html"
     },
     {
-      "id": 32,
-      "title": "Untitled :: Course Project",
-      "content": "Edit this Page Download as .pdf 1. Connecting to Karolina HPC and Using Apptainer Because Apptainer does not run within a Docker Codespace, you’ll need to connect to the Karolina HPC system (EuroHPC) to work with Apptainer. In this section, we’ll cover: How to SSH into Karolina. How to remotely log in to GHCR. How to pull, inspect, and run your Apptainer (SIF) image. How to bind host directories and launch an interactive shell. 1.1. Connecting to Karolina HPC First, connect to the Karolina HPC system. Replace your_username and adjust the hostname as needed: ssh your_username@karolina.it4i.cz I use the follow ssh configuration to connect to Karolina HPC: Host karolina Hostname karolina.it4i.cz User it4i-<login> ForwardAgent Yes and of course I have my SSH key added to the ssh-agent and the public key added to the ~/.ssh/authorized_keys file on the Karolina HPC system using the ssh-copy-id command. In vscode with the Remote - SSH extension, I can connect to Karolina HPC by selecting the ",
+      "id": 36,
+      "title": "Karolina Apptainer example — advanced reference :: Course Project",
+      "content": "Edit this Page Download as .pdf Karolina Apptainer example — advanced reference Site-specific historical example. For the current course use Feel++ on Gaya. 1. Connecting to Karolina HPC and Using Apptainer Because Apptainer does not run within a Docker Codespace, you’ll need to connect to the Karolina HPC system (EuroHPC) to work with Apptainer. In this section, we’ll cover: How to SSH into Karolina. How to remotely log in to GHCR. How to pull, inspect, and run your Apptainer (SIF) image. How to bind host directories and launch an interactive shell. 1.1. Connecting to Karolina HPC First, connect to the Karolina HPC system. Replace your_username and adjust the hostname as needed: ssh your_username@karolina.it4i.cz I use the follow ssh configuration to connect to Karolina HPC: Host karolina Hostname karolina.it4i.cz User it4i-<login> ForwardAgent Yes and of course I have my SSH key added to the ssh-agent and the public key added to the ~/.ssh/authorized_keys file on the Karolina HPC sys",
       "url": "/course-project/containers/hpc/hands-on/02-apptainer.html"
     },
     {
-      "id": 33,
+      "id": 37,
       "title": "Hands-on: CI Workflow for HPC Application :: Course Project",
       "content": "Edit this Page Download as .pdf Hands-on: CI Workflow for HPC Application Table of Contents 1. Overview 2. GitHub Actions Workflow 3. Running the Workflow 4. Add step to install the application 5. Add step to package the application 6. Matrix strategy to build on multiple platforms 7. Add a step to upload the package 8. Conclusion In this session, you will create a simple GitHub Actions workflow that automates the configuration, building, and testing of your HPC application using CMake presets. This workflow runs on a runner labeled self-ubuntu-24.04. Each step is explained with callouts. 1. Overview In this tutorial, you will learn to: Check out your repository. Configure the build system using CMake presets. Build the project with CMake. Run tests using CTest. Understand each step through detailed callouts. 2. GitHub Actions Workflow Below is the complete YAML for the workflow, with callouts explaining each section: name: CI - Configure, Build, Test (1) on: push: (2) branches: [ main",
       "url": "/course-project/containers/hpc/hands-on/03-cicd-githubactions.html"
     },
     {
-      "id": 34,
+      "id": 38,
       "title": "Hands-on: Building the Docker Image for Our MPI Application :: Course Project",
       "content": "Edit this Page Download as .pdf Hands-on: Building the Docker Image for Our MPI Application Table of Contents 1. The Dockerfile 2. Callout Explanations 3. Would You Do the Image Differently? 4. Conclusion on Dockerfile Explanation 5. Multi-Stage Build modification 5.1. Hands-on: Building a Multi-Stage Docker Image for an MPI Application 5.2. Multi-Stage Dockerfile 6. Conclusion on Multi-Stage Dockerfile 7. Upload to GitHub Container Registry (GHCR) 8. References In this session, we will walk through the Dockerfile used to build the Docker image for our MPI application. Each step is explained using callouts to help you understand the purpose of the instructions. 1. The Dockerfile Below is the complete Dockerfile we will explain: FROM ubuntu:24.04 (1) RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \\ (2) && apt-get -y install --no-install-recommends \\ (3) git cmake g++ ninja-build openmpi-bin libopenmpi-dev python3 python3-pip python3-dev \\ (4) libboost-test-dev libboost-seri",
       "url": "/course-project/containers/hpc/hands-on/03-docker-mpi.html"
     },
     {
-      "id": 35,
+      "id": 39,
       "title": "Hands-on: Generating the Apptainer Job for HPC Deployment :: Course Project",
       "content": "Edit this Page Download as .pdf Hands-on: Generating the Apptainer Job for HPC Deployment Table of Contents 1. Workflow Key Steps 2. GitHub Actions Job: Convert and Upload Apptainer SIF 3. Conclusion In this session, we will generate a GitHub Actions job that converts our Docker image into an Apptainer SIF file and pushes it to GitHub Container Registry (GHCR). Each step is explained using callouts. 1. Workflow Key Steps This job automates the conversion of your Docker image into an Apptainer SIF file and then uploads the SIF file to GHCR. The key steps are: Authentication: Log in to GHCR via Apptainer. Conversion: Use Apptainer to pull the Docker image and convert it to SIF. Verification: Inspect the SIF file to verify its contents. Upload: Push the SIF file back to GHCR for later deployment. 2. GitHub Actions Job: Convert and Upload Apptainer SIF Below is the complete YAML for the build-apptainer job: build-apptainer: runs-on: self-apptainer (1) needs: build-docker (2) env: apptainer",
       "url": "/course-project/containers/hpc/hands-on/04-apptainer-cicd-app.html"
     },
     {
-      "id": 36,
+      "id": 40,
       "title": "Dockerized MPI Training Session: From Docker to Apptainer on a Supercomputer :: Course Project",
       "content": "Edit this Page Download as .pdf Dockerized MPI Training Session: From Docker to Apptainer on a Supercomputer Table of Contents 1. Overview 2. Prerequisites 3. Step 1: Clone and Build the Docker Image 4. Step 2: Push the Docker Image to GHCR 5. Step 3: Convert the Docker Image to an Apptainer SIF File on the Supercomputer 6. Step 4: Running the MPI Application with Apptainer on HPC 6.1. Interactive Mode 6.2. Running with MPI 6.3. Mounting a Host Directory 7. Conclusion This session shows how to dockerize an MPI application, push it to GHCR, and then convert and run it with Apptainer on a supercomputer. It assumes you have completed the Docker and Apptainer basics session. 1. Overview In this session, you will learn: - How to build a Docker image for an MPI application. - How to test the Docker image locally. - How to push the Docker image to GitHub Container Registry (GHCR). - How to convert the Docker image to an Apptainer SIF file on a supercomputer. - How to run the MPI application u",
       "url": "/course-project/containers/hpc/hands-on/04-docker-cicd-app.html"
     },
     {
-      "id": 37,
+      "id": 41,
       "title": "Hands-on: Deploying Apptainer Images on HPC Environments :: Course Project",
       "content": "Edit this Page Download as .pdf Hands-on: Deploying Apptainer Images on HPC Environments Table of Contents 1. Overview 2. The Deploy Workflow 3. Triggering the Deploy Workflow Automatically 4. Conclusion This session demonstrates how to deploy your Apptainer image to run a parallel MPI job on two environments: a local runner (self-ubuntu-24.04) and the Karolina HPC system. We will also show how to automatically trigger the deploy job when the Apptainer image is updated. 1. Overview In this session, you will learn: How to configure a GitHub Actions workflow (deploy.yml) that uses a matrix strategy to run on both self-ubuntu-24.04 and karolina. How to pull, inspect, and run the Apptainer image on these environments. How to trigger the deploy workflow automatically from another job (e.g., when the Apptainer image is pushed). How to monitor and run parallel jobs in HPC using Apptainer and MPI. 2. The Deploy Workflow Below is the complete deploy.yml file used to deploy the Apptainer image: ",
       "url": "/course-project/containers/hpc/hands-on/05-deploy.html"
     },
     {
-      "id": 38,
+      "id": 42,
       "title": "HPC Containers Hands-on :: Course Project",
       "content": "Edit this Page Download as .pdf HPC Containers Hands-on This hands-on tutorial provides an introduction to containerization in high-performance computing (HPC) environments. You will learn how to use Docker to containerize applications and run them in HPC clusters.",
       "url": "/course-project/containers/hpc/hands-on/"
     },
     {
-      "id": 39,
+      "id": 43,
       "title": "Introduction to Containers for High-Performance Computing (HPC) :: Course Project",
-      "content": "Edit this Page Download as .pdf Introduction to Containers for High-Performance Computing (HPC) Table of Contents 1. Overview 2. But first who are we and why are we here ? 2.1. Feel++ Overview 2.2. Some Feel++ Applications 2.3. Cemosis Projects 2.4. CoE Hidalgo2: Urban Building Pilot 2.5. Feel++ Continuous Integration/Continuous Delivery (CI/CD) 2.6. Feel++ Continous Benchmarking (CB) 3. Introduction to Containers 3.1. What are Containers? 3.2. Hypervisors and Containers 3.3. Background of Virtualization 4. Why Containers for HPC? 4.1. HPC Software Deployment Challenges 4.2. The HPC Environment Matrix from Hell 4.3. HPC Environment Modules: Helpful but Still Broken 4.4. Why Containers Help 4.5. Benefits of Containerization for HPC 5. Container Technologies in HPC 5.1. Overview of Container Runtimes 5.2. Docker in a Nutshell 5.3. The Shipping Container Metaphor 5.4. Why Docker Is (Not Always) Ideal for HPC 5.5. Apptainer (Formerly Singularity) 5.6. Comparing Docker and Apptainer 5.7. Co",
+      "content": "Edit this Page Download as .pdf Introduction to Containers for High-Performance Computing (HPC) Advanced reference material. The course operational path is Feel++ on Gaya with Slurm and Apptainer. MPI launchers and libraries must match the host/container setup; Apptainer has no generic exec --mpi switch. Christophe Prud’homme <christophe.prudhomme@cemosis.fr> v1.0, 2023-03-24 :icons: font :revealjs_theme: white :revealjs_slideNumber: true :revealjs_autoSlide: 0 :source-highlighter: pygments :toc: left An introductory session on using containers in HPC environments. 1. Overview Duration: 1h30 Learning Objectives Understand the concept of containers and how they differ from traditional virtualization. Explore containerization benefits for HPC workloads. Introduce key container technologies: Docker, Singularity/Apptainer, and Podman. Demonstrate how to use containers in an HPC workflow. 2. But first who are we and why are we here ? Cemosis, the Center for Modeling and Simulation in Strasb",
       "url": "/course-project/containers/hpc/"
     },
     {
-      "id": 40,
+      "id": 44,
       "title": "Containers for Mathematical Computing :: Course Project",
       "content": "Containers for Mathematical Computing 🟡 INTERMEDIATE LEVEL | Prerequisites: Linux basics, Git fundamentals | Time: 4-6 hours | For: Mathematics students ready for reproducible computing workflows Why Containers for Mathematics? Mathematical research increasingly requires: Reproducible Computations: Ensure your numerical results can be replicated by others Complex Software Stacks: Manage dependencies for mathematical libraries (NumPy, SciPy, MATLAB, Mathematica) Cross-Platform Compatibility: Share mathematical code that works on different operating systems Collaboration: Provide colleagues with identical computing environments Long-term Preservation: Archive computational environments for future reference Containers solve the \"it works on my machine\" problem that plagues mathematical computing. Containers provide lightweight, portable, and consistent environments for mathematical applications. They package mathematical software with all dependencies, ensuring computations run identical",
       "url": "/course-project/containers/"
     },
     {
-      "id": 41,
-      "title": "Git Basics for Mathematical Research :: Course Project",
-      "content": "Edit this Page Download as .pdf Git Basics for Mathematical Research 🟢 FOUNDATIONAL LEVEL | Prerequisites: Basic Linux navigation | Time: 3-4 hours | For: Mathematics students starting collaborative research Why Version Control for Mathematics? As a mathematics student, you work with: Research papers and LaTeX documents that evolve through multiple drafts Mathematical code and scripts (Python, MATLAB, R) for computations Data analysis notebooks with experimental results Collaborative research projects with advisors and peers Version control helps you track changes, collaborate safely, and never lose important work. This document introduces version control concepts specifically for mathematical research and explains why Git is essential for modern mathematical collaboration. 1. What is Version Control? Version control is a system that tracks changes to files over time. It allows multiple people to work on the same project while keeping track of each modification, ensuring that past ver",
-      "url": "/course-project/git & github/git-basics.html"
+      "id": 45,
+      "title": "Getting started :: Course Project",
+      "content": "Edit this Page Download as .pdf Getting started 1. What this course is about A scientific result includes the code, inputs, environment and procedure that produced it. Learn to work in a repository, explain changes in a review, and hand a reproducible computation to another person. M1 develops autonomy: laptop → Linux → SSH → Gaya → GitHub project. M2 builds on it: parameterized inputs → Feel++ in Apptainer under Slurm on Gaya → simulation dataset → ML training → inference → verification. The separate ROM course supplies scientific content elsewhere; this course concentrates on software and project practices. 2. Before M1 starts You should already be able to read and modify small programs with variables, loops, functions and basic data structures. Python is used heavily for data processing. C++ is also required early in M1 and used extensively in HPC1, HPC2 and HPC3; students are not expected to arrive as complete C++ beginners. Try the self-assessment. If compiling a small C++ program",
+      "url": "/course-project/getting-started.html"
     },
     {
-      "id": 42,
+      "id": 46,
+      "title": "Redirect Notice",
+      "content": "Redirect Notice The page you requested has been relocated to https://feelpp.github.io/course-project/course-project/git-github/git-basics.html.",
+      "url": "/course-project/git &amp; github/git-basics.html"
+    },
+    {
+      "id": 47,
       "title": "Git Basics for Mathematical Research :: Course Project",
       "content": "Edit this Page Download as .pdf Git Basics for Mathematical Research 🟢 FOUNDATIONAL LEVEL | Prerequisites: Basic Linux navigation | Time: 3-4 hours | For: Mathematics students starting collaborative research Why Version Control for Mathematics? As a mathematics student, you work with: Research papers and LaTeX documents that evolve through multiple drafts Mathematical code and scripts (Python, MATLAB, R) for computations Data analysis notebooks with experimental results Collaborative research projects with advisors and peers Version control helps you track changes, collaborate safely, and never lose important work. This document introduces version control concepts specifically for mathematical research and explains why Git is essential for modern mathematical collaboration. 1. What is Version Control? Version control is a system that tracks changes to files over time. It allows multiple people to work on the same project while keeping track of each modification, ensuring that past ver",
       "url": "/course-project/git-github/git-basics.html"
     },
     {
-      "id": 43,
+      "id": 48,
       "title": "Git Branching :: Course Project",
-      "content": "Edit this Page Download as .pdf Git Branching 1. Branching Basics Branches are essential for managing workflows in Git. A branch represents a separate line of development and allows you to work on features or fixes without affecting the main codebase. A few key terms: * Main branch: The default branch in a Git repository (commonly main or master). * Feature branch: A branch created for developing new features or fixes. 2. Creating a Branch To create a new branch from the current branch: $ git branch <branch-name> For example, to create a branch called feature/new-ui: $ git branch feature/new-ui This command creates the branch, but you’re still on your current branch. To switch to the new branch: $ git checkout feature/new-ui Alternatively, you can create and switch to the new branch in one step: $ git checkout -b feature/new-ui This is a best practice for starting new features or fixes in isolated branches, ensuring the main codebase remains stable. 3. Renaming a Branch To rename the c",
+      "content": "Edit this Page Download as .pdf Git Branching 1. Branching Basics Branches are essential for managing workflows in Git. A branch represents a separate line of development and allows you to work on features or fixes without affecting the main codebase. A few key terms: * Main branch: The default branch in a Git repository (commonly main or master). * Feature branch: A branch created for developing new features or fixes. 2. Creating a Branch To create a new branch from the current branch: $ git branch <branch-name> For example, to create a branch called feature/new-ui: $ git branch feature/new-ui This command creates the branch, but you’re still on your current branch. To switch to the new branch: $ git switch feature/new-ui Alternatively, you can create and switch to the new branch in one step: $ git switch -c feature/new-ui This is a best practice for starting new features or fixes in isolated branches, ensuring the main codebase remains stable. 3. Renaming a Branch To rename the curre",
       "url": "/course-project/git-github/git-branch.html"
     },
     {
-      "id": 44,
+      "id": 49,
       "title": "Merge Strategies in Git :: Course Project",
-      "content": "Edit this Page Download as .pdf Merge Strategies in Git This document explains the different merge strategies available in Git. You will learn about fast-forward vs non-fast-forward merges, how to rebase, squash commits, handle conflicts, and cherry-pick specific commits. 1. Fast-Forward vs Non-Fast-Forward Merges When you merge two branches in Git, you can either perform a fast-forward merge or a non-fast-forward merge, depending on whether the two branches have diverged. 1.1. Fast-Forward Merge A fast-forward merge occurs when the current branch has no new commits and can be \"fast-forwarded\" to the tip of the target branch. This happens when there is a direct linear path between the two branches. To perform a fast-forward merge: $ git checkout main $ git merge feature-branch If there are no new commits on main, Git will simply move the main branch pointer to the tip of feature-branch. 1.2. Non-Fast-Forward Merge A non-fast-forward merge occurs when the branches have diverged, meaning",
+      "content": "Edit this Page Download as .pdf Merge Strategies in Git This document explains the different merge strategies available in Git. You will learn about fast-forward vs non-fast-forward merges, how to rebase, squash commits, handle conflicts, and cherry-pick specific commits. 1. Fast-Forward vs Non-Fast-Forward Merges When you merge two branches in Git, you can either perform a fast-forward merge or a non-fast-forward merge, depending on whether the two branches have diverged. 1.1. Fast-Forward Merge A fast-forward merge occurs when the current branch has no new commits and can be \"fast-forwarded\" to the tip of the target branch. This happens when there is a direct linear path between the two branches. To perform a fast-forward merge: $ git switch main $ git merge feature-branch If there are no new commits on main, Git will simply move the main branch pointer to the tip of feature-branch. 1.2. Non-Fast-Forward Merge A non-fast-forward merge occurs when the branches have diverged, meaning b",
       "url": "/course-project/git-github/git-merges.html"
     },
     {
-      "id": 45,
+      "id": 50,
       "title": "Git Remotes :: Course Project",
       "content": "Edit this Page Download as .pdf Git Remotes This tutorial explains how to work with remotes in Git. Remotes are versions of your project that are hosted on the internet or network, allowing you to collaborate with others. We’ll cover how to clone repositories, manage remotes, push/pull changes, and fetch without merging. 1. Cloning Repositories Cloning a repository means creating a local copy of a remote repository. This is often the first step when working with existing projects hosted on Git platforms like GitHub or GitLab. To clone a repository, run: $ git clone https://github.com/<username>/<repository-name>.git This command will create a directory named after the repository and initialize it with all of the project’s files, commits, and branches from the remote repository. After cloning, navigate into the repository folder: $ cd <repository-name> You now have a local copy of the project, which is linked to the remote repository (typically named origin). 2. Managing Remotes Remotes",
       "url": "/course-project/git-github/git-remotes.html"
     },
     {
-      "id": 46,
+      "id": 51,
       "title": "What is a Git Repository? :: Course Project",
       "content": "Edit this Page Download as .pdf What is a Git Repository? A Git repository is the core of every Git project, where all the project’s files, changes, and history are tracked. This guide introduces Git repositories and key concepts such as repository initialization, configuration, working directory, staging area, and commit history.t is a Git Repository? 1. Git Repository Basics A Git repository stores your project’s files and tracks all changes made to them. Git uses a three-part architecture: the working directory, the staging area, and the repository itself. Together, these help manage and track changes across versions of the project. 1.1. Initializing a Repository (git init) The first step to using Git is initializing a repository. You can create a new Git repository with the following command: $ git init This creates a .git directory inside your project folder. The .git directory stores all the metadata and history related to your project. You can now begin tracking files, making ch",
       "url": "/course-project/git-github/git-repository-basics.html"
     },
     {
-      "id": 47,
+      "id": 52,
       "title": "Git for Beginners :: Course Project",
-      "content": "Edit this Page Download as .pdf Git for Beginners This tutorial introduces the basic concepts of Git, a version control system used for tracking changes in software development. 1. What is Git? Git is a distributed version control system that allows multiple developers to work on a project simultaneously. It tracks changes to files, enables collaboration, and makes it easy to revert changes when needed. 2. Git Basics 2.1. Installing Git To check if Git is already installed, open a terminal and run: $ git --version If Git is not installed, follow these instructions based on your operating system: Linux: Use the package manager (e.g., apt, dnf, or yum). $ sudo apt install git macOS: Install Git using Homebrew: $ brew install git Windows: Download and install Git from the official Git website: git-scm.com 2.2. Configuring Git Before you start using Git, you need to configure your user information. This information will be used in your commits. $ git config --global user.name \"Your Name\" $",
+      "content": "Edit this Page Download as .pdf Git for Beginners This tutorial introduces the basic concepts of Git, a version control system used for tracking changes in software development. 1. What is Git? Git is a distributed version control system that allows multiple developers to work on a project simultaneously. It tracks changes to files, enables collaboration, and makes it easy to revert changes when needed. 2. Mental model working tree → git add → staging area → git commit → local repository ↓ git push remote repository A commit records a snapshot of staged content. A branch names a line of commits; GitHub hosts a remote copy and collaboration tools. git fetch downloads remote history without merging it; git pull fetches and integrates it. Review the current branch and changes before either operation. Use .gitignore for environments, build output and generated results. It does not remove files already tracked. Check git diff before staging and git diff --staged before committing. 3. Git Ba",
       "url": "/course-project/git-github/git-starter.html"
     },
     {
-      "id": 48,
+      "id": 53,
       "title": "GitHub Actions Tutorial for Scientific Computing with Eigen3 and CMake Presets :: Course Project",
       "content": "Edit this Page Download as .pdf GitHub Actions Tutorial for Scientific Computing with Eigen3 and CMake Presets This tutorial demonstrates how to set up a continuous integration (CI) workflow for a simple scientific computing project using Eigen3 and CMake Presets. GitHub Actions will compile and test a C++ program using different compilers and build configurations (Debug and Release). 1. Project Structure The project directory structure looks like this: eigen-example/ ├── CMakeLists.txt # CMake configuration file ├── CMakePresets.json # CMake presets file ├── src/ │ └── main.cpp # C++ code using Eigen └── .github/ └── workflows/ └── ci.yml # GitHub Actions workflow file 2. Step 1: CMakeLists.txt File The CMakeLists.txt file defines the project, finds the Eigen3 package, and compiles the program. We updated the minimum required version of CMake to 3.22 to use CMake Presets. # CMakeLists.txt cmake_minimum_required(VERSION 3.22) # Updated to support CMake Presets project(EigenExample) # F",
       "url": "/course-project/git-github/github-actions-cmake-eigen3.html"
     },
     {
-      "id": 49,
+      "id": 54,
       "title": "Tutorial: Using GitHub Actions for Scientific Computing :: Course Project",
       "content": "Edit this Page Download as .pdf Tutorial: Using GitHub Actions for Scientific Computing This tutorial explains how to use GitHub Actions to automate essential tasks in scientific computing projects, such as building code, testing, benchmarking, and deploying documentation. Before starting this tutorial, please study the following resources on Package Managers. 1. 1. Introduction to GitHub Actions GitHub Actions is an automation tool that allows you to create custom workflows directly in your GitHub repositories. For scientific computing, this is particularly useful for continuous integration (CI) tasks like: Automatically building your code when a new commit is pushed. Running tests to ensure code correctness. Running benchmarks to track performance. Each workflow is defined in a YAML file under the .github/workflows/ directory of your repository. A typical GitHub Actions workflow consists of jobs that run on specific runners (virtual machines). Below is an example of a basic workflow:",
       "url": "/course-project/git-github/github-actions.html"
     },
     {
-      "id": 50,
+      "id": 55,
       "title": "Collaboration on GitHub :: Course Project",
       "content": "Edit this Page Download as .pdf Collaboration on GitHub This page introduces key GitHub features for collaboration, including forking vs cloning, issues, pull requests, labeling issues/PRs, and more. These tools help streamline collaboration and code review in open source and team projects. 1. Forking vs Cloning GitHub provides two ways to work with repositories: forking and cloning. Forking: Creates a copy of someone else’s repository under your GitHub account. You can modify this copy and later propose changes to the original repository via a pull request (PR). Cloning: Downloads a local copy of a repository on your machine so you can work on it. You can clone both your own and other users' repositories (public repositories). 1.1. Forking a Repository Figure 1. Forking a Repository To fork a repository: Navigate to the repository on GitHub. Click the Fork button in the upper-right corner. Choose the location (your account) to create the fork. After forking, you can clone it to your l",
       "url": "/course-project/git-github/github-collaborations.html"
     },
     {
-      "id": 51,
+      "id": 56,
       "title": "GitHub Essentials :: Course Project",
       "content": "Edit this Page Download as .pdf GitHub Essentials This page introduces the essential GitHub concepts and actions for beginners. Learn how to set up your GitHub account, explore the GitHub interface, create repositories, and manage your profile. 1. Creating a GitHub Account To get started with GitHub, you need to create an account. Follow these steps: Go to github.com. Click on \"Sign up\" in the top-right corner. Fill in your details such as username, email address, and password. Verify your email and complete any other steps requested by GitHub. Once your account is created, you’re ready to start collaborating on repositories and exploring GitHub. 2. GitHub Interface GitHub’s interface is user-friendly and offers a wide range of functionalities. Here’s a breakdown of some key areas: Dashboard: Once logged in, the dashboard is where you see your repositories, issues, pull requests, and activities. Repositories: This tab shows all the repositories you own or contribute to. Pull Requests: ",
       "url": "/course-project/git-github/github-essentials.html"
     },
     {
-      "id": 52,
+      "id": 57,
       "title": "How to Write a GitHub Issue :: Course Project",
       "content": "Edit this Page Download as .pdf How to Write a GitHub Issue This guideline explains how to create effective GitHub issues for reporting bugs, requesting features, or asking questions. A well-written issue helps project maintainers understand and resolve the problem more quickly. 1. Steps to Create a GitHub Issue To create a new issue on GitHub: Navigate to the repository where you want to report an issue. Click the Issues tab. Click New issue. Fill out the issue template if the repository provides one, or follow the structure below for general guidance. 2. Issue Structure A well-written issue should include the following sections: 2.1. 1. Title The title should be a brief, clear description of the issue. It should summarize the problem or request in one line. Bug: \"Login page crashes after form submission\" Feature: \"Add dark mode support to the website\" Question: \"How to configure the app for multi-tenancy?\" 2.2. 2. Description Provide a clear and detailed description of the issue. For",
       "url": "/course-project/git-github/github-how-to-write-issues.html"
     },
     {
-      "id": 53,
+      "id": 58,
       "title": "GitHub Intro Lab: Issues, PRs, and Projects (90 minutes) :: Course Project",
       "content": "Edit this Page Download as .pdf GitHub Intro Lab: Issues, PRs, and Projects (90 minutes) This intro lab is designed for M1 students who covered Linux and GitHub basics and are discovering structured team workflows. The goal is to build collaboration habits before moving to advanced CI/CD and project workflow topics. 1. Learning Objectives By the end of this lab, students can: Create and structure issues with labels, assignees, and milestones. Open a pull request linked to an issue and close it using commit keywords. Organize work using GitHub Projects (table + board views). Run a short triage workflow as a team. 2. Prerequisites GitHub Getting Started GitHub Collaborations Optional reference: GitHub for Project Management 3. Class Setup This session uses: 3 groups of 2 students 1 group of 3 students Each group works on the same project in a separate repository: m1-g1-project m1-g2-project m1-g3-project m1-g4-project 4. Project Proposal Project title: Reproducible Mini Weather Analysis ",
       "url": "/course-project/git-github/github-review-projects-lab.html"
     },
     {
-      "id": 54,
+      "id": 59,
       "title": "GitHub for Beginners :: Course Project",
       "content": "Edit this Page Download as .pdf GitHub for Beginners This tutorial introduces the basic concepts of GitHub, a web-based platform for version control and collaboration. 1. What is GitHub? GitHub is a cloud-based platform that uses Git, a distributed version control system. It allows developers to collaborate on projects, track changes, and manage code versions in a centralized repository. 2. GitHub Basics 2.1. Creating a GitHub Account To start using GitHub, you need to create an account: Go to github.com. Click on \"Sign up\". Follow the instructions to create your GitHub account. Once your account is set up, you can create repositories, contribute to projects, and collaborate with others. 2.2. Creating a Repository A repository (repo) is where your project’s files are stored. To create a new repository: Go to github.com and log in. Click on the \"+\" icon in the upper-right corner and select \"New repository\". Fill in the repository name, description (optional), and choose whether it will ",
       "url": "/course-project/git-github/github-start.html"
     },
     {
-      "id": 55,
+      "id": 60,
       "title": "Git & GitHub Fundamentals :: Course Project",
       "content": "Git & GitHub Fundamentals Learn the essential skills for version control and collaborative software development using Git and GitHub. From basic repository management to advanced collaboration workflows. 1. Git & GitHub Learning Modules The following modules cover everything from basic Git concepts to advanced GitHub collaboration: 2. Recommended Intro Session (M1) If your class completed GitHub basics and is ready for first structured team workflow practice, run: GitHub Intro Lab: Issues, PRs, and Projects (90 minutes)",
       "url": "/course-project/git-github/"
     },
     {
-      "id": 56,
+      "id": 61,
       "title": "GitHub :: Course Project",
       "content": "Edit this Page Download as .pdf GitHub 1. GitHub: Overview GitHub is a web-based Git repository hosting service GitHub offers all of the distributed revision control and source code management (SCM) functionality of Git as well as adding its own features GitHub provides a web-based graphical interface and desktop as well as mobile integration GitHub is used by individuals and enterprises to host software projects GitHub is the largest code host in the world The main features of GitHub are Issues, Pull Requests, Projects, Actions 2. GitHub Issues GitHub Issues are a great way to keep track of tasks, enhancements, and bugs for your projects. They’re kind of like email—except they can be shared and discussed with the rest of your team. Most software projects have a bug tracker of some kind. GitHub’s tracker is called Issues, and has its own section in every repository. Issues can act as more than just a place to report software bugs. They’re great for tracking ideas and enhancements, task",
       "url": "/course-project/github.html"
     },
     {
-      "id": 57,
+      "id": 62,
       "title": "Github Actions :: Course Project",
       "content": "Edit this Page Download as .pdf Github Actions Github actions are setup to build the documentation using Antora and upload them to docs.feelpp.org[Feel++ docs] upon any change in the repo. build, install, package and deliver the Feel++ code See the [workflow file](.github/workflows/ci.yml) for more details. 1. Skipping a job You can skip the CI by adding the following line in the commit message: [skip ci] You can skip the job that build the documentation by adding the following line in the commit message: doc skip. You can skip the job that build the code by adding the following line in the commit message: code skip.",
       "url": "/course-project/githubactions.html"
     },
     {
-      "id": 58,
-      "title": "Course Project :: Course Project",
-      "content": "Course Project This course is designed to introduce mathematicians and scientific computing students to essential software development tools and practices. No prior programming or Linux experience required. 1. Difficulty Levels Each topic is organized by difficulty level: 🟢 FOUNDATIONAL Prerequisites: None Essential tools every mathematician needs for computational work 🟡 INTERMEDIATE Prerequisites: Linux basics, Git fundamentals Collaborative development and project management 🔴 ADVANCED Prerequisites: All previous modules High-performance computing and automation 2. Course Topics 2.1. 🐧 Linux Master command-line essentials for mathematical computing. 🟢 Fundamentals Shell basics, file operations, text processing 🟡 Remote Computing SSH, remote access, VS Code Remote-SSH → Start Learning Linux 2.2. 🔀 Git & GitHub Track changes in LaTeX documents and collaborate on research projects. 🟢 Git Basics Version control fundamentals, repository management 🟢 GitHub Basics Essentials, iss",
+      "id": 63,
+      "title": "Course Project — M1 and M2 :: Course Project",
+      "content": "Edit this Page Download as .pdf Course Project — M1 and M2 Reproducible computational science and professional scientific software practice are the common thread of this course in the Master CSMI. M1 — Computational foundations M2 — Scientific software and MLOps Work autonomously on a Linux-based scientific project, locally and remotely, using Git/GitHub and appropriate development tools. Engineer, package, automate, test and reproduce a computational or machine-learning application. Follow the M1 learning path · M1 semester project Follow the M2 learning path · MLOps project The practical target is to operate on Gaya using Slurm and Apptainer to deploy Feel++, then build a simulation-to-ML pipeline: prepare inputs → HPC simulations → dataset → training → inference → verification. 1. M2 starts here — 7 September 2026 Apptainer → Run a scientific application → HPC execution → Deploy Feel++ on Gaya → Reproducible environments → MLOps → MLOps project. M2 assumes the M1 foundations. Use th",
       "url": "/course-project/"
     },
     {
-      "id": 59,
+      "id": 64,
       "title": "Instructor Guide: Week-by-Week Curriculum :: Course Project",
-      "content": "Edit this Page Download as .pdf Instructor Guide: Week-by-Week Curriculum This comprehensive guide helps instructors deliver the Course Project effectively to mathematics students (CSMI program). The curriculum is designed for a 12-week semester with flexible pacing based on student backgrounds. 1. Course Overview for Mathematics Students Key Teaching Principles for Mathematics Students: Start with \"Why\" - Always explain the mathematical relevance before diving into technical details Use Mathematical Examples - Replace generic programming examples with numerical analysis, LaTeX, data analysis Build Confidence Gradually - Many students may feel intimidated by command-line interfaces Connect to Research - Show how tools apply to mathematical research and collaboration 2. Pre-Course Preparation (Week 0) 2.1. Instructor Tasks Before the semester begins: Setup and Assessment Send prerequisites assessment to all students 2 weeks before class Prepare 3 different lesson plans based on student ",
+      "content": "Edit this Page Download as .pdf Instructor Guide: Week-by-Week Curriculum This is the retained legacy three-level schedule. Use the current M1/M2 teaching guide for the course progression and first M2 session. This comprehensive guide helps instructors deliver the Course Project effectively to mathematics students (CSMI program). The curriculum is designed for a 12-week semester with flexible pacing based on student backgrounds. 1. Course Overview for Mathematics Students Key Teaching Principles for Mathematics Students: Start with \"Why\" - Always explain the mathematical relevance before diving into technical details Use Mathematical Examples - Replace generic programming examples with numerical analysis, LaTeX, data analysis Build Confidence Gradually - Many students may feel intimidated by command-line interfaces Connect to Research - Show how tools apply to mathematical research and collaboration 2. Pre-Course Preparation (Week 0) 2.1. Instructor Tasks Before the semester begins: Se",
       "url": "/course-project/instructor-guide.html"
     },
     {
-      "id": 60,
+      "id": 65,
       "title": "Course Project Notebook :: Course Project",
       "content": "Edit this Page Download as .pdf .ipynb Course Project Notebook This is a Jupyter notebook for the Course Project project. 1. Introduction You write your notebook in AsciiDoc including LaTeX math and thanks to the :page-jupyter: true attribute, the notebook is converted to a Jupyter notebook when the book is built. 2. Code cells You can include code cells in your notebook using the [source,python] block macro. import sys, os print(\"Hello, world!\") 3. Feel++ Code cells You can include Feel++ code cells in your notebook using the [source,python] block macro. import feelpp app = feelpp.Environment([\"myapp\"],config=feelpp.globalRepository(\"myapp\")) geo=feelpp.download( \"github:{repo:feelpp,path:feelpp/quickstart/laplacian/cases/feelpp2d/feelpp2d.geo}\", worldComm=app.worldCommPtr() )[0] print(\"geo file: {}\".format(geo)) mesh = feelpp.load(feelpp.mesh(dim=2,realdim=2), geo, 0.1) Xh=feelpp.functionSpace(mesh=mesh, space=\"Pchv\") f = Xh.element() f.on(range=feelpp.elements(mesh),expr=feelpp.expr",
       "url": "/course-project/jupyter.html"
     },
     {
-      "id": 61,
+      "id": 66,
       "title": "File Editing in Linux :: Course Project",
       "content": "Edit this Page Download as .pdf .ipynb File Editing in Linux The pages can be downloaded via the green button at the top right of the page. Commands are shell commands and can be executed in a terminal, but do not copy the %%bash magic command used by Jupyter Notebook. Linux, like other operating systems, allows file editing for numerous purposes, such as configuring system settings or writing scripts. There’s a wide variety of text editors available in Linux, and these editors come with different capabilities and levels of complexity. Whether you’re editing configuration files or writing code, choosing the right editor can make a significant difference in your workflow. 1. Popular Text Editors in Linux Some commonly used text editors in Linux include: Nano: A basic text editor that’s easy to use, especially for beginners. Vi/Vim: A powerful editor with an extensive set of commands for advanced users. Emacs: Another powerful editor with built-in features for coding, writing, and more. ",
       "url": "/course-project/linux/editing.html"
     },
     {
-      "id": 62,
+      "id": 67,
       "title": "Working with Files in Linux :: Course Project",
       "content": "Edit this Page Download as .pdf .ipynb Working with Files in Linux The pages can be downloaded via the green button at the top right of the page. Commands are shell commands and can be executed in a terminal, but do not copy the %%bash magic command used by Jupyter Notebook. Working with files is an essential part of Linux, and it’s a skill every Linux user must master. In Linux, everything is considered a file: text documents, images, system files, devices, and even directories. Linux provides numerous command-line utilities to create, view, move, or search files. Some of the basic commands for file handling in the Linux terminal include touch for creating files, mv for moving files, cp for copying files, rm for removing files, and ls for listing files and directories. For example, to create a file named example.txt, you can use the following command: %%bash cd /tmp/ mkdir documents cd documents touch example.txt Results To list the files in the current directory, use the command: %%b",
       "url": "/course-project/linux/files.html"
     },
     {
-      "id": 63,
+      "id": 68,
       "title": "Linux Essentials for Mathematics Students :: Course Project",
       "content": "Linux Essentials for Mathematics Students 🟢 FOUNDATIONAL LEVEL | Prerequisites: None | Time: 2-3 hours | For: Mathematics students new to command-line interfaces Why Linux for Mathematicians? Most mathematical software (MATLAB, Mathematica, SageMath), high-performance computing clusters, and research computing environments run on Linux systems. Understanding basic Linux commands enables you to: Access and use computational clusters for large-scale mathematical computations Manage mathematical datasets and simulation results efficiently Collaborate with computational scientists and engineers Use powerful mathematical software packages available only on Linux The pages can be downloaded via the green button at the top right of the page. Commands are shell commands and can be executed in a terminal, but do not copy the %%bash magic command used by Jupyter Notebook. As a mathematics student, you’ll frequently need to work with computational tools and high-performance computing systems. Li",
       "url": "/course-project/linux/"
     },
     {
-      "id": 64,
+      "id": 69,
       "title": "Linux Shell Basics :: Course Project",
-      "content": "Edit this Page Download as .pdf .ipynb Linux Shell Basics The pages can be downloaded via the green button at the top right of the page. Commands are shell commands and can be executed in a terminal, but do not copy the %%bash magic command used by Jupyter Notebook. The Linux shell is a command-line interface or terminal used to interact directly with the operating system. The shell helps facilitate system commands and acts as an intermediary interface between the user and the system’s kernel. The shell can perform complex tasks efficiently and quickly. There are many types of shells available in Linux, including the Bourne Shell (sh), the C Shell (csh), and the Bourne-Again Shell (bash). The basics of using a Linux shell include navigating between directories, creating, renaming, and deleting files and directories, and executing system commands. This introductory knowledge is crucial for Linux system administration, scripting, and automation. Here is a classic bash command as an examp",
+      "content": "Edit this Page Download as .pdf .ipynb Linux Shell Basics The pages can be downloaded via the green button at the top right of the page. Commands are shell commands and can be executed in a terminal, but do not copy the %%bash magic command used by Jupyter Notebook. The Linux shell is a command-line interface or terminal used to interact directly with the operating system. The shell helps facilitate system commands and acts as an intermediary interface between the user and the system’s kernel. The shell can perform complex tasks efficiently and quickly. There are many types of shells available in Linux, including the Bourne Shell (sh), the C Shell (csh), and the Bourne-Again Shell (bash). The basics of using a Linux shell include navigating between directories, creating, renaming, and deleting files and directories, and executing system commands. Use these skills to inspect datasets, run scientific programs and automate repeatable computations. Here is a classic bash command as an exam",
       "url": "/course-project/linux/shell.html"
     },
     {
-      "id": 65,
+      "id": 70,
       "title": "SSH and Remote-SSH in VS Code :: Course Project",
       "content": "Edit this Page Download as .pdf SSH and Remote-SSH in VS Code Welcome to the SSH and Remote-SSH tutorial for VS Code. This guide will walk you through the setup of SSH on your system, basic SSH commands, and using the Remote-SSH extension in VS Code for remote development. 1. Table of Contents Setting Up SSH Basic SSH Commands Remote-SSH Extension for VS Code Start by setting up SSH on your machine and then proceed to learn how to use it within VS Code.",
       "url": "/course-project/linux/ssh/"
     },
     {
-      "id": 66,
+      "id": 71,
       "title": "Remote-SSH Extension for VS Code :: Course Project",
       "content": "Edit this Page Download as .pdf Remote-SSH Extension for VS Code The Remote-SSH extension in VS Code enables you to work on remote projects as if they were on your local machine. With Remote-SSH, you can connect to a remote server, edit files, run commands, and use VS Code’s development features. 1. Installing the Remote-SSH Extension Open VS Code. Go to the Extensions panel (Ctrl+Shift+X on Windows/Linux or Cmd+Shift+X on macOS). Search for Remote - SSH and click Install. 2. Connecting to a Remote Machine After installing the extension, follow these steps to connect to a remote server via SSH: Press F1 or Ctrl+Shift+P to open the Command Palette. Type Remote-SSH: Connect to Host and select it. Enter the SSH connection details, e.g., user@remote-server.com. Select your preferred remote OS when prompted (Linux, macOS, or Windows). Once connected, a new VS Code window will open, and you’ll be working within the remote environment. 3. Using the SSH Config File in VS Code If you have an SS",
       "url": "/course-project/linux/ssh/remote-ssh-vscode.html"
     },
     {
-      "id": 67,
+      "id": 72,
       "title": "Basic SSH Commands :: Course Project",
       "content": "Edit this Page Download as .pdf Basic SSH Commands 1. Common SSH Commands Once you’ve set up SSH, here are some common commands for connecting to and managing remote servers. 1.1. Connecting to a Remote Server To connect to a remote server via SSH: ssh user@remote-server Replace user with your username and remote-server with the IP address or domain name of the server. 1.2. Using SSH Config File for Convenience You can configure the SSH client to simplify connections by using a ~/.ssh/config file. Host myserver HostName remote-server.com User myusername IdentityFile ~/.ssh/id_rsa Now, you can connect simply by typing: ssh myserver 1.3. Running Remote Commands with SSH You can execute commands directly on the remote server without starting an interactive session. For example: ssh user@remote-server 'uptime' This will run the uptime command on the remote server and return the result. 1.4. Secure Copying Files with SCP The scp (Secure Copy Protocol) command allows you to copy files betwee",
       "url": "/course-project/linux/ssh/ssh-commands.html"
     },
     {
-      "id": 68,
-      "title": "Setting Up SSH :: Course Project",
-      "content": "Edit this Page Download as .pdf Setting Up SSH 1. What is SSH? SSH (Secure Shell) is a protocol used to securely connect to remote machines. It allows encrypted data transmission, enabling you to access a remote machine’s shell and execute commands as if you were using the local terminal. 2. Installing SSH Before using SSH, ensure that it is installed on both the client (your local machine) and the server (remote machine). # On Linux or macOS, SSH is typically pre-installed. To check if it's installed, use: ssh -V # To install SSH on Ubuntu or Debian-based systems: sudo apt update sudo apt install openssh-client openssh-server # On CentOS or Fedora: sudo dnf install openssh-clients openssh-server # On Windows, use the built-in OpenSSH client (available from Windows 10) or download PuTTY. 3. Enabling SSH Service on Linux (Server-Side) If you are connecting to a remote Linux server, ensure that the SSH service is enabled and running: # To start the SSH service (Linux): sudo systemctl ena",
+      "id": 73,
+      "title": "SSH setup for scientific work :: Course Project",
+      "content": "Edit this Page Download as .pdf SSH setup for scientific work 1. Why this matters and objectives Connect from your laptop to a scientific Linux host without exposing credentials. Understand key pairs, verify the server and reuse a named configuration in the terminal and VS Code. 2. Keys and the agent Check ssh -V. You need a client on the laptop; the institution administers the server. Inspect ~/.ssh before creating a key so you do not overwrite an existing one. ssh-keygen -t ed25519 -C \"your_email@example.com\" eval \"$(ssh-agent -s)\" ssh-add ~/.ssh/id_ed25519 Choose a passphrase. The private key (id_ed25519) stays private; the .pub file may be registered with the server. The agent holds an unlocked key for authentication. Reuse an existing agent if your desktop already provides one. Using your institution-issued login and following its registration policy: ssh-copy-id -i ~/.ssh/id_ed25519.pub your_login@gaya.math.unistra.fr This requires an already permitted way to authenticate. If pas",
       "url": "/course-project/linux/ssh/ssh-setup.html"
     },
     {
-      "id": 69,
+      "id": 74,
       "title": "Text Processing in Linux :: Course Project",
       "content": "Edit this Page Download as .pdf .ipynb Text Processing in Linux The pages can be downloaded via the green button at the top right of the page. Commands are shell commands and can be executed in a terminal, but do not copy the %%bash magic command used by Jupyter Notebook. Text processing is an essential task for system administrators and developers. Linux, being a robust operating system, provides powerful tools for text searching, manipulation, and processing. The ability to handle and manipulate text files directly from the command line is one of Linux’s greatest strengths. Users can utilize commands like awk, sed, grep, and cut for text filtering, substitution, and handling regular expressions. Additionally, shell scripting and programming languages such as Python and Perl offer remarkable text processing capabilities on Linux. Though Linux is primarily a command-line-based system, it also offers numerous GUI-based text editors, including gedit, nano, and vim, which make text editin",
       "url": "/course-project/linux/text-processing.html"
     },
     {
-      "id": 70,
+      "id": 75,
+      "title": "Python and C/C++ development environments :: Course Project",
+      "content": "Edit this Page Download as .pdf Python and C/C++ development environments 1. Why this matters and objectives Run a small computation locally and remotely, identify the interpreter/compiler, and keep generated files out of Git. Python is used heavily for data and projects; working C++ familiarity is required early in M1 and prepares for HPC1, HPC2 and HPC3. 2. Python environment In a new project folder with Python 3 available: python3 -m venv .venv source .venv/bin/activate python --version python -m pip --version python -c 'import statistics; print(statistics.mean([18, 20, 22]))' Expected mean: 20. Select this interpreter in VS Code. Inside Remote SSH, create/select an environment on the remote host; your laptop environment is a different installation. Use python -m pip so the installer matches the chosen interpreter. Declare required dependencies in the project and record exact tested versions for reproduction. See the Python workshop and Python virtual environments. 3. C/C++ environm",
+      "url": "/course-project/m1/environments.html"
+    },
+    {
+      "id": 76,
+      "title": "Working on Gaya — basic HPC operations :: Course Project",
+      "content": "Edit this Page Download as .pdf Working on Gaya — basic HPC operations 1. Why this matters Use Gaya as part of a normal scientific workflow: edit code remotely, request resources, run a job, inspect its output and preserve the result. This page covers operation rather than the parallel algorithms taught in HPC1. 2. Access and mental model laptop → SSH / VS Code Remote SSH → login node ↓ scheduler compute node The existing course host is gaya.math.unistra.fr. Confirm your login and any network/VPN requirements with the teaching team. Configure the gaya alias using SSH setup, verify ssh gaya, then open a remote workspace with VS Code. Login nodes support connection, editing, transfers and job submission. Heavy computation belongs in a scheduler allocation. A VS Code terminal connected to a login node still runs on that login node. 3. Environment and storage Check hostname, pwd, module avail and module list. Load only the compiler/Python/Apptainer modules documented for the current course",
+      "url": "/course-project/m1/gaya.html"
+    },
+    {
+      "id": 77,
+      "title": "M1 — Computational foundations :: Course Project",
+      "content": "Edit this Page Download as .pdf M1 — Computational foundations 1. Learning outcomes By the end of M1, work autonomously on a Linux scientific project: navigate and process files, connect to Gaya, use VS Code Remote SSH, collaborate through GitHub, run Python, compile C++, submit a scheduler job, write a test and reproduce a result. 2. Learning path Keep one small scientific repository throughout the path. Each lesson should improve that repository or your ability to run it. Linux/Unix environment, shell, files and text processing. SSH and remote computing. Git and GitHub. Start tracking work now. VS Code and Remote SSH. Use these locally and remotely for subsequent exercises. Python and C/C++ environments. C++ familiarity is needed early and feeds into HPC1, HPC2 and HPC3. Gaya and basic HPC operations: login node → scheduler → compute node. Project workflow, testing, basic CI and reproducibility. M1 semester project. The shared scientific target is deploying Feel++ on Gaya with Slurm ",
+      "url": "/course-project/m1/"
+    },
+    {
+      "id": 78,
+      "title": "M1 semester project :: Course Project",
+      "content": "Edit this Page Download as .pdf M1 semester project 1. Objectives Answer a scientific question while demonstrating autonomy in Linux, Python/C++, remote computing and collaborative software practice. Agree the topic and scientific validation with the supervisor. Existing 2026 M1 S2 topics remain available as that cohort’s material; future assignments and deadlines are announced by the teaching team. 2. Expected workflow and GitHub organization Maintain a repository with source, tests, small fixtures, environment instructions and a README. Use issues, branches, PRs, reviews, labels, milestones and a GitHub Project board. Record each member’s contributions. Apply testing/basic CI to changes; use Gaya when remote execution is appropriate. 3. Deliverables A report describing the problem, method, validation and limits. Source at an identified commit/tag, tests and CI evidence. Input provenance and instructions for environment setup and execution, including a scheduler script when needed. A ",
+      "url": "/course-project/m1/project.html"
+    },
+    {
+      "id": 79,
+      "title": "Project workflow, tests and reproducibility :: Course Project",
+      "content": "Edit this Page Download as .pdf Project workflow, tests and reproducibility 1. Why this matters A project is a sequence of explainable, checked changes. Use Git/GitHub throughout your Linux, Python, C++ and Gaya work rather than saving collaboration for the final submission. 2. Expected workflow issue → branch → commits → PR → review → CI → merge → closed issue Write an issue with the problem, acceptance criteria and a small scope. Create a branch; inspect git diff and git diff --staged; commit a coherent change. Open a PR linked to the issue, request review and make CI pass before merging. CI also runs during review; a review and the checks must apply to the final revision. Use milestones for deliverables, labels for work type, and a GitHub Project board for status. Practice with the GitHub lab, writing issues and project organization. 3. A first meaningful test Save as analysis.py: def mean(values): if not values: raise ValueError(\"At least one value is required\") return sum(values) ",
+      "url": "/course-project/m1/workflow.html"
+    },
+    {
+      "id": 80,
+      "title": "Deploy Feel++ on Gaya with Slurm and Apptainer :: Course Project",
+      "content": "Edit this Page Download as .pdf Deploy Feel++ on Gaya with Slurm and Apptainer 1. Objective Operate on Gaya to run a Feel++ heat simulation through Slurm, preserve its inputs/results and repeat it. This is the course’s scientific deployment target and the starting point for the simulation-to-ML pipeline. The CSV exercise is only a short runtime check before this application. 2. Prepare an image and case Use Gaya access/storage guidance. The instructor must validate the image, case and resource request on the course allocation before teaching. The explicit release below is the example documented by Feel++; it is a reproducible starting version, not a claim that it is the newest or already validated on Gaya. Prepare files once on the approved download/build host or shared project area, not inside every batch job. If students lack registry access, distribute the preflighted SIF with its checksum. mkdir -p feelpp-lab/case feelpp-lab/results cd feelpp-lab apptainer pull feelpp.sif oras://gh",
+      "url": "/course-project/m2/feelpp-gaya.html"
+    },
+    {
+      "id": 81,
+      "title": "Scientific containers on HPC :: Course Project",
+      "content": "Edit this Page Download as .pdf Scientific containers on HPC 1. Why this matters The image carries the application environment; the scheduler allocates the resources. A container does not schedule a job or turn a login node into a compute node. 2. Mental model laptop → SSH → login node → Slurm allocation → compute node ↓ SIF + bound input → output directory Use Gaya operations for access, storage and Slurm basics. Confirm partition, account, module and storage settings with the teaching team. Prepare/copy the SIF and data on storage visible to compute nodes before submitting; do not rely on downloads during the job. 3. Worked batch example After building or receiving analysis.sif from the practical, create analysis.sbatch in the same working directory. This template assumes Apptainer is available on the compute node and the default partition/account is usable; add site-approved settings if required. #!/bin/bash #SBATCH --job-name=container-analysis #SBATCH --ntasks=1 #SBATCH --cpus-per",
+      "url": "/course-project/m2/hpc-containers.html"
+    },
+    {
+      "id": 82,
+      "title": "M2 — Scientific software and MLOps :: Course Project",
+      "content": "Edit this Page Download as .pdf M2 — Scientific software and MLOps 1. Why this matters A model or simulation is useful to others when its environment, data, code and results can be identified and reproduced. M2 assumes M1 shell, Git, Python and remote-computing skills; review only the gaps you need. 2. Learning outcomes Deploy Feel++ with Apptainer and Slurm on Gaya; prepare parameterized simulations, assemble a verified dataset, train and track regression models, package inference and verify predictions against held-out Feel++ results. Test the stages and build a CI pipeline. Explain and defend the main engineering choices and scientific limitations. 3. Start here — session of 7 September 2026 Apptainer: image and execution model. Practical: a reproducible scientific computation. Execute on HPC with explicit inputs and outputs. Deploy Feel++ on Gaya with Slurm and generate simulation results. Record the environment and reproduce a result. MLOps: follow the complete lifecycle. Start th",
+      "url": "/course-project/m2/"
+    },
+    {
+      "id": 83,
+      "title": "Pipeline automation, packaging and inference verification :: Course Project",
+      "content": "Edit this Page Download as .pdf Pipeline automation, packaging and inference verification 1. Separate stages and execution environments Implement explicit commands for input preparation, Slurm submission/status, result collection, dataset assembly, training, evaluation and prediction. The pipeline must resume after a failed stage without overwriting successful runs. Configurations, sample IDs, paths and artifact identities are part of its interface. The simulation stage runs Feel++ in Apptainer under Slurm on Gaya. The ML stage uses its locked Python environment, containerized for handoff; substantial training on Gaya also needs an allocation. A light local training smoke test can use a committed fixture. Do not label fixture-based CI as a real HPC validation. 2. Meaningful tests and CI/CD Test that generated case inputs match their sampled parameters, invalid ranges/non-finite inputs are rejected, and output extraction detects missing columns, failed jobs and mismatched sample IDs. Te",
+      "url": "/course-project/m2/mlops/engineering.html"
+    },
+    {
+      "id": 84,
+      "title": "MLOps — Feel++ simulations to verified predictions :: Course Project",
+      "content": "Edit this Page Download as .pdf MLOps — Feel++ simulations to verified predictions 1. Why this matters The course workflow starts with scientific input data, not an existing toy ML dataset. Students deploy Feel++ on Gaya with Slurm and Apptainer, generate simulation results, then learn a map from physical parameters to a quantity such as average temperature. MLOps makes the whole chain traceable and reproducible. 2. Learning objectives Prepare parameterized cases; operate and verify HPC jobs; build a dataset with provenance; train and track regression experiments; package a model; compare inference with held-out Feel++ results. 3. Complete lifecycle parameter domain + sampling plan + case template → validated per-sample input data → Slurm jobs on Gaya + Apptainer + {feelpp} → verified simulation outputs and extracted average temperatures → versioned dataset + frozen train/validation/test split → preprocessing + training + evaluation + experiment record → model artifact + packaged infer",
+      "url": "/course-project/m2/mlops/"
+    },
+    {
+      "id": 85,
+      "title": "Simulation data, training and experiment records :: Course Project",
+      "content": "Edit this Page Download as .pdf Simulation data, training and experiment records 1. Define the scientific contract The input is a vector of physical parameters; the target is a scalar extracted from a verified Feel++ heat simulation. For the thermal-bridge case, a starting study varies insulation conductivity and one boundary ambient temperature. Keep geometry, other materials, discretization and solver settings fixed initially. A proposed teaching domain is insulation conductivity in [0.02, 0.06] W/(m K) and bottom ambient temperature in [15, 25] degrees C, with the original top temperature fixed. These are exercise choices for instructor approval, not calibrated material ranges. Agree the domain, units, mesh, sample budget and numerical acceptance tolerance before generating a campaign. Define average temperature as the spatial integral divided by domain measure over the chosen region. Record that region and units. Do not use an unweighted average of mesh-node values as an undocument",
+      "url": "/course-project/m2/mlops/lifecycle.html"
+    },
+    {
+      "id": 86,
+      "title": "M2 MLOps project — Feel++ thermal surrogate on Gaya :: Course Project",
+      "content": "Edit this Page Download as .pdf M2 MLOps project — Feel++ thermal surrogate on Gaya 1. Project brief Build a complete computational-science pipeline: prepare parameterized heat cases, run Feel++ on Gaya using Slurm and Apptainer, assemble a dataset, train a regression model for average temperature, and verify inference against held-out and new Feel++ simulations. A small, traceable model is preferred to sophisticated ML with incomplete provenance. A technically competent third party should be able to clone the repository, follow the documented procedure, reproduce the environment and execute the pipeline. The teaching team confirms groups, dates, resource budget, parameter domain and numerical/ML tolerances. Start from the single-case deployment and the proposed thermal-bridge parameter study. 2. Expected architecture repository/ ├── README.adoc ├── pyproject.toml ├── requirements.lock ├── config/ # domain, sampling, solver and training ├── cases/template/ # versioned CFG/JSON/geometry",
+      "url": "/course-project/m2/mlops/project.html"
+    },
+    {
+      "id": 87,
+      "title": "Reproducible environments and results :: Course Project",
+      "content": "Edit this Page Download as .pdf Reproducible environments and results 1. What must be recorded? An image is one part of a scientific record. Store a run manifest beside each result: Identity Record Code Repository URL, commit SHA, whether the working tree was clean, pipeline entry point. Environment Dependency lock with exact versions, Python/Apptainer versions, base OCI digest, SIF SHA-256 and retrievable artifact location. Data Source, licence/access conditions, acquisition procedure, content checksum, schema and split identifiers. Execution Configuration, seed, full command, relevant environment settings, hardware and scheduler resources. Result Metrics, model/output checksums, logs, units and comparison tolerance. A checksum identifies bytes; it does not preserve a file. Store artifacts where a reviewer can retrieve them. Pinning a tag or saving a random seed alone is insufficient. Record expected variation from parallel numerical libraries or different hardware. 2. Worked handoff ",
+      "url": "/course-project/m2/reproducibility.html"
+    },
+    {
+      "id": 88,
+      "title": "M2 semester project :: Course Project",
+      "content": "Edit this Page Download as .pdf M2 semester project The semester project extends the engineering practices of the MLOps project to a larger scientific problem agreed with the supervisor. The scientific topic can differ; reuse reproducibility, tests, packaging and review practices. ROM teaching remains in its separate scientific course. 1. Expectations and workflow Define the scientific question, validation strategy, inputs, resource needs and risks before implementation. Maintain a GitHub Project, milestones and actionable issues. Work through branches, PRs, CI and reviews. Document decisions and dependencies on data, hardware or external collaborators. 2. Deliverables Provide the scientific report, source at an identified commit/release, automated tests, CI evidence, environment/container definitions, data/artifact provenance, execution instructions and an independently checked reproduction record. Include individual contributions and AI-use disclosure when applicable. Agree dates and",
+      "url": "/course-project/m2/semester-project.html"
+    },
+    {
+      "id": 89,
+      "title": "From M1 to M2 :: Course Project",
+      "content": "Edit this Page Download as .pdf From M1 to M2 M2 starts with Apptainer. Elementary shell, Git and Python are prerequisites, not a second introductory sequence. Before the practical, demonstrate that you can clone a repository, create a branch, run Python, read a shell command and connect to your allocated Linux host. Check apptainer --version there. If a step blocks you, review the matching self-assessment item. For remote access use SSH, Remote SSH and Gaya operations. For dependency isolation use development environments. M1 asks whether you can execute and collaborate. M2 adds the Feel++ simulation-to-ML pipeline on Gaya: parameterized inputs, verified HPC results, training and inference with a reproducible handoff. Return to Apptainer once the blocking gap is resolved.",
+      "url": "/course-project/m2/transition.html"
+    },
+    {
+      "id": 90,
       "title": "Overview of Course Project :: Course Project",
       "content": "Edit this Page Download as .pdf Overview of Course Project 1. Organisation The directory structure of the project is as follows: . ├── docs │ ├── antora │ └── modules └── src └── cases 5 directories The docs directory contains the documentation of the project and uses antora to generate the documentation. The src directory contains initially some C++ and Python Feel++ source code of the project to help you get started. Feel++ is a C++ library for the numerical simulation of partial differential equations. It is designed to be easy to use and to extend. {feelpp }is a free software distributed under the terms of the GNU General Public License version 3. The documentation is available > here. 2. How to build the project You need first to follow the quickstart to get the Feel++ environment. The installation procedure uses Cmake for the C++ programs and create a bundle of this project. The steps are as follows: $ cmake --preset default (1) $ cmake --build --preset default (2) $ cmake --buil",
       "url": "/course-project/overview.html"
     },
     {
-      "id": 71,
-      "title": "Prerequisites and Self-Assessment :: Course Project",
-      "content": "Edit this Page Download as .pdf Prerequisites and Self-Assessment This course is designed for mathematics students with varying levels of computational experience. Use this self-assessment to determine your starting point. 1. Quick Self-Assessment 1.1. 🖥️ Computer Skills Assessment Check all that apply to you: Basic Computer Use I can navigate folders and files on my computer using a graphical interface I know how to install software on my computer I’m comfortable using a web browser and email Command Line Experience I have used a terminal or command prompt before I know basic commands like cd, ls, mkdir I can navigate directories using the command line Programming Background I have written programs in any language (Python, MATLAB, R, etc.) I understand concepts like variables, functions, and loops I have worked with mathematical software packages Version Control I know what version control is I have used Git or similar tools before I have collaborated on code or documents using versi",
+      "id": 91,
+      "title": "Self-assessment :: Course Project",
+      "content": "Edit this Page Download as .pdf Self-assessment Use demonstrations rather than counting familiar tool names. Record a command, small result or repository link for each check. A gap points to a specific lesson; it does not change your enrolment from M2 to M1. Demonstrate Review if needed Find a data file; filter its rows using a pipe; explain a relative path and PATH. Shell, files, text processing Explain the public/private key distinction and connect to a remote host. SSH Stage a selected change, commit it, create a branch and explain a PR. Git, GitHub lab Run Python in an isolated environment; compile and explain a C++ program using a function and a standard container. Python and C++ environments Open a remote workspace and explain where its terminal runs. Remote SSH Submit a short batch job; find its output; explain login versus compute nodes. Gaya Run a test and describe how someone else would reproduce a result. Project workflow Before M1, programming familiarity is expected, inclu",
       "url": "/course-project/prerequisites.html"
     },
     {
-      "id": 72,
+      "id": 92,
       "title": "Methods and Best Practices for Agile Project Management :: Course Project",
       "content": "Edit this Page Download as .pdf Methods and Best Practices for Agile Project Management 1. Agile Methodologies in Software Projects Agile programming: Projects are small, adaptable tasks Continuous iteration and feedback Extreme programming (XP): Focus on flexibility, quality, and customer involvement Agile and XP approaches prioritize adaptability and iterative development, making them suitable for dynamic software projects. — NOTE 2. Best Practices for Agile Project Management Agile project management is centered around adaptability, iterative development, and close collaboration between team members. Here are the key best practices to follow for Agile success, focusing on essential rituals like sprint planning, stand-ups, and retrospectives. 2.1. Sprint Planning Sprint planning is the backbone of Agile development. During this meeting, the team agrees on what work will be completed in the upcoming sprint (usually 1-4 weeks). Goals of Sprint Planning: Define the sprint goal, ensuring",
       "url": "/course-project/project-management/agile-best-practices.html"
     },
     {
-      "id": 73,
+      "id": 93,
       "title": "Case Study: Building a Digital Twin for a Manufacturing System :: Course Project",
       "content": "Edit this Page Download as .pdf Case Study: Building a Digital Twin for a Manufacturing System In this case study, we explore how a structured project management approach was used to develop a digital twin for a manufacturing system to optimize production efficiency. 1. Project Overview Objective: Develop a digital twin for a smart factory to monitor and optimize production processes in real-time. Stakeholders: Manufacturing company, digital twin developers, IoT specialists, production managers. Budget: $500,000 Timeline: 12 months Outcome: A fully functional digital twin integrated into the production line, capable of real-time monitoring and predictive analytics. The project’s goal was to build a system that provides real-time insights into the production line, enabling optimization and predictive maintenance. — NOTE 2. Phase 1: Initiating Tasks: Initial meeting with stakeholders to define project scope and deliverables. Identify data sources from production line (e.g., sensors, IoT ",
       "url": "/course-project/project-management/case-studies.html"
     },
     {
-      "id": 74,
+      "id": 94,
       "title": "Collaboration Models Lab: Agile vs Waterfall (Weather Project) :: Course Project",
       "content": "Edit this Page Download as .pdf Collaboration Models Lab: Agile vs Waterfall (Weather Project) This is a 1-hour lab. Two groups work on the same weather project with different collaboration models, then finish implementation at home and compare outcomes during the next session. 1. Required Pre-Reading (Study First) Before starting this lab, students must read: Agile Best Practices Waterfall Model Basics Optional refresher: Phases of a Project 2. Setup Team split: Group A: Agile/Kanban model Group B: Waterfall model Shared project context: Repository: weather app from Python End-to-End Workshop Dataset: data/weather_hourly.csv Scope: CLI + tests + optional Dash extension 3. Learning Goals By the end, students should be able to: explain practical differences between Agile and Waterfall observe how each model handles change requests evaluate collaboration quality using evidence (issues, PRs, cycle time, rework) 4. In-Class Plan (60 minutes) 10 min briefing and model rules 35 min implement",
       "url": "/course-project/project-management/collaboration-models-weather-lab.html"
     },
     {
-      "id": 75,
+      "id": 95,
       "title": "GitHub for Project Management :: Course Project",
       "content": "Edit this Page Download as .pdf GitHub for Project Management GitHub can be used as a lightweight but robust project management system for student teams: define tasks, assign ownership, track progress, review work, and deliver increments. 1. Why Use GitHub for PM in M1 One platform for code, tasks, reviews, and automation. Traceability from idea to merged contribution. Good habits for research and engineering collaboration. Works for small teams without heavy tooling overhead. 2. Core Building Blocks 2.1. Issues Use issues to represent work items: Feature tasks Bug reports Documentation tasks Technical debt and maintenance Recommended issue fields: Clear title Short context/problem statement Acceptance criteria Labels (bug, enhancement, documentation, chore) Assignee(s) Milestone (for sprint/release grouping) Milestones can track both issues and pull requests. 2.2. Pull Requests Use pull requests as your quality gate: Link PRs to issues (Closes #123) Request at least one review Require",
       "url": "/course-project/project-management/github.html"
     },
     {
-      "id": 76,
+      "id": 96,
       "title": "Project Management for Mathematical Research :: Course Project",
       "content": "Project Management for Mathematical Research 🟡 INTERMEDIATE LEVEL | Prerequisites: Basic Git and collaboration tools | Time: 3-4 hours | For: Mathematics students managing research projects and collaborative work Why Project Management for Mathematics? Mathematical research projects have unique characteristics: - Long-term investigations that may span months or years - Iterative discovery process where goals evolve based on findings - Collaborative elements involving advisors, peers, and external researchers - Multiple deliverables: papers, presentations, code, data analysis - Publication timelines with conference and journal deadlines Project management helps structure the inherent complexity of mathematical research. Project management for mathematics involves organizing mathematical research activities, managing collaborative relationships, and coordinating timelines to achieve research goals within academic constraints. Mathematical research presents unique project management chal",
       "url": "/course-project/project-management/"
     },
     {
-      "id": 77,
+      "id": 97,
       "title": "What is a Project? :: Course Project",
       "content": "Edit this Page Download as .pdf What is a Project? 1. Definition of a Project A sequence of tasks: Planned from beginning to end Bounded by time, resources, & specific results Defined outcomes and \"deliverables\" Has a deadline and a budget Limits number of people, supplies, and capital A project is a structured, goal-driven effort with clear boundaries and constraints. Outlining these elements clearly from the start is crucial for success. — NOTE 2. Tasks vs. Projects Routine tasks: Responding to email Making coffee Hooking up a printer Projects: Producing a customer newsletter Catering a party Writing a book Implementing a computer network Tasks are often short-term and repetitive, while projects are complex, unique, and require strategic planning and coordination. — NOTE 3. Five Features of a Project Defined beginning, end, schedule, and approach Use of specific resources allocated to the work Achievement of defined goals (time, cost, performance/quality) Follows a planned, organized",
       "url": "/course-project/project-management/introduction.html"
     },
     {
-      "id": 78,
+      "id": 98,
       "title": "Practical Examples in Scientific Computing and Digital Twins :: Course Project",
       "content": "Edit this Page Download as .pdf Practical Examples in Scientific Computing and Digital Twins To understand how project management principles apply in scientific computing and digital twins, let’s explore a few examples where structured approaches are crucial for project success. 1. Example 1: Developing a Digital Twin for Predictive Maintenance Project Goal: Develop a digital twin of a wind turbine to predict maintenance needs. Tasks: Collect historical performance data of the turbine. Develop a computational model to simulate wear and tear. Use machine learning algorithms to predict maintenance intervals. Integrate the digital twin into the SCADA (Supervisory Control and Data Acquisition) system. Resources: Data scientists, computational engineers, and SCADA system experts. Computing power for simulation and model training. Outcome: A functional digital twin capable of real-time performance monitoring and failure prediction. This project involves complex simulations and real-time data",
       "url": "/course-project/project-management/practical-examples.html"
     },
     {
-      "id": 79,
+      "id": 99,
       "title": "Phases of a Project :: Course Project",
       "content": "Edit this Page Download as .pdf Phases of a Project 1. Overview of Project Phases The typical phases of a project include: Conceptualization Feasibility Preliminary planning Detailed planning Execution Testing Termination Understanding each phase is crucial for navigating the project lifecycle from idea to completion. — NOTE 2. Phase 1: Initiating Identify the need for the project Determine what the project should accomplish Define the overall goal Identify key stakeholders and initial team members Outline the general scope The initiation phase sets the foundation for the project by clarifying its objectives and assembling the team. — NOTE 3. Phase 2: Planning Refine the project scope List tasks and activities Sequence activities optimally Develop a schedule and budget Get approval from stakeholders Detailed planning ensures that the project is feasible and that all stakeholders are aligned on expectations and resources. — NOTE 4. Phase 3: Executing Lead the project team Hold regular m",
       "url": "/course-project/project-management/project-phases.html"
     },
     {
-      "id": 80,
+      "id": 100,
       "title": "Project Management :: Course Project",
       "content": "Edit this Page Download as .pdf Project Management 1. Introduction to Project Management Project management involves organizing resources, tasks, and people to achieve specific goals within time and budget constraints. This introduction explores the key elements, phases, and tools required for successful project management.",
       "url": "/course-project/project-management/project.html"
     },
     {
-      "id": 81,
+      "id": 101,
       "title": "Tools in Project Management :: Course Project",
       "content": "Edit this Page Download as .pdf Tools in Project Management 1. What is a Milestone? A milestone in project management is a significant event or point in the project timeline that marks the completion of a major phase or task. Milestones are often used to: Measure progress: By marking important points, you can assess if the project is on schedule. Highlight deadlines: Milestones represent key deadlines that need to be met to move the project forward. Reflect achievements: Reaching a milestone signifies the completion of a critical part of the project. For example, in a software project, some common milestones might include: Requirements completion: All necessary features and requirements for the software have been defined. Design approval: The software’s architecture and design are approved for development. First working prototype: A functional version of the software, even if limited in scope, is built and can be demonstrated. 2. Gantt Charts A Gantt Chart is an essential tool for proj",
       "url": "/course-project/project-management/tools-gantt.html"
     },
     {
-      "id": 82,
+      "id": 102,
       "title": "Waterfall Model Basics :: Course Project",
       "content": "Edit this Page Download as .pdf Waterfall Model Basics Waterfall is a sequential project model: each phase is completed before the next phase starts. 1. What Is the Waterfall Model? In Waterfall, work progresses through ordered phases with formal checkpoints: Requirements Design Implementation Verification/Testing Release/Maintenance Teams try to stabilize requirements early and reduce mid-project changes. 2. Typical Workflow Define requirements in writing. Validate scope and approve plan. Implement according to approved design. Run verification against requirements. Release only when validation is complete. 3. Strengths Clear structure and milestones Strong traceability from requirements to delivery Useful when requirements are stable and regulated Easier documentation and reporting 4. Limitations Late feedback from users/stakeholders Expensive changes when requirements evolve Slow adaptation in uncertain or research contexts Risk of delivering the wrong thing if early assumptions are",
       "url": "/course-project/project-management/waterfall-basics.html"
     },
     {
-      "id": 83,
-      "title": "Quick Start Guide :: Course Project",
-      "content": "Edit this Page Download as .pdf Quick Start Guide Ready to begin? This guide gets you started in the Course Project based on your mathematical background and computational experience. 1. 🚀 In 5 Minutes: Find Your Starting Point 1.1. Step 1: Take the Assessment Navigate to Prerequisites & Self-Assessment and complete the quick skills checklist (2 minutes). 1.2. Step 2: Choose Your Track Based on your assessment results: 🟢 Beginner Track (0-3 checkboxes) Start with Linux Essentials for Mathematics Students 🟡 Intermediate Track (4-7 checkboxes) Jump to Project Management for Research 🔴 Advanced Track (8+ checkboxes) Begin with Containers for Mathematical Computing 1.3. Step 3: Set Up Your Environment Follow the setup instructions in your chosen starting module. 1.4. Step 4: Join the Community Connect with other students on Slack for questions and collaboration. 2. 📖 For Instructors: Teaching This Course New to teaching computational tools to mathematics students? Review the Instructo",
+      "id": 103,
+      "title": "Software and accounts :: Course Project",
+      "content": "Edit this Page Download as .pdf Software and accounts 1. Common workspace Use a Linux shell locally or on an institution-provided machine. Windows users can use WSL; macOS users can develop locally and use a Linux host for Apptainer. You need Git, an OpenSSH client, VS Code and the Remote - SSH extension. Follow VS Code setup and SSH setup. git --version ssh -V python3 --version c++ --version Set your Git author name/email, sign in to GitHub and accept the course organization/repository invitation. Keep a passphrase on your private SSH key; register only the public key. A GitHub account and a Gaya account are separate identities. 2. M1 Verify the Python and C++ environments. Check ssh gaya using the institution-issued login and host details. Open your remote working folder with VS Code Remote SSH. Check Gaya access and scheduler instructions. Do not install system packages or change services on a shared cluster. Use the supplied modules and user environments. Ask the teaching team abou",
       "url": "/course-project/quick-start.html"
     },
     {
-      "id": 84,
+      "id": 104,
+      "title": "Reference library :: Course Project",
+      "content": "Edit this Page Download as .pdf Reference library Use M1 and M2 for the teaching sequence. This library retains deeper tutorials and earlier examples at their existing resource IDs. Karolina/MPI examples and historical installation instructions require their own site/version context; they are not the current Gaya practical. 1. Linux and SSH File Editing in Linux Working with Files in Linux Linux Essentials for Mathematics Students Linux Shell Basics SSH and Remote-SSH in VS Code Remote-SSH Extension for VS Code Basic SSH Commands SSH setup for scientific work Text Processing in Linux 2. Git and GitHub Git Basics for Mathematical Research Git Branching Merge Strategies in Git Git Remotes What is a Git Repository? Git for Beginners GitHub Actions Tutorial for Scientific Computing with Eigen3 and CMake Presets Tutorial: Using GitHub Actions for Scientific Computing Collaboration on GitHub GitHub Essentials How to Write a GitHub Issue GitHub Intro Lab: Issues, PRs, and Projects (90 minutes",
+      "url": "/course-project/reference.html"
+    },
+    {
+      "id": 105,
       "title": "Renaming the project :: Course Project",
       "content": "Edit this Page Download as .pdf Renaming the project The script rename.sh renames the project. You have to answer a few questions to setup a new project out of this template.",
       "url": "/course-project/rename.html"
     },
     {
-      "id": 85,
+      "id": 106,
       "title": "Software Installation: From Package Managers to Building from Source :: Course Project",
       "content": "Software Installation: From Package Managers to Building from Source 1. Introduction to Software Installation Learn comprehensive software installation methods through these focused modules: Python End-to-End Workshop Release Engineering (Weather App) 1.1. Understanding Package Managers What is apt? Advantages of using package managers. 1.2. Why Build from Source? Latest features and updates. Customization and optimization. Situations where packages aren’t available. 1.3. Build Systems Overview Introduction to build systems like Autotools and CMake. Differences and use cases. 2. Setting Up the Development Environment with Codespaces 2.1. Introduction to GitHub Codespaces What is Codespaces? Benefits over traditional VMs. 2.2. Getting Started # Create a Codespace from a repository git clone <repository-url> # Open it in GitHub Codespaces 2.3. Environment Configuration Install necessary extensions and tools within Codespaces. 3. Installing Software Using apt in Codespaces 3.1. Using the ",
       "url": "/course-project/software/"
     },
     {
-      "id": 86,
+      "id": 107,
       "title": "Understanding Package Managers :: Course Project",
       "content": "Edit this Page Download as .pdf Understanding Package Managers Package managers are essential tools for managing software installations, upgrades, and dependencies. They can be categorized into two main types: System Package Managers: These manage software at the operating system level, handling native applications and system libraries. Examples include apt, yum, and brew. These package managers deal with system-wide installations, making software available to all users and applications on the system. Software-Specific Package Managers: Many software ecosystems, such as Python, C++, and Node.js, have their own package managers, which handle dependencies and libraries specifically for that language or platform. Examples include pip and conda for Python, and conan for C++. While system package managers are responsible for global software installations, software-specific package managers allow for more granular control over project-specific dependencies, often within isolated environments",
       "url": "/course-project/software/package-managers.html"
     },
     {
-      "id": 87,
+      "id": 108,
       "title": "End-to-End Python Weather App Workshop :: Course Project",
       "content": "Edit this Page Download as .pdf End-to-End Python Weather App Workshop This workshop extends the GitHub intro lab into a small end-to-end product: a Python package with a CLI, CI, Docker image, and optional web dashboard. 1. Why This Session Students already learned Linux, GitHub, GitHub Actions, and Docker. This session connects these topics into one coherent workflow: from raw data to reusable Python package from local script to installable CLI command from tested code to container image in GHCR optionally from CLI tool to interactive dashboard 2. Prerequisites GitHub Intro Lab: Issues, PRs, and Projects GitHub Actions Docker Introduction Package Managers 3. Learning Objectives By the end of the workshop, students can: structure a Python project with pyproject.toml expose a CLI command via [project.scripts] run tests in CI for each pull request build and publish a Docker image to GitHub Container Registry (GHCR) explain the difference between package release and container release 4. ",
       "url": "/course-project/software/python-e2e-weather-workshop.html"
     },
     {
-      "id": 88,
+      "id": 109,
       "title": "Release Engineering Lesson (60 min): Weather App :: Course Project",
       "content": "Edit this Page Download as .pdf Release Engineering Lesson (60 min): Weather App This lesson prepares students to ship their weather project in a reproducible and traceable way using tags, releases, and container publishing. 1. Where It Goes This lesson belongs in the Software Distribution track, right after: Python End-to-End Workshop Dash Weather Project Tutorial (optional extension) Reason: release engineering is about packaging, versioning, publishing, and distribution lifecycle. 2. Learning Objectives By the end of the lesson, students can: apply semantic versioning (MAJOR.MINOR.PATCH) write a minimal changelog for a release create an annotated Git tag create a GitHub Release from a tag publish a Docker image to GHCR with versioned tags automate the whole release flow with GitHub Actions on tag push 3. 60-Minute Morning Plan 10 min Release engineering concepts 15 min Versioning + changelog practice 15 min Tag + GitHub Release hands-on 15 min GHCR image tagging and push flow 5 min ",
       "url": "/course-project/software/release-engineering-weather.html"
     },
     {
-      "id": 89,
+      "id": 110,
       "title": "Repository Organization for a C++20 Project Using CMake and CTest :: Course Project",
       "content": "Edit this Page Download as .pdf Repository Organization for a C++20 Project Using CMake and CTest Table of Contents 1. Overview 2. Recommended Directory Structure 3. Top-Level CMake Configuration 4. Library Configuration (src/libs/lib1/CMakeLists.txt) 5. Application Configuration (src/apps/app1/CMakeLists.txt) 6. Tests Configuration (tests/CMakeLists.txt) 7. GitHub Actions CI Workflow 8. Additional Best Practices 1. Overview This document outlines a recommended repository organization for a C++20 project that uses CMake for build configuration and CTest for testing. In this structure, source files—including both library code and application code—are placed under the src/ directory. Libraries and applications are organized into separate subdirectories to clearly delineate reusable components from executable projects. 2. Recommended Directory Structure my_project/ ├── .github/ │ └── workflows/ │ └── ci.yml # GitHub Actions CI configuration file ├── build/ # Out-of-source build directory ",
       "url": "/course-project/software/repo/organization.html"
     },
     {
-      "id": 90,
+      "id": 111,
+      "title": "Instructor resources — M1/M2 :: Course Project",
+      "content": "Edit this Page Download as .pdf Instructor resources — M1/M2 1. First M2 session: 7 September 2026 Before teaching, verify the allocated Linux host, Apptainer version, available storage, registry access and allowed image-building method. Prepare the tutorial SIF on a supported build host if students cannot build. Validate the Feel++ case and scalar-output column, baseline solver checks, one-rank launch, writable result path and sample resource budget before scaling a campaign. Record its SHA-256 and distribute it using the course’s normal file channel. Confirm Gaya access, partition/account requirements and module names with administrators; these are deliberately not guessed in the examples. Suggested 90-minute sequence (adapt to the actual slot): 0–10 min: M2 outcomes and image/process mental model. 10–40 min: pull, inspect, execute, bind data and compute a result. 40–55 min: Feel++ deployment on Gaya with a preflighted case/SIF and reproduction evidence. 55–70 min: MLOps lifecycle. 7",
+      "url": "/course-project/teaching-guide.html"
+    },
+    {
+      "id": 112,
       "title": "Dash Tutorial: Weather Dashboard (Beginner) :: Course Project",
       "content": "Edit this Page Download as .pdf Dash Tutorial: Weather Dashboard (Beginner) This tutorial is aligned with the weather_hourly.csv project used in the course. It shows how to go from Python package + CLI to a simple interactive Dash dashboard. 1. Where This Fits in the Course Use this tutorial after: Python End-to-End Workshop GitHub Intro Lab: Issues, PRs, and Projects You will implement src/weather_app/dash_app.py in the same project where you already built weather-cli. 2. Prerequisites Create and activate a virtual environment, then install project dependencies: python -m venv .venv source .venv/bin/activate pip install -e \".[dash]\" Expected dataset location in your repository: data/weather_hourly.csv Expected columns: cloud_cover diffuse_radiation direct_radiation relative_humidity_2m surface_pressure temperature_2m time (Unix milliseconds) wind_direction_10m wind_speed_10m 3. Dash Basics (Beginner) Before coding, understand the 4 core concepts: Layout The static structure of the pag",
       "url": "/course-project/visualisation/dash-weather.html"
     },
     {
-      "id": 91,
+      "id": 113,
       "title": "Dash for Scientific Computing :: Course Project",
       "content": "Edit this Page Download as .pdf Dash for Scientific Computing A tutorial to use Dash for building interactive web applications focused on scientific computing Dash provides a flexible and powerful platform for scientists and engineers to create interactive web-based applications. This tutorial expands on the basics and focuses on how to integrate Dash with scientific computing libraries such as NumPy, SciPy, and Matplotlib, while using Plotly for interactive visualizations. For the course weather-analysis project (weather_hourly.csv), use Dash Weather Project Tutorial. 1. Prerequisites Ensure that you have Python installed, and install the following packages: pip install dash dash-bootstrap-components pandas plotly numpy scipy matplotlib 2. Scientific Libraries Overview Dash integrates well with libraries used for scientific computing. Here are some essential libraries: NumPy A fundamental package for numerical computing in Python. SciPy Builds on NumPy to provide a collection of algor",
       "url": "/course-project/visualisation/dash.html"
     },
     {
-      "id": 92,
+      "id": 114,
       "title": "Homework :: Course Project",
       "content": "Edit this Page Download as .pdf Homework 1. Solving the heat equation in a thermal fin We consider the problem of designing a thermal fin to effectively remove heat from a surface. The two-dimensional fin, shown in Figure #fig:1[1], consists of a vertical central “post” and four horizontal “subfins”; the fin conducts heat from a prescribed uniform flux “source” at the root, \\(\\Gamma_{\\mathrm{root}}\\) , through the large-surface-area subfins to surrounding flowing air. The fin is characterized by a five-component parameter vector, or “input,” \\(\\mu_ = (\\mu_1 , \\mu_2, \\ldots, \\mu_5 )\\),where \\(\\mu_i = k^i , i = 1, \\ldots , 4\\), and \\(\\mu_5 = \\mathrm{Bi}\\); \\(\\mu\\) may take on any value in a specified design set \\(D \\subset \\mathbb{R}^5\\). Figure 1. Thermal fin Here \\(k^i\\) is the thermal conductivity of the ith subfin (normalized relative to the post conductivity \\(k^0 \\equiv 1\\)); and \\(\\mathrm{Bi}\\) is the Biot number, a nondimensional heat transfer coefficient reflecting convective tr",
       "url": "/course-project/visualisation/hw.html"
     },
     {
-      "id": 93,
+      "id": 115,
       "title": "Data Visualization and Interactive Dashboards :: Course Project",
       "content": "Data Visualization and Interactive Dashboards Explore modern data visualization techniques and create interactive dashboards that effectively communicate insights from complex datasets. From basic charts to advanced interactive applications. 1. Visualization Learning Modules Master data visualization through these comprehensive modules: Dash Tutorial Dash Weather Project Tutorial Dash Homework",
       "url": "/course-project/visualisation/"
     },
     {
-      "id": 94,
+      "id": 116,
       "title": "Basic Usage and Commands :: Course Project",
       "content": "Edit this Page Download as .pdf Basic Usage and Commands 1. Getting Started with VS Code Once installed, you can open VS Code using the launcher or from the terminal: code . This opens the current directory in VS Code. 2. Basic Interface Overview The VS Code interface consists of the following key sections: Explorer: The left-hand panel where you can navigate files and folders. Editor: The main area where you open and edit files. Terminal: Built-in terminal for running commands directly from VS Code. 3. Common Commands Here are a few essential VS Code commands: Open Command Palette: Ctrl+Shift+P or Cmd+Shift+P on macOS. This gives access to all VS Code features via quick commands. Open a new file: Ctrl+N (Windows/Linux) or Cmd+N (macOS). Toggle terminal: Ctrl+` (Windows/Linux) or Cmd+` (macOS). These basic commands help you get started with coding or file management.",
       "url": "/course-project/vscode/basic-usage.html"
     },
     {
-      "id": 95,
+      "id": 117,
       "title": "VSCode Basic Cheatsheet :: Course Project",
       "content": "Edit this Page Download as .pdf VSCode Basic Cheatsheet 1. Navigation Description Linux Windows Mac Open Command Palette Ctrl+Shift+P Ctrl+Shift+P Cmd+Shift+P Open File Ctrl+P Ctrl+P Cmd+P Toggle Sidebar Ctrl+B Ctrl+B Cmd+B Close Editor Ctrl+W Ctrl+W Cmd+W Switch between Tabs Ctrl+Tab Ctrl+Tab Cmd+Tab Split Editor Ctrl+\\ Ctrl+\\ Cmd+\\ Navigate between Editor Groups Ctrl+1, Ctrl+2…​ Ctrl+1, Ctrl+2…​ Cmd+1, Cmd+2…​ Navigate Forward Ctrl+Alt+→ Alt+→ Option+→ Navigate Backward Ctrl+Alt+← Alt+← Option+← Go to Symbol Ctrl+Shift+O Ctrl+Shift+O Cmd+Shift+O Go to Definition F12 F12 F12 2. Editing Description Linux Windows Mac Copy Line Up/Down Shift+Alt+↑/↓ Shift+Alt+↑/↓ Shift+Option+↑/↓ Move Line Up/Down Alt+↑/↓ Alt+↑/↓ Option+↑/↓ Duplicate Line Shift+Alt+↓ Shift+Alt+↓ Option+Shift+↓ Delete Line Ctrl+Shift+K Ctrl+Shift+K Cmd+Shift+K Add Line Comment Ctrl+/ Ctrl+/ Cmd+/ Add Block Comment Shift+Alt+A Shift+Alt+A Shift+Option+A Format Document Shift+Alt+F Shift+Alt+F Shift+Option+F Rename Symbol F",
       "url": "/course-project/vscode/cheatsheet.html"
     },
     {
-      "id": 96,
+      "id": 118,
       "title": "How to Configure VS Code with .vscode :: Course Project",
       "content": "Edit this Page Download as .pdf How to Configure VS Code with .vscode 1. Configuring Projects with .vscode VS Code allows you to configure project-specific settings using a .vscode folder. This folder can include settings, tasks, and debug configurations. 1.1. Adding a .vscode/settings.json Create a .vscode/settings.json file in your project directory to customize settings for the current project. Example configuration: { \"python.pythonPath\": \"/usr/bin/python3\", \"editor.formatOnSave\": true, \"files.exclude\": { \"**/*.log\": true, \"**/node_modules\": true } } 1.2. Task Configuration with .vscode/tasks.json You can automate tasks like running build scripts by configuring tasks in .vscode/tasks.json. Example: { \"version\": \"2.0.0\", \"tasks\": [ { \"label\": \"Run Build\", \"type\": \"shell\", \"command\": \"npm run build\", \"group\": { \"kind\": \"build\", \"isDefault\": true } } ] } Tasks and settings configured in the .vscode folder apply only to the current project.",
       "url": "/course-project/vscode/configure-vscode.html"
     },
     {
-      "id": 97,
+      "id": 119,
       "title": "Extension Installation and Key Extensions :: Course Project",
       "content": "Edit this Page Download as .pdf Extension Installation and Key Extensions 1. Installing Extensions One of the strengths of VS Code is its rich ecosystem of extensions. Extensions enhance your development environment by providing extra features like language support, debugging tools, and integration with cloud services. To install extensions, follow these steps: Open the Extensions panel using Ctrl+Shift+X or Cmd+Shift+X on macOS. In the search bar, type the name of the extension you want to install. Click Install on the extension. You can also search and install extensions from the marketplace: > marketplace.visualstudio.com/vscode. Here are some key extensions that are useful for development: Remote SSH WSL (Windows Subsystem for Linux) Python and Jupyter Extensions",
       "url": "/course-project/vscode/extensions.html"
     },
     {
-      "id": 98,
+      "id": 120,
       "title": "VS Code for Mathematical Computing :: Course Project",
       "content": "VS Code for Mathematical Computing 🟢 FOUNDATIONAL LEVEL | Prerequisites: Basic computer skills | Time: 2-3 hours | For: Mathematics students setting up development environment Why VS Code for Mathematics? An integrated development environment helps mathematicians: - Write LaTeX documents with syntax highlighting and live preview - Develop mathematical code in Python, R, or MATLAB with debugging support - Manage version control visually with Git integration - Work with Jupyter notebooks for mathematical analysis - Collaborate efficiently with shared workspace configurations VS Code unifies all your mathematical computing tools in one interface. Learn to use Visual Studio Code as your primary environment for mathematical research, LaTeX document preparation, and computational mathematics projects. 1. VS Code Learning Modules Master VS Code through these comprehensive learning modules:",
       "url": "/course-project/vscode/"
     },
     {
-      "id": 99,
+      "id": 121,
       "title": "VS Code Installation :: Course Project",
       "content": "Edit this Page Download as .pdf VS Code Installation 1. Download and Installation You can download VS Code from the official website: Download URL: code.visualstudio.com/Download VS Code supports Windows, macOS, and Linux. Below are the steps for installing on each platform. 1.1. Windows Installation Download the .exe installer from the VS Code website. Run the installer and follow the on-screen prompts. Select the option to add VS Code to your PATH (this allows you to open VS Code from the terminal). 1.2. macOS Installation Download the .dmg file from the VS Code website. Open the .dmg file and drag the VS Code icon to the Applications folder. Launch VS Code from the Applications folder or the terminal using code if you add it to the PATH. 1.3. Linux Installation Download the appropriate package (.deb or .rpm) from the VS Code website. Install it using your distribution’s package manager: For Debian-based systems (e.g., Ubuntu): ` sudo dpkg -i <path-to-package>.deb sudo apt-get instal",
       "url": "/course-project/vscode/install.html"
     },
     {
-      "id": 100,
+      "id": 122,
       "title": "Python and Jupyter Extensions :: Course Project",
       "content": "Edit this Page Download as .pdf Python and Jupyter Extensions 1. Python Extension The Python extension in VS Code provides rich support for Python development, including: IntelliSense (autocompletion) Debugging Code linting Jupyter integration 1.1. Installing the Python Extension Open the Extensions panel (Ctrl+Shift+X). Search for \"Python\" and click Install. Once installed, you’ll have access to Python development features. 2. Jupyter Notebook Support The Jupyter extension integrates Jupyter Notebooks directly into VS Code. This allows you to write, run, and visualize notebook cells within VS Code. 2.1. Installing the Jupyter Extension Open the Extensions panel (Ctrl+Shift+X). Search for \"Jupyter\" and click Install. You can now create or open .ipynb notebook files within VS Code.",
       "url": "/course-project/vscode/python-jupyter.html"
     },
     {
-      "id": 101,
+      "id": 123,
       "title": "Remote SSH Extension :: Course Project",
       "content": "Edit this Page Download as .pdf Remote SSH Extension 1. What is Remote SSH? The Remote SSH extension allows you to connect to a remote server and work on files, debug, and run commands directly on the remote machine. 2. Installing the Remote SSH Extension Open the Extensions panel in VS Code (Ctrl+Shift+X). Search for \"Remote - SSH\" and click Install. 3. Setting up Remote SSH Press F1 or Ctrl+Shift+P or on MacOS Cmd+Shift+P and type \"Remote-SSH: Connect to Host\" in the Command Palette. Enter the SSH connection details, e.g., ssh user@remote-server.com. VS Code will connect to the remote machine, allowing you to use it as if it were local. You can also edit your SSH config file to save the connection details for quick access.",
       "url": "/course-project/vscode/remote-ssh.html"
     },
     {
-      "id": 102,
+      "id": 124,
       "title": "WSL (Windows Subsystem for Linux) Extension :: Course Project",
       "content": "Edit this Page Download as .pdf WSL (Windows Subsystem for Linux) Extension 1. What is WSL? Windows Subsystem for Linux (WSL) allows you to run a Linux distribution natively on Windows. With the Remote - WSL extension, you can use VS Code to develop within a WSL environment. 2. Installing WSL and the Extension Install WSL on your Windows machine: docs.microsoft.com/windows/wsl/install Install your preferred Linux distribution (e.g., Ubuntu). In VS Code, open the Extensions panel (Ctrl+Shift+X) and install the \"Remote - WSL\" extension. 3. Using WSL in VS Code Once installed, you can open a WSL session in VS Code by pressing F1 and selecting Remote-WSL: New Window. This will open VS Code in the WSL environment, allowing you to code and run commands directly in Linux.",
       "url": "/course-project/vscode/wsl.html"
     },
     {
-      "id": 103,
+      "id": 125,
       "title": "Using VSCode :: Course Project",
       "content": "Edit this Page Download as .pdf Using VSCode The project is configured to integrate VSCode using Docker Container. The Docker image can be set from feelpp/feelpp or feelpp/feelpp-toolboxes, simply edit .devcontainer/Dockerfile and choose the image you want. ssh-keyscan is used on github.com to register the public key of github in $HOME/.ssh/known_hosts and avoid having git auth issues the first time we log into the container and push/pull to/from github. The following extensions are installed in Docker: cpptools cmaketools cmake asciidoctor-vscode",
       "url": "/course-project/vscode.html"
     },
     {
-      "id": 104,
+      "id": 126,
       "title": "CSMI Projects - 2026 :: Course Project",
       "content": "CSMI Projects - 2026 This page tracks CSMI project spaces for the 2026 cohort. 1. Active Semester Master 1 - Semester 2 (S2) 2. Topics Folder 2026/m1-s2/topics CSMI Projects - 2026 - Master 1 - Semester 2 (S2) Project proposal workspace for CSMI M1 S2 in 2026.",
       "url": "/csmi/2026/"
     },
     {
-      "id": 105,
+      "id": 127,
       "title": "CSMI Projects - 2026 - Master 1 - Semester 2 (S2) :: Course Project",
       "content": "CSMI Projects - 2026 - Master 1 - Semester 2 (S2) This workspace contains project proposals for the 2026 CSMI Master 1 S2 semester. 1. Topics Project list and proposal pages 2. Organization Each student has an individual project page. Projects share common context, methods, and expected deliverables. CSMI Topics - 2026 M1 S2 Topic list for CSMI project proposals in 2026 M1 S2.",
       "url": "/csmi/2026/m1-s2/"
     },
     {
-      "id": 106,
+      "id": 128,
       "title": "AVNIR-1 — Time-Reversal and Topological Imaging for Ultrasonic Defect Detection :: Course Project",
       "content": "AVNIR-1 — Time-Reversal and Topological Imaging for Ultrasonic Defect Detection Table of Contents 1. Project Snapshot 2. Shared Context 3. Student-Specific Scope 3.1. Baseline scope (1 student) 3.2. Extended scope (2 students or strong involvement) 3.3. Out of scope for the baseline 4. Objectives 5. Methodological Workflow 5.1. Step 1 — Literature and model choice 5.2. Step 2 — Forward simulation in a healthy medium 5.3. Step 3 — Synthetic defective measurements 5.4. Step 4 — Adjoint backpropagation 5.5. Step 5 — Imaging functional 5.6. Step 6 — Validation and discussion 6. Expected Deliverables 7. Validation Targets 8. Possible Task Split for 2 Students 8.1. Student A — Forward and data generation 8.2. Student B — Inverse imaging and analysis 8.3. Common work 9. Milestones 10. Practical Recommendations 11. References and Starting Resources 12. Expected Level and Pedagogical Value 1. Project Snapshot Level: M1 CSMI Team: 1 student, or 2 students for an extended scope Period: March 10 —",
       "url": "/csmi/2026/m1-s2/topics/avnir-1.html"
     },
     {
-      "id": 107,
+      "id": 129,
       "title": "hid-1: Modélisation thermo-hydraulique urbaine multi-physique pour la simulation de la ville à l’échelle Exascale :: Course Project",
       "content": "hid-1: Modélisation thermo-hydraulique urbaine multi-physique pour la simulation de la ville à l’échelle Exascale 1. Contexte du projet Le projet s’inscrit dans le cadre du projet européen Hidalgo2, visant à porter les simulations complexes vers l’ère de l'Exascale. Vous rejoindrez l’équipe de développement de Ktirio, un logiciel de simulation thermique du bâtiment en pleine mutation pour devenir un simulateur urbain complet. L’enjeu est de dépasser la simple étude du bâti isolé pour intégrer finement dans les simulations son environnement urbain. 2. Thématique et Objectifs de recherche L’objectif central est de développer un modèle de sol 1D multi-physique capable de simuler les interactions complexes thermique et hydraulique. Ce modèle est un chaînon important pour quantifier les îlots de chaleur urbains (ICU) et la résilience hydrologique des quartiers. L’axe majeur du stage : Physique des transferts thermiques échange sol-atmosphère (Modèle de sol) Bilan radiatif : Prise en compte ",
       "url": "/csmi/2026/m1-s2/topics/hid-1.html"
     },
     {
-      "id": 108,
+      "id": 130,
       "title": "hifimagnet-1: Statistical Characterization of High-Field Magnet Operations :: Course Project",
       "content": "hifimagnet-1: Statistical Characterization of High-Field Magnet Operations 1. Overview Level M1 Applied Mathematics (Internship or Semester Project) Duration 3-4 months (internship) or one semester (project) Prerequisite knowledge Multivariate statistics, Python/pandas, basic physics (electromagnetism appreciated but not required) MagnetDB roadmap mapping Phase 1 (RecordStats) + Phase 3 (CumulativeStats) Deliverables Python module + analysis report 2. Context LNCMI (Laboratoire National des Champs Magnetiques Intenses) operates resistive high-field magnets capable of producing magnetic fields up to 36 Tesla. These magnets are water-cooled polyhelix inserts composed of concentric helical conductors carrying tens of thousands of amperes. During operation, a monitoring system records time series of physical quantities: magnetic field, coil currents, voltages, temperatures, pressures, and water flow rates. Each experimental session produces a record - a multivariate time series typically c",
       "url": "/csmi/2026/m1-s2/topics/hifimagnet-1.html"
     },
     {
-      "id": 109,
+      "id": 131,
       "title": "hifimagnet-2: Hoop Stress Computation and Mechanical Fatigue Indicators from Operational Data :: Course Project",
       "content": "hifimagnet-2: Hoop Stress Computation and Mechanical Fatigue Indicators from Operational Data 1. Overview |== |Level |M1 Applied Mathematics (Internship, preferably 4-5 months) |Duration |4-5 months |Prerequisite knowledge |Continuum mechanics or solid mechanics, PDEs, numerical methods, Python |MagnetDB roadmap mapping |Phase 1 (computed RecordStats) + Phase 2 (derived time series) |Deliverables |Python module + analysis report |== 2. Context LNCMI polyhelix magnets operate under extreme mechanical stress. Each helical conductor carries tens of thousands of amperes in a multi-Tesla magnetic field. The Lorentz force (J x B) produces a radial pressure that generates hoop stress - circumferential tensile stress in the conductor walls, analogous to the stress in a pressurized cylindrical vessel. The hoop stress is the primary mechanical constraint on magnet design: it determines how much current (and therefore how much field) a magnet can safely produce. When the hoop stress exceeds the m",
       "url": "/csmi/2026/m1-s2/topics/hifimagnet-2.html"
     },
     {
-      "id": 110,
+      "id": 132,
       "title": "hifimagnet-3: Time Series Processing and Downsampling for Scientific Operational Data :: Course Project",
       "content": "hifimagnet-3: Time Series Processing and Downsampling for Scientific Operational Data 1. Overview |== |Level |M1 Applied Mathematics (Internship or Semester Project) |Duration |3-4 months (internship) or one semester (project) |Prerequisite knowledge |Signal processing or numerical analysis, algorithms, Python |MagnetDB roadmap mapping |Phase 2 (ProcessedTimeSeries / ETL) Phase 3 (stitched series) |Deliverables |Python module + benchmark report |== 2. Context MagnetDB stores operational records as raw data files - time series of 50-70 physical channels recorded during magnet experiments. These records need to be served to users through a web interface for interactive visualization and analysis. This creates two distinct challenges: The visualization challenge: a record with 5000 data points and 70 columns is too large to send to a browser for plotting. The current MagnetDB implementation uses naive modulo subsampling (keep every Nth point), which discards peaks and distorts the visual ",
       "url": "/csmi/2026/m1-s2/topics/hifimagnet-3.html"
     },
     {
-      "id": 111,
+      "id": 133,
       "title": "CSMI Topics - 2026 M1 S2 :: Course Project",
       "content": "CSMI Topics - 2026 M1 S2 Project pages for the 2026 CSMI Master 1 S2 semester. 1. Shared Structure Common context and expectations are defined for all projects. Each student works on one project page with project-specific details. 2. Projects avnir-1 hid-1 hifimagnet-1 hifimagnet-2 hifimagnet-3 ooc-1 ooc-2 ooc-3 sepsis-1 sepsis-2 sepsis-3 3. Template Proposal template AVNIR-1 — Time-Reversal and Topological Imaging for Ultrasonic Defect Detection M1 CSMI project proposal on time-reversal and topological imaging for defect detection. hid-1: Modélisation thermo-hydraulique urbaine multi-physique pour la simulation de la ville à l&#8217;échelle Exascale Stage HID de modélisation thermo-hydraulique urbaine multi-physique pour 2026 M1 S2. hifimagnet-1: Statistical Characterization of High-Field Magnet Operations CSMI Project A statistical characterization proposal for 2026 M1 S2. hifimagnet-2: Hoop Stress Computation and Mechanical Fatigue Indicators from Operational Data CSMI Project B hoo",
       "url": "/csmi/2026/m1-s2/topics/"
     },
     {
-      "id": 112,
+      "id": 134,
       "title": "ooc-1: Robust Trajectory Tracking, Verification, Validation, and Trajectory Statistics :: Course Project",
       "content": "ooc-1: Robust Trajectory Tracking, Verification, Validation, and Trajectory Statistics 1. Shared Context Use organ-on-chip time-lapse microscopy datasets, existing segmentation/tracking code in organ-on-chip, and shared Python analysis tooling for reproducible experiments. 2. Student-Specific Scope Improve trajectory robustness under noise, missed detections, and dense-cell scenarios; define verification and validation protocols; produce realistic and interpretable trajectory visualizations and trajectory-level statistics. 3. Objectives Build a robust tracking pipeline with explicit uncertainty handling. Define quantitative verification and validation benchmarks (manual labels and synthetic perturbations). Deliver statistical trajectory descriptors and biologically meaningful visual analytics. 4. Expected Deliverables Source code repository Documentation and reproducibility notes Final report and presentation 5. Milestones Week 1-2: Data curation, baseline reproduction, metric definiti",
       "url": "/csmi/2026/m1-s2/topics/ooc-1.html"
     },
     {
-      "id": 113,
+      "id": 135,
       "title": "ooc-2: Bulk Flow of One Cell Population Toward Another :: Course Project",
       "content": "ooc-2: Bulk Flow of One Cell Population Toward Another 1. Shared Context Use the same organ-on-chip imaging datasets and preprocessing pipeline (segmentation and tracking), with common statistical and visualization tooling. 2. Student-Specific Scope Focus on two identified cell populations and quantify directed collective motion of source cells toward target cells through velocity fields, flux estimates, and significance testing. 3. Objectives Identify and track two cell populations over time. Estimate bulk flow, directional bias, and net flux toward target regions. Validate flow trends statistically across conditions and experiments. 4. Expected Deliverables Source code repository Documentation and reproducibility notes Final report and presentation 5. Milestones Week 1-2: Define populations, labeling strategy, and flow metrics Week 3-6: Implement flow and flux estimation with condition-wise analysis Week 7-9: Statistical validation and interaction-focused visualizations Week 10: Fina",
       "url": "/csmi/2026/m1-s2/topics/ooc-2.html"
     },
     {
-      "id": 114,
+      "id": 136,
       "title": "ooc-3: PDE-Based Cell Density Modeling in OOC with Feel++ CFPDE :: Course Project",
       "content": "ooc-3: PDE-Based Cell Density Modeling in OOC with Feel++ CFPDE 1. Shared Context Use organ-on-chip experimental datasets and shared geometry and measurement context, with Feel++ as the common simulation framework. 2. Student-Specific Scope Develop continuum cell-density models (diffusion, advection, reaction, and possibly chemotaxis), implement them in CFPDE, and calibrate against observed OOC cell behavior. 3. Objectives Formulate PDE models for cell density evolution adapted to OOC geometry and flow. Implement and run simulations with Feel++ CFPDE. Calibrate and validate model predictions against experimental trajectory or density data. 4. Expected Deliverables Source code repository Documentation and reproducibility notes Final report and presentation 5. Milestones Week 1-2: Literature review and model specification Week 3-6: CFPDE implementation and baseline simulation setup Week 7-9: Parameter calibration, validation, and sensitivity analysis Week 10: Final presentation AVNIR-1 —",
       "url": "/csmi/2026/m1-s2/topics/ooc-3.html"
     },
     {
-      "id": 115,
+      "id": 137,
       "title": "sepsis-1: Data Pipeline and Quality Audit for Sepsis Prediction :: Course Project",
       "content": "sepsis-1: Data Pipeline and Quality Audit for Sepsis Prediction 1. Shared Context This project is designed for M1 CSMI Semester 2 students in 2026. It is based on ICU sepsis data (PhysioNet challenge format) and a reproducible Python workflow. The expected workload is 60 to 80 hours (maximum 100 hours) between March 10, 2026 and May 30, 2026 (oral defense). 2. Student-Specific Scope Assigned student(s): to be filled Specific scientific question: How do data cleaning and missing-value strategies affect downstream sepsis prediction quality? Specific constraints: Use only de-identified challenge data and provide fully reproducible scripts/notebooks. 3. Objectives Build a reproducible ingestion and preprocessing pipeline for ICU time-series. Quantify missingness, outliers, and feature reliability. Compare at least two imputation strategies and justify the final choice. Train a simple baseline model (for example logistic regression) to validate the prepared dataset. 4. Work Plan and Time Bu",
       "url": "/csmi/2026/m1-s2/topics/sepsis-1.html"
     },
     {
-      "id": 116,
+      "id": 138,
       "title": "sepsis-2: Early Sepsis Prediction and Alert Threshold Design :: Course Project",
       "content": "sepsis-2: Early Sepsis Prediction and Alert Threshold Design 1. Shared Context This project is designed for M1 CSMI Semester 2 students in 2026. It uses ICU sepsis data (PhysioNet challenge format) and focuses on supervised prediction in a clinically interpretable setting. The expected workload is 60 to 80 hours (maximum 100 hours) between March 10, 2026 and May 30, 2026 (oral defense). 2. Student-Specific Scope Assigned student(s): to be filled Specific scientific question: How early can sepsis be predicted while maintaining acceptable precision, recall, and calibration? Specific constraints: Compare at least one interpretable model and one higher-capacity model with identical train/test protocol. 3. Objectives Define a prediction target and clinically relevant prediction horizon (for example 4 to 6 hours before onset). Train and compare multiple models (for example logistic regression, random forest, gradient boosting). Evaluate discrimination and calibration (AUROC, AUPRC, calibrati",
       "url": "/csmi/2026/m1-s2/topics/sepsis-2.html"
     },
     {
-      "id": 117,
+      "id": 139,
       "title": "sepsis-3: Digital Twin Lite for Patient Trajectory and Treatment Scenarios :: Course Project",
       "content": "sepsis-3: Digital Twin Lite for Patient Trajectory and Treatment Scenarios 1. Shared Context This project is designed for M1 CSMI Semester 2 students in 2026. It uses the same ICU sepsis context (PhysioNet challenge format) but shifts focus from classification to short-term trajectory modeling. The expected workload is 60 to 80 hours (maximum 100 hours) between March 10, 2026 and May 30, 2026 (oral defense). 2. Student-Specific Scope Assigned student(s): to be filled Specific scientific question: Can we build a simplified digital twin to forecast short-term physiological evolution and compare intervention scenarios? Specific constraints: Keep claims exploratory; no causal or clinical deployment claims beyond observed-data simulation. 3. Objectives Build a compact patient-state representation from recent vital signs and laboratory trends. Train a short-horizon forecasting model (for example 1 to 6 hour horizon for MAP, lactate, or SOFA proxy). Implement scenario-based simulation (for ex",
       "url": "/csmi/2026/m1-s2/topics/sepsis-3.html"
     },
     {
-      "id": 118,
+      "id": 140,
       "title": "CSMI Project Proposals :: Course Project",
       "content": "CSMI Project Proposals This module organizes CSMI project proposals by academic year, master level, and semester. 1. Current Cohort Year: 2026 Program: Master 1 Semester: S2 2. Yearly Project Spaces CSMI projects for 2026 3. Active Topics Folder 2026/m1-s2/topics CSMI Projects - 2026 CSMI project proposals for the 2026 cohort.",
       "url": "/csmi/"
     },
     {
-      "id": 119,
+      "id": 141,
       "title": "Proposal Template :: Course Project",
       "content": "Edit this Page Download as .pdf Proposal Template 1. Shared Context Describe the common scientific background, common datasets, and shared tools. 2. Student-Specific Scope Document what is specific to this project instance. 3. Objectives Objective 1 Objective 2 Objective 3 4. Expected Deliverables Source code repository Documentation and reproducibility notes Final report and presentation 5. Milestones Week 1-2: Scope and setup Week 3-6: Core implementation Week 7-9: Validation and documentation Week 10: Final presentation",
       "url": "/csmi/proposal-template.html"
     },
     {
-      "id": 120,
+      "id": 142,
       "title": "Redirect Notice",
       "content": "Redirect Notice The page you requested has been relocated to https://feelpp.github.io/course-project/course-project/index.html.",
       "url": "/index.html"
