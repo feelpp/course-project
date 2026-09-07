@@ -35,6 +35,7 @@
 ** xref:m2:index.adoc[Learning outcomes and progression]
 ** xref:m2:transition.adoc[From M1 to M2]
 ** xref:containers:apptainer/index.adoc[Apptainer]
+** xref:containers:apptainer/apptainer-install.adoc[Access and installation]
 ** xref:containers:apptainer/tutorial.adoc[Apptainer practical]
 ** xref:m2:hpc-containers.adoc[Scientific/HPC containers]
 ** xref:m2:feelpp-gaya.adoc[Deploy {feelpp} on Gaya with Slurm]
@@ -71,6 +72,7 @@
 ** xref:software:release-engineering-weather.adoc[Release engineering]
 ** xref:visualisation:index.adoc[Dash and visualization]
 ** xref:reference.adoc[Complete reference library]
+include::partial$reference-nav.adoc[]
 
 * xref:teaching-guide.adoc[Instructor Resources]
 ** xref:teaching-guide.adoc[Session preparation]

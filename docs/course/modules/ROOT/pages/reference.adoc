@@ -130,4 +130,4 @@ Use xref:m1:index.adoc[M1] and xref:m2:index.adoc[M2] for the teaching sequence.
 
 == Compatibility resources
 
-The old `git & github` module retains its compatibility page; use xref:git-github:git-basics.adoc[the maintained Git resource].
+The old `git & github` URL redirects to the maintained page; use xref:git-github:git-basics.adoc[the maintained Git resource].

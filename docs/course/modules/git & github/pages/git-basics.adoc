@@ -1,3 +1,0 @@
-= Git basics — compatibility page
-
-The maintained lesson is xref:git-github:git-basics.adoc[Git basics]. For the M1 workflow start with xref:git-github:git-starter.adoc[the Git starter guide]. This older resource remains available for existing links.

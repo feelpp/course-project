@@ -23,3 +23,4 @@ mkdir -p public/cours-project/_attachments
 cp cours-project.zip public/cours-project/_attachments/
 
 python scripts/check-site-links.py public
+python scripts/check-course-navigation.py public
