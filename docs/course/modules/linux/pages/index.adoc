@@ -63,13 +63,13 @@ This command will move you to the specified directory. If no path is specified, 
 
 The `pwd` command prints the full path of your current directory. This is particularly useful when you've navigated through several directories and want to confirm your current location in the filesystem.
 
-Example:
+Example (create a small practice directory; `-p` allows rerunning the setup):
 
 [%dynamic%open,python]
 ----
 %%bash
-mkdir /tmp/documents
-cd /tmp/documents
+mkdir -p /tmp/course-project-shell/documents/data
+cd /tmp/course-project-shell/documents
 touch file.txt
 pwd
 ----
@@ -84,7 +84,7 @@ Basic usage:
 [%dynamic%open,python]
 ----
 %%bash
-cd /tmp/documents
+cd /tmp/course-project-shell/documents
 ls
 ----
 
@@ -98,7 +98,7 @@ Additional options:
 [%dynamic%open,python]
 ----
 %%bash
-cd /tmp/documents
+cd /tmp/course-project-shell/documents
 ls -l
 ----
 
@@ -106,7 +106,7 @@ ls -l
 [%dynamic%open,python]
 ----
 %%bash
-cd /tmp/documents
+cd /tmp/course-project-shell/documents
 ls -a
 ----
 
@@ -119,22 +119,22 @@ Example:
 [%dynamic%open,python]
 ----
 %%bash
-cd /tmp/documents
-tree ..
+cd /tmp/course-project-shell/documents
+tree .
 ----
 
 This will output a nested tree structure representing the contents of the current directory and its subdirectories.
 
 == Practical Examples
 
-Here are some practical examples of how you might use these commands:
+Here are some practical examples using the `data` directory created above. These examples inspect only the practice files, so their results do not depend on access to system logs or other users' temporary directories.
 
 - **Navigating to a specific directory:**
 
 [%dynamic%open,python]
 ----
 %%bash
-cd /var/log
+cd /tmp/course-project-shell/documents/data
 ----
 
 - **Confirming your location in the filesystem:**
@@ -142,7 +142,7 @@ cd /var/log
 [%dynamic%open,python]
 ----
 %%bash
-cd /var/log
+cd /tmp/course-project-shell/documents/data
 pwd
 ----
 
@@ -151,7 +151,7 @@ pwd
 [%dynamic%open,python]
 ----
 %%bash
-cd /var/log
+cd /tmp/course-project-shell/documents/data
 ls -l
 ----
 
@@ -160,6 +160,6 @@ ls -l
 [%dynamic%open,python]
 ----
 %%bash
-cd /var/log
+cd /tmp/course-project-shell/documents/data
 tree
 ----
