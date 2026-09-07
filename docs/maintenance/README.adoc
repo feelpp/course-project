@@ -1,0 +1,42 @@
+= Building and maintaining the course
+
+The course component lives in `docs/course`; cohort project topics live in `docs/csmi`.
+The registered course navigation is `docs/course/modules/ROOT/nav.adoc`.
+M1 and M2 workflow pages use their own modules while detailed tool resources keep their original IDs.
+See `m1-m2-audit.md` for the inventory and versioning decision.
+
+== Build and preview
+
+[source,bash]
+----
+npm ci
+npm run antora
+npm run preview:build
+----
+
+The build creates/uses `.venv-antora`, generates the existing notebook attachments and writes `public/`.
+It fails on Antora warnings/errors and checks generated local page links and fragments, course-wide breadcrumbs/pagination, and both directions of the Apptainer reading sequence.
+The notebook converter's existing `Unsupported nodes [open]` warning is independent of Antora's logger; the generated notebooks still require their own content review.
+Preview runs on port 8010. External websites are not crawled by the link checker.
+
+== Content workflow
+
+Keep useful reference content at its existing URL. Prefer workflow landing pages and navigation links to file moves.
+When replacing duplicate content, leave a compatibility page linking to the maintained resource.
+M1 and M2 are concurrent learning paths; reserve Antora component versions for future frozen academic editions.
+Current components remain unversioned to preserve published routes.
+
+Every teaching/reference page must appear in registered navigation to receive Antora breadcrumbs and Previous/Next links. Links in page bodies alone do not establish reading order. Put core lessons in `ROOT/nav.adoc`; additional reference pages belong in `ROOT/partials/reference-nav.adoc`, included by that nav. Register a page-level link even when also linking to its sections.
+
+`page-pagination` is already enabled in `site.yml`. All layouts must render the upstream `pagination` partial; the local `manuals.hbs` catalog layout includes it after the cards. Redirect-only legacy URLs are exempt from navigation coverage checks.
+
+The teaching project is a specification students implement: parameter inputs → Feel++ on Gaya with Slurm/Apptainer → simulation dataset → regression training → inference → verification.
+The site does not supply a completed student ML pipeline or claim to have run jobs on Gaya.
+
+== Teaching preflight
+
+Before the first practical, validate the selected Feel++ SIF and case on Gaya, the partition/account/module configuration, resource limits, single-rank MPI behaviour, output locations and measure column.
+Confirm the parameter domain, physical units, mesh/solver tolerances and campaign budget before assigning the dataset campaign.
+Preserve a validated SIF/checksum for students without registry access.
+
+The published instructor guide and Feel++ practical distinguish this site-specific check from the local documentation/example validation.

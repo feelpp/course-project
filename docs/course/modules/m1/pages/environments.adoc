@@ -1,0 +1,60 @@
+= Python and C/{cpp} development environments
+
+== Why this matters and objectives
+
+Run a small computation locally and remotely, identify the interpreter/compiler, and keep generated files out of Git. Python is used heavily for data and projects; working {cpp} familiarity is required early in M1 and prepares for HPC1, HPC2 and HPC3.
+
+[#python]
+== Python environment
+
+In a new project folder with Python 3 available:
+
+[source,bash]
+----
+python3 -m venv .venv
+source .venv/bin/activate
+python --version
+python -m pip --version
+python -c 'import statistics; print(statistics.mean([18, 20, 22]))'
+----
+
+Expected mean: `20`. Select this interpreter in VS Code. Inside Remote SSH, create/select an environment on the remote host; your laptop environment is a different installation. Use `python -m pip` so the installer matches the chosen interpreter. Declare required dependencies in the project and record exact tested versions for reproduction. See xref:software:python-e2e-weather-workshop.adoc[the Python workshop] and https://docs.python.org/3/tutorial/venv.html[Python virtual environments].
+
+[#cpp]
+== C/{cpp} environment
+
+Verify `cc --version` and `c++ --version`. On Gaya use the compiler module specified by the teaching team. Save this as `mean.cpp`:
+
+[source,cpp]
+----
+#include <iostream>
+#include <numeric>
+#include <vector>
+
+double mean(const std::vector<double>& values) {
+    return std::accumulate(values.begin(), values.end(), 0.0) / values.size();
+}
+
+int main() {
+    const std::vector<double> temperatures{18.0, 20.0, 22.0};
+    std::cout << mean(temperatures) << '\n';
+}
+----
+
+[source,bash]
+----
+c++ -std=c++17 -Wall -Wextra -Wpedantic -O2 mean.cpp -o mean
+./mean
+----
+
+Expected output: `20`. Explain the function, `const` reference, vector, accumulation and floating-point division. The function currently assumes a non-empty vector; define and test its empty-input behaviour as an exercise. This is a readiness check, not an introduction to all of {cpp}.
+
+For a multi-file project use xref:software:repo/organization.adoc[CMake/CTest repository organization] and xref:git-github:github-actions-cmake-eigen3.adoc[{cpp} testing in CI].
+
+== Common mistakes
+
+Do not commit `.venv/`, compiler outputs or generated `build/` trees. Do not assume activating a local environment activates one on Gaya. Diagnose compiler errors and warnings before changing flags; distinguish compilation from running the resulting executable.
+
+== Exercise and self-check
+
+Put the Python and {cpp} mean computations in one Git repository, document both commands, and run them in a remote workspace. Change the inputs and predict the output. Add a test of normal and empty input using xref:workflow.adoc[the testing workflow].

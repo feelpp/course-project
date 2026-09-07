@@ -1,5 +1,7 @@
 name: course-project
 title: Course Project
+# M1 and M2 are concurrent learning paths, not component versions.
+# Preserve current resource URLs; reserve versioning for future academic editions.
 version: ~
 start_page: index.adoc
 asciidoc:

@@ -1,0 +1,28 @@
+= Competencies and assessment
+
+Project output is one source of evidence. Individual practical checks and oral/code walkthroughs establish that each student can explain and reproduce their contribution. The teaching team announces timing, grading weights and the xref:ai-use.adoc[AI mode] for each assessment.
+
+[cols="1,3,3",options="header"]
+|===
+|Level |Expected competency |Evidence
+|M1 |Use shell/files/processes, SSH and VS Code Remote SSH; operate on Gaya.
+|Live session: locate an input, connect, submit a short job and retrieve stdout/stderr.
+|M1 |Use staging, branches, remotes, history and a simple conflict resolution; collaborate with issues and PRs.
+|Individual Git exercise and reviewed project PR linked to an issue.
+|M1 |Run Python, compile/run {cpp}, add a test and explain reproducibility.
+|Clean-checkout demonstration and explanation of a failing/passing test.
+|M2 |Deploy {feelpp} on Gaya with Slurm/Apptainer and manage simulation inputs, outputs and execution identity.
+|Container demonstration with image checksum, bind mounts and recorded commands.
+|M2 |Automate tests/CI; organize data, experiments and model artifacts; reproduce training and inference.
+|Pipeline run, experiment comparison, artifact manifest and independent reproduction.
+|M2 |Defend engineering and scientific choices.
+|Oral walkthrough: modify a parameter or diagnose a failure, explain leakage risks and result limitations.
+|===
+
+== Project review
+
+Assess correctness, reproducibility, collaboration and explanation. A sophisticated model does not compensate for an unrepeatable pipeline. A passing CI badge does not establish scientific validity.
+
+* xref:m1:project.adoc#assessment[M1 project criteria]
+* xref:m2:mlops/project.adoc#assessment[MLOps project criteria]
+* xref:m2:semester-project.adoc[M2 semester project expectations]

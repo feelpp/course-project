@@ -1,0 +1,62 @@
+= Simulation data, training and experiment records
+
+== Define the scientific contract
+
+The input is a vector of physical parameters; the target is a scalar extracted from a verified {feelpp} heat simulation. For the xref:feelpp-gaya.adoc[thermal-bridge case], a starting study varies insulation conductivity and one boundary ambient temperature. Keep geometry, other materials, discretization and solver settings fixed initially.
+
+A proposed teaching domain is insulation conductivity in `[0.02, 0.06] W/(m K)` and bottom ambient temperature in `[15, 25] degrees C`, with the original top temperature fixed. These are exercise choices for instructor approval, not calibrated material ranges. Agree the domain, units, mesh, sample budget and numerical acceptance tolerance before generating a campaign.
+
+Define average temperature as the spatial integral divided by domain measure over the chosen region. Record that region and units. Do not use an unweighted average of mesh-node values as an undocumented substitute.
+
+== Prepare inputs and execute the campaign
+
+. Generate a small seeded design (begin with a 3 × 3 grid smoke campaign; expand only after validation and a resource estimate).
+. Assign a stable `sample_id` to each parameter vector and materialize its complete CFG/JSON/geometry inputs in a separate directory. Use a parser supporting the upstream JSON comments or an instructor-normalized JSON template.
+. Modify the actual insulation material conductivity and boundary-temperature parameter in the template. Record resolved values and checksums; test that modifying a parameter changes the corresponding solver input.
+. Submit jobs on Gaya using the xref:feelpp-gaya.adoc[validated Slurm/Apptainer procedure]. For arrays, map each array index to one manifest row and limit concurrency to the agreed allocation.
+. Record sample/job IDs, image hash, code/template revision, inputs, exit status, convergence and output location. Classify missing, failed and successful runs explicitly. Retry with a recorded attempt ID; do not silently alter the sampling distribution.
+
+Each attempt needs an isolated output directory. Job submission is asynchronous: collect only after completion checks. A scheduler dependency such as `afterok` can order stages, but scientific checks must still validate the outputs.
+
+== Assemble and freeze the dataset
+
+Extract the named mean-temperature statistic from the measure CSV. Require the expected column, finite scalar value, matching sample identity and successful numerical checks. For transient models define which time/steady-state criterion is used; do not silently select the last row.
+
+A minimal table contains `sample_id`, input parameters with declared units, `mean_temperature`, case hash, simulation SIF hash and output identity. Keep detailed job/attempt records in a related manifest. Reject duplicate samples, missing outputs and non-finite values; report failed samples instead of filling them with zero.
+
+Freeze a dataset version/checksum and explicit lists of train, validation and test sample IDs. Replicates or variants of the same parameter point must remain in the same group. Fit preprocessing only on training data. Use validation or grouped cross-validation for choices, and open the held-out test results once for final assessment. A 3 × 3 smoke campaign checks plumbing; it is too small for strong accuracy claims.
+
+== Train and compare
+
+Start with `DummyRegressor` as a mean-prediction baseline and a small scaled regression pipeline, such as `StandardScaler` plus `Ridge`; a nonlinear regressor is an optional justified comparison. Keep configuration in Git: feature names/order, seed, split manifest, model parameters and output directory.
+
+Report MAE and RMSE in temperature units, maximum absolute error and residuals against the physical parameters. Compare the surrogate error with simulation discretization error. Use https://scikit-learn.org/stable/common_pitfalls.html[scikit-learn's leakage and randomness guidance].
+
+== Track experiments and artifacts
+
+Use a local MLflow store with one record per training configuration. Around the implemented training/evaluation function:
+
+[source,python]
+----
+import mlflow
+
+mlflow.set_tracking_uri("sqlite:///mlflow.db")
+mlflow.set_experiment("feelpp-mean-temperature")
+with mlflow.start_run():
+    mlflow.log_params(config)
+    mlflow.set_tags({"git_commit": commit_sha, "dataset_sha256": dataset_sha256})
+    metrics, model_path = train_and_evaluate(config)
+    mlflow.log_metrics(metrics)
+    mlflow.log_artifact(str(model_path), artifact_path="model")
+    mlflow.log_artifact("run-manifest.json")
+----
+
+This is an integration fragment: students implement `train_and_evaluate`, resolve the scalar `config` and write the manifest first. Include the simulation SIF, ML environment, split IDs, feature schema and target definition in the manifest. Record validation metrics during model choice and label final test metrics distinctly.
+
+Persist the fitted preprocessing/model pipeline, schema, valid parameter domain, environment versions and run identity. Keep the MLflow database and artifact storage together when handing off runs; a database alone does not contain the models. Use only trusted serialized Python models with verified integrity. See https://mlflow.org/docs/latest/ml/tracking/quickstart/[MLflow tracking].
+
+== Exercise and self-check
+
+Trace a prediction back to its training dataset and the originating {feelpp} campaign. Demonstrate that a failed job cannot silently become a training row and that no held-out parameter group enters training or preprocessing fitting.
+
+Next: xref:mlops/engineering.adoc[automation and inference verification].

@@ -1,101 +1,99 @@
-= Apptainer Quick Start Guide
+= Practical: a small scientific application with Apptainer
 
-This guide provides a concise introduction to using Apptainer, a container platform optimized for High Performance Computing (HPC) and Enterprise Performance Computing (EPC). Apptainer allows you to build and interact with containers seamlessly, enabling the execution of programs within a container as if they were running on your host system. ￼
+== Objectives and setup
 
-== Installation
+Run a CSV analysis, identify its inputs and outputs, and package its command. Use a Linux machine with Apptainer already available (xref:apptainer/apptainer-install.adoc[access instructions]). On shared infrastructure, use the execution/build locations authorized by the teaching team. This exercise is small and requires no Python packages beyond the standard library.
 
-Apptainer requires a Linux system for operation. Root access is not mandatory if user namespaces are available. To install Apptainer from source, follow the instructions in the INSTALL.md file on GitHub. Alternative installation methods, including using pre-built RPMs, building RPM or Debian packages, installing without root privileges, and utilizing Apptainer on macOS and Windows, are detailed in the installation section of the admin guide.
+== Pull, inspect and execute
 
-== Overview of the Apptainer Interface
+[source,bash]
+----
+mkdir -p apptainer-lab/input apptainer-lab/output
+cd apptainer-lab
+apptainer --version
+apptainer pull python.sif docker://python:3.12-slim
+apptainer inspect python.sif
+apptainer exec --cleanenv python.sif python --version
+apptainer run --cleanenv python.sif -c 'print("Hello from the image")'
+apptainer shell --cleanenv python.sif
+----
 
-Apptainer’s command-line interface facilitates transparent interaction with containers. You can execute programs inside a container with the same ease as running them on your host system, allowing for straightforward I/O redirection, piping, argument passing, and access to host files, sockets, and ports. ￼
+Inside the shell run `pwd`, `id` and `python --version`, then `exit` to return to the host. `exec` selects a command; `run` uses the image's runscript (here derived from the Python image's default command); `shell` opens an interactive shell. `inspect` displays metadata, not a complete dependency audit.
 
-To view an overview of Apptainer’s options and subcommands, use the help command:
+The tag `3.12-slim` is convenient for this first pull but can change. Retain this exact SIF and record its checksum. For a rebuildable release also record the upstream OCI digest and pin the base in the definition.
 
-[source,console]
+== Compute a result with explicit filesystem paths
 
-$ apptainer help
+Create `input/measurements.csv`:
 
-== Downloading Images
+[source,csv]
+----
+time,temperature
+0,18
+1,20
+2,22
+----
 
-Apptainer enables interaction with images through various methods, including using image URIs. For example, to pull the lolcow_latest.sif image from ghcr.io, execute:
+Create `analyze.py`:
 
-[source,console]
+[source,python]
+----
+include::example$apptainer-lab/analyze.py[]
+----
 
-$ apptainer pull docker://ghcr.io/apptainer/lolcow
+Run from the `apptainer-lab` directory on the host:
 
-== Interacting with Images
+[source,bash]
+----
+apptainer exec --cleanenv \
+  --bind "$PWD:/work:ro,$PWD/output:/results:rw" \
+  --env RESULT_LABEL=baseline \
+  python.sif python /work/analyze.py \
+  /work/input/measurements.csv /results/summary.json
+cat output/summary.json
+sha256sum python.sif input/measurements.csv analyze.py > provenance.sha256
+----
 
-=== Shell
+Expected result: count `3`, mean temperature `20.0`, label `baseline`. `/work` exposes code/input read-only; `/results` is a separate writable destination. The output survives the process because it lives on the host. The ordinary read-only image is not changed. The absolute paths avoid depending on an implicit current directory inside the container.
 
-The shell command spawns a new shell within your container, allowing interaction as though it were a virtual machine:
+== Build a named application
 
-[source,console]
+Create `analysis.def` next to `analyze.py`:
 
-$ apptainer shell lolcow_latest.sif
-Apptainer>
+[source,text]
+----
+include::example$apptainer-lab/analysis.def[]
+----
 
-The prompt change indicates entry into the container. Within an Apptainer container, you retain the same user identity as on the host system:
+On a host where definition-file builds are permitted:
 
-[source,console]
+[source,bash]
+----
+apptainer build analysis.sif analysis.def
+apptainer inspect --runscript analysis.sif
+apptainer run --cleanenv \
+  --bind "$PWD/input:/input:ro,$PWD/output:/results:rw" \
+  --env RESULT_LABEL=packaged \
+  analysis.sif /input/measurements.csv /results/packaged.json
+cat output/packaged.json
+sha256sum analysis.sif > analysis.sif.sha256
+----
 
-Apptainer> whoami
-your_username
-Apptainer> id
-uid=1000(your_username) gid=1000(your_username) groups=1000(your_username),65534(nfsnobody)
+Building from a definition can require configured user namespaces/fakeroot or an administrator-supported build method. If it is unavailable, use the instructor-provided `analysis.sif` and verify its supplied checksum with `sha256sum -c analysis.sif.sha256`. Running a supplied image and building one are separate capabilities. Do not change cluster security settings to make a build work.
 
-=== Executing Commands
+== Hands-on exercise
 
-The exec command allows execution of custom commands within a container by specifying the image file. For instance, to run the cowsay program within the lolcow_latest.sif container:
+. Change one measurement in a copy of the input and predict the new mean before executing.
+. Repeat the original run into another output file. Compare the two baseline results with `diff`.
+. Try an empty input or a missing `temperature` column; explain the failure rather than accepting a result.
+. Commit the source, definition, small input and execution instructions. Ignore SIFs and generated output; record where the exact SIF is stored and its checksum.
 
-[source,console]
+== Common mistakes and self-check
 
-$ apptainer exec lolcow_latest.sif cowsay moo
+* A host path and a container path are different names. Locate the file at both ends of each bind.
+* Writing under `/input` should fail because it is read-only. Choose `/results` for generated files.
+* `--cleanenv` does not pin an image or dataset. Which files and settings still identify this run?
+* A changed label alone changes the JSON, not the numeric result. Compare scientific values with the appropriate tolerance when moving to numerical libraries.
+* A container does not grant access to files you cannot read on the host. Never mount secrets merely to make a command work.
 
-< moo >
-
-    \   ^__^
-     \  (oo)\_______
-        (__)\       )\/\
-            ||----w |
-            ||     ||
-
-This command creates an ephemeral container that executes the specified command and then exits. ￼
-
-== Running a Container
-
-The run command executes the user-defined default command within a container. If the container has a defined runscript, it will be executed:
-
-[source,console]
-
-$ apptainer run lolcow_latest.sif
-
-To pass arguments to the runscript:
-
-[source,console]
-
-$ apptainer run lolcow_latest.sif arg1 arg2
-
-== Working with Files
-
-Apptainer allows seamless access to files on the host system from within a container. By default, your home directory is accessible inside the container. To bind additional directories, use the --bind option:
-
-[source,console]
-
-$ apptainer exec –bind /path/on/host:/path/in/container lolcow_latest.sif ls /path/in/container
-
-== Building Images from Scratch
-
-Apptainer enables building images from scratch using definition files. A definition file specifies the base image and the steps to customize it. To build an image:
-	1.	Create a definition file (e.g., my_container.def).
-	2.	Build the image using the build command:
-
-[source,console]
-
-$ apptainer build my_container.sif my_container.def
-
-For detailed information on writing definition files and building images, refer to the Apptainer User Guide.
-
-== Additional Resources
-
-For further assistance and support, visit the Apptainer Community Support page.
+Next: xref:m2:hpc-containers.adoc[run this application with a scheduler]. Details: https://apptainer.org/docs/user/latest/bind_paths_and_mounts.html[bind mounts], https://apptainer.org/docs/user/latest/environment_and_metadata.html[environment], https://apptainer.org/docs/user/latest/definition_files.html[definition files].

@@ -1,0 +1,53 @@
+= MLOps — {feelpp} simulations to verified predictions
+
+== Why this matters
+
+The course workflow starts with scientific input data, not an existing toy ML dataset. Students deploy {feelpp} on Gaya with Slurm and Apptainer, generate simulation results, then learn a map from physical parameters to a quantity such as average temperature. MLOps makes the whole chain traceable and reproducible.
+
+== Learning objectives
+
+Prepare parameterized cases; operate and verify HPC jobs; build a dataset with provenance; train and track regression experiments; package a model; compare inference with held-out {feelpp} results.
+
+== Complete lifecycle
+
+----
+parameter domain + sampling plan + case template
+  → validated per-sample input data
+  → Slurm jobs on Gaya + Apptainer + {feelpp}
+  → verified simulation outputs and extracted average temperatures
+  → versioned dataset + frozen train/validation/test split
+  → preprocessing + training + evaluation + experiment record
+  → model artifact + packaged inference environment
+  → inference on held-out parameters
+  → verification against {feelpp} reference results
+  → monitoring and reproducibility → next sampling campaign
+----
+
+There are two environments: the {feelpp} simulation SIF and the Python ML/inference environment. Record both identities. The surrogate approximates the chosen discretized solver output; it does not replace physical or numerical validation.
+
+== A small, coherent stack
+
+[cols="1,2",options="header"]
+|===
+|Tool |Role
+|{feelpp} + Apptainer + Slurm on Gaya |Generate the scientific reference dataset from parameterized heat cases.
+|Python + scikit-learn |Prepare inputs, assemble datasets and fit small regression models.
+|pytest |Check input/data contracts, extraction, split isolation and artifact/inference behaviour.
+|Git/GitHub + GitHub Actions |Issues, changes, review and fast automated checks.
+|MLflow |Track local training runs, parameters, dataset identity, metrics and model artifacts.
+|===
+
+Use manifests and hashes for the first dataset; add DVC only when dataset history/size warrants it. Batch inference is sufficient. Multiple tracking frameworks, Kubernetes and public cloud services are not required.
+
+== Learning route
+
+. xref:feelpp-gaya.adoc[Deploy and verify one {feelpp} case on Gaya].
+. xref:mlops/lifecycle.adoc[Prepare a simulation dataset and track learning experiments].
+. xref:mlops/engineering.adoc[Automate, test, package and verify inference].
+. xref:mlops/project.adoc[Build the complete simulation-to-ML project].
+
+The xref:software:python-e2e-weather-workshop.adoc[Python workshop] and xref:software:release-engineering-weather.adoc[release lesson] remain reusable engineering references.
+
+== First exercise
+
+Draw the provenance chain from one parameter vector to its case files, Slurm job, mean-temperature value, dataset row and model run. Turn a missing link into an issue with an observable acceptance criterion.

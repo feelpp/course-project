@@ -9,6 +9,18 @@ toc::[]
 Git is a distributed version control system that allows multiple developers to work on a project simultaneously. 
 It tracks changes to files, enables collaboration, and makes it easy to revert changes when needed.
 
+== Mental model
+
+----
+working tree → git add → staging area → git commit → local repository
+                                                     ↓ git push
+                                                remote repository
+----
+
+A commit records a snapshot of staged content. A branch names a line of commits; GitHub hosts a remote copy and collaboration tools. `git fetch` downloads remote history without merging it; `git pull` fetches and integrates it. Review the current branch and changes before either operation.
+
+Use `.gitignore` for environments, build output and generated results. It does not remove files already tracked. Check `git diff` before staging and `git diff --staged` before committing.
+
 == Git Basics
 
 === Installing Git
@@ -136,18 +148,18 @@ $ git log --oneline
 
 === Undoing Changes
 
-To discard changes to a file:
+To discard uncommitted working-tree changes to a file (inspect the diff first; these changes are lost):
 
 [source,console]
 ----
-$ git checkout -- <file-name>
+$ git restore <file-name>
 ----
 
 To unstage a file (move it out of the staging area):
 
 [source,console]
 ----
-$ git reset <file-name>
+$ git restore --staged <file-name>
 ----
 
 To reset your last commit (without losing your changes):
@@ -186,3 +198,7 @@ This updates your local branch with any new commits from the remote branch.
 This tutorial covers the basic Git commands for working with a repository. Understanding these core concepts will help you collaborate more effectively and manage your project’s version history.
 
 Continue learning by exploring advanced Git features such as branching strategies, rebasing, and resolving merge conflicts.
+
+== Branch and review exercise
+
+Create a branch with `git switch -c analysis-test`, add a small test and open a PR. Then practice xref:git-branch.adoc[branches], xref:git-merges.adoc[merge/conflict resolution], xref:git-remotes.adoc[remotes] and xref:github-review-projects-lab.adoc[GitHub review]. Explain what is local before a push.

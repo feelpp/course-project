@@ -4,6 +4,8 @@
 :page-illustration: fa-solid fa-chalkboard-teacher
 :description: Complete teaching guide for the Course Project, designed specifically for mathematics students. Includes weekly schedules, common challenges, and assessment strategies.
 
+NOTE: This is the retained legacy three-level schedule. Use xref:teaching-guide.adoc[the current M1/M2 teaching guide] for the course progression and first M2 session.
+
 [.lead]
 This comprehensive guide helps instructors deliver the Course Project effectively to mathematics students (CSMI program). The curriculum is designed for a 12-week semester with flexible pacing based on student backgrounds.
 

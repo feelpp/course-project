@@ -1,0 +1,79 @@
+= Project workflow, tests and reproducibility
+
+== Why this matters
+
+A project is a sequence of explainable, checked changes. Use Git/GitHub throughout your Linux, Python, {cpp} and Gaya work rather than saving collaboration for the final submission.
+
+== Expected workflow
+
+----
+issue → branch → commits → PR → review → CI → merge → closed issue
+----
+
+Write an issue with the problem, acceptance criteria and a small scope. Create a branch; inspect `git diff` and `git diff --staged`; commit a coherent change. Open a PR linked to the issue, request review and make CI pass before merging. CI also runs during review; a review and the checks must apply to the final revision. Use milestones for deliverables, labels for work type, and a GitHub Project board for status.
+
+Practice with xref:git-github:github-review-projects-lab.adoc[the GitHub lab], xref:git-github:github-how-to-write-issues.adoc[writing issues] and xref:project-management:github.adoc[project organization].
+
+[#testing]
+== A first meaningful test
+
+Save as `analysis.py`:
+
+[source,python]
+----
+def mean(values):
+    if not values:
+        raise ValueError("At least one value is required")
+    return sum(values) / len(values)
+----
+
+Save as `test_analysis.py`:
+
+[source,python]
+----
+import unittest
+from analysis import mean
+
+class MeanTests(unittest.TestCase):
+    def test_known_measurements(self):
+        self.assertAlmostEqual(mean([18, 20, 22]), 20.0)
+
+    def test_empty_input_is_rejected(self):
+        with self.assertRaises(ValueError):
+            mean([])
+----
+
+Run `python -m unittest discover -v` in the xref:environments.adoc[project environment]. Deliberately break the computation and confirm the test detects it before restoring the implementation. For {cpp}, use the existing xref:software:repo/organization.adoc[CTest example].
+
+[#ci]
+== Basic CI
+
+For this standard-library example, place the following in `.github/workflows/tests.yml` in the student repository:
+
+[source,yaml]
+----
+name: tests
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -v
+----
+
+For projects with dependencies, install the recorded environment before running tests. Read the failure log and fix the cause. A green check does not replace scientific validation or review. Continue with xref:git-github:github-actions.adoc[GitHub Actions].
+
+[#reproducibility]
+== Reproduce from a clean checkout
+
+Document the repository revision, software versions, input data, command, expected result and output location. Ask a partner to execute using only those instructions. Record any manual step as an issue. Do not depend on uncommitted files or private paths.
+
+== Self-check
+
+Can you explain each staged change, reproduce a failure, read CI output and show that a partner obtained the expected result? These are the working habits required in the xref:project.adoc[M1 project].

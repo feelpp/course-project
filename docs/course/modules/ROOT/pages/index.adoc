@@ -1,162 +1,37 @@
-= {project_name}
-:navtitle: home
-:page-layout: manuals
-:page-tags: project
-:page-cards-tag: catalog
-:page-cards-within-module: false
+= Course Project — M1 and M2
 :!numbered:
 
-[.lead.panel.note.rounded.w-70.justify-self-center]
-This course is designed to introduce mathematicians and scientific computing students to essential software development tools and practices. No prior programming or Linux experience required.
+Reproducible computational science and professional scientific software practice are the common thread of this course in the Master CSMI.
 
-== Difficulty Levels
-
-Each topic is organized by difficulty level:
-
-[.cards.grid-3]
-[cols="1,1,1"]
+[cols="1,1",options="header"]
 |===
-^.^a|
-[.card.bg-primary.text-white]
-====
-*🟢 FOUNDATIONAL*
-
-*Prerequisites:* None
-
-Essential tools every mathematician needs for computational work
-====
-
-^.^a|
-[.card.bg-warning.text-white] 
-====
-*🟡 INTERMEDIATE*
-
-*Prerequisites:* Linux basics, Git fundamentals
-
-Collaborative development and project management
-====
-
-^.^a|
-[.card.bg-danger.text-white]
-====
-*🔴 ADVANCED*
-
-*Prerequisites:* All previous modules
-
-High-performance computing and automation
-====
+|M1 — Computational foundations |M2 — Scientific software and MLOps
+|Work autonomously on a Linux-based scientific project, locally and remotely, using Git/GitHub and appropriate development tools.
+|Engineer, package, automate, test and reproduce a computational or machine-learning application.
+|xref:m1:index.adoc[Follow the M1 learning path] · xref:m1:project.adoc[M1 semester project]
+|xref:m2:index.adoc[Follow the M2 learning path] · xref:m2:mlops/project.adoc[MLOps project]
 |===
 
-== Course Topics
+The practical target is to operate on Gaya using Slurm and Apptainer to deploy {feelpp}, then build a simulation-to-ML pipeline: prepare inputs → HPC simulations → dataset → training → inference → verification.
 
-=== 🐧 Linux
+== M2 starts here — 7 September 2026
 
-Master command-line essentials for mathematical computing.
+xref:containers:apptainer/index.adoc[Apptainer] →
+xref:containers:apptainer/tutorial.adoc[Run a scientific application] →
+xref:m2:hpc-containers.adoc[HPC execution] →
+xref:m2:feelpp-gaya.adoc[Deploy {feelpp} on Gaya] →
+xref:m2:reproducibility.adoc[Reproducible environments] →
+xref:m2:mlops/index.adoc[MLOps] →
+xref:m2:mlops/project.adoc[MLOps project].
 
-[horizontal]
-🟢 Fundamentals:: Shell basics, file operations, text processing
-🟡 Remote Computing:: SSH, remote access, VS Code Remote-SSH
+M2 assumes the M1 foundations. Use the xref:m2:transition.adoc[readiness check] to repair specific gaps while following the M2 route.
 
-→ xref:linux:index.adoc[Start Learning Linux]
+== Prepare and find material
 
-=== 🔀 Git & GitHub
-
-Track changes in LaTeX documents and collaborate on research projects.
-
-[horizontal]
-🟢 Git Basics:: Version control fundamentals, repository management
-🟢 GitHub Basics:: Essentials, issues, getting started
-🟡 Collaboration:: Branching, merging, pull requests
-🔴 Automation:: GitHub Actions, CI/CD workflows
-
-→ xref:git-github:git-basics.adoc[Start Learning Git]
-
-=== 💻 VS Code
-
-Set up your integrated development environment for mathematical work.
-
-[horizontal]
-🟢 Getting Started:: Installation, basic usage, extensions, configuration
-
-→ xref:vscode:index.adoc[Start Learning VS Code]
-
-=== 📓 Jupyter Notebooks
-
-Interactive computing for mathematical research and teaching.
-
-→ xref:jupyter.adoc[Start Learning Jupyter]
-
-=== 📦 Containers
-
-Create reproducible environments for mathematical computing.
-
-[horizontal]
-🟡 Docker Fundamentals:: Containers, images, Dockerfile, Docker Compose
-🔴 HPC Containers:: Apptainer/Singularity, HPC deployment
-
-→ xref:containers:index.adoc[Start Learning Containers]
-
-=== 📋 Project Management
-
-Apply project management to mathematical research and thesis projects.
-
-[horizontal]
-🟡 Fundamentals:: Project phases, practical examples
-🟡 Tools & Methods:: Gantt charts, Agile practices, GitHub integration
-
-→ xref:project-management:index.adoc[Start Learning Project Management]
-
-=== 🎓 CSMI Projects
-
-Project proposal spaces organized by year and semester for CSMI cohorts.
-
-[horizontal]
-📅 2026:: Master 1, Semester 2 (S2) active workspace
-🧩 Topics:: Proposal pages grouped in `topics/` subdirectories
-
-→ xref:csmi::index.adoc[Open CSMI Projects]
-
-=== 🔄 CI/CD
-
-Automate testing, building, and deployment of mathematical software.
-
-[horizontal]
-🔴 Platforms:: GitLab CI/CD, GitHub Actions
-
-→ xref:cicd:index.adoc[Start Learning CI/CD]
-
-=== 📊 Visualization
-
-Create interactive visualizations for research results.
-
-[horizontal]
-🔴 Web Dashboards:: Dash, Plotly
-
-→ xref:visualisation:index.adoc[Start Learning Visualization]
-
-== Quick Start
-
-[.cards.grid-2]
-[cols="1,1"]
-|===
-^.^a|
-[.card]
-====
-*🎯 Students*
-
-Don't jump straight into modules! Start with the xref:prerequisites.adoc[Prerequisites & Self-Assessment] to find your optimal starting point.
-
-💨 In a hurry? → xref:quick-start.adoc[🚀 Quick Start Guide]
-====
-
-^.^a|
-[.card]
-====
-*👩‍🏫 Instructors*
-
-Check out the xref:instructor-guide.adoc[📚 Instructor Guide] with week-by-week curriculum, assessment strategies, and teaching tips.
-====
-|===
-
-Questions? https://join.slack.com/t/feelpp/shared_invite/zt-2qe0q9hw-4pVbhohCXUE6Po9Ma8dbiQ[Join us on Slack]
-
+* xref:getting-started.adoc[What the course is about and what to prepare]
+* xref:quick-start.adoc[Software and accounts]
+* xref:prerequisites.adoc[Self-assessment]
+* xref:ai-use.adoc[Using AI responsibly] and xref:assessment.adoc[competency-based assessment]
+* xref:reference.adoc[Reference library] — existing detailed tutorials and worked examples
+* xref:csmi::index.adoc[CSMI project topics by cohort]
+* xref:teaching-guide.adoc[Instructor resources]

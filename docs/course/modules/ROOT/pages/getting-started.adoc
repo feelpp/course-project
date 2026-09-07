@@ -1,0 +1,22 @@
+= Getting started
+
+== What this course is about
+
+A scientific result includes the code, inputs, environment and procedure that produced it. Learn to work in a repository, explain changes in a review, and hand a reproducible computation to another person.
+
+M1 develops autonomy: laptop → Linux → SSH → Gaya → GitHub project.
+M2 builds on it: parameterized inputs → {feelpp} in Apptainer under Slurm on Gaya → simulation dataset → ML training → inference → verification.
+The separate ROM course supplies scientific content elsewhere; this course concentrates on software and project practices.
+
+== Before M1 starts
+
+You should already be able to read and modify small programs with variables, loops, functions and basic data structures. Python is used heavily for data processing. {cpp} is also required early in M1 and used extensively in HPC1, HPC2 and HPC3; students are not expected to arrive as complete {cpp} beginners.
+
+Try the xref:prerequisites.adoc[self-assessment]. If compiling a small {cpp} program or explaining its functions is unfamiliar, identify the gap with the teaching team and complete the xref:m1:environments.adoc[development-environment exercises] early.
+
+== Before the first session
+
+. Check xref:quick-start.adoc[software and accounts] on the machine you will use.
+. Locate your cohort's repository invitation and access instructions from the teaching team.
+. Read xref:ai-use.adoc[the AI policy]; the assessment specifies which mode applies.
+. Choose xref:m1:index.adoc[M1] or xref:m2:index.adoc[M2] according to your year.

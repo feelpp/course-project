@@ -1,0 +1,28 @@
+= Using AI responsibly
+
+AI assistants such as ChatGPT/OpenAI, Claude/Anthropic, DeepSeek and GitHub Copilot may be used when the assignment permits them. Students remain responsible for every line of code, result and claim they submit. You must understand, explain, test, reproduce and defend your work.
+
+Treat generated code like a contribution from an unknown external contributor:
+
+----
+AI suggestion → inspect → git diff → understand → test → validate → commit / PR
+----
+
+* Never provide credentials, SSH private keys, API secrets, confidential information or protected datasets to external AI services.
+* Do not blindly execute generated shell commands. Explain their paths, expansions, permissions and side effects first.
+* Check generated code, dependencies, citations and scientific results against evidence. A plausible output is not validation.
+* Add tests for the intended behaviour, including failure cases. Check units, data leakage, numerical tolerances and reproducibility independently of the assistant's explanation.
+* When AI is allowed, add a short disclosure in the PR/report: tool, purpose, affected work, and how you checked it. Do not include sensitive prompts.
+
+== Assessment modes
+
+[cols="1,3",options="header"]
+|===
+|Mode |Expectation
+|Individual / no AI |Complete the task independently with only the resources specified in the assessment.
+|Open documentation / no AI |Consult the permitted documentation; do not use assistants or AI completion.
+|AI-assisted project |Use assistance with disclosure, review, tests and personal accountability.
+|AI-critical exercise |Evaluate supplied or generated output; identify errors and demonstrate corrections with evidence.
+|===
+
+The teaching team states the mode for each assessment. Permission in a project does not extend automatically to an individual check. See xref:assessment.adoc[assessment evidence].

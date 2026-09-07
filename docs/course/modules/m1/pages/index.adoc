@@ -1,0 +1,26 @@
+= M1 — Computational foundations
+
+== Learning outcomes
+
+By the end of M1, work autonomously on a Linux scientific project: navigate and process files, connect to Gaya, use VS Code Remote SSH, collaborate through GitHub, run Python, compile {cpp}, submit a scheduler job, write a test and reproduce a result.
+
+== Learning path
+
+Keep one small scientific repository throughout the path. Each lesson should improve that repository or your ability to run it.
+
+. xref:linux:index.adoc[Linux/Unix environment], xref:linux:shell.adoc[shell], xref:linux:files.adoc[files] and xref:linux:text-processing.adoc[text processing].
+. xref:linux:ssh/ssh-setup.adoc[SSH] and xref:linux:ssh/ssh-commands.adoc[remote computing].
+. xref:git-github:git-starter.adoc[Git] and xref:git-github:github-essentials.adoc[GitHub]. Start tracking work now.
+. xref:vscode:index.adoc[VS Code] and xref:linux:ssh/remote-ssh-vscode.adoc[Remote SSH]. Use these locally and remotely for subsequent exercises.
+. xref:environments.adoc[Python and C/{cpp} environments]. {cpp} familiarity is needed early and feeds into HPC1, HPC2 and HPC3.
+. xref:gaya.adoc[Gaya and basic HPC operations]: login node → scheduler → compute node.
+. xref:workflow.adoc[Project workflow, testing, basic CI and reproducibility].
+. xref:project.adoc[M1 semester project].
+
+The shared scientific target is xref:m2:feelpp-gaya.adoc[deploying {feelpp} on Gaya with Slurm and Apptainer]. M1 establishes the remote-computing and development skills needed to reach it.
+
+== Practical checkpoint
+
+From a clean checkout, run a Python computation, compile a {cpp} program, submit a short job on Gaya and open a PR containing a test and reproduction instructions. Explain where each process runs and what is committed.
+
+Use xref:ROOT:assessment.adoc[competency evidence] to identify remaining gaps.

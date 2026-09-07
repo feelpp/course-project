@@ -1,3 +1,7 @@
+= Karolina Apptainer example — advanced reference
+
+NOTE: Site-specific historical example. For the current course use xref:m2:feelpp-gaya.adoc[{feelpp} on Gaya].
+
 == Connecting to Karolina HPC and Using Apptainer
 
 Because Apptainer does not run within a Docker Codespace, you'll need to connect to the Karolina HPC system (EuroHPC) to work with Apptainer. 

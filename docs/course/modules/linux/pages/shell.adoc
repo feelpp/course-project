@@ -17,7 +17,7 @@ The shell can perform complex tasks efficiently and quickly.
 There are many types of shells available in Linux, including the Bourne Shell (`sh`), the C Shell (`csh`), and the Bourne-Again Shell (`bash`).
 
 The basics of using a Linux shell include navigating between directories, creating, renaming, and deleting files and directories, and executing system commands. 
-This introductory knowledge is crucial for Linux system administration, scripting, and automation.
+Use these skills to inspect datasets, run scientific programs and automate repeatable computations.
 
 Here is a classic bash command as an example, which prints the current directory:
 
@@ -109,23 +109,18 @@ You can also pipe the output of one command into another command:
 ls | grep "pattern"  # Passes the output of ls to grep to search for a pattern
 ----
 
-== Super User
+== Processes, permissions and everyday practice
 
-Some tasks require administrative (root) privileges to be executed. To run a command as the superuser, you use `sudo` before the command.
+Work as your normal user. System administration on shared machines belongs to the administrators; ordinary scientific work does not need a root shell.
 
-Example:
+Use `ps -u "$USER"` to inspect your processes, `ls -l` to inspect permissions, and `chmod u+x script.sh` to make your own script executable. Interrupt a foreground command with kbd:[Ctrl+C]. Understand a process before terminating it; use the scheduler to cancel cluster jobs.
 
-[source,python]
-----
-%%bash
-sudo apt update  # Run system update with superuser privileges
-----
+== Scientific-computing exercise
 
-You will typically be prompted to enter the password for the superuser account.
+In a scratch directory, create a small text file, copy it, rename the copy and inspect the result. Practice `pwd`, `ls`, `cd`, `mkdir`, `cp`, `mv`, `cat`, `head`, `tail`, `less`, `sort`, `wc`, `find` and `grep` using xref:files.adoc[files] and xref:text-processing.adoc[text processing]. Combine a filter and count with a pipe, and redirect the result to a named output file.
 
-[source,python]
-----
-%%bash
-# Become the superuser for a terminal session
-sudo su
-----
+Archive your small directory with `tar -czf exercise.tar.gz exercise/` from its parent directory. Use `scp` for a single transfer and `rsync -av --dry-run exercise/ gaya:exercise/` to preview a directory transfer; remove `--dry-run` only after checking the source/destination. Inspect paths before `rm`; deletion is not an undoable file-browser operation.
+
+== Self-check
+
+Explain absolute versus relative paths, `>` versus `>>`, a pipe, `PATH`, file permissions and where a remote command executes. Never paste environment output containing secrets into a public issue.

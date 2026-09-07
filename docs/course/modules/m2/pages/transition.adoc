@@ -1,0 +1,9 @@
+= From M1 to M2
+
+M2 starts with Apptainer. Elementary shell, Git and Python are prerequisites, not a second introductory sequence.
+
+Before the practical, demonstrate that you can clone a repository, create a branch, run Python, read a shell command and connect to your allocated Linux host. Check `apptainer --version` there.
+
+If a step blocks you, review the matching xref:ROOT:prerequisites.adoc[self-assessment item]. For remote access use xref:linux:ssh/ssh-setup.adoc[SSH], xref:linux:ssh/remote-ssh-vscode.adoc[Remote SSH] and xref:m1:gaya.adoc[Gaya operations]. For dependency isolation use xref:m1:environments.adoc[development environments].
+
+M1 asks whether you can execute and collaborate. M2 adds the {feelpp} simulation-to-ML pipeline on Gaya: parameterized inputs, verified HPC results, training and inference with a reproducible handoff. Return to xref:containers:apptainer/index.adoc[Apptainer] once the blocking gap is resolved.

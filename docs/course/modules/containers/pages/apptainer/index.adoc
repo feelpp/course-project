@@ -1,37 +1,44 @@
-= Introduction to Apptainer
+= Apptainer for reproducible scientific work
 
-Apptainer (formerly Singularity) is a container platform specifically designed for **high-performance computing (HPC)**, **scientific computing**, and **data science**. 
-Unlike Docker, Apptainer containers run without requiring root privileges, making them more suitable for multi-user environments like university clusters or supercomputers.
+== Why this matters
 
-== Why Apptainer?
+A colleague should be able to run your computation without reconstructing your laptop. Apptainer packages a Linux application environment in an image and runs it under your user identity on a compatible Linux host. It fits shared scientific/HPC systems where users do not administer the machine.
 
-- *Rootless security*: Apptainer is designed with non-privileged users in mind, increasing security in shared environments.
-- *Performance*: Ideal for workloads in HPC, where performance and security are critical.
-- *Mobility of Compute*: Easily transport workloads between environments, including HPC clusters and cloud infrastructure.
+== Learning objectives
 
-== Getting Started with Apptainer
+Distinguish an image from an execution; pull and inspect a SIF; run commands; expose inputs and outputs deliberately; record enough information to repeat a run.
 
-To get started with Apptainer, you can install it on your system using xref:apptainer/apptainer-install.adoc[].
+== Mental model
 
-
-[source,shell]
 ----
-# Pulling a container from a registry
-apptainer pull library://alpine
-
-# Running the container
-apptainer exec alpine_latest.sif /bin/sh
+image (software environment) + host inputs + command/configuration
+                           ↓
+                  running process as you
+                           ↓
+                     host output files
 ----
 
-== Use Cases for Scientific Computing and Data Science
+An image is a file; a container execution is a process using that environment. A normal SIF image is read-only. Your home/current directory and other host paths may be mounted automatically according to site configuration. An explicit bind mount gives a stable path for an input or output directory. `--cleanenv` limits inherited environment variables; it does not hide host files or make an execution fully isolated.
 
-Apptainer is widely used in the scientific community for reproducible research. Here are a few common use cases:
+== Docker and Apptainer
 
-- **Data Science**: Apptainer can run Jupyter Notebooks, TensorFlow, or other machine learning frameworks in a secure, isolated environment without needing root access.
-- **Digital Twins**: Apptainer can simulate complex environments, making it useful for digital twin applications in industries such as healthcare, manufacturing, and smart cities.
+[cols="1,2,2",options="header"]
+|===
+|Aspect |Docker |Apptainer
+|Typical workflow |Build OCI images and operate services through a container engine. Rootless Docker also exists.
+|Run scientific jobs under the invoking user's identity, often from a single SIF file, alongside a scheduler.
+|Image exchange |OCI registries store layers and image manifests.
+|`docker://` can pull an OCI image and convert it to SIF; a Docker daemon is not needed for this operation.
+|HPC fit |Availability depends on cluster policy and runtime integration.
+|Designed for shared scientific systems; filesystem, MPI and GPU compatibility still need attention.
+|===
 
-== Apptainer vs Docker
+A container shares the host kernel. It is not a virtual machine or a guarantee of identical numerical results on different hardware.
 
-While Docker is widely used for application development and deployment, Apptainer is more suitable for HPC environments due to its security model. Both tools can be used together, depending on the requirements of your workload.
+== Start the practical
 
-Apptainer’s rootless containers offer a more secure solution in shared environments, while Docker may still be preferred for general-purpose development workflows.
+. Check xref:apptainer/apptainer-install.adoc[Linux access and Apptainer availability].
+. Follow xref:apptainer/tutorial.adoc[the scientific quick start].
+. Continue to xref:m2:hpc-containers.adoc[HPC execution] → xref:m2:reproducibility.adoc[reproducibility] → xref:m2:mlops/index.adoc[MLOps].
+
+Reference: https://apptainer.org/docs/user/latest/quick_start.html[Apptainer quick start] and xref:docker/index.adoc[existing Docker material].

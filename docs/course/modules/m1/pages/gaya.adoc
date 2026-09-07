@@ -1,0 +1,63 @@
+= Working on Gaya — basic HPC operations
+
+== Why this matters
+
+Use Gaya as part of a normal scientific workflow: edit code remotely, request resources, run a job, inspect its output and preserve the result. This page covers operation rather than the parallel algorithms taught in HPC1.
+
+== Access and mental model
+
+----
+laptop → SSH / VS Code Remote SSH → login node
+                                      ↓ scheduler
+                                  compute node
+----
+
+The existing course host is `gaya.math.unistra.fr`. Confirm your login and any network/VPN requirements with the teaching team. Configure the `gaya` alias using xref:linux:ssh/ssh-setup.adoc[SSH setup], verify `ssh gaya`, then open a remote workspace with xref:linux:ssh/remote-ssh-vscode.adoc[VS Code].
+
+Login nodes support connection, editing, transfers and job submission. Heavy computation belongs in a scheduler allocation. A VS Code terminal connected to a login node still runs on that login node.
+
+== Environment and storage
+
+Check `hostname`, `pwd`, `module avail` and `module list`. Load only the compiler/Python/Apptainer modules documented for the current course allocation; module names and versions are site-specific. Record `module list` with the run.
+
+Ask which paths are home, persistent project storage and temporary scratch, what is backed up, and what quotas/retention apply. Source belongs in Git; large inputs and results belong in the designated storage. Node-local temporary storage may be cleaned after a job. No storage path or partition name is assumed in this example.
+
+== Essential Slurm commands
+
+[cols="1,3",options="header"]
+|===
+|Command |Purpose
+|`sinfo` |Inspect partitions and node availability.
+|`squeue -u "$USER"` |Inspect your pending/running jobs and pending reasons.
+|`sbatch hello.sbatch` |Submit a batch script and receive a job ID.
+|`srun hostname` |Launch a task within an allocation, or request an allocation according to site policy.
+|`scancel JOBID` |Cancel your job, replacing `JOBID` with its number.
+|===
+
+== Worked example
+
+Create `hello.sbatch` in the working directory on shared storage:
+
+[source,bash]
+----
+#!/bin/bash
+#SBATCH --job-name=hello-course
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=256M
+#SBATCH --time=00:02:00
+#SBATCH --output=hello-%j.out
+#SBATCH --error=hello-%j.err
+set -euo pipefail
+cd "$SLURM_SUBMIT_DIR"
+srun hostname
+printf 'Job %s completed its command\n' "$SLURM_JOB_ID"
+----
+
+Add the course's required `--partition`/`--account` directives if the defaults are not usable. Submit, note the ID, monitor with `squeue`, then inspect both output files with `less` or `cat`. `%j` expands to the job ID. If accounting is enabled, `sacct -j JOBID --format=JobID,State,ExitCode` reports completion status. Inspect stderr and exit status; disappearing from the queue alone does not mean success.
+
+== Exercise and self-check
+
+Run the short job, retrieve the two logs, and explain why the hostname can differ from the login host. Submit a second job and cancel it if still pending/running. Replace `hostname` with your tested small computation using the approved environment and resource request.
+
+Common errors are an inaccessible working directory, missing module, invalid account/partition, exceeded quota, and heavy work on the login node. Record the message and job ID when requesting help. See https://slurm.schedmd.com/quickstart.html[the Slurm user guide] and xref:m2:feelpp-gaya.adoc[the target {feelpp} deployment workflow].

@@ -1,160 +1,23 @@
-= Installing Apptainer
+= Access to Apptainer
 
-Since this guide assumes you are building Apptainer from source, it walks you through the installation process. For alternative installation methods, including pre-compiled binaries, refer to the [installation section of the admin guide](https://apptainer.org/docs/admin/main/installation.html).
+== Student route
 
-== Install System Dependencies
+Apptainer runs on Linux. Use the course Linux host, or a supported Linux VM/WSL environment on a personal computer. On Gaya, use the administrator-provided installation/module; confirm its name with the teaching team.
 
-On **Debian-based systems** (e.g., Ubuntu):
-[source,shell]
+[source,bash]
 ----
-sudo apt-get update
-sudo apt-get install -y \
-    build-essential \
-    libseccomp-dev \
-    pkg-config \
-    uidmap \
-    squashfs-tools \
-    fakeroot \
-    cryptsetup \
-    tzdata \
-    dh-apparmor \
-    curl wget git
-----
-
-On **RHEL or its derivatives**:
-[source,shell]
-----
-sudo dnf groupinstall -y 'Development Tools'
-sudo dnf install -y epel-release
-sudo dnf install -y \
-    libseccomp-devel \
-    squashfs-tools \
-    fakeroot \
-    cryptsetup \
-    wget git
-----
-
-On **SLE/openSUSE**:
-[source,shell]
-----
-sudo zypper install -y \
-    libseccomp-devel \
-    libuuid-devel \
-    openssl-devel \
-    cryptsetup sysuser-tools \
-    gcc go
-----
-
-== Install Go
-
-Apptainer is written in Go, so you may need to install a newer version of Go. It’s recommended to install Go from the [official binaries](https://golang.org/dl/).
-
-Download and install the latest Go version:
-[source,shell]
-----
-export GOVERSION=1.20.10 OS=linux ARCH=amd64
-wget -O /tmp/go${GOVERSION}.${OS}-${ARCH}.tar.gz \
-    https://dl.google.com/go/go${GOVERSION}.${OS}-${ARCH}.tar.gz
-sudo tar -C /usr/local -xzf /tmp/go${GOVERSION}.${OS}-${ARCH}.tar.gz
-echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
-source ~/.bashrc
-----
-
-== Install golangci-lint
-
-If you plan to contribute to Apptainer, install `golangci-lint` for code consistency checks:
-
-[source,shell]
-----
-curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.59.1
-echo 'export PATH=$PATH:$(go env GOPATH)/bin' >> ~/.bashrc
-source ~/.bashrc
-----
-
-== Clone the Apptainer Repo
-
-Clone the repository and build the specific version of Apptainer:
-[source,shell]
-----
-git clone https://github.com/apptainer/apptainer.git
-cd apptainer
-git checkout v1.3.4
-----
-
-== Compile Apptainer
-
-You can configure, build, and install Apptainer using the following commands:
-
-[source,shell]
-----
-./mconfig
-cd $(/bin/pwd)/builddir
-make
-sudo make install
-----
-
-Verify the installation:
-[source,shell]
-----
+command -v apptainer
 apptainer --version
 ----
 
-== Compiling Dependent FUSE-based Packages
+If these fail on a shared host, ask which environment/module to use. A laptop terminal or ordinary hosted development container is not automatically a suitable Apptainer build environment.
 
-Some FUSE-based packages may need to be installed for Apptainer. For Debian:
+== Personal Linux installation
 
-[source,shell]
-----
-sudo apt-get install -y autoconf automake libtool pkg-config libfuse3-dev zlib1g-dev
-----
-For RHEL:
-[source,shell]
-----
-sudo dnf install -y autoconf automake libtool pkgconfig fuse3-devel zlib-devel
-----
+Choose packages and configuration for your distribution from the https://apptainer.org/docs/admin/latest/installation.html[official installation guide]. Install only on a machine you administer. Verify the version and complete the xref:apptainer/tutorial.adoc[pull/exec exercise] before attempting a definition-file build.
 
-Download, compile, and install the dependencies:
-[source,shell]
-----
-./scripts/download-dependencies
-./scripts/compile-dependencies
-sudo ./scripts/install-dependencies
-----
+== When building is unavailable
 
-== AppArmor Profile (Ubuntu 23.10+)
+Use an image prepared by the instructor on an approved build host. Check its SHA-256 against the supplied manifest. Execution of a SIF does not imply permission or support for every build mode. Registry/network access, quota and host architecture must also match the exercise.
 
-To allow Apptainer to create unprivileged user namespaces on Ubuntu 23.10+:
-
-[source,shell]
-----
-sudo tee /etc/apparmor.d/apptainer << 'EOF'
-# Permit unprivileged user namespace creation for apptainer starter
-abi <abi/4.0>,
-include <tunables/global>
-profile apptainer /usr/local/libexec/apptainer/bin/starter{,-suid} 
-    flags=(unconfined) {
-  userns,
-  include if exists <local/apptainer>
-}
-EOF
-sudo systemctl reload apparmor
-----
-
-Alternatively, you can allow all unprivileged users to create namespaces:
-[source,shell]
-----
-sudo sh -c 'echo kernel.apparmor_restrict_unprivileged_userns=0 >/etc/sysctl.d/90-disable-userns-restrictions.conf'
-sudo sysctl -p /etc/sysctl.d/90-disable-userns-restrictions.conf
-----
-
-== Building and Installing from RPM
-
-For RHEL/Fedora, install additional packages and build Apptainer as an RPM:
-
-[source,shell]
-----
-sudo dnf install -y rpm-build golang
-wget https://github.com/apptainer/apptainer/releases/download/v1.3.4/apptainer-1.3.4.tar.gz
-rpmbuild -tb apptainer-1.3.4.tar.gz
-sudo rpm -Uvh ~/rpmbuild/RPMS/x86_64/apptainer-1.3.4-1.el8.x86_64.rpm
-----
+The xref:apptainer/install-source-legacy.adoc[historical source-install recipe] is retained for reference; it is not required for this course.

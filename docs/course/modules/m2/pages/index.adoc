@@ -1,0 +1,25 @@
+= M2 — Scientific software and MLOps
+
+== Why this matters
+
+A model or simulation is useful to others when its environment, data, code and results can be identified and reproduced. M2 assumes M1 shell, Git, Python and remote-computing skills; xref:transition.adoc[review only the gaps you need].
+
+== Learning outcomes
+
+Deploy {feelpp} with Apptainer and Slurm on Gaya; prepare parameterized simulations, assemble a verified dataset, train and track regression models, package inference and verify predictions against held-out {feelpp} results. Test the stages and build a CI pipeline. Explain and defend the main engineering choices and scientific limitations.
+
+== Start here — session of 7 September 2026
+
+. xref:containers:apptainer/index.adoc[Apptainer: image and execution model].
+. xref:containers:apptainer/tutorial.adoc[Practical: a reproducible scientific computation].
+. xref:hpc-containers.adoc[Execute on HPC with explicit inputs and outputs].
+. xref:feelpp-gaya.adoc[Deploy {feelpp} on Gaya with Slurm and generate simulation results].
+. xref:reproducibility.adoc[Record the environment and reproduce a result].
+. xref:mlops/index.adoc[MLOps: follow the complete lifecycle].
+. xref:mlops/project.adoc[Start the MLOps project].
+
+First-session evidence: the command you ran, input/output files, image checksum and a short explanation of what a bind mount exposes. A successful first run is followed by a second run from recorded inputs.
+
+== Continue through the project
+
+Use xref:mlops/lifecycle.adoc[data/model lifecycle and experiment tracking] and xref:mlops/engineering.adoc[testing, pipelines, packaging and inference] as working guides. Then carry these practices into the xref:semester-project.adoc[M2 semester project]. The xref:ROOT:reference.adoc[reference library] preserves deeper Docker, MPI, CI/CD, distribution and visualization material.

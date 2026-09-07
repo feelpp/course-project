@@ -1,0 +1,72 @@
+= Deploy {feelpp} on Gaya with Slurm and Apptainer
+
+== Objective
+
+Operate on Gaya to run a {feelpp} heat simulation through Slurm, preserve its inputs/results and repeat it. This is the course's scientific deployment target and the starting point for the xref:mlops/project.adoc[simulation-to-ML pipeline]. The xref:containers:apptainer/tutorial.adoc[CSV exercise] is only a short runtime check before this application.
+
+== Prepare an image and case
+
+Use xref:m1:gaya.adoc[Gaya access/storage guidance]. The instructor must validate the image, case and resource request on the course allocation before teaching. The explicit release below is the example documented by https://docs.feelpp.org/user/latest/install/containers.html[{feelpp}]; it is a reproducible starting version, not a claim that it is the newest or already validated on Gaya.
+
+Prepare files once on the approved download/build host or shared project area, not inside every batch job. If students lack registry access, distribute the preflighted SIF with its checksum.
+
+[source,bash]
+----
+mkdir -p feelpp-lab/case feelpp-lab/results
+cd feelpp-lab
+apptainer pull feelpp.sif oras://ghcr.io/feelpp/feelpp:v0.111.0-preview.10-noble-sif
+apptainer inspect feelpp.sif
+sha256sum feelpp.sif > feelpp.sif.sha256
+
+case_revision=44487393868854b53e47e82217d3a0fbc557c8d1
+case_url="https://raw.githubusercontent.com/feelpp/feelpp/$case_revision/toolboxes/heat/cases/Building/ThermalBridgesENISO10211"
+for case_file in case2.cfg case2.json case2.geo; do
+    curl --fail --location "$case_url/$case_file" --output "case/$case_file"
+done
+sha256sum case/case2.* > case.sha256
+----
+
+This stages a two-dimensional thermal-bridge case from the matching {feelpp} source revision. Keep all three files together: the CFG refers to the JSON, which refers to the geometry. Preserve the original baseline before varying inputs. See the https://docs.feelpp.org/user/latest/using/toolboxes/heat.html[heat toolbox interface] and https://github.com/feelpp/feelpp/tree/44487393868854b53e47e82217d3a0fbc557c8d1/toolboxes/heat/cases/Building/ThermalBridgesENISO10211[pinned case source].
+
+== First batch run: one rank
+
+Save `feelpp.sbatch` in `feelpp-lab`. Add the course partition/account and module setup if required. This is a single-rank baseline, before tackling host/container MPI compatibility.
+
+[source,bash]
+----
+include::example$feelpp.sbatch[]
+----
+
+The command uses the toolbox executable directly with `exec`, explicit inputs and a writable result directory. The case configuration specifies dimension and discretization. Each job gets a separate result directory. All {feelpp} execution, including the version check, happens inside the allocation.
+
+[source,bash]
+----
+sbatch feelpp.sbatch
+squeue -u "$USER"
+----
+
+Note the returned job ID. Inspect `feelpp-JOBID.out`, `feelpp-JOBID.err` and `results/JOBID/`, replacing `JOBID`. Where available, check `sacct -j JOBID --format=JobID,State,ExitCode`. Locate measure CSVs and exported fields; do not equate a Slurm `COMPLETED` state with a scientifically valid solution. Record solver convergence and compare the original case's checks with its documented reference values.
+
+== From one run to a dataset
+
+Add a named spatial-average measure under `PostProcess.heat.Measures.Statistics` in a copy of the case JSON, alongside existing statistics:
+
+[source,json]
+----
+"mean_temperature": {
+    "type": "mean",
+    "field": "temperature"
+}
+----
+
+This represents the domain integral of temperature divided by domain measure, not the arithmetic mean of mesh-node values. The documented CSV column is `Statistics_mean_temperature_mean`; inspect the actual output header for the selected release during preflight. The https://docs.feelpp.org/toolboxes/latest/modeling-analysis-using-json-files.html[{feelpp} postprocessing reference] describes these statistics.
+
+Run the unmodified baseline first. For parameterized cases, upstream reference checkers containing fixed expected values may no longer apply: preserve them for the baseline and replace them with checks justified for the changed parameters. Never silently ignore a checker failure.
+
+== Exercise and verification
+
+Repeat one case with the same SIF and inputs. Compare mean temperature, convergence and exported fields with an agreed tolerance. Then vary one boundary temperature in a copied case, predict the qualitative effect, and submit another job. After reviewing an intentional input change, regenerate that case's manifest (`sha256sum case/case2.* > case.sha256`) before submission; the batch script rejects input bytes that do not match it. Preserve the previous inputs and manifest with the previous run. Record the parameter values, units, input hashes, image hash, job ID and scalar output together.
+
+Parallel execution is a later extension: use the site's supported MPI launcher and matching PMI/PMIx/MPI libraries. Do not merely increase `--ntasks`: incompatible launches can create independent one-rank simulations writing the same files. Validate rank count and one-versus-many-rank results first. See https://apptainer.org/docs/user/latest/mpi.html[Apptainer MPI guidance].
+
+Next: xref:mlops/index.adoc[parameter sampling → {feelpp} on Gaya → dataset → training → inference → verification].
