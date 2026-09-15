@@ -6,7 +6,7 @@ Build a complete computational-science pipeline: prepare parameterized heat case
 
 A technically competent third party should be able to clone the repository, follow the documented procedure, reproduce the environment and execute the pipeline.
 
-The teaching team confirms groups, dates, resource budget, parameter domain and numerical/ML tolerances. Start from xref:feelpp-gaya.adoc[the single-case deployment] and xref:mlops/lifecycle.adoc[the proposed thermal-bridge parameter study].
+The teaching team confirms groups, dates, resource budget, parameter domain and numerical/ML tolerances. Start from xref:session2-thermal-fin.adoc[the session 2 thermal-fin generator and verified Heat runs]. The xref:feelpp-gaya.adoc[single-case thermal-bridge deployment] and xref:mlops/lifecycle.adoc[thermal-bridge parameter study] provide an alternative. For thermal fins, initially vary conductivity and `Bi` with fixed geometry/mesh; add geometric parameters after validating remeshing and physical markers.
 
 == Expected architecture
 

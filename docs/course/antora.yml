@@ -15,20 +15,16 @@ ext:
   collector:
 
     - run:
-        command: ./generate-jupyter.sh docs/course/modules/ROOT
+        command: ./generate-jupyter.sh docs/course
       scan:
         dir: notebooks/ROOT
         files: '**/*.ipynb'
         base: modules/ROOT/attachments/
-    - run:
-        command: ./generate-jupyter.sh docs/course/modules/linux
-      scan:
+    - scan:
         dir: notebooks/linux
         files: '**/*.ipynb'
         base: modules/linux/attachments/
-    - run:
-        command: ./generate-jupyter.sh docs/course/modules/project-management
-      scan:
+    - scan:
         dir: notebooks/project-management
         files: '**/*.ipynb'
         base: modules/project-management/attachments/        

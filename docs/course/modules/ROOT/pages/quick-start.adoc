@@ -14,6 +14,12 @@ c++ --version
 
 Set your Git author name/email, sign in to GitHub and accept the course organization/repository invitation. Keep a passphrase on your private SSH key; register only the public key. A GitHub account and a Gaya account are separate identities.
 
+== Download and run the notebooks
+
+Use *Download the Notebooks* in the header, extract the ZIP and open the extracted `course-project` folder in VS Code. In its terminal, run `uv sync --locked` to create `.venv` from the included `pyproject.toml` and `uv.lock`. Install the recommended Python/Jupyter extensions, open a notebook and choose `.venv` in *Select Kernel → Python Environments*.
+
+The archive contains only the teaching notebooks, their required local resources (if any), and the VS Code/uv setup files. The current notebooks have no bundled input datasets. The short README covers Linux shell requirements and the separate native {feelpp} environment needed by its example. Course pages and project materials remain on the website.
+
 == M1
 
 . Verify the xref:m1:environments.adoc[Python and {cpp} environments].

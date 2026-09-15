@@ -13,12 +13,8 @@ fi
 
 npx antora --stacktrace generate --log-failure-level warn --cache-dir cache --clean site.yml
 
-zip_inputs=(notebooks)
-if [[ -d .vscode ]]; then
-  zip_inputs=(.vscode notebooks)
-fi
-
-zip -r cours-project.zip "${zip_inputs[@]}" -x "*.pyc" -x "*/__pycache__/"
+python scripts/build-course-bundle.py
+python scripts/check-course-bundle.py
 mkdir -p public/cours-project/_attachments
 cp cours-project.zip public/cours-project/_attachments/
 

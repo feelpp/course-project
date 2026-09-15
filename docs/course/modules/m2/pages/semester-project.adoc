@@ -4,6 +4,8 @@ The semester project extends the engineering practices of the xref:mlops/project
 
 == Expectations and workflow
 
+The xref:session2-thermal-fin.adoc[session 2 thermal-fin practical] provides a first reproducible 3D Heat case on Gaya, including Python input generation, sequential/parallel execution and ParaView inspection. Reuse its execution record when defining a thermal project.
+
 Define the scientific question, validation strategy, inputs, resource needs and risks before implementation. Maintain a GitHub Project, milestones and actionable issues. Work through branches, PRs, CI and reviews. Document decisions and dependencies on data, hardware or external collaborators.
 
 == Deliverables

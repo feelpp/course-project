@@ -9,11 +9,7 @@
 <div class="body">
   {{> nav componentOrder=page.attributes.component-order}}
   <main class="article">
-    <div class="toolbar" role="navigation">
-      {{> nav-toggle}}
-      {{#with site.homeUrl}} <a href="{{{relativize this}}}" class="home-link{{#if @root.page.home}} is-current{{/if}}"></a> {{/with}}
-      {{> breadcrumbs}}
-    </div>
+    {{> toolbar}}
 
     <div class="content">
       <article class="doc">

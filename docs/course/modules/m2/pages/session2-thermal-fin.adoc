@@ -1,0 +1,188 @@
+= Session 2 — 3D thermal fins on Gaya
+:feelpp-revision: 44487393868854b53e47e82217d3a0fbc557c8d1
+:generator-url: https://github.com/feelpp/feelpp/tree/{feelpp-revision}/toolboxes/generator/cases/thermal_fin
+
+*M2 · 14 September 2026 · 2 hours · Work in pairs.*
+
+Build and verify a heat-transfer simulation using an existing Python generator. You will produce the inputs, run the {feelpp} Heat toolbox in Apptainer on Gaya, and compare runs with one and four MPI ranks before visualizing the results in ParaView.
+
+This session builds on the xref:containers:apptainer/tutorial.adoc[Apptainer practical] and prepares you for the xref:mlops/project.adoc[simulation → data → training → inference → verification pipeline]. You are responsible for creating the case files and Slurm script; the guidance below provides starting points and success criteria.
+
+== Organization and objectives
+
+Alternate roles: one person operates the tools while the other reviews the inputs and checks the results. Each partner must be able to explain and repeat the pair's work.
+
+[cols="1,3,3",options="header"]
+|===
+|Time |Task |Checkpoint
+|0–10 min |Identify the Gaya environment and resources |Workspace, image and modules identified
+|10–30 min |Read the Python generator and produce a 3D case |Parameters and files explained
+|30–45 min |Prepare the Heat model and mesh |Geometry, markers and JSON consistent
+|45–65 min |Submit the one-rank run in Apptainer |Convergence checked and outputs located
+|65–90 min |Adapt the launch to four ranks |MPI communicator checked and results compared
+|90–110 min |Explore the results in ParaView |Visualization and physical interpretation
+|110–120 min |Document reproduction and the first data point |Report and files organized
+|===
+
+Running with one rank, then four ranks, and comparing the results is the core assignment. Parameter variations are an extension once this first case has been verified.
+
+== Prepare your workspace
+
+Reuse your SSH/VS Code connection and the xref:m1:gaya.adoc[Gaya guidance]. The instructor supplies the site-specific details: Slurm partition/account, modules, shared storage and the SIF image path. They also specify the MPI launch method compatible with this image and whether the native {feelpp} installation is available.
+
+Your tasks:
+
+. Organize separate directories for the generator, cases and job results.
+. Check the Apptainer version and identify the image being used, including its checksum.
+. Prepare an isolated Python environment for the generator.
+. Check how to request a Slurm allocation. Meshing and solving must run on an allocated compute node, not the login node.
+
+Use the prepared SIF rather than spending the session downloading or building an image. The generator requires `python-liquid` (version 2.1.0 was used to verify this material), imported as `liquid`. It does not require the {feelpp} Python bindings.
+
+== Explore the thermal-fin generator
+
+The official script is in the `feelpp/feelpp` repository:
+
+{generator-url}/case_generator_thermal_fin.py[`toolboxes/generator/cases/thermal_fin/case_generator_thermal_fin.py`].
+
+Clone the https://github.com/feelpp/feelpp[`feelpp/feelpp` repository] into your workspace and locate {generator-url}[the generator directory]. Use revision `{feelpp-revision}` to share a common reference with the xref:feelpp-gaya.adoc[deployment guide], and record the checked-out commit. Preserve the script and `templates/` layout. No compilation of {feelpp} is required for this step: the clone provides the generator sources, while the installed toolbox or SIF provides the solver.
+
+First check whether `case_generator_thermal_fin.py` is already available locally, and distinguish an installed tool from a file in a source checkout. Either way, use your own clone for this practical so you can inspect the templates and track your changes without modifying a shared installation.
+
+Start by exploring the interface:
+
+[source,bash]
+----
+python case_generator_thermal_fin.py --help
+----
+
+=== Read before running
+
+Answer briefly in your report:
+
+. How does `argparse` obtain the parameters? What are their types and default values?
+. How does the code select a 2D or 3D geometry? What does `--cylinder` change?
+. What do `FileSystemLoader` and `render()` do? Why must you keep all the templates, including the one whose name contains `crb`?
+. How does the number of fins affect both the geometry and the materials in the JSON?
+
+The relevant options are `--dim`, `--N`, `--L`, `--d`, `--t`, `--cylinder` and `--odir`. Determine their meaning from the code and {generator-url}/case_generator_thermal_fin.adoc[the manual]. Where they differ, rely on the expressions actually generated, particularly for spacing and the dimensions of cylindrical shapes.
+
+=== Generate the reference case
+
+Construct the command yourself for the following case:
+
+[cols="1,2",options="header"]
+|===
+|Setting |Value for the first case
+|Dimension |3
+|Number of fins |2
+|Shape |Box-shaped post and fins
+|Geometric parameters |`L=1`, `d=0.75`, `t=0.25`
+|Output |A directory dedicated to the reference case
+|===
+
+Record the command you ran. Examine the generated files and explain the difference between a `.geo` geometry, a `.msh` mesh, a `.json` model and a `.cfg` configuration. Does the generator already provide a mesh? What step is still needed?
+
+*Checkpoint:* locate the groups `Post`, `Fin_i`, `Gamma_root` and `Gamma_ext` in the templates and then in the generated files, and explain how the model uses them.
+
+== Prepare a consistent Heat problem
+
+We solve steady-state conduction in the solid. A boundary condition describing heat exchange with the surroundings does not imply that we solve the airflow: we use only the Heat toolbox.
+
+Starting from the generated model:
+
+. Identify the conductivities, the `Bi` parameter and the external temperature; distinguish the values used by Heat from the bounds intended for a parameter study.
+. Identify the conditions at the base and on the external surfaces. Is a temperature or a flux prescribed at the base?
+. Explain the meaning of the case's normalized values. Do not report degrees Celsius or millimetres without defining a consistent physical scaling.
+. Prepare a configuration for Heat. Separate solver options from those related to model order reduction; preserve the upstream files so you can explain your changes.
+. Set up the mean-temperature measure described in <<measure-and-compare,Measure and compare>> so it is available in both runs.
+. Choose a mesh size suitable for a quick trial and generate a 3D mesh with Gmsh. The value `h=0.2` is a starting point for this small case; it does not replace a convergence study.
+
+*Hints:* read `gmsh -help` for the dimension, format and output-file options; use MSH 2 format for this practical. Gmsh must support OpenCASCADE, either in the image or in the provided native installation. Examine the messages and mesh quality, not just the exit code.
+
+In Gmsh, check the volumes, physical groups and actual location of the base surface. A name appearing in the JSON does not prove that the correct set of elements is selected.
+
+Next, configure the mesh import in the Heat JSON. Use *the same mesh file* to compare one and four ranks. The `Meshes.heat.Import` section and its partitioning option are described in the https://docs.feelpp.org/toolboxes/latest/modeling-analysis-using-json-files.html[JSON model documentation]. The `$cfgdir` symbol lets you reference a file relative to the CFG directory.
+
+*Checkpoint:* another pair must be able to follow the CFG → JSON → mesh chain and verify that the required markers exist. Note that the upstream JSON contains `//` comments, which strict JSON validators do not accept.
+
+== Run Heat on Gaya
+
+=== Build a first job using one rank
+
+Write your Slurm script using what you learned in the previous session. It must:
+
+* Request modest resources for a one-rank run and preserve standard output and error logs.
+* Launch `feelpp_toolbox_heat` inside the image using `apptainer exec`.
+* Pass the CFG with `--config-file` and explicitly select the results directory with `--directory`.
+* Make the inputs accessible inside the container and keep the outputs on Gaya after execution.
+* Isolate each job's results and record the environment and inputs used.
+
+Consult the https://docs.feelpp.org/user/latest/using/toolboxes/heat.html[Heat toolbox interface] and the first-session material if you get stuck. Consider paths as seen from the host and from the container. If importing the mesh creates partitioning files, provide a writable working copy of the inputs for each job.
+
+Submit with `sbatch`, monitor with `squeue`, then examine the logs and, where available, `sacct`. Locate the result files without assuming they were written to the current directory.
+
+*Checkpoint:* demonstrate solver convergence and a usable temperature field. A Slurm `COMPLETED` state alone does not validate the solution.
+
+=== Adapt your launch to four ranks
+
+Keep exactly the same problem, mesh and numerical settings. Adapt the Slurm request and launch to use four ranks on a single node.
+
+Use the launcher validated by the instructor: the hybrid model starts processes with Gaya's MPI, then runs {feelpp} inside Apptainer. The host and image MPI libraries must be compatible; see https://apptainer.org/docs/user/latest/mpi.html[Apptainer and MPI]. For a direct `srun` launch, use the PMI/PMIx plugin validated for this combination.
+
+*Explain:* why is increasing `--ntasks` alone insufficient? Why are four independent processes different from a four-rank MPI computation? What would happen if `--cleanenv` removed the MPI environment?
+
+Do not use `--mpi=none` for the multirank computation. Check the communicator size in the {feelpp} output; the exported `pid` field also helps inspect the partitions. Do not confuse this check with the number of tasks requested from Slurm.
+
+=== Native alternative
+
+If the instructor provides access to the native {feelpp} installation on Gaya, adapt your script to invoke the Heat toolbox directly with the specified {feelpp}/MPI modules. Keep the same CFG, JSON and mesh, and continue to isolate job results.
+
+Record the version and modules: the native installation and SIF are separate environments. This alternative also allows you to continue the parallel work if the image's MPI has not yet been validated; state clearly which execution method you actually used.
+
+[[measure-and-compare]]
+== Measure and compare
+
+Add a volume-averaged temperature measure to the model using the `PostProcess` section, then `Measures` / `Statistics`, in the https://docs.feelpp.org/toolboxes/latest/modeling-analysis-using-json-files.html[JSON documentation]. Choose a descriptive name and locate its column in the generated CSV.
+
+The quantity of interest is stem:[\overline{T}=\frac{1}{|\Omega|}\int_\Omega T\,\mathrm{d}\Omega]. Why is the arithmetic mean of the nodal values not equivalent?
+
+Compare one and four ranks in a small table of your own design: job IDs, environment, mesh hash, rank count, convergence, mean temperature and timings. Define a relative difference and propose a justified tolerance to discuss with the instructor. If the results differ, examine the inputs, convergence and MPI launch before attributing the difference to a physical effect.
+
+Distinguish queue time, startup, partitioning, solving and writing. A very small case may be slower with four ranks; explain this result if it occurs.
+
+== Explore with ParaView
+
+Open the results in ParaView, either from the Gaya graphical session provided for the course or on your computer after transferring the output directory. The choice of a native or containerized solver does not dictate where the visualizer runs.
+
+*Hints:* locate the exported entry file (`.case` for EnSight, or `.pvd` if VTK is configured). It references other files: transfer the entire required directory, not just this file or a single partition. See https://docs.paraview.org/en/latest/UsersGuide/dataIngestion.html[loading data in ParaView].
+
+Create a visualization that lets you:
+
+. View the mesh and temperature with a readable legend.
+. Examine the interior using a slice through the post and fins.
+. Identify the heated base and interpret the observed gradients.
+. Visualize the partitions using the parallel run's `pid` field.
+. Compare one and four ranks using the same slice and colour scale.
+
+Save an annotated screenshot and a ParaView state. Explain which files are still needed to reopen this state elsewhere. As an extension, investigate how to verify a volume average with the *Integrate Variables* filter.
+
+== Extension: prepare a first parameter study
+
+Once the reference case has been verified, choose *one* parameter to change: number of fins, a geometric dimension, conductivity or `Bi`.
+
+Before running, predict the expected effect and decide whether to regenerate the mesh or only modify the model. Create the case in a separate directory, preserve its parameters and checksums, then compare your prediction with the results.
+
+Propose a data-row schema linking the input parameters to the mean temperature and its provenance. One-rank and four-rank runs of the same case are numerical verification runs, not two independent physical examples to split between training and testing.
+
+[[deliverables]]
+== End-of-session deliverables
+
+* Your commands, scripts and configurations, with the generator revision and an explanation of your changes.
+* Job IDs and logs, measurements and their comparison; keep the mesh and results in the designated storage space with their checksums.
+* A ParaView screenshot with a legend and physical interpretation.
+* A short report stating what works, the obstacles encountered and the remaining checks. Report a failed MPI run as a failure.
+
+Another pair must be able to reproduce your workflow from these materials. Version scripts and small configuration files in Git; keep the SIF and large outputs in the designated storage space.
+
+Continue with the xref:mlops/project.adoc[MLOps project], then the xref:semester-project.adoc[semester project].
