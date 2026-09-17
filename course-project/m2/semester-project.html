@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>M2 semester project :: Course Project</title>
+    <title>M2 semester project — inference and optimisation :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/m2/semester-project.html">
     <link rel="prev" href="mlops/project.html">
     <link rel="next" href="../reference.html">
@@ -275,7 +275,7 @@ MathJax.Hub.Config({
     <a class="nav-link" href="feelpp-gaya.html">Deploy Feel++ on Gaya with Slurm</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="session2-thermal-fin.html">Session 2 — 3D thermal fins</a>
+    <a class="nav-link" href="session2-thermal-fin.html">Session 2 — 3D thermal fins (preparation)</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="reproducibility.html">Reproducible environments and results</a>
@@ -296,10 +296,10 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="mlops/project.html">M2 — MLOps Project</a>
+    <a class="nav-link" href="mlops/project.html">M2 — Thermal-fin MLOps mini-project</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mlops/project.html">Brief and expected architecture</a>
+    <a class="nav-link" href="mlops/project.html">Complete workflow and architecture</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="mlops/project.html#_github_workflow">GitHub workflow</a>
@@ -320,10 +320,10 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="semester-project.html">M2 — Semester Project</a>
+    <a class="nav-link" href="semester-project.html">M2 — Semester project: inference and optimisation</a>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="semester-project.html">Expectations and software practices</a>
+    <a class="nav-link" href="semester-project.html">Continuation of the thermal-fin project</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#_expectations_and_workflow">GitHub workflow</a>
@@ -704,7 +704,7 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Course Project</a></li>
-    <li><a href="semester-project.html">M2 — Semester Project</a></li>
+    <li><a href="semester-project.html">M2 — Semester project: inference and optimisation</a></li>
   </ul>
 </nav>
 
@@ -729,11 +729,14 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">M2 semester project</h1>
+<h1 class="page">M2 semester project — inference and optimisation</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The semester project extends the engineering practices of the <a href="mlops/project.html" class="xref page">MLOps project</a> to a larger scientific problem agreed with the supervisor. The scientific topic can differ; reuse reproducibility, tests, packaging and review practices. ROM teaching remains in its separate scientific course.</p>
+<p>The semester project is the continuation and final stage of the <a href="mlops/project.html" class="xref page">thermal-fin MLOps mini-project</a>. It is not a second, unrelated MLOps exercise. Starting from the verified 3D finite-element workflow and simulation database, complete the reduced model, package inference, and solve an operational or design optimisation problem.</p>
+</div>
+<div class="paragraph">
+<p>The scientific object remains the mapping \(\mu \mapsto S(\mu)\), where \(\mu=(L,t,\mathrm{Bi})\) and \(S\) is the mean temperature on the heated CPU/post root <code>Gamma_root</code>. The semester work turns this validated mapping into a usable reduced-order/surrogate model: a prediction should be available without launching a new 3D solver run, while every proposed optimum must be checked by the full model.</p>
 </div>
 </div>
 </div>
@@ -745,6 +748,28 @@ MathJax.Hub.Config({
 </div>
 <div class="paragraph">
 <p>Define the scientific question, validation strategy, inputs, resource needs and risks before implementation. Maintain a GitHub Project, milestones and actionable issues. Work through branches, PRs, CI and reviews. Document decisions and dependencies on data, hardware or external collaborators.</p>
+</div>
+<div class="paragraph">
+<p>The expected continuation is:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>freeze and document the verified 3D simulation dataset;</p>
+</li>
+<li>
+<p>train and validate the surrogate for \(S(\mu)\);</p>
+</li>
+<li>
+<p>package the inference workflow so a new parameter point can be evaluated rapidly;</p>
+</li>
+<li>
+<p>formulate and solve an operational or design optimisation problem;</p>
+</li>
+<li>
+<p>validate the selected configuration with a new finite-element simulation and analyse the surrogate&#8217;s limits.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -768,7 +793,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="mlops/project.html">M2 — MLOps Project</a></span>
+  <span class="prev"><a href="mlops/project.html">M2 — Thermal-fin MLOps mini-project</a></span>
   <span class="next"><a href="../reference.html">Reference</a></span>
 </nav>
 </article>

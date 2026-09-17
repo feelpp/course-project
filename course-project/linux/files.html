@@ -276,7 +276,7 @@ MathJax.Hub.Config({
     <a class="nav-link" href="../m2/feelpp-gaya.html">Deploy Feel++ on Gaya with Slurm</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../m2/session2-thermal-fin.html">Session 2 — 3D thermal fins</a>
+    <a class="nav-link" href="../m2/session2-thermal-fin.html">Session 2 — 3D thermal fins (preparation)</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../m2/reproducibility.html">Reproducible environments and results</a>
@@ -297,10 +297,10 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../m2/mlops/project.html">M2 — MLOps Project</a>
+    <a class="nav-link" href="../m2/mlops/project.html">M2 — Thermal-fin MLOps mini-project</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../m2/mlops/project.html">Brief and expected architecture</a>
+    <a class="nav-link" href="../m2/mlops/project.html">Complete workflow and architecture</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../m2/mlops/project.html#_github_workflow">GitHub workflow</a>
@@ -321,10 +321,10 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../m2/semester-project.html">M2 — Semester Project</a>
+    <a class="nav-link" href="../m2/semester-project.html">M2 — Semester project: inference and optimisation</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../m2/semester-project.html">Expectations and software practices</a>
+    <a class="nav-link" href="../m2/semester-project.html">Continuation of the thermal-fin project</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../m2/semester-project.html#_expectations_and_workflow">GitHub workflow</a>
@@ -839,7 +839,7 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 0
--rw-r--r-- 1 runner runner 0 Sep 17 09:34 example.txt</pre>
+-rw-r--r-- 1 runner runner 0 Sep 17 10:08 example.txt</pre>
 </div>
 </div>
 </div>
@@ -866,10 +866,10 @@ ls -l file.txt</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>-rw-r--r-- 1 runner runner 0 Sep 17 09:34 file.txt
--rwxr-xr-x 1 runner runner 0 Sep 17 09:34 file.txt
--rwxr-xr-x 1 runner runner 0 Sep 17 09:34 file.txt
--rwxr-xr-x 1 runner runner 0 Sep 17 09:34 file.txt</pre>
+<pre>-rw-r--r-- 1 runner runner 0 Sep 17 10:08 file.txt
+-rwxr-xr-x 1 runner runner 0 Sep 17 10:08 file.txt
+-rwxr-xr-x 1 runner runner 0 Sep 17 10:08 file.txt
+-rwxr-xr-x 1 runner runner 0 Sep 17 10:08 file.txt</pre>
 </div>
 </div>
 </div>
@@ -905,10 +905,10 @@ ls -l</code></pre>
 <pre>file.txt
 file1.txt
 total 12
--rw-r--r-- 1 runner runner 10240 Sep 17 09:34 archive.tar
--rw-r--r-- 1 runner runner     0 Sep 17 09:34 example.txt
--rwxr-xr-x 1 runner runner     0 Sep 17 09:34 file.txt
--rw-r--r-- 1 runner runner     0 Sep 17 09:34 file1.txt</pre>
+-rw-r--r-- 1 runner runner 10240 Sep 17 10:08 archive.tar
+-rw-r--r-- 1 runner runner     0 Sep 17 10:08 example.txt
+-rwxr-xr-x 1 runner runner     0 Sep 17 10:08 file.txt
+-rw-r--r-- 1 runner runner     0 Sep 17 10:08 file1.txt</pre>
 </div>
 </div>
 </div>
@@ -930,10 +930,10 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 4
--rw-r--r-- 1 runner runner 150 Sep 17 09:34 archive.tar.gz
--rw-r--r-- 1 runner runner   0 Sep 17 09:34 example.txt
--rwxr-xr-x 1 runner runner   0 Sep 17 09:34 file.txt
--rw-r--r-- 1 runner runner   0 Sep 17 09:34 file1.txt</pre>
+-rw-r--r-- 1 runner runner 150 Sep 17 10:08 archive.tar.gz
+-rw-r--r-- 1 runner runner   0 Sep 17 10:08 example.txt
+-rwxr-xr-x 1 runner runner   0 Sep 17 10:08 file.txt
+-rw-r--r-- 1 runner runner   0 Sep 17 10:08 file1.txt</pre>
 </div>
 </div>
 </div>
@@ -962,8 +962,8 @@ ls -lrt</code></pre>
 <pre>file.txt
 file1.txt
 total 0
--rw-r--r-- 1 runner runner 0 Sep 17 09:34 file1.txt
--rwxr-xr-x 1 runner runner 0 Sep 17 09:34 file.txt</pre>
+-rw-r--r-- 1 runner runner 0 Sep 17 10:08 file1.txt
+-rwxr-xr-x 1 runner runner 0 Sep 17 10:08 file.txt</pre>
 </div>
 </div>
 </div>
@@ -992,20 +992,20 @@ ls /tmp</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>clr-debug-pipe-1809-5732-in
-clr-debug-pipe-1809-5732-out
-clr-debug-pipe-1829-5875-in
-clr-debug-pipe-1829-5875-out
+<pre>clr-debug-pipe-1801-2459-in
+clr-debug-pipe-1801-2459-out
+clr-debug-pipe-1821-2602-in
+clr-debug-pipe-1821-2602-out
 documents
-dotnet-diagnostic-1809-5732-socket
-dotnet-diagnostic-1829-5875-socket
+dotnet-diagnostic-1801-2459-socket
+dotnet-diagnostic-1821-2602-socket
 file.txt
 node-compile-cache
 snap-private-tmp
-systemd-private-bcea265542c042a28cd4ce0428a25f3c-chrony.service-FDsvEt
-systemd-private-bcea265542c042a28cd4ce0428a25f3c-haveged.service-zOK938
-systemd-private-bcea265542c042a28cd4ce0428a25f3c-systemd-logind.service-JM1JS1
-systemd-private-bcea265542c042a28cd4ce0428a25f3c-systemd-resolved.service-Rkvd52
+systemd-private-f28933fbaec8478cbac7e7773a215c86-chrony.service-w0NrML
+systemd-private-f28933fbaec8478cbac7e7773a215c86-haveged.service-wWbs8k
+systemd-private-f28933fbaec8478cbac7e7773a215c86-systemd-logind.service-1xq28Y
+systemd-private-f28933fbaec8478cbac7e7773a215c86-systemd-resolved.service-Wrtbz7
 www-data-temp-aspnet-0</pre>
 </div>
 </div>
@@ -1053,20 +1053,20 @@ ls /tmp</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>clr-debug-pipe-1809-5732-in
-clr-debug-pipe-1809-5732-out
-clr-debug-pipe-1829-5875-in
-clr-debug-pipe-1829-5875-out
+<pre>clr-debug-pipe-1801-2459-in
+clr-debug-pipe-1801-2459-out
+clr-debug-pipe-1821-2602-in
+clr-debug-pipe-1821-2602-out
 documents
-dotnet-diagnostic-1809-5732-socket
-dotnet-diagnostic-1829-5875-socket
+dotnet-diagnostic-1801-2459-socket
+dotnet-diagnostic-1821-2602-socket
 newname.txt
 node-compile-cache
 snap-private-tmp
-systemd-private-bcea265542c042a28cd4ce0428a25f3c-chrony.service-FDsvEt
-systemd-private-bcea265542c042a28cd4ce0428a25f3c-haveged.service-zOK938
-systemd-private-bcea265542c042a28cd4ce0428a25f3c-systemd-logind.service-JM1JS1
-systemd-private-bcea265542c042a28cd4ce0428a25f3c-systemd-resolved.service-Rkvd52
+systemd-private-f28933fbaec8478cbac7e7773a215c86-chrony.service-w0NrML
+systemd-private-f28933fbaec8478cbac7e7773a215c86-haveged.service-wWbs8k
+systemd-private-f28933fbaec8478cbac7e7773a215c86-systemd-logind.service-1xq28Y
+systemd-private-f28933fbaec8478cbac7e7773a215c86-systemd-resolved.service-Wrtbz7
 www-data-temp-aspnet-0</pre>
 </div>
 </div>
