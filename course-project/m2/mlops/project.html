@@ -831,6 +831,37 @@ MathJax.Hub.Config({
 <div class="paragraph">
 <p>The model below is the direct 3D extension of the 2D thermal-fin problem. The differential equations and interface conditions are unchanged. In 3D, the subdomains \(\Omega^i\) are volumes, the root and exterior boundaries \(\Gamma\) are surfaces, and the integrals use volume or surface measures.</p>
 </div>
+<div class="paragraph">
+<p>The two views below connect the mathematical model to the numerical objects handled by the workflow. The mesh is the discretized 3D domain supplied to the finite-element solver; the temperature field is the corresponding solution used for physical inspection. Both must be retained for traceability, while the learning dataset uses the scalar root-temperature functional defined below.</p>
+</div>
+<table class="tableblock frame-none grid-none stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="../_images/thermal-fin-mesh-3d.png" alt="3D tetrahedral mesh of the central post and four thermal fins" width="100%">
+</div>
+<div class="title">Figure 1. 3D tetrahedral mesh of the post and four fins</div>
+</div>
+<div class="paragraph">
+<p>Check the geometry, mesh quality and physical boundary markers before launching the parameter campaign. A valid mesh is required for every sampled pair \((L,t)\).</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="../_images/thermal-fin-temperature-3d.png" alt="Nondimensional temperature field in the central post and four thermal fins" width="100%">
+</div>
+<div class="title">Figure 2. Nondimensional 3D temperature field</div>
+</div>
+<div class="paragraph">
+<p>Heat enters through the CPU/root, diffuses through the post and fins, and is rejected to ambient air through the Robin boundaries. The full field supports verification; the boundary average \(S(\mu)\) is the quantity learned by the surrogate.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="sect2">
 <h3 id="_domain_decomposition"><a class="anchor" href="#_domain_decomposition"></a>4.1. Domain decomposition</h3>
 <div class="paragraph">
