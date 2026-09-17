@@ -46,11 +46,11 @@ where `L` is the fin length, `t` its thickness and `Bi` the nondimensional opera
 S(\\mu) = \\overline{T}_{base}(\\mu) = \\frac{1}{|\\Gamma_{base}|}\\int_{\\Gamma_{base}} T(\\mu)\\,\\mathrm{d}\\Gamma.
 ++++
 
-The learning task is to construct a surrogate `\\hat{S}(\\mu)` of this mapping. The dataset therefore contains parameter vectors, provenance and the corresponding value of `S`; it is not a dataset of unrelated images or fields. The 3D temperature field remains available for physical interpretation and verification.
+The learning task is to construct a surrogate `S_hat(mu)` of this mapping. The dataset therefore contains parameter vectors, provenance and the corresponding value of `S`; it is not a dataset of unrelated images or fields. The 3D temperature field remains available for physical interpretation and verification.
 
 == Final application: rapid operational or design optimization
 
-Once `\\hat{S}` has been validated, use it as the last stage of the workflow for rapid exploration. In a design study, search the admissible parameter domain for the configuration that minimizes the base temperature under the prescribed heat load:
+Once `S_hat` has been validated, use it as the last stage of the workflow for rapid exploration. In a design study, search the admissible parameter domain for the configuration that minimizes the base temperature under the prescribed heat load:
 
 [stem]
 ++++
