@@ -26,26 +26,26 @@ The following two views illustrate the expected outputs of the numerical stage. 
 
 image::thermal-fin-mesh-3d.png[3D tetrahedral mesh of the four-fin heat sink,align="center",width=900]
 
-.*Figure 1. 3D mesh.* The volume is discretized with tetrahedral elements around the central post and the four fins. Before launching a campaign, check the element quality, the four-fin geometry, the CPU/base marker and all external markers. A successful meshing command alone is not evidence that the physical groups required by the Heat model are correct.
+.*Figure 1. 3D mesh.* The volume is discretized with tetrahedral elements around the central post and the four fins. Before launching a campaign, check the element quality, the four-fin geometry, the `Gamma_root` marker and all external markers. A successful meshing command alone is not evidence that the physical groups required by the Heat model are correct.
 
 image::thermal-fin-temperature-3d.png[3D temperature field in the four-fin heat sink,align="center",width=900]
 
-.*Figure 2. 3D temperature visualization.* The warmest region is expected near the heated CPU/base and the post; temperature decreases along the fins as heat is transferred to the ambient. The colour scale and the nondimensional convention must be recorded. This view is for physical interpretation and debugging; the scalar used by the MLOps model must come from the documented average on the CPU/post base marker.
+.*Figure 2. 3D temperature visualization.* The warmest region is expected near the heated CPU/root and the post; temperature decreases along the fins as heat is transferred to the ambient. The colour scale and the nondimensional convention must be recorded. This view is for physical interpretation and debugging; the scalar used by the MLOps model must come from the documented average on `Gamma_root`.
 
-For each sampled parameter vector, the workflow should preserve both the generated mesh and the visualization-ready result. The mesh is an input to the solver; the temperature field is an output used for inspection and, together with the base statistic, for verification.
+For each sampled parameter vector, the workflow should preserve both the generated mesh and the visualization-ready result. The mesh is an input to the solver; the temperature field is an output used for inspection and, together with the root statistic, for verification.
 
 == From simulations to a learned mapping
 
-Denote a parameter point by `\\mu=(L,t,Bi)`. The solver associates with it the functional
+Denote a parameter point by latexmath:[\mu=(L,t,\mathrm{Bi})]. The solver associates with it the functional
 
-[stem]
+[latexmath]
 ++++
-S(\\mu)=\\overline{T}_{base}(\\mu),
+S(\mu)=\overline{T}_{\mathrm{root}}(\mu),
 ++++
 
-the mean temperature on the heated CPU/post base. Learning does not replace the finite-element solver during data generation: it learns the mapping `\\mu \\mapsto S(\\mu)` from the verified simulation database. This scalar `S` is the typical quantity of interest used for training, prediction and error assessment; the complete 3D temperature field is retained for visualization and scientific checks.
+the mean temperature on the heated CPU/post root. Learning does not replace the finite-element solver during data generation: it learns the mapping latexmath:[\mu \mapsto S(\mu)] from the verified simulation database. This scalar latexmath:[S] is the typical quantity of interest used for training, prediction and error assessment; the complete 3D temperature field is retained for visualization and scientific checks.
 
-As a final application, the validated surrogate can support rapid optimization. For a design study, search over `(L,t,Bi)` for the admissible configuration with the lowest base temperature (or another explicitly stated objective). For an operational study, fix the geometry and optimize the permitted operating parameter(s) to meet a target or limit. The selected candidate must always be confirmed by a new finite-element run.
+As a final application, the validated surrogate can support rapid optimization. For a design study, search over latexmath:[(L,t,\mathrm{Bi})] for the admissible configuration with the lowest base temperature (or another explicitly stated objective). For an operational study, fix the geometry and optimize the permitted operating parameter(s) to meet a target or limit. The selected candidate must always be confirmed by a new finite-element run.
 
 == Organization and objectives
 
@@ -134,7 +134,7 @@ Starting from the generated model:
 . Identify the conditions at the base and on the external surfaces. Is a temperature or a flux prescribed at the base?
 . Explain the meaning of the case's normalized values. Do not report degrees Celsius or millimetres without defining a consistent physical scaling.
 . Prepare a configuration for Heat. Separate solver options from those related to model order reduction; preserve the upstream files so you can explain your changes.
-. Set up the mean base-temperature measure described in <<measure-and-compare,Measure and compare>> so it is available in both runs.
+. Set up the mean root-temperature measure described in <<measure-and-compare,Measure and compare>> so it is available in both runs.
 . Choose a mesh size suitable for a quick trial and generate a 3D mesh with Gmsh. The value `h=0.2` is a starting point for this small case; it does not replace a convergence study.
 
 *Hints:* read `gmsh -help` for the dimension, format and output-file options; use MSH 2 format for this practical. Gmsh must support OpenCASCADE, either in the image or in the provided native installation. Examine the messages and mesh quality, not just the exit code.
@@ -182,9 +182,9 @@ Record the version and modules: the native installation and SIF are separate env
 [[measure-and-compare]]
 == Measure and compare
 
-Add a surface-averaged temperature measure on the designated fin-base marker to the model using the `PostProcess` section, then `Measures` / `Statistics`, in the https://docs.feelpp.org/toolboxes/latest/modeling-analysis-using-json-files.html[JSON documentation]. Choose a descriptive name and locate its column in the generated CSV. Confirm with the instructor which generated marker represents the fin base before launching the campaign.
+Add the `mean_root_temperature` surface-average measure on `Gamma_root` to the generated model using `PostProcess.heat.Measures.Statistics`, as shown in the xref:mlops/project.adoc[project specification] and the https://docs.feelpp.org/toolboxes/latest/modeling-analysis-using-json-files.html#_statistics[{feelpp} JSON documentation]. Locate its column in the generated CSV before launching the campaign.
 
-The quantity of interest is the mean temperature on the base surface, stem:[\overline{T}_{base}=\frac{1}{|\Gamma_{base}|}\int_{\Gamma_{base}} T\,\mathrm{d}\Gamma]. State the marker and units. Why is the arithmetic mean of the nodal values not necessarily equivalent to this surface average?
+The quantity of interest is the mean temperature on the root surface, latexmath:[\overline{T}_{\mathrm{root}}=\frac{1}{|\Gamma_{\mathrm{root}}|}\int_{\Gamma_{\mathrm{root}}} T\,\mathrm{d}\Gamma]. State the nondimensional convention. Why is the arithmetic mean of the nodal values not necessarily equivalent to this surface average?
 
 Compare one and four ranks in a small table of your own design: job IDs, environment, mesh hash, rank count, convergence, mean temperature and timings. Define a relative difference and propose a justified tolerance to discuss with the instructor. If the results differ, examine the inputs, convergence and MPI launch before attributing the difference to a physical effect.
 
@@ -212,7 +212,7 @@ Once the reference case has been verified, prepare the full campaign over exactl
 
 Use a documented seeded sampling strategy over the approved three-dimensional domain. Predict the qualitative effect of each parameter and decide when a new 3D mesh is required. Create each case in a separate directory, preserve parameters and mesh checksums, then submit the campaign through a Slurm job array. Start with a smoke subset before the full design.
 
-Propose a data-row schema linking `(L, t, Bi)` to the mean base temperature and its provenance. Split the completed samples into disjoint train, validation and test sets before training. One-rank and four-rank runs of the same case are numerical verification runs, not two independent physical examples to split between training and testing.
+Propose a data-row schema linking `(L, t, Bi)` to `mean_root_temperature` and its provenance. Split the completed samples into disjoint train, validation and test sets before training. One-rank and four-rank runs of the same case are numerical verification runs, not two independent physical examples to split between training and testing.
 
 [[deliverables]]
 == End-of-session deliverables
