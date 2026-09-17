@@ -39,6 +39,7 @@
 ** xref:containers:apptainer/tutorial.adoc[Apptainer practical]
 ** xref:m2:hpc-containers.adoc[Scientific/HPC containers]
 ** xref:m2:feelpp-gaya.adoc[Deploy {feelpp} on Gaya with Slurm]
+** xref:m2:session2-thermal-fin.adoc[Session 2 — 3D thermal fins]
 ** xref:m2:reproducibility.adoc[Reproducible environments and results]
 ** xref:m2:mlops/index.adoc[MLOps introduction]
 ** xref:m2:mlops/lifecycle.adoc[Data/model lifecycle and experiment tracking]

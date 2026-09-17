@@ -20,6 +20,10 @@ Deploy {feelpp} with Apptainer and Slurm on Gaya; prepare parameterized simulati
 
 First-session evidence: the command you ran, input/output files, image checksum and a short explanation of what a bind mount exposes. A successful first run is followed by a second run from recorded inputs.
 
+== Session 2 — 14 September 2026 (2 hours)
+
+xref:session2-thermal-fin.adoc[Generate 3D thermal fins with Python, run Heat on Gaya and visualize with ParaView]. Use the official {feelpp} case generator, inspect the geometry/JSON/configuration, mesh the case and compare one and four MPI ranks with Apptainer or the native installation. Preserve the verified mean temperature as the first scientific datum for the MLOps pipeline.
+
 == Continue through the project
 
 Use xref:mlops/lifecycle.adoc[data/model lifecycle and experiment tracking] and xref:mlops/engineering.adoc[testing, pipelines, packaging and inference] as working guides. Then carry these practices into the xref:semester-project.adoc[M2 semester project]. The xref:ROOT:reference.adoc[reference library] preserves deeper Docker, MPI, CI/CD, distribution and visualization material.

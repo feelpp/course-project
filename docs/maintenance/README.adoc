@@ -19,6 +19,12 @@ It fails on Antora warnings/errors and checks generated local page links and fra
 The notebook converter's existing `Unsupported nodes [open]` warning is independent of Antora's logger; the generated notebooks still require their own content review.
 Preview runs on port 8010. External websites are not crawled by the link checker.
 
+The header's *Download the Notebooks* serves `cours-project.zip` directly from GitHub Pages. `scripts/build-course-bundle.py` recreates a minimal archive containing only current `page-jupyter` notebooks and the VS Code/uv files in `support/course-bundle/`. The project-root TOML belongs to administrative tools and is not included. No HTML, page sources, presentations, unrelated datasets or extra demonstration notebooks are packaged.
+
+Update dependencies in the bundle TOML, run `uv lock --project support/course-bundle`, and commit the resulting `uv.lock`. Students extract the folder, run `uv sync --locked` and select `.venv` as their notebook kernel. Native Feel++ requirements remain documented separately. If a notebook needs an existing local input file, add it to `NOTEBOOK_RESOURCES` in the builder; do not include entire resource directories.
+
+`scripts/check-course-bundle.py` verifies the exact archive inventory, notebook format/code syntax and resource bytes, rejecting stale or unrelated entries. All marked pages across course modules are generated; register an additional collector scan when a new module also needs individual Antora attachment links.
+
 == Content workflow
 
 Keep useful reference content at its existing URL. Prefer workflow landing pages and navigation links to file moves.

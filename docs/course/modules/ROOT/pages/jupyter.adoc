@@ -40,7 +40,7 @@ e.add("f",f)
 e.save()
 ----
 
-You can then visualize the result using the `pyvista` package as follows:
+On a Linux host with Xvfb installed, you can then visualize the result using the `pyvista` package as follows. Install the bundle's `feelpp` extra with `uv sync --locked --extra feelpp` in the Python environment that provides the {feelpp} bindings. The static backend displays the plot directly in VS Code notebooks:
 
 [source,python]
 ----
@@ -49,7 +49,7 @@ vdisplay = Xvfb()
 vdisplay.start()
 
 import pyvista as pv
-pv.set_jupyter_backend('panel')
+pv.set_jupyter_backend('static')
 reader = pv.get_reader("exports/ensightgold/Exporter/Exporter.case")
 mesh = reader.read()
 mesh.plot(scalars="f",show_edges=True)

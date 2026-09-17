@@ -16,6 +16,18 @@ Suggested 90-minute sequence (adapt to the actual slot):
 
 Exit check: each student explains `exec` versus `run`, locates output on the host and identifies what is missing from a claim of reproducibility based only on an image tag.
 
+== Second M2 session: 14 September 2026 (2 hours)
+
+Use xref:m2:session2-thermal-fin.adoc[the thermal-fin assignment]. Students write their own configuration adaptations and Slurm scripts; give documentation pointers and diagnostic questions, not a completed pipeline. Before class, stage the pinned generator and its four templates, Python Liquid environment, shared SIF/checksum and a teacher reference run. Supply the Gaya partition/account, module names, shared working directory and SIF path. Verify that Gmsh with OpenCASCADE is available either in the image or natively.
+
+Run the exact two-fin 3D case at one and four ranks on the teaching allocation. Validate the MPI communicator size, physical boundary markers, mesh quality, solver convergence, exported field names and mean-temperature CSV; establish a reference tolerance and memory/time budget. Preflight both the hybrid MPI launcher and native fallback; do not infer MPI compatibility from a successful one-rank run. Prepare ParaView access and record the versions used. If queue time exceeds the session budget, provide reference output for visualization after students have submitted their own jobs; keep this distinct from their execution evidence.
+
+Local generator/mesh validation and the documentation build do not replace this Gaya preflight. Follow the 120-minute timetable on the student page, with a single verified baseline before optional parameter variations.
+
+A read-only SSH inspection of Gaya on 14 September confirmed `/usr/bin/feelpp_toolbox_heat`, the installed Heat package version `0.111.0~preview.14-1`, and `/opt/apptainer/latest/bin/apptainer`. The generator `case_generator_thermal_fin.py` was not found on PATH, in the installed Feel++ package file lists, or under `/usr/share`, `/usr/local/share` and `/opt`. Students should clone `feelpp/feelpp` for the generator and templates; this does not require compiling the solver. The inspection did not validate MPI execution or the contents of a SIF.
+
+Preparation check (14 September): the pinned generator with Python Liquid 2.1.0 produced the four expected files. Gmsh 4.13.1 meshed the box-shaped two-fin case (`L=1`, `d=0.75`, `t=0.25`, `h=0.2`) into 5,336 tetrahedra with nonempty `Post`, `Fin_1`, `Fin_2`, `Gamma_root` and `Gamma_ext` groups; the root nodes lie at `z=0`. Gmsh reported one ill-shaped tetrahedron and no errors: review mesh quality during preflight. This local check did not execute Heat, MPI, or ParaView on Gaya.
+
 == M1 delivery
 
 Introduce VS Code and Remote SSH early. Reuse a scientific repository across shell, Git, Python/{cpp}, Gaya and project-workflow lessons. Pair brief exercises with individual checks; do not delay {cpp} until the end of M1.

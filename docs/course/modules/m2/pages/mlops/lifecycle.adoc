@@ -2,17 +2,19 @@
 
 == Define the scientific contract
 
-The input is a vector of physical parameters; the target is a scalar extracted from a verified {feelpp} heat simulation. For the xref:feelpp-gaya.adoc[thermal-bridge case], a starting study varies insulation conductivity and one boundary ambient temperature. Keep geometry, other materials, discretization and solver settings fixed initially.
+The input is the vector `(L, t, Bi)`; the target is the mean temperature on the designated fin-base surface, extracted from a verified 3D {feelpp} heat simulation. Use a central post with four fins. Keep the remaining generator/model settings, including the prescribed maximum heat flux, fixed and documented.
 
-A proposed teaching domain is insulation conductivity in `[0.02, 0.06] W/(m K)` and bottom ambient temperature in `[15, 25] degrees C`, with the original top temperature fixed. These are exercise choices for instructor approval, not calibrated material ranges. Agree the domain, units, mesh, sample budget and numerical acceptance tolerance before generating a campaign.
+The teaching team supplies the bounds and units for `L`, `t` and `Bi`, the exact heat-flux value, mesh policy, sample budget and numerical acceptance tolerance. Do not reuse the thermal-bridge example domain for this project. Agree these values before generating a campaign.
 
-Define average temperature as the spatial integral divided by domain measure over the chosen region. Record that region and units. Do not use an unweighted average of mesh-node values as an undocumented substitute.
+The CPU heats the lower face of the central post. Heat is conducted through the post and fins and leaves through the surfaces exposed to ambient air. The simulation solves conduction only; the ambient exchange is represented by the nondimensional Robin condition controlled by `Bi`. Define the target as the surface integral divided by the area of the heated CPU/post interface marker. Record the generator's nondimensional convention, marker and units. Do not use an unweighted average of mesh-node values as an undocumented substitute.
+
+Use the notation `mu=(L,t,Bi)` for one point in the admissible parameter space `P` and define the associated scalar functional by `S(mu)=Tbar_base(mu)`, the mean temperature on the heated CPU/post base. The surrogate model learns the mapping `mu -> S(mu)`. The temperature field is a richer solver output, whereas `S` is the typical quantity of interest passed to the dataset and the learning algorithm.
 
 == Prepare inputs and execute the campaign
 
-. Generate a small seeded design (begin with a 3 × 3 grid smoke campaign; expand only after validation and a resource estimate).
+. Generate a small seeded smoke design in the approved three-dimensional `(L, t, Bi)` domain; expand only after validation and a resource estimate.
 . Assign a stable `sample_id` to each parameter vector and materialize its complete CFG/JSON/geometry inputs in a separate directory. Use a parser supporting the upstream JSON comments or an instructor-normalized JSON template.
-. Modify the actual insulation material conductivity and boundary-temperature parameter in the template. Record resolved values and checksums; test that modifying a parameter changes the corresponding solver input.
+. Modify the actual `L`, `t` and `Bi` inputs in the generator/model. Record resolved values and checksums; test that modifying each parameter changes the corresponding solver input and, where applicable, regenerates the 3D mesh.
 . Submit jobs on Gaya using the xref:feelpp-gaya.adoc[validated Slurm/Apptainer procedure]. For arrays, map each array index to one manifest row and limit concurrency to the agreed allocation.
 . Record sample/job IDs, image hash, code/template revision, inputs, exit status, convergence and output location. Classify missing, failed and successful runs explicitly. Retry with a recorded attempt ID; do not silently alter the sampling distribution.
 
@@ -20,11 +22,11 @@ Each attempt needs an isolated output directory. Job submission is asynchronous:
 
 == Assemble and freeze the dataset
 
-Extract the named mean-temperature statistic from the measure CSV. Require the expected column, finite scalar value, matching sample identity and successful numerical checks. For transient models define which time/steady-state criterion is used; do not silently select the last row.
+Extract the named mean-base-temperature statistic from the measure CSV. Require the expected base marker/column, finite scalar value, matching sample identity and successful numerical checks. For transient models define which time/steady-state criterion is used; do not silently select the last row.
 
-A minimal table contains `sample_id`, input parameters with declared units, `mean_temperature`, case hash, simulation SIF hash and output identity. Keep detailed job/attempt records in a related manifest. Reject duplicate samples, missing outputs and non-finite values; report failed samples instead of filling them with zero.
+A minimal table contains `sample_id`, `L`, `t`, `Bi` with declared units, `mean_base_temperature`, case/mesh hash, simulation SIF hash and output identity. Keep detailed job/attempt records in a related manifest. Reject duplicate samples, missing outputs and non-finite values; report failed samples instead of filling them with zero.
 
-Freeze a dataset version/checksum and explicit lists of train, validation and test sample IDs. Replicates or variants of the same parameter point must remain in the same group. Fit preprocessing only on training data. Use validation or grouped cross-validation for choices, and open the held-out test results once for final assessment. A 3 × 3 smoke campaign checks plumbing; it is too small for strong accuracy claims.
+Freeze a dataset version/checksum and explicit lists of train, validation and test sample IDs. Replicates or variants of the same parameter point must remain in the same group. Fit preprocessing only on training data. Use validation or grouped cross-validation for choices, and open the held-out test results once for final assessment. A smoke campaign checks plumbing; it is too small for strong accuracy claims. One-rank and four-rank reruns of the same parameter point are numerical verification, not independent samples.
 
 == Train and compare
 

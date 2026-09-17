@@ -1,0 +1,12 @@
+[project]
+name = "feelpp-course-notebooks"
+version = "0.1.0"
+description = "Environment for the downloadable course notebooks"
+requires-python = ">=3.10,<3.14"
+dependencies = ["ipykernel>=6.29,<7"]
+
+[project.optional-dependencies]
+feelpp = ["pyvista>=0.44,<0.47", "xvfbwrapper>=0.2,<1"]
+
+[tool.uv]
+package = false

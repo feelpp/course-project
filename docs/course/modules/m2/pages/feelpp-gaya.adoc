@@ -6,6 +6,8 @@ Operate on Gaya to run a {feelpp} heat simulation through Slurm, preserve its in
 
 == Prepare an image and case
 
+For the second two-hour M2 session, follow xref:session2-thermal-fin.adoc[the 3D thermal-fin practical]: the official Python generator, Heat runs at one and four ranks, and ParaView. The thermal bridge below remains another reference case.
+
 Use xref:m1:gaya.adoc[Gaya access/storage guidance]. The instructor must validate the image, case and resource request on the course allocation before teaching. The explicit release below is the example documented by https://docs.feelpp.org/user/latest/install/containers.html[{feelpp}]; it is a reproducible starting version, not a claim that it is the newest or already validated on Gaya.
 
 Prepare files once on the approved download/build host or shared project area, not inside every batch job. If students lack registry access, distribute the preflighted SIF with its checksum.

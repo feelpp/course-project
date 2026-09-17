@@ -28,7 +28,7 @@ Each editor has its own learning curve, commands, and unique set of features. Fo
 
 To edit a file using one of these editors, you first need to open it from the command line. For example:
 
-[source,python]
+[source,bash]
 ----
 nano /path/to/your/file.txt
 ----
@@ -56,14 +56,14 @@ Once VS Code is installed, you can open a file or a folder directly from the ter
 
 To open a single file:
 
-[source,python]
+[source,bash]
 ----
 code /path/to/your/file.txt
 ----
 
 To open an entire directory in VS Code (which is useful for project management):
 
-[source,python]
+[source,bash]
 ----
 code /path/to/your/project/
 ----
