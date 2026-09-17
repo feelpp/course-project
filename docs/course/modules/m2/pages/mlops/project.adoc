@@ -47,6 +47,23 @@ The geometry is a central post connected to four horizontal fins. The CPU heats 
 
 The model below is the direct 3D extension of the 2D thermal-fin problem. The differential equations and interface conditions are unchanged. In 3D, the subdomains latexmath:[\Omega^i] are volumes, the root and exterior boundaries latexmath:[\Gamma] are surfaces, and the integrals use volume or surface measures.
 
+The two views below connect the mathematical model to the numerical objects handled by the workflow. The mesh is the discretized 3D domain supplied to the finite-element solver; the temperature field is the corresponding solution used for physical inspection. Both must be retained for traceability, while the learning dataset uses the scalar root-temperature functional defined below.
+
+[cols="1,1",frame=none,grid=none]
+|===
+a|
+.3D tetrahedral mesh of the post and four fins
+image::thermal-fin-mesh-3d.png[3D tetrahedral mesh of the central post and four thermal fins,width=100%]
+
+Check the geometry, mesh quality and physical boundary markers before launching the parameter campaign. A valid mesh is required for every sampled pair latexmath:[(L,t)].
+
+a|
+.Nondimensional 3D temperature field
+image::thermal-fin-temperature-3d.png[Nondimensional temperature field in the central post and four thermal fins,width=100%]
+
+Heat enters through the CPU/root, diffuses through the post and fins, and is rejected to ambient air through the Robin boundaries. The full field supports verification; the boundary average latexmath:[S(\mu)] is the quantity learned by the surrogate.
+|===
+
 === Domain decomposition
 
 For the geometric parameters latexmath:[\mu_g=(L,t)], let latexmath:[\Omega^0(\mu_g)] denote the central post and latexmath:[\Omega^i(\mu_g)], latexmath:[i=1,\ldots,4], the four fins. The complete solid is
