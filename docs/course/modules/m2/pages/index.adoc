@@ -16,7 +16,7 @@ Deploy {feelpp} with Apptainer and Slurm on Gaya; prepare parameterized simulati
 . xref:feelpp-gaya.adoc[Deploy {feelpp} on Gaya with Slurm and generate simulation results].
 . xref:reproducibility.adoc[Record the environment and reproduce a result].
 . xref:mlops/index.adoc[MLOps: follow the complete lifecycle].
-. xref:mlops/project.adoc[Start the MLOps project].
+. xref:mlops/project.adoc[Start the thermal-fin MLOps mini-project].
 
 First-session evidence: the command you ran, input/output files, image checksum and a short explanation of what a bind mount exposes. A successful first run is followed by a second run from recorded inputs.
 
@@ -26,4 +26,4 @@ xref:session2-thermal-fin.adoc[Generate 3D thermal fins with Python, run Heat on
 
 == Continue through the project
 
-Use xref:mlops/lifecycle.adoc[data/model lifecycle and experiment tracking] and xref:mlops/engineering.adoc[testing, pipelines, packaging and inference] as working guides. Then carry these practices into the xref:semester-project.adoc[M2 semester project]. The xref:ROOT:reference.adoc[reference library] preserves deeper Docker, MPI, CI/CD, distribution and visualization material.
+Use xref:mlops/lifecycle.adoc[data/model lifecycle and experiment tracking] and xref:mlops/engineering.adoc[testing, pipelines, packaging and inference] as working guides for the mini-project. Then continue with xref:semester-project.adoc[the semester project], which completes the same thermal-fin workflow with a validated surrogate, rapid inference and optimisation. The xref:ROOT:reference.adoc[reference library] preserves deeper Docker, MPI, CI/CD, distribution and visualization material.

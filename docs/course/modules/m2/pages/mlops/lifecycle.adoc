@@ -2,13 +2,13 @@
 
 == Define the scientific contract
 
-The input is the vector `(L, t, Bi)`; the target is the mean temperature on the designated fin-base surface, extracted from a verified 3D {feelpp} heat simulation. Use a central post with four fins. Keep the remaining generator/model settings, including the prescribed maximum heat flux, fixed and documented.
+The input is the vector `(L, t, Bi)`; the target is the mean temperature on `Gamma_root`, extracted from a verified 3D {feelpp} heat simulation. Use a central post with four fins. Keep the generated material properties and normalized root heat flux fixed and documented.
 
 The teaching team supplies the bounds and units for `L`, `t` and `Bi`, the exact heat-flux value, mesh policy, sample budget and numerical acceptance tolerance. Do not reuse the thermal-bridge example domain for this project. Agree these values before generating a campaign.
 
 The CPU heats the lower face of the central post. Heat is conducted through the post and fins and leaves through the surfaces exposed to ambient air. The simulation solves conduction only; the ambient exchange is represented by the nondimensional Robin condition controlled by `Bi`. Define the target as the surface integral divided by the area of the heated CPU/post interface marker. Record the generator's nondimensional convention, marker and units. Do not use an unweighted average of mesh-node values as an undocumented substitute.
 
-Use the notation `mu=(L,t,Bi)` for one point in the admissible parameter space `P` and define the associated scalar functional by `S(mu)=Tbar_base(mu)`, the mean temperature on the heated CPU/post base. The surrogate model learns the mapping `mu -> S(mu)`. The temperature field is a richer solver output, whereas `S` is the typical quantity of interest passed to the dataset and the learning algorithm.
+Use the notation latexmath:[\mu=(L,t,\mathrm{Bi})] for one point in the admissible parameter space latexmath:[\mathcal{P}] and define the associated scalar functional by latexmath:[S(\mu)=\overline{T}_{\mathrm{root}}(\mu)], the mean temperature on the heated CPU/post root. The surrogate model learns the mapping latexmath:[\mu \mapsto S(\mu)]. The temperature field is a richer solver output, whereas latexmath:[S] is the typical quantity of interest passed to the dataset and the learning algorithm.
 
 == Prepare inputs and execute the campaign
 
@@ -22,9 +22,9 @@ Each attempt needs an isolated output directory. Job submission is asynchronous:
 
 == Assemble and freeze the dataset
 
-Extract the named mean-base-temperature statistic from the measure CSV. Require the expected base marker/column, finite scalar value, matching sample identity and successful numerical checks. For transient models define which time/steady-state criterion is used; do not silently select the last row.
+Extract `mean_root_temperature` from the measure CSV. Require the expected column, finite scalar value, matching sample identity and successful numerical checks. For transient models define which time/steady-state criterion is used; do not silently select the last row.
 
-A minimal table contains `sample_id`, `L`, `t`, `Bi` with declared units, `mean_base_temperature`, case/mesh hash, simulation SIF hash and output identity. Keep detailed job/attempt records in a related manifest. Reject duplicate samples, missing outputs and non-finite values; report failed samples instead of filling them with zero.
+A minimal table contains `sample_id`, `L`, `t`, `Bi`, `mean_root_temperature`, case/mesh hash, simulation SIF hash and output identity. Keep detailed job/attempt records in a related manifest. Reject duplicate samples, missing outputs and non-finite values; report failed samples instead of filling them with zero.
 
 Freeze a dataset version/checksum and explicit lists of train, validation and test sample IDs. Replicates or variants of the same parameter point must remain in the same group. Fit preprocessing only on training data. Use validation or grouped cross-validation for choices, and open the held-out test results once for final assessment. A smoke campaign checks plumbing; it is too small for strong accuracy claims. One-rank and four-rank reruns of the same parameter point are numerical verification, not independent samples.
 

@@ -1,12 +1,22 @@
-= M2 semester project
+= M2 semester project — inference and optimisation
 
-The semester project extends the engineering practices of the xref:mlops/project.adoc[MLOps project] to a larger scientific problem agreed with the supervisor. The scientific topic can differ; reuse reproducibility, tests, packaging and review practices. ROM teaching remains in its separate scientific course.
+The semester project is the continuation and final stage of the xref:mlops/project.adoc[thermal-fin MLOps mini-project]. It is not a second, unrelated MLOps exercise. Starting from the verified 3D finite-element workflow and simulation database, complete the reduced model, package inference, and solve an operational or design optimisation problem.
+
+The scientific object remains the mapping latexmath:[\mu \mapsto S(\mu)], where latexmath:[\mu=(L,t,\mathrm{Bi})] and latexmath:[S] is the mean temperature on the heated CPU/post root `Gamma_root`. The semester work turns this validated mapping into a usable reduced-order/surrogate model: a prediction should be available without launching a new 3D solver run, while every proposed optimum must be checked by the full model.
 
 == Expectations and workflow
 
 The xref:session2-thermal-fin.adoc[session 2 thermal-fin practical] provides a first reproducible 3D Heat case on Gaya, including Python input generation, sequential/parallel execution and ParaView inspection. Reuse its execution record when defining a thermal project.
 
 Define the scientific question, validation strategy, inputs, resource needs and risks before implementation. Maintain a GitHub Project, milestones and actionable issues. Work through branches, PRs, CI and reviews. Document decisions and dependencies on data, hardware or external collaborators.
+
+The expected continuation is:
+
+. freeze and document the verified 3D simulation dataset;
+. train and validate the surrogate for latexmath:[S(\mu)];
+. package the inference workflow so a new parameter point can be evaluated rapidly;
+. formulate and solve an operational or design optimisation problem;
+. validate the selected configuration with a new finite-element simulation and analyse the surrogate's limits.
 
 == Deliverables
 

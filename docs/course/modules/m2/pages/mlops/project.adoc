@@ -1,22 +1,41 @@
-= M2 MLOps project — {feelpp} thermal surrogate on Gaya
+= M2 thermal-fin MLOps mini-project — complete workflow
 
-== Project brief
+== Engineering purpose: from simulation to decision
 
-Build a complete computational-science pipeline for a *3D thermal-fin* problem: sample the prescribed parameters, generate the cases and meshes, run {feelpp} on Gaya using Slurm and Apptainer, assemble a dataset, train a regression model, and verify inference against held-out and new {feelpp} simulations. A small, traceable model is preferred to sophisticated ML with incomplete provenance.
+A validated 3D finite-element model can answer one thermal question accurately, but it is too expensive to run interactively hundreds or thousands of times. Engineering work rarely asks for only one result: teams must explore a design space, quantify sensitivity, compare operating conditions, satisfy constraints and justify a final decision. This project turns a high-fidelity simulation into a reusable decision tool.
+
+Automation is essential because a parameter study is more than a loop around the solver. Each sample may require a new geometry and mesh, a consistent model configuration, an HPC job, convergence checks, extraction of the same quantity of interest and complete provenance. A workflow makes these steps repeatable, restartable and auditable; it also prevents manual file handling, failed jobs or inconsistent post-processing from silently corrupting the learning dataset.
+
+The surrogate model then approximates the expensive mapping latexmath:[\mu \mapsto S(\mu)]. Once validated, it can evaluate a new configuration almost instantly. This enables:
+
+* interactive exploration of geometric and operating parameters;
+* sensitivity analysis and uncertainty studies over many configurations;
+* design optimisation under thermal and geometric constraints;
+* rapid operational decisions, monitoring and digital-twin applications;
+* verification of promising candidates with selected high-fidelity simulations instead of exhaustive 3D computation.
+
+The same engineering pattern applies well beyond this heat sink: heat exchangers and battery cooling, aerodynamics and fluid systems, structural mechanics, electromagnetics, manufacturing processes, biomedical models and any application where a trusted simulation is accurate but too costly for real-time inference or optimisation.
+
+The learning objective is therefore not merely to train a regression algorithm. It is to engineer the complete, trustworthy chain from parameter definition to HPC execution, scientific data, validated surrogate, inference and decision.
+
+== M2 MLOps mini-project
+
+This M2 mini-project uses machine-learning operations and reproducible workflows to learn from a *3D thermal-fin* model. Sample the prescribed parameters, generate the cases and meshes, run {feelpp} on Gaya using Slurm and Apptainer, assemble a dataset, train a regression model, and verify inference against held-out and new {feelpp} simulations. The complete workflow, not only an isolated simulation or a model-training notebook, is the deliverable.
 
 A technically competent third party should be able to clone the repository, follow the documented procedure, reproduce the environment and execute the pipeline.
 
-The teaching team confirms groups, dates, resource budget, parameter bounds and numerical/ML tolerances. Start from xref:session2-thermal-fin.adoc[the session 2 thermal-fin generator and verified Heat runs]. The thermal-bridge pages are background references; they do not redefine this project.
+The teaching team confirms groups, dates, resource budget, parameter bounds and numerical/ML tolerances. Start with xref:session2-thermal-fin.adoc[session 2], which is a preparation and validation exercise. The thermal-bridge pages are background references; they do not define a second MLOps project.
 
-== Definitive project clarification
+== Project specifications
 
-The attached student message lists questions, not additional requirements. The requirements for this project are:
+The requirements for this project are:
 
 * use the thermal-fin generator to produce *3D* cases and meshes;
 * use a central post with *four fins* throughout the campaign; the other generator settings not listed below remain fixed and documented;
 * vary exactly three inputs: fin length `L`, fin thickness `t` and the Biot number `Bi`. `L` and `t` are geometric design parameters; `Bi` is the prescribed operating/design parameter. Do not replace these inputs with conductivity, fin spacing or another geometry parameter;
-* use the most advanced prescribed heat-flux configuration, namely the largest heat flux allowed in the campaign domain supplied by the teaching team. Record its value and units in the configuration; do not silently invent a larger value;
-* define the quantity of interest as the *mean temperature on the fin base* (the designated base boundary/marker), with its physical units and averaging measure stated explicitly. It is not automatically the volume average used in the introductory single-case exercise;
+* keep all material properties fixed for the entire campaign. Use the default `Materials` and conductivity definitions in the JSON produced by the pinned Python generator; do not sample or hand-edit these properties from one case to another;
+* use the prescribed heat flux supplied by the teaching team as the reference flux. In the nondimensional problem this becomes the unit incoming root flux; record the dimensional reference value and units when they are provided;
+* define the quantity of interest as the *mean temperature on the heated CPU/post root* (the designated root boundary/marker), with its nondimensional convention and averaging measure stated explicitly. It is not a volume average over the whole solid;
 * split the sampled cases into disjoint training, validation and test sets. The test set is not used for model selection or fitting, and at least one independent test case must be checked again with the finite-element solver;
 * each team chooses one learning method. A method may be developed by only one team, so register the choice with the teaching team before implementation. Possible choices include a neural network, gradient boosting, random forest, Gaussian process or polynomial chaos regression.
 
@@ -26,38 +45,177 @@ The number of samples is a design decision: propose it from the three-dimensiona
 
 The geometry is a central post connected to four horizontal fins. The CPU heats the lower face of the post. Heat is conducted through the solid post and fins, then rejected from the surfaces exposed to the ambient air. The project solves the thermal conduction problem only; it does not resolve the airflow.
 
-The equations and boundary conditions are written in the generator's nondimensional convention. In particular, `Bi` controls the convective exchange with the ambient through the corresponding Robin boundary condition. The lower CPU boundary receives the prescribed heat flux, while the exposed fin/post surfaces exchange with the ambient temperature. Record the exact nondimensional definitions, signs, boundary markers and the largest approved heat-flux value in the case documentation. Do not convert the results to degrees Celsius or physical millimetres unless the reference scales are also supplied.
+The model below is the direct 3D extension of the 2D thermal-fin problem. The differential equations and interface conditions are unchanged. In 3D, the subdomains latexmath:[\Omega^i] are volumes, the root and exterior boundaries latexmath:[\Gamma] are surfaces, and the integrals use volume or surface measures.
 
-The quantity of interest is the mean nondimensional temperature on the heated CPU/post interface (the base marker defined by the case), or the corresponding dimensional temperature if a reference scale is explicitly provided. It must be a boundary average over that marker, not a volume average over the whole solid and not an unweighted average of mesh nodes.
+=== Domain decomposition
+
+For the geometric parameters latexmath:[\mu_g=(L,t)], let latexmath:[\Omega^0(\mu_g)] denote the central post and latexmath:[\Omega^i(\mu_g)], latexmath:[i=1,\ldots,4], the four fins. The complete solid is
+
+[latexmath]
+++++
+\overline{\Omega(\mu_g)}=\bigcup_{i=0}^{4}\overline{\Omega^i(\mu_g)}.
+++++
+
+The post-fin interfaces, heated root and exposed boundaries are
+
+[latexmath]
+++++
+\Gamma_{\mathrm{int}}^i=\partial\Omega^0\cap\partial\Omega^i,
+\qquad
+\Gamma_{\mathrm{root}}\subset\partial\Omega^0,
+\qquad
+\Gamma_{\mathrm{ext}}=\partial\Omega\setminus\Gamma_{\mathrm{root}},
+\qquad
+\Gamma_{\mathrm{ext}}^i=\partial\Omega^i\cap\Gamma_{\mathrm{ext}}.
+++++
+
+Each material conductivity latexmath:[k^i] is nondimensionalized by the post conductivity, so latexmath:[k^0=1]. Unlike the original reduced-basis exercise, the present campaign does not use material properties as parameters. Preserve the default `Materials` and conductivity definitions generated in each JSON file and vary only latexmath:[L], latexmath:[t] and latexmath:[\mathrm{Bi}]. The generator revision and resulting JSON remain the source of truth for the fixed values.
+
+=== Nondimensional strong problem
+
+For latexmath:[\mu=(L,t,\mathrm{Bi})], find the steady nondimensional temperature latexmath:[u(\mu)] whose restriction latexmath:[u^i] to each subdomain satisfies
+
+[latexmath]
+++++
+-k^i\Delta u^i=0
+\qquad \text{in }\Omega^i(\mu_g),
+\qquad i=0,\ldots,4.
+++++
+
+There is no volumetric heat source: heat enters through the CPU/root boundary. At every post-fin interface, temperature and normal conductive flux are continuous. If latexmath:[n_i] points from the post into fin latexmath:[i],
+
+[latexmath]
+++++
+u^0=u^i,
+\qquad
+k^0\nabla u^0\cdot n_i=k^i\nabla u^i\cdot n_i
+\qquad \text{on }\Gamma_{\mathrm{int}}^i,
+\qquad i=1,\ldots,4.
+++++
+
+Using the outward normal latexmath:[n^0] on the heated root, the normalized incoming heat flux is imposed by the Neumann condition
+
+[latexmath]
+++++
+-k^0\nabla u^0\cdot n^0=-1
+\qquad \text{on }\Gamma_{\mathrm{root}}.
+++++
+
+The sign represents heat entering the solid because the normal points outward. On every surface exposed to air, convection is represented without solving the airflow:
+
+[latexmath]
+++++
+-k^i\nabla u^i\cdot n^i=\mathrm{Bi}\,u^i
+\qquad \text{on }\Gamma_{\mathrm{ext}}^i,
+\qquad i=0,\ldots,4.
+++++
+
+This Robin condition uses a nondimensional ambient temperature equal to zero. Before assigning Celsius or physical-length units, the temperature, length and heat-flux reference scales must be supplied.
+
+=== Weak finite-element statement
+
+Equivalently, find latexmath:[u(\mu)\in H^1(\Omega(\mu_g))] such that
+
+[latexmath]
+++++
+a(u,v;\mu)=\ell(v)
+\qquad \forall v\in H^1(\Omega(\mu_g)),
+++++
+
+with
+
+[latexmath]
+++++
+a(w,v;\mu)
+=\sum_{i=0}^{4}k^i\int_{\Omega^i(\mu_g)}\nabla w\cdot\nabla v\,\mathrm{d}\Omega
++\mathrm{Bi}\int_{\Gamma_{\mathrm{ext}}}wv\,\mathrm{d}\Gamma,
+\qquad
+\ell(v)=\int_{\Gamma_{\mathrm{root}}}v\,\mathrm{d}\Gamma.
+++++
+
+A conforming global latexmath:[H^1] discretization enforces temperature continuity; the piecewise conductivity and variational balance enforce flux conservation across the interfaces.
+
+The quantity of interest is the mean nondimensional root temperature,
+
+[latexmath]
+++++
+S(\mu)=\overline{T}_{\mathrm{root}}(\mu)
+=\frac{1}{|\Gamma_{\mathrm{root}}|}
+\int_{\Gamma_{\mathrm{root}}}u(\mu)\,\mathrm{d}\Gamma.
+++++
+
+It is a surface average on the heated CPU/post root, not a volume average over the whole solid and not an unweighted average of mesh nodes. Lower values indicate better thermal performance under the normalized input flux.
 
 == Parameter-to-response mapping
 
 Let the parameter vector be
 
-[stem]
+[latexmath]
 ++++
-\\mu = (L,t,Bi) \\in \\mathcal{P},
-++++
-
-where `L` is the fin length, `t` its thickness and `Bi` the nondimensional operating/design parameter describing the exchange with the ambient. For each `\\mu`, the finite-element workflow generates a 3D case and computes the scalar functional
-
-[stem]
-++++
-S(\\mu) = \\overline{T}_{base}(\\mu) = \\frac{1}{|\\Gamma_{base}|}\\int_{\\Gamma_{base}} T(\\mu)\\,\\mathrm{d}\\Gamma.
+\mu = (L,t,\mathrm{Bi}) \in \mathcal{P},
 ++++
 
-The learning task is to construct a surrogate `S_hat(mu)` of this mapping. The dataset therefore contains parameter vectors, provenance and the corresponding value of `S`; it is not a dataset of unrelated images or fields. The 3D temperature field remains available for physical interpretation and verification.
+where latexmath:[L] is the fin length, latexmath:[t] its thickness and latexmath:[\mathrm{Bi}] the nondimensional operating/design parameter describing the exchange with the ambient. For each latexmath:[\mu], the finite-element workflow generates a 3D case and computes the scalar functional
+
+[latexmath]
+++++
+S(\mu) = \overline{T}_{\mathrm{root}}(\mu) = \frac{1}{|\Gamma_{\mathrm{root}}|}\int_{\Gamma_{\mathrm{root}}} u(\mu)\,\mathrm{d}\Gamma.
+++++
+
+The learning task is to construct a surrogate latexmath:[\widehat{S}(\mu)] of this mapping. The dataset therefore contains parameter vectors, provenance and the corresponding value of latexmath:[S]; it is not a dataset of unrelated images or fields. The 3D temperature field remains available for physical interpretation and verification.
+
+=== Add the quantity of interest to the generated JSON
+
+The Python generator already writes a `PostProcess.heat.Exports` section for the temperature field, partition identifier and mesh marker. It does not add the scalar output required by this project. After generating each case, extend the same `PostProcess.heat` object with a named statistics measure:
+
+[source,json]
+----
+"PostProcess":
+{
+    "use-model-name": 1,
+    "heat":
+    {
+        "Exports":
+        {
+            "fields": ["temperature", "pid", "marker"]
+        },
+        "Measures":
+        {
+            "Statistics":
+            {
+                "mean_root_temperature":
+                {
+                    "type": "mean",
+                    "field": "temperature",
+                    "markers": "Gamma_root"
+                }
+            }
+        }
+    }
+}
+----
+
+According to the {feelpp} https://docs.feelpp.org/toolboxes/latest/modeling-analysis-using-json-files.html#_statistics[statistics-measure documentation], `mean` computes the integral of the selected field divided by the measure of the selected marker. Consequently, this entry computes the surface average latexmath:[S(\mu)] on `Gamma_root`; it is not an arithmetic mean of mesh-node values.
+
+The measure is written to the Heat measures CSV after a stationary solve. Expect a column derived from the measure name, typically `Statistics_mean_root_temperature_mean`, but inspect and record the actual CSV header produced by the {feelpp} release used on Gaya. Collection must fail clearly if the column is missing, duplicated, non-finite or associated with an unsuccessful solver run.
+
+Before launching the campaign, verify on one reference case that:
+
+* `Gamma_root` exists and denotes the heated CPU/post surface;
+* the measure appears in the CSV and has one finite value;
+* the same value is obtained within tolerance in the validated one-rank and four-rank runs;
+* changing the geometric or `Bi` input changes the resolved case while the generated material properties remain fixed.
 
 == Final application: rapid operational or design optimization
 
-Once `S_hat` has been validated, use it as the last stage of the workflow for rapid exploration. In a design study, search the admissible parameter domain for the configuration that minimizes the base temperature under the prescribed heat load:
+Once latexmath:[\widehat{S}] has been validated, use it as the last stage of the workflow for rapid exploration. In a design study, search the admissible parameter domain for the configuration that minimizes the base temperature under the prescribed heat load:
 
-[stem]
+[latexmath]
 ++++
-\\mu^* = \\operatorname*{arg\\,min}_{\\mu \\in \\mathcal{P}} \\hat{S}(\\mu).
+\mu^* = \operatorname*{arg\,min}_{\mu \in \mathcal{P}} \widehat{S}(\mu).
 ++++
 
-The constraints, objective and heat-flux convention must be stated explicitly; another valid objective could maximize heat removal or impose a temperature limit. In an operational study, hold the chosen geometry fixed (for example `L` and `t`) and optimize only the permitted operating parameter(s), or find the admissible configuration meeting a target temperature. The temperature `S(\\mu)` is normally the output/quantity of interest, not an input parameter; if a target temperature is prescribed, it must be identified as an additional constraint. Every proposed optimum must finally be checked by a new finite-element simulation, not only by the surrogate.
+The constraints, objective and heat-flux convention must be stated explicitly; another valid objective could maximize heat removal or impose a temperature limit. In an operational study, hold the chosen geometry fixed (for example latexmath:[L] and latexmath:[t]) and optimize only the permitted operating parameter(s), or find the admissible configuration meeting a target temperature. The temperature latexmath:[S(\mu)] is normally the output/quantity of interest, not an input parameter; if a target temperature is prescribed, it must be identified as an additional constraint. Every proposed optimum must finally be checked by a new finite-element simulation, not only by the surrogate.
 
 == Expected architecture
 
@@ -98,7 +256,7 @@ python -m thermal_surrogate.verify --predictions artifacts/predictions.csv --ref
 python -m pytest
 ----
 
-Preparation writes one 3D generated case/mesh per sample and stable IDs. Submission/status records job IDs and attempts. Collection accepts only complete, valid runs and extracts the mean base temperature. Training keeps preprocessing within the fitted model pipeline and logs configuration, dataset/split identity, metrics and artifacts in MLflow. Prediction must not rerun training. Verification compares predictions with matching {feelpp} sample IDs and physical units.
+Preparation writes one 3D generated case/mesh per sample and stable IDs. Submission/status records job IDs and attempts. Collection accepts only complete, valid runs and extracts `mean_root_temperature`. Training keeps preprocessing within the fitted model pipeline and logs configuration, dataset/split identity, metrics and artifacts in MLflow. Prediction must not rerun training. Verification compares predictions with matching {feelpp} sample IDs and the documented nondimensional convention.
 
 Use a single reproducible driver or documented stage commands with restart/resume semantics. Demonstrate the equivalent containerized ML commands and the actual Slurm simulation script.
 
@@ -117,7 +275,7 @@ Use acceptance criteria, labels, milestones and a Project board. Each student pr
 |Stage |Deliverable |Acceptance evidence
 |1. Deploy {feelpp} |Single preflighted heat case, SIF/case hashes, Slurm script, persistent outputs.
 |Successful job and solver checks; repeat-run comparison; explain mounts/resources.
-|2. Produce the dataset |Seeded design in `(L, t, Bi)`, four-fin 3D inputs/meshes, campaign jobs and verified base-temperature extraction.
+|2. Produce the dataset |Seeded design in `(L, t, Bi)`, four-fin 3D inputs/meshes, campaign jobs and verified `mean_root_temperature` extraction.
 |Small smoke campaign; failure/retry handling; schema/units/provenance; expanded budget agreed.
 |3. Learn the response |Frozen train/validation/test splits, a baseline and the registered team method, with MLflow comparison.
 |Train-only preprocessing; validation-based selection; final held-out error report in temperature units; no method duplicated across teams.
@@ -134,7 +292,7 @@ Submit repository commit/tag, issue/PR/review links, CI results, both environmen
 [#assessment]
 == Assessment
 
-* Scientific validity: 3D four-fin setup, parameter semantics/units, solver convergence, correct mean-base-temperature extraction, leakage-free evaluation and justified error tolerance.
+* Scientific validity: 3D four-fin setup, parameter semantics, solver convergence, correct mean-root-temperature extraction, leakage-free evaluation and justified error tolerance.
 * HPC operation: Slurm/Apptainer use on Gaya, appropriate resource requests, isolated outputs and traceable failures/retries.
 * Engineering: automated/resumable stages, meaningful tests, CI, packaging and artifact handling.
 * Reproducibility/collaboration: independent handoff, focused PRs, reviews and contribution evidence.
