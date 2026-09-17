@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Reproducible environments and results :: Course Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/m2/reproducibility.html">
-    <link rel="prev" href="session2-thermal-fin.html">
-    <link rel="next" href="mlops/index.html">
+    <title>Session 2 — 3D thermal fins on Gaya :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/m2/session2-thermal-fin.html">
+    <link rel="prev" href="feelpp-gaya.html">
+    <link rel="next" href="reproducibility.html">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../_/css/site.css">
 
@@ -274,10 +274,10 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="feelpp-gaya.html">Deploy Feel++ on Gaya with Slurm</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="session2-thermal-fin.html">Session 2 — 3D thermal fins</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="reproducibility.html">Reproducible environments and results</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -705,12 +705,12 @@ MathJax.Hub.Config({
   <ul>
     <li><a href="../index.html">Course Project</a></li>
     <li><a href="index.html">M2 — Scientific Software &amp; MLOps</a></li>
-    <li><a href="reproducibility.html">Reproducible environments and results</a></li>
+    <li><a href="session2-thermal-fin.html">Session 2 — 3D thermal fins</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/course/modules/m2/pages/reproducibility.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/course/modules/m2/pages/session2-thermal-fin.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -730,82 +730,477 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Reproducible environments and results</h1>
-<div class="sect1">
-<h2 id="_what_must_be_recorded"><a class="anchor" href="#_what_must_be_recorded"></a>1. What must be recorded?</h2>
+<h1 class="page">Session 2 — 3D thermal fins on Gaya</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>An image is one part of a scientific record. Store a run manifest beside each result:</p>
+<p><strong>M2 · 14 September 2026 · 2 hours · Mini-project in pairs.</strong></p>
+</div>
+<div class="paragraph">
+<p>Build and verify a heat-transfer simulation using an existing Python generator. You will produce the inputs, run the Feel++ Heat toolbox in Apptainer on Gaya, and compare runs with one and four MPI ranks before visualizing the results in ParaView.</p>
+</div>
+<div class="paragraph">
+<p>This session builds on the <a href="../containers/apptainer/tutorial.html" class="xref page">Apptainer practical</a> and prepares you for the <a href="mlops/project.html" class="xref page">simulation → data → training → inference → verification pipeline</a>. You are responsible for creating the case files and Slurm script; the guidance below provides starting points and success criteria.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_of_the_mini_project"><a class="anchor" href="#_objective_of_the_mini_project"></a>1. Objective of the mini-project</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The goal is to develop the complete solution as a reproducible workflow, in a pair. The workflow starts from a parameter space and a sampling budget, generates one 3D case and mesh for each sampled point, launches the simulations, collects the quantity of interest, trains the team&#8217;s selected model, and verifies its predictions against finite-element results.</p>
+</div>
+<div class="paragraph">
+<p>The workflow may run locally, on Gaya, or across both environments. What matters is that every transition is automated and documented: inputs → sampling → case and mesh generation → Slurm/Apptainer execution → collection on Gaya → dataset → training → inference → verification. A manual operation is acceptable for an exploratory check, but it must not be required for the reproducible campaign.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_physical_interpretation"><a class="anchor" href="#_physical_interpretation"></a>2. Physical interpretation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The case represents a CPU heating the lower face of a central post. The heat is conducted through the post and the four horizontal fins, then transferred to the ambient air from the exposed surfaces. Only the solid Heat problem is solved; the air flow is not meshed or solved.</p>
+</div>
+<div class="paragraph">
+<p>The generator uses nondimensional variables. The CPU boundary carries the prescribed heat flux, while the ambient exchange is represented by a convective (Robin) condition whose nondimensional coefficient is the Biot number <code>Bi</code>. Use the generator&#8217;s definitions and signs when interpreting the results, and document the reference scales before giving any dimensional interpretation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_geometry_mesh_and_temperature_field"><a class="anchor" href="#_geometry_mesh_and_temperature_field"></a>3. Geometry, mesh and temperature field</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following two views illustrate the expected outputs of the numerical stage. They are complementary: the mesh shows the discrete finite-element problem, while the temperature field shows the computed physical response.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/thermal-fin-mesh-3d.png" alt="3D tetrahedral mesh of the four-fin heat sink" width="900">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/thermal-fin-temperature-3d.png" alt="3D temperature field in the four-fin heat sink" width="900">
+</div>
+<div class="title">Figure 1. <strong>Figure 1. 3D mesh.</strong> The volume is discretized with tetrahedral elements around the central post and the four fins. Before launching a campaign, check the element quality, the four-fin geometry, the CPU/base marker and all external markers. A successful meshing command alone is not evidence that the physical groups required by the Heat model are correct.</div>
+</div>
+<div class="paragraph">
+<div class="title"><strong>Figure 2. 3D temperature visualization.</strong> The warmest region is expected near the heated CPU/base and the post; temperature decreases along the fins as heat is transferred to the ambient. The colour scale and the nondimensional convention must be recorded. This view is for physical interpretation and debugging; the scalar used by the MLOps model must come from the documented average on the CPU/post base marker.</div>
+<p>For each sampled parameter vector, the workflow should preserve both the generated mesh and the visualization-ready result. The mesh is an input to the solver; the temperature field is an output used for inspection and, together with the base statistic, for verification.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_from_simulations_to_a_learned_mapping"><a class="anchor" href="#_from_simulations_to_a_learned_mapping"></a>4. From simulations to a learned mapping</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Denote a parameter point by <code>\\mu=(L,t,Bi)</code>. The solver associates with it the functional</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[S(\\mu)=\\overline{T}_{base}(\\mu),\]
+</div>
+</div>
+<div class="paragraph">
+<p>the mean temperature on the heated CPU/post base. Learning does not replace the finite-element solver during data generation: it learns the mapping <code>\\mu \\mapsto S(\\mu)</code> from the verified simulation database. This scalar <code>S</code> is the typical quantity of interest used for training, prediction and error assessment; the complete 3D temperature field is retained for visualization and scientific checks.</p>
+</div>
+<div class="paragraph">
+<p>As a final application, the validated surrogate can support rapid optimization. For a design study, search over <code>(L,t,Bi)</code> for the admissible configuration with the lowest base temperature (or another explicitly stated objective). For an operational study, fix the geometry and optimize the permitted operating parameter(s) to meet a target or limit. The selected candidate must always be confirmed by a new finite-element run.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_organization_and_objectives"><a class="anchor" href="#_organization_and_objectives"></a>5. Organization and objectives</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Alternate roles: one person operates the tools while the other reviews the inputs and checks the results. Each partner must be able to explain and repeat the pair&#8217;s work.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 75%;">
+<col style="width: 14.2857%;">
+<col style="width: 42.8571%;">
+<col style="width: 42.8572%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Identity</th>
-<th class="tableblock halign-left valign-top">Record</th>
+<th class="tableblock halign-left valign-top">Time</th>
+<th class="tableblock halign-left valign-top">Task</th>
+<th class="tableblock halign-left valign-top">Checkpoint</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Code</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Repository URL, commit SHA, whether the working tree was clean, pipeline entry point.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0–10 min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identify the Gaya environment and resources</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Workspace, image and modules identified</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Environment</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Dependency lock with exact versions, Python/Apptainer versions, base OCI digest, SIF SHA-256 and retrievable artifact location.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10–30 min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read the Python generator and produce a 3D case</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Parameters and files explained</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Data</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Source, licence/access conditions, acquisition procedure, content checksum, schema and split identifiers.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30–45 min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prepare the Heat model and mesh</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Geometry, markers and JSON consistent</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Execution</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Configuration, seed, full command, relevant environment settings, hardware and scheduler resources.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">45–65 min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Submit the one-rank run in Apptainer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Convergence checked and outputs located</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Result</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Metrics, model/output checksums, logs, units and comparison tolerance.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">65–90 min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adapt the launch to four ranks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MPI communicator checked and results compared</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">90–110 min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Explore the results in ParaView</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Visualization and physical interpretation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">110–120 min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Document reproduction and the first data point</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Report and files organized</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>A checksum identifies bytes; it does not preserve a file. Store artifacts where a reviewer can retrieve them. Pinning a tag or saving a random seed alone is insufficient. Record expected variation from parallel numerical libraries or different hardware.</p>
+<p>Running with one rank, then four ranks, and comparing the results is the core assignment. The subsequent MLOps campaign uses the same 3D configuration with four fins and varies <code>L</code>, <code>t</code> and <code>Bi</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_worked_handoff"><a class="anchor" href="#_worked_handoff"></a>2. Worked handoff</h2>
+<h2 id="_prepare_your_workspace"><a class="anchor" href="#_prepare_your_workspace"></a>6. Prepare your workspace</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For the Apptainer exercise, keep <code>analyze.py</code>, <code>analysis.def</code>, the small CSV and commands in Git. Record <code>git rev-parse HEAD</code>, <code>git status --short</code>, <code>apptainer --version</code> and <code>sha256sum analysis.sif input/measurements.csv</code>. Store the SIF separately with its checksum and document retrieval. For release rebuilds replace the mutable definition-file base tag with the verified OCI digest of the chosen image.</p>
+<p>Reuse your SSH/VS Code connection and the <a href="../m1/gaya.html" class="xref page">Gaya guidance</a>. The instructor supplies the site-specific details: Slurm partition/account, modules, shared storage and the SIF image path. They also specify the MPI launch method compatible with this image and whether the native Feel++ installation is available.</p>
+</div>
+<div class="paragraph">
+<p>Your tasks:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Organize separate directories for the generator, cases and job results.</p>
+</li>
+<li>
+<p>Check the Apptainer version and identify the image being used, including its checksum.</p>
+</li>
+<li>
+<p>Prepare an isolated Python environment for the generator.</p>
+</li>
+<li>
+<p>Check how to request a Slurm allocation. Meshing and solving must run on an allocated compute node, not the login node.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Use the prepared SIF rather than spending the session downloading or building an image. The generator requires <code>python-liquid</code> (version 2.1.0 was used to verify this material), imported as <code>liquid</code>. It does not require the Feel++ Python bindings.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_reproduction_exercise"><a class="anchor" href="#_reproduction_exercise"></a>3. Reproduction exercise</h2>
+<h2 id="_explore_the_thermal_fin_generator"><a class="anchor" href="#_explore_the_thermal_fin_generator"></a>7. Explore the thermal-fin generator</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Give a partner only the repository URL, artifact location and documented procedure. In a new directory, they retrieve the exact inputs/environment, run the computation and compare the result. Record missing steps as issues; amend the procedure through review.</p>
+<p>The official script is in the <code>feelpp/feelpp</code> repository:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/feelpp/feelpp/tree/44487393868854b53e47e82217d3a0fbc557c8d1/toolboxes/generator/cases/thermal_fin/case_generator_thermal_fin.py"><code>toolboxes/generator/cases/thermal_fin/case_generator_thermal_fin.py</code></a>.</p>
+</div>
+<div class="paragraph">
+<p>Clone the <a href="https://github.com/feelpp/feelpp"><code>feelpp/feelpp</code> repository</a> into your workspace and locate <a href="https://github.com/feelpp/feelpp/tree/44487393868854b53e47e82217d3a0fbc557c8d1/toolboxes/generator/cases/thermal_fin">the generator directory</a>. Use revision <code>44487393868854b53e47e82217d3a0fbc557c8d1</code> to share a common reference with the <a href="feelpp-gaya.html" class="xref page">deployment guide</a>, and record the checked-out commit. Preserve the script and <code>templates/</code> layout. No compilation of Feel++ is required for this step: the clone provides the generator sources, while the installed toolbox or SIF provides the solver.</p>
+</div>
+<div class="paragraph">
+<p>First check whether <code>case_generator_thermal_fin.py</code> is already available locally, and distinguish an installed tool from a file in a source checkout. Either way, use your own clone for this practical so you can inspect the templates and track your changes without modifying a shared installation.</p>
+</div>
+<div class="paragraph">
+<p>Start by exploring the interface:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">python case_generator_thermal_fin.py --help</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_read_before_running"><a class="anchor" href="#_read_before_running"></a>7.1. Read before running</h3>
+<div class="paragraph">
+<p>Answer briefly in your report:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>How does <code>argparse</code> obtain the parameters? What are their types and default values?</p>
+</li>
+<li>
+<p>How does the code select a 2D or 3D geometry? What does <code>--cylinder</code> change?</p>
+</li>
+<li>
+<p>What do <code>FileSystemLoader</code> and <code>render()</code> do? Why must you keep all the templates, including the one whose name contains <code>crb</code>?</p>
+</li>
+<li>
+<p>How does the number of fins affect both the geometry and the materials in the JSON?</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The relevant options are <code>--dim</code>, <code>--N</code>, <code>--L</code>, <code>--d</code>, <code>--t</code>, <code>--cylinder</code> and <code>--odir</code>. Determine their meaning from the code and <a href="https://github.com/feelpp/feelpp/tree/44487393868854b53e47e82217d3a0fbc557c8d1/toolboxes/generator/cases/thermal_fin/case_generator_thermal_fin.adoc">the manual</a>. Where they differ, rely on the expressions actually generated, particularly for spacing and the dimensions of cylindrical shapes.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_generate_the_reference_case"><a class="anchor" href="#_generate_the_reference_case"></a>7.2. Generate the reference case</h3>
+<div class="paragraph">
+<p>Construct the command yourself for the following case:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Setting</th>
+<th class="tableblock halign-left valign-top">Value for the first case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dimension</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of fins</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shape</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Box-shaped post and fins</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Geometric parameters</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>L=1</code>, <code>d=0.75</code>, <code>t=0.25</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Output</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A directory dedicated to the reference case</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Record the command you ran. Examine the generated files and explain the difference between a <code>.geo</code> geometry, a <code>.msh</code> mesh, a <code>.json</code> model and a <code>.cfg</code> configuration. Does the generator already provide a mesh? What step is still needed?</p>
+</div>
+<div class="paragraph">
+<p><strong>Checkpoint:</strong> locate the groups <code>Post</code>, <code>Fin_i</code>, <code>Gamma_root</code> and <code>Gamma_ext</code> in the templates and then in the generated files, and explain how the model uses them.</p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_self_check"><a class="anchor" href="#_self_check"></a>4. Self-check</h2>
+<h2 id="_prepare_a_consistent_heat_problem"><a class="anchor" href="#_prepare_a_consistent_heat_problem"></a>8. Prepare a consistent Heat problem</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Can a reviewer reproduce without your shell history, home-directory packages or private local data? What does an exact byte comparison establish, and when is a numerical tolerance more appropriate?</p>
+<p>We solve steady-state conduction in the solid. A boundary condition describing heat exchange with the surroundings does not imply that we solve the airflow: we use only the Heat toolbox.</p>
 </div>
 <div class="paragraph">
-<p>Next: <a href="mlops/index.html" class="xref page">MLOps adds a data/model lifecycle to this handoff</a>.</p>
+<p>Starting from the generated model:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Identify the conductivities, the <code>Bi</code> parameter and the external temperature; distinguish the values used by Heat from the bounds intended for a parameter study.</p>
+</li>
+<li>
+<p>Identify the conditions at the base and on the external surfaces. Is a temperature or a flux prescribed at the base?</p>
+</li>
+<li>
+<p>Explain the meaning of the case&#8217;s normalized values. Do not report degrees Celsius or millimetres without defining a consistent physical scaling.</p>
+</li>
+<li>
+<p>Prepare a configuration for Heat. Separate solver options from those related to model order reduction; preserve the upstream files so you can explain your changes.</p>
+</li>
+<li>
+<p>Set up the mean base-temperature measure described in <a href="#measure-and-compare">Measure and compare</a> so it is available in both runs.</p>
+</li>
+<li>
+<p>Choose a mesh size suitable for a quick trial and generate a 3D mesh with Gmsh. The value <code>h=0.2</code> is a starting point for this small case; it does not replace a convergence study.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Hints:</strong> read <code>gmsh -help</code> for the dimension, format and output-file options; use MSH 2 format for this practical. Gmsh must support OpenCASCADE, either in the image or in the provided native installation. Examine the messages and mesh quality, not just the exit code.</p>
+</div>
+<div class="paragraph">
+<p>In Gmsh, check the volumes, physical groups and actual location of the base surface. A name appearing in the JSON does not prove that the correct set of elements is selected.</p>
+</div>
+<div class="paragraph">
+<p>Next, configure the mesh import in the Heat JSON. Use <strong>the same mesh file</strong> to compare one and four ranks. The <code>Meshes.heat.Import</code> section and its partitioning option are described in the <a href="https://docs.feelpp.org/toolboxes/latest/modeling-analysis-using-json-files.html">JSON model documentation</a>. The <code>$cfgdir</code> symbol lets you reference a file relative to the CFG directory.</p>
+</div>
+<div class="paragraph">
+<p><strong>Checkpoint:</strong> another pair must be able to follow the CFG → JSON → mesh chain and verify that the required markers exist. Note that the upstream JSON contains <code>//</code> comments, which strict JSON validators do not accept.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_run_heat_on_gaya"><a class="anchor" href="#_run_heat_on_gaya"></a>9. Run Heat on Gaya</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_build_a_first_job_using_one_rank"><a class="anchor" href="#_build_a_first_job_using_one_rank"></a>9.1. Build a first job using one rank</h3>
+<div class="paragraph">
+<p>Write your Slurm script using what you learned in the previous session. It must:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Request modest resources for a one-rank run and preserve standard output and error logs.</p>
+</li>
+<li>
+<p>Launch <code>feelpp_toolbox_heat</code> inside the image using <code>apptainer exec</code>.</p>
+</li>
+<li>
+<p>Pass the CFG with <code>--config-file</code> and explicitly select the results directory with <code>--directory</code>.</p>
+</li>
+<li>
+<p>Make the inputs accessible inside the container and keep the outputs on Gaya after execution.</p>
+</li>
+<li>
+<p>Isolate each job&#8217;s results and record the environment and inputs used.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Consult the <a href="https://docs.feelpp.org/user/latest/using/toolboxes/heat.html">Heat toolbox interface</a> and the first-session material if you get stuck. Consider paths as seen from the host and from the container. If importing the mesh creates partitioning files, provide a writable working copy of the inputs for each job.</p>
+</div>
+<div class="paragraph">
+<p>Submit with <code>sbatch</code>, monitor with <code>squeue</code>, then examine the logs and, where available, <code>sacct</code>. Locate the result files without assuming they were written to the current directory.</p>
+</div>
+<div class="paragraph">
+<p><strong>Checkpoint:</strong> demonstrate solver convergence and a usable temperature field. A Slurm <code>COMPLETED</code> state alone does not validate the solution.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_adapt_your_launch_to_four_ranks"><a class="anchor" href="#_adapt_your_launch_to_four_ranks"></a>9.2. Adapt your launch to four ranks</h3>
+<div class="paragraph">
+<p>Keep exactly the same problem, mesh and numerical settings. Adapt the Slurm request and launch to use four ranks on a single node.</p>
+</div>
+<div class="paragraph">
+<p>Use the launcher validated by the instructor: the hybrid model starts processes with Gaya&#8217;s MPI, then runs Feel++ inside Apptainer. The host and image MPI libraries must be compatible; see <a href="https://apptainer.org/docs/user/latest/mpi.html">Apptainer and MPI</a>. For a direct <code>srun</code> launch, use the PMI/PMIx plugin validated for this combination.</p>
+</div>
+<div class="paragraph">
+<p><strong>Explain:</strong> why is increasing <code>--ntasks</code> alone insufficient? Why are four independent processes different from a four-rank MPI computation? What would happen if <code>--cleanenv</code> removed the MPI environment?</p>
+</div>
+<div class="paragraph">
+<p>Do not use <code>--mpi=none</code> for the multirank computation. Check the communicator size in the Feel++ output; the exported <code>pid</code> field also helps inspect the partitions. Do not confuse this check with the number of tasks requested from Slurm.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_native_alternative"><a class="anchor" href="#_native_alternative"></a>9.3. Native alternative</h3>
+<div class="paragraph">
+<p>If the instructor provides access to the native Feel++ installation on Gaya, adapt your script to invoke the Heat toolbox directly with the specified Feel++/MPI modules. Keep the same CFG, JSON and mesh, and continue to isolate job results.</p>
+</div>
+<div class="paragraph">
+<p>Record the version and modules: the native installation and SIF are separate environments. This alternative also allows you to continue the parallel work if the image&#8217;s MPI has not yet been validated; state clearly which execution method you actually used.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="measure-and-compare"><a class="anchor" href="#measure-and-compare"></a>10. Measure and compare</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Add a surface-averaged temperature measure on the designated fin-base marker to the model using the <code>PostProcess</code> section, then <code>Measures</code> / <code>Statistics</code>, in the <a href="https://docs.feelpp.org/toolboxes/latest/modeling-analysis-using-json-files.html">JSON documentation</a>. Choose a descriptive name and locate its column in the generated CSV. Confirm with the instructor which generated marker represents the fin base before launching the campaign.</p>
+</div>
+<div class="paragraph">
+<p>The quantity of interest is the mean temperature on the base surface, \(\overline{T}_{base}=\frac{1}{|\Gamma_{base}|}\int_{\Gamma_{base}} T\,\mathrm{d}\Gamma\). State the marker and units. Why is the arithmetic mean of the nodal values not necessarily equivalent to this surface average?</p>
+</div>
+<div class="paragraph">
+<p>Compare one and four ranks in a small table of your own design: job IDs, environment, mesh hash, rank count, convergence, mean temperature and timings. Define a relative difference and propose a justified tolerance to discuss with the instructor. If the results differ, examine the inputs, convergence and MPI launch before attributing the difference to a physical effect.</p>
+</div>
+<div class="paragraph">
+<p>Distinguish queue time, startup, partitioning, solving and writing. A very small case may be slower with four ranks; explain this result if it occurs.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_explore_with_paraview"><a class="anchor" href="#_explore_with_paraview"></a>11. Explore with ParaView</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Open the results in ParaView, either from the Gaya graphical session provided for the course or on your computer after transferring the output directory. The choice of a native or containerized solver does not dictate where the visualizer runs.</p>
+</div>
+<div class="paragraph">
+<p><strong>Hints:</strong> locate the exported entry file (<code>.case</code> for EnSight, or <code>.pvd</code> if VTK is configured). It references other files: transfer the entire required directory, not just this file or a single partition. See <a href="https://docs.paraview.org/en/latest/UsersGuide/dataIngestion.html">loading data in ParaView</a>.</p>
+</div>
+<div class="paragraph">
+<p>Create a visualization that lets you:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>View the mesh and temperature with a readable legend.</p>
+</li>
+<li>
+<p>Examine the interior using a slice through the post and fins.</p>
+</li>
+<li>
+<p>Identify the heated base and interpret the observed gradients.</p>
+</li>
+<li>
+<p>Visualize the partitions using the parallel run&#8217;s <code>pid</code> field.</p>
+</li>
+<li>
+<p>Compare one and four ranks using the same slice and colour scale.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Save an annotated screenshot and a ParaView state. Explain which files are still needed to reopen this state elsewhere. As an extension, investigate how to verify a volume average with the <strong>Integrate Variables</strong> filter.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prepare_the_mlops_parameter_study"><a class="anchor" href="#_prepare_the_mlops_parameter_study"></a>12. Prepare the MLOps parameter study</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once the reference case has been verified, prepare the full campaign over exactly three parameters: fin length <code>L</code>, fin thickness <code>t</code> and <code>Bi</code>. Keep the number of fins equal to four and use the largest heat flux prescribed for the campaign. Other generator/model parameters, including the fixed post setting, must be recorded and held constant.</p>
+</div>
+<div class="paragraph">
+<p>Use a documented seeded sampling strategy over the approved three-dimensional domain. Predict the qualitative effect of each parameter and decide when a new 3D mesh is required. Create each case in a separate directory, preserve parameters and mesh checksums, then submit the campaign through a Slurm job array. Start with a smoke subset before the full design.</p>
+</div>
+<div class="paragraph">
+<p>Propose a data-row schema linking <code>(L, t, Bi)</code> to the mean base temperature and its provenance. Split the completed samples into disjoint train, validation and test sets before training. One-rank and four-rank runs of the same case are numerical verification runs, not two independent physical examples to split between training and testing.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deliverables"><a class="anchor" href="#deliverables"></a>13. End-of-session deliverables</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Your commands, scripts and configurations, with the generator revision and an explanation of your changes.</p>
+</li>
+<li>
+<p>Job IDs and logs, measurements and their comparison; keep the mesh and results in the designated storage space with their checksums.</p>
+</li>
+<li>
+<p>A ParaView screenshot with a legend and physical interpretation.</p>
+</li>
+<li>
+<p>A short report stating what works, the obstacles encountered and the remaining checks. Report a failed MPI run as a failure.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Another pair must be able to reproduce your workflow from these materials. Version scripts and small configuration files in Git; keep the SIF and large outputs in the designated storage space.</p>
+</div>
+<div class="paragraph">
+<p>Continue with the <a href="mlops/project.html" class="xref page">MLOps project</a>, then the <a href="semester-project.html" class="xref page">semester project</a>.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="session2-thermal-fin.html">Session 2 — 3D thermal fins</a></span>
-  <span class="next"><a href="mlops/index.html">MLOps introduction</a></span>
+  <span class="prev"><a href="feelpp-gaya.html">Deploy Feel++ on Gaya with Slurm</a></span>
+  <span class="next"><a href="reproducibility.html">Reproducible environments and results</a></span>
 </nav>
 </article>
   </div>

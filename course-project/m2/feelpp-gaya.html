@@ -6,7 +6,7 @@
     <title>Deploy Feel++ on Gaya with Slurm and Apptainer :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/m2/feelpp-gaya.html">
     <link rel="prev" href="hpc-containers.html">
-    <link rel="next" href="reproducibility.html">
+    <link rel="next" href="session2-thermal-fin.html">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../_/css/site.css">
 
@@ -123,7 +123,7 @@ MathJax.Hub.Config({
                 </div>-->
                 <div class="navbar-item has-dropdown is-hoverable download-item">
                     <div class="navbar-item"><a href="../../_/../cours-project/_attachments/cours-project.zip"
-                            class="download-btn">Download the Notebooks</a></div>
+                            class="download-btn" title="Teaching notebooks with a locked uv environment for VS Code">Download the Notebooks</a></div>
                 </div>
                 <div class="navbar-item">
                     <a class="navbar-brand" href="https://www.cemosis.fr">
@@ -138,7 +138,8 @@ MathJax.Hub.Config({
             </div>
         </div>
     </nav>
-</header><div class="body">
+</header>
+<div class="body">
 <a href="#" class="menu-expand-toggle"></a>
 <div class="nav-container" data-component="course-project" data-version="">
   <aside class="nav">
@@ -272,6 +273,9 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="feelpp-gaya.html">Deploy Feel++ on Gaya with Slurm</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="session2-thermal-fin.html">Session 2 — 3D thermal fins</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="reproducibility.html">Reproducible environments and results</a>
@@ -739,6 +743,9 @@ MathJax.Hub.Config({
 <h2 id="_prepare_an_image_and_case"><a class="anchor" href="#_prepare_an_image_and_case"></a>2. Prepare an image and case</h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p>For the second two-hour M2 session, follow <a href="session2-thermal-fin.html" class="xref page">the 3D thermal-fin practical</a>: the official Python generator, Heat runs at one and four ranks, and ParaView. The thermal bridge below remains another reference case.</p>
+</div>
+<div class="paragraph">
 <p>Use <a href="../m1/gaya.html" class="xref page">Gaya access/storage guidance</a>. The instructor must validate the image, case and resource request on the course allocation before teaching. The explicit release below is the example documented by <a href="https://docs.feelpp.org/user/latest/install/containers.html">Feel++</a>; it is a reproducible starting version, not a claim that it is the newest or already validated on Gaya.</p>
 </div>
 <div class="paragraph">
@@ -852,7 +859,7 @@ squeue -u "$USER"</code></pre>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="hpc-containers.html">Scientific/HPC containers</a></span>
-  <span class="next"><a href="reproducibility.html">Reproducible environments and results</a></span>
+  <span class="next"><a href="session2-thermal-fin.html">Session 2 — 3D thermal fins</a></span>
 </nav>
 </article>
   </div>

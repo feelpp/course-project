@@ -123,7 +123,7 @@ MathJax.Hub.Config({
                 </div>-->
                 <div class="navbar-item has-dropdown is-hoverable download-item">
                     <div class="navbar-item"><a href="../../../_/../cours-project/_attachments/cours-project.zip"
-                            class="download-btn">Download the Notebooks</a></div>
+                            class="download-btn" title="Teaching notebooks with a locked uv environment for VS Code">Download the Notebooks</a></div>
                 </div>
                 <div class="navbar-item">
                     <a class="navbar-brand" href="https://www.cemosis.fr">
@@ -138,7 +138,8 @@ MathJax.Hub.Config({
             </div>
         </div>
     </nav>
-</header><div class="body">
+</header>
+<div class="body">
 <a href="#" class="menu-expand-toggle"></a>
 <div class="nav-container" data-component="course-project" data-version="">
   <aside class="nav">
@@ -272,6 +273,9 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../feelpp-gaya.html">Deploy Feel++ on Gaya with Slurm</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../session2-thermal-fin.html">Session 2 — 3D thermal fins</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../reproducibility.html">Reproducible environments and results</a>
@@ -730,18 +734,108 @@ MathJax.Hub.Config({
 <h2 id="_project_brief"><a class="anchor" href="#_project_brief"></a>1. Project brief</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Build a complete computational-science pipeline: prepare parameterized heat cases, run Feel++ on Gaya using Slurm and Apptainer, assemble a dataset, train a regression model for average temperature, and verify inference against held-out and new Feel++ simulations. A small, traceable model is preferred to sophisticated ML with incomplete provenance.</p>
+<p>Build a complete computational-science pipeline for a <strong>3D thermal-fin</strong> problem: sample the prescribed parameters, generate the cases and meshes, run Feel++ on Gaya using Slurm and Apptainer, assemble a dataset, train a regression model, and verify inference against held-out and new Feel++ simulations. A small, traceable model is preferred to sophisticated ML with incomplete provenance.</p>
 </div>
 <div class="paragraph">
 <p>A technically competent third party should be able to clone the repository, follow the documented procedure, reproduce the environment and execute the pipeline.</p>
 </div>
 <div class="paragraph">
-<p>The teaching team confirms groups, dates, resource budget, parameter domain and numerical/ML tolerances. Start from <a href="../feelpp-gaya.html" class="xref page">the single-case deployment</a> and <a href="lifecycle.html" class="xref page">the proposed thermal-bridge parameter study</a>.</p>
+<p>The teaching team confirms groups, dates, resource budget, parameter bounds and numerical/ML tolerances. Start from <a href="../session2-thermal-fin.html" class="xref page">the session 2 thermal-fin generator and verified Heat runs</a>. The thermal-bridge pages are background references; they do not redefine this project.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_expected_architecture"><a class="anchor" href="#_expected_architecture"></a>2. Expected architecture</h2>
+<h2 id="_definitive_project_clarification"><a class="anchor" href="#_definitive_project_clarification"></a>2. Definitive project clarification</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The attached student message lists questions, not additional requirements. The requirements for this project are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>use the thermal-fin generator to produce <strong>3D</strong> cases and meshes;</p>
+</li>
+<li>
+<p>use a central post with <strong>four fins</strong> throughout the campaign; the other generator settings not listed below remain fixed and documented;</p>
+</li>
+<li>
+<p>vary exactly three inputs: fin length <code>L</code>, fin thickness <code>t</code> and the Biot number <code>Bi</code>. <code>L</code> and <code>t</code> are geometric design parameters; <code>Bi</code> is the prescribed operating/design parameter. Do not replace these inputs with conductivity, fin spacing or another geometry parameter;</p>
+</li>
+<li>
+<p>use the most advanced prescribed heat-flux configuration, namely the largest heat flux allowed in the campaign domain supplied by the teaching team. Record its value and units in the configuration; do not silently invent a larger value;</p>
+</li>
+<li>
+<p>define the quantity of interest as the <strong>mean temperature on the fin base</strong> (the designated base boundary/marker), with its physical units and averaging measure stated explicitly. It is not automatically the volume average used in the introductory single-case exercise;</p>
+</li>
+<li>
+<p>split the sampled cases into disjoint training, validation and test sets. The test set is not used for model selection or fitting, and at least one independent test case must be checked again with the finite-element solver;</p>
+</li>
+<li>
+<p>each team chooses one learning method. A method may be developed by only one team, so register the choice with the teaching team before implementation. Possible choices include a neural network, gradient boosting, random forest, Gaussian process or polynomial chaos regression.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The number of samples is a design decision: propose it from the three-dimensional parameter domain and available Gaya budget, justify the sampling strategy and seed, and obtain approval before launching the full campaign. A small smoke campaign is required first; it does not count as the final training/test dataset unless explicitly approved.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_physical_problem_and_geometry"><a class="anchor" href="#_physical_problem_and_geometry"></a>3. Physical problem and geometry</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The geometry is a central post connected to four horizontal fins. The CPU heats the lower face of the post. Heat is conducted through the solid post and fins, then rejected from the surfaces exposed to the ambient air. The project solves the thermal conduction problem only; it does not resolve the airflow.</p>
+</div>
+<div class="paragraph">
+<p>The equations and boundary conditions are written in the generator&#8217;s nondimensional convention. In particular, <code>Bi</code> controls the convective exchange with the ambient through the corresponding Robin boundary condition. The lower CPU boundary receives the prescribed heat flux, while the exposed fin/post surfaces exchange with the ambient temperature. Record the exact nondimensional definitions, signs, boundary markers and the largest approved heat-flux value in the case documentation. Do not convert the results to degrees Celsius or physical millimetres unless the reference scales are also supplied.</p>
+</div>
+<div class="paragraph">
+<p>The quantity of interest is the mean nondimensional temperature on the heated CPU/post interface (the base marker defined by the case), or the corresponding dimensional temperature if a reference scale is explicitly provided. It must be a boundary average over that marker, not a volume average over the whole solid and not an unweighted average of mesh nodes.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parameter_to_response_mapping"><a class="anchor" href="#_parameter_to_response_mapping"></a>4. Parameter-to-response mapping</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let the parameter vector be</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\\mu = (L,t,Bi) \\in \\mathcal{P},\]
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>L</code> is the fin length, <code>t</code> its thickness and <code>Bi</code> the nondimensional operating/design parameter describing the exchange with the ambient. For each <code>\\mu</code>, the finite-element workflow generates a 3D case and computes the scalar functional</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[S(\\mu) = \\overline{T}_{base}(\\mu) = \\frac{1}{|\\Gamma_{base}|}\\int_{\\Gamma_{base}} T(\\mu)\\,\\mathrm{d}\\Gamma.\]
+</div>
+</div>
+<div class="paragraph">
+<p>The learning task is to construct a surrogate <code>S_hat(mu)</code> of this mapping. The dataset therefore contains parameter vectors, provenance and the corresponding value of <code>S</code>; it is not a dataset of unrelated images or fields. The 3D temperature field remains available for physical interpretation and verification.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_final_application_rapid_operational_or_design_optimization"><a class="anchor" href="#_final_application_rapid_operational_or_design_optimization"></a>5. Final application: rapid operational or design optimization</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once <code>S_hat</code> has been validated, use it as the last stage of the workflow for rapid exploration. In a design study, search the admissible parameter domain for the configuration that minimizes the base temperature under the prescribed heat load:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\\mu^* = \\operatorname*{arg\\,min}_{\\mu \\in \\mathcal{P}} \\hat{S}(\\mu).\]
+</div>
+</div>
+<div class="paragraph">
+<p>The constraints, objective and heat-flux convention must be stated explicitly; another valid objective could maximize heat removal or impose a temperature limit. In an operational study, hold the chosen geometry fixed (for example <code>L</code> and <code>t</code>) and optimize only the permitted operating parameter(s), or find the admissible configuration meeting a target temperature. The temperature <code>S(\\mu)</code> is normally the output/quantity of interest, not an input parameter; if a target temperature is prescribed, it must be identified as an additional constraint. Every proposed optimum must finally be checked by a new finite-element simulation, not only by the surrogate.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_expected_architecture"><a class="anchor" href="#_expected_architecture"></a>6. Expected architecture</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -749,7 +843,7 @@ MathJax.Hub.Config({
 ├── README.adoc
 ├── pyproject.toml
 ├── requirements.lock
-├── config/                    # domain, sampling, solver and training
+├── config/                    # L, t, Bi domain, flux, sampling, solver and training
 ├── cases/template/            # versioned CFG/JSON/geometry
 ├── src/thermal_surrogate/     # prepare, submit, collect, dataset, train, predict
 ├── slurm/                     # single-job/array templates and resource settings
@@ -767,7 +861,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect1">
-<h2 id="_required_pipeline_interface"><a class="anchor" href="#_required_pipeline_interface"></a>3. Required pipeline interface</h2>
+<h2 id="_required_pipeline_interface"><a class="anchor" href="#_required_pipeline_interface"></a>7. Required pipeline interface</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The following is an interface students implement, not a pre-existing package in this teaching repository. Equivalent documented commands are acceptable:</p>
@@ -786,7 +880,7 @@ python -m pytest</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Preparation writes per-sample solver inputs and stable IDs. Submission/status records job IDs and attempts. Collection accepts only complete, valid runs. Training keeps preprocessing within the fitted model pipeline and logs configuration, dataset/split identity, metrics and artifacts in MLflow. Prediction must not rerun training. Verification compares predictions with matching Feel++ sample IDs and physical units.</p>
+<p>Preparation writes one 3D generated case/mesh per sample and stable IDs. Submission/status records job IDs and attempts. Collection accepts only complete, valid runs and extracts the mean base temperature. Training keeps preprocessing within the fitted model pipeline and logs configuration, dataset/split identity, metrics and artifacts in MLflow. Prediction must not rerun training. Verification compares predictions with matching Feel++ sample IDs and physical units.</p>
 </div>
 <div class="paragraph">
 <p>Use a single reproducible driver or documented stage commands with restart/resume semantics. Demonstrate the equivalent containerized ML commands and the actual Slurm simulation script.</p>
@@ -794,7 +888,7 @@ python -m pytest</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_github_workflow"><a class="anchor" href="#_github_workflow"></a>4. GitHub workflow</h2>
+<h2 id="_github_workflow"><a class="anchor" href="#_github_workflow"></a>8. GitHub workflow</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -807,7 +901,7 @@ python -m pytest</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_milestones"><a class="anchor" href="#_milestones"></a>5. Milestones</h2>
+<h2 id="_milestones"><a class="anchor" href="#_milestones"></a>9. Milestones</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -830,13 +924,13 @@ python -m pytest</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2. Produce the dataset</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Seeded parameter design, per-sample inputs, campaign jobs and verified scalar extraction.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seeded design in <code>(L, t, Bi)</code>, four-fin 3D inputs/meshes, campaign jobs and verified base-temperature extraction.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Small smoke campaign; failure/retry handling; schema/units/provenance; expanded budget agreed.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3. Learn the response</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Frozen dataset/splits, dummy baseline and at least two regression configurations, MLflow comparison.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Train-only preprocessing; validation-based selection; final held-out error report in temperature units.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Frozen train/validation/test splits, a baseline and the registered team method, with MLflow comparison.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Train-only preprocessing; validation-based selection; final held-out error report in temperature units; no method duplicated across teams.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4. Infer and verify</p></td>
@@ -853,7 +947,7 @@ python -m pytest</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deliverables"><a class="anchor" href="#_deliverables"></a>6. Deliverables</h2>
+<h2 id="_deliverables"><a class="anchor" href="#_deliverables"></a>10. Deliverables</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Submit repository commit/tag, issue/PR/review links, CI results, both environment identities, simulation inputs/manifests/job logs, dataset and frozen splits, experiment comparison, selected model, batch predictions and verification report. Preserve artifact locations/checksums and report physical/numerical limits. Include contributions, any permitted AI disclosure and a partner reproduction record.</p>
@@ -861,12 +955,12 @@ python -m pytest</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="assessment"><a class="anchor" href="#assessment"></a>7. Assessment</h2>
+<h2 id="assessment"><a class="anchor" href="#assessment"></a>11. Assessment</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>Scientific validity: parameter semantics/units, solver convergence, correct spatial-average extraction, leakage-free evaluation and justified error tolerance.</p>
+<p>Scientific validity: 3D four-fin setup, parameter semantics/units, solver convergence, correct mean-base-temperature extraction, leakage-free evaluation and justified error tolerance.</p>
 </li>
 <li>
 <p>HPC operation: Slurm/Apptainer use on Gaya, appropriate resource requests, isolated outputs and traceable failures/retries.</p>
@@ -888,12 +982,12 @@ python -m pytest</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="reproducibility-checklist"><a class="anchor" href="#reproducibility-checklist"></a>8. Reproducibility checklist</h2>
+<h2 id="reproducibility-checklist"><a class="anchor" href="#reproducibility-checklist"></a>12. Reproducibility checklist</h2>
 <div class="sectionbody">
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p><i class="fa fa-square-o"></i> Sampling domain, units, seed, sample IDs and complete generated inputs are recorded.</p>
+<p><i class="fa fa-square-o"></i> The 3D/four-fin configuration, heat-flux value, <code>(L, t, Bi)</code> domain, units, seed, sample IDs and complete generated inputs/meshes are recorded.</p>
 </li>
 <li>
 <p><i class="fa fa-square-o"></i> Feel++ SIF, case template, mesh/solver settings and ML environment are identified and retrievable.</p>
