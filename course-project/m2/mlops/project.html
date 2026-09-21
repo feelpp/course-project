@@ -779,6 +779,12 @@ MathJax.Hub.Config({
 <p>A technically competent third party should be able to clone the repository, follow the documented procedure, reproduce the environment and execute the pipeline.</p>
 </div>
 <div class="paragraph">
+<p><strong>The project language is English.</strong> Repository content, source-code documentation, issues, pull requests, reviews, presentation slides and the oral presentation must all be written or delivered in English.</p>
+</div>
+<div class="paragraph">
+<p>Each team works in the <strong>private GitHub repository</strong> provisioned by the teaching team. Do not make the repository public or publish a public copy of its code, data, results or discussions.</p>
+</div>
+<div class="paragraph">
 <p>The teaching team confirms groups, dates, resource budget, parameter bounds and numerical/ML tolerances. Start with <a href="../session2-thermal-fin.html" class="xref page">session 2</a>, which is a preparation and validation exercise. The thermal-bridge pages are background references; they do not define a second MLOps project.</p>
 </div>
 </div>
@@ -1141,6 +1147,9 @@ python -m pytest</code></pre>
 <div class="paragraph">
 <p>Use acceptance criteria, labels, milestones and a Project board. Each student provides identifiable implementation and review evidence. CI runs inexpensive fixtures/tests; real Gaya execution is recorded separately. Follow <a href="../../git-github/github-review-projects-lab.html" class="xref page">the collaboration lab</a>.</p>
 </div>
+<div class="paragraph">
+<p>Team coordination must be visible in GitHub. Use issues to assign work, discuss technical decisions and record acceptance criteria; use pull requests and reviews for implementation and verification. Private conversations may help resolve a question, but they do not replace the English issue or review that records the resulting decision.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1173,7 +1182,7 @@ python -m pytest</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3. Learn the response</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Frozen train/validation/test splits, a baseline and the registered team method, with MLflow comparison.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Train-only preprocessing; validation-based selection; final held-out error report in temperature units; no method duplicated across teams.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Train-only preprocessing; validation-based selection; final held-out error metrics in temperature units; no method duplicated across teams.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4. Infer and verify</p></td>
@@ -1182,7 +1191,7 @@ python -m pytest</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5. Reproduce</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Artifact retrieval, complete instructions and partner reproduction report.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artifact retrieval, complete instructions and partner reproduction evidence.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Clean-checkout demonstration of the pipeline, with HPC access/resource prerequisites explicit.</p></td>
 </tr>
 </tbody>
@@ -1193,7 +1202,29 @@ python -m pytest</code></pre>
 <h2 id="_deliverables"><a class="anchor" href="#_deliverables"></a>11. Deliverables</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Submit repository commit/tag, issue/PR/review links, CI results, both environment identities, simulation inputs/manifests/job logs, dataset and frozen splits, experiment comparison, selected model, batch predictions and verification report. Preserve artifact locations/checksums and report physical/numerical limits. Include contributions, any permitted AI disclosure and a partner reproduction record.</p>
+<p>There is <strong>no separate written project report</strong>. Submit the following, entirely in English:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a tagged repository containing the source code, tests, configuration, workflow definitions and concise technical documentation needed to execute and reproduce the pipeline;</p>
+</li>
+<li>
+<p>links to the issues, branches, pull requests, reviews and CI runs that demonstrate each student&#8217;s implementation and review contributions;</p>
+</li>
+<li>
+<p>the simulation inputs, manifests and job logs; the versioned dataset and frozen splits; the experiment comparison and selected model; batch predictions, verification outputs and the final optimization check;</p>
+</li>
+<li>
+<p>the identities of the simulation and learning environments, plus documented locations and checksums for every external artifact;</p>
+</li>
+<li>
+<p>an oral presentation, supported by English-language slides delivered as a <strong>PDF file</strong>, explaining the engineering objective, physical model and quantity of interest, automated workflow, dataset, learning method, validation results, limitations and final optimization. Commit the final PDF to the tagged repository. Both students must present and be able to answer questions about the complete workflow.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The repository <code>README</code> and technical documentation are operational documentation, not a narrative report. They must state how to reproduce the work, identify individual contributions, disclose any permitted AI use and record the partner reproduction check.</p>
 </div>
 </div>
 </div>
@@ -1213,6 +1244,9 @@ python -m pytest</code></pre>
 </li>
 <li>
 <p>Reproducibility/collaboration: independent handoff, focused PRs, reviews and contribution evidence.</p>
+</li>
+<li>
+<p>Oral presentation: clear English explanation of the complete workflow, justified results, limitations and shared command of the project by both students.</p>
 </li>
 <li>
 <p>Individual understanding: explain a dataset row back to its Feel++ run; modify an input safely; diagnose a failed job; defend a prediction and its limits.</p>
@@ -1283,7 +1317,7 @@ python -m pytest</code></pre>
         <span style="font-size: 0.8rem; color: #9e9e9e">© 2026 <a href="https://www.cemosis.fr"
                 style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
     </div>
-</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+</footer><script id="site-script" src="../../../_/js/site.js" data-site-url="https://feelpp.github.io/course-project" data-ui-root-path="../../../_"></script>
 
 
 <!-- Font Awesome JS removed to use webfont icons only -->
