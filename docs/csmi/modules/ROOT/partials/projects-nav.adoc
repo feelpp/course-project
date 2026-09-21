@@ -1,0 +1,16 @@
+// GENERATED FILE. DO NOT EDIT.
+
+** xref:projects/index.adoc[Project Catalog]
+** xref:projects/registry-format.adoc[Registry Format]
+** xref:projects/provisioning.adoc[Provisioning Workflow]
+*** xref:projects/generated/avnir-1.adoc[avnir-1]
+*** xref:projects/generated/hid-1.adoc[hid-1]
+*** xref:projects/generated/hifimagnet-1.adoc[hifimagnet-1]
+*** xref:projects/generated/hifimagnet-2.adoc[hifimagnet-2]
+*** xref:projects/generated/hifimagnet-3.adoc[hifimagnet-3]
+*** xref:projects/generated/ooc-1.adoc[ooc-1]
+*** xref:projects/generated/ooc-2.adoc[ooc-2]
+*** xref:projects/generated/ooc-3.adoc[ooc-3]
+*** xref:projects/generated/sepsis-1.adoc[sepsis-1]
+*** xref:projects/generated/sepsis-2.adoc[sepsis-2]
+*** xref:projects/generated/sepsis-3.adoc[sepsis-3]

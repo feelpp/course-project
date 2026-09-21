@@ -24,6 +24,10 @@ This M2 mini-project uses machine-learning operations and reproducible workflows
 
 A technically competent third party should be able to clone the repository, follow the documented procedure, reproduce the environment and execute the pipeline.
 
+*The project language is English.* Repository content, source-code documentation, issues, pull requests, reviews, presentation slides and the oral presentation must all be written or delivered in English.
+
+Each team works in the *private GitHub repository* provisioned by the teaching team. Do not make the repository public or publish a public copy of its code, data, results or discussions.
+
 The teaching team confirms groups, dates, resource budget, parameter bounds and numerical/ML tolerances. Start with xref:session2-thermal-fin.adoc[session 2], which is a preparation and validation exercise. The thermal-bridge pages are background references; they do not define a second MLOps project.
 
 == Project specifications
@@ -285,6 +289,8 @@ issue → branch → commits → PR → CI → review → merge → closed issue
 
 Use acceptance criteria, labels, milestones and a Project board. Each student provides identifiable implementation and review evidence. CI runs inexpensive fixtures/tests; real Gaya execution is recorded separately. Follow xref:git-github:github-review-projects-lab.adoc[the collaboration lab].
 
+Team coordination must be visible in GitHub. Use issues to assign work, discuss technical decisions and record acceptance criteria; use pull requests and reviews for implementation and verification. Private conversations may help resolve a question, but they do not replace the English issue or review that records the resulting decision.
+
 == Milestones
 
 [cols="1,3,2",options="header"]
@@ -295,16 +301,24 @@ Use acceptance criteria, labels, milestones and a Project board. Each student pr
 |2. Produce the dataset |Seeded design in `(L, t, Bi)`, four-fin 3D inputs/meshes, campaign jobs and verified `mean_root_temperature` extraction.
 |Small smoke campaign; failure/retry handling; schema/units/provenance; expanded budget agreed.
 |3. Learn the response |Frozen train/validation/test splits, a baseline and the registered team method, with MLflow comparison.
-|Train-only preprocessing; validation-based selection; final held-out error report in temperature units; no method duplicated across teams.
+|Train-only preprocessing; validation-based selection; final held-out error metrics in temperature units; no method duplicated across teams.
 |4. Infer and verify |Packaged predictor, tests/CI and independent verification set.
 |Reload without retraining; compare with {feelpp} references; investigate worst errors and mesh sensitivity.
-|5. Reproduce |Artifact retrieval, complete instructions and partner reproduction report.
+|5. Reproduce |Artifact retrieval, complete instructions and partner reproduction evidence.
 |Clean-checkout demonstration of the pipeline, with HPC access/resource prerequisites explicit.
 |===
 
 == Deliverables
 
-Submit repository commit/tag, issue/PR/review links, CI results, both environment identities, simulation inputs/manifests/job logs, dataset and frozen splits, experiment comparison, selected model, batch predictions and verification report. Preserve artifact locations/checksums and report physical/numerical limits. Include contributions, any permitted AI disclosure and a partner reproduction record.
+There is *no separate written project report*. Submit the following, entirely in English:
+
+* a tagged repository containing the source code, tests, configuration, workflow definitions and concise technical documentation needed to execute and reproduce the pipeline;
+* links to the issues, branches, pull requests, reviews and CI runs that demonstrate each student's implementation and review contributions;
+* the simulation inputs, manifests and job logs; the versioned dataset and frozen splits; the experiment comparison and selected model; batch predictions, verification outputs and the final optimization check;
+* the identities of the simulation and learning environments, plus documented locations and checksums for every external artifact;
+* an oral presentation, supported by English-language slides delivered as a *PDF file*, explaining the engineering objective, physical model and quantity of interest, automated workflow, dataset, learning method, validation results, limitations and final optimization. Commit the final PDF to the tagged repository. Both students must present and be able to answer questions about the complete workflow.
+
+The repository `README` and technical documentation are operational documentation, not a narrative report. They must state how to reproduce the work, identify individual contributions, disclose any permitted AI use and record the partner reproduction check.
 
 [#assessment]
 == Assessment
@@ -313,6 +327,7 @@ Submit repository commit/tag, issue/PR/review links, CI results, both environmen
 * HPC operation: Slurm/Apptainer use on Gaya, appropriate resource requests, isolated outputs and traceable failures/retries.
 * Engineering: automated/resumable stages, meaningful tests, CI, packaging and artifact handling.
 * Reproducibility/collaboration: independent handoff, focused PRs, reviews and contribution evidence.
+* Oral presentation: clear English explanation of the complete workflow, justified results, limitations and shared command of the project by both students.
 * Individual understanding: explain a dataset row back to its {feelpp} run; modify an input safely; diagnose a failed job; defend a prediction and its limits.
 
 A low prediction error alone is insufficient. Project work may use AI under the xref:ROOT:ai-use.adoc[announced mode]; live individual checks can use another mode. See xref:ROOT:assessment.adoc[course competencies].
