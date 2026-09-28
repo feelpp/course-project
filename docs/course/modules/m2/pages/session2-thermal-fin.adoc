@@ -210,7 +210,7 @@ Save an annotated screenshot and a ParaView state. Explain which files are still
 
 Once the reference case has been verified, prepare the full campaign over exactly three parameters: fin length `L`, fin thickness `t` and `Bi`. Keep the number of fins equal to four and use the largest heat flux prescribed for the campaign. Other generator/model parameters, including the fixed post setting, must be recorded and held constant.
 
-Use a documented seeded sampling strategy over the approved three-dimensional domain. Predict the qualitative effect of each parameter and decide when a new 3D mesh is required. Create each case in a separate directory, preserve parameters and mesh checksums, then submit the campaign through a Slurm job array. Start with a smoke subset before the full design.
+Use a documented seeded sampling strategy over the approved three-dimensional domain. Predict the qualitative effect of each parameter and decide when a new 3D mesh is required. Create each case in a separate directory, preserve parameters and mesh checksums, then submit the campaign through a Slurm job array. Follow the xref:feelpp-gaya.adoc#thermal-fin-array[worked job-array example] and start with a smoke subset before the full design.
 
 Propose a data-row schema linking `(L, t, Bi)` to `mean_root_temperature` and its provenance. Split the completed samples into disjoint train, validation and test sets before training. One-rank and four-rank runs of the same case are numerical verification runs, not two independent physical examples to split between training and testing.
 

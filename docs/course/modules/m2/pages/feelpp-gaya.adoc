@@ -71,4 +71,88 @@ Repeat one case with the same SIF and inputs. Compare mean temperature, converge
 
 Parallel execution is a later extension: use the site's supported MPI launcher and matching PMI/PMIx/MPI libraries. Do not merely increase `--ntasks`: incompatible launches can create independent one-rank simulations writing the same files. Validate rank count and one-versus-many-rank results first. See https://apptainer.org/docs/user/latest/mpi.html[Apptainer MPI guidance].
 
+[[thermal-fin-array]]
+== Thermal-fin campaign with a Slurm job array
+
+After validating the single 3D thermal-fin case, prepare all approved parameter samples, JSON files and meshes *before* submission. Give each sample a stable identifier. The following layout keeps the inputs and results on shared storage accessible from compute nodes:
+
+[source,text]
+----
+campaign/
+├── feelpp.sif
+├── samples.txt                 # one sample ID per line, no header
+├── cases/
+│   ├── sample-0000/            # case.cfg, JSON, mesh and local dependencies
+│   └── sample-0001/
+├── logs/
+├── runs/
+└── slurm/heat-array.sbatch
+----
+
+The manifest order defines the mapping from zero-based task index to sample ID. For example, line 1 of `samples.txt` is task 0. Freeze the manifest for a submitted array; never reorder it while tasks are queued or running. Each CFG must resolve its JSON and mesh from its own case directory, without relying on paths from another sample. Keep a separate parameter/mesh manifest so every ID can be traced back to latexmath:[(L,t,\mathrm{Bi})].
+
+Save this single-rank starting point as `slurm/heat-array.sbatch` in `campaign/`. Adjust the partition, account, modules, image path, resources and MPI launcher only after the corresponding single-case run has been validated on Gaya:
+
+[source,bash]
+----
+#!/bin/bash
+#SBATCH --job-name=thermal-fin
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=4G
+#SBATCH --time=00:15:00
+#SBATCH --output=logs/heat-%A_%a.out
+#SBATCH --error=logs/heat-%A_%a.err
+set -euo pipefail
+
+campaign_root="$SLURM_SUBMIT_DIR"
+task_id="$SLURM_ARRAY_TASK_ID"
+sample_id="$(sed -n "$((task_id + 1))p" "$campaign_root/samples.txt")"
+[[ "$sample_id" =~ ^[A-Za-z0-9_-]+$ ]] || {
+    echo "Invalid or missing sample ID for task $task_id" >&2
+    exit 1
+}
+
+case_dir="$campaign_root/cases/$sample_id"
+[[ -f "$case_dir/case.cfg" && -f "$campaign_root/feelpp.sif" ]] || {
+    echo "Missing CFG or SIF for $sample_id" >&2
+    exit 1
+}
+
+run_dir="$campaign_root/runs/${SLURM_ARRAY_JOB_ID}_${task_id}"
+mkdir "$run_dir"  # fail rather than overwrite an earlier attempt
+mkdir "$run_dir/case" "$run_dir/results"
+cp -R "$case_dir/." "$run_dir/case/"
+printf 'sample_id=%s array_job=%s task=%s run_dir=%s\n' \
+    "$sample_id" "$SLURM_ARRAY_JOB_ID" "$task_id" "$run_dir"
+
+# Add the site-approved module setup here if required.
+srun --mpi=none apptainer exec --cleanenv \
+    --bind "$run_dir/case:/case:rw,$run_dir/results:/results:rw" \
+    --env OMP_NUM_THREADS=1 \
+    "$campaign_root/feelpp.sif" feelpp_toolbox_heat \
+    --config-file /case/case.cfg --directory /results
+----
+
+From `campaign/`, first submit a small smoke subset, then the full approved set. Choose the concurrency limit with the teaching team; here two tasks may run simultaneously:
+
+[source,bash]
+----
+mkdir -p logs runs
+sample_count="$(awk 'END { print NR }' samples.txt)"
+test "$sample_count" -gt 0
+smoke_last=1
+if [ "$sample_count" -eq 1 ]; then smoke_last=0; fi
+sbatch --array="0-${smoke_last}%2" slurm/heat-array.sbatch
+# After checking both results, submit the approved full campaign:
+sbatch --array="0-$((sample_count - 1))%2" slurm/heat-array.sbatch
+squeue -r -u "$USER"
+sacct -j ARRAY_JOB_ID --format=JobID,State,ExitCode
+----
+
+The smoke command selects one task when the manifest has one entry and two otherwise. Wait for it and inspect its results before running the full-campaign command; these are separate submissions and have separate job IDs. Slurm reports the array job ID at submission; task `k` appears as `ARRAY_JOB_ID_k` and writes `logs/heat-ARRAY_JOB_ID_k.*`. Each task copies its case into a private writable directory because mesh import may create partitioning files. The result directory is isolated by array job ID and task index; a retry should use a new submission and retain the previous logs and outputs.
+
+After all tasks finish, match each task index to its frozen sample ID and validate its exit status, solver convergence, mesh and marker checks, and `mean_root_temperature` CSV value before admitting it to the learning dataset. Failed tasks should be recorded and resubmitted selectively, for example `sbatch --array=3,7%2 slurm/heat-array.sbatch`; the original manifest indices still identify the samples. An array runs independent simulations; it does not make one simulation an MPI computation. See the xref:m1:gaya.adoc[Slurm overview], https://slurm.schedmd.com/job_array.html[official job-array guide] and xref:mlops/project.adoc[project workflow].
+
 Next: xref:mlops/index.adoc[parameter sampling → {feelpp} on Gaya → dataset → training → inference → verification].

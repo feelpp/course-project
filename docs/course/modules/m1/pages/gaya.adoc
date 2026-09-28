@@ -56,6 +56,12 @@ printf 'Job %s completed its command\n' "$SLURM_JOB_ID"
 
 Add the course's required `--partition`/`--account` directives if the defaults are not usable. Submit, note the ID, monitor with `squeue`, then inspect both output files with `less` or `cat`. `%j` expands to the job ID. If accounting is enabled, `sacct -j JOBID --format=JobID,State,ExitCode` reports completion status. Inspect stderr and exit status; disappearing from the queue alone does not mean success.
 
+== Job arrays for independent runs
+
+When the same program must run on many independent inputs, submit one batch script as a Slurm job array. `sbatch --array=0-9%2 script.sbatch` creates ten tasks with indices 0 through 9 and allows at most two of them to run at once. Each task receives its index in `SLURM_ARRAY_TASK_ID`; the script uses that index to select one input from a fixed manifest. The `%2` limit controls simultaneous tasks, while `--ntasks` controls processes *within each task*. Set the limit and resources according to the approved Gaya allocation.
+
+Use `#SBATCH --output=logs/run-%A_%a.out` and a corresponding `--error` line to keep separate logs: `%A` is the array job ID and `%a` is the task index. Create `logs/` *before* submitting because Slurm opens these files before the script starts. Run `squeue -r -u "$USER"` to inspect individual tasks; where accounting is enabled, `sacct -j JOBID --format=JobID,State,ExitCode` shows their final states. A task leaving the queue is not proof that its scientific output is valid. See the https://slurm.schedmd.com/job_array.html[Slurm job-array reference] and the xref:m2:feelpp-gaya.adoc#thermal-fin-array[thermal-fin campaign example].
+
 == Exercise and self-check
 
 Run the short job, retrieve the two logs, and explain why the hostname can differ from the login host. Submit a second job and cancel it if still pending/running. Replace `hostname` with your tested small computation using the approved environment and resource request.
