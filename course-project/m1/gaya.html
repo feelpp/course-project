@@ -835,7 +835,18 @@ printf 'Job %s completed its command\n' "$SLURM_JOB_ID"</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_exercise_and_self_check"><a class="anchor" href="#_exercise_and_self_check"></a>6. Exercise and self-check</h2>
+<h2 id="_job_arrays_for_independent_runs"><a class="anchor" href="#_job_arrays_for_independent_runs"></a>6. Job arrays for independent runs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When the same program must run on many independent inputs, submit one batch script as a Slurm job array. <code>sbatch --array=0-9%2 script.sbatch</code> creates ten tasks with indices 0 through 9 and allows at most two of them to run at once. Each task receives its index in <code>SLURM_ARRAY_TASK_ID</code>; the script uses that index to select one input from a fixed manifest. The <code>%2</code> limit controls simultaneous tasks, while <code>--ntasks</code> controls processes <strong>within each task</strong>. Set the limit and resources according to the approved Gaya allocation.</p>
+</div>
+<div class="paragraph">
+<p>Use <code>#SBATCH --output=logs/run-%A_%a.out</code> and a corresponding <code>--error</code> line to keep separate logs: <code>%A</code> is the array job ID and <code>%a</code> is the task index. Create <code>logs/</code> <strong>before</strong> submitting because Slurm opens these files before the script starts. Run <code>squeue -r -u "$USER"</code> to inspect individual tasks; where accounting is enabled, <code>sacct -j JOBID --format=JobID,State,ExitCode</code> shows their final states. A task leaving the queue is not proof that its scientific output is valid. See the <a href="https://slurm.schedmd.com/job_array.html">Slurm job-array reference</a> and the <a href="../m2/feelpp-gaya.html#thermal-fin-array" class="xref page">thermal-fin campaign example</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exercise_and_self_check"><a class="anchor" href="#_exercise_and_self_check"></a>7. Exercise and self-check</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Run the short job, retrieve the two logs, and explain why the hostname can differ from the login host. Submit a second job and cancel it if still pending/running. Replace <code>hostname</code> with your tested small computation using the approved environment and resource request.</p>

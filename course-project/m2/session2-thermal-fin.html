@@ -1164,7 +1164,7 @@ MathJax.Hub.Config({
 <p>Once the reference case has been verified, prepare the full campaign over exactly three parameters: fin length <code>L</code>, fin thickness <code>t</code> and <code>Bi</code>. Keep the number of fins equal to four and use the largest heat flux prescribed for the campaign. Other generator/model parameters, including the fixed post setting, must be recorded and held constant.</p>
 </div>
 <div class="paragraph">
-<p>Use a documented seeded sampling strategy over the approved three-dimensional domain. Predict the qualitative effect of each parameter and decide when a new 3D mesh is required. Create each case in a separate directory, preserve parameters and mesh checksums, then submit the campaign through a Slurm job array. Start with a smoke subset before the full design.</p>
+<p>Use a documented seeded sampling strategy over the approved three-dimensional domain. Predict the qualitative effect of each parameter and decide when a new 3D mesh is required. Create each case in a separate directory, preserve parameters and mesh checksums, then submit the campaign through a Slurm job array. Follow the <a href="feelpp-gaya.html#thermal-fin-array" class="xref page">worked job-array example</a> and start with a smoke subset before the full design.</p>
 </div>
 <div class="paragraph">
 <p>Propose a data-row schema linking <code>(L, t, Bi)</code> to <code>mean_root_temperature</code> and its provenance. Split the completed samples into disjoint train, validation and test sets before training. One-rank and four-rank runs of the same case are numerical verification runs, not two independent physical examples to split between training and testing.</p>

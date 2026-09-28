@@ -1132,6 +1132,9 @@ python -m pytest</code></pre>
 <p>Preparation writes one 3D generated case/mesh per sample and stable IDs. Submission/status records job IDs and attempts. Collection accepts only complete, valid runs and extracts <code>mean_root_temperature</code>. Training keeps preprocessing within the fitted model pipeline and logs configuration, dataset/split identity, metrics and artifacts in MLflow. Prediction must not rerun training. Verification compares predictions with matching Feel++ sample IDs and the documented nondimensional convention.</p>
 </div>
 <div class="paragraph">
+<p>For the offline simulation campaign on Gaya, use the <a href="../feelpp-gaya.html#thermal-fin-array" class="xref page">Slurm job-array example</a> as a starting point: one array task per sampled parameter point, with frozen sample IDs, separate logs and outputs, and a smoke run before full submission.</p>
+</div>
+<div class="paragraph">
 <p>Use a single reproducible driver or documented stage commands with restart/resume semantics. Demonstrate the equivalent containerized ML commands and the actual Slurm simulation script.</p>
 </div>
 </div>
