@@ -6,6 +6,7 @@
 
 * *Date:* Monday 5 October 2026.
 * *Time:* 10:00–12:00, Paris time (Europe/Paris).
+* *Videoconference:* https://us02web.zoom.us/j/83029550524?pwd=thlnV1yqdlO8vJU6wayrx0gu9b47hX.1&jst=2[Join the presentation on Zoom].
 * *Proposed format:* 12 minutes per topic, comprising 9 minutes of presentation and 3 minutes for questions and transition.
 * *Speakers:* proposers of the M2 S3 2026–2027 project topics.
 
@@ -99,7 +100,24 @@ CEMOSIS — IRMA, University of Strasbourg, in collaboration with https://nepsen
 The session ends at *12:00*.
 Each slot includes questions and the transition to the next topic.
 
-== Company partner — NEPSEN
+== Company partners
+
+=== Avnir Energy
+
+https://www.avnir-energy.fr/[Avnir Energy] is a company developing vibration-monitoring and structural-health-monitoring solutions for the energy sector.
+Its custom monitoring systems combine physical measurements with numerical models, including applications in vibration, acoustics and mechanical behaviour.
+
+The two CSMI projects proposed by Gabriel Georges address xref:2026-2027/m2-s3/topics/avnir-imagerie-topologique.adoc[topological imaging for defect detection] and the xref:2026-2027/m2-s3/topics/avnir-gravite-ondes.adoc[effect of gravity on wave propagation in slender structures], in the context of monitoring nuclear-industry structures.
+
+=== Willing AI / Coruscant
+
+https://coruscant.fr/en/[Coruscant — Willing AI] combines expertise in applied mathematics and artificial intelligence with the digital-transformation experience of https://willing.fr/[Willing].
+It develops AI solutions for organisations, with an emphasis on security, reliability and responsible use of data.
+
+The xref:2026-2027/m2-s3/topics/willing-arbovirus-control.adoc[arbovirus epidemic-control project] supervised by Mario Veruete explores reaction–diffusion modelling and mosquito-release strategies.
+A follow-on internship, permanent employment (CDI) and/or a PhD may be possible.
+
+=== NEPSEN
 
 https://nepsen.fr/[NEPSEN] is an independent French engineering and consulting company specialising in the energy and ecological transition.
 It supports public and private clients in sustainable buildings, renewable energy and industrial energy efficiency, with services including energy audits, technical studies and project engineering.
