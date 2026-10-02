@@ -75,13 +75,20 @@ IRMA, University of Strasbourg
 |8
 |11:45–12:00
 |Christophe Prud'homme +
-CEMOSIS — IRMA, University of Strasbourg, in collaboration with NEPSEN
+CEMOSIS — IRMA, University of Strasbourg, in collaboration with https://nepsen.fr/[NEPSEN] (company)
 |xref:2026-2027/m2-s3/topics/ktirio-facades-3d.adoc[3D façade analysis to enrich Ktirio's building energy models]
 |In person
 |===
 
 The session ends at *12:00*.
 Each slot includes questions and the transition to the next topic.
+
+== Company partner — NEPSEN
+
+https://nepsen.fr/[NEPSEN] is an independent French engineering and consulting company specialising in the energy and ecological transition.
+It supports public and private clients in sustainable buildings, renewable energy and industrial energy efficiency, with services including energy audits, technical studies and project engineering.
+
+For the xref:2026-2027/m2-s3/topics/ktirio-facades-3d.adoc[Ktirio 3D façade analysis project], NEPSEN proposes three reference sites and supporting design and monitoring documents for validation, subject to data availability.
 
 == Source and topics
 

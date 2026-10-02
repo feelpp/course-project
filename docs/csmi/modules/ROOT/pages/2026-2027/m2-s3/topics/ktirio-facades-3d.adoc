@@ -10,7 +10,7 @@
 |Academic year |2026–2027
 |Semester |Master 2 — S3
 |Project proposer |Christophe Prud'homme
-|Host organisation |CEMOSIS — IRMA, Université de Strasbourg, en collaboration avec NEPSEN
+|Host organisation |CEMOSIS — IRMA, University of Strasbourg, in collaboration with https://nepsen.fr/[NEPSEN] (company)
 |Contact |mailto:christophe.prudhomme@cemosis.fr[christophe.prudhomme@cemosis.fr]
 |Team size |One student
 |Possible internship |Maybe
@@ -24,6 +24,12 @@ Ktirio is a platform for simulating building energy performance at neighbourhood
 Supervised by CEMOSIS in collaboration with NEPSEN, the project will use textured 3D models and LiDAR data to obtain this information efficiently and enrich the energy models.
 
 NEPSEN proposes three reference sites: Apave in Artigues-près-Bordeaux, Téthys in Bègles and Haut Blanzac in Mérignac. Design and monitoring documents will support validation. Their use will depend on the availability and acquisition dates of the geometry and texture data. Strasbourg data may provide an initial test area.
+
+== Company partner — NEPSEN
+
+https://nepsen.fr/[NEPSEN] is an independent French engineering and consulting company specialising in the energy and ecological transition.
+It works with public and private clients on sustainable buildings, renewable energy and industrial energy efficiency.
+Its services include energy audits, technical studies and project engineering, providing a practical setting for validating the building characteristics extracted for Ktirio.
 
 == Objectives
 

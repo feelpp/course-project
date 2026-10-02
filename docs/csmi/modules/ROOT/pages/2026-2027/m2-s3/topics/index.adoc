@@ -53,7 +53,7 @@ Proposals submitted in French have been translated into English.
 |8
 |xref:2026-2027/m2-s3/topics/ktirio-facades-3d.adoc[3D façade analysis to enrich Ktirio's building energy models]
 |Christophe Prud'homme
-|CEMOSIS — IRMA, Université de Strasbourg, en collaboration avec NEPSEN
+|CEMOSIS — IRMA, University of Strasbourg, in collaboration with https://nepsen.fr/[NEPSEN] (company)
 |===
 
 == Topic presentations
