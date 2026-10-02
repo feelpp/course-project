@@ -849,13 +849,13 @@
     {
       "id": 142,
       "title": "CSMI Projects — M2 S3 2026–2027 :: Course Project",
-      "content": "Edit this Page Download as .pdf CSMI Projects — M2 S3 2026–2027 This space brings together the CSMI Master 2, Semester 3 (S3) project proposals for the 2026–2027 academic year. 1. Proposed topics Eight topics have been proposed by Avnir Energy, CNR Nanotec, IAC-CNR, IRMA, LNCMI and CEMOSIS in collaboration with NEPSEN. Topic catalogue and detailed project pages. Proposal spreadsheet. 2. Topic presentations — Monday 5 October 2026 The session runs from 10:00 to 12:00, Paris time, with in-person and remote presentations according to the preferences declared by the project proposers. Proposed presentation order and time slots. 3. Organisation Each project page specifies the proposed team size and possible follow-on internships or PhD opportunities. Project proposers present their topics before students select their projects. Back to the 2026–2027 CSMI projects Project topics — M2 S3 2026–2027 The eight CSMI Master 2 Semester 3 project proposals for 2026–2027.",
+      "content": "Edit this Page Download as .pdf CSMI Projects — M2 S3 2026–2027 This space brings together the CSMI Master 2, Semester 3 (S3) project proposals for the 2026–2027 academic year. 1. Proposed topics Ten topics are available from Avnir Energy, CNR Nanotec, IAC-CNR, IRMA, LNCMI, CEMOSIS in collaboration with NEPSEN, and Willing AI / Coruscant. Topic catalogue and detailed project pages. Proposal spreadsheet. 2. Topic presentations — Monday 5 October 2026 The session runs from 10:00 to 12:00, Paris time, with in-person and remote presentations according to the preferences declared by the project proposers. Proposed presentation order and time slots. 3. Organisation Each project page specifies the proposed team size and possible follow-on internships or PhD opportunities. Project proposers present their topics before students select their projects. Back to the 2026–2027 CSMI projects Project topics — M2 S3 2026–2027 The ten CSMI Master 2 Semester 3 project proposals for 2026–2027.",
       "url": "/csmi/2026-2027/m2-s3/"
     },
     {
       "id": 143,
       "title": "M2 S3 Topic Presentations — Monday 5 October 2026 :: Course Project",
-      "content": "Edit this Page Download as .pdf M2 S3 Topic Presentations — Monday 5 October 2026 1. Time and format Date: Monday 5 October 2026. Time: 10:00–12:00, Paris time (Europe/Paris). Proposed format: 15 minutes per topic, comprising 10 minutes of presentation and 5 minutes for questions and transition. Speakers: proposers of the M2 S3 2026–2027 project topics. Topics by the same speaker are grouped together. Remote presentations are scheduled first, followed by in-person presentations. This is a proposed schedule based on the availability declared in the spreadsheet as of 2 October 2026. Alessandro De Giorgi’s participation, marked “Maybe”, remains to be confirmed. 2. Proposed presentation order No. Time Speaker and institution Topic Format 1 10:00–10:15 Gabriel Georges Avnir Energy Topological imaging Videoconference 2 10:15–10:30 Gabriel Georges Avnir Energy Impact of gravity on wave propagation in a large slender structure Videoconference 3 10:30–10:45 Alessandro De Giorgi (to be confirmed",
+      "content": "Edit this Page Download as .pdf M2 S3 Topic Presentations — Monday 5 October 2026 1. Time and format Date: Monday 5 October 2026. Time: 10:00–12:00, Paris time (Europe/Paris). Proposed format: 12 minutes per topic, comprising 9 minutes of presentation and 3 minutes for questions and transition. Speakers: proposers of the M2 S3 2026–2027 project topics. Topics by the same speaker are grouped together. Presentations with a declared remote format are grouped at the start of the session. The formats for Joubine Aghili and Mario Veruete remain to be confirmed. This proposed schedule includes all ten topics within the 10:00–12:00 session. Alessandro De Giorgi and Joubine Aghili declared “Maybe”; their participation remains to be confirmed. Mario Veruete’s availability and presentation format are also to be confirmed. 2. Proposed presentation order No. Time Speaker and institution Topic Format 1 10:00–10:12 Gabriel Georges Avnir Energy Topological imaging Videoconference 2 10:12–10:24 Gabriel",
       "url": "/csmi/2026-2027/m2-s3/presentations.html"
     },
     {
@@ -873,59 +873,71 @@
     {
       "id": 146,
       "title": "Project topics — M2 S3 2026–2027 :: Course Project",
-      "content": "Edit this Page Download as .pdf Project topics — M2 S3 2026–2027 The eight proposals below come from the M2 2026–2027 topic spreadsheet, accessed on 2 October 2026. Each project page provides the context, objectives, fields and tools specified by its proposer. Proposals submitted in French have been translated into English. 1. Topic list No. Topic Project proposer Host organisation 1 Topological imaging Gabriel Georges Avnir Energy 2 Impact of gravity on wave propagation in a large slender structure Gabriel Georges Avnir Energy 3 Calibrating tumour–astrocyte migration models on registered organ-on-chip data Alessandro De Giorgi CNR Nanotec 4 3D Kernel Density Estimation for Cell Tracking on Cancer-on-Chip Elishan Christian Braun IAC-CNR Rome, Italy 5 Uncertainty quantification for linear transport Andrea Thomann IRMA, Université de Strasbourg 6 Simulation of nonlinear compressible hyperelastic solids Andrea Thomann IRMA, Université de Strasbourg 7 Systemic model of High Field Resistive",
+      "content": "Edit this Page Download as .pdf Project topics — M2 S3 2026–2027 Ten project proposals are listed below. Each project page provides the context, objectives, fields and tools specified by its proposer. 1. Topic list No. Topic Project proposer Host organisation 1 Topological imaging Gabriel Georges Avnir Energy 2 Impact of gravity on wave propagation in a large slender structure Gabriel Georges Avnir Energy 3 Calibrating tumour–astrocyte migration models on registered organ-on-chip data Alessandro De Giorgi CNR Nanotec 4 3D Kernel Density Estimation for Cell Tracking on Cancer-on-Chip Elishan Christian Braun IAC-CNR Rome, Italy 5 Uncertainty quantification for linear transport Andrea Thomann IRMA, Université de Strasbourg 6 Simulation of nonlinear compressible hyperelastic solids Andrea Thomann IRMA, Université de Strasbourg 7 Systemic model of High Field Resistive Magnets Christophe Trophime Laboratoire National des Champs Magnétiques Intenses, CNRS UPR3228, Grenoble 8 3D façade analysi",
       "url": "/csmi/2026-2027/m2-s3/topics/"
     },
     {
       "id": 147,
+      "title": "Fully differentiable nonconforming finite elements in Scimba :: Course Project",
+      "content": "Edit this Page Download as .pdf Fully differentiable nonconforming finite elements in Scimba 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project proposer Joubine Aghili Host organisation IRMA, University of Strasbourg Contact aghili@unistra.fr Team size One student Possible internship Maybe Possible PhD No 2. Project context The project contributes to the development of Scimba, specifically its finite-element capabilities. 3. Objectives Implement a fully differentiable two-dimensional nonconforming finite-element solver. 4. Fields Modelling, simulation, optimisation and control. 5. Mathematical tools Nonconforming finite elements and automatic differentiation theory. 6. Computing tools Python, with JAX or PyTorch. 7. Topic presentation Declared availability for Monday 5 October 2026: Maybe — to be confirmed. Preferred presentation format: To be confirmed. Presentation session for 5 October, 10:00–12:00. Back to the topic list",
+      "url": "/csmi/2026-2027/m2-s3/topics/irma-scimba-nonconforming-fe.html"
+    },
+    {
+      "id": 148,
       "title": "Simulation of nonlinear compressible hyperelastic solids :: Course Project",
       "content": "Edit this Page Download as .pdf Simulation of nonlinear compressible hyperelastic solids 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project proposer Andrea Thomann Host organisation IRMA, Université de Strasbourg Contact andrea.thomann@unistra.fr Team size One student Possible internship No Possible PhD No 2. Project context The numerical simulation of nonlinear compressible hyperelastic solids is quite challenging due to the different physical processes that have to be combined. Furthermore the solution structure can be quite challenging due to the different wave types arising in the model (shear, fast and slow longitudinal waves etc). The capturing of discontinuities is quite important in particular for slow moving contact waves. 3. Objectives The project includes the understanding of the equations (optional different models), the numerical implementation in 1 or 2 dimensions and including mesh refinement to capture discontinuities with high resolution. 4. ",
       "url": "/csmi/2026-2027/m2-s3/topics/irma-solides-hyperelastiques.html"
     },
     {
-      "id": 148,
+      "id": 149,
       "title": "Uncertainty quantification for linear transport :: Course Project",
       "content": "Edit this Page Download as .pdf Uncertainty quantification for linear transport 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project proposer Andrea Thomann Host organisation IRMA, Université de Strasbourg Contact andrea.thomann@unistra.fr Team size One student Possible internship Yes Possible PhD Yes This project is proposed together with Mathias Dus. 2. Project context In this project we consider the influence of a random parameter on the linear transport equation. Therein, the uncertainty can either be on the solution or the model itself by adding a random coefficients to the flux definition. This can be interpreted either by errors in the measurements and uncertainties in the modeling process. Possible applications beyond this project are traffic flow problems as well as many physical processes in random media. This project is together with Mathias DUS. 3. Objectives Understand the model in one dimension (hyperbolic conservation law with intrinsic uncertain",
       "url": "/csmi/2026-2027/m2-s3/topics/irma-transport-incertitudes.html"
     },
     {
-      "id": 149,
+      "id": 150,
       "title": "3D façade analysis to enrich Ktirio’s building energy models :: Course Project",
       "content": "Edit this Page Download as .pdf 3D façade analysis to enrich Ktirio’s building energy models 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project proposer Christophe Prud’homme Host organisation CEMOSIS — IRMA, University of Strasbourg, in collaboration with NEPSEN (company) Contact christophe.prudhomme@cemosis.fr Team size One student Possible internship Maybe Possible PhD Maybe 2. Project context Ktirio is a platform for simulating building energy performance at neighbourhood and city scales, particularly energy consumption and summer comfort in the context of climate change adaptation. Its models require information about the exterior envelope: dimensions, storeys, glazed areas and opening orientations. Supervised by CEMOSIS in collaboration with NEPSEN, the project will use textured 3D models and LiDAR data to obtain this information efficiently and enrich the energy models. NEPSEN proposes three reference sites: Apave in Artigues-près-Bordeaux, Téthys in B",
       "url": "/csmi/2026-2027/m2-s3/topics/ktirio-facades-3d.html"
     },
     {
-      "id": 150,
+      "id": 151,
       "title": "Systemic model of High Field Resistive Magnets :: Course Project",
       "content": "Edit this Page Download as .pdf Systemic model of High Field Resistive Magnets 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project proposer Christophe Trophime Host organisation Laboratoire National des Champs Magnétiques Intenses, CNRS UPR3228, Grenoble Contact christophe.trophime@lncmi.cnrs.fr Team size Adaptable to the number of students Possible internship Yes Possible PhD Maybe 2. Project context Build a simplified digital model of resistive magnets in operation 3. Objectives Create a ODE base circuit model for LNCMI magnets in operation coupled with a model of the cooling system. 4. Fields Data and machine learning; modelling, simulation, optimisation and control. 5. Mathematical tools ODE and 1D Pde models; Parameters identifications; Eventually Data assimilations 6. Computing tools Python with SciPy, JAX and scikit-learn; an existing ODE module is available in a GitHub repository. C++ with SUNDIALS may be considered depending on performance. GitHub for",
       "url": "/csmi/2026-2027/m2-s3/topics/lncmi-aimants-resistifs.html"
     },
     {
-      "id": 151,
+      "id": 152,
       "title": "3D Kernel Density Estimation for Cell Tracking on Cancer-on-Chip :: Course Project",
       "content": "Edit this Page Download as .pdf 3D Kernel Density Estimation for Cell Tracking on Cancer-on-Chip 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project proposer Elishan Christian Braun Host organisation IAC-CNR Rome, Italy Contact elishanchristian.braun@cnr.it Team size Adaptable to the number of students Possible internship Maybe Possible PhD Yes 2. Project context Part of the Project: D34Health (Digital Driven Diagnostics, prognostics, and therapeutics for sustainable Healthcare, for the development of digital twin of cancer-on-chip biological experiments 3. Objectives Develop a framework/pipeline used for the digital twin of Cancer-on-Chip experiments. The project intends to create numerical methods in order to use cell tracking data in microscopic and macroscopic mathematical models which then is used for calibration and validation of in-silico models against real experimental data. 4. Fields Data and machine learning; modelling, simulation, optimisation and ",
       "url": "/csmi/2026-2027/m2-s3/topics/ooc-kde-3d.html"
     },
     {
-      "id": 152,
+      "id": 153,
       "title": "Calibrating tumour–astrocyte migration models on registered organ-on-chip data :: Course Project",
       "content": "Edit this Page Download as .pdf Calibrating tumour–astrocyte migration models on registered organ-on-chip data 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project proposer Alessandro De Giorgi Host organisation CNR Nanotec Contact alessandro.degiorgi@unisalento.it Team size One student Possible internship Yes Possible PhD Maybe 2. Project context This project belongs to a CNR–Unistra collaboration within D3 4Health. It builds on two M1 projects on image registration and cell tracking in a brain organ-on-chip with glioblastoma cells and astrocytes. A new longer imaging campaign now allows migration data to be linked to a calibrated PDE model. 3. Objectives Build a reproducible pipeline from registered cell trajectories to migration observables, and use it to calibrate diffusion and taxis parameters of a reduced tumour–astrocyte PDE model, with quantified uncertainty. 4. Fields Data and machine learning; modelling, simulation, optimisation and control; signal an",
       "url": "/csmi/2026-2027/m2-s3/topics/ooc-migration-tumeur-astrocytes.html"
     },
     {
-      "id": 153,
+      "id": 154,
+      "title": "Strategies for controlling arbovirus epidemics :: Course Project",
+      "content": "Edit this Page Download as .pdf Strategies for controlling arbovirus epidemics 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project supervisor Dr Mario Veruete Host organisation Willing AI / Coruscant, Willing (company) Contact mario.veruete@willing.fr Team size To be agreed with the supervisor Possible internship Yes Possible follow-on opportunities Permanent employment (CDI) and/or a PhD may be possible after the internship The precise research direction and scope will be agreed with the supervisor according to the student’s profile. An applicant with a strong background in mathematical modelling and numerical analysis is sought. Follow-on opportunities are possibilities, rather than guaranteed offers. 2. Project context The project studies mosquito population suppression as a way to reduce arbovirus epidemic risk. It focuses on the Incompatible Insect Technique (IIT): releasing male mosquitoes carrying a Wolbachia strain combination that is incompatible with",
+      "url": "/csmi/2026-2027/m2-s3/topics/willing-arbovirus-control.html"
+    },
+    {
+      "id": 155,
       "title": "CSMI Project Proposals :: Course Project",
       "content": "Edit this Page Download as .pdf CSMI Project Proposals This module organizes CSMI project proposals by academic year, master level, and semester. 1. Current Cohort Academic year: 2026–2027 Program: Master 2 Semester: S3 Master 2 — Semester 3 — 2026–2027 2026–2027 M2 S3 project topics Topic presentations — Monday 5 October 2026, 10:00–12:00 (Paris time) 2. Yearly Project Spaces CSMI projects for 2026–2027 CSMI projects for 2025–2026 3. Active Topics Folder 2026-2027/m2-s3/topics 4. Previous Semester Master 1 — Semester 2 — 2025–2026 2025–2026 M1 S2 project topics CSMI Projects — 2025–2026 CSMI project proposals for the 2025–2026 academic year. CSMI Projects — 2026–2027 CSMI project proposals for the 2026–2027 academic year.",
       "url": "/csmi/"
     },
     {
-      "id": 154,
+      "id": 156,
       "title": "Proposal Template :: Course Project",
       "content": "Edit this Page Download as .pdf Proposal Template 1. Shared Context Describe the common scientific background, common datasets, and shared tools. 2. Student-Specific Scope Document what is specific to this project instance. 3. Objectives Objective 1 Objective 2 Objective 3 4. Expected Deliverables Source code repository Documentation and reproducibility notes Final report and presentation 5. Milestones Week 1-2: Scope and setup Week 3-6: Core implementation Week 7-9: Validation and documentation Week 10: Final presentation",
       "url": "/csmi/proposal-template.html"
     },
     {
-      "id": 155,
+      "id": 157,
       "title": "Redirect Notice",
       "content": "Redirect Notice The page you requested has been relocated to https://feelpp.github.io/course-project/course-project/index.html.",
       "url": "/index.html"
