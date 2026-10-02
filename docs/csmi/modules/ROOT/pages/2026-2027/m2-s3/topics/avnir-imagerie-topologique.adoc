@@ -1,0 +1,73 @@
+= Topological imaging
+:page-tags: manual,csmi,projects,2026,2026-2027,m2,s3,m2-s3-topic
+:page-illustration: fa-solid fa-crosshairs
+:description: CSMI M2 S3 2026–2027 project proposed by Gabriel Georges.
+
+== Project information
+
+[cols="1,3"]
+|===
+|Academic year |2026–2027
+|Semester |Master 2 — S3
+|Project proposer |Gabriel Georges
+|Host organisation |Avnir Energy
+|Contact |mailto:g.georges@avnir-energy.fr[g.georges@avnir-energy.fr]
+|Team size |One student
+|Possible internship |Yes
+|Possible PhD |No
+|===
+
+== Project context
+
+This project is central to Avnir Energy's activity: providing the emerging nuclear industry with tools and methods for monitoring industrial structures, such as reactor vessels. It aims to implement topological imaging, a process similar to ultrasound imaging that detects small defects within a material, such as air bubbles in a weld.
+
+The main steps are:
+
+. High-fidelity modelling of ultrasonic wave propagation and reflections in a healthy medium, represented by an idealised numerical model.
+. Simulation of the same medium with one or more defects. This initially replaces experimental measurements during prototyping; eventually, vibration measurements from the actual structure will be used.
+. Modelling of the inverse problem: the time-reversed perturbation, computed as the healthy solution minus the defective solution, is injected into the healthy medium.
+. Computation of a topological norm, a time integral at every point in the medium, whose non-zero values reveal defects.
+
+The main challenges are:
+
+* Accurate calculations for high-fidelity wave representation.
+* Computational efficiency: ultrasonic frequencies are of the order of MHz and require very fine spatial and temporal discretisation. Computational cost must be controlled for industrial use.
+* Understanding wave propagation, time reversal and signal analysis.
+
+== Objectives
+
+This M2 project follows an M1 internship and may serve as preliminary work for an M2 internship.
+
+Several challenges remain:
+
+. Implement the entire workflow with Feel++, ideally in a single program that automates the sequence of calculations.
+. Develop a detailed understanding of the inverse problem and its mathematical adjoint formulation (step 3).
+. Compute the topological norm accurately and efficiently (step 4).
+. Use spectral finite elements for steps 1 and 2.
+
+Given the limited duration of the M2 semester project, the initial focus will be on implementing the complete workflow.
+
+== Fields
+
+Modelling, simulation, optimisation and control; high-performance computing; wave propagation physics.
+
+== Mathematical tools
+
+Finite element methods; possibly spectral element methods.
+
+== Computing tools
+
+Feel++, Python scripting, Git and ParaView.
+
+== Topic presentation
+
+* Declared availability for Monday 5 October 2026: *Yes*.
+* Preferred format: *Remote, via videoconference*.
+* xref:2026-2027/m2-s3/presentations.adoc[Presentation schedule for 5 October, 10:00–12:00].
+
+== Source
+
+Based on the https://docs.google.com/spreadsheets/d/1PLm7r-X-mIi-789ib_0Ag4Kr2B3Q-zUbQcKETiLwdq4/edit#gid=452532753&range=A2:Q2[M2 2026–2027 proposal spreadsheet], accessed on 2 October 2026.
+Proposals submitted in French have been translated into English.
+
+xref:2026-2027/m2-s3/topics/index.adoc[Back to the topic list]

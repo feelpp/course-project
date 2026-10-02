@@ -1,0 +1,64 @@
+= Project topics — M2 S3 2026–2027
+:page-layout: manuals
+:page-tags: manual,csmi,projects,2026,2026-2027,m2,s3,m2-s3-topics-index
+:page-cards-tag: m2-s3-topic
+:page-cards-within-module: true
+:page-illustration: fa-solid fa-list
+:description: The eight CSMI Master 2 Semester 3 project proposals for 2026–2027.
+
+The eight proposals below come from the https://docs.google.com/spreadsheets/d/1PLm7r-X-mIi-789ib_0Ag4Kr2B3Q-zUbQcKETiLwdq4/edit[M2 2026–2027 topic spreadsheet], accessed on *2 October 2026*.
+Each project page provides the context, objectives, fields and tools specified by its proposer.
+Proposals submitted in French have been translated into English.
+
+== Topic list
+
+[cols="1,4,2,2",options="header"]
+|===
+|No. |Topic |Project proposer |Host organisation
+|1
+|xref:2026-2027/m2-s3/topics/avnir-imagerie-topologique.adoc[Topological imaging]
+|Gabriel Georges
+|Avnir Energy
+
+|2
+|xref:2026-2027/m2-s3/topics/avnir-gravite-ondes.adoc[Impact of gravity on wave propagation in a large slender structure]
+|Gabriel Georges
+|Avnir Energy
+
+|3
+|xref:2026-2027/m2-s3/topics/ooc-migration-tumeur-astrocytes.adoc[Calibrating tumour–astrocyte migration models on registered organ-on-chip data]
+|Alessandro De Giorgi
+|CNR Nanotec
+
+|4
+|xref:2026-2027/m2-s3/topics/ooc-kde-3d.adoc[3D Kernel Density Estimation for Cell Tracking on Cancer-on-Chip]
+|Elishan Christian Braun
+|IAC-CNR Rome, Italy
+
+|5
+|xref:2026-2027/m2-s3/topics/irma-transport-incertitudes.adoc[Uncertainty quantification for linear transport]
+|Andrea Thomann
+|IRMA, Université de Strasbourg
+
+|6
+|xref:2026-2027/m2-s3/topics/irma-solides-hyperelastiques.adoc[Simulation of nonlinear compressible hyperelastic solids]
+|Andrea Thomann
+|IRMA, Université de Strasbourg
+
+|7
+|xref:2026-2027/m2-s3/topics/lncmi-aimants-resistifs.adoc[Systemic model of High Field Resistive Magnets]
+|Christophe Trophime
+|Laboratoire National des Champs Magnétiques Intenses, CNRS UPR3228, Grenoble
+
+|8
+|xref:2026-2027/m2-s3/topics/ktirio-facades-3d.adoc[3D façade analysis to enrich Ktirio's building energy models]
+|Christophe Prud'homme
+|CEMOSIS — IRMA, Université de Strasbourg, en collaboration avec NEPSEN
+|===
+
+== Topic presentations
+
+The presentation session is scheduled for *Monday 5 October 2026, from 10:00 to 12:00* (Paris time).
+
+* xref:2026-2027/m2-s3/presentations.adoc[View the proposed presentation schedule].
+* xref:2026-2027/m2-s3/index.adoc[Back to the M2 S3 2026–2027 project space].

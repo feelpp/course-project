@@ -1,4 +1,4 @@
-= CSMI Topics - 2026 M1 S2
+= CSMI Topics - 2025–2026 M1 S2
 :page-layout: manuals
 :page-tags: manual,csmi,projects,2026,m1,s2,topics-index
 :page-cards-tag: topics
@@ -6,7 +6,7 @@
 :page-illustration: fa-solid fa-list
 :description: Topic list for CSMI project proposals in 2026 M1 S2.
 
-Project pages for the 2026 CSMI Master 1 S2 semester.
+Project pages for CSMI Master 1 S2 in the 2025–2026 academic year.
 
 == Shared Structure
 

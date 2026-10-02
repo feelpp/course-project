@@ -1,0 +1,30 @@
+= CSMI Projects — M2 S3 2026–2027
+:page-layout: manuals
+:page-tags: manual,csmi,projects,2026,2026-2027,m2,s3,semester-index,2026-2027-semester-index
+:page-cards-tag: m2-s3-topics-index
+:page-cards-within-module: true
+:page-illustration: fa-solid fa-graduation-cap
+:description: Project topics and presentations for CSMI Master 2 Semester 3 in the 2026–2027 academic year.
+
+[.lead]
+This space brings together the *CSMI Master 2, Semester 3 (S3)* project proposals for the *2026–2027 academic year*.
+
+== Proposed topics
+
+Eight topics have been proposed by Avnir Energy, CNR Nanotec, IAC-CNR, IRMA, LNCMI and CEMOSIS in collaboration with NEPSEN.
+
+* icon:list[] xref:2026-2027/m2-s3/topics/index.adoc[Topic catalogue and detailed project pages].
+* icon:external-link-alt[] https://docs.google.com/spreadsheets/d/1PLm7r-X-mIi-789ib_0Ag4Kr2B3Q-zUbQcKETiLwdq4/edit[Proposal spreadsheet].
+
+== Topic presentations — Monday 5 October 2026
+
+The session runs from *10:00 to 12:00*, Paris time, with in-person and remote presentations according to the preferences declared by the project proposers.
+
+* icon:calendar[] xref:2026-2027/m2-s3/presentations.adoc[Proposed presentation order and time slots].
+
+== Organisation
+
+Each project page specifies the proposed team size and possible follow-on internships or PhD opportunities.
+Project proposers present their topics before students select their projects.
+
+xref:2026-2027/index.adoc[Back to the 2026–2027 CSMI projects]

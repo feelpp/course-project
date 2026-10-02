@@ -1,0 +1,51 @@
+= Simulation of nonlinear compressible hyperelastic solids
+:page-tags: manual,csmi,projects,2026,2026-2027,m2,s3,m2-s3-topic
+:page-illustration: fa-solid fa-cubes
+:description: CSMI M2 S3 2026–2027 project proposed by Andrea Thomann.
+
+== Project information
+
+[cols="1,3"]
+|===
+|Academic year |2026–2027
+|Semester |Master 2 — S3
+|Project proposer |Andrea Thomann
+|Host organisation |IRMA, Université de Strasbourg
+|Contact |mailto:andrea.thomann@unistra.fr[andrea.thomann@unistra.fr]
+|Team size |One student
+|Possible internship |No
+|Possible PhD |No
+|===
+
+== Project context
+
+The numerical simulation of nonlinear compressible hyperelastic solids is quite challenging due to the different physical processes that have to be combined. Furthermore the solution structure can be quite challenging due to the different wave types arising in the model (shear, fast and slow longitudinal waves etc). The capturing of discontinuities is quite important in particular for slow moving contact waves.
+
+== Objectives
+
+The project includes the understanding of the equations (optional different models), the numerical implementation in 1 or 2 dimensions and including mesh refinement to capture discontinuities with high resolution.
+
+== Fields
+
+Modelling, simulation, optimisation and control.
+
+== Mathematical tools
+
+Theory for systems of hyperbolic conservation laws, numerical methods (exact Riemann solvers vs finite volume approximation), mesh refinement techniques on Cartesian grids
+
+== Computing tools
+
+Python implementation, possible implementation in parallel
+
+== Topic presentation
+
+* Declared availability for Monday 5 October 2026: *Yes*.
+* Preferred format: *In person*.
+* xref:2026-2027/m2-s3/presentations.adoc[Presentation schedule for 5 October, 10:00–12:00].
+
+== Source
+
+Based on the https://docs.google.com/spreadsheets/d/1PLm7r-X-mIi-789ib_0Ag4Kr2B3Q-zUbQcKETiLwdq4/edit#gid=452532753&range=A7:Q7[M2 2026–2027 proposal spreadsheet], accessed on 2 October 2026.
+Proposals submitted in French have been translated into English.
+
+xref:2026-2027/m2-s3/topics/index.adoc[Back to the topic list]

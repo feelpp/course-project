@@ -12,15 +12,25 @@ This module organizes CSMI project proposals by academic year, master level, and
 
 == Current Cohort
 
-- Year: *2026*
-- Program: *Master 1*
-- Semester: *S2*
+- Academic year: *2026–2027*
+- Program: *Master 2*
+- Semester: *S3*
+
+* icon:graduation-cap[] xref:2026-2027/m2-s3/index.adoc[Master 2 — Semester 3 — 2026–2027]
+* icon:list[] xref:2026-2027/m2-s3/topics/index.adoc[2026–2027 M2 S3 project topics]
+* icon:calendar[] xref:2026-2027/m2-s3/presentations.adoc[Topic presentations — Monday 5 October 2026, 10:00–12:00 (Paris time)]
 
 == Yearly Project Spaces
 
-- icon:calendar[] xref:2026/index.adoc[CSMI projects for 2026]
+- icon:calendar[] xref:2026-2027/index.adoc[CSMI projects for 2026–2027]
+- icon:calendar[] xref:2026/index.adoc[CSMI projects for 2025–2026]
 
 
 == Active Topics Folder
 
-- icon:folder-open[] xref:2026/m1-s2/topics/index.adoc[2026/m1-s2/topics]
+- icon:folder-open[] xref:2026-2027/m2-s3/topics/index.adoc[2026-2027/m2-s3/topics]
+
+== Previous Semester
+
+- icon:graduation-cap[] xref:2026/m1-s2/index.adoc[Master 1 — Semester 2 — 2025–2026]
+- icon:folder-open[] xref:2026/m1-s2/topics/index.adoc[2025–2026 M1 S2 project topics]

@@ -1,0 +1,19 @@
+= CSMI Projects — 2026–2027
+:page-layout: manuals
+:page-tags: manual,csmi,projects,2026-2027,year-index
+:page-cards-tag: 2026-2027-semester-index
+:page-cards-within-module: true
+:page-illustration: fa-solid fa-calendar
+:description: CSMI project proposals for the 2026–2027 academic year.
+
+This page tracks CSMI project spaces for the *2026–2027 academic year*.
+
+== Master 2 — Semester 3
+
+* icon:graduation-cap[] xref:2026-2027/m2-s3/index.adoc[Master 2 — Semester 3 (S3)]
+* icon:list[] xref:2026-2027/m2-s3/topics/index.adoc[M2 S3 project topics]
+* icon:calendar[] xref:2026-2027/m2-s3/presentations.adoc[Topic presentations — Monday 5 October 2026, 10:00–12:00 (Paris time)]
+
+== Previous Academic Year
+
+* icon:calendar[] xref:2026/index.adoc[CSMI projects for 2025–2026]

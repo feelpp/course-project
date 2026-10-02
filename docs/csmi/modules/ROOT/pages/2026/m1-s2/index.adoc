@@ -1,12 +1,12 @@
-= CSMI Projects - 2026 - Master 1 - Semester 2 (S2)
+= CSMI Projects - 2025–2026 - Master 1 - Semester 2 (S2)
 :page-layout: manuals
-:page-tags: manual,csmi,projects,2026,m1,s2,semester-index
+:page-tags: manual,csmi,projects,2026,m1,s2,semester-index,2025-2026-semester-index
 :page-cards-tag: topics-index
 :page-cards-within-module: true
 :page-illustration: fa-solid fa-graduation-cap
-:description: Project proposal workspace for CSMI M1 S2 in 2026.
+:description: Project proposal workspace for CSMI M1 S2 in the 2025–2026 academic year.
 
-This workspace contains project proposals for the 2026 CSMI Master 1 S2 semester.
+This workspace contains project proposals for CSMI Master 1 S2 in the 2025–2026 academic year.
 
 == Topics
 

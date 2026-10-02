@@ -1,0 +1,51 @@
+= Calibrating tumour–astrocyte migration models on registered organ-on-chip data
+:page-tags: manual,csmi,projects,2026,2026-2027,m2,s3,m2-s3-topic
+:page-illustration: fa-solid fa-microscope
+:description: CSMI M2 S3 2026–2027 project proposed by Alessandro De Giorgi.
+
+== Project information
+
+[cols="1,3"]
+|===
+|Academic year |2026–2027
+|Semester |Master 2 — S3
+|Project proposer |Alessandro De Giorgi
+|Host organisation |CNR Nanotec
+|Contact |mailto:alessandro.degiorgi@unisalento.it[alessandro.degiorgi@unisalento.it]
+|Team size |One student
+|Possible internship |Yes
+|Possible PhD |Maybe
+|===
+
+== Project context
+
+This project belongs to a CNR–Unistra collaboration within D3 4Health. It builds on two M1 projects on image registration and cell tracking in a brain organ-on-chip with glioblastoma cells and astrocytes. A new longer imaging campaign now allows migration data to be linked to a calibrated PDE model.
+
+== Objectives
+
+Build a reproducible pipeline from registered cell trajectories to migration observables, and use it to calibrate diffusion and taxis parameters of a reduced tumour–astrocyte PDE model, with quantified uncertainty.
+
+== Fields
+
+Data and machine learning; modelling, simulation, optimisation and control; signal and image processing.
+
+== Mathematical tools
+
+Kernel density estimation for micro-to-macro reconstruction; statistics of cell trajectories (MSD, persistence, non-parametric tests); reaction–diffusion–taxis PDEs solved with HDG/finite elements in Feel++ (CFPDE); inverse problems and parameter estimation (least squares, profile likelihood or Bayesian inference); sensitivity analysis, identifiability and uncertainty quantification; affine/projective transforms for image registration.
+
+== Computing tools
+
+Python scientific stack (NumPy, SciPy, pandas, scikit-image, OpenCV) for image processing, tracking and statistics; CZI readers for confocal data; Feel++ (CFPDE toolbox, Python interface) for PDE simulation on the chip mesh; Gmsh and ParaView for meshing and visualization; optimization/Bayesian libraries (SciPy, emcee or PyMC); Git/GitHub, Jupyter and CLI packaging for reproducibility.
+
+== Topic presentation
+
+* Declared availability for Monday 5 October 2026: *Maybe*.
+* Preferred format: *Remote, via videoconference*.
+* xref:2026-2027/m2-s3/presentations.adoc[Presentation schedule for 5 October, 10:00–12:00].
+
+== Source
+
+Based on the https://docs.google.com/spreadsheets/d/1PLm7r-X-mIi-789ib_0Ag4Kr2B3Q-zUbQcKETiLwdq4/edit#gid=452532753&range=A4:Q4[M2 2026–2027 proposal spreadsheet], accessed on 2 October 2026.
+Proposals submitted in French have been translated into English.
+
+xref:2026-2027/m2-s3/topics/index.adoc[Back to the topic list]
