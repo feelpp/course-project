@@ -58,9 +58,4 @@ Feel++, Python scripting and Git.
 * Preferred format: *Remote, via videoconference*.
 * xref:2026-2027/m2-s3/presentations.adoc[Presentation schedule for 5 October, 10:00–12:00].
 
-== Source
-
-Based on the https://docs.google.com/spreadsheets/d/1PLm7r-X-mIi-789ib_0Ag4Kr2B3Q-zUbQcKETiLwdq4/edit#gid=452532753&range=A3:Q3[M2 2026–2027 proposal spreadsheet], accessed on 2 October 2026.
-Proposals submitted in French have been translated into English.
-
 xref:2026-2027/m2-s3/topics/index.adoc[Back to the topic list]

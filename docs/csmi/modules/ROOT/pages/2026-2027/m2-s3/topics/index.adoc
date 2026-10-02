@@ -4,11 +4,10 @@
 :page-cards-tag: m2-s3-topic
 :page-cards-within-module: true
 :page-illustration: fa-solid fa-list
-:description: The eight CSMI Master 2 Semester 3 project proposals for 2026–2027.
+:description: The ten CSMI Master 2 Semester 3 project proposals for 2026–2027.
 
-The eight proposals below come from the https://docs.google.com/spreadsheets/d/1PLm7r-X-mIi-789ib_0Ag4Kr2B3Q-zUbQcKETiLwdq4/edit[M2 2026–2027 topic spreadsheet], accessed on *2 October 2026*.
+Ten project proposals are listed below.
 Each project page provides the context, objectives, fields and tools specified by its proposer.
-Proposals submitted in French have been translated into English.
 
 == Topic list
 
@@ -54,6 +53,16 @@ Proposals submitted in French have been translated into English.
 |xref:2026-2027/m2-s3/topics/ktirio-facades-3d.adoc[3D façade analysis to enrich Ktirio's building energy models]
 |Christophe Prud'homme
 |CEMOSIS — IRMA, University of Strasbourg, in collaboration with https://nepsen.fr/[NEPSEN] (company)
+
+|9
+|xref:2026-2027/m2-s3/topics/irma-scimba-nonconforming-fe.adoc[Fully differentiable nonconforming finite elements in Scimba]
+|Joubine Aghili
+|IRMA, University of Strasbourg
+
+|10
+|xref:2026-2027/m2-s3/topics/willing-arbovirus-control.adoc[Strategies for controlling arbovirus epidemics]
+|Mario Veruete
+|Willing AI / Coruscant, https://willing.fr/[Willing] (company)
 |===
 
 == Topic presentations

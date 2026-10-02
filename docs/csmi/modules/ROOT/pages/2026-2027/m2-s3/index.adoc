@@ -11,7 +11,7 @@ This space brings together the *CSMI Master 2, Semester 3 (S3)* project proposal
 
 == Proposed topics
 
-Eight topics have been proposed by Avnir Energy, CNR Nanotec, IAC-CNR, IRMA, LNCMI and CEMOSIS in collaboration with NEPSEN.
+Ten topics are available from Avnir Energy, CNR Nanotec, IAC-CNR, IRMA, LNCMI, CEMOSIS in collaboration with NEPSEN, and Willing AI / Coruscant.
 
 * icon:list[] xref:2026-2027/m2-s3/topics/index.adoc[Topic catalogue and detailed project pages].
 * icon:external-link-alt[] https://docs.google.com/spreadsheets/d/1PLm7r-X-mIi-789ib_0Ag4Kr2B3Q-zUbQcKETiLwdq4/edit[Proposal spreadsheet].

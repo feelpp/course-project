@@ -12,6 +12,8 @@
 ***** xref:2026-2027/m2-s3/topics/irma-solides-hyperelastiques.adoc[icon:cubes[] Hyperelastic solids]
 ***** xref:2026-2027/m2-s3/topics/lncmi-aimants-resistifs.adoc[icon:magnet[] Resistive magnets]
 ***** xref:2026-2027/m2-s3/topics/ktirio-facades-3d.adoc[icon:city[] 3D façades for Ktirio]
+***** xref:2026-2027/m2-s3/topics/irma-scimba-nonconforming-fe.adoc[icon:cubes[] Differentiable nonconforming FE in Scimba]
+***** xref:2026-2027/m2-s3/topics/willing-arbovirus-control.adoc[icon:disease[] Arbovirus epidemic control]
 ** xref:2026/index.adoc[icon:calendar[] 2025–2026 Cohort]
 *** xref:2026/m1-s2/index.adoc[icon:graduation-cap[] Master 1 - Semester 2 (S2)]
 **** xref:2026/m1-s2/topics/index.adoc[icon:list[] Topics and Proposals]
