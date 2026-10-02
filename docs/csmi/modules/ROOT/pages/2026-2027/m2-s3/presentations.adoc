@@ -100,6 +100,36 @@ CEMOSIS — IRMA, University of Strasbourg, in collaboration with https://nepsen
 The session ends at *12:00*.
 Each slot includes questions and the transition to the next topic.
 
+== Research institutions
+
+=== CEMOSIS
+
+https://www.cemosis.fr/[CEMOSIS — Centre for Modelling and Simulation in Strasbourg] is a mathematics platform within IRMA, supported by the University of Strasbourg and CNRS.
+It connects academic research with industry and other disciplines through mathematical modelling, simulation and optimisation, high-performance computing, data science, and signal and image processing.
+
+The xref:2026-2027/m2-s3/topics/ktirio-facades-3d.adoc[Ktirio 3D façade analysis project] proposed by Christophe Prud'homme combines building geometry, image analysis and energy simulation in collaboration with NEPSEN.
+
+=== IAC-CNR
+
+https://www.iac.cnr.it/[IAC — Istituto per le Applicazioni del Calcolo “Mauro Picone”] is an applied-mathematics research institute of Italy's National Research Council (CNR), headquartered in Rome.
+It develops mathematical, statistical and computational models and methods for interdisciplinary problems in science, society and industry, including medical imaging and biology.
+
+The xref:2026-2027/m2-s3/topics/ooc-kde-3d.adoc[3D kernel density estimation project] proposed by Elishan Christian Braun uses cell-tracking data to support the calibration and validation of cancer-on-chip digital twins.
+
+=== CNR Nanotec
+
+https://nanotec.cnr.it/home/[CNR Nanotec — Institute of Nanotechnology] is a research institute of Italy's National Research Council (CNR).
+It conducts fundamental and applied research in nanoscience and nanotechnology, combining physics, chemistry, engineering, materials science, biology and medicine with experimental techniques and modelling tools.
+
+The xref:2026-2027/m2-s3/topics/ooc-migration-tumeur-astrocytes.adoc[tumour–astrocyte migration project] proposed by Alessandro De Giorgi connects registered organ-on-chip imaging and cell trajectories to calibrated PDE models with quantified uncertainty.
+
+=== LNCMI
+
+https://lncmi.cnrs.fr/en/[LNCMI — National High Magnetic Field Laboratory] is a CNRS laboratory providing high-magnetic-field facilities for research, with sites in Grenoble and Toulouse.
+Grenoble operates continuous-field magnets, while Toulouse specialises in pulsed fields; the laboratory combines scientific experiments with magnet and instrumentation development.
+
+The xref:2026-2027/m2-s3/topics/lncmi-aimants-resistifs.adoc[resistive-magnet modelling project] proposed by Christophe Trophime develops a simplified circuit model coupled to the cooling system, with parameter identification and possible data assimilation.
+
 == Company partners
 
 === Avnir Energy
