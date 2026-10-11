@@ -61,6 +61,10 @@ Feel++, Python scripting, Git and ParaView.
 
 == Topic presentation
 
+* xref:attachment$2026-2027/m2-s3/presentations/avnir-topological-imaging-gravity-waves.pdf[Download the project presentation (PDF)].
+
+This shared presentation covers both Avnir Energy projects: gravity and wave propagation, and topological imaging.
+
 * Declared availability for Monday 5 October 2026: *Yes*.
 * Preferred format: *Remote, via videoconference*.
 * xref:2026-2027/m2-s3/presentations.adoc[Presentation schedule for 5 October, 10:00–12:00].

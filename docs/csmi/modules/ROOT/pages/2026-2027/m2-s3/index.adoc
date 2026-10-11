@@ -21,6 +21,7 @@ Ten topics are available from Avnir Energy, CNR Nanotec, IAC-CNR, IRMA, LNCMI, C
 The session runs from *10:00 to 12:00*, Paris time, with in-person and remote presentations according to the preferences declared by the project proposers.
 
 * icon:calendar[] xref:2026-2027/m2-s3/presentations.adoc[Proposed presentation order and time slots].
+* icon:file-pdf[] xref:2026-2027/m2-s3/presentations.adoc#_presentation_slides[Available project presentation slides (PDF)].
 
 == Organisation
 

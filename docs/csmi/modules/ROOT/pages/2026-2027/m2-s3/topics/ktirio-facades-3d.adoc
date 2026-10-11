@@ -61,6 +61,8 @@ Git/GitHub for version control and reproducibility; JSON or CSV export for integ
 
 == Topic presentation
 
+* xref:attachment$2026-2027/m2-s3/presentations/ktirio-nepsen-3d-facade-analysis.pdf[Download the project presentation (PDF)].
+
 * Declared availability for Monday 5 October 2026: *Yes*.
 * Preferred format: *In person*.
 * xref:2026-2027/m2-s3/presentations.adoc[Presentation schedule for 5 October, 10:00–12:00].

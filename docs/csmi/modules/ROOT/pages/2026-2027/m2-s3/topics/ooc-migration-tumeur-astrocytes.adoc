@@ -39,6 +39,8 @@ Python scientific stack (NumPy, SciPy, pandas, scikit-image, OpenCV) for image p
 
 == Topic presentation
 
+* xref:attachment$2026-2027/m2-s3/presentations/cnr-nanotec-tumour-astrocyte-migration.pdf[Download the project presentation (PDF)].
+
 * Declared availability for Monday 5 October 2026: *Maybe*.
 * Preferred format: *Remote, via videoconference*.
 * xref:2026-2027/m2-s3/presentations.adoc[Presentation schedule for 5 October, 10:00–12:00].

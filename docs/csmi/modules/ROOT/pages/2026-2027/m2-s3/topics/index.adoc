@@ -70,4 +70,5 @@ Each project page provides the context, objectives, fields and tools specified b
 The presentation session is scheduled for *Monday 5 October 2026, from 10:00 to 12:00* (Paris time).
 
 * xref:2026-2027/m2-s3/presentations.adoc[View the proposed presentation schedule].
+* xref:2026-2027/m2-s3/presentations.adoc#_presentation_slides[Download the available presentation slides (PDF)].
 * xref:2026-2027/m2-s3/index.adoc[Back to the M2 S3 2026–2027 project space].

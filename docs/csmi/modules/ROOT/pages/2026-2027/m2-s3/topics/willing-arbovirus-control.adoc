@@ -91,6 +91,10 @@ Its website identifies Coruscant as its applied-AI activity.
 
 == Topic presentation
 
+* xref:attachment$2026-2027/m2-s3/presentations/willing-arbovirus-epidemic-control.pdf[Download the project document (PDF, in French)].
+
+The document by Mario Veruete details the biological mechanism, reaction–diffusion model, mosquito-release strategies, numerical analysis, work plan and deliverables.
+
 Availability and presentation format for Monday 5 October 2026 are *to be confirmed* with Mario Veruete.
 
 * xref:2026-2027/m2-s3/presentations.adoc[Presentation session for 5 October, 10:00–12:00].

@@ -39,6 +39,10 @@ Python implementation, possible implementation in parallel
 
 == Topic presentation
 
+* xref:attachment$2026-2027/m2-s3/presentations/irma-transport-uncertainty-hyperelasticity.pdf[Download the project presentation (PDF)].
+
+This shared presentation covers linear transport with uncertainty and nonlinear compressible hyperelasticity.
+
 * Declared availability for Monday 5 October 2026: *Yes*.
 * Preferred format: *In person*.
 * xref:2026-2027/m2-s3/presentations.adoc[Presentation schedule for 5 October, 10:00–12:00].

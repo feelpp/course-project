@@ -21,6 +21,46 @@ This proposed schedule includes all ten topics within the 10:00–12:00 session.
 *Mario Veruete's* availability and presentation format are also *to be confirmed*.
 ====
 
+== Presentation slides
+
+The following presentation decks are available for download.
+The Avnir Energy and IRMA decks each cover two project topics.
+
+[cols="2,4,1",options="header"]
+|===
+|Institution or partner |Project topics |Slides
+|Avnir Energy
+|xref:2026-2027/m2-s3/topics/avnir-imagerie-topologique.adoc[Topological imaging] and xref:2026-2027/m2-s3/topics/avnir-gravite-ondes.adoc[gravity and wave propagation]
+|xref:attachment$2026-2027/m2-s3/presentations/avnir-topological-imaging-gravity-waves.pdf[Download PDF]
+
+|CNR Nanotec
+|xref:2026-2027/m2-s3/topics/ooc-migration-tumeur-astrocytes.adoc[Tumour–astrocyte migration model calibration]
+|xref:attachment$2026-2027/m2-s3/presentations/cnr-nanotec-tumour-astrocyte-migration.pdf[Download PDF]
+
+|IAC-CNR
+|xref:2026-2027/m2-s3/topics/ooc-kde-3d.adoc[3D kernel density estimation for cell tracking]
+|xref:attachment$2026-2027/m2-s3/presentations/iac-cnr-3d-kde-cell-tracking.pdf[Download PDF]
+
+|LNCMI
+|xref:2026-2027/m2-s3/topics/lncmi-aimants-resistifs.adoc[High-field resistive magnet modelling]
+|xref:attachment$2026-2027/m2-s3/presentations/lncmi-resistive-magnet-modelling.pdf[Download PDF]
+
+|IRMA
+|xref:2026-2027/m2-s3/topics/irma-transport-incertitudes.adoc[Transport uncertainty] and xref:2026-2027/m2-s3/topics/irma-solides-hyperelastiques.adoc[nonlinear compressible hyperelasticity]
+|xref:attachment$2026-2027/m2-s3/presentations/irma-transport-uncertainty-hyperelasticity.pdf[Download PDF]
+
+|CEMOSIS / NEPSEN
+|xref:2026-2027/m2-s3/topics/ktirio-facades-3d.adoc[Ktirio 3D façade analysis]
+|xref:attachment$2026-2027/m2-s3/presentations/ktirio-nepsen-3d-facade-analysis.pdf[Download PDF]
+
+|Willing AI / Coruscant
+|xref:2026-2027/m2-s3/topics/willing-arbovirus-control.adoc[Arbovirus epidemic control]
+|xref:attachment$2026-2027/m2-s3/presentations/willing-arbovirus-epidemic-control.pdf[Project document (PDF, French)]
+|===
+
+The arbovirus project is accompanied by a detailed project document rather than a slide deck.
+The presentation deck for the Scimba nonconforming finite element topic is not yet available.
+
 == Proposed presentation order
 
 [cols="1,2,3,5,2",options="header"]
