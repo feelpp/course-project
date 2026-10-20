@@ -356,588 +356,600 @@
     },
     {
       "id": 60,
-      "title": "Git & GitHub Fundamentals :: Course Project",
-      "content": "Edit this Page Download as .pdf Git & GitHub Fundamentals Learn the essential skills for version control and collaborative software development using Git and GitHub. From basic repository management to advanced collaboration workflows. 1. Git & GitHub Learning Modules The following modules cover everything from basic Git concepts to advanced GitHub collaboration: 2. Recommended Intro Session (M1) If your class completed GitHub basics and is ready for first structured team workflow practice, run: GitHub Intro Lab: Issues, PRs, and Projects (90 minutes)",
-      "url": "/course-project/git-github/"
+      "title": "TP : trois fonctions statistiques, trois rôles (2 h) :: Course Project",
+      "content": "Edit this Page Download as .pdf TP : trois fonctions statistiques, trois rôles (2 h) Chaque trinôme réalise trois fonctions dans un dépôt commun. Chaque étudiant implémente une fonction, teste une autre fonction et review la troisième. Les trois issues et les trois PR donnent une trace visible des responsabilités de chacun. Prérequis : le cycle issue → merge. Les groupes disposent chacun d’un dépôt GitHub avec main protégé, les trois membres avec accès en écriture et une règle exigeant une PR ainsi qu’une approbation avant merge. Préparer ces dépôts avant la séance. Le projet de départ à télécharger contient les quatre modules Python et le dossier tests/ ; l’enseignant le place sur main avant le TP. Garder les dépôts CV individuels séparés de cet exercice collectif. 1. Contrat des fonctions Les entrées sont des listes non vides de nombres réels. On suppose les valeurs finies ; la gestion de NaN et de l’infini est hors périmètre. Aucun paquet externe n’est requis. Le fichier de départ f",
+      "url": "/course-project/git-github/github-stats-trio-lab.html"
     },
     {
       "id": 61,
+      "title": "Travail collectif avec Git et GitHub (1 h) :: Course Project",
+      "content": "Edit this Page Download as .pdf Travail collectif avec Git et GitHub (1 h) Ce cours relie les notions déjà vues dans Git, les issues, la collaboration GitHub et les conflits. Une modification entre dans main après une pull request (PR), des tests et la review d’une autre personne. 1. Objectifs et déroulé Durée Activité 0–10 min Dessiner le cycle ci-dessous et distinguer le dépôt local, la branche distante et main. 10–20 min Rédiger une issue : problème, contrat, cas limites, critères d’acceptation et responsable. 20–35 min Démontrer branche, commit, push et ouverture d’une PR liée à l’issue. 35–50 min Faire exécuter un test, commenter le diff, demander une correction, approuver et merger. 50–60 min Montrer un conflit sur deux branches qui modifient la même ligne et sa résolution. 2. Le cycle d’une modification issue → branche → commits → push → PR → tests → review → corrections → merge → issue fermée Une issue décrit le besoin et le résultat vérifiable. Elle existe avant le code. Une b",
+      "url": "/course-project/git-github/github-team-workflow.html"
+    },
+    {
+      "id": 62,
+      "title": "Git & GitHub Fundamentals :: Course Project",
+      "content": "Edit this Page Download as .pdf Git & GitHub Fundamentals Learn the essential skills for version control and collaborative software development using Git and GitHub. From basic repository management to advanced collaboration workflows. 1. Git & GitHub Learning Modules The following modules cover everything from basic Git concepts to advanced GitHub collaboration: 2. Recommended Intro Session (M1) If your class completed GitHub basics and is ready for first structured team workflow practice, run: Travail collectif : de l’issue au merge (1 h) TP statistiques en trinômes : développeur, testeur, reviewer (2 h) GitHub Intro Lab: Issues, PRs, and Projects (90 minutes)",
+      "url": "/course-project/git-github/"
+    },
+    {
+      "id": 63,
       "title": "GitHub :: Course Project",
       "content": "Edit this Page Download as .pdf GitHub 1. GitHub: Overview GitHub is a web-based Git repository hosting service GitHub offers all of the distributed revision control and source code management (SCM) functionality of Git as well as adding its own features GitHub provides a web-based graphical interface and desktop as well as mobile integration GitHub is used by individuals and enterprises to host software projects GitHub is the largest code host in the world The main features of GitHub are Issues, Pull Requests, Projects, Actions 2. GitHub Issues GitHub Issues are a great way to keep track of tasks, enhancements, and bugs for your projects. They’re kind of like email—except they can be shared and discussed with the rest of your team. Most software projects have a bug tracker of some kind. GitHub’s tracker is called Issues, and has its own section in every repository. Issues can act as more than just a place to report software bugs. They’re great for tracking ideas and enhancements, task",
       "url": "/course-project/github.html"
     },
     {
-      "id": 62,
+      "id": 64,
       "title": "Github Actions :: Course Project",
       "content": "Edit this Page Download as .pdf Github Actions Github actions are setup to build the documentation using Antora and upload them to docs.feelpp.org[Feel++ docs] upon any change in the repo. build, install, package and deliver the Feel++ code See the [workflow file](.github/workflows/ci.yml) for more details. 1. Skipping a job You can skip the CI by adding the following line in the commit message: [skip ci] You can skip the job that build the documentation by adding the following line in the commit message: doc skip. You can skip the job that build the code by adding the following line in the commit message: code skip.",
       "url": "/course-project/githubactions.html"
     },
     {
-      "id": 63,
+      "id": 65,
       "title": "Course Project — M1 and M2 :: Course Project",
       "content": "Edit this Page Download as .pdf Course Project — M1 and M2 Reproducible computational science and professional scientific software practice are the common thread of this course in the Master CSMI. M1 — Computational foundations M2 — Scientific software and MLOps Work autonomously on a Linux-based scientific project, locally and remotely, using Git/GitHub and appropriate development tools. Engineer, package, automate, test and reproduce a computational or machine-learning application. Follow the M1 learning path · M1 semester project Follow the M2 learning path · MLOps project The practical target is to operate on Gaya using Slurm and Apptainer to deploy Feel++, then build a simulation-to-ML pipeline: prepare inputs → HPC simulations → dataset → training → inference → verification. 1. M2 starts here — 7 September 2026 Apptainer → Run a scientific application → HPC execution → Deploy Feel++ on Gaya → Reproducible environments → MLOps → MLOps project. M2 assumes the M1 foundations. Use th",
       "url": "/course-project/"
     },
     {
-      "id": 64,
+      "id": 66,
       "title": "Instructor Guide: Week-by-Week Curriculum :: Course Project",
       "content": "Edit this Page Download as .pdf Instructor Guide: Week-by-Week Curriculum This is the retained legacy three-level schedule. Use the current M1/M2 teaching guide for the course progression and first M2 session. This comprehensive guide helps instructors deliver the Course Project effectively to mathematics students (CSMI program). The curriculum is designed for a 12-week semester with flexible pacing based on student backgrounds. 1. Course Overview for Mathematics Students Key Teaching Principles for Mathematics Students: Start with \"Why\" - Always explain the mathematical relevance before diving into technical details Use Mathematical Examples - Replace generic programming examples with numerical analysis, LaTeX, data analysis Build Confidence Gradually - Many students may feel intimidated by command-line interfaces Connect to Research - Show how tools apply to mathematical research and collaboration 2. Pre-Course Preparation (Week 0) 2.1. Instructor Tasks Before the semester begins: Se",
       "url": "/course-project/instructor-guide.html"
     },
     {
-      "id": 65,
+      "id": 67,
       "title": "Course Project Notebook :: Course Project",
       "content": "Edit this Page Download as .pdf .ipynb Course Project Notebook This is a Jupyter notebook for the Course Project project. 1. Introduction You write your notebook in AsciiDoc including LaTeX math and thanks to the :page-jupyter: true attribute, the notebook is converted to a Jupyter notebook when the book is built. 2. Code cells You can include code cells in your notebook using the [source,python] block macro. import sys, os print(\"Hello, world!\") 3. Feel++ Code cells You can include Feel++ code cells in your notebook using the [source,python] block macro. import feelpp app = feelpp.Environment([\"myapp\"],config=feelpp.globalRepository(\"myapp\")) geo=feelpp.download( \"github:{repo:feelpp,path:feelpp/quickstart/laplacian/cases/feelpp2d/feelpp2d.geo}\", worldComm=app.worldCommPtr() )[0] print(\"geo file: {}\".format(geo)) mesh = feelpp.load(feelpp.mesh(dim=2,realdim=2), geo, 0.1) Xh=feelpp.functionSpace(mesh=mesh, space=\"Pchv\") f = Xh.element() f.on(range=feelpp.elements(mesh),expr=feelpp.expr",
       "url": "/course-project/jupyter.html"
     },
     {
-      "id": 66,
+      "id": 68,
       "title": "File Editing in Linux :: Course Project",
       "content": "Edit this Page Download as .pdf .ipynb File Editing in Linux The pages can be downloaded via the green button at the top right of the page. Commands are shell commands and can be executed in a terminal, but do not copy the %%bash magic command used by Jupyter Notebook. Linux, like other operating systems, allows file editing for numerous purposes, such as configuring system settings or writing scripts. There’s a wide variety of text editors available in Linux, and these editors come with different capabilities and levels of complexity. Whether you’re editing configuration files or writing code, choosing the right editor can make a significant difference in your workflow. 1. Popular Text Editors in Linux Some commonly used text editors in Linux include: Nano: A basic text editor that’s easy to use, especially for beginners. Vi/Vim: A powerful editor with an extensive set of commands for advanced users. Emacs: Another powerful editor with built-in features for coding, writing, and more. ",
       "url": "/course-project/linux/editing.html"
     },
     {
-      "id": 67,
+      "id": 69,
       "title": "Working with Files in Linux :: Course Project",
       "content": "Edit this Page Download as .pdf .ipynb Working with Files in Linux The pages can be downloaded via the green button at the top right of the page. Commands are shell commands and can be executed in a terminal, but do not copy the %%bash magic command used by Jupyter Notebook. Working with files is an essential part of Linux, and it’s a skill every Linux user must master. In Linux, everything is considered a file: text documents, images, system files, devices, and even directories. Linux provides numerous command-line utilities to create, view, move, or search files. Some of the basic commands for file handling in the Linux terminal include touch for creating files, mv for moving files, cp for copying files, rm for removing files, and ls for listing files and directories. For example, to create a file named example.txt, you can use the following command: %%bash cd /tmp/ mkdir documents cd documents touch example.txt Results To list the files in the current directory, use the command: %%b",
       "url": "/course-project/linux/files.html"
     },
     {
-      "id": 68,
+      "id": 70,
       "title": "Linux Essentials for Mathematics Students :: Course Project",
       "content": "Edit this Page Download as .pdf .ipynb Linux Essentials for Mathematics Students 🟢 FOUNDATIONAL LEVEL | Prerequisites: None | Time: 2-3 hours | For: Mathematics students new to command-line interfaces Why Linux for Mathematicians? Most mathematical software (MATLAB, Mathematica, SageMath), high-performance computing clusters, and research computing environments run on Linux systems. Understanding basic Linux commands enables you to: Access and use computational clusters for large-scale mathematical computations Manage mathematical datasets and simulation results efficiently Collaborate with computational scientists and engineers Use powerful mathematical software packages available only on Linux The pages can be downloaded via the green button at the top right of the page. Commands are shell commands and can be executed in a terminal, but do not copy the %%bash magic command used by Jupyter Notebook. As a mathematics student, you’ll frequently need to work with computational tools and",
       "url": "/course-project/linux/"
     },
     {
-      "id": 69,
+      "id": 71,
       "title": "Linux Shell Basics :: Course Project",
       "content": "Edit this Page Download as .pdf .ipynb Linux Shell Basics The pages can be downloaded via the green button at the top right of the page. Commands are shell commands and can be executed in a terminal, but do not copy the %%bash magic command used by Jupyter Notebook. The Linux shell is a command-line interface or terminal used to interact directly with the operating system. The shell helps facilitate system commands and acts as an intermediary interface between the user and the system’s kernel. The shell can perform complex tasks efficiently and quickly. There are many types of shells available in Linux, including the Bourne Shell (sh), the C Shell (csh), and the Bourne-Again Shell (bash). The basics of using a Linux shell include navigating between directories, creating, renaming, and deleting files and directories, and executing system commands. Use these skills to inspect datasets, run scientific programs and automate repeatable computations. Here is a classic bash command as an exam",
       "url": "/course-project/linux/shell.html"
     },
     {
-      "id": 70,
+      "id": 72,
       "title": "SSH and Remote-SSH in VS Code :: Course Project",
       "content": "Edit this Page Download as .pdf SSH and Remote-SSH in VS Code Welcome to the SSH and Remote-SSH tutorial for VS Code. This guide will walk you through the setup of SSH on your system, basic SSH commands, and using the Remote-SSH extension in VS Code for remote development. 1. Table of Contents Setting Up SSH Basic SSH Commands Remote-SSH Extension for VS Code Start by setting up SSH on your machine and then proceed to learn how to use it within VS Code.",
       "url": "/course-project/linux/ssh/"
     },
     {
-      "id": 71,
+      "id": 73,
       "title": "Remote-SSH Extension for VS Code :: Course Project",
       "content": "Edit this Page Download as .pdf Remote-SSH Extension for VS Code The Remote-SSH extension in VS Code enables you to work on remote projects as if they were on your local machine. With Remote-SSH, you can connect to a remote server, edit files, run commands, and use VS Code’s development features. 1. Installing the Remote-SSH Extension Open VS Code. Go to the Extensions panel (Ctrl+Shift+X on Windows/Linux or Cmd+Shift+X on macOS). Search for Remote - SSH and click Install. 2. Connecting to a Remote Machine After installing the extension, follow these steps to connect to a remote server via SSH: Press F1 or Ctrl+Shift+P to open the Command Palette. Type Remote-SSH: Connect to Host and select it. Enter the SSH connection details, e.g., user@remote-server.com. Select your preferred remote OS when prompted (Linux, macOS, or Windows). Once connected, a new VS Code window will open, and you’ll be working within the remote environment. 3. Using the SSH Config File in VS Code If you have an SS",
       "url": "/course-project/linux/ssh/remote-ssh-vscode.html"
     },
     {
-      "id": 72,
+      "id": 74,
       "title": "Basic SSH Commands :: Course Project",
       "content": "Edit this Page Download as .pdf Basic SSH Commands 1. Common SSH Commands Once you’ve set up SSH, here are some common commands for connecting to and managing remote servers. 1.1. Connecting to a Remote Server To connect to a remote server via SSH: ssh user@remote-server Replace user with your username and remote-server with the IP address or domain name of the server. 1.2. Using SSH Config File for Convenience You can configure the SSH client to simplify connections by using a ~/.ssh/config file. Host myserver HostName remote-server.com User myusername IdentityFile ~/.ssh/id_rsa Now, you can connect simply by typing: ssh myserver 1.3. Running Remote Commands with SSH You can execute commands directly on the remote server without starting an interactive session. For example: ssh user@remote-server 'uptime' This will run the uptime command on the remote server and return the result. 1.4. Secure Copying Files with SCP The scp (Secure Copy Protocol) command allows you to copy files betwee",
       "url": "/course-project/linux/ssh/ssh-commands.html"
     },
     {
-      "id": 73,
+      "id": 75,
       "title": "SSH setup for scientific work :: Course Project",
       "content": "Edit this Page Download as .pdf SSH setup for scientific work 1. Why this matters and objectives Connect from your laptop to a scientific Linux host without exposing credentials. Understand key pairs, verify the server and reuse a named configuration in the terminal and VS Code. 2. Keys and the agent Check ssh -V. You need a client on the laptop; the institution administers the server. Inspect ~/.ssh before creating a key so you do not overwrite an existing one. ssh-keygen -t ed25519 -C \"your_email@example.com\" eval \"$(ssh-agent -s)\" ssh-add ~/.ssh/id_ed25519 Choose a passphrase. The private key (id_ed25519) stays private; the .pub file may be registered with the server. The agent holds an unlocked key for authentication. Reuse an existing agent if your desktop already provides one. Using your institution-issued login and following its registration policy: ssh-copy-id -i ~/.ssh/id_ed25519.pub your_login@gaya.math.unistra.fr This requires an already permitted way to authenticate. If pas",
       "url": "/course-project/linux/ssh/ssh-setup.html"
     },
     {
-      "id": 74,
+      "id": 76,
       "title": "Text Processing in Linux :: Course Project",
       "content": "Edit this Page Download as .pdf .ipynb Text Processing in Linux The pages can be downloaded via the green button at the top right of the page. Commands are shell commands and can be executed in a terminal, but do not copy the %%bash magic command used by Jupyter Notebook. Text processing is an essential task for system administrators and developers. Linux, being a robust operating system, provides powerful tools for text searching, manipulation, and processing. The ability to handle and manipulate text files directly from the command line is one of Linux’s greatest strengths. Users can utilize commands like awk, sed, grep, and cut for text filtering, substitution, and handling regular expressions. Additionally, shell scripting and programming languages such as Python and Perl offer remarkable text processing capabilities on Linux. Though Linux is primarily a command-line-based system, it also offers numerous GUI-based text editors, including gedit, nano, and vim, which make text editin",
       "url": "/course-project/linux/text-processing.html"
     },
     {
-      "id": 75,
+      "id": 77,
       "title": "Python and C/C++ development environments :: Course Project",
       "content": "Edit this Page Download as .pdf Python and C/C++ development environments 1. Why this matters and objectives Run a small computation locally and remotely, identify the interpreter/compiler, and keep generated files out of Git. Python is used heavily for data and projects; working C++ familiarity is required early in M1 and prepares for HPC1, HPC2 and HPC3. 2. Python environment In a new project folder with Python 3 available: python3 -m venv .venv source .venv/bin/activate python --version python -m pip --version python -c 'import statistics; print(statistics.mean([18, 20, 22]))' Expected mean: 20. Select this interpreter in VS Code. Inside Remote SSH, create/select an environment on the remote host; your laptop environment is a different installation. Use python -m pip so the installer matches the chosen interpreter. Declare required dependencies in the project and record exact tested versions for reproduction. See the Python workshop and Python virtual environments. 3. C/C++ environm",
       "url": "/course-project/m1/environments.html"
     },
     {
-      "id": 76,
+      "id": 78,
       "title": "Working on Gaya — basic HPC operations :: Course Project",
       "content": "Edit this Page Download as .pdf Working on Gaya — basic HPC operations 1. Why this matters Use Gaya as part of a normal scientific workflow: edit code remotely, request resources, run a job, inspect its output and preserve the result. This page covers operation rather than the parallel algorithms taught in HPC1. 2. Access and mental model laptop → SSH / VS Code Remote SSH → login node ↓ scheduler compute node The existing course host is gaya.math.unistra.fr. Confirm your login and any network/VPN requirements with the teaching team. Configure the gaya alias using SSH setup, verify ssh gaya, then open a remote workspace with VS Code. Login nodes support connection, editing, transfers and job submission. Heavy computation belongs in a scheduler allocation. A VS Code terminal connected to a login node still runs on that login node. 3. Environment and storage Check hostname, pwd, module avail and module list. Load only the compiler/Python/Apptainer modules documented for the current course",
       "url": "/course-project/m1/gaya.html"
     },
     {
-      "id": 77,
+      "id": 79,
       "title": "M1 — Computational foundations :: Course Project",
       "content": "Edit this Page Download as .pdf M1 — Computational foundations 1. Learning outcomes By the end of M1, work autonomously on a Linux scientific project: navigate and process files, connect to Gaya, use VS Code Remote SSH, collaborate through GitHub, run Python, compile C++, submit a scheduler job, write a test and reproduce a result. 2. Learning path Keep one small scientific repository throughout the path. Each lesson should improve that repository or your ability to run it. Linux/Unix environment, shell, files and text processing. SSH and remote computing. Git and GitHub. Start tracking work now. VS Code and Remote SSH. Use these locally and remotely for subsequent exercises. Python and C/C++ environments. C++ familiarity is needed early and feeds into HPC1, HPC2 and HPC3. Gaya and basic HPC operations: login node → scheduler → compute node. Project workflow, testing, basic CI and reproducibility. M1 semester project. The shared scientific target is deploying Feel++ on Gaya with Slurm ",
       "url": "/course-project/m1/"
     },
     {
-      "id": 78,
+      "id": 80,
       "title": "M1 semester project :: Course Project",
       "content": "Edit this Page Download as .pdf M1 semester project 1. Objectives Answer a scientific question while demonstrating autonomy in Linux, Python/C++, remote computing and collaborative software practice. Agree the topic and scientific validation with the supervisor. Existing 2026 M1 S2 topics remain available as that cohort’s material; future assignments and deadlines are announced by the teaching team. 2. Expected workflow and GitHub organization Maintain a repository with source, tests, small fixtures, environment instructions and a README. Use issues, branches, PRs, reviews, labels, milestones and a GitHub Project board. Record each member’s contributions. Apply testing/basic CI to changes; use Gaya when remote execution is appropriate. 3. Deliverables A report describing the problem, method, validation and limits. Source at an identified commit/tag, tests and CI evidence. Input provenance and instructions for environment setup and execution, including a scheduler script when needed. A ",
       "url": "/course-project/m1/project.html"
     },
     {
-      "id": 79,
+      "id": 81,
       "title": "Project workflow, tests and reproducibility :: Course Project",
       "content": "Edit this Page Download as .pdf Project workflow, tests and reproducibility 1. Why this matters A project is a sequence of explainable, checked changes. Use Git/GitHub throughout your Linux, Python, C++ and Gaya work rather than saving collaboration for the final submission. 2. Expected workflow issue → branch → commits → PR → review → CI → merge → closed issue Write an issue with the problem, acceptance criteria and a small scope. Create a branch; inspect git diff and git diff --staged; commit a coherent change. Open a PR linked to the issue, request review and make CI pass before merging. CI also runs during review; a review and the checks must apply to the final revision. Use milestones for deliverables, labels for work type, and a GitHub Project board for status. Practice with the GitHub lab, writing issues and project organization. 3. A first meaningful test Save as analysis.py: def mean(values): if not values: raise ValueError(\"At least one value is required\") return sum(values) ",
       "url": "/course-project/m1/workflow.html"
     },
     {
-      "id": 80,
+      "id": 82,
       "title": "Deploy Feel++ on Gaya with Slurm and Apptainer :: Course Project",
       "content": "Edit this Page Download as .pdf Deploy Feel++ on Gaya with Slurm and Apptainer 1. Objective Operate on Gaya to run a Feel++ heat simulation through Slurm, preserve its inputs/results and repeat it. This is the course’s scientific deployment target and the starting point for the simulation-to-ML pipeline. The CSV exercise is only a short runtime check before this application. 2. Prepare an image and case For the second two-hour M2 session, follow the 3D thermal-fin practical: the official Python generator, Heat runs at one and four ranks, and ParaView. The thermal bridge below remains another reference case. Use Gaya access/storage guidance. The instructor must validate the image, case and resource request on the course allocation before teaching. The explicit release below is the example documented by Feel++; it is a reproducible starting version, not a claim that it is the newest or already validated on Gaya. Prepare files once on the approved download/build host or shared project are",
       "url": "/course-project/m2/feelpp-gaya.html"
     },
     {
-      "id": 81,
+      "id": 83,
       "title": "Scientific containers on HPC :: Course Project",
       "content": "Edit this Page Download as .pdf Scientific containers on HPC 1. Why this matters The image carries the application environment; the scheduler allocates the resources. A container does not schedule a job or turn a login node into a compute node. 2. Mental model laptop → SSH → login node → Slurm allocation → compute node ↓ SIF + bound input → output directory Use Gaya operations for access, storage and Slurm basics. Confirm partition, account, module and storage settings with the teaching team. Prepare/copy the SIF and data on storage visible to compute nodes before submitting; do not rely on downloads during the job. 3. Worked batch example After building or receiving analysis.sif from the practical, create analysis.sbatch in the same working directory. This template assumes Apptainer is available on the compute node and the default partition/account is usable; add site-approved settings if required. #!/bin/bash #SBATCH --job-name=container-analysis #SBATCH --ntasks=1 #SBATCH --cpus-per",
       "url": "/course-project/m2/hpc-containers.html"
     },
     {
-      "id": 82,
+      "id": 84,
       "title": "M2 — Scientific software and MLOps :: Course Project",
       "content": "Edit this Page Download as .pdf M2 — Scientific software and MLOps 1. Why this matters A model or simulation is useful to others when its environment, data, code and results can be identified and reproduced. M2 assumes M1 shell, Git, Python and remote-computing skills; review only the gaps you need. 2. Learning outcomes Deploy Feel++ with Apptainer and Slurm on Gaya; prepare parameterized simulations, assemble a verified dataset, train and track regression models, package inference and verify predictions against held-out Feel++ results. Test the stages and build a CI pipeline. Explain and defend the main engineering choices and scientific limitations. 3. Start here — session of 7 September 2026 Apptainer: image and execution model. Practical: a reproducible scientific computation. Execute on HPC with explicit inputs and outputs. Deploy Feel++ on Gaya with Slurm and generate simulation results. Record the environment and reproduce a result. MLOps: follow the complete lifecycle. Start th",
       "url": "/course-project/m2/"
     },
     {
-      "id": 83,
+      "id": 85,
       "title": "Pipeline automation, packaging and inference verification :: Course Project",
       "content": "Edit this Page Download as .pdf Pipeline automation, packaging and inference verification 1. Separate stages and execution environments Implement explicit commands for input preparation, Slurm submission/status, result collection, dataset assembly, training, evaluation and prediction. The pipeline must resume after a failed stage without overwriting successful runs. Configurations, sample IDs, paths and artifact identities are part of its interface. The simulation stage runs Feel++ in Apptainer under Slurm on Gaya. The ML stage uses its locked Python environment, containerized for handoff; substantial training on Gaya also needs an allocation. A light local training smoke test can use a committed fixture. Do not label fixture-based CI as a real HPC validation. 2. Meaningful tests and CI/CD Test that generated case inputs match their sampled parameters, invalid ranges/non-finite inputs are rejected, and output extraction detects missing columns, failed jobs and mismatched sample IDs. Te",
       "url": "/course-project/m2/mlops/engineering.html"
     },
     {
-      "id": 84,
+      "id": 86,
       "title": "MLOps — Feel++ simulations to verified predictions :: Course Project",
       "content": "Edit this Page Download as .pdf MLOps — Feel++ simulations to verified predictions 1. Why this matters The course workflow starts with scientific input data, not an existing toy ML dataset. Students deploy Feel++ on Gaya with Slurm and Apptainer, generate simulation results, then learn a map from physical parameters to a quantity such as average temperature. MLOps makes the whole chain traceable and reproducible. 2. Learning objectives Prepare parameterized cases; operate and verify HPC jobs; build a dataset with provenance; train and track regression experiments; package a model; compare inference with held-out Feel++ results. 3. Complete lifecycle parameter domain + sampling plan + case template → validated per-sample input data → Slurm jobs on Gaya + Apptainer + {feelpp} → verified simulation outputs and extracted average temperatures → versioned dataset + frozen train/validation/test split → preprocessing + training + evaluation + experiment record → model artifact + packaged infer",
       "url": "/course-project/m2/mlops/"
     },
     {
-      "id": 85,
+      "id": 87,
       "title": "Simulation data, training and experiment records :: Course Project",
       "content": "Edit this Page Download as .pdf Simulation data, training and experiment records 1. Define the scientific contract The input is the vector (L, t, Bi); the target is the mean temperature on Gamma_root, extracted from a verified 3D Feel++ heat simulation. Use a central post with four fins. Keep the generated material properties and normalized root heat flux fixed and documented. The teaching team supplies the bounds and units for L, t and Bi, the exact heat-flux value, mesh policy, sample budget and numerical acceptance tolerance. Do not reuse the thermal-bridge example domain for this project. Agree these values before generating a campaign. The CPU heats the lower face of the central post. Heat is conducted through the post and fins and leaves through the surfaces exposed to ambient air. The simulation solves conduction only; the ambient exchange is represented by the nondimensional Robin condition controlled by Bi. Define the target as the surface integral divided by the area of the h",
       "url": "/course-project/m2/mlops/lifecycle.html"
     },
     {
-      "id": 86,
+      "id": 88,
       "title": "M2 thermal-fin MLOps mini-project — complete workflow :: Course Project",
       "content": "Edit this Page Download as .pdf M2 thermal-fin MLOps mini-project — complete workflow 1. Engineering purpose: from simulation to decision A validated 3D finite-element model can answer one thermal question accurately, but it is too expensive to run interactively hundreds or thousands of times. Engineering work rarely asks for only one result: teams must explore a design space, quantify sensitivity, compare operating conditions, satisfy constraints and justify a final decision. This project turns a high-fidelity simulation into a reusable decision tool. Automation is essential because a parameter study is more than a loop around the solver. Each sample may require a new geometry and mesh, a consistent model configuration, an HPC job, convergence checks, extraction of the same quantity of interest and complete provenance. A workflow makes these steps repeatable, restartable and auditable; it also prevents manual file handling, failed jobs or inconsistent post-processing from silently cor",
       "url": "/course-project/m2/mlops/project.html"
     },
     {
-      "id": 87,
+      "id": 89,
       "title": "Reproducible environments and results :: Course Project",
       "content": "Edit this Page Download as .pdf Reproducible environments and results 1. What must be recorded? An image is one part of a scientific record. Store a run manifest beside each result: Identity Record Code Repository URL, commit SHA, whether the working tree was clean, pipeline entry point. Environment Dependency lock with exact versions, Python/Apptainer versions, base OCI digest, SIF SHA-256 and retrievable artifact location. Data Source, licence/access conditions, acquisition procedure, content checksum, schema and split identifiers. Execution Configuration, seed, full command, relevant environment settings, hardware and scheduler resources. Result Metrics, model/output checksums, logs, units and comparison tolerance. A checksum identifies bytes; it does not preserve a file. Store artifacts where a reviewer can retrieve them. Pinning a tag or saving a random seed alone is insufficient. Record expected variation from parallel numerical libraries or different hardware. 2. Worked handoff ",
       "url": "/course-project/m2/reproducibility.html"
     },
     {
-      "id": 88,
+      "id": 90,
       "title": "M2 semester project — inference and optimisation :: Course Project",
       "content": "Edit this Page Download as .pdf M2 semester project — inference and optimisation The semester project is the continuation and final stage of the thermal-fin MLOps mini-project. It is not a second, unrelated MLOps exercise. Starting from the verified 3D finite-element workflow and simulation database, complete the reduced model, package inference, and solve an operational or design optimisation problem. The scientific object remains the mapping \\(\\mu \\mapsto S(\\mu)\\), where \\(\\mu=(L,t,\\mathrm{Bi})\\) and \\(S\\) is the mean temperature on the heated CPU/post root Gamma_root. The semester work turns this validated mapping into a usable reduced-order/surrogate model: a prediction should be available without launching a new 3D solver run, while every proposed optimum must be checked by the full model. 1. Expectations and workflow The session 2 thermal-fin practical provides a first reproducible 3D Heat case on Gaya, including Python input generation, sequential/parallel execution and ParaView",
       "url": "/course-project/m2/semester-project.html"
     },
     {
-      "id": 89,
+      "id": 91,
       "title": "Session 2 — 3D thermal fins on Gaya :: Course Project",
       "content": "Edit this Page Download as .pdf Session 2 — 3D thermal fins on Gaya M2 · 14 September 2026 · 2 hours · Mini-project in pairs. Build and verify a heat-transfer simulation using an existing Python generator. You will produce the inputs, run the Feel++ Heat toolbox in Apptainer on Gaya, and compare runs with one and four MPI ranks before visualizing the results in ParaView. This session builds on the Apptainer practical and prepares you for the simulation → data → training → inference → verification pipeline. You are responsible for creating the case files and Slurm script; the guidance below provides starting points and success criteria. 1. Objective of the mini-project The goal is to develop the complete solution as a reproducible workflow, in a pair. The workflow starts from a parameter space and a sampling budget, generates one 3D case and mesh for each sampled point, launches the simulations, collects the quantity of interest, trains the team’s selected model, and verifies its predic",
       "url": "/course-project/m2/session2-thermal-fin.html"
     },
     {
-      "id": 90,
+      "id": 92,
       "title": "From M1 to M2 :: Course Project",
       "content": "Edit this Page Download as .pdf From M1 to M2 M2 starts with Apptainer. Elementary shell, Git and Python are prerequisites, not a second introductory sequence. Before the practical, demonstrate that you can clone a repository, create a branch, run Python, read a shell command and connect to your allocated Linux host. Check apptainer --version there. If a step blocks you, review the matching self-assessment item. For remote access use SSH, Remote SSH and Gaya operations. For dependency isolation use development environments. M1 asks whether you can execute and collaborate. M2 adds the Feel++ simulation-to-ML pipeline on Gaya: parameterized inputs, verified HPC results, training and inference with a reproducible handoff. Return to Apptainer once the blocking gap is resolved.",
       "url": "/course-project/m2/transition.html"
     },
     {
-      "id": 91,
+      "id": 93,
       "title": "Overview of Course Project :: Course Project",
       "content": "Edit this Page Download as .pdf Overview of Course Project 1. Organisation The directory structure of the project is as follows: . ├── docs │ ├── antora │ └── modules └── src └── cases 5 directories The docs directory contains the documentation of the project and uses antora to generate the documentation. The src directory contains initially some C++ and Python Feel++ source code of the project to help you get started. Feel++ is a C++ library for the numerical simulation of partial differential equations. It is designed to be easy to use and to extend. {feelpp }is a free software distributed under the terms of the GNU General Public License version 3. The documentation is available > here. 2. How to build the project You need first to follow the quickstart to get the Feel++ environment. The installation procedure uses Cmake for the C++ programs and create a bundle of this project. The steps are as follows: $ cmake --preset default (1) $ cmake --build --preset default (2) $ cmake --buil",
       "url": "/course-project/overview.html"
     },
     {
-      "id": 92,
+      "id": 94,
       "title": "Self-assessment :: Course Project",
       "content": "Edit this Page Download as .pdf Self-assessment Use demonstrations rather than counting familiar tool names. Record a command, small result or repository link for each check. A gap points to a specific lesson; it does not change your enrolment from M2 to M1. Demonstrate Review if needed Find a data file; filter its rows using a pipe; explain a relative path and PATH. Shell, files, text processing Explain the public/private key distinction and connect to a remote host. SSH Stage a selected change, commit it, create a branch and explain a PR. Git, GitHub lab Run Python in an isolated environment; compile and explain a C++ program using a function and a standard container. Python and C++ environments Open a remote workspace and explain where its terminal runs. Remote SSH Submit a short batch job; find its output; explain login versus compute nodes. Gaya Run a test and describe how someone else would reproduce a result. Project workflow Before M1, programming familiarity is expected, inclu",
       "url": "/course-project/prerequisites.html"
     },
     {
-      "id": 93,
+      "id": 95,
       "title": "Methods and Best Practices for Agile Project Management :: Course Project",
       "content": "Edit this Page Download as .pdf Methods and Best Practices for Agile Project Management 1. Agile Methodologies in Software Projects Agile programming: Projects are small, adaptable tasks Continuous iteration and feedback Extreme programming (XP): Focus on flexibility, quality, and customer involvement Agile and XP approaches prioritize adaptability and iterative development, making them suitable for dynamic software projects. — NOTE 2. Best Practices for Agile Project Management Agile project management is centered around adaptability, iterative development, and close collaboration between team members. Here are the key best practices to follow for Agile success, focusing on essential rituals like sprint planning, stand-ups, and retrospectives. 2.1. Sprint Planning Sprint planning is the backbone of Agile development. During this meeting, the team agrees on what work will be completed in the upcoming sprint (usually 1-4 weeks). Goals of Sprint Planning: Define the sprint goal, ensuring",
       "url": "/course-project/project-management/agile-best-practices.html"
     },
     {
-      "id": 94,
+      "id": 96,
       "title": "Case Study: Building a Digital Twin for a Manufacturing System :: Course Project",
       "content": "Edit this Page Download as .pdf Case Study: Building a Digital Twin for a Manufacturing System In this case study, we explore how a structured project management approach was used to develop a digital twin for a manufacturing system to optimize production efficiency. 1. Project Overview Objective: Develop a digital twin for a smart factory to monitor and optimize production processes in real-time. Stakeholders: Manufacturing company, digital twin developers, IoT specialists, production managers. Budget: $500,000 Timeline: 12 months Outcome: A fully functional digital twin integrated into the production line, capable of real-time monitoring and predictive analytics. The project’s goal was to build a system that provides real-time insights into the production line, enabling optimization and predictive maintenance. — NOTE 2. Phase 1: Initiating Tasks: Initial meeting with stakeholders to define project scope and deliverables. Identify data sources from production line (e.g., sensors, IoT ",
       "url": "/course-project/project-management/case-studies.html"
     },
     {
-      "id": 95,
+      "id": 97,
       "title": "Collaboration Models Lab: Agile vs Waterfall (Weather Project) :: Course Project",
       "content": "Edit this Page Download as .pdf Collaboration Models Lab: Agile vs Waterfall (Weather Project) This is a 1-hour lab. Two groups work on the same weather project with different collaboration models, then finish implementation at home and compare outcomes during the next session. 1. Required Pre-Reading (Study First) Before starting this lab, students must read: Agile Best Practices Waterfall Model Basics Optional refresher: Phases of a Project 2. Setup Team split: Group A: Agile/Kanban model Group B: Waterfall model Shared project context: Repository: weather app from Python End-to-End Workshop Dataset: data/weather_hourly.csv Scope: CLI + tests + optional Dash extension 3. Learning Goals By the end, students should be able to: explain practical differences between Agile and Waterfall observe how each model handles change requests evaluate collaboration quality using evidence (issues, PRs, cycle time, rework) 4. In-Class Plan (60 minutes) 10 min briefing and model rules 35 min implement",
       "url": "/course-project/project-management/collaboration-models-weather-lab.html"
     },
     {
-      "id": 96,
+      "id": 98,
       "title": "GitHub for Project Management :: Course Project",
       "content": "Edit this Page Download as .pdf GitHub for Project Management GitHub can be used as a lightweight but robust project management system for student teams: define tasks, assign ownership, track progress, review work, and deliver increments. 1. Why Use GitHub for PM in M1 One platform for code, tasks, reviews, and automation. Traceability from idea to merged contribution. Good habits for research and engineering collaboration. Works for small teams without heavy tooling overhead. 2. Core Building Blocks 2.1. Issues Use issues to represent work items: Feature tasks Bug reports Documentation tasks Technical debt and maintenance Recommended issue fields: Clear title Short context/problem statement Acceptance criteria Labels (bug, enhancement, documentation, chore) Assignee(s) Milestone (for sprint/release grouping) Milestones can track both issues and pull requests. 2.2. Pull Requests Use pull requests as your quality gate: Link PRs to issues (Closes #123) Request at least one review Require",
       "url": "/course-project/project-management/github.html"
     },
     {
-      "id": 97,
+      "id": 99,
       "title": "Project Management for Mathematical Research :: Course Project",
       "content": "Edit this Page Download as .pdf Project Management for Mathematical Research 🟡 INTERMEDIATE LEVEL | Prerequisites: Basic Git and collaboration tools | Time: 3-4 hours | For: Mathematics students managing research projects and collaborative work Why Project Management for Mathematics? Mathematical research projects have unique characteristics: - Long-term investigations that may span months or years - Iterative discovery process where goals evolve based on findings - Collaborative elements involving advisors, peers, and external researchers - Multiple deliverables: papers, presentations, code, data analysis - Publication timelines with conference and journal deadlines Project management helps structure the inherent complexity of mathematical research. Project management for mathematics involves organizing mathematical research activities, managing collaborative relationships, and coordinating timelines to achieve research goals within academic constraints. Mathematical research present",
       "url": "/course-project/project-management/"
     },
     {
-      "id": 98,
+      "id": 100,
       "title": "What is a Project? :: Course Project",
       "content": "Edit this Page Download as .pdf What is a Project? 1. Definition of a Project A sequence of tasks: Planned from beginning to end Bounded by time, resources, & specific results Defined outcomes and \"deliverables\" Has a deadline and a budget Limits number of people, supplies, and capital A project is a structured, goal-driven effort with clear boundaries and constraints. Outlining these elements clearly from the start is crucial for success. — NOTE 2. Tasks vs. Projects Routine tasks: Responding to email Making coffee Hooking up a printer Projects: Producing a customer newsletter Catering a party Writing a book Implementing a computer network Tasks are often short-term and repetitive, while projects are complex, unique, and require strategic planning and coordination. — NOTE 3. Five Features of a Project Defined beginning, end, schedule, and approach Use of specific resources allocated to the work Achievement of defined goals (time, cost, performance/quality) Follows a planned, organized",
       "url": "/course-project/project-management/introduction.html"
     },
     {
-      "id": 99,
+      "id": 101,
       "title": "Practical Examples in Scientific Computing and Digital Twins :: Course Project",
       "content": "Edit this Page Download as .pdf Practical Examples in Scientific Computing and Digital Twins To understand how project management principles apply in scientific computing and digital twins, let’s explore a few examples where structured approaches are crucial for project success. 1. Example 1: Developing a Digital Twin for Predictive Maintenance Project Goal: Develop a digital twin of a wind turbine to predict maintenance needs. Tasks: Collect historical performance data of the turbine. Develop a computational model to simulate wear and tear. Use machine learning algorithms to predict maintenance intervals. Integrate the digital twin into the SCADA (Supervisory Control and Data Acquisition) system. Resources: Data scientists, computational engineers, and SCADA system experts. Computing power for simulation and model training. Outcome: A functional digital twin capable of real-time performance monitoring and failure prediction. This project involves complex simulations and real-time data",
       "url": "/course-project/project-management/practical-examples.html"
     },
     {
-      "id": 100,
+      "id": 102,
       "title": "Phases of a Project :: Course Project",
       "content": "Edit this Page Download as .pdf Phases of a Project 1. Overview of Project Phases The typical phases of a project include: Conceptualization Feasibility Preliminary planning Detailed planning Execution Testing Termination Understanding each phase is crucial for navigating the project lifecycle from idea to completion. — NOTE 2. Phase 1: Initiating Identify the need for the project Determine what the project should accomplish Define the overall goal Identify key stakeholders and initial team members Outline the general scope The initiation phase sets the foundation for the project by clarifying its objectives and assembling the team. — NOTE 3. Phase 2: Planning Refine the project scope List tasks and activities Sequence activities optimally Develop a schedule and budget Get approval from stakeholders Detailed planning ensures that the project is feasible and that all stakeholders are aligned on expectations and resources. — NOTE 4. Phase 3: Executing Lead the project team Hold regular m",
       "url": "/course-project/project-management/project-phases.html"
     },
     {
-      "id": 101,
+      "id": 103,
       "title": "Project Management :: Course Project",
       "content": "Edit this Page Download as .pdf Project Management 1. Introduction to Project Management Project management involves organizing resources, tasks, and people to achieve specific goals within time and budget constraints. This introduction explores the key elements, phases, and tools required for successful project management.",
       "url": "/course-project/project-management/project.html"
     },
     {
-      "id": 102,
+      "id": 104,
       "title": "Tools in Project Management :: Course Project",
       "content": "Edit this Page Download as .pdf Tools in Project Management 1. What is a Milestone? A milestone in project management is a significant event or point in the project timeline that marks the completion of a major phase or task. Milestones are often used to: Measure progress: By marking important points, you can assess if the project is on schedule. Highlight deadlines: Milestones represent key deadlines that need to be met to move the project forward. Reflect achievements: Reaching a milestone signifies the completion of a critical part of the project. For example, in a software project, some common milestones might include: Requirements completion: All necessary features and requirements for the software have been defined. Design approval: The software’s architecture and design are approved for development. First working prototype: A functional version of the software, even if limited in scope, is built and can be demonstrated. 2. Gantt Charts A Gantt Chart is an essential tool for proj",
       "url": "/course-project/project-management/tools-gantt.html"
     },
     {
-      "id": 103,
+      "id": 105,
       "title": "Waterfall Model Basics :: Course Project",
       "content": "Edit this Page Download as .pdf Waterfall Model Basics Waterfall is a sequential project model: each phase is completed before the next phase starts. 1. What Is the Waterfall Model? In Waterfall, work progresses through ordered phases with formal checkpoints: Requirements Design Implementation Verification/Testing Release/Maintenance Teams try to stabilize requirements early and reduce mid-project changes. 2. Typical Workflow Define requirements in writing. Validate scope and approve plan. Implement according to approved design. Run verification against requirements. Release only when validation is complete. 3. Strengths Clear structure and milestones Strong traceability from requirements to delivery Useful when requirements are stable and regulated Easier documentation and reporting 4. Limitations Late feedback from users/stakeholders Expensive changes when requirements evolve Slow adaptation in uncertain or research contexts Risk of delivering the wrong thing if early assumptions are",
       "url": "/course-project/project-management/waterfall-basics.html"
     },
     {
-      "id": 104,
+      "id": 106,
       "title": "Software and accounts :: Course Project",
       "content": "Edit this Page Download as .pdf Software and accounts 1. Common workspace Use a Linux shell locally or on an institution-provided machine. Windows users can use WSL; macOS users can develop locally and use a Linux host for Apptainer. You need Git, an OpenSSH client, VS Code and the Remote - SSH extension. Follow VS Code setup and SSH setup. git --version ssh -V python3 --version c++ --version Set your Git author name/email, sign in to GitHub and accept the course organization/repository invitation. Keep a passphrase on your private SSH key; register only the public key. A GitHub account and a Gaya account are separate identities. 2. Download and run the notebooks Use Download the Notebooks in the header, extract the ZIP and open the extracted course-project folder in VS Code. In its terminal, run uv sync --locked to create .venv from the included pyproject.toml and uv.lock. Install the recommended Python/Jupyter extensions, open a notebook and choose .venv in Select Kernel → Python Env",
       "url": "/course-project/quick-start.html"
     },
     {
-      "id": 105,
+      "id": 107,
       "title": "Reference library :: Course Project",
       "content": "Edit this Page Download as .pdf Reference library Use M1 and M2 for the teaching sequence. This library retains deeper tutorials and earlier examples at their existing resource IDs. Karolina/MPI examples and historical installation instructions require their own site/version context; they are not the current Gaya practical. 1. Linux and SSH File Editing in Linux Working with Files in Linux Linux Essentials for Mathematics Students Linux Shell Basics SSH and Remote-SSH in VS Code Remote-SSH Extension for VS Code Basic SSH Commands SSH setup for scientific work Text Processing in Linux 2. Git and GitHub Git Basics for Mathematical Research Git Branching Merge Strategies in Git Git Remotes What is a Git Repository? Git for Beginners GitHub Actions Tutorial for Scientific Computing with Eigen3 and CMake Presets Tutorial: Using GitHub Actions for Scientific Computing Collaboration on GitHub GitHub Essentials How to Write a GitHub Issue GitHub Intro Lab: Issues, PRs, and Projects (90 minutes",
       "url": "/course-project/reference.html"
     },
     {
-      "id": 106,
+      "id": 108,
       "title": "Renaming the project :: Course Project",
       "content": "Edit this Page Download as .pdf Renaming the project The script rename.sh renames the project. You have to answer a few questions to setup a new project out of this template.",
       "url": "/course-project/rename.html"
     },
     {
-      "id": 107,
+      "id": 109,
       "title": "Software Installation: From Package Managers to Building from Source :: Course Project",
       "content": "Edit this Page Download as .pdf Software Installation: From Package Managers to Building from Source 1. Introduction to Software Installation Learn comprehensive software installation methods through these focused modules: Python End-to-End Workshop Release Engineering (Weather App) 1.1. Understanding Package Managers What is apt? Advantages of using package managers. 1.2. Why Build from Source? Latest features and updates. Customization and optimization. Situations where packages aren’t available. 1.3. Build Systems Overview Introduction to build systems like Autotools and CMake. Differences and use cases. 2. Setting Up the Development Environment with Codespaces 2.1. Introduction to GitHub Codespaces What is Codespaces? Benefits over traditional VMs. 2.2. Getting Started # Create a Codespace from a repository git clone <repository-url> # Open it in GitHub Codespaces 2.3. Environment Configuration Install necessary extensions and tools within Codespaces. 3. Installing Software Using a",
       "url": "/course-project/software/"
     },
     {
-      "id": 108,
+      "id": 110,
       "title": "Understanding Package Managers :: Course Project",
       "content": "Edit this Page Download as .pdf Understanding Package Managers Package managers are essential tools for managing software installations, upgrades, and dependencies. They can be categorized into two main types: System Package Managers: These manage software at the operating system level, handling native applications and system libraries. Examples include apt, yum, and brew. These package managers deal with system-wide installations, making software available to all users and applications on the system. Software-Specific Package Managers: Many software ecosystems, such as Python, C++, and Node.js, have their own package managers, which handle dependencies and libraries specifically for that language or platform. Examples include pip and conda for Python, and conan for C++. While system package managers are responsible for global software installations, software-specific package managers allow for more granular control over project-specific dependencies, often within isolated environments",
       "url": "/course-project/software/package-managers.html"
     },
     {
-      "id": 109,
+      "id": 111,
       "title": "End-to-End Python Weather App Workshop :: Course Project",
       "content": "Edit this Page Download as .pdf End-to-End Python Weather App Workshop This workshop extends the GitHub intro lab into a small end-to-end product: a Python package with a CLI, CI, Docker image, and optional web dashboard. 1. Why This Session Students already learned Linux, GitHub, GitHub Actions, and Docker. This session connects these topics into one coherent workflow: from raw data to reusable Python package from local script to installable CLI command from tested code to container image in GHCR optionally from CLI tool to interactive dashboard 2. Prerequisites GitHub Intro Lab: Issues, PRs, and Projects GitHub Actions Docker Introduction Package Managers 3. Learning Objectives By the end of the workshop, students can: structure a Python project with pyproject.toml expose a CLI command via [project.scripts] run tests in CI for each pull request build and publish a Docker image to GitHub Container Registry (GHCR) explain the difference between package release and container release 4. ",
       "url": "/course-project/software/python-e2e-weather-workshop.html"
     },
     {
-      "id": 110,
+      "id": 112,
       "title": "Release Engineering Lesson (60 min): Weather App :: Course Project",
       "content": "Edit this Page Download as .pdf Release Engineering Lesson (60 min): Weather App This lesson prepares students to ship their weather project in a reproducible and traceable way using tags, releases, and container publishing. 1. Where It Goes This lesson belongs in the Software Distribution track, right after: Python End-to-End Workshop Dash Weather Project Tutorial (optional extension) Reason: release engineering is about packaging, versioning, publishing, and distribution lifecycle. 2. Learning Objectives By the end of the lesson, students can: apply semantic versioning (MAJOR.MINOR.PATCH) write a minimal changelog for a release create an annotated Git tag create a GitHub Release from a tag publish a Docker image to GHCR with versioned tags automate the whole release flow with GitHub Actions on tag push 3. 60-Minute Morning Plan 10 min Release engineering concepts 15 min Versioning + changelog practice 15 min Tag + GitHub Release hands-on 15 min GHCR image tagging and push flow 5 min ",
       "url": "/course-project/software/release-engineering-weather.html"
     },
     {
-      "id": 111,
+      "id": 113,
       "title": "Repository Organization for a C++20 Project Using CMake and CTest :: Course Project",
       "content": "Edit this Page Download as .pdf Repository Organization for a C++20 Project Using CMake and CTest Table of Contents 1. Overview 2. Recommended Directory Structure 3. Top-Level CMake Configuration 4. Library Configuration (src/libs/lib1/CMakeLists.txt) 5. Application Configuration (src/apps/app1/CMakeLists.txt) 6. Tests Configuration (tests/CMakeLists.txt) 7. GitHub Actions CI Workflow 8. Additional Best Practices 1. Overview This document outlines a recommended repository organization for a C++20 project that uses CMake for build configuration and CTest for testing. In this structure, source files—including both library code and application code—are placed under the src/ directory. Libraries and applications are organized into separate subdirectories to clearly delineate reusable components from executable projects. 2. Recommended Directory Structure my_project/ ├── .github/ │ └── workflows/ │ └── ci.yml # GitHub Actions CI configuration file ├── build/ # Out-of-source build directory ",
       "url": "/course-project/software/repo/organization.html"
     },
     {
-      "id": 112,
+      "id": 114,
       "title": "Instructor resources — M1/M2 :: Course Project",
       "content": "Edit this Page Download as .pdf Instructor resources — M1/M2 1. First M2 session: 7 September 2026 Before teaching, verify the allocated Linux host, Apptainer version, available storage, registry access and allowed image-building method. Prepare the tutorial SIF on a supported build host if students cannot build. Validate the Feel++ case and scalar-output column, baseline solver checks, one-rank launch, writable result path and sample resource budget before scaling a campaign. Record its SHA-256 and distribute it using the course’s normal file channel. Confirm Gaya access, partition/account requirements and module names with administrators; these are deliberately not guessed in the examples. Suggested 90-minute sequence (adapt to the actual slot): 0–10 min: M2 outcomes and image/process mental model. 10–40 min: pull, inspect, execute, bind data and compute a result. 40–55 min: Feel++ deployment on Gaya with a preflighted case/SIF and reproduction evidence. 55–70 min: MLOps lifecycle. 7",
       "url": "/course-project/teaching-guide.html"
     },
     {
-      "id": 113,
+      "id": 115,
       "title": "Dash Tutorial: Weather Dashboard (Beginner) :: Course Project",
       "content": "Edit this Page Download as .pdf Dash Tutorial: Weather Dashboard (Beginner) This tutorial is aligned with the weather_hourly.csv project used in the course. It shows how to go from Python package + CLI to a simple interactive Dash dashboard. 1. Where This Fits in the Course Use this tutorial after: Python End-to-End Workshop GitHub Intro Lab: Issues, PRs, and Projects You will implement src/weather_app/dash_app.py in the same project where you already built weather-cli. 2. Prerequisites Create and activate a virtual environment, then install project dependencies: python -m venv .venv source .venv/bin/activate pip install -e \".[dash]\" Expected dataset location in your repository: data/weather_hourly.csv Expected columns: cloud_cover diffuse_radiation direct_radiation relative_humidity_2m surface_pressure temperature_2m time (Unix milliseconds) wind_direction_10m wind_speed_10m 3. Dash Basics (Beginner) Before coding, understand the 4 core concepts: Layout The static structure of the pag",
       "url": "/course-project/visualisation/dash-weather.html"
     },
     {
-      "id": 114,
+      "id": 116,
       "title": "Dash for Scientific Computing :: Course Project",
       "content": "Edit this Page Download as .pdf Dash for Scientific Computing A tutorial to use Dash for building interactive web applications focused on scientific computing Dash provides a flexible and powerful platform for scientists and engineers to create interactive web-based applications. This tutorial expands on the basics and focuses on how to integrate Dash with scientific computing libraries such as NumPy, SciPy, and Matplotlib, while using Plotly for interactive visualizations. For the course weather-analysis project (weather_hourly.csv), use Dash Weather Project Tutorial. 1. Prerequisites Ensure that you have Python installed, and install the following packages: pip install dash dash-bootstrap-components pandas plotly numpy scipy matplotlib 2. Scientific Libraries Overview Dash integrates well with libraries used for scientific computing. Here are some essential libraries: NumPy A fundamental package for numerical computing in Python. SciPy Builds on NumPy to provide a collection of algor",
       "url": "/course-project/visualisation/dash.html"
     },
     {
-      "id": 115,
+      "id": 117,
       "title": "Homework :: Course Project",
       "content": "Edit this Page Download as .pdf Homework 1. Solving the heat equation in a thermal fin We consider the problem of designing a thermal fin to effectively remove heat from a surface. The two-dimensional fin, shown in Figure #fig:1[1], consists of a vertical central “post” and four horizontal “subfins”; the fin conducts heat from a prescribed uniform flux “source” at the root, \\(\\Gamma_{\\mathrm{root}}\\) , through the large-surface-area subfins to surrounding flowing air. The fin is characterized by a five-component parameter vector, or “input,” \\(\\mu_ = (\\mu_1 , \\mu_2, \\ldots, \\mu_5 )\\),where \\(\\mu_i = k^i , i = 1, \\ldots , 4\\), and \\(\\mu_5 = \\mathrm{Bi}\\); \\(\\mu\\) may take on any value in a specified design set \\(D \\subset \\mathbb{R}^5\\). Figure 1. Thermal fin Here \\(k^i\\) is the thermal conductivity of the ith subfin (normalized relative to the post conductivity \\(k^0 \\equiv 1\\)); and \\(\\mathrm{Bi}\\) is the Biot number, a nondimensional heat transfer coefficient reflecting convective tr",
       "url": "/course-project/visualisation/hw.html"
     },
     {
-      "id": 116,
+      "id": 118,
       "title": "Data Visualization and Interactive Dashboards :: Course Project",
       "content": "Edit this Page Download as .pdf Data Visualization and Interactive Dashboards Explore modern data visualization techniques and create interactive dashboards that effectively communicate insights from complex datasets. From basic charts to advanced interactive applications. 1. Visualization Learning Modules Master data visualization through these comprehensive modules: Dash Tutorial Dash Weather Project Tutorial Dash Homework",
       "url": "/course-project/visualisation/"
     },
     {
-      "id": 117,
+      "id": 119,
       "title": "Basic Usage and Commands :: Course Project",
       "content": "Edit this Page Download as .pdf Basic Usage and Commands 1. Getting Started with VS Code Once installed, you can open VS Code using the launcher or from the terminal: code . This opens the current directory in VS Code. 2. Basic Interface Overview The VS Code interface consists of the following key sections: Explorer: The left-hand panel where you can navigate files and folders. Editor: The main area where you open and edit files. Terminal: Built-in terminal for running commands directly from VS Code. 3. Common Commands Here are a few essential VS Code commands: Open Command Palette: Ctrl+Shift+P or Cmd+Shift+P on macOS. This gives access to all VS Code features via quick commands. Open a new file: Ctrl+N (Windows/Linux) or Cmd+N (macOS). Toggle terminal: Ctrl+` (Windows/Linux) or Cmd+` (macOS). These basic commands help you get started with coding or file management.",
       "url": "/course-project/vscode/basic-usage.html"
     },
     {
-      "id": 118,
+      "id": 120,
       "title": "VSCode Basic Cheatsheet :: Course Project",
       "content": "Edit this Page Download as .pdf VSCode Basic Cheatsheet 1. Navigation Description Linux Windows Mac Open Command Palette Ctrl+Shift+P Ctrl+Shift+P Cmd+Shift+P Open File Ctrl+P Ctrl+P Cmd+P Toggle Sidebar Ctrl+B Ctrl+B Cmd+B Close Editor Ctrl+W Ctrl+W Cmd+W Switch between Tabs Ctrl+Tab Ctrl+Tab Cmd+Tab Split Editor Ctrl+\\ Ctrl+\\ Cmd+\\ Navigate between Editor Groups Ctrl+1, Ctrl+2…​ Ctrl+1, Ctrl+2…​ Cmd+1, Cmd+2…​ Navigate Forward Ctrl+Alt+→ Alt+→ Option+→ Navigate Backward Ctrl+Alt+← Alt+← Option+← Go to Symbol Ctrl+Shift+O Ctrl+Shift+O Cmd+Shift+O Go to Definition F12 F12 F12 2. Editing Description Linux Windows Mac Copy Line Up/Down Shift+Alt+↑/↓ Shift+Alt+↑/↓ Shift+Option+↑/↓ Move Line Up/Down Alt+↑/↓ Alt+↑/↓ Option+↑/↓ Duplicate Line Shift+Alt+↓ Shift+Alt+↓ Option+Shift+↓ Delete Line Ctrl+Shift+K Ctrl+Shift+K Cmd+Shift+K Add Line Comment Ctrl+/ Ctrl+/ Cmd+/ Add Block Comment Shift+Alt+A Shift+Alt+A Shift+Option+A Format Document Shift+Alt+F Shift+Alt+F Shift+Option+F Rename Symbol F",
       "url": "/course-project/vscode/cheatsheet.html"
     },
     {
-      "id": 119,
+      "id": 121,
       "title": "How to Configure VS Code with .vscode :: Course Project",
       "content": "Edit this Page Download as .pdf How to Configure VS Code with .vscode 1. Configuring Projects with .vscode VS Code allows you to configure project-specific settings using a .vscode folder. This folder can include settings, tasks, and debug configurations. 1.1. Adding a .vscode/settings.json Create a .vscode/settings.json file in your project directory to customize settings for the current project. Example configuration: { \"python.pythonPath\": \"/usr/bin/python3\", \"editor.formatOnSave\": true, \"files.exclude\": { \"**/*.log\": true, \"**/node_modules\": true } } 1.2. Task Configuration with .vscode/tasks.json You can automate tasks like running build scripts by configuring tasks in .vscode/tasks.json. Example: { \"version\": \"2.0.0\", \"tasks\": [ { \"label\": \"Run Build\", \"type\": \"shell\", \"command\": \"npm run build\", \"group\": { \"kind\": \"build\", \"isDefault\": true } } ] } Tasks and settings configured in the .vscode folder apply only to the current project.",
       "url": "/course-project/vscode/configure-vscode.html"
     },
     {
-      "id": 120,
+      "id": 122,
       "title": "Extension Installation and Key Extensions :: Course Project",
       "content": "Edit this Page Download as .pdf Extension Installation and Key Extensions 1. Installing Extensions One of the strengths of VS Code is its rich ecosystem of extensions. Extensions enhance your development environment by providing extra features like language support, debugging tools, and integration with cloud services. To install extensions, follow these steps: Open the Extensions panel using Ctrl+Shift+X or Cmd+Shift+X on macOS. In the search bar, type the name of the extension you want to install. Click Install on the extension. You can also search and install extensions from the marketplace: > marketplace.visualstudio.com/vscode. Here are some key extensions that are useful for development: Remote SSH WSL (Windows Subsystem for Linux) Python and Jupyter Extensions",
       "url": "/course-project/vscode/extensions.html"
     },
     {
-      "id": 121,
+      "id": 123,
       "title": "VS Code for Mathematical Computing :: Course Project",
       "content": "Edit this Page Download as .pdf VS Code for Mathematical Computing 🟢 FOUNDATIONAL LEVEL | Prerequisites: Basic computer skills | Time: 2-3 hours | For: Mathematics students setting up development environment Why VS Code for Mathematics? An integrated development environment helps mathematicians: - Write LaTeX documents with syntax highlighting and live preview - Develop mathematical code in Python, R, or MATLAB with debugging support - Manage version control visually with Git integration - Work with Jupyter notebooks for mathematical analysis - Collaborate efficiently with shared workspace configurations VS Code unifies all your mathematical computing tools in one interface. Learn to use Visual Studio Code as your primary environment for mathematical research, LaTeX document preparation, and computational mathematics projects. 1. VS Code Learning Modules Master VS Code through these comprehensive learning modules:",
       "url": "/course-project/vscode/"
     },
     {
-      "id": 122,
+      "id": 124,
       "title": "VS Code Installation :: Course Project",
       "content": "Edit this Page Download as .pdf VS Code Installation 1. Download and Installation You can download VS Code from the official website: Download URL: code.visualstudio.com/Download VS Code supports Windows, macOS, and Linux. Below are the steps for installing on each platform. 1.1. Windows Installation Download the .exe installer from the VS Code website. Run the installer and follow the on-screen prompts. Select the option to add VS Code to your PATH (this allows you to open VS Code from the terminal). 1.2. macOS Installation Download the .dmg file from the VS Code website. Open the .dmg file and drag the VS Code icon to the Applications folder. Launch VS Code from the Applications folder or the terminal using code if you add it to the PATH. 1.3. Linux Installation Download the appropriate package (.deb or .rpm) from the VS Code website. Install it using your distribution’s package manager: For Debian-based systems (e.g., Ubuntu): ` sudo dpkg -i <path-to-package>.deb sudo apt-get instal",
       "url": "/course-project/vscode/install.html"
     },
     {
-      "id": 123,
+      "id": 125,
       "title": "Python and Jupyter Extensions :: Course Project",
       "content": "Edit this Page Download as .pdf Python and Jupyter Extensions 1. Python Extension The Python extension in VS Code provides rich support for Python development, including: IntelliSense (autocompletion) Debugging Code linting Jupyter integration 1.1. Installing the Python Extension Open the Extensions panel (Ctrl+Shift+X). Search for \"Python\" and click Install. Once installed, you’ll have access to Python development features. 2. Jupyter Notebook Support The Jupyter extension integrates Jupyter Notebooks directly into VS Code. This allows you to write, run, and visualize notebook cells within VS Code. 2.1. Installing the Jupyter Extension Open the Extensions panel (Ctrl+Shift+X). Search for \"Jupyter\" and click Install. You can now create or open .ipynb notebook files within VS Code.",
       "url": "/course-project/vscode/python-jupyter.html"
     },
     {
-      "id": 124,
+      "id": 126,
       "title": "Remote SSH Extension :: Course Project",
       "content": "Edit this Page Download as .pdf Remote SSH Extension 1. What is Remote SSH? The Remote SSH extension allows you to connect to a remote server and work on files, debug, and run commands directly on the remote machine. 2. Installing the Remote SSH Extension Open the Extensions panel in VS Code (Ctrl+Shift+X). Search for \"Remote - SSH\" and click Install. 3. Setting up Remote SSH Press F1 or Ctrl+Shift+P or on MacOS Cmd+Shift+P and type \"Remote-SSH: Connect to Host\" in the Command Palette. Enter the SSH connection details, e.g., ssh user@remote-server.com. VS Code will connect to the remote machine, allowing you to use it as if it were local. You can also edit your SSH config file to save the connection details for quick access.",
       "url": "/course-project/vscode/remote-ssh.html"
     },
     {
-      "id": 125,
+      "id": 127,
       "title": "WSL (Windows Subsystem for Linux) Extension :: Course Project",
       "content": "Edit this Page Download as .pdf WSL (Windows Subsystem for Linux) Extension 1. What is WSL? Windows Subsystem for Linux (WSL) allows you to run a Linux distribution natively on Windows. With the Remote - WSL extension, you can use VS Code to develop within a WSL environment. 2. Installing WSL and the Extension Install WSL on your Windows machine: docs.microsoft.com/windows/wsl/install Install your preferred Linux distribution (e.g., Ubuntu). In VS Code, open the Extensions panel (Ctrl+Shift+X) and install the \"Remote - WSL\" extension. 3. Using WSL in VS Code Once installed, you can open a WSL session in VS Code by pressing F1 and selecting Remote-WSL: New Window. This will open VS Code in the WSL environment, allowing you to code and run commands directly in Linux.",
       "url": "/course-project/vscode/wsl.html"
     },
     {
-      "id": 126,
+      "id": 128,
       "title": "Using VSCode :: Course Project",
       "content": "Edit this Page Download as .pdf Using VSCode The project is configured to integrate VSCode using Docker Container. The Docker image can be set from feelpp/feelpp or feelpp/feelpp-toolboxes, simply edit .devcontainer/Dockerfile and choose the image you want. ssh-keyscan is used on github.com to register the public key of github in $HOME/.ssh/known_hosts and avoid having git auth issues the first time we log into the container and push/pull to/from github. The following extensions are installed in Docker: cpptools cmaketools cmake asciidoctor-vscode",
       "url": "/course-project/vscode.html"
     },
     {
-      "id": 127,
+      "id": 129,
       "title": "CSMI Projects — 2025–2026 :: Course Project",
       "content": "Edit this Page Download as .pdf CSMI Projects — 2025–2026 This page tracks CSMI project spaces for the 2025–2026 academic year. 1. Master 1 — Semester 2 Master 1 — Semester 2 (S2) M1 S2 project topics 2. Current Academic Year CSMI projects for 2026–2027 CSMI Projects - 2025–2026 - Master 1 - Semester 2 (S2) Project proposal workspace for CSMI M1 S2 in the 2025–2026 academic year.",
       "url": "/csmi/2026/"
     },
     {
-      "id": 128,
+      "id": 130,
       "title": "CSMI Projects - 2025–2026 - Master 1 - Semester 2 (S2) :: Course Project",
       "content": "Edit this Page Download as .pdf CSMI Projects - 2025–2026 - Master 1 - Semester 2 (S2) This workspace contains project proposals for CSMI Master 1 S2 in the 2025–2026 academic year. 1. Topics Project list and proposal pages 2. Organization Each student has an individual project page. Projects share common context, methods, and expected deliverables. CSMI Topics - 2025–2026 M1 S2 Topic list for CSMI project proposals in 2026 M1 S2.",
       "url": "/csmi/2026/m1-s2/"
     },
     {
-      "id": 129,
+      "id": 131,
       "title": "AVNIR-1 — Time-Reversal and Topological Imaging for Ultrasonic Defect Detection :: Course Project",
       "content": "Edit this Page Download as .pdf AVNIR-1 — Time-Reversal and Topological Imaging for Ultrasonic Defect Detection Table of Contents 1. Project Snapshot 2. Shared Context 3. Student-Specific Scope 3.1. Baseline scope (1 student) 3.2. Extended scope (2 students or strong involvement) 3.3. Out of scope for the baseline 4. Objectives 5. Methodological Workflow 5.1. Step 1 — Literature and model choice 5.2. Step 2 — Forward simulation in a healthy medium 5.3. Step 3 — Synthetic defective measurements 5.4. Step 4 — Adjoint backpropagation 5.5. Step 5 — Imaging functional 5.6. Step 6 — Validation and discussion 6. Expected Deliverables 7. Validation Targets 8. Possible Task Split for 2 Students 8.1. Student A — Forward and data generation 8.2. Student B — Inverse imaging and analysis 8.3. Common work 9. Milestones 10. Practical Recommendations 11. References and Starting Resources 12. Expected Level and Pedagogical Value 1. Project Snapshot Level: M1 CSMI Team: 1 student, or 2 students for an e",
       "url": "/csmi/2026/m1-s2/topics/avnir-1.html"
     },
     {
-      "id": 130,
+      "id": 132,
       "title": "hid-1: Modélisation thermo-hydraulique urbaine multi-physique pour la simulation de la ville à l’échelle Exascale :: Course Project",
       "content": "Edit this Page Download as .pdf hid-1: Modélisation thermo-hydraulique urbaine multi-physique pour la simulation de la ville à l’échelle Exascale 1. Contexte du projet Le projet s’inscrit dans le cadre du projet européen Hidalgo2, visant à porter les simulations complexes vers l’ère de l'Exascale. Vous rejoindrez l’équipe de développement de Ktirio, un logiciel de simulation thermique du bâtiment en pleine mutation pour devenir un simulateur urbain complet. L’enjeu est de dépasser la simple étude du bâti isolé pour intégrer finement dans les simulations son environnement urbain. 2. Thématique et Objectifs de recherche L’objectif central est de développer un modèle de sol 1D multi-physique capable de simuler les interactions complexes thermique et hydraulique. Ce modèle est un chaînon important pour quantifier les îlots de chaleur urbains (ICU) et la résilience hydrologique des quartiers. L’axe majeur du stage : Physique des transferts thermiques échange sol-atmosphère (Modèle de sol) B",
       "url": "/csmi/2026/m1-s2/topics/hid-1.html"
     },
     {
-      "id": 131,
+      "id": 133,
       "title": "hifimagnet-1: Statistical Characterization of High-Field Magnet Operations :: Course Project",
       "content": "Edit this Page Download as .pdf hifimagnet-1: Statistical Characterization of High-Field Magnet Operations 1. Overview Level M1 Applied Mathematics (Internship or Semester Project) Duration 3-4 months (internship) or one semester (project) Prerequisite knowledge Multivariate statistics, Python/pandas, basic physics (electromagnetism appreciated but not required) MagnetDB roadmap mapping Phase 1 (RecordStats) + Phase 3 (CumulativeStats) Deliverables Python module + analysis report 2. Context LNCMI (Laboratoire National des Champs Magnetiques Intenses) operates resistive high-field magnets capable of producing magnetic fields up to 36 Tesla. These magnets are water-cooled polyhelix inserts composed of concentric helical conductors carrying tens of thousands of amperes. During operation, a monitoring system records time series of physical quantities: magnetic field, coil currents, voltages, temperatures, pressures, and water flow rates. Each experimental session produces a record - a mult",
       "url": "/csmi/2026/m1-s2/topics/hifimagnet-1.html"
     },
     {
-      "id": 132,
+      "id": 134,
       "title": "hifimagnet-2: Hoop Stress Computation and Mechanical Fatigue Indicators from Operational Data :: Course Project",
       "content": "Edit this Page Download as .pdf hifimagnet-2: Hoop Stress Computation and Mechanical Fatigue Indicators from Operational Data 1. Overview |== |Level |M1 Applied Mathematics (Internship, preferably 4-5 months) |Duration |4-5 months |Prerequisite knowledge |Continuum mechanics or solid mechanics, PDEs, numerical methods, Python |MagnetDB roadmap mapping |Phase 1 (computed RecordStats) + Phase 2 (derived time series) |Deliverables |Python module + analysis report |== 2. Context LNCMI polyhelix magnets operate under extreme mechanical stress. Each helical conductor carries tens of thousands of amperes in a multi-Tesla magnetic field. The Lorentz force (J x B) produces a radial pressure that generates hoop stress - circumferential tensile stress in the conductor walls, analogous to the stress in a pressurized cylindrical vessel. The hoop stress is the primary mechanical constraint on magnet design: it determines how much current (and therefore how much field) a magnet can safely produce. Wh",
       "url": "/csmi/2026/m1-s2/topics/hifimagnet-2.html"
     },
     {
-      "id": 133,
+      "id": 135,
       "title": "hifimagnet-3: Time Series Processing and Downsampling for Scientific Operational Data :: Course Project",
       "content": "Edit this Page Download as .pdf hifimagnet-3: Time Series Processing and Downsampling for Scientific Operational Data 1. Overview |== |Level |M1 Applied Mathematics (Internship or Semester Project) |Duration |3-4 months (internship) or one semester (project) |Prerequisite knowledge |Signal processing or numerical analysis, algorithms, Python |MagnetDB roadmap mapping |Phase 2 (ProcessedTimeSeries / ETL) Phase 3 (stitched series) |Deliverables |Python module + benchmark report |== 2. Context MagnetDB stores operational records as raw data files - time series of 50-70 physical channels recorded during magnet experiments. These records need to be served to users through a web interface for interactive visualization and analysis. This creates two distinct challenges: The visualization challenge: a record with 5000 data points and 70 columns is too large to send to a browser for plotting. The current MagnetDB implementation uses naive modulo subsampling (keep every Nth point), which discard",
       "url": "/csmi/2026/m1-s2/topics/hifimagnet-3.html"
     },
     {
-      "id": 134,
+      "id": 136,
       "title": "CSMI Topics - 2025–2026 M1 S2 :: Course Project",
       "content": "Edit this Page Download as .pdf CSMI Topics - 2025–2026 M1 S2 Project pages for CSMI Master 1 S2 in the 2025–2026 academic year. 1. Shared Structure Common context and expectations are defined for all projects. Each student works on one project page with project-specific details. 2. Projects avnir-1 hid-1 hifimagnet-1 hifimagnet-2 hifimagnet-3 ooc-1 ooc-2 ooc-3 sepsis-1 sepsis-2 sepsis-3 3. Template Proposal template AVNIR-1 — Time-Reversal and Topological Imaging for Ultrasonic Defect Detection M1 CSMI project proposal on time-reversal and topological imaging for defect detection. hid-1: Modélisation thermo-hydraulique urbaine multi-physique pour la simulation de la ville à l&#8217;échelle Exascale Stage HID de modélisation thermo-hydraulique urbaine multi-physique pour 2026 M1 S2. hifimagnet-1: Statistical Characterization of High-Field Magnet Operations CSMI Project A statistical characterization proposal for 2026 M1 S2. hifimagnet-2: Hoop Stress Computation and Mechanical Fatigue I",
       "url": "/csmi/2026/m1-s2/topics/"
     },
     {
-      "id": 135,
+      "id": 137,
       "title": "ooc-1: Robust Trajectory Tracking, Verification, Validation, and Trajectory Statistics :: Course Project",
       "content": "Edit this Page Download as .pdf ooc-1: Robust Trajectory Tracking, Verification, Validation, and Trajectory Statistics 1. Shared Context Use organ-on-chip time-lapse microscopy datasets, existing segmentation/tracking code in organ-on-chip, and shared Python analysis tooling for reproducible experiments. 2. Student-Specific Scope Improve trajectory robustness under noise, missed detections, and dense-cell scenarios; define verification and validation protocols; produce realistic and interpretable trajectory visualizations and trajectory-level statistics. 3. Objectives Build a robust tracking pipeline with explicit uncertainty handling. Define quantitative verification and validation benchmarks (manual labels and synthetic perturbations). Deliver statistical trajectory descriptors and biologically meaningful visual analytics. 4. Expected Deliverables Source code repository Documentation and reproducibility notes Final report and presentation 5. Milestones Week 1-2: Data curation, baseli",
       "url": "/csmi/2026/m1-s2/topics/ooc-1.html"
     },
     {
-      "id": 136,
+      "id": 138,
       "title": "ooc-2: Bulk Flow of One Cell Population Toward Another :: Course Project",
       "content": "Edit this Page Download as .pdf ooc-2: Bulk Flow of One Cell Population Toward Another 1. Shared Context Use the same organ-on-chip imaging datasets and preprocessing pipeline (segmentation and tracking), with common statistical and visualization tooling. 2. Student-Specific Scope Focus on two identified cell populations and quantify directed collective motion of source cells toward target cells through velocity fields, flux estimates, and significance testing. 3. Objectives Identify and track two cell populations over time. Estimate bulk flow, directional bias, and net flux toward target regions. Validate flow trends statistically across conditions and experiments. 4. Expected Deliverables Source code repository Documentation and reproducibility notes Final report and presentation 5. Milestones Week 1-2: Define populations, labeling strategy, and flow metrics Week 3-6: Implement flow and flux estimation with condition-wise analysis Week 7-9: Statistical validation and interaction-focu",
       "url": "/csmi/2026/m1-s2/topics/ooc-2.html"
     },
     {
-      "id": 137,
+      "id": 139,
       "title": "ooc-3: PDE-Based Cell Density Modeling in OOC with Feel++ CFPDE :: Course Project",
       "content": "Edit this Page Download as .pdf ooc-3: PDE-Based Cell Density Modeling in OOC with Feel++ CFPDE 1. Shared Context Use organ-on-chip experimental datasets and shared geometry and measurement context, with Feel++ as the common simulation framework. 2. Student-Specific Scope Develop continuum cell-density models (diffusion, advection, reaction, and possibly chemotaxis), implement them in CFPDE, and calibrate against observed OOC cell behavior. 3. Objectives Formulate PDE models for cell density evolution adapted to OOC geometry and flow. Implement and run simulations with Feel++ CFPDE. Calibrate and validate model predictions against experimental trajectory or density data. 4. Expected Deliverables Source code repository Documentation and reproducibility notes Final report and presentation 5. Milestones Week 1-2: Literature review and model specification Week 3-6: CFPDE implementation and baseline simulation setup Week 7-9: Parameter calibration, validation, and sensitivity analysis Week ",
       "url": "/csmi/2026/m1-s2/topics/ooc-3.html"
     },
     {
-      "id": 138,
+      "id": 140,
       "title": "sepsis-1: Data Pipeline and Quality Audit for Sepsis Prediction :: Course Project",
       "content": "Edit this Page Download as .pdf sepsis-1: Data Pipeline and Quality Audit for Sepsis Prediction 1. Shared Context This project is designed for M1 CSMI Semester 2 students in 2026. It is based on ICU sepsis data (PhysioNet challenge format) and a reproducible Python workflow. The expected workload is 60 to 80 hours (maximum 100 hours) between March 10, 2026 and May 30, 2026 (oral defense). 2. Student-Specific Scope Assigned student(s): to be filled Specific scientific question: How do data cleaning and missing-value strategies affect downstream sepsis prediction quality? Specific constraints: Use only de-identified challenge data and provide fully reproducible scripts/notebooks. 3. Objectives Build a reproducible ingestion and preprocessing pipeline for ICU time-series. Quantify missingness, outliers, and feature reliability. Compare at least two imputation strategies and justify the final choice. Train a simple baseline model (for example logistic regression) to validate the prepared d",
       "url": "/csmi/2026/m1-s2/topics/sepsis-1.html"
     },
     {
-      "id": 139,
+      "id": 141,
       "title": "sepsis-2: Early Sepsis Prediction and Alert Threshold Design :: Course Project",
       "content": "Edit this Page Download as .pdf sepsis-2: Early Sepsis Prediction and Alert Threshold Design 1. Shared Context This project is designed for M1 CSMI Semester 2 students in 2026. It uses ICU sepsis data (PhysioNet challenge format) and focuses on supervised prediction in a clinically interpretable setting. The expected workload is 60 to 80 hours (maximum 100 hours) between March 10, 2026 and May 30, 2026 (oral defense). 2. Student-Specific Scope Assigned student(s): to be filled Specific scientific question: How early can sepsis be predicted while maintaining acceptable precision, recall, and calibration? Specific constraints: Compare at least one interpretable model and one higher-capacity model with identical train/test protocol. 3. Objectives Define a prediction target and clinically relevant prediction horizon (for example 4 to 6 hours before onset). Train and compare multiple models (for example logistic regression, random forest, gradient boosting). Evaluate discrimination and cali",
       "url": "/csmi/2026/m1-s2/topics/sepsis-2.html"
     },
     {
-      "id": 140,
+      "id": 142,
       "title": "sepsis-3: Digital Twin Lite for Patient Trajectory and Treatment Scenarios :: Course Project",
       "content": "Edit this Page Download as .pdf sepsis-3: Digital Twin Lite for Patient Trajectory and Treatment Scenarios 1. Shared Context This project is designed for M1 CSMI Semester 2 students in 2026. It uses the same ICU sepsis context (PhysioNet challenge format) but shifts focus from classification to short-term trajectory modeling. The expected workload is 60 to 80 hours (maximum 100 hours) between March 10, 2026 and May 30, 2026 (oral defense). 2. Student-Specific Scope Assigned student(s): to be filled Specific scientific question: Can we build a simplified digital twin to forecast short-term physiological evolution and compare intervention scenarios? Specific constraints: Keep claims exploratory; no causal or clinical deployment claims beyond observed-data simulation. 3. Objectives Build a compact patient-state representation from recent vital signs and laboratory trends. Train a short-horizon forecasting model (for example 1 to 6 hour horizon for MAP, lactate, or SOFA proxy). Implement s",
       "url": "/csmi/2026/m1-s2/topics/sepsis-3.html"
     },
     {
-      "id": 141,
+      "id": 143,
       "title": "CSMI Projects — 2026–2027 :: Course Project",
       "content": "Edit this Page Download as .pdf CSMI Projects — 2026–2027 This page tracks CSMI project spaces for the 2026–2027 academic year. 1. Master 2 — Semester 3 Master 2 — Semester 3 (S3) M2 S3 project topics Topic presentations — Monday 5 October 2026, 10:00–12:00 (Paris time) 2. Previous Academic Year CSMI projects for 2025–2026 CSMI Projects — M2 S3 2026–2027 Project topics and presentations for CSMI Master 2 Semester 3 in the 2026–2027 academic year.",
       "url": "/csmi/2026-2027/"
     },
     {
-      "id": 142,
+      "id": 144,
       "title": "CSMI Projects — M2 S3 2026–2027 :: Course Project",
       "content": "Edit this Page Download as .pdf CSMI Projects — M2 S3 2026–2027 This space brings together the CSMI Master 2, Semester 3 (S3) project proposals for the 2026–2027 academic year. 1. Proposed topics Ten topics are available from Avnir Energy, CNR Nanotec, IAC-CNR, IRMA, LNCMI, CEMOSIS in collaboration with NEPSEN, and Willing AI / Coruscant. Topic catalogue and detailed project pages. Proposal spreadsheet. 2. Topic presentations — Monday 5 October 2026 The session runs from 10:00 to 12:00, Paris time, with in-person and remote presentations according to the preferences declared by the project proposers. Proposed presentation order and time slots. Available project presentation slides (PDF). 3. Organisation Each project page specifies the proposed team size and possible follow-on internships or PhD opportunities. Project proposers present their topics before students select their projects. Back to the 2026–2027 CSMI projects Project topics — M2 S3 2026–2027 The ten CSMI Master 2 Semester 3",
       "url": "/csmi/2026-2027/m2-s3/"
     },
     {
-      "id": 143,
+      "id": 145,
       "title": "M2 S3 Topic Presentations — Monday 5 October 2026 :: Course Project",
       "content": "Edit this Page Download as .pdf M2 S3 Topic Presentations — Monday 5 October 2026 1. Time and format Date: Monday 5 October 2026. Time: 10:00–12:00, Paris time (Europe/Paris). Videoconference: Join the presentation on Zoom. Proposed format: 12 minutes per topic, comprising 9 minutes of presentation and 3 minutes for questions and transition. Speakers: proposers of the M2 S3 2026–2027 project topics. Topics by the same speaker are grouped together. Presentations with a declared remote format are grouped at the start of the session. The formats for Joubine Aghili and Mario Veruete remain to be confirmed. This proposed schedule includes all ten topics within the 10:00–12:00 session. Alessandro De Giorgi and Joubine Aghili declared “Maybe”; their participation remains to be confirmed. Mario Veruete’s availability and presentation format are also to be confirmed. 2. Presentation slides The following presentation decks are available for download. The Avnir Energy and IRMA decks each cover tw",
       "url": "/csmi/2026-2027/m2-s3/presentations.html"
     },
     {
-      "id": 144,
+      "id": 146,
       "title": "Impact of gravity on wave propagation in a large slender structure :: Course Project",
       "content": "Edit this Page Download as .pdf Impact of gravity on wave propagation in a large slender structure 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project proposer Gabriel Georges Host organisation Avnir Energy Contact g.georges@avnir-energy.fr Team size One student Possible internship Maybe Possible PhD No 2. Project context This project supports Avnir Energy’s work on monitoring the structural health of nuclear facilities. Together with CEMOSIS, the company has been developing a Structural Health Monitoring (SHM) method for reactor vessels based on high-fidelity modelling of wave propagation in slender structures, whose dimensions are much larger than their wall thickness. A prototype vessel is approximately 1 m high and 1 m in diameter, with 3 mm thick walls; actual vessels are about 15 times larger. The numerical method behaves differently on a steel plate approximately 20 cm across and on the prototype vessel. Results for the plate closely match experimental ",
       "url": "/csmi/2026-2027/m2-s3/topics/avnir-gravite-ondes.html"
     },
     {
-      "id": 145,
+      "id": 147,
       "title": "Topological imaging :: Course Project",
       "content": "Edit this Page Download as .pdf Topological imaging 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project proposer Gabriel Georges Host organisation Avnir Energy Contact g.georges@avnir-energy.fr Team size One student Possible internship Yes Possible PhD No 2. Project context This project is central to Avnir Energy’s activity: providing the emerging nuclear industry with tools and methods for monitoring industrial structures, such as reactor vessels. It aims to implement topological imaging, a process similar to ultrasound imaging that detects small defects within a material, such as air bubbles in a weld. The main steps are: High-fidelity modelling of ultrasonic wave propagation and reflections in a healthy medium, represented by an idealised numerical model. Simulation of the same medium with one or more defects. This initially replaces experimental measurements during prototyping; eventually, vibration measurements from the actual structure will be used. Mode",
       "url": "/csmi/2026-2027/m2-s3/topics/avnir-imagerie-topologique.html"
     },
     {
-      "id": 146,
+      "id": 148,
       "title": "Project topics — M2 S3 2026–2027 :: Course Project",
       "content": "Edit this Page Download as .pdf Project topics — M2 S3 2026–2027 Ten project proposals are listed below. Each project page provides the context, objectives, fields and tools specified by its proposer. 1. Topic list No. Topic Project proposer Host organisation 1 Topological imaging Gabriel Georges Avnir Energy 2 Impact of gravity on wave propagation in a large slender structure Gabriel Georges Avnir Energy 3 Calibrating tumour–astrocyte migration models on registered organ-on-chip data Alessandro De Giorgi CNR Nanotec 4 3D Kernel Density Estimation for Cell Tracking on Cancer-on-Chip Elishan Christian Braun IAC-CNR Rome, Italy 5 Uncertainty quantification for linear transport Andrea Thomann IRMA, Université de Strasbourg 6 Simulation of nonlinear compressible hyperelastic solids Andrea Thomann IRMA, Université de Strasbourg 7 Systemic model of High Field Resistive Magnets Christophe Trophime Laboratoire National des Champs Magnétiques Intenses, CNRS UPR3228, Grenoble 8 3D façade analysi",
       "url": "/csmi/2026-2027/m2-s3/topics/"
     },
     {
-      "id": 147,
+      "id": 149,
       "title": "Fully differentiable nonconforming finite elements in Scimba :: Course Project",
       "content": "Edit this Page Download as .pdf Fully differentiable nonconforming finite elements in Scimba 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project proposer Joubine Aghili Host organisation IRMA, University of Strasbourg Contact aghili@unistra.fr Team size One student Possible internship Maybe Possible PhD No 2. Project context The project contributes to the development of Scimba, specifically its finite-element capabilities. 3. Objectives Implement a fully differentiable two-dimensional nonconforming finite-element solver. 4. Fields Modelling, simulation, optimisation and control. 5. Mathematical tools Nonconforming finite elements and automatic differentiation theory. 6. Computing tools Python, with JAX or PyTorch. 7. Topic presentation Declared availability for Monday 5 October 2026: Maybe — to be confirmed. Preferred presentation format: To be confirmed. Presentation session for 5 October, 10:00–12:00. Back to the topic list",
       "url": "/csmi/2026-2027/m2-s3/topics/irma-scimba-nonconforming-fe.html"
     },
     {
-      "id": 148,
+      "id": 150,
       "title": "Simulation of nonlinear compressible hyperelastic solids :: Course Project",
       "content": "Edit this Page Download as .pdf Simulation of nonlinear compressible hyperelastic solids 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project proposer Andrea Thomann Host organisation IRMA, Université de Strasbourg Contact andrea.thomann@unistra.fr Team size One student Possible internship No Possible PhD No 2. Project context The numerical simulation of nonlinear compressible hyperelastic solids is quite challenging due to the different physical processes that have to be combined. Furthermore the solution structure can be quite challenging due to the different wave types arising in the model (shear, fast and slow longitudinal waves etc). The capturing of discontinuities is quite important in particular for slow moving contact waves. 3. Objectives The project includes the understanding of the equations (optional different models), the numerical implementation in 1 or 2 dimensions and including mesh refinement to capture discontinuities with high resolution. 4. ",
       "url": "/csmi/2026-2027/m2-s3/topics/irma-solides-hyperelastiques.html"
     },
     {
-      "id": 149,
+      "id": 151,
       "title": "Uncertainty quantification for linear transport :: Course Project",
       "content": "Edit this Page Download as .pdf Uncertainty quantification for linear transport 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project proposer Andrea Thomann Host organisation IRMA, Université de Strasbourg Contact andrea.thomann@unistra.fr Team size One student Possible internship Yes Possible PhD Yes This project is proposed together with Mathias Dus. 2. Project context In this project we consider the influence of a random parameter on the linear transport equation. Therein, the uncertainty can either be on the solution or the model itself by adding a random coefficients to the flux definition. This can be interpreted either by errors in the measurements and uncertainties in the modeling process. Possible applications beyond this project are traffic flow problems as well as many physical processes in random media. This project is together with Mathias DUS. 3. Objectives Understand the model in one dimension (hyperbolic conservation law with intrinsic uncertain",
       "url": "/csmi/2026-2027/m2-s3/topics/irma-transport-incertitudes.html"
     },
     {
-      "id": 150,
+      "id": 152,
       "title": "3D façade analysis to enrich Ktirio’s building energy models :: Course Project",
       "content": "Edit this Page Download as .pdf 3D façade analysis to enrich Ktirio’s building energy models 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project proposer Christophe Prud’homme Host organisation CEMOSIS — IRMA, University of Strasbourg, in collaboration with NEPSEN (company) Contact christophe.prudhomme@cemosis.fr Team size One student Possible internship Maybe Possible PhD Maybe 2. Project context Ktirio is a platform for simulating building energy performance at neighbourhood and city scales, particularly energy consumption and summer comfort in the context of climate change adaptation. Its models require information about the exterior envelope: dimensions, storeys, glazed areas and opening orientations. Supervised by CEMOSIS in collaboration with NEPSEN, the project will use textured 3D models and LiDAR data to obtain this information efficiently and enrich the energy models. NEPSEN proposes three reference sites: Apave in Artigues-près-Bordeaux, Téthys in B",
       "url": "/csmi/2026-2027/m2-s3/topics/ktirio-facades-3d.html"
     },
     {
-      "id": 151,
+      "id": 153,
       "title": "Systemic model of High Field Resistive Magnets :: Course Project",
       "content": "Edit this Page Download as .pdf Systemic model of High Field Resistive Magnets 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project proposer Christophe Trophime Host organisation Laboratoire National des Champs Magnétiques Intenses, CNRS UPR3228, Grenoble Contact christophe.trophime@lncmi.cnrs.fr Team size Adaptable to the number of students Possible internship Yes Possible PhD Maybe 2. Project context Build a simplified digital model of resistive magnets in operation 3. Objectives Create a ODE base circuit model for LNCMI magnets in operation coupled with a model of the cooling system. 4. Fields Data and machine learning; modelling, simulation, optimisation and control. 5. Mathematical tools ODE and 1D Pde models; Parameters identifications; Eventually Data assimilations 6. Computing tools Python with SciPy, JAX and scikit-learn; an existing ODE module is available in a GitHub repository. C++ with SUNDIALS may be considered depending on performance. GitHub for",
       "url": "/csmi/2026-2027/m2-s3/topics/lncmi-aimants-resistifs.html"
     },
     {
-      "id": 152,
+      "id": 154,
       "title": "3D Kernel Density Estimation for Cell Tracking on Cancer-on-Chip :: Course Project",
       "content": "Edit this Page Download as .pdf 3D Kernel Density Estimation for Cell Tracking on Cancer-on-Chip 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project proposer Elishan Christian Braun Host organisation IAC-CNR Rome, Italy Contact elishanchristian.braun@cnr.it Team size Adaptable to the number of students Possible internship Maybe Possible PhD Yes 2. Project context Part of the Project: D34Health (Digital Driven Diagnostics, prognostics, and therapeutics for sustainable Healthcare, for the development of digital twin of cancer-on-chip biological experiments 3. Objectives Develop a framework/pipeline used for the digital twin of Cancer-on-Chip experiments. The project intends to create numerical methods in order to use cell tracking data in microscopic and macroscopic mathematical models which then is used for calibration and validation of in-silico models against real experimental data. 4. Fields Data and machine learning; modelling, simulation, optimisation and ",
       "url": "/csmi/2026-2027/m2-s3/topics/ooc-kde-3d.html"
     },
     {
-      "id": 153,
+      "id": 155,
       "title": "Calibrating tumour–astrocyte migration models on registered organ-on-chip data :: Course Project",
       "content": "Edit this Page Download as .pdf Calibrating tumour–astrocyte migration models on registered organ-on-chip data 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project proposer Alessandro De Giorgi Host organisation CNR Nanotec Contact alessandro.degiorgi@unisalento.it Team size One student Possible internship Yes Possible PhD Maybe 2. Project context This project belongs to a CNR–Unistra collaboration within D3 4Health. It builds on two M1 projects on image registration and cell tracking in a brain organ-on-chip with glioblastoma cells and astrocytes. A new longer imaging campaign now allows migration data to be linked to a calibrated PDE model. 3. Objectives Build a reproducible pipeline from registered cell trajectories to migration observables, and use it to calibrate diffusion and taxis parameters of a reduced tumour–astrocyte PDE model, with quantified uncertainty. 4. Fields Data and machine learning; modelling, simulation, optimisation and control; signal an",
       "url": "/csmi/2026-2027/m2-s3/topics/ooc-migration-tumeur-astrocytes.html"
     },
     {
-      "id": 154,
+      "id": 156,
       "title": "Strategies for controlling arbovirus epidemics :: Course Project",
       "content": "Edit this Page Download as .pdf Strategies for controlling arbovirus epidemics 1. Project information Academic year 2026–2027 Semester Master 2 — S3 Project supervisor Dr Mario Veruete Host organisation Willing AI / Coruscant, Willing (company) Contact mario.veruete@willing.fr Team size To be agreed with the supervisor Possible internship Yes Possible follow-on opportunities Permanent employment (CDI) and/or a PhD may be possible after the internship The precise research direction and scope will be agreed with the supervisor according to the student’s profile. An applicant with a strong background in mathematical modelling and numerical analysis is sought. Follow-on opportunities are possibilities, rather than guaranteed offers. 2. Project context The project studies mosquito population suppression as a way to reduce arbovirus epidemic risk. It focuses on the Incompatible Insect Technique (IIT): releasing male mosquitoes carrying a Wolbachia strain combination that is incompatible with",
       "url": "/csmi/2026-2027/m2-s3/topics/willing-arbovirus-control.html"
     },
     {
-      "id": 155,
+      "id": 157,
       "title": "CSMI Project Proposals :: Course Project",
       "content": "Edit this Page Download as .pdf CSMI Project Proposals This module organizes CSMI project proposals by academic year, master level, and semester. 1. Current Cohort Academic year: 2026–2027 Program: Master 2 Semester: S3 Master 2 — Semester 3 — 2026–2027 2026–2027 M2 S3 project topics Topic presentations — Monday 5 October 2026, 10:00–12:00 (Paris time) 2. Yearly Project Spaces CSMI projects for 2026–2027 CSMI projects for 2025–2026 3. Active Topics Folder 2026-2027/m2-s3/topics 4. Previous Semester Master 1 — Semester 2 — 2025–2026 2025–2026 M1 S2 project topics CSMI Projects — 2025–2026 CSMI project proposals for the 2025–2026 academic year. CSMI Projects — 2026–2027 CSMI project proposals for the 2026–2027 academic year.",
       "url": "/csmi/"
     },
     {
-      "id": 156,
+      "id": 158,
       "title": "Proposal Template :: Course Project",
       "content": "Edit this Page Download as .pdf Proposal Template 1. Shared Context Describe the common scientific background, common datasets, and shared tools. 2. Student-Specific Scope Document what is specific to this project instance. 3. Objectives Objective 1 Objective 2 Objective 3 4. Expected Deliverables Source code repository Documentation and reproducibility notes Final report and presentation 5. Milestones Week 1-2: Scope and setup Week 3-6: Core implementation Week 7-9: Validation and documentation Week 10: Final presentation",
       "url": "/csmi/proposal-template.html"
     },
     {
-      "id": 157,
+      "id": 159,
       "title": "Redirect Notice",
       "content": "Redirect Notice The page you requested has been relocated to https://feelpp.github.io/course-project/course-project/index.html.",
       "url": "/index.html"

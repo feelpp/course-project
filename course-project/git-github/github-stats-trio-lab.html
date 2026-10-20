@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>TP : trois fonctions statistiques, trois rôles (2 h) :: Course Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/git-github/github-stats-trio-lab.html">
+    <link rel="prev" href="github-team-workflow.html">
+    <link rel="next" href="../vscode/index.html">
+    <meta name="description" content="Pratiquer issues, branches, commits, tests, pull requests, reviews et merges en trinômes.">
+    <meta name="generator" content="Antora 3.1.7">
+<link rel="stylesheet" href="../../_/css/site.css">
+
+<!-- Font Awesome webfont CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../../_/css/listing.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project"
+        style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/course-project">Course Project</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+               <!--<div class="navbar-item">
+                    <a href="../../_/../cours-project/python/index.html">Documentation Reference</a>
+                </div>-->
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="../../_/../cours-project/_attachments/cours-project.zip"
+                            class="download-btn" title="Teaching notebooks with a locked uv environment for VS Code">Download the Notebooks</a></div>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.cemosis.fr">
+                        <img class="cemosis-logo" src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" />
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand" href="https://www.unistra.fr">
+                        <img class="cemosis-logo" src="../../_/img/logo-unistra.png" alt="Unistra logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="course-project" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Course Project</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Course Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../getting-started.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started.html">What this course is about / Before M1</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quick-start.html">Software and accounts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../prerequisites.html">Self-assessment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ai-use.html">Using AI responsibly</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../assessment.html">Competencies and assessment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../m1/index.html">M1 — Computational Foundations</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m1/index.html">Learning outcomes and progression</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../linux/index.html">Linux and Unix environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../linux/shell.html">Shell fundamentals</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../linux/files.html">Files</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../linux/text-processing.html">Text processing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../linux/ssh/ssh-setup.html">SSH and remote computing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="git-starter.html">Git</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="github-essentials.html">GitHub</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="github-team-workflow.html">Travail collectif avec Git et GitHub</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="github-stats-trio-lab.html">TP statistiques en trinômes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../vscode/index.html">VS Code</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../linux/ssh/remote-ssh-vscode.html">VS Code Remote SSH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m1/environments.html#python">Python environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m1/environments.html#cpp">C/C++ environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m1/gaya.html">Gaya and basic HPC operations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m1/workflow.html">Project workflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m1/workflow.html#testing">Testing and basic CI</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m1/workflow.html#reproducibility">Reproducibility</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../m1/project.html">M1 — Project</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m1/project.html">Objectives</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m1/project.html#workflow">Expected workflow and GitHub organization</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m1/project.html#deliverables">Deliverables</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m1/project.html#assessment">Assessment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../csmi/index.html">Project topics by cohort</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../m2/index.html">M2 — Scientific Software &amp; MLOps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/index.html">Learning outcomes and progression</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/transition.html">From M1 to M2</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../containers/apptainer/index.html">Apptainer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../containers/apptainer/apptainer-install.html">Access and installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../containers/apptainer/tutorial.html">Apptainer practical</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/hpc-containers.html">Scientific/HPC containers</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/feelpp-gaya.html">Deploy Feel++ on Gaya with Slurm</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/session2-thermal-fin.html">Session 2 — 3D thermal fins (preparation)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/reproducibility.html">Reproducible environments and results</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/mlops/index.html">MLOps introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/mlops/lifecycle.html">Data/model lifecycle and experiment tracking</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/mlops/engineering.html">Testing, CI/CD, pipelines and packaging</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/mlops/engineering.html#_inference_and_monitoring">Inference and monitoring</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../m2/mlops/project.html">M2 — Thermal-fin MLOps mini-project</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/mlops/project.html">Complete workflow and architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/mlops/project.html#_github_workflow">GitHub workflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/mlops/project.html#_milestones">Milestones</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/mlops/project.html#_deliverables">Deliverables</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/mlops/project.html#assessment">Assessment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/mlops/project.html#reproducibility-checklist">Reproducibility checklist</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../m2/semester-project.html">M2 — Semester project: inference and optimisation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/semester-project.html">Continuation of the thermal-fin project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/semester-project.html#_expectations_and_workflow">GitHub workflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/semester-project.html#_deliverables">Deliverables</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m2/semester-project.html#_assessment">Assessment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../reference.html">Reference</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="git-basics.html">Git reference</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../linux/shell.html">Shell reference</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../linux/ssh/ssh-commands.html">SSH reference</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../vscode/cheatsheet.html">VS Code reference</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../containers/index.html">Containers reference</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cicd/index.html">CI/CD reference</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../software/repo/organization.html">CMake and repository organization</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jupyter.html">Jupyter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../software/python-e2e-weather-workshop.html">Python weather workshop</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../software/release-engineering-weather.html">Release engineering</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../visualisation/index.html">Dash and visualization</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference.html">Complete reference library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Linux and SSH</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/editing.html">File Editing in Linux</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/ssh/index.html">SSH and Remote-SSH in VS Code</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Git and GitHub</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git-branch.html">Git Branching</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git-merges.html">Merge Strategies in Git</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git-remotes.html">Git Remotes</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="git-repository-basics.html">What is a Git Repository?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="github-actions-cmake-eigen3.html">GitHub Actions Tutorial for Scientific Computing with Eigen3 and CMake Presets</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="github-actions.html">Tutorial: Using GitHub Actions for Scientific Computing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="github-collaborations.html">Collaboration on GitHub</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="github-how-to-write-issues.html">How to Write a GitHub Issue</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="github-review-projects-lab.html">GitHub Intro Lab: Issues, PRs, and Projects (90 minutes)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="github-start.html">GitHub for Beginners</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="index.html">Git &amp; GitHub Fundamentals</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">VS Code</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/basic-usage.html">Basic Usage and Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/configure-vscode.html">How to Configure VS Code with .vscode</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/extensions.html">Extension Installation and Key Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/install.html">VS Code Installation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/python-jupyter.html">Python and Jupyter Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/remote-ssh.html">Remote SSH Extension</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/wsl.html">WSL (Windows Subsystem for Linux) Extension</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containers and HPC</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/apptainer/install-source-legacy.html">Historical Apptainer source-install recipe</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-architecture.html">Docker Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-commands.html">Essential Docker Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-compose.html">Docker Compose — reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-deploy.html">Step-by-Step Guide: Building a Dockerized Data Pipeline with PostgreSQL, Computation, and Visualization using Dash</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-install.html">Docker Installation Guide</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-overview.html">Docker Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-problems-solved.html">The Problem Docker Solves</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/dockerfile-basics.html">Dockerfile: Building Custom Images</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/hands-on/01-getting-started.html">Docker System Basics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/hands-on/02-advanced-usage.html">Advanced Docker Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/hands-on/03-usecase-db.html">Practical Session: Using PostgreSQL with Docker and Injecting a Dataset</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/hands-on/04-compose.html">Docker Compose practical</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/hands-on/06-githubactions.html">Tutorial: Building Docker Images Using GitHub Actions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/hands-on/docker-postgres.html">Using the Postgres Docker Official Image</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/hands-on/index.html">Docker hands-on reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/index.html">Introduction to Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/what-are-containers.html">What are Containers?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/advanced.html">Advanced CI/CD Techniques for HPC using GitHub Actions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/best-practices.html">HPC container best practices</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/cicd.html">Introduction to CI/CD Fundamentals with GitHub Actions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/00-classroom.html">GitHub Classroom and Codespaces: Empowering Personalized Development Environments</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/01-docker.html">Docker System Basics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/02-apptainer.html">Karolina Apptainer example — advanced reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/03-cicd-githubactions.html">Hands-on: CI Workflow for HPC Application</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/03-docker-mpi.html">Hands-on: Building the Docker Image for Our MPI Application</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/04-apptainer-cicd-app.html">Hands-on: Generating the Apptainer Job for HPC Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/04-docker-cicd-app.html">Dockerized MPI Training Session: From Docker to Apptainer on a Supercomputer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/05-deploy.html">Hands-on: Deploying Apptainer Images on HPC Environments</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/index.html">HPC Containers Hands-on</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/index.html">Introduction to Containers for High-Performance Computing (HPC)</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">CI/CD</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cicd/gitlab.html">CI/CD through Gitlab</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cicd/gitlab_handson.html">Hands on: Gitlab CI/CD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cicd/gitlab_slides.html">CI/CD through Gitlab</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Software distribution</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../software/index.html">Software Installation: From Package Managers to Building from Source</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../software/package-managers.html">Understanding Package Managers</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Project management</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../project-management/agile-best-practices.html">Methods and Best Practices for Agile Project Management</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../project-management/case-studies.html">Case Study: Building a Digital Twin for a Manufacturing System</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../project-management/collaboration-models-weather-lab.html">Collaboration Models Lab: Agile vs Waterfall (Weather Project)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../project-management/github.html">GitHub for Project Management</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../project-management/index.html">Project Management for Mathematical Research</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../project-management/introduction.html">What is a Project?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../project-management/practical-examples.html">Practical Examples in Scientific Computing and Digital Twins</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../project-management/project-phases.html">Phases of a Project</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../project-management/project.html">Project Management</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../project-management/tools-gantt.html">Tools in Project Management</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../project-management/waterfall-basics.html">Waterfall Model Basics</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Visualization and scientific examples</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../visualisation/dash-weather.html">Dash Tutorial: Weather Dashboard (Beginner)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../visualisation/dash.html">Dash for Scientific Computing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../visualisation/hw.html">Homework (separate thermal-fin/ROM exercise; optional reference)</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Other retained resources</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../antora.html">Antora environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cmake.html">Cmake environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../github.html">GitHub</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../githubactions.html">Github Actions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../overview.html">Overview of Course Project</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../rename.html">Renaming the project</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode.html">Using VSCode</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../teaching-guide.html">Instructor Resources</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../teaching-guide.html">Session preparation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../instructor-guide.html">Legacy teaching material</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Course Project</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component is-current">
+        <a class="title" href="../index.html">Course Project</a>
+      </li>
+      <li class="component">
+        <a class="title" href="../../csmi/index.html">CSMI Projects</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Course Project</a></li>
+    <li><a href="../m1/index.html">M1 — Computational Foundations</a></li>
+    <li><a href="github-stats-trio-lab.html">TP statistiques en trinômes</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/course/modules/git-github/pages/github-stats-trio-lab.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">TP : trois fonctions statistiques, trois rôles (2 h)</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>Chaque trinôme réalise trois fonctions dans un dépôt commun. Chaque étudiant implémente <strong>une</strong> fonction, teste <strong>une autre</strong> fonction et review <strong>la troisième</strong>. Les trois issues et les trois PR donnent une trace visible des responsabilités de chacun.</p>
+</div>
+<div class="paragraph">
+<p>Prérequis : <a href="github-team-workflow.html" class="xref page">le cycle issue → merge</a>. Les groupes disposent chacun d&#8217;un dépôt GitHub avec <code>main</code> protégé, les trois membres avec accès en écriture et une règle exigeant une PR ainsi qu&#8217;une approbation avant merge. Préparer ces dépôts avant la séance. Le <a href="_attachments/stats-trio-starter.zip" class="xref attachment">projet de départ à télécharger</a> contient les quatre modules Python et le dossier <code>tests/</code> ; l&#8217;enseignant le place sur <code>main</code> avant le TP. Garder les dépôts CV individuels séparés de cet exercice collectif.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_contrat_des_fonctions"><a class="anchor" href="#_contrat_des_fonctions"></a>1. Contrat des fonctions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Les entrées sont des listes non vides de nombres réels. On suppose les valeurs finies ; la gestion de <code>NaN</code> et de l&#8217;infini est hors périmètre. Aucun paquet externe n&#8217;est requis. Le fichier de départ fournit <code>mean(values)</code> dans <code>mean.py</code> pour ne pas consacrer une issue entière à la moyenne.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 42.8571%;">
+<col style="width: 42.8572%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Fonction à coder</th>
+<th class="tableblock halign-left valign-top">Critères d&#8217;acceptation à tester</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>median(values)</code> dans <code>median.py</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trie sans modifier l&#8217;entrée ; impaire : valeur centrale ; paire : moyenne des deux valeurs centrales ; liste vide : <code>ValueError</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>variance(values)</code> dans <code>variance.py</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Variance de population : somme des carrés des écarts à la moyenne divisée par <code>n</code> ; singleton : <code>0.0</code> ; liste vide : <code>ValueError</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pearson(xs, ys)</code> dans <code>pearson.py</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Corrélation de Pearson dans <code>[-1, 1]</code> ; deux listes de même longueur avec au moins deux valeurs ; <code>ValueError</code> si longueurs différentes, moins de deux valeurs ou variance nulle d&#8217;une série.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Pour Pearson, on peut calculer la covariance de population <code>sumx_i - mean(xs * (y_i - mean(ys))) / n</code>, puis la diviser par la racine carrée du produit des deux variances de population. Cas repères : <code>[1, 2, 3]</code> et <code>[2, 4, 6]</code> donnent <code>1.0</code> ; <code>[1, 2, 3]</code> et <code>[6, 4, 2]</code> donnent <code>-1.0</code>. Les comparaisons flottantes dans les tests se font avec <code>assertAlmostEqual</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Si Pearson demande trop de temps, l&#8217;enseignant peut remplacer l&#8217;issue C par <code>covariance(xs, ys)</code> avec la formule ci-dessus, deux listes non vides de même longueur, et <code>ValueError</code> sinon. Choisir cette variante <strong>avant</strong> de créer les issues pour que tout le groupe ait le même contrat.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_répartition_explicite_des_rôles"><a class="anchor" href="#_répartition_explicite_des_rôles"></a>2. Répartition explicite des rôles</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Étudiant</th>
+<th class="tableblock halign-left valign-top">Issue A : médiane</th>
+<th class="tableblock halign-left valign-top">Issue B : variance</th>
+<th class="tableblock halign-left valign-top">Issue C : Pearson</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Développeur</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Testeur</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reviewer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reviewer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Développeur</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Testeur</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Testeur</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reviewer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Développeur</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Le développeur est l&#8217;auteur de la PR et du code de la fonction. Le testeur écrit les tests de cette fonction dans un fichier dédié (<code>tests/test_median.py</code>, <code>tests/test_variance.py</code> ou <code>tests/test_pearson.py</code>) et pousse son propre commit sur <strong>la branche de cette PR</strong>. Le reviewer ne modifie pas cette PR avant sa review ; il vérifie la spécification, les tests et le diff, demande au moins une correction si elle est justifiée, puis approuve lorsque tout est prêt. Chacun peut conseiller les autres à l&#8217;oral, mais garde la responsabilité et une trace Git de son rôle.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_déroulé_des_120_minutes"><a class="anchor" href="#_déroulé_des_120_minutes"></a>3. Déroulé des 120 minutes</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Temps</th>
+<th class="tableblock halign-left valign-top">Travail et jalon visible</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0–10 min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Former les trinômes, ouvrir le dépôt, répartir 1/2/3, créer les issues A/B/C avec les critères ci-dessus et assigner les développeurs.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10–40 min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chacun crée sa branche (<code>feat/numero-median</code>, etc.), implémente sa fonction, commit et pousse. Ouvrir une PR en brouillon avec <code>Closes #N</code> dans la description. Annoncer quand la branche est prête pour le testeur.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">40–65 min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chacun passe sur la branche de la fonction qu&#8217;il teste, écrit ses cas nominaux et limites, lance toute la suite, commit et pousse. Signaler les échecs au développeur dans la PR. Passer la PR en « Ready for review » une fois les tests et corrections prêts.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">65–90 min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chacun review la troisième PR : lire le code et les tests, exécuter <code>python3 -m unittest discover -s tests -v</code>, commenter un point précis, choisir « Request changes » ou « Approve ». Les développeurs répondent et corrigent.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">90–105 min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Après approbation et tests réussis, merger les trois PR une par une. Après chaque merge, vérifier que l&#8217;issue est fermée. Actualiser la branche suivante depuis <code>main</code> si GitHub signale un conflit ; relancer les tests et la review.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">105–115 min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mini exercice de conflit si aucun n&#8217;est apparu : deux étudiants modifient la même ligne d&#8217;un fichier de démonstration sur deux branches, puis appliquent la procédure du <a href="github-team-workflow.html" class="xref page">cours</a>. Ne pas sacrifier une PR inachevée pour forcer un conflit.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">115–120 min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chaque trinôme fournit les liens des trois issues et des trois PR, puis chaque membre dit ce qu&#8217;il a appris dans ses trois rôles.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Le temps de review et de correction prime sur le nombre de merges. Si une PR reste ouverte à la fin, conserver les commentaires et l&#8217;état des tests pour la terminer après la séance ; ne pas l&#8217;approuver par convenance.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_procédure_dans_chaque_trinôme"><a class="anchor" href="#_procédure_dans_chaque_trinôme"></a>4. Procédure dans chaque trinôme</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>À partir de <code>main</code> à jour, chaque développeur crée sa propre branche. Personne ne pousse sur <code>main</code>.</p>
+</li>
+<li>
+<p>Chaque PR cible <code>main</code>, mentionne <code>Closes #N</code>, résume la solution et donne la commande de test et son résultat.</p>
+</li>
+<li>
+<p>Le testeur attend que le développeur ait poussé, récupère cette branche dans son clone avec <code>git fetch origin</code> puis <code>git switch --track origin/NOM-DE-BRANCHE</code>, ajoute son fichier de tests et pousse. Le développeur récupère ce commit avant de modifier la branche à nouveau. Se parler avant chaque push évite les courses.</p>
+</li>
+<li>
+<p>Le reviewer ouvre « Files changed », lit les tests et le code, puis soumet une vraie review. Un commentaire seul ne satisfait pas la règle d&#8217;approbation.</p>
+</li>
+<li>
+<p>Après une demande de changement, le développeur corrige, pousse, relance les tests et sollicite une nouvelle review. Le reviewer vérifie à nouveau la version actuelle avant d&#8217;approuver.</p>
+</li>
+<li>
+<p>La PR est mergée lorsque les tests passent et que GitHub indique les conditions remplies. Les autres branches récupèrent ensuite le nouveau <code>main</code> si nécessaire. Aucun <code>git push --force</code> pour résoudre un refus de push ou un conflit.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_aide_à_la_review_et_à_lévaluation"><a class="anchor" href="#_aide_à_la_review_et_à_lévaluation"></a>5. Aide à la review et à l&#8217;évaluation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Une bonne review vérifie au moins un exemple numérique, un cas limite, l&#8217;absence de modification involontaire de l&#8217;entrée, la lisibilité du code et la pertinence des assertions de test. Exemple de commentaire utile : « Pour une liste de quatre valeurs, la fonction renvoie le troisième élément ; le contrat demande la moyenne des deuxième et troisième. Peux-tu ajouter un test sur <code>[4, 1, 3, 2]</code> et corriger le calcul ? »</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Preuve à montrer</th>
+<th class="tableblock halign-left valign-top">Ce qu&#8217;elle établit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trois issues avec critères d&#8217;acceptation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Le travail a été défini avant l&#8217;implémentation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trois branches et trois PR liées aux issues</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chaque fonction suit le cycle GitHub complet.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Un commit de code et un commit de test par PR, signés par deux étudiants différents</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Les rôles de développement et de test ont été réellement tenus.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Une review GitHub par PR, par le troisième étudiant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chacun a effectué une review sur une fonction différente.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tests réussis et PR approuvées avant merge</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Le <code>main</code> commun reste cohérent.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Si l&#8217;effectif n&#8217;est pas multiple de trois, l&#8217;enseignant peut constituer un binôme supervisé pour les mêmes issues ; les trois rôles doivent alors être tracés en alternance et le reviewer de chaque PR reste une autre personne que son auteur.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="github-team-workflow.html">Travail collectif avec Git et GitHub</a></span>
+  <span class="next"><a href="../vscode/index.html">VS Code</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer"
+    style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.unistra.fr">
+                <img src="../../_/img/logo-unistra.png" alt="Unistra logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2026 <a href="https://www.cemosis.fr"
+                style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer><script id="site-script" src="../../_/js/site.js" data-site-url="https://feelpp.github.io/course-project" data-ui-root-path="../../_"></script>
+
+
+<!-- Font Awesome JS removed to use webfont icons only -->
+<script async src="../../_/js/vendor/highlight.js"></script>
+
+<script src="../../_/js/vendor/lunr.js"></script>
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>
