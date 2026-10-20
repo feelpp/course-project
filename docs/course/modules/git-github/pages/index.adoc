@@ -18,4 +18,6 @@ The following modules cover everything from basic Git concepts to advanced GitHu
 
 If your class completed GitHub basics and is ready for first structured team workflow practice, run:
 
+- xref:github-team-workflow.adoc[Travail collectif : de l'issue au merge (1 h)]
+- xref:github-stats-trio-lab.adoc[TP statistiques en trinômes : développeur, testeur, reviewer (2 h)]
 - xref:github-review-projects-lab.adoc[GitHub Intro Lab: Issues, PRs, and Projects (90 minutes)]

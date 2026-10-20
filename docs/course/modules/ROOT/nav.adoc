@@ -15,6 +15,8 @@
 ** xref:linux:ssh/ssh-setup.adoc[SSH and remote computing]
 ** xref:git-github:git-starter.adoc[Git]
 ** xref:git-github:github-essentials.adoc[GitHub]
+** xref:git-github:github-team-workflow.adoc[Travail collectif avec Git et GitHub]
+** xref:git-github:github-stats-trio-lab.adoc[TP statistiques en trinômes]
 ** xref:vscode:index.adoc[VS Code]
 ** xref:linux:ssh/remote-ssh-vscode.adoc[VS Code Remote SSH]
 ** xref:m1:environments.adoc#python[Python environment]

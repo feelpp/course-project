@@ -1,0 +1,78 @@
+= TP : trois fonctions statistiques, trois rôles (2 h)
+:page-tags: git-manual
+:parent-catalogs: git-github:index
+:description: Pratiquer issues, branches, commits, tests, pull requests, reviews et merges en trinômes.
+
+[.lead]
+Chaque trinôme réalise trois fonctions dans un dépôt commun. Chaque étudiant implémente *une* fonction, teste *une autre* fonction et review *la troisième*. Les trois issues et les trois PR donnent une trace visible des responsabilités de chacun.
+
+Prérequis : xref:github-team-workflow.adoc[le cycle issue → merge]. Les groupes disposent chacun d'un dépôt GitHub avec `main` protégé, les trois membres avec accès en écriture et une règle exigeant une PR ainsi qu'une approbation avant merge. Préparer ces dépôts avant la séance. Le xref:attachment$stats-trio-starter.zip[projet de départ à télécharger] contient les quatre modules Python et le dossier `tests/` ; l'enseignant le place sur `main` avant le TP. Garder les dépôts CV individuels séparés de cet exercice collectif.
+
+== Contrat des fonctions
+
+Les entrées sont des listes non vides de nombres réels. On suppose les valeurs finies ; la gestion de `NaN` et de l'infini est hors périmètre. Aucun paquet externe n'est requis. Le fichier de départ fournit `mean(values)` dans `mean.py` pour ne pas consacrer une issue entière à la moyenne.
+
+[cols="1,3,3",options="header"]
+|===
+|Issue |Fonction à coder |Critères d'acceptation à tester
+|A |`median(values)` dans `median.py` |Trie sans modifier l'entrée ; impaire : valeur centrale ; paire : moyenne des deux valeurs centrales ; liste vide : `ValueError`.
+|B |`variance(values)` dans `variance.py` |Variance de population : somme des carrés des écarts à la moyenne divisée par `n` ; singleton : `0.0` ; liste vide : `ValueError`.
+|C |`pearson(xs, ys)` dans `pearson.py` |Corrélation de Pearson dans `[-1, 1]` ; deux listes de même longueur avec au moins deux valeurs ; `ValueError` si longueurs différentes, moins de deux valeurs ou variance nulle d'une série.
+|===
+
+Pour Pearson, on peut calculer la covariance de population `sum((x_i - mean(xs)) * (y_i - mean(ys))) / n`, puis la diviser par la racine carrée du produit des deux variances de population. Cas repères : `[1, 2, 3]` et `[2, 4, 6]` donnent `1.0` ; `[1, 2, 3]` et `[6, 4, 2]` donnent `-1.0`. Les comparaisons flottantes dans les tests se font avec `assertAlmostEqual`.
+
+NOTE: Si Pearson demande trop de temps, l'enseignant peut remplacer l'issue C par `covariance(xs, ys)` avec la formule ci-dessus, deux listes non vides de même longueur, et `ValueError` sinon. Choisir cette variante *avant* de créer les issues pour que tout le groupe ait le même contrat.
+
+== Répartition explicite des rôles
+
+[cols="1,1,1,1",options="header"]
+|===
+|Étudiant |Issue A : médiane |Issue B : variance |Issue C : Pearson
+|1 |Développeur |Testeur |Reviewer
+|2 |Reviewer |Développeur |Testeur
+|3 |Testeur |Reviewer |Développeur
+|===
+
+Le développeur est l'auteur de la PR et du code de la fonction. Le testeur écrit les tests de cette fonction dans un fichier dédié (`tests/test_median.py`, `tests/test_variance.py` ou `tests/test_pearson.py`) et pousse son propre commit sur *la branche de cette PR*. Le reviewer ne modifie pas cette PR avant sa review ; il vérifie la spécification, les tests et le diff, demande au moins une correction si elle est justifiée, puis approuve lorsque tout est prêt. Chacun peut conseiller les autres à l'oral, mais garde la responsabilité et une trace Git de son rôle.
+
+== Déroulé des 120 minutes
+
+[cols="1,4",options="header"]
+|===
+|Temps |Travail et jalon visible
+|0–10 min |Former les trinômes, ouvrir le dépôt, répartir 1/2/3, créer les issues A/B/C avec les critères ci-dessus et assigner les développeurs.
+|10–40 min |Chacun crée sa branche (`feat/numero-median`, etc.), implémente sa fonction, commit et pousse. Ouvrir une PR en brouillon avec `Closes #N` dans la description. Annoncer quand la branche est prête pour le testeur.
+|40–65 min |Chacun passe sur la branche de la fonction qu'il teste, écrit ses cas nominaux et limites, lance toute la suite, commit et pousse. Signaler les échecs au développeur dans la PR. Passer la PR en « Ready for review » une fois les tests et corrections prêts.
+|65–90 min |Chacun review la troisième PR : lire le code et les tests, exécuter `python3 -m unittest discover -s tests -v`, commenter un point précis, choisir « Request changes » ou « Approve ». Les développeurs répondent et corrigent.
+|90–105 min |Après approbation et tests réussis, merger les trois PR une par une. Après chaque merge, vérifier que l'issue est fermée. Actualiser la branche suivante depuis `main` si GitHub signale un conflit ; relancer les tests et la review.
+|105–115 min |Mini exercice de conflit si aucun n'est apparu : deux étudiants modifient la même ligne d'un fichier de démonstration sur deux branches, puis appliquent la procédure du xref:github-team-workflow.adoc[cours]. Ne pas sacrifier une PR inachevée pour forcer un conflit.
+|115–120 min |Chaque trinôme fournit les liens des trois issues et des trois PR, puis chaque membre dit ce qu'il a appris dans ses trois rôles.
+|===
+
+Le temps de review et de correction prime sur le nombre de merges. Si une PR reste ouverte à la fin, conserver les commentaires et l'état des tests pour la terminer après la séance ; ne pas l'approuver par convenance.
+
+== Procédure dans chaque trinôme
+
+. À partir de `main` à jour, chaque développeur crée sa propre branche. Personne ne pousse sur `main`.
+. Chaque PR cible `main`, mentionne `Closes #N`, résume la solution et donne la commande de test et son résultat.
+. Le testeur attend que le développeur ait poussé, récupère cette branche dans son clone avec `git fetch origin` puis `git switch --track origin/NOM-DE-BRANCHE`, ajoute son fichier de tests et pousse. Le développeur récupère ce commit avant de modifier la branche à nouveau. Se parler avant chaque push évite les courses.
+. Le reviewer ouvre « Files changed », lit les tests et le code, puis soumet une vraie review. Un commentaire seul ne satisfait pas la règle d'approbation.
+. Après une demande de changement, le développeur corrige, pousse, relance les tests et sollicite une nouvelle review. Le reviewer vérifie à nouveau la version actuelle avant d'approuver.
+. La PR est mergée lorsque les tests passent et que GitHub indique les conditions remplies. Les autres branches récupèrent ensuite le nouveau `main` si nécessaire. Aucun `git push --force` pour résoudre un refus de push ou un conflit.
+
+== Aide à la review et à l'évaluation
+
+Une bonne review vérifie au moins un exemple numérique, un cas limite, l'absence de modification involontaire de l'entrée, la lisibilité du code et la pertinence des assertions de test. Exemple de commentaire utile : « Pour une liste de quatre valeurs, la fonction renvoie le troisième élément ; le contrat demande la moyenne des deuxième et troisième. Peux-tu ajouter un test sur `[4, 1, 3, 2]` et corriger le calcul ? »
+
+[cols="1,3",options="header"]
+|===
+|Preuve à montrer |Ce qu'elle établit
+|Trois issues avec critères d'acceptation |Le travail a été défini avant l'implémentation.
+|Trois branches et trois PR liées aux issues |Chaque fonction suit le cycle GitHub complet.
+|Un commit de code et un commit de test par PR, signés par deux étudiants différents |Les rôles de développement et de test ont été réellement tenus.
+|Une review GitHub par PR, par le troisième étudiant |Chacun a effectué une review sur une fonction différente.
+|Tests réussis et PR approuvées avant merge |Le `main` commun reste cohérent.
+|===
+
+Si l'effectif n'est pas multiple de trois, l'enseignant peut constituer un binôme supervisé pour les mêmes issues ; les trois rôles doivent alors être tracés en alternance et le reviewer de chaque PR reste une autre personne que son auteur.

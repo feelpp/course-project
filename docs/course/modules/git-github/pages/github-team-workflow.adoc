@@ -1,0 +1,97 @@
+= Travail collectif avec Git et GitHub (1 h)
+:page-tags: git-manual
+:parent-catalogs: git-github:index
+:description: Un parcours complet de l'issue au merge, avec tests, review et résolution de conflit.
+
+[.lead]
+Ce cours relie les notions déjà vues dans xref:git-starter.adoc[Git], xref:github-how-to-write-issues.adoc[les issues], xref:github-collaborations.adoc[la collaboration GitHub] et xref:git-merges.adoc[les conflits]. Une modification entre dans `main` après une pull request (PR), des tests et la review d'une autre personne.
+
+== Objectifs et déroulé
+
+[cols="1,4",options="header"]
+|===
+|Durée |Activité
+|0–10 min |Dessiner le cycle ci-dessous et distinguer le dépôt local, la branche distante et `main`.
+|10–20 min |Rédiger une issue : problème, contrat, cas limites, critères d'acceptation et responsable.
+|20–35 min |Démontrer branche, commit, push et ouverture d'une PR liée à l'issue.
+|35–50 min |Faire exécuter un test, commenter le diff, demander une correction, approuver et merger.
+|50–60 min |Montrer un conflit sur deux branches qui modifient la même ligne et sa résolution.
+|===
+
+== Le cycle d'une modification
+
+[source,text]
+----
+issue → branche → commits → push → PR → tests → review → corrections → merge → issue fermée
+----
+
+* Une *issue* décrit le besoin et le résultat vérifiable. Elle existe avant le code.
+* Une *branche* isole le travail ; `main` reste la version commune. Une branche par issue facilite la lecture.
+* Un *commit* enregistre une étape cohérente et attribuable à son auteur ; `push` publie la branche.
+* Une *PR* demande l'intégration de la branche dans `main`. Sa description indique le lien avec l'issue, les choix faits et la commande de test exécutée.
+* Le *testeur* ajoute des tests sur la même branche, dans ses propres commits. Les tests montrent un comportement attendu, y compris les cas limites.
+* Le *reviewer* lit le diff et les tests, formule un commentaire précis, puis choisit « Request changes » ou « Approve ». L'auteur corrige sur la branche de la PR.
+* Le *merge* intervient après tests réussis et approbation. `Closes #N` dans la description de la PR ferme l'issue lors du merge dans la branche par défaut.
+
+NOTE: Un commentaire général ne vaut pas une approbation GitHub. Si la protection de `main` exige une review, utiliser la fonction *Review changes* pour soumettre « Approve » ; l'auteur de la PR ne peut pas approuver sa propre PR.
+
+== Démonstration au terminal et sur GitHub
+
+Depuis un clone dont `main` est à jour, pour l'issue `#12` :
+
+[source,console]
+----
+$ git switch main
+$ git pull --ff-only origin main
+$ git switch -c feat/12-mediane
+# Modifier le code ; vérifier git diff et exécuter les tests.
+$ git add median.py
+$ git commit -m "Implémenter la médiane (#12)"
+$ git push -u origin feat/12-mediane
+----
+
+Sur GitHub, ouvrir la PR vers `main`, écrire `Closes #12` dans sa description et désigner le reviewer. Le testeur récupère la branche publiée dans son propre clone :
+
+[source,console]
+----
+$ git fetch origin
+$ git switch --track origin/feat/12-mediane
+# Ajouter des tests dans tests/test_median.py.
+$ python3 -m unittest discover -s tests -v
+$ git add tests/test_median.py
+$ git commit -m "Tester la médiane (#12)"
+$ git push origin feat/12-mediane
+----
+
+Le développeur récupère les commits du testeur avec `git pull --ff-only origin feat/12-mediane` avant de corriger et de repousser. Éviter que les deux personnes poussent simultanément sur cette branche : annoncer chaque passage de relais. Si le push est refusé, récupérer d'abord les nouveaux commits distants ; ne pas forcer le push.
+
+== Que vérifier pendant la review ?
+
+1. Le code répond-il à l'issue, notamment pour les cas limites ?
+2. Les tests vérifieraient-ils un résultat faux, et pas seulement l'absence d'erreur ?
+3. Les commandes de test passent-elles sur la branche de la PR ?
+4. Le diff contient-il uniquement les changements utiles ?
+5. Le commentaire de review explique-t-il une correction concrète, avec le comportement attendu ?
+
+== Démonstration courte d'un conflit
+
+Deux branches issues du même `main` changent la même ligne d'un fichier de démonstration. Merger la première PR, puis, *sur la seconde branche* :
+
+[source,console]
+----
+$ git fetch origin
+$ git merge origin/main
+# Si Git signale un conflit : éditer le fichier, supprimer <<<<<<<, ======= et >>>>>>>,
+# puis conserver le texte souhaité.
+$ git add README.md
+$ git commit
+$ git push origin HEAD
+----
+
+Vérifier `git status`, relancer les tests, puis faire relire le diff actualisé de la seconde PR. Le conflit est une décision de contenu à prendre en équipe ; l'outil indique seulement où les changements se chevauchent. Référence détaillée : xref:git-merges.adoc[Git Merge & Conflicts].
+
+== Vérification orale avant le TP
+
+Demander aux étudiants : « Qu'est-ce qui est local avant `push` ? », « Qui écrit les tests ? », « Que fait exactement `Closes #12` ? », « Une PR peut-elle être mergée après un test qui échoue ? » et « Où résout-on un conflit quand `main` est protégé ? ».
+
+La pratique en trinômes est décrite dans xref:github-stats-trio-lab.adoc[le TP statistiques].

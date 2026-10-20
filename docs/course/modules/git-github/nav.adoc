@@ -13,6 +13,8 @@
 *** xref:github-how-to-write-issues.adoc[Writing Issues]
 ** 🟡 GitHub Collaboration (Level 2)
 *** xref:github-collaborations.adoc[GitHub Collaborations]
+*** xref:github-team-workflow.adoc[Issue → branche → PR → review → merge]
+*** xref:github-stats-trio-lab.adoc[TP statistiques en trinômes (2 h)]
 *** xref:github-review-projects-lab.adoc[GitHub Intro Lab: Projects]
 ** 🔴 GitHub Actions (Level 3)
 *** xref:github-actions.adoc[GitHub Actions Intro]
