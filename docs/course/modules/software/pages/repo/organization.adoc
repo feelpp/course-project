@@ -56,7 +56,14 @@ Checks the prepared C++ code for issues such as a syntax error or a wrong argume
 Linker::
 Connects references in object files to definitions in other object files or libraries. Here it connects the call in `main.o` to the implementation in `vector_norm.o` and produces the executable. If you omit `vector_norm.o` from the manual link command, you get an error such as `undefined reference` or `undefined symbol`.
 
-After creating the files below, try `c++ -std=c++17 -Isrc -E app/main.cpp`. The `-E` option stops after preprocessing. Look for the declaration `double vector_norm(double x, double y);` among the expanded includes.
+After creating the files below, use `-E` to stop after preprocessing:
+
+[source,bash]
+----
+c++ -std=c++17 -Isrc -E app/main.cpp
+----
+
+Look for the declaration `double vector_norm(double x, double y);` among the expanded includes.
 ====
 
 [#build-outputs]
