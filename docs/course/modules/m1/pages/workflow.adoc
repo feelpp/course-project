@@ -330,35 +330,77 @@ Add these settings at the end of `CMakeLists.txt`:
 set(CPACK_PACKAGE_NAME "vector-norm")                 # <1>
 set(CPACK_PACKAGE_VERSION "0.1.0")                    # <2>
 set(CPACK_PACKAGE_CONTACT "VectorNorm maintainers")   # <3>
-include(CPack)                                        # <4>
+set(CPACK_GENERATOR "TGZ")                            # <4>
+include(CPack)                                        # <5>
 ----
 <1> Give the binary package a name.
 <2> Set its release version.
 <3> Set the package contact. This also supplies the Debian maintainer by default.
-<4> Generate `CPackConfig.cmake` from these settings when CMake configures the project.
+<4> Use a compressed tar archive as the default binary package format.
+<5> Generate `CPackConfig.cmake` and add the `package` build target to the Ninja build.
 
-Configure again and package the Release build:
+Configure again and build the `package` target with the Release preset.
 
 [source,bash]
 ----
 cmake --preset release
-cmake --build --preset release
-cpack --config build/release/CPackConfig.cmake -G TGZ -B build/packages
-tar -tzf build/packages/vector-norm-0.1.0-*.tar.gz
+cmake --build --preset release --target package
+tar -tzf build/release/vector-norm-0.1.0-*.tar.gz
 ----
+
+The target updates the build as needed and runs CPack with the formats in `CPACK_GENERATOR`. The package goes into the Release build directory by default. Find `bin/vector-norm` in the archive listing. Unpack it into a fresh directory and run it with the sample input. The archive contains a binary built for your operating system and architecture.
+
+[#cpack-build-targets]
+.Run the packaging targets with Ninja or Make
+[%collapsible.proof]
+====
+The Release preset uses Ninja, so you can also run the target directly. See xref:software:repo/organization.adoc#make-and-ninja[How do Make and Ninja build in parallel?] for how the two tools run CMake targets.
+
+[source,bash]
+----
+ninja -C build/release package
+----
+
+For `make package`, configure a separate build directory with the Unix Makefiles generator.
+
+[source,bash]
+----
+cmake -S . -B build/make-release -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+make -C build/make-release package
+----
+
+Both generators also provide `package_source`. That target calls CPack with `CPackSourceConfig.cmake` to archive the project sources. To generate a source tarball for this example, add these settings before `include(CPack)`. They exclude Git metadata and the directories where the example writes its builds and results.
+
+[source,cmake]
+----
+set(CPACK_SOURCE_GENERATOR "TGZ")
+set(CPACK_SOURCE_IGNORE_FILES "/[.]git(/|$)" "/build/" "/out/")
+----
+
+[source,bash]
+----
+cmake --preset release
+cmake --build --preset release --target package_source
+tar -tzf build/release/vector-norm-0.1.0-Source.tar.gz
+----
+
+For the Make build, reconfigure its build directory and then run `make -C build/make-release package_source`. Check the contents of any source archive before sharing it.
+
+See the https://cmake.org/cmake/help/v3.28/module/CPack.html#targets-package-and-package-source[CPack target reference].
+====
 
 [#cpack-command-options]
 .Read the CPack options
 [%collapsible.proof]
 ====
+Run `cpack` directly to choose a format or output directory for a single invocation.
+
 * `--config` points CPack to the settings for the Release build tree.
-* `-G TGZ` creates a compressed tar archive. `-G ZIP` creates a ZIP archive and `-G DEB` creates a Debian package.
+* `-G` overrides the formats in `CPACK_GENERATOR`. Use `TGZ` for a compressed tar archive, `ZIP` for a ZIP archive, or `DEB` for a Debian package.
 * `-B build/packages` writes the packages there.
 ====
 
-Find `bin/vector-norm` in the archive listing. Unpack it into a fresh directory and run it with the sample input. The archive contains a binary built for your operating system and architecture.
-
-To package the same files as a ZIP archive, change the generator:
+Package the same files as a ZIP archive by selecting the ZIP generator on the command line.
 
 [source,bash]
 ----
@@ -398,6 +440,8 @@ dpkg-deb --contents build/packages/vector-norm_0.1.0_*.deb
 ----
 
 Check the package name, version, architecture and dependencies without installing it. Compare the files with the archive. See the https://cmake.org/cmake/help/v3.28/cpack_gen/deb.html[CPack Debian package reference].
+
+To have one build target generate several formats, set `CPACK_GENERATOR` to `"TGZ;ZIP"` or, on the Ubuntu packaging machine, `"TGZ;ZIP;DEB"`. Reconfigure and run the `package` target again.
 
 === Exercise for the FEM project
 
