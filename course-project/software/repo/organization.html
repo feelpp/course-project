@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Repository Organization for a C++20 Project Using CMake and CTest :: Course Project</title>
+    <title>C++ repository organization and CMake :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/software/repo/organization.html">
-    <link rel="prev" href="../../cicd/index.html">
-    <link rel="next" href="../../jupyter.html">
+    <link rel="prev" href="../../m1/environments.html#python">
+    <link rel="next" href="../../m1/workflow.html">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../../_/css/site.css">
 
@@ -220,14 +220,32 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../m1/environments.html#cpp">C/C++ environment</a>
   </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="organization.html">C++ organization and CMake</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../m1/workflow.html">Project workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../m1/workflow.html#testing">Testing and basic CI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../m1/workflow.html#cpp-testing">C++ tests and CI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../m1/workflow.html#cmake-presets">CMake presets</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../m1/workflow.html#cpack">CPack and binary packages</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../containers/docker/dockerfile-basics.html#cpp-docker">Run and deliver a C++ program with Docker</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../m1/gaya.html">Gaya and basic HPC operations</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../m1/workflow.html">Project workflow</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../m1/workflow.html#testing">Testing and basic CI</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../m1/workflow.html#reproducibility">Reproducibility</a>
@@ -243,6 +261,9 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../m1/project.html#workflow">Expected workflow and GitHub organization</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../m1/project.html#cpp-project-workflow">C++ build, testing and delivery</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../m1/project.html#deliverables">Deliverables</a>
@@ -363,9 +384,6 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../cicd/index.html">CI/CD reference</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="organization.html">CMake and repository organization</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../jupyter.html">Jupyter</a>
@@ -710,8 +728,8 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../../index.html">Course Project</a></li>
-    <li><a href="../../reference.html">Reference</a></li>
-    <li><a href="organization.html">CMake and repository organization</a></li>
+    <li><a href="../../m1/index.html">M1 — Computational Foundations</a></li>
+    <li><a href="organization.html">C++ organization and CMake</a></li>
   </ul>
 </nav>
 
@@ -736,234 +754,542 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Repository Organization for a C++20 Project Using CMake and CTest</h1>
-<div id="toc" class="toc">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_overview">1. Overview</a></li>
-<li><a href="#_recommended_directory_structure">2. Recommended Directory Structure</a></li>
-<li><a href="#_top_level_cmake_configuration">3. Top-Level CMake Configuration</a></li>
-<li><a href="#_library_configuration_srclibslib1cmakelists_txt">4. Library Configuration (src/libs/lib1/CMakeLists.txt)</a></li>
-<li><a href="#_application_configuration_srcappsapp1cmakelists_txt">5. Application Configuration (src/apps/app1/CMakeLists.txt)</a></li>
-<li><a href="#_tests_configuration_testscmakelists_txt">6. Tests Configuration (tests/CMakeLists.txt)</a></li>
-<li><a href="#_github_actions_ci_workflow">7. GitHub Actions CI Workflow</a></li>
-<li><a href="#_additional_best_practices">8. Additional Best Practices</a></li>
-</ul>
-</div>
-<div class="sect1">
-<h2 id="_overview"><a class="anchor" href="#_overview"></a>1. Overview</h2>
+<h1 class="page">C++ repository organization and CMake</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document outlines a recommended repository organization for a C++20 project that uses CMake for build configuration and CTest for testing.
-In this structure, source files—including both library code and application code—are placed under the <code>src/</code> directory.
-Libraries and applications are organized into separate subdirectories to clearly delineate reusable components from executable projects.</p>
+<p>A scientific program should make it easy to locate a calculation, test it and run it on new inputs. This page shows how to organize a small C++ program, compile it by hand and describe the same build with CMake.</p>
+</div>
+<div class="paragraph">
+<p>The example reads two coordinates from a text file and writes their Euclidean norm to a second file. For the input <code>3 4</code>, the expected result is 5.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_recommended_directory_structure"><a class="anchor" href="#_recommended_directory_structure"></a>2. Recommended Directory Structure</h2>
+<h2 id="code-organization"><a class="anchor" href="#code-organization"></a>1. Organize code by responsibility</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Start with the path your data takes through the program. In the FEM project, <code>main()</code> reads the arguments and coordinates the work. A mesh reader turns a file into mesh data. The numerical code takes those data, assembles and solves the system, and returns the result. A writer saves the result for visualization.</p>
+</div>
+<div class="paragraph">
+<p><strong>Keep computation separate from file handling.</strong> A numerical function should take the data it needs and return its result. It can then be tested with a few values or a tiny mesh constructed in memory. Test mesh reading and result writing separately with small files.</p>
+</div>
+<div class="paragraph">
+<p><strong>Keep dependencies easy to follow.</strong> The executable can call the library, and the tests can call that same library. The calculation needs no knowledge of command-line arguments, output paths or the tests. When adding a feature, ask which component should own it and what information it needs from the others.</p>
+</div>
+<div class="paragraph">
+<p><strong>Keep related files together.</strong> In this example, <code>vector_norm.hpp</code> declares what callers can use and <code>vector_norm.cpp</code> defines what the function does. Keep them side by side in <code>src/</code>. Include the header where you call the function and in the file that implements it. Document assumptions about inputs and results at the interface.</p>
+</div>
+<div class="paragraph">
+<p>A small project can start with one library target, one executable and one <code>CMakeLists.txt</code>:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs" data-lang="none">my_project/
-├── .github/
-│   └── workflows/
-│       └── ci.yml            # GitHub Actions CI configuration file
-├── build/                    # Out-of-source build directory (typically added to .gitignore)
-├── cmake/
-│   └── Modules/              # Custom CMake modules (if needed)
-├── docs/                     # Documentation (can include Doxygen configs, etc.)
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">project/
+├── CMakeLists.txt
 ├── src/
-│   ├── libs/                 # Library code (source + public headers)
-│   │   └── lib1/.            # Library-specific directory (name matches your library)
-│   │       ├── module1.hpp   # Public header(s) for library users
-│   │       ├── module2.hpp
-│   │       ├── module1.cpp   # Library implementation files
-│   │       └── CMakeLists.txt  # CMake configuration for the library target
-│   └── apps/                 # Executable applications
-│       └── app1/             # Example application
-│           ├── main.cpp      # Application entry point
-│           └── CMakeLists.txt  # CMake configuration for the app target (links to the library)
-├── tests/
-│   ├── CMakeLists.txt        # CTest configuration for tests
-│   ├── test_main.cpp         # Main test runner file
-│   └── test_module1.cpp      # Additional test files
-├── CMakeLists.txt            # Top-level CMake configuration file
-├── .gitignore                # Git ignore file for build artifacts, etc.
-└── README.md                 # Project overview, build/test instructions, etc.</code></pre>
+│   ├── vector_norm.hpp  # Library interface
+│   └── vector_norm.cpp  # Library implementation
+├── app/
+│   └── main.cpp         # Executable entry point
+├── tests/              # Test programs and small fixtures
+├── meshes/             # FEM input meshes
+└── README.adoc          # Build, test and run instructions</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_top_level_cmake_configuration"><a class="anchor" href="#_top_level_cmake_configuration"></a>3. Top-Level CMake Configuration</h2>
-<div class="sectionbody">
+<div id="separate-public-headers" class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Alternative layout for public headers</div>
 <div class="paragraph">
-<p>The top-level <code>CMakeLists.txt</code> configures the project and delegates to subdirectories for libraries, applications, and tests.</p>
+<p>A project can keep public headers under <code>include/&lt;project&gt;/</code> and implementation files under <code>src/</code>. This layout is useful when other projects install and use the library because it makes the public interface easy to find and package. Private headers can stay beside the code that uses them.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>As the FEM project grows, group related files by responsibility. For example, put mesh reading in <code>src/mesh/</code> and assembly in <code>src/assembly/</code>, with each component’s headers and implementations together. Create a separate CMake target when you need to build or reuse that component independently.</p>
+</div>
+<details id="build-stages" class="proof" open>
+<summary class="title">What do the preprocessor, compiler and linker do?</summary>
+<div class="content">
+<div class="paragraph">
+<p>The <code>c++</code> command coordinates several tools when you build a program.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Preprocessor</dt>
+<dd>
+<p>Prepares one source file at a time. When it sees <code>#include "vector_norm.hpp"</code> in <code>main.cpp</code>, it inserts the header contents so the compiler can see the function declaration. It also handles directives such as <code>#define</code>. A missing header is reported at this stage.</p>
+</dd>
+<dt class="hdlist1">Compiler</dt>
+<dd>
+<p>Checks the prepared C++ code for issues such as a syntax error or a wrong argument type, then translates it into instructions. The assembler packages those instructions into an <strong>object file</strong> such as <code>main.o</code>. The option <code>-c</code> stops the build at this file.</p>
+</dd>
+<dt class="hdlist1">Linker</dt>
+<dd>
+<p>Connects references in object files to definitions in other object files or libraries. Here it connects the call in <code>main.o</code> to the implementation in <code>vector_norm.o</code> and produces the executable. If you omit <code>vector_norm.o</code> from the manual link command, you get an error such as <code>undefined reference</code> or <code>undefined symbol</code>.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>After creating the files below, use <code>-E</code> to stop after preprocessing:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">cmake_minimum_required(VERSION 3.20)
-project(MyProject VERSION 1.0 LANGUAGES CXX)
-
-# Require C++20.
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
-
-# (Optional) Include custom CMake modules.
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules")
-
-# Add subdirectories.
-add_subdirectory(src/libs/)
-add_subdirectory(src/apps/)
-add_subdirectory(tests)</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">c++ -std=c++17 -Isrc -E app/main.cpp</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_library_configuration_srclibslib1cmakelists_txt"><a class="anchor" href="#_library_configuration_srclibslib1cmakelists_txt"></a>4. Library Configuration (src/libs/lib1/CMakeLists.txt)</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>This configuration builds the library and sets the public include directories. Note that the public headers reside alongside the source files.</p>
+<p>Look for the declaration <code>double vector_norm(double x, double y);</code> among the expanded includes.</p>
 </div>
-<div class="listingblock">
+</div>
+</details>
+<div id="build-outputs" class="sidebarblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake"># Create the library target from your implementation files.
-add_library(lib1
-    module1.cpp
-    # Add other source files as needed.
-)
-
-# Since public headers live alongside the source files, make the current directory public.
-target_include_directories(lib1
-    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
-)
-
-# (Optional) Set additional compile options, warnings, etc.
-target_compile_options(lib1 PRIVATE -Wall -Wextra -pedantic)</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_application_configuration_srcappsapp1cmakelists_txt"><a class="anchor" href="#_application_configuration_srcappsapp1cmakelists_txt"></a>5. Application Configuration (src/apps/app1/CMakeLists.txt)</h2>
-<div class="sectionbody">
+<div class="title">Library or executable?</div>
 <div class="paragraph">
-<p>Each application lives in its own subdirectory under <code>src/apps/</code>. Below is an example configuration for an application.</p>
+<p><strong>Executable.</strong> A program you can run, such as <code>vector-norm</code>. Its <code>main()</code> function is where your C++ code starts running.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake"># Define the executable for app1.
-add_executable(app1 main.cpp)
-
-# Link the executable with your library.
-target_link_libraries(app1 PRIVATE lib1)
-
-# Optionally, specify additional include directories if required.</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_tests_configuration_testscmakelists_txt"><a class="anchor" href="#_tests_configuration_testscmakelists_txt"></a>6. Tests Configuration (tests/CMakeLists.txt)</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>The tests are configured using CTest. You may integrate a testing framework (e.g., GoogleTest, Catch2, Boost.Test) as needed.</p>
+<p><strong>Library.</strong> Reusable code that other programs or tests can call. In this example the library provides <code>vector_norm()</code>, and the executable handles the input and output files.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">enable_testing()
-
-# Create an executable for the tests.
-add_executable(my_project_tests
-    test_main.cpp
-    test_module1.cpp
-    # Add more test files as needed.
-)
-
-# Link the library under test.
-target_link_libraries(my_project_tests PRIVATE my_project_lib)
-
-# Register the tests with CTest.
-add_test(NAME AllTests COMMAND my_project_tests)</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_github_actions_ci_workflow"><a class="anchor" href="#_github_actions_ci_workflow"></a>7. GitHub Actions CI Workflow</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This sample GitHub Actions workflow (located at <code>.github/workflows/ci.yml</code>) automates the build and test process.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: CI
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-jobs:
-  build-test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Configure CMake
-        run: cmake -S . -B build
-
-      - name: Build
-        run: cmake --build build -- -j $(nproc)
-
-      - name: Run tests
-        run: cmake --build build --target test</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_additional_best_practices"><a class="anchor" href="#_additional_best_practices"></a>8. Additional Best Practices</h2>
-<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Out-of-Source Builds:</strong>
-Always build in a separate directory (e.g., <code>build/</code>) and add it to your <code>.gitignore</code> to keep your repository clean.</p>
+<p><strong>Static library</strong> (<code>.a</code> on Linux). An archive of compiled code. When you link a program, the linker copies the parts it needs into the executable.</p>
 </li>
 <li>
-<p><strong>Documentation:</strong>
-Include clear build, test, and usage instructions in your <code>README.md</code> and maintain detailed documentation in the <code>docs/</code> folder.</p>
-</li>
-<li>
-<p><strong>Versioning and Releases:</strong>
-Use Git tags to mark release points and consider using GitHub Releases for packaged binaries.</p>
-</li>
-<li>
-<p><strong>Consistent Code Style:</strong>
-Integrate formatting tools (such as clang-format) and maintain a coding style guide.</p>
-</li>
-<li>
-<p><strong>Continuous Integration:</strong>
-Automate builds and tests with CI (as demonstrated) to ensure cross-platform reliability.</p>
-</li>
-<li>
-<p><strong>Branching Strategy:</strong>
-Use feature branches, pull requests, and code reviews to maintain high code quality.</p>
+<p><strong>Shared (dynamic) library</strong> (<code>.so</code> on Linux). The linker records a dependency. The library stays in a separate file and is loaded when the executable runs, so the file must be available at run time.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Compilation first turns each <code>.cpp</code> file into an <strong>object file</strong> (<code>.o</code>). It contains compiled code ready for the linker. CMake sets the appropriate compiler options when building a shared library. The diagram shows the two possible library builds. The example builds a static library.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/repo/cpp-build-outputs.svg" alt="Each C++ source compiles to an object file. The calculation object becomes a static or shared library. The application object and one of those libraries are linked into the executable." width="640">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tools"><a class="anchor" href="#_tools"></a>2. Tools</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Start from the <a href="../../m1/environments.html#cpp" class="xref page">C++ environment exercise</a>. On Ubuntu 24.04, install the following on a machine where you can install system packages:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo apt update
+sudo apt install build-essential cmake ninja-build libeigen3-dev</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use a C17-capable compiler, CMake 3.22 or later, and Ninja for the examples in this sequence. Use the C standard specified in your own project brief when applying the exercise to FEM.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_separate_the_calculation_from_file_handling"><a class="anchor" href="#_separate_the_calculation_from_file_handling"></a>3. Separate the calculation from file handling</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In a practice directory, declare the function in <code>src/vector_norm.hpp</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#pragma once
+
+double vector_norm(double x, double y);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Put the implementation in <code>src/vector_norm.cpp</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include "vector_norm.hpp"
+#include &lt;cmath&gt;
+
+double vector_norm(double x, double y) {
+    return std::hypot(x, y);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Put the executable entry point in <code>app/main.cpp</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include "vector_norm.hpp"
+#include &lt;cmath&gt;
+#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main(int argc, char* argv[]) {
+    if (argc != 3) {
+        std::cerr &lt;&lt; "Usage: vector-norm INPUT OUTPUT\n";
+        return 2;
+    }
+
+    std::ifstream input(argv[1]);
+    double x, y;
+    std::string extra;
+    if (!(input &gt;&gt; x &gt;&gt; y) || !std::isfinite(x) || !std::isfinite(y) || (input &gt;&gt; extra)) {
+        std::cerr &lt;&lt; "Expected two finite numbers in " &lt;&lt; argv[1] &lt;&lt; '\n';
+        return 1;
+    }
+
+    std::ofstream output(argv[2]);
+    output &lt;&lt; vector_norm(x, y) &lt;&lt; '\n';
+    output.close();
+    if (!output) {
+        std::cerr &lt;&lt; "Could not write " &lt;&lt; argv[2] &lt;&lt; '\n';
+        return 1;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>main()</code> handles arguments, file paths and errors. The library takes numbers and returns a number. This lets a test call the calculation directly.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_compile_and_link_once_by_hand"><a class="anchor" href="#_compile_and_link_once_by_hand"></a>4. Compile and link once by hand</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir -p build
+c++ -std=c++17 -c src/vector_norm.cpp -o build/vector_norm.o
+c++ -std=c++17 -Isrc -c app/main.cpp -o build/main.o
+c++ build/main.o build/vector_norm.o -o build/vector-norm
+
+mkdir -p samples out
+printf '3 4\n' &gt; samples/vector.txt
+./build/vector-norm samples/vector.txt out/norm.txt
+cat out/norm.txt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The first two compiler commands each produce an object file. The second uses <code>-Isrc</code> so <code>app/main.cpp</code> can find the library header. The last command links both objects into an executable. Try the link command without <code>build/vector_norm.o</code> and locate the missing symbol in the error message. Add <code>/build/</code> and <code>/out/</code> to <code>.gitignore</code> before committing.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_build_with_cmake"><a class="anchor" href="#_build_with_cmake"></a>5. Build with CMake</h2>
+<div class="sectionbody">
+<details id="what-is-cmake" class="proof" open>
+<summary class="title">What does CMake do?</summary>
+<div class="content">
+<div class="paragraph">
+<p>CMake is a widely used tool for configuring C builds. You describe what to build in `CMakeLists.txt`. A *target* is a named item in that description, such as the `vector_norm` library or the `vector-norm` executable. Each target records its source files and requirements, including dependencies and the C standard.</p>
+</div>
+<div class="paragraph">
+<p>During <strong>configuration</strong>, CMake reads that description, detects the compiler and generates build rules for a tool such as Ninja. During the <strong>build</strong>, Ninja follows those rules and calls the compiler and linker. When you edit a source file, Ninja uses the dependencies to rebuild the affected files. The same <code>CMakeLists.txt</code> describes the build on your computer and in CI. See the <a href="https://cmake.org/cmake/help/v3.28/manual/cmake.1.html">CMake command reference</a>.</p>
+</div>
+</div>
+</details>
+<div class="sect2">
+<h3 id="first-cmake-build"><a class="anchor" href="#first-cmake-build"></a>5.1. Build one executable</h3>
+<div class="paragraph">
+<p>Create <code>CMakeLists.txt</code> at the root of your practice project. Start with one target containing both source files, as in the manual build.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">cmake_minimum_required(VERSION 3.22)                         <i class="conum" data-value="1"></i><b>(1)</b>
+project(VectorNorm LANGUAGES CXX)                            <i class="conum" data-value="2"></i><b>(2)</b>
+add_executable(vector-norm app/main.cpp src/vector_norm.cpp) <i class="conum" data-value="3"></i><b>(3)</b>
+target_include_directories(vector-norm PRIVATE src)          <i class="conum" data-value="4"></i><b>(4)</b>
+target_compile_features(vector-norm PRIVATE cxx_std_17)      <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Require CMake 3.22 or later.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Name the project <code>VectorNorm</code> and enable the C++ language (<code>CXX</code>).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Compile the two sources and link their object files into the <code>vector-norm</code> executable.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Add <code>src/</code> to the header search path for this target, just as <code>-Isrc</code> did in the manual command. <code>PRIVATE</code> applies the setting to this target.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Require C++17 or newer when building the executable.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Configure, build and run from the directory containing <code>CMakeLists.txt</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cmake -S . -B build/basic -G Ninja
+cmake --build build/basic
+./build/basic/vector-norm samples/vector.txt out/norm.txt
+cat out/norm.txt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Expected result: <code>5</code>, just as in the manual build.</p>
+</div>
+<details id="cmake-command-options" class="proof">
+<summary class="title">Read the configure and build options</summary>
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">What it does here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-S .</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use the current directory (<code>.</code>) as the source tree. This is where CMake reads <code>CMakeLists.txt</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-B build/basic</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Put generated build rules, object files and binaries in <code>build/basic/</code>, outside the source directories.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-G Ninja</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generate rules for Ninja, the build tool installed above.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--build build/basic</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Run the build tool with the rules that were generated in <code>build/basic/</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details>
+<details id="make-and-ninja" class="proof" open>
+<summary class="title">How do Make and Ninja build in parallel?</summary>
+<div class="content">
+<div class="paragraph">
+<p>Make and Ninja read the rules generated by CMake. The rules say what each job needs and which file it produces. Both tools skip steps whose outputs are up to date. They can start independent jobs at the same time and wait where one job needs the result of another.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Build tool</th>
+<th class="tableblock halign-left valign-top">File generated by CMake</th>
+<th class="tableblock halign-left valign-top">Parallel jobs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ninja</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>build.ninja</code> with <code>-G Ninja</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Runs jobs in parallel by default. Use <code>-j2</code> to allow at most two jobs.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GNU Make</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Makefile</code> with <code>-G "Unix Makefiles"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Runs one job at a time by default. Use <code>-j2</code> to allow at most two jobs.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>In the two-source example, each compile job can start without waiting for the other. Linking can start only when both object files are ready.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/repo/cmake-parallel-build.svg" alt="CMake produces rules for Ninja or Make. Either tool can compile main.cpp and vector_norm.cpp in parallel. The linker waits for both object files before creating vector-norm." width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>Try the same job limit through CMake with either generator. Use <code>--clean-first</code> to see both compile jobs again in the existing Ninja build. Generate the Make rules in a separate build directory.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cmake --build build/basic --clean-first --parallel 2
+cmake -S . -B build/make-basic -G "Unix Makefiles"
+cmake --build build/make-basic --parallel 2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For an incremental build, run <code>ninja -C build/basic -j2</code> or <code>make -C build/make-basic -j2</code> from the project root. With <code>--target vector-norm</code> you can request that executable by name. Use <code>--target help</code> to see targets offered by your build. Later, CPack adds <a href="../../m1/workflow.html#cpack-build-targets" class="xref page">targets for binary and source packages</a>.</p>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="cmake-library-target"><a class="anchor" href="#cmake-library-target"></a>5.2. Give the calculation its own target</h3>
+<div class="paragraph">
+<p>The calculation will also be used in the tests. Keep the first two lines of <code>CMakeLists.txt</code> and replace the rest with a library target and an executable that links to it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">add_library(vector_norm STATIC src/vector_norm.cpp)          <i class="conum" data-value="1"></i><b>(1)</b>
+target_include_directories(vector_norm PUBLIC src)           <i class="conum" data-value="2"></i><b>(2)</b>
+target_compile_features(vector_norm PUBLIC cxx_std_17)       <i class="conum" data-value="3"></i><b>(3)</b>
+
+add_executable(vector-norm app/main.cpp)                     <i class="conum" data-value="4"></i><b>(4)</b>
+target_link_libraries(vector-norm PRIVATE vector_norm)       <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Build the static library. On Linux its file is <code>libvector_norm.a</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Make <code>src/</code> available to the library and to targets that use it. This is what <code>PUBLIC</code> means here.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Require C++17 or newer for the library and propagate that requirement to its callers.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Compile the application&#8217;s entry point in the executable target.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Make <code>vector_norm</code> a dependency of the executable. The executable uses the library&#8217;s public settings and links the library&#8217;s compiled code.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Use a different build directory for Debug. The added option <code>-DCMAKE_BUILD_TYPE=Debug</code> sets a CMake variable at configure time. With Ninja, this selects the Debug configuration, which includes information that helps a debugger match the executable to the source code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cmake -S . -B build/debug -G Ninja -DCMAKE_BUILD_TYPE=Debug
+cmake --build build/debug
+./build/debug/vector-norm samples/vector.txt out/norm.txt
+cat out/norm.txt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify that the result is still <code>5</code>. In the testing section, a test program will link against the same <code>vector_norm</code> library.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Observe what is rebuilt</div>
+<div class="paragraph">
+<p>After changing <code>src/vector_norm.cpp</code>, run <code>cmake --build build/debug --verbose</code>. Read the compiler command for the changed file and the command that relinks the executable.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cmake-eigen"><a class="anchor" href="#cmake-eigen"></a>5.3. Declare Eigen as a dependency</h3>
+<details id="why-find-package" class="proof" open>
+<summary class="title">Why use <code>find_package</code> for Eigen?</summary>
+<div class="content">
+<div class="paragraph">
+<p>Eigen provides C++ types and functions for linear algebra. We can use it to compute the norm of a vector. When the code says <code>#include &lt;Eigen/Core&gt;</code>, the compiler needs to know where to look for that header, just as it needed <code>-Isrc</code> to find <code>vector_norm.hpp</code> in the manual build.</p>
+</div>
+<div class="paragraph">
+<p>The Eigen headers might be in a different directory on your laptop, in CI and in Docker. Install Eigen in each build environment. During configuration, <code>find_package</code> lets CMake read the package&#8217;s description and discover how to use that installation. For Eigen, that description makes the <strong>imported target</strong> <code>Eigen3::Eigen</code> available. The target carries the header search path. A package for a compiled library can also describe which library files to link.</p>
+</div>
+<div class="paragraph">
+<p><code>target_link_libraries</code> tells CMake which of our targets needs those settings. Eigen is header-only, so here that means passing an include directory to the compiler. The package name is <code>Eigen3</code>, the CMake target is <code>Eigen3::Eigen</code>, and the header is <code>Eigen/Core</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/repo/eigen-find-package.svg" alt="CMake reads Eigen3Config.cmake and makes Eigen3::Eigen available. Using that target with target_link_libraries adds the Eigen include directory when compiling vector_norm.cpp." width="410">
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>Add these lines after the <code>vector_norm</code> library target is defined.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">find_package(Eigen3 REQUIRED CONFIG)                         <i class="conum" data-value="1"></i><b>(1)</b>
+target_link_libraries(vector_norm PRIVATE Eigen3::Eigen)     <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>CONFIG</code> tells CMake to look for the description shipped with Eigen, typically <code>Eigen3Config.cmake</code>. <code>REQUIRED</code> makes configuration fail immediately if CMake cannot find the package.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Apply the settings from <code>Eigen3::Eigen</code> to <code>vector_norm</code>. Use <code>PRIVATE</code> because only <code>vector_norm.cpp</code> uses Eigen. The public header exposes only built-in types.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Replace the implementation file&#8217;s <code>&lt;cmath&gt;</code> include with <code>&lt;Eigen/Core&gt;</code> and change the function body to <code>return Eigen::Vector2d{x, y}.stableNorm();</code>. Configure, build and run again.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cmake -S . -B build/debug -G Ninja -DCMAKE_BUILD_TYPE=Debug
+cmake --build build/debug --verbose
+./build/debug/vector-norm samples/vector.txt out/norm.txt
+cat out/norm.txt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Look for the Eigen include directory in the command that compiles <code>vector_norm.cpp</code>. GCC and Clang commonly show it with <code>-isystem</code>. The sample still produces <code>5</code>.</p>
+</div>
+<div class="paragraph">
+<p>See the <a href="https://libeigen.gitlab.io/eigen/docs-3.4/TopicCMakeGuide.html">Eigen CMake guide</a> and the <a href="https://cmake.org/cmake/help/v3.28/command/find_package.html">CMake find_package reference</a>.</p>
+</div>
+<div class="paragraph">
+<p>If configuration fails at <code>find_package</code>, check that the Eigen development package is installed where CMake runs. For a custom installation, add <code>-DCMAKE_PREFIX_PATH=/path/to/eigen-prefix</code> to the configure command, using the directory under which Eigen was installed.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exercise_and_self_check"><a class="anchor" href="#_exercise_and_self_check"></a>6. Exercise and self-check</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Open an issue for building one runnable FEM target from a clean clone. Create a branch such as <code>build-cmake</code>, separate one reusable calculation or mesh operation from <code>main()</code>, and document the dependencies and exact commands in the README. Open a PR linked with <code>Closes #N</code>. In the PR, show the configure, build and run commands and the output you obtained. Self-review the diff before merging.</p>
+</div>
+<div class="paragraph">
+<p>Continue with <a href="../../m1/workflow.html#cpp-testing" class="xref page">C++ tests and CI</a>.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="../../cicd/index.html">CI/CD reference</a></span>
-  <span class="next"><a href="../../jupyter.html">Jupyter</a></span>
+  <span class="prev"><a href="../../m1/environments.html#python">Python environment</a></span>
+  <span class="next"><a href="../../m1/workflow.html">Project workflow</a></span>
 </nav>
 </article>
   </div>

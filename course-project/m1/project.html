@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>M1 semester project :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/m1/project.html">
-    <link rel="prev" href="workflow.html">
+    <link rel="prev" href="workflow.html#reproducibility">
     <link rel="next" href="../../csmi/index.html">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -221,13 +221,31 @@ MathJax.Hub.Config({
     <a class="nav-link" href="environments.html#cpp">C/C++ environment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="gaya.html">Gaya and basic HPC operations</a>
+    <a class="nav-link" href="../software/repo/organization.html">C++ organization and CMake</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="workflow.html">Project workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="workflow.html#testing">Testing and basic CI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="workflow.html#cpp-testing">C++ tests and CI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="workflow.html#cmake-presets">CMake presets</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="workflow.html#cpack">CPack and binary packages</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="workflow.html#testing">Testing and basic CI</a>
+    <a class="nav-link" href="../containers/docker/dockerfile-basics.html#cpp-docker">Run and deliver a C++ program with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="gaya.html">Gaya and basic HPC operations</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="workflow.html#reproducibility">Reproducibility</a>
@@ -243,6 +261,9 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#workflow">Expected workflow and GitHub organization</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#cpp-project-workflow">C++ build, testing and delivery</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#deliverables">Deliverables</a>
@@ -363,9 +384,6 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../cicd/index.html">CI/CD reference</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../software/repo/organization.html">CMake and repository organization</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../jupyter.html">Jupyter</a>
@@ -753,7 +771,37 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect1">
-<h2 id="deliverables"><a class="anchor" href="#deliverables"></a>3. Deliverables</h2>
+<h2 id="cpp-project-workflow"><a class="anchor" href="#cpp-project-workflow"></a>3. C++ build, testing and delivery</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The FEM semester project is individual. Work through the course examples below in order and apply each step in your own FEM repository.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="../software/repo/organization.html" class="xref page">Organize and build a C++ program</a> using explicit CMake commands.</p>
+</li>
+<li>
+<p><a href="workflow.html#cpp-testing" class="xref page">Run numerical tests with CTest and GitHub Actions</a>.</p>
+</li>
+<li>
+<p><a href="workflow.html#cmake-presets" class="xref page">Record the working commands as Debug and Release presets</a>.</p>
+</li>
+<li>
+<p><a href="workflow.html#cpack" class="xref page">Package an executable as an archive or Debian package</a>.</p>
+</li>
+<li>
+<p><a href="../containers/docker/dockerfile-basics.html#cpp-docker" class="xref page">Build, run and deliver the Docker image</a>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For each change in your FEM repository, open an issue with acceptance criteria, work on a branch and open a PR that links to the issue. Include the commands and results, then review your own diff. Use the FEM assignment brief and rubric for the required deliverables and milestones.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deliverables"><a class="anchor" href="#deliverables"></a>4. Deliverables</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -761,7 +809,7 @@ MathJax.Hub.Config({
 <p>A report describing the problem, method, validation and limits.</p>
 </li>
 <li>
-<p>Source at an identified commit/tag, tests and CI evidence.</p>
+<p>Source at an identified commit/tag, tests and CI run results.</p>
 </li>
 <li>
 <p>Input provenance and instructions for environment setup and execution, including a scheduler script when needed.</p>
@@ -777,7 +825,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect1">
-<h2 id="assessment"><a class="anchor" href="#assessment"></a>4. Assessment</h2>
+<h2 id="assessment"><a class="anchor" href="#assessment"></a>5. Assessment</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Demonstrate scientific correctness, a reproducible workflow, code quality and collaboration. In an individual practical/oral check, explain your contribution, operate the shell/Git workflow, run Python, compile a small C++ program and interpret a job or test failure. See <a href="../assessment.html" class="xref page">M1 competencies</a>. Dates and grading weights are supplied with the assignment.</p>
@@ -785,7 +833,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="workflow.html">Project workflow</a></span>
+  <span class="prev"><a href="workflow.html#reproducibility">Reproducibility</a></span>
   <span class="next"><a href="../../csmi/index.html">Project topics by cohort</a></span>
 </nav>
 </article>

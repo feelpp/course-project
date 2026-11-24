@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Dockerfile: Building Custom Images :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/containers/docker/dockerfile-basics.html">
-    <link rel="prev" href="docker-problems-solved.html">
-    <link rel="next" href="hands-on/01-getting-started.html">
+    <link rel="prev" href="../../m1/workflow.html">
+    <link rel="next" href="../../m1/gaya.html">
     <meta name="description" content="Learn to create Dockerfiles to build custom container images for mathematical computing and research.">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../../_/css/site.css">
@@ -222,13 +222,31 @@ MathJax.Hub.Config({
     <a class="nav-link" href="../../m1/environments.html#cpp">C/C++ environment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../m1/gaya.html">Gaya and basic HPC operations</a>
+    <a class="nav-link" href="../../software/repo/organization.html">C++ organization and CMake</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../../m1/workflow.html">Project workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../m1/workflow.html#testing">Testing and basic CI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../m1/workflow.html#cpp-testing">C++ tests and CI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../m1/workflow.html#cmake-presets">CMake presets</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../m1/workflow.html#cpack">CPack and binary packages</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../m1/workflow.html#testing">Testing and basic CI</a>
+    <a class="nav-link" href="#cpp-docker">Run and deliver a C++ program with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../m1/gaya.html">Gaya and basic HPC operations</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../m1/workflow.html#reproducibility">Reproducibility</a>
@@ -244,6 +262,9 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../m1/project.html#workflow">Expected workflow and GitHub organization</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../m1/project.html#cpp-project-workflow">C++ build, testing and delivery</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../m1/project.html#deliverables">Deliverables</a>
@@ -364,9 +385,6 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../cicd/index.html">CI/CD reference</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../software/repo/organization.html">CMake and repository organization</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../jupyter.html">Jupyter</a>
@@ -711,9 +729,8 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../../index.html">Course Project</a></li>
-    <li><a href="../../reference.html">Reference</a></li>
-    <li>Containers and HPC</li>
-    <li><a href="dockerfile-basics.html">Dockerfile: Building Custom Images</a></li>
+    <li><a href="../../m1/index.html">M1 — Computational Foundations</a></li>
+    <li><a href="#cpp-docker">Run and deliver a C++ program with Docker</a></li>
   </ul>
 </nav>
 
@@ -1032,36 +1049,142 @@ CMD ["jupyter", "lab", "--ip=0.0.0.0", "--no-browser"]</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_example_3_ccmake_mathematical_library"><a class="anchor" href="#_example_3_ccmake_mathematical_library"></a>3.3. Example 3: C++/CMake Mathematical Library</h3>
+<h3 id="cpp-docker"><a class="anchor" href="#cpp-docker"></a>3.3. Example 3: Build and run a C++ image</h3>
+<div class="paragraph">
+<p>Use the Release preset and install rule from <a href="../../m1/workflow.html#cpack" class="xref page">the CPack example</a>. First run the installed executable on the host as shown there. Then use Docker to reproduce the result.</p>
+</div>
+<details id="docker-image-container" class="proof" open>
+<summary class="title">What is the difference between an image and a container?</summary>
+<div class="content">
+<div class="paragraph">
+<p>An <strong>image</strong> contains the application, its runtime dependencies and the default command. A <strong>container</strong> is an instance of that image running on a Docker host. Here <code>docker build</code> creates an image of <code>vector-norm</code> and <code>docker run</code> starts a container to calculate one result. A <strong>bind mount</strong> makes a host directory available at a path inside the container.</p>
+</div>
+</div>
+</details>
+<div class="sect3">
+<h4 id="_build_an_image"><a class="anchor" href="#_build_an_image"></a>3.3.1. Build an image</h4>
+<div class="paragraph">
+<p>Check <code>docker version</code>. If the Docker engine is unavailable, follow the <a href="docker-install.html" class="xref page">installation guide</a>. Add a <code>.dockerignore</code> at the root:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Dockerfile for C++ mathematical computing with Eigen
-FROM ubuntu:24.04
-
-# Install build tools and libraries
-RUN apt-get update &amp;&amp; apt-get install -y \
-    build-essential \
-    cmake \
-    git \
-    libeigen3-dev \
-    libboost-all-dev \
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">.git
+.github
+build
+out
+CMakeUserPresets.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The build context is the directory passed to <code>docker build</code>. Docker reads the source files from that directory. Excluding <code>build/</code> ensures compilation starts with the source and avoids copying binaries compiled on the host.</p>
+</div>
+<div class="paragraph">
+<p>Create a <code>Dockerfile</code> at the root of the practice repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile">FROM ubuntu:24.04 AS build
+RUN apt-get update \
+    &amp;&amp; apt-get install -y --no-install-recommends g++ cmake ninja-build libeigen3-dev \
     &amp;&amp; rm -rf /var/lib/apt/lists/*
+WORKDIR /src
+COPY . .
+RUN cmake --preset release \
+    &amp;&amp; cmake --build --preset release \
+    &amp;&amp; ctest --preset release \
+    &amp;&amp; cmake --install build/release --prefix /stage
 
-# Set working directory
-WORKDIR /project
-
-# Copy project files
-COPY CMakeLists.txt .
-COPY src/ ./src/
-COPY include/ ./include/
-
-# Build the project
-RUN mkdir build &amp;&amp; cd build &amp;&amp; \
-    cmake .. -DCMAKE_BUILD_TYPE=Release &amp;&amp; \
-    make -j$(nproc)
-
-# Set the built executable as entry point
-ENTRYPOINT ["/project/build/mymath"]</code></pre>
+FROM ubuntu:24.04
+RUN apt-get update \
+    &amp;&amp; apt-get install -y --no-install-recommends libstdc++6 \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+COPY --from=build /stage/bin/vector-norm /usr/local/bin/vector-norm
+ENTRYPOINT ["/usr/local/bin/vector-norm"]</code></pre>
+</div>
+</div>
+<details id="cpp-dockerfile-instructions" class="proof">
+<summary class="title">Read the two stages of the Dockerfile</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>FROM ubuntu:24.04 AS build</code> starts a stage named <code>build</code> where the compiler, CMake, Ninja and Eigen are available.</p>
+</li>
+<li>
+<p><code>WORKDIR /src</code> sets the directory for the following instructions. <code>COPY . .</code> copies the project files into that directory, subject to <code>.dockerignore</code>.</p>
+</li>
+<li>
+<p>The build stage configures, builds and tests Release, then runs the CMake install rule with <code>/stage</code> as its prefix.</p>
+</li>
+<li>
+<p>The second <code>FROM</code> starts the final image. <code>COPY --from=build</code> takes only the installed executable from the first stage. The final image also installs the C++ runtime needed to run it.</p>
+</li>
+<li>
+<p><code>ENTRYPOINT</code> selects the default program. Arguments after the image name are passed to that program.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+<div class="sect3">
+<h4 id="_run_the_image_with_local_input_and_output"><a class="anchor" href="#_run_the_image_with_local_input_and_output"></a>3.3.2. Run the image with local input and output</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker build -t vector-norm:example .
+mkdir -p container-out
+docker run --rm --user "$(id -u):$(id -g)" \
+  --mount "type=bind,source=$PWD/samples,target=/input,readonly" \
+  --mount "type=bind,source=$PWD/container-out,target=/output" \
+  vector-norm:example /input/vector.txt /output/norm.txt
+test "$(cat container-out/norm.txt)" = 5
+cmp out/norm.txt container-out/norm.txt</code></pre>
+</div>
+</div>
+<details id="cpp-docker-run-options" class="proof">
+<summary class="title">Read the Docker commands and mount options</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>In <code>docker build -t vector-norm:example .</code>, <code>-t</code> gives the image a name and tag. The final <code>.</code> selects the current directory as the build context.</p>
+</li>
+<li>
+<p><code>--rm</code> removes the container after it exits. The result stays in the mounted host directory.</p>
+</li>
+<li>
+<p><code>--user</code> runs the program with your numeric user and group IDs so it can write the mounted output directory.</p>
+</li>
+<li>
+<p>In each <code>--mount</code>, <code>source</code> is a path on the host and <code>target</code> is its path inside the container. The input mount is <code>readonly</code>. The output mount is writable.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>The container sees the input at <code>/input/vector.txt</code> and writes into the host&#8217;s <code>container-out/</code> directory. The commands check the known result and compare it with the host run. When using these commands in CI, use an empty output directory so an earlier file cannot mask a failed run. Add <code>/container-out/</code> to both ignore files. Try a missing input file and check that the container exits with an error.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_verify_in_ci_and_prepare_a_release"><a class="anchor" href="#_verify_in_ci_and_prepare_a_release"></a>3.3.3. Verify in CI and prepare a release</h4>
+<div class="paragraph">
+<p>In your existing workflow, build the image after the C++ tests pass. Run the image with the sample input and check the output on the runner. This tests the final image as a user would run it.</p>
+</div>
+<div class="paragraph">
+<p>For a delivery tag, publish the image to GitHub Container Registry (GHCR) after the checks pass. To automate the publication, use a job restricted to a push of a delivery tag. Give that job <code>contents: read</code> and <code>packages: write</code> and authenticate with the workflow&#8217;s <code>GITHUB_TOKEN</code>. Verify that your instructor can pull the package. Keep the package private for a private assignment. See the <a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry">GitHub Container Registry guide</a>.</p>
+</div>
+<div class="paragraph">
+<p>Keep run artifacts and release assets distinct. Attach PDFs to the workflow run for review and to the GitHub Release for a tagged delivery. Link the matching image tag or digest and give the exact command, input and expected output for one reproducible run. The <a href="../../software/release-engineering-weather.html" class="xref page">release engineering lesson</a> shows the difference using a separate project.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_exercise_for_the_fem_project"><a class="anchor" href="#_exercise_for_the_fem_project"></a>3.3.4. Exercise for the FEM project</h4>
+<div class="paragraph">
+<p>Open an issue for running a small FEM case in the final image. On a branch such as <code>package-fem-docker</code>, build with your Release preset and pass the mesh or configuration as an input, with a writable mount for results. Check your expected numerical result or output file. Open a PR linked to the issue with the Docker build and run commands, the result and the CI run. For the delivery, link the image from the release associated with the project version.</p>
+</div>
+<div class="paragraph">
+<p>Return to the <a href="../../m1/project.html" class="xref page">M1 semester project and deliverables</a>.</p>
 </div>
 </div>
 </div>
@@ -1329,8 +1452,8 @@ ls output/  # Should see integral_plot.png</code></pre>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="docker-problems-solved.html">The Problem Docker Solves</a></span>
-  <span class="next"><a href="hands-on/01-getting-started.html">Docker System Basics</a></span>
+  <span class="prev"><a href="../../m1/workflow.html">Project workflow</a></span>
+  <span class="next"><a href="../../m1/gaya.html">Gaya and basic HPC operations</a></span>
 </nav>
 </article>
   </div>

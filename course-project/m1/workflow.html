@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Project workflow, tests and reproducibility :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/m1/workflow.html">
-    <link rel="prev" href="gaya.html">
-    <link rel="next" href="project.html">
+    <link rel="prev" href="../software/repo/organization.html">
+    <link rel="next" href="../containers/docker/dockerfile-basics.html#cpp-docker">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../_/css/site.css">
 
@@ -221,13 +221,31 @@ MathJax.Hub.Config({
     <a class="nav-link" href="environments.html#cpp">C/C++ environment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="gaya.html">Gaya and basic HPC operations</a>
+    <a class="nav-link" href="../software/repo/organization.html">C++ organization and CMake</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="workflow.html">Project workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#testing">Testing and basic CI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#cpp-testing">C++ tests and CI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#cmake-presets">CMake presets</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#cpack">CPack and binary packages</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#testing">Testing and basic CI</a>
+    <a class="nav-link" href="../containers/docker/dockerfile-basics.html#cpp-docker">Run and deliver a C++ program with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="gaya.html">Gaya and basic HPC operations</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#reproducibility">Reproducibility</a>
@@ -243,6 +261,9 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="project.html#workflow">Expected workflow and GitHub organization</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project.html#cpp-project-workflow">C++ build, testing and delivery</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="project.html#deliverables">Deliverables</a>
@@ -363,9 +384,6 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../cicd/index.html">CI/CD reference</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../software/repo/organization.html">CMake and repository organization</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../jupyter.html">Jupyter</a>
@@ -793,7 +811,7 @@ class MeanTests(unittest.TestCase):
 </div>
 </div>
 <div class="paragraph">
-<p>Run <code>python -m unittest discover -v</code> in the <a href="environments.html" class="xref page">project environment</a>. Deliberately break the computation and confirm the test detects it before restoring the implementation. For C++, use the existing <a href="../software/repo/organization.html" class="xref page">CTest example</a>.</p>
+<p>Run <code>python -m unittest discover -v</code> in the <a href="environments.html" class="xref page">project environment</a>. Deliberately break the computation and confirm the test detects it before restoring the implementation. For C++, see <a href="#cpp-testing">C++ tests and CI</a>.</p>
 </div>
 </div>
 </div>
@@ -826,7 +844,531 @@ jobs:
 </div>
 </div>
 <div class="sect1">
-<h2 id="reproducibility"><a class="anchor" href="#reproducibility"></a>5. Reproduce from a clean checkout</h2>
+<h2 id="cpp-testing"><a class="anchor" href="#cpp-testing"></a>5. C++ tests and CI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Start with the example from <a href="../software/repo/organization.html" class="xref page">C++ repository organization and CMake</a>. A program that compiles can still calculate the wrong result. Use an independently known result, then make CTest and GitHub Actions report whether the program returns it.</p>
+</div>
+<details id="what-is-ctest" class="proof" open>
+<summary class="title">What does CTest do?</summary>
+<div class="content">
+<div class="paragraph">
+<p>Your test program checks the result and returns an exit code. <code>0</code> means the check passed. A nonzero code means it failed. CTest runs the programs registered with <code>add_test()</code> and reports their results. A user of the project can then run the whole test suite with one command.</p>
+</div>
+</div>
+</details>
+<div class="sect2">
+<h3 id="_write_and_register_a_numerical_test"><a class="anchor" href="#_write_and_register_a_numerical_test"></a>5.1. Write and register a numerical test</h3>
+<div class="paragraph">
+<p>Create <code>tests/test_vector_norm.cpp</code>. The expected result comes from the 3–4–5 right triangle. A tolerance accounts for rounding. The comparison also rejects a non-finite result.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include "vector_norm.hpp"
+#include &lt;cmath&gt;
+#include &lt;iostream&gt;
+
+int main() {
+    constexpr double expected = 5.0;
+    constexpr double tolerance = 1e-12;
+    const double actual = vector_norm(3.0, 4.0);
+    if (!(std::abs(actual - expected) &lt;= tolerance)) {
+        std::cerr &lt;&lt; "Expected " &lt;&lt; expected &lt;&lt; ", got " &lt;&lt; actual &lt;&lt; '\n';
+        return 1;
+    }
+    return 0;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This check remains active in Release builds. Add the following at the end of the root <code>CMakeLists.txt</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">include(CTest)                                                       <i class="conum" data-value="1"></i><b>(1)</b>
+if(BUILD_TESTING)                                                    <i class="conum" data-value="2"></i><b>(2)</b>
+    add_executable(test_vector_norm tests/test_vector_norm.cpp)      <i class="conum" data-value="3"></i><b>(3)</b>
+    target_link_libraries(test_vector_norm PRIVATE vector_norm)      <i class="conum" data-value="4"></i><b>(4)</b>
+    add_test(NAME vector_norm_known_result COMMAND test_vector_norm) <i class="conum" data-value="5"></i><b>(5)</b>
+endif()</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Load CTest support from CMake. It defines <code>BUILD_TESTING</code> and enables test registration when the option is on.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Create the test targets only when <code>BUILD_TESTING</code> is enabled. It is on by default.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Compile the test into a small executable.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Call the same library from the test and the application.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Register a named test. CTest will run <code>test_vector_norm</code> when it runs <code>vector_norm_known_result</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Reconfigure, build and run the tests:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cmake -S . -B build/debug -G Ninja -DCMAKE_BUILD_TYPE=Debug
+cmake --build build/debug
+ctest --test-dir build/debug --output-on-failure --no-tests=error</code></pre>
+</div>
+</div>
+<details id="ctest-options" class="proof">
+<summary class="title">Read the CTest command</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>--test-dir build/debug</code> picks the configured build directory.</p>
+</li>
+<li>
+<p><code>--output-on-failure</code> shows the test program&#8217;s message when a check fails.</p>
+</li>
+<li>
+<p><code>--no-tests=error</code> makes CTest fail if it finds zero tests. This catches an incorrect directory or missing test registration in CI.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>Temporarily change the calculation so it returns the wrong norm. Rebuild, verify that CTest reports the failing test, then restore the calculation. Add another case with negative coordinates. Run the executable separately with a missing input file and check the message and nonzero exit status.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_reuse_the_same_commands_in_github_actions"><a class="anchor" href="#_reuse_the_same_commands_in_github_actions"></a>5.2. Reuse the same commands in GitHub Actions</h3>
+<details id="what-is-ci" class="proof" open>
+<summary class="title">What does GitHub Actions run?</summary>
+<div class="content">
+<div class="paragraph">
+<p>Continuous integration (CI) runs your checks automatically when the repository changes. A <strong>workflow</strong> defines the events that start it. A <strong>job</strong> runs on a machine called a <strong>runner</strong>. A job&#8217;s <strong>steps</strong> check out the code and run the same configure, build and test commands that you used locally.</p>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>Create <code>.github/workflows/ci.yml</code> in the practice repository, or add a build-and-test job to an existing workflow. This Ubuntu job installs the project tools and repeats the three local commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: C++ build and tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install dependencies
+        run: sudo apt-get update &amp;&amp; sudo apt-get install -y cmake ninja-build g++ libeigen3-dev
+      - name: Configure
+        run: cmake -S . -B build/debug -G Ninja -DCMAKE_BUILD_TYPE=Debug
+      - name: Build
+        run: cmake --build build/debug
+      - name: Test
+        run: ctest --test-dir build/debug --output-on-failure --no-tests=error</code></pre>
+</div>
+</div>
+<details id="ci-workflow-fields" class="proof">
+<summary class="title">Read the workflow YAML</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>on</code> runs the workflow on pushes to <code>main</code> and updates to pull requests targeting <code>main</code>.</p>
+</li>
+<li>
+<p><code>permissions: contents: read</code> gives the job&#8217;s GitHub token read access to the repository contents.</p>
+</li>
+<li>
+<p><code>runs-on: ubuntu-24.04</code> selects an Ubuntu 24.04 runner.</p>
+</li>
+<li>
+<p><code>uses</code> runs a reusable action. Here checkout copies the Git revision to the runner.</p>
+</li>
+<li>
+<p><code>run</code> executes a shell command. Install dependencies before configuring, then build before running the tests.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>On your feature branch, push a deliberately failing version to an open PR and find the failing test in the Actions log. Restore the correct calculation and push again. In each run, identify whether the failure happened during dependency installation, configuration, compilation, linking or testing.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercise_for_the_fem_project"><a class="anchor" href="#_exercise_for_the_fem_project"></a>5.3. Exercise for the FEM project</h3>
+<div class="paragraph">
+<p>Open an issue for one scientific test and its CI run. Use a branch such as <code>test-fem-ci</code>. For example, check a hand-computable integral on the smallest mesh, state the expected value and justify the tolerance for that particular case. Add a case that checks how the program handles invalid input. Open a linked PR and include the failing and corrected workflow runs. Self-review the test and the expected value before merging.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cmake-presets"><a class="anchor" href="#cmake-presets"></a>6. CMake presets</h2>
+<div class="sectionbody">
+<details id="what-is-a-preset" class="proof" open>
+<summary class="title">What is a CMake preset?</summary>
+<div class="content">
+<div class="paragraph">
+<p>A preset gives a name to options that already work on the command line. The configure preset records the folder, generator and build type. The build and test presets point to that configuration. Commit <code>CMakePresets.json</code> so your terminal and CI use the same settings.</p>
+</div>
+</div>
+</details>
+<div class="sect2">
+<h3 id="_build_and_test_release_explicitly"><a class="anchor" href="#_build_and_test_release_explicitly"></a>6.1. Build and test Release explicitly</h3>
+<div class="paragraph">
+<p>You already used <code>build/debug</code>. Configure Release in its own build directory:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cmake -S . -B build/release -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build/release
+ctest --test-dir build/release --output-on-failure --no-tests=error</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Compare <code>CMAKE_BUILD_TYPE</code> in the two <code>CMakeCache.txt</code> files. Debug is useful for tracing the program in a debugger. Release enables optimizations. Both should pass the same numerical tests.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_record_the_commands_in_cmakepresets_json"><a class="anchor" href="#_record_the_commands_in_cmakepresets_json"></a>6.2. Record the commands in CMakePresets.json</h3>
+<div class="paragraph">
+<p>Start with Debug. The configure preset records the generator, build directory and build type. The build and test presets refer to that configuration.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "version": 3,
+  "cmakeMinimumRequired": { "major": 3, "minor": 22, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/debug",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
+    }
+  ],
+  "buildPresets": [
+    { "name": "debug", "configurePreset": "debug" }
+  ],
+  "testPresets": [
+    {
+      "name": "debug",
+      "configurePreset": "debug",
+      "output": { "outputOnFailure": true },
+      "execution": { "noTestsAction": "error" }
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<details id="preset-fields" class="proof">
+<summary class="title">Read the preset fields</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>version</code> is the version of the JSON format. <code>cmakeMinimumRequired</code> records the CMake version expected by this file.</p>
+</li>
+<li>
+<p>In <code>configurePresets</code>, <code>generator</code> replaces <code>-G</code>, <code>binaryDir</code> replaces <code>-B</code> and <code>cacheVariables</code> stores the options previously passed with <code>-D</code>. CMake expands <code>${sourceDir}</code> to the project root.</p>
+</li>
+<li>
+<p>The <code>configurePreset</code> field connects each build and test preset to the right build directory.</p>
+</li>
+<li>
+<p><code>outputOnFailure</code> and <code>noTestsAction</code> preserve the CTest options from the explicit commands.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>Run Debug from the project root and check that CTest still passes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cmake --preset debug
+cmake --build --preset debug
+ctest --preset debug</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then add a Release entry to each of the three arrays. Use the name <code>release</code>, the directory <code>build/release</code> and the build type <code>Release</code>. Keep the test settings and run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cmake --preset release
+cmake --build --preset release
+ctest --preset release</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check from a clean checkout that the presets produce working executables and run the same tests as the explicit commands. Commit <code>CMakePresets.json</code> and ignore <code>CMakeUserPresets.json</code>. Personal tool paths belong in the latter. See the <a href="https://cmake.org/cmake/help/v3.28/manual/cmake-presets.7.html">CMake presets reference</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercise_for_the_fem_project_2"><a class="anchor" href="#_exercise_for_the_fem_project_2"></a>6.3. Exercise for the FEM project</h3>
+<div class="paragraph">
+<p>Open an issue to replace the explicit Debug and Release commands with shared presets. On a branch such as <code>build-cmake-presets</code>, update your README and switch the CI configure, build and test steps to the Debug presets. Run both presets locally and check that CI still runs the same tests. Link the issue in your PR and explain which previous command each preset replaces.</p>
+</div>
+<div class="paragraph">
+<p>Continue with <a href="#cpack">Package a C++ program with CPack</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cpack"><a class="anchor" href="#cpack"></a>7. Package a C++ program with CPack</h2>
+<div class="sectionbody">
+<details id="what-is-cpack" class="proof" open>
+<summary class="title">What does CPack package?</summary>
+<div class="content">
+<div class="paragraph">
+<p>CMake can describe which files to install and where to put them. CPack takes those install rules and produces a distributable file. A compressed archive is easy to unpack. A Debian package also records information such as its version, architecture and dependencies for the system package manager.</p>
+</div>
+</div>
+</details>
+<div class="sect2">
+<h3 id="_install_into_a_staging_directory"><a class="anchor" href="#_install_into_a_staging_directory"></a>7.1. Install into a staging directory</h3>
+<div class="paragraph">
+<p>Append this rule to <code>CMakeLists.txt</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">install(TARGETS vector-norm RUNTIME DESTINATION bin) <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Install the executable (<code>RUNTIME</code>) under <code>bin/</code> relative to the chosen installation prefix.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Build and test Release before installing. Use a prefix inside <code>build/</code> so you can check the layout from your own account:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cmake --preset release
+cmake --build --preset release
+ctest --preset release
+cmake --install build/release --prefix "$PWD/build/stage"
+mkdir -p out
+./build/stage/bin/vector-norm samples/vector.txt out/norm.txt
+cat out/norm.txt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here <code>--install build/release</code> runs the install rules for the already built Release tree. <code>--prefix</code> puts the staged program under <code>build/stage/</code>. The installed executable should still produce <code>5</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_a_compressed_archive"><a class="anchor" href="#_create_a_compressed_archive"></a>7.2. Create a compressed archive</h3>
+<div class="paragraph">
+<p>Add these settings at the end of <code>CMakeLists.txt</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">set(CPACK_PACKAGE_NAME "vector-norm")                 <i class="conum" data-value="1"></i><b>(1)</b>
+set(CPACK_PACKAGE_VERSION "0.1.0")                    <i class="conum" data-value="2"></i><b>(2)</b>
+set(CPACK_PACKAGE_CONTACT "VectorNorm maintainers")   <i class="conum" data-value="3"></i><b>(3)</b>
+set(CPACK_GENERATOR "TGZ")                            <i class="conum" data-value="4"></i><b>(4)</b>
+include(CPack)                                        <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Give the binary package a name.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Set its release version.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Set the package contact. This also supplies the Debian maintainer by default.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Use a compressed tar archive as the default binary package format.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Generate <code>CPackConfig.cmake</code> and add the <code>package</code> build target to the Ninja build.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Configure again and build the <code>package</code> target with the Release preset.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cmake --preset release
+cmake --build --preset release --target package
+tar -tzf build/release/vector-norm-0.1.0-*.tar.gz</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The target updates the build as needed and runs CPack with the formats in <code>CPACK_GENERATOR</code>. The package goes into the Release build directory by default. Find <code>bin/vector-norm</code> in the archive listing. Unpack it into a fresh directory and run it with the sample input. The archive contains a binary built for your operating system and architecture.</p>
+</div>
+<details id="cpack-build-targets" class="proof">
+<summary class="title">Run the packaging targets with Ninja or Make</summary>
+<div class="content">
+<div class="paragraph">
+<p>The Release preset uses Ninja, so you can also run the target directly. See <a href="../software/repo/organization.html#make-and-ninja" class="xref page">How do Make and Ninja build in parallel?</a> for how the two tools run CMake targets.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ninja -C build/release package</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For <code>make package</code>, configure a separate build directory with the Unix Makefiles generator.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cmake -S . -B build/make-release -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+make -C build/make-release package</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Both generators also provide <code>package_source</code>. That target calls CPack with <code>CPackSourceConfig.cmake</code> to archive the project sources. To generate a source tarball for this example, add these settings before <code>include(CPack)</code>. They exclude Git metadata and the directories where the example writes its builds and results.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">set(CPACK_SOURCE_GENERATOR "TGZ")
+set(CPACK_SOURCE_IGNORE_FILES "/[.]git(/|$)" "/build/" "/out/")</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cmake --preset release
+cmake --build --preset release --target package_source
+tar -tzf build/release/vector-norm-0.1.0-Source.tar.gz</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the Make build, reconfigure its build directory and then run <code>make -C build/make-release package_source</code>. Check the contents of any source archive before sharing it.</p>
+</div>
+<div class="paragraph">
+<p>See the <a href="https://cmake.org/cmake/help/v3.28/module/CPack.html#targets-package-and-package-source">CPack target reference</a>.</p>
+</div>
+</div>
+</details>
+<details id="cpack-command-options" class="proof">
+<summary class="title">Read the CPack options</summary>
+<div class="content">
+<div class="paragraph">
+<p>Run <code>cpack</code> directly to choose a format or output directory for a single invocation.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>--config</code> points CPack to the settings for the Release build tree.</p>
+</li>
+<li>
+<p><code>-G</code> overrides the formats in <code>CPACK_GENERATOR</code>. Use <code>TGZ</code> for a compressed tar archive, <code>ZIP</code> for a ZIP archive, or <code>DEB</code> for a Debian package.</p>
+</li>
+<li>
+<p><code>-B build/packages</code> writes the packages there.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>Package the same files as a ZIP archive by selecting the ZIP generator on the command line.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cpack --config build/release/CPackConfig.cmake -G ZIP -B build/packages
+unzip -l build/packages/vector-norm-0.1.0-*.zip</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See the <a href="https://cmake.org/cmake/help/v3.28/cpack_gen/archive.html">CPack archive reference</a> for additional formats.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_a_debian_package_on_ubuntu"><a class="anchor" href="#_create_a_debian_package_on_ubuntu"></a>7.3. Create a Debian package on Ubuntu</h3>
+<div class="paragraph">
+<p>Build on Ubuntu 24.04 for this step. Install <code>file</code> to identify the binary and <code>dpkg-dev</code> so CPack can use <code>dpkg-shlibdeps</code> to calculate runtime dependencies:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo apt update
+sudo apt install dpkg-dev file</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Add the following settings <strong>before</strong> <code>include(CPack)</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
+set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>DEB-DEFAULT</code> uses the Debian filename convention. <code>SHLIBDEPS</code> fills in runtime dependencies from the shared libraries used by the executable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cmake --preset release
+cmake --build --preset release
+cpack --config build/release/CPackConfig.cmake -G DEB -B build/packages
+dpkg-deb --info build/packages/vector-norm_0.1.0_*.deb
+dpkg-deb --contents build/packages/vector-norm_0.1.0_*.deb</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check the package name, version, architecture and dependencies without installing it. Compare the files with the archive. See the <a href="https://cmake.org/cmake/help/v3.28/cpack_gen/deb.html">CPack Debian package reference</a>.</p>
+</div>
+<div class="paragraph">
+<p>To have one build target generate several formats, set <code>CPACK_GENERATOR</code> to <code>"TGZ;ZIP"</code> or, on the Ubuntu packaging machine, <code>"TGZ;ZIP;DEB"</code>. Reconfigure and run the <code>package</code> target again.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercise_for_the_fem_project_3"><a class="anchor" href="#_exercise_for_the_fem_project_3"></a>7.4. Exercise for the FEM project</h3>
+<div class="paragraph">
+<p>Open an issue for packaging the FEM executable. Work on a branch such as <code>package-fem-cpack</code>. Stage the executable, generate an archive, unpack it and reproduce a small case. If your project targets Ubuntu, also inspect the Debian package and its dependencies. In the PR link the issue and show the package contents and the command that reproduced the case.</p>
+</div>
+<div class="paragraph">
+<p>Continue with <a href="../containers/docker/dockerfile-basics.html#cpp-docker" class="xref page">Build and run a C++ image with Docker</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="reproducibility"><a class="anchor" href="#reproducibility"></a>8. Reproduce from a clean checkout</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Document the repository revision, software versions, input data, command, expected result and output location. Ask a partner to execute using only those instructions. Record any manual step as an issue. Do not depend on uncommitted files or private paths.</p>
@@ -834,7 +1376,7 @@ jobs:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_self_check"><a class="anchor" href="#_self_check"></a>6. Self-check</h2>
+<h2 id="_self_check"><a class="anchor" href="#_self_check"></a>9. Self-check</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Can you explain each staged change, reproduce a failure, read CI output and show that a partner obtained the expected result? These are the working habits required in the <a href="project.html" class="xref page">M1 project</a>.</p>
@@ -842,8 +1384,8 @@ jobs:
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="gaya.html">Gaya and basic HPC operations</a></span>
-  <span class="next"><a href="project.html">M1 — Project</a></span>
+  <span class="prev"><a href="../software/repo/organization.html">C++ organization and CMake</a></span>
+  <span class="next"><a href="../containers/docker/dockerfile-basics.html#cpp-docker">Run and deliver a C++ program with Docker</a></span>
 </nav>
 </article>
   </div>

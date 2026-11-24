@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Working on Gaya — basic HPC operations :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/m1/gaya.html">
-    <link rel="prev" href="environments.html#python">
-    <link rel="next" href="workflow.html">
+    <link rel="prev" href="../containers/docker/dockerfile-basics.html#cpp-docker">
+    <link rel="next" href="workflow.html#reproducibility">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../_/css/site.css">
 
@@ -220,14 +220,32 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="environments.html#cpp">C/C++ environment</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../software/repo/organization.html">C++ organization and CMake</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="workflow.html">Project workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="workflow.html#testing">Testing and basic CI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="workflow.html#cpp-testing">C++ tests and CI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="workflow.html#cmake-presets">CMake presets</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="workflow.html#cpack">CPack and binary packages</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../containers/docker/dockerfile-basics.html#cpp-docker">Run and deliver a C++ program with Docker</a>
+  </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="gaya.html">Gaya and basic HPC operations</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="workflow.html">Project workflow</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="workflow.html#testing">Testing and basic CI</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="workflow.html#reproducibility">Reproducibility</a>
@@ -243,6 +261,9 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="project.html#workflow">Expected workflow and GitHub organization</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project.html#cpp-project-workflow">C++ build, testing and delivery</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="project.html#deliverables">Deliverables</a>
@@ -363,9 +384,6 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../cicd/index.html">CI/CD reference</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../software/repo/organization.html">CMake and repository organization</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../jupyter.html">Jupyter</a>
@@ -863,8 +881,8 @@ printf 'Job %s completed its command\n' "$SLURM_JOB_ID"</code></pre>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="environments.html#python">Python environment</a></span>
-  <span class="next"><a href="workflow.html">Project workflow</a></span>
+  <span class="prev"><a href="../containers/docker/dockerfile-basics.html#cpp-docker">Run and deliver a C++ program with Docker</a></span>
+  <span class="next"><a href="workflow.html#reproducibility">Reproducibility</a></span>
 </nav>
 </article>
   </div>

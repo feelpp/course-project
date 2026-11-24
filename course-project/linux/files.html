@@ -222,13 +222,31 @@ MathJax.Hub.Config({
     <a class="nav-link" href="../m1/environments.html#cpp">C/C++ environment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../m1/gaya.html">Gaya and basic HPC operations</a>
+    <a class="nav-link" href="../software/repo/organization.html">C++ organization and CMake</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../m1/workflow.html">Project workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../m1/workflow.html#testing">Testing and basic CI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../m1/workflow.html#cpp-testing">C++ tests and CI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../m1/workflow.html#cmake-presets">CMake presets</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../m1/workflow.html#cpack">CPack and binary packages</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../m1/workflow.html#testing">Testing and basic CI</a>
+    <a class="nav-link" href="../containers/docker/dockerfile-basics.html#cpp-docker">Run and deliver a C++ program with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m1/gaya.html">Gaya and basic HPC operations</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../m1/workflow.html#reproducibility">Reproducibility</a>
@@ -244,6 +262,9 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../m1/project.html#workflow">Expected workflow and GitHub organization</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../m1/project.html#cpp-project-workflow">C++ build, testing and delivery</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../m1/project.html#deliverables">Deliverables</a>
@@ -364,9 +385,6 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../cicd/index.html">CI/CD reference</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../software/repo/organization.html">CMake and repository organization</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../jupyter.html">Jupyter</a>
@@ -845,7 +863,7 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 0
--rw-r--r-- 1 runner runner 0 Oct 20 05:54 example.txt</pre>
+-rw-r--r-- 1 runner runner 0 Nov 24 04:53 example.txt</pre>
 </div>
 </div>
 </div>
@@ -872,10 +890,10 @@ ls -l file.txt</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>-rw-r--r-- 1 runner runner 0 Oct 20 05:54 file.txt
--rwxr-xr-x 1 runner runner 0 Oct 20 05:54 file.txt
--rwxr-xr-x 1 runner runner 0 Oct 20 05:54 file.txt
--rwxr-xr-x 1 runner runner 0 Oct 20 05:54 file.txt</pre>
+<pre>-rw-r--r-- 1 runner runner 0 Nov 24 04:53 file.txt
+-rwxr-xr-x 1 runner runner 0 Nov 24 04:53 file.txt
+-rwxr-xr-x 1 runner runner 0 Nov 24 04:53 file.txt
+-rwxr-xr-x 1 runner runner 0 Nov 24 04:53 file.txt</pre>
 </div>
 </div>
 </div>
@@ -911,10 +929,10 @@ ls -l</code></pre>
 <pre>file.txt
 file1.txt
 total 12
--rw-r--r-- 1 runner runner 10240 Oct 20 05:54 archive.tar
--rw-r--r-- 1 runner runner     0 Oct 20 05:54 example.txt
--rwxr-xr-x 1 runner runner     0 Oct 20 05:54 file.txt
--rw-r--r-- 1 runner runner     0 Oct 20 05:54 file1.txt</pre>
+-rw-r--r-- 1 runner runner 10240 Nov 24 04:53 archive.tar
+-rw-r--r-- 1 runner runner     0 Nov 24 04:53 example.txt
+-rwxr-xr-x 1 runner runner     0 Nov 24 04:53 file.txt
+-rw-r--r-- 1 runner runner     0 Nov 24 04:53 file1.txt</pre>
 </div>
 </div>
 </div>
@@ -936,10 +954,10 @@ ls -l</code></pre>
 <div class="literalblock dynamic-py-result">
 <div class="content">
 <pre>total 4
--rw-r--r-- 1 runner runner 150 Oct 20 05:54 archive.tar.gz
--rw-r--r-- 1 runner runner   0 Oct 20 05:54 example.txt
--rwxr-xr-x 1 runner runner   0 Oct 20 05:54 file.txt
--rw-r--r-- 1 runner runner   0 Oct 20 05:54 file1.txt</pre>
+-rw-r--r-- 1 runner runner 149 Nov 24 04:53 archive.tar.gz
+-rw-r--r-- 1 runner runner   0 Nov 24 04:53 example.txt
+-rwxr-xr-x 1 runner runner   0 Nov 24 04:53 file.txt
+-rw-r--r-- 1 runner runner   0 Nov 24 04:53 file1.txt</pre>
 </div>
 </div>
 </div>
@@ -968,8 +986,8 @@ ls -lrt</code></pre>
 <pre>file.txt
 file1.txt
 total 0
--rw-r--r-- 1 runner runner 0 Oct 20 05:54 file1.txt
--rwxr-xr-x 1 runner runner 0 Oct 20 05:54 file.txt</pre>
+-rw-r--r-- 1 runner runner 0 Nov 24 04:53 file1.txt
+-rwxr-xr-x 1 runner runner 0 Nov 24 04:53 file.txt</pre>
 </div>
 </div>
 </div>
@@ -998,21 +1016,20 @@ ls /tmp</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>clr-debug-pipe-1677-27184-in
-clr-debug-pipe-1677-27184-out
-clr-debug-pipe-1695-27316-in
-clr-debug-pipe-1695-27316-out
+<pre>clr-debug-pipe-1721-7125-in
+clr-debug-pipe-1721-7125-out
+clr-debug-pipe-1739-7291-in
+clr-debug-pipe-1739-7291-out
 documents
-dotnet-diagnostic-1677-27184-socket
-dotnet-diagnostic-1695-27316-socket
+dotnet-diagnostic-1721-7125-socket
+dotnet-diagnostic-1739-7291-socket
 file.txt
 node-compile-cache
 snap-private-tmp
-systemd-private-3efa633e77054886a58d7dd330b43480-chrony.service-ETnjfe
-systemd-private-3efa633e77054886a58d7dd330b43480-haveged.service-vDjrjA
-systemd-private-3efa633e77054886a58d7dd330b43480-systemd-logind.service-eV3UP0
-systemd-private-3efa633e77054886a58d7dd330b43480-systemd-resolved.service-guctzq
-systemd-private-3efa633e77054886a58d7dd330b43480-systemd-timedated.service-vNp6Vq
+systemd-private-70375836f9e54a53bbbac233c08fd9a3-chrony.service-GTuP6d
+systemd-private-70375836f9e54a53bbbac233c08fd9a3-haveged.service-8cZdjG
+systemd-private-70375836f9e54a53bbbac233c08fd9a3-systemd-logind.service-zPuBCL
+systemd-private-70375836f9e54a53bbbac233c08fd9a3-systemd-resolved.service-uH7GVr
 www-data-temp-aspnet-0</pre>
 </div>
 </div>
@@ -1060,21 +1077,20 @@ ls /tmp</code></pre>
 <div class="content">
 <div class="literalblock dynamic-py-result">
 <div class="content">
-<pre>clr-debug-pipe-1677-27184-in
-clr-debug-pipe-1677-27184-out
-clr-debug-pipe-1695-27316-in
-clr-debug-pipe-1695-27316-out
+<pre>clr-debug-pipe-1721-7125-in
+clr-debug-pipe-1721-7125-out
+clr-debug-pipe-1739-7291-in
+clr-debug-pipe-1739-7291-out
 documents
-dotnet-diagnostic-1677-27184-socket
-dotnet-diagnostic-1695-27316-socket
+dotnet-diagnostic-1721-7125-socket
+dotnet-diagnostic-1739-7291-socket
 newname.txt
 node-compile-cache
 snap-private-tmp
-systemd-private-3efa633e77054886a58d7dd330b43480-chrony.service-ETnjfe
-systemd-private-3efa633e77054886a58d7dd330b43480-haveged.service-vDjrjA
-systemd-private-3efa633e77054886a58d7dd330b43480-systemd-logind.service-eV3UP0
-systemd-private-3efa633e77054886a58d7dd330b43480-systemd-resolved.service-guctzq
-systemd-private-3efa633e77054886a58d7dd330b43480-systemd-timedated.service-vNp6Vq
+systemd-private-70375836f9e54a53bbbac233c08fd9a3-chrony.service-GTuP6d
+systemd-private-70375836f9e54a53bbbac233c08fd9a3-haveged.service-8cZdjG
+systemd-private-70375836f9e54a53bbbac233c08fd9a3-systemd-logind.service-zPuBCL
+systemd-private-70375836f9e54a53bbbac233c08fd9a3-systemd-resolved.service-uH7GVr
 www-data-temp-aspnet-0</pre>
 </div>
 </div>

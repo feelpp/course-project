@@ -6,7 +6,7 @@
     <title>Python and C/C++ development environments :: Course Project</title>
     <link rel="canonical" href="https://feelpp.github.io/course-project/course-project/m1/environments.html">
     <link rel="prev" href="../linux/ssh/remote-ssh-vscode.html">
-    <link rel="next" href="gaya.html">
+    <link rel="next" href="../software/repo/organization.html">
     <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../_/css/site.css">
 
@@ -221,13 +221,31 @@ MathJax.Hub.Config({
     <a class="nav-link" href="#cpp">C/C++ environment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="gaya.html">Gaya and basic HPC operations</a>
+    <a class="nav-link" href="../software/repo/organization.html">C++ organization and CMake</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="workflow.html">Project workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="workflow.html#testing">Testing and basic CI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="workflow.html#cpp-testing">C++ tests and CI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="workflow.html#cmake-presets">CMake presets</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="workflow.html#cpack">CPack and binary packages</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="workflow.html#testing">Testing and basic CI</a>
+    <a class="nav-link" href="../containers/docker/dockerfile-basics.html#cpp-docker">Run and deliver a C++ program with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="gaya.html">Gaya and basic HPC operations</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="workflow.html#reproducibility">Reproducibility</a>
@@ -243,6 +261,9 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="project.html#workflow">Expected workflow and GitHub organization</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="project.html#cpp-project-workflow">C++ build, testing and delivery</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="project.html#deliverables">Deliverables</a>
@@ -363,9 +384,6 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../cicd/index.html">CI/CD reference</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../software/repo/organization.html">CMake and repository organization</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../jupyter.html">Jupyter</a>
@@ -797,7 +815,7 @@ int main() {
 <p>Expected output: <code>20</code>. Explain the function, <code>const</code> reference, vector, accumulation and floating-point division. The function currently assumes a non-empty vector; define and test its empty-input behaviour as an exercise. This is a readiness check, not an introduction to all of C++.</p>
 </div>
 <div class="paragraph">
-<p>For a multi-file project use <a href="../software/repo/organization.html" class="xref page">CMake/CTest repository organization</a> and <a href="../git-github/github-actions-cmake-eigen3.html" class="xref page">C++ testing in CI</a>.</p>
+<p>Continue with <a href="../software/repo/organization.html" class="xref page">Organize and build a C++ program</a> to compile and link a multi-file project with CMake.</p>
 </div>
 </div>
 </div>
@@ -819,7 +837,7 @@ int main() {
 </div>
 <nav class="pagination">
   <span class="prev"><a href="../linux/ssh/remote-ssh-vscode.html">VS Code Remote SSH</a></span>
-  <span class="next"><a href="gaya.html">Gaya and basic HPC operations</a></span>
+  <span class="next"><a href="../software/repo/organization.html">C++ organization and CMake</a></span>
 </nav>
 </article>
   </div>
