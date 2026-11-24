@@ -318,6 +318,8 @@ Eigen provides C++ types and functions for linear algebra. We can use it to comp
 The Eigen headers might be in a different directory on your laptop, in CI and in Docker. Install Eigen in each build environment. During configuration, `find_package` lets CMake read the package's description and discover how to use that installation. For Eigen, that description makes the *imported target* `Eigen3::Eigen` available. The target carries the header search path. A package for a compiled library can also describe which library files to link.
 
 `target_link_libraries` tells CMake which of our targets needs those settings. Eigen is header-only, so here that means passing an include directory to the compiler. The package name is `Eigen3`, the CMake target is `Eigen3::Eigen`, and the header is `Eigen/Core`.
+
+image::repo/eigen-find-package.svg[CMake reads Eigen3Config.cmake and makes Eigen3::Eigen available. Using that target with target_link_libraries adds the Eigen include directory when compiling vector_norm.cpp.,410]
 ====
 
 Add these lines after the `vector_norm` library target is defined.

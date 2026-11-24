@@ -1,0 +1,30 @@
+---
+config:
+  htmlLabels: false
+  theme: base
+  look: classic
+  flowchart:
+    rankSpacing: 12
+    padding: 10
+    wrappingWidth: 300
+  themeVariables:
+    fontFamily: "Arial, sans-serif"
+    fontSize: "16px"
+    primaryColor: "#f4f7fb"
+    primaryTextColor: "#23394d"
+    primaryBorderColor: "#7b93aa"
+    lineColor: "#566c81"
+    edgeLabelBackground: "#ffffff"
+---
+flowchart TB
+    accTitle: From Eigen's CMake package to the compiler
+    accDescr: find_package reads Eigen3Config.cmake, making the imported target Eigen3::Eigen available. target_link_libraries applies its include directory to vector_norm so the compiler can find Eigen/Core.
+    find["find_package(Eigen3 REQUIRED CONFIG)<br/>reads Eigen3Config.cmake"]
+    find --> eigen["Eigen3::Eigen<br/>provides the include directory"]
+    eigen --> attach["target_link_libraries<br/>applies it to vector_norm"]
+    attach --> compile["Compiler builds vector_norm.cpp"]
+
+    classDef imported fill:#eaf7f5,stroke:#28877c,color:#153c37
+    classDef compiler fill:#fff5dd,stroke:#ad7b21,color:#534217
+    class eigen imported
+    class compile compiler
