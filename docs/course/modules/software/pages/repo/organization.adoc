@@ -41,6 +41,24 @@ A project can keep public headers under `include/<project>/` and implementation 
 
 As the FEM project grows, group related files by responsibility. For example, put mesh reading in `src/mesh/` and assembly in `src/assembly/`, with each component’s headers and implementations together. Create a separate CMake target when you need to build or reuse that component independently.
 
+[#build-stages]
+.What do the preprocessor, compiler and linker do?
+[%collapsible%open.proof]
+====
+The `c++` command coordinates several tools when you build a program.
+
+Preprocessor::
+Prepares one source file at a time. When it sees `#include "vector_norm.hpp"` in `main.cpp`, it inserts the header contents so the compiler can see the function declaration. It also handles directives such as `#define`. A missing header is reported at this stage.
+
+Compiler::
+Checks the prepared C++ code for issues such as a syntax error or a wrong argument type, then translates it into instructions. The assembler packages those instructions into an *object file* such as `main.o`. The option `-c` stops the build at this file.
+
+Linker::
+Connects references in object files to definitions in other object files or libraries. Here it connects the call in `main.o` to the implementation in `vector_norm.o` and produces the executable. If you omit `vector_norm.o` from the manual link command, you get an error such as `undefined reference` or `undefined symbol`.
+
+After creating the files below, try `c++ -std=c++17 -Isrc -E app/main.cpp`. The `-E` option stops after preprocessing. Look for the declaration `double vector_norm(double x, double y);` among the expanded includes.
+====
+
 [#build-outputs]
 .Library or executable?
 ****
