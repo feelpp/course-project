@@ -43,7 +43,7 @@ class MeanTests(unittest.TestCase):
             mean([])
 ----
 
-Run `python -m unittest discover -v` in the xref:environments.adoc[project environment]. Deliberately break the computation and confirm the test detects it before restoring the implementation. For {cpp}, use the existing xref:software:repo/organization.adoc[CTest example].
+Run `python -m unittest discover -v` in the xref:environments.adoc[project environment]. Deliberately break the computation and confirm the test detects it before restoring the implementation. For {cpp}, follow xref:software:repo/cpp-tests-ci-lab.adoc[Lab 2 · Test C++ locally and in CI].
 
 [#ci]
 == Basic CI

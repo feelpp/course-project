@@ -1,0 +1,143 @@
+= Lab 1 · Organize and build a C++ program
+:page-pagination:
+
+Turn a small C++ calculation into an executable and a library. You will use the same program in the following labs to learn testing, CI, presets and Docker before applying each step to your individual FEM project.
+
+The example reads two coordinates from a text file and writes their Euclidean norm to a second file. For the input `3 4`, the expected result is 5.
+
+== Tools
+
+Start from the xref:m1:environments.adoc#cpp[C++ environment exercise]. On Ubuntu 24.04, install the following on a machine where you can install system packages:
+
+[source,bash]
+----
+sudo apt update
+sudo apt install build-essential cmake ninja-build libeigen3-dev
+----
+
+Use a C++17-capable compiler, CMake 3.22 or later, and Ninja for these labs. Use the C++ standard specified in your own project brief when applying the exercise to FEM.
+
+== 1. Separate the calculation from file handling
+
+In a practice directory, put the public function declaration in `include/vector_norm.hpp`:
+
+[source,cpp]
+----
+#pragma once
+
+double vector_norm(double x, double y);
+----
+
+Put the implementation in `src/vector_norm.cpp`:
+
+[source,cpp]
+----
+#include "vector_norm.hpp"
+#include <cmath>
+
+double vector_norm(double x, double y) {
+    return std::hypot(x, y);
+}
+----
+
+Put the executable entry point in `app/main.cpp`:
+
+[source,cpp]
+----
+#include "vector_norm.hpp"
+#include <cmath>
+#include <fstream>
+#include <iostream>
+#include <string>
+
+int main(int argc, char* argv[]) {
+    if (argc != 3) {
+        std::cerr << "Usage: vector-norm INPUT OUTPUT\n";
+        return 2;
+    }
+
+    std::ifstream input(argv[1]);
+    double x, y;
+    std::string extra;
+    if (!(input >> x >> y) || !std::isfinite(x) || !std::isfinite(y) || (input >> extra)) {
+        std::cerr << "Expected two finite numbers in " << argv[1] << '\n';
+        return 1;
+    }
+
+    std::ofstream output(argv[2]);
+    output << vector_norm(x, y) << '\n';
+    output.close();
+    if (!output) {
+        std::cerr << "Could not write " << argv[2] << '\n';
+        return 1;
+    }
+}
+----
+
+`main()` handles arguments, file paths and errors. The library takes numbers and returns a number. This lets a test call the calculation directly.
+
+== 2. Compile and link once by hand
+
+[source,bash]
+----
+mkdir -p build
+c++ -std=c++17 -Iinclude -c src/vector_norm.cpp -o build/vector_norm.o
+c++ -std=c++17 -Iinclude -c app/main.cpp -o build/main.o
+c++ build/main.o build/vector_norm.o -o build/vector-norm
+
+mkdir -p samples out
+printf '3 4\n' > samples/vector.txt
+./build/vector-norm samples/vector.txt out/norm.txt
+cat out/norm.txt
+----
+
+The first two compiler commands each produce an object file. The last command links both objects into an executable. Try the link command without `build/vector_norm.o` and locate the missing symbol in the error message. Add `/build/` and `/out/` to `.gitignore` before committing.
+
+== 3. Describe the targets with CMake
+
+Create a single `CMakeLists.txt` at the root. It describes a library target and an executable that links to it:
+
+[source,cmake]
+----
+cmake_minimum_required(VERSION 3.22)
+project(VectorNorm LANGUAGES CXX)
+
+add_library(vector_norm src/vector_norm.cpp)
+target_include_directories(vector_norm PUBLIC include)
+target_compile_features(vector_norm PUBLIC cxx_std_17)
+
+add_executable(vector-norm app/main.cpp)
+target_link_libraries(vector-norm PRIVATE vector_norm)
+----
+
+Call CMake from the source root:
+
+[source,bash]
+----
+cmake -S . -B build/debug -G Ninja -DCMAKE_BUILD_TYPE=Debug
+cmake --build build/debug
+./build/debug/vector-norm samples/vector.txt out/norm.txt
+cat out/norm.txt
+----
+
+Configure creates the build files in `build/debug`. Build invokes the compiler and linker. Running the executable is a separate step. Explain why linking `vector_norm` also makes its public include directory available to `vector-norm`.
+
+== 4. Declare Eigen as a dependency
+
+Add these lines after the library target is defined:
+
+[source,cmake]
+----
+find_package(Eigen3 REQUIRED CONFIG)
+target_link_libraries(vector_norm PRIVATE Eigen3::Eigen)
+----
+
+Replace the implementation file's `<cmath>` include with `<Eigen/Core>` and change the function body to `return Eigen::Vector2d{x, y}.stableNorm();`. Configure, build and run again. The output for the sample remains `5`. Eigen is private to this target because the public header uses only built-in types.
+
+If configure cannot find Eigen, check that its development package is installed in the environment where CMake is running. Avoid hard-coding an include path from your laptop.
+
+== Apply this to the FEM project
+
+Open an issue for building one runnable FEM target from a clean clone. Create a branch such as `build-cmake`, separate one reusable calculation or mesh operation from `main()`, and document the dependencies and exact commands in the README. Open a PR linked with `Closes #N`. In the PR, show the configure, build and run commands and the output you obtained. Self-review the diff before merging.
+
+Continue with xref:repo/cpp-tests-ci-lab.adoc[Lab 2 · Test C++ locally and in CI].

@@ -13,6 +13,10 @@ Keep one small scientific repository throughout the path. Each lesson should imp
 . xref:git-github:git-starter.adoc[Git] and xref:git-github:github-essentials.adoc[GitHub]. Start tracking work now.
 . xref:vscode:index.adoc[VS Code] and xref:linux:ssh/remote-ssh-vscode.adoc[Remote SSH]. Use these locally and remotely for subsequent exercises.
 . xref:environments.adoc[Python and C/{cpp} environments]. {cpp} familiarity is needed early and feeds into HPC1, HPC2 and HPC3.
+. xref:software:repo/cpp-build-lab.adoc[Organize and build a C++ program] with explicit CMake commands.
+. xref:software:repo/cpp-tests-ci-lab.adoc[Test C++ locally with CTest and on GitHub Actions].
+. xref:software:repo/cmake-presets-lab.adoc[Share Debug and Release presets] after both configurations work.
+. xref:containers:docker/hands-on/cpp-docker-lab.adoc[Run and deliver a C++ program with Docker].
 . xref:gaya.adoc[Gaya and basic HPC operations]: login node → scheduler → compute node.
 . xref:workflow.adoc[Project workflow, testing, basic CI and reproducibility].
 . xref:project.adoc[M1 semester project].

@@ -1,0 +1,69 @@
+= Lab 3 · Share Debug and Release presets
+:page-pagination:
+
+Start after xref:repo/cpp-tests-ci-lab.adoc[Lab 2]. A preset records options you can already set on the command line. Share these settings so you can use the same configure, build and test commands in the terminal and in CI.
+
+== 1. Build and test Release explicitly
+
+You already used `build/debug`. Configure Release in its own build directory:
+
+[source,bash]
+----
+cmake -S . -B build/release -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build/release
+ctest --test-dir build/release --output-on-failure --no-tests=error
+----
+
+Compare `CMAKE_BUILD_TYPE` in the two `CMakeCache.txt` files. Debug is useful for tracing the program in a debugger. Release enables optimizations. Both should pass the same numerical tests.
+
+== 2. Record the commands in CMakePresets.json
+
+Start with Debug. The configure preset records the generator, build directory and build type. The build and test presets refer to that configuration.
+
+[source,json]
+----
+{
+  "version": 3,
+  "cmakeMinimumRequired": { "major": 3, "minor": 22, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/debug",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
+    }
+  ],
+  "buildPresets": [
+    { "name": "debug", "configurePreset": "debug" }
+  ],
+  "testPresets": [
+    {
+      "name": "debug",
+      "configurePreset": "debug",
+      "output": { "outputOnFailure": true },
+      "execution": { "noTestsAction": "error" }
+    }
+  ]
+}
+----
+
+Add a Release entry to each of the three arrays. Use the name `release`, the directory `build/release` and the build type `Release`. Keep the test settings. Run both configurations from the repository root:
+
+[source,bash]
+----
+cmake --preset debug
+cmake --build --preset debug
+ctest --preset debug
+
+cmake --preset release
+cmake --build --preset release
+ctest --preset release
+----
+
+Check from a clean checkout that the presets produce working executables and run the same tests as the explicit commands. Commit `CMakePresets.json` and ignore `CMakeUserPresets.json`. Personal tool paths belong in the latter. See the https://cmake.org/cmake/help/v3.28/manual/cmake-presets.7.html[CMake presets reference].
+
+== Apply this to the FEM project
+
+Open an issue to replace the explicit Debug and Release commands with shared presets. On a branch such as `build-cmake-presets`, update your README and switch the CI configure, build and test steps to the Debug presets. Run both presets locally and check that CI still runs the same tests. Link the issue in your PR and explain which previous command each preset replaces.
+
+Continue with xref:containers:docker/hands-on/cpp-docker-lab.adoc[Lab 4 · Run and deliver a C++ program with Docker].
