@@ -1,0 +1,34 @@
+---
+config:
+  htmlLabels: false
+  theme: base
+  look: classic
+  flowchart:
+    nodeSpacing: 26
+    rankSpacing: 30
+    wrappingWidth: 230
+  themeVariables:
+    fontFamily: "Arial, sans-serif"
+    fontSize: "16px"
+    primaryColor: "#f4f7fb"
+    primaryTextColor: "#23394d"
+    primaryBorderColor: "#7b93aa"
+    lineColor: "#566c81"
+    edgeLabelBackground: "#ffffff"
+---
+flowchart TB
+    accTitle: From C++ source files to an executable
+    accDescr: Each C++ source compiles into an object file. The calculation object is archived into a static library or linked into a shared library. The application object and one of those libraries are linked into the executable.
+    appSource["main.cpp"] -->|Compile| appObject["main.o"]
+    calcSource["vector_norm.cpp"] -->|Compile| calcObject["vector_norm.o"]
+    calcObject -->|Archive| staticLib["Static library<br/>libvector_norm.a"]
+    calcObject -->|Link as shared| sharedLib["Shared library<br/>libvector_norm.so"]
+    staticLib --> link["Link main.o<br/>with one library"]
+    sharedLib --> link
+    appObject --> link
+    link --> program["Executable<br/>vector-norm"]
+
+    classDef library fill:#eaf7f5,stroke:#28877c,color:#153c37
+    classDef executable fill:#e5eefb,stroke:#426da2,color:#173453
+    class staticLib,sharedLib library
+    class program executable

@@ -5,6 +5,21 @@ Turn a small C++ calculation into an executable and a library. You will use the 
 
 The example reads two coordinates from a text file and writes their Euclidean norm to a second file. For the input `3 4`, the expected result is 5.
 
+[#build-outputs]
+.Library or executable?
+****
+*Executable.* A program you can run, such as `vector-norm`. Its `main()` function is where your C++ code starts running.
+
+*Library.* Reusable code that other programs or tests can call. In this lab the library provides `vector_norm()`, and the executable handles the input and output files.
+
+* *Static library* (`.a` on Linux). An archive of compiled code. When you link a program, the linker copies the parts it needs into the executable.
+* *Shared (dynamic) library* (`.so` on Linux). The linker records a dependency. The library stays in a separate file and is loaded when the executable runs, so the file must be available at run time.
+
+Compilation first turns each `.cpp` file into an *object file* (`.o`). It contains compiled code ready for the linker. CMake sets the appropriate compiler options when building a shared library. The diagram shows the two possible library builds. This lab uses the static library.
+
+image::repo/cpp-build-outputs.svg[Each C++ source compiles to an object file. The calculation object becomes a static or shared library. The application object and one of those libraries are linked into the executable.,640]
+****
+
 == Tools
 
 Start from the xref:m1:environments.adoc#cpp[C++ environment exercise]. On Ubuntu 24.04, install the following on a machine where you can install system packages:
@@ -102,7 +117,7 @@ Create a single `CMakeLists.txt` at the root. It describes a library target and 
 cmake_minimum_required(VERSION 3.22)
 project(VectorNorm LANGUAGES CXX)
 
-add_library(vector_norm src/vector_norm.cpp)
+add_library(vector_norm STATIC src/vector_norm.cpp)
 target_include_directories(vector_norm PUBLIC include)
 target_compile_features(vector_norm PUBLIC cxx_std_17)
 
