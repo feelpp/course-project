@@ -26,7 +26,7 @@ For each change in your FEM repository, open an issue with acceptance criteria, 
 == Deliverables
 
 * A report describing the problem, method, validation and limits.
-* Source at an identified commit/tag, tests and CI evidence.
+* Source at an identified commit/tag, tests and CI run results.
 * Input provenance and instructions for environment setup and execution, including a scheduler script when needed.
 * A clean-checkout reproduction record with commands and expected results.
 * Issue/PR/review links, contribution statement and any permitted AI-use disclosure.

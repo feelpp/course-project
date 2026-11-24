@@ -255,7 +255,7 @@ Start with Debug. The configure preset records the generator, build directory an
 [%collapsible.proof]
 ====
 * `version` is the version of the JSON format. `cmakeMinimumRequired` records the CMake version expected by this file.
-* In `configurePresets`, `generator` replaces `-G`, `binaryDir` replaces `-B` and `cacheVariables` stores the options previously passed with `-D`. CMake expands `${sourceDir}` to the project root.
+* In `configurePresets`, `generator` replaces `-G`, `binaryDir` replaces `-B` and `cacheVariables` stores the options previously passed with `-D`. CMake expands `+${sourceDir}+` to the project root.
 * The `configurePreset` field connects each build and test preset to the right build directory.
 * `outputOnFailure` and `noTestsAction` preserve the CTest options from the explicit commands.
 ====
@@ -314,6 +314,7 @@ cmake --preset release
 cmake --build --preset release
 ctest --preset release
 cmake --install build/release --prefix "$PWD/build/stage"
+mkdir -p out
 ./build/stage/bin/vector-norm samples/vector.txt out/norm.txt
 cat out/norm.txt
 ----
@@ -359,11 +360,12 @@ Find `bin/vector-norm` in the archive listing. Unpack it into a fresh directory 
 
 === Create a Debian package on Ubuntu
 
-Build on Ubuntu 24.04 for this step. Install `dpkg-dev` so CPack can use `dpkg-shlibdeps` to calculate runtime dependencies:
+Build on Ubuntu 24.04 for this step. Install `file` to identify the binary and `dpkg-dev` so CPack can use `dpkg-shlibdeps` to calculate runtime dependencies:
 
 [source,bash]
 ----
-sudo apt install dpkg-dev
+sudo apt update
+sudo apt install dpkg-dev file
 ----
 
 Add the following settings *before* `include(CPack)`:
