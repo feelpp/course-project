@@ -327,9 +327,9 @@ Add these settings at the end of `CMakeLists.txt`:
 
 [source,cmake]
 ----
-set(CPACK_PACKAGE_NAME "vector-norm")                   # <1>
-set(CPACK_PACKAGE_VERSION "0.1.0")                      # <2>
-set(CPACK_PACKAGE_CONTACT "VectorNorm maintainers")     # <3>
+set(CPACK_PACKAGE_NAME "vector-norm")                 # <1>
+set(CPACK_PACKAGE_VERSION "0.1.0")                    # <2>
+set(CPACK_PACKAGE_CONTACT "VectorNorm maintainers")   # <3>
 include(CPack)                                        # <4>
 ----
 <1> Give the binary package a name.
@@ -356,7 +356,17 @@ tar -tzf build/packages/vector-norm-0.1.0-*.tar.gz
 * `-B build/packages` writes the packages there.
 ====
 
-Find `bin/vector-norm` in the archive listing. Unpack it into a fresh directory and run it with the sample input. This archive contains a binary built for your operating system and architecture. See the https://cmake.org/cmake/help/v3.28/cpack_gen/archive.html[CPack archive reference].
+Find `bin/vector-norm` in the archive listing. Unpack it into a fresh directory and run it with the sample input. The archive contains a binary built for your operating system and architecture.
+
+To package the same files as a ZIP archive, change the generator:
+
+[source,bash]
+----
+cpack --config build/release/CPackConfig.cmake -G ZIP -B build/packages
+unzip -l build/packages/vector-norm-0.1.0-*.zip
+----
+
+See the https://cmake.org/cmake/help/v3.28/cpack_gen/archive.html[CPack archive reference] for additional formats.
 
 === Create a Debian package on Ubuntu
 
@@ -387,7 +397,7 @@ dpkg-deb --info build/packages/vector-norm_0.1.0_*.deb
 dpkg-deb --contents build/packages/vector-norm_0.1.0_*.deb
 ----
 
-Check the package name, version, architecture and dependencies without installing it. Compare the files with the archive. Try `-G ZIP` to see how the file format changes while the install rules stay the same. See the https://cmake.org/cmake/help/v3.28/cpack_gen/deb.html[CPack Debian package reference].
+Check the package name, version, architecture and dependencies without installing it. Compare the files with the archive. See the https://cmake.org/cmake/help/v3.28/cpack_gen/deb.html[CPack Debian package reference].
 
 === Exercise for the FEM project
 
