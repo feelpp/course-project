@@ -14,7 +14,7 @@ Start with the path your data takes through the program. In the FEM project, `ma
 
 *Keep dependencies easy to follow.* The executable can call the library, and the tests can call that same library. The calculation needs no knowledge of command-line arguments, output paths or the tests. When adding a feature, ask which component should own it and what information it needs from the others.
 
-*Use headers to describe the interface.* A header (`.hpp`) declares what callers can use, including function names, inputs and return types. A source file (`.cpp`) defines what the functions do. Include the header where you call the function and in the source file that implements it. Document assumptions such as valid inputs or the meaning of a returned value at the interface.
+*Keep related files together.* In this example, `vector_norm.hpp` declares what callers can use and `vector_norm.cpp` defines what the function does. Keep them side by side in `src/`. Include the header where you call the function and in the file that implements it. Document assumptions about inputs and results at the interface.
 
 A small project can start with one library target, one executable and one `CMakeLists.txt`:
 
@@ -22,27 +22,29 @@ A small project can start with one library target, one executable and one `CMake
 ----
 project/
 ├── CMakeLists.txt
-├── include/       # Library interfaces
-├── src/           # Library implementation
-├── app/           # Executable entry point
-├── tests/         # Test programs and small fixtures
-├── meshes/        # FEM input meshes
-└── README.adoc    # Build, test and run instructions
+├── src/
+│   ├── vector_norm.hpp  # Library interface
+│   └── vector_norm.cpp  # Library implementation
+├── app/
+│   └── main.cpp         # Executable entry point
+├── tests/              # Test programs and small fixtures
+├── meshes/             # FEM input meshes
+└── README.adoc          # Build, test and run instructions
 ----
 
-As the project grows, group related operations such as mesh I/O, assembly and solving. A separate folder or CMake target is useful when the group has a clear interface and reason to be reused or built separately.
+As the FEM project grows, group related files by responsibility. For example, put mesh reading in `src/mesh/` and assembly in `src/assembly/`, with each component’s headers and implementations together. Create a separate CMake target when you need to build or reuse that component independently.
 
 [#build-outputs]
 .Library or executable?
 ****
 *Executable.* A program you can run, such as `vector-norm`. Its `main()` function is where your C++ code starts running.
 
-*Library.* Reusable code that other programs or tests can call. In this lab the library provides `vector_norm()`, and the executable handles the input and output files.
+*Library.* Reusable code that other programs or tests can call. In this example the library provides `vector_norm()`, and the executable handles the input and output files.
 
 * *Static library* (`.a` on Linux). An archive of compiled code. When you link a program, the linker copies the parts it needs into the executable.
 * *Shared (dynamic) library* (`.so` on Linux). The linker records a dependency. The library stays in a separate file and is loaded when the executable runs, so the file must be available at run time.
 
-Compilation first turns each `.cpp` file into an *object file* (`.o`). It contains compiled code ready for the linker. CMake sets the appropriate compiler options when building a shared library. The diagram shows the two possible library builds. This lab uses the static library.
+Compilation first turns each `.cpp` file into an *object file* (`.o`). It contains compiled code ready for the linker. CMake sets the appropriate compiler options when building a shared library. The diagram shows the two possible library builds. The example builds a static library.
 
 image::repo/cpp-build-outputs.svg[Each C++ source compiles to an object file. The calculation object becomes a static or shared library. The application object and one of those libraries are linked into the executable.,640]
 ****
@@ -57,11 +59,11 @@ sudo apt update
 sudo apt install build-essential cmake ninja-build libeigen3-dev
 ----
 
-Use a C++17-capable compiler, CMake 3.22 or later, and Ninja for these labs. Use the C++ standard specified in your own project brief when applying the exercise to FEM.
+Use a C++17-capable compiler, CMake 3.22 or later, and Ninja for the examples in this sequence. Use the C++ standard specified in your own project brief when applying the exercise to FEM.
 
 == Separate the calculation from file handling
 
-In a practice directory, put the public function declaration in `include/vector_norm.hpp`:
+In a practice directory, declare the function in `src/vector_norm.hpp`:
 
 [source,cpp]
 ----
@@ -123,8 +125,8 @@ int main(int argc, char* argv[]) {
 [source,bash]
 ----
 mkdir -p build
-c++ -std=c++17 -Iinclude -c src/vector_norm.cpp -o build/vector_norm.o
-c++ -std=c++17 -Iinclude -c app/main.cpp -o build/main.o
+c++ -std=c++17 -c src/vector_norm.cpp -o build/vector_norm.o
+c++ -std=c++17 -Isrc -c app/main.cpp -o build/main.o
 c++ build/main.o build/vector_norm.o -o build/vector-norm
 
 mkdir -p samples out
@@ -133,7 +135,7 @@ printf '3 4\n' > samples/vector.txt
 cat out/norm.txt
 ----
 
-The first two compiler commands each produce an object file. The last command links both objects into an executable. Try the link command without `build/vector_norm.o` and locate the missing symbol in the error message. Add `/build/` and `/out/` to `.gitignore` before committing.
+The first two compiler commands each produce an object file. The second uses `-Isrc` so `app/main.cpp` can find the library header. The last command links both objects into an executable. Try the link command without `build/vector_norm.o` and locate the missing symbol in the error message. Add `/build/` and `/out/` to `.gitignore` before committing.
 
 == Describe the targets with CMake
 
@@ -145,7 +147,7 @@ cmake_minimum_required(VERSION 3.22)
 project(VectorNorm LANGUAGES CXX)
 
 add_library(vector_norm STATIC src/vector_norm.cpp)
-target_include_directories(vector_norm PUBLIC include)
+target_include_directories(vector_norm PUBLIC src)
 target_compile_features(vector_norm PUBLIC cxx_std_17)
 
 add_executable(vector-norm app/main.cpp)
@@ -162,7 +164,7 @@ cmake --build build/debug
 cat out/norm.txt
 ----
 
-Configure creates the build files in `build/debug`. Build invokes the compiler and linker. Running the executable is a separate step. Explain why linking `vector_norm` also makes its public include directory available to `vector-norm`.
+Configure creates the build files in `build/debug`. Build invokes the compiler and linker. Running the executable is a separate step. Marking `src/` as a `PUBLIC` include directory tells CMake to pass it to targets that link to `vector_norm`, including the executable and the tests.
 
 == Declare Eigen as a dependency
 
