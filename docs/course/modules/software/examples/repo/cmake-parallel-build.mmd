@@ -1,0 +1,37 @@
+---
+config:
+  htmlLabels: false
+  theme: base
+  look: classic
+  flowchart:
+    nodeSpacing: 28
+    rankSpacing: 30
+    wrappingWidth: 240
+  themeVariables:
+    fontFamily: "Arial, sans-serif"
+    fontSize: "16px"
+    primaryColor: "#f4f7fb"
+    primaryTextColor: "#23394d"
+    primaryBorderColor: "#7b93aa"
+    lineColor: "#566c81"
+    edgeLabelBackground: "#ffffff"
+---
+flowchart TB
+    accTitle: How Make and Ninja schedule a C++ build
+    accDescr: CMake reads CMakeLists.txt and generates either build.ninja for Ninja or a Makefile for Make. The chosen tool can run the two compile jobs in parallel. The link job waits for both object files and produces vector-norm.
+    cmake["CMake reads CMakeLists.txt"]
+    cmake -->|Ninja generator| ninja["Ninja reads build.ninja"]
+    cmake -->|Unix Makefiles generator| make["Make reads Makefile"]
+    ninja --> schedule["The chosen tool schedules ready jobs"]
+    make --> schedule
+    schedule --> main["Compile main.cpp → main.o"]
+    schedule --> norm["Compile vector_norm.cpp → vector_norm.o"]
+    main --> link["Link both objects → vector-norm"]
+    norm --> link
+
+    classDef tool fill:#e5eefb,stroke:#426da2,color:#173453
+    classDef compile fill:#eaf7f5,stroke:#28877c,color:#153c37
+    classDef result fill:#fff5dd,stroke:#ad7b21,color:#534217
+    class ninja,make tool
+    class main,norm compile
+    class link result

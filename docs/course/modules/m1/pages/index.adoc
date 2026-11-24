@@ -13,8 +13,13 @@ Keep one small scientific repository throughout the path. Each lesson should imp
 . xref:git-github:git-starter.adoc[Git] and xref:git-github:github-essentials.adoc[GitHub]. Start tracking work now.
 . xref:vscode:index.adoc[VS Code] and xref:linux:ssh/remote-ssh-vscode.adoc[Remote SSH]. Use these locally and remotely for subsequent exercises.
 . xref:environments.adoc[Python and C/{cpp} environments]. {cpp} familiarity is needed early and feeds into HPC1, HPC2 and HPC3.
+. xref:software:repo/organization.adoc[Organize and build a C++ program] with explicit CMake commands.
+. xref:workflow.adoc[Project workflow and basic CI], then xref:workflow.adoc#cpp-testing[C++ tests with CTest and GitHub Actions].
+. xref:workflow.adoc#cmake-presets[Share Debug and Release presets] after both configurations work.
+. xref:workflow.adoc#cpack[Package a C++ program with CPack].
+. xref:containers:docker/dockerfile-basics.adoc#cpp-docker[Run and deliver a C++ program with Docker].
 . xref:gaya.adoc[Gaya and basic HPC operations]: login node → scheduler → compute node.
-. xref:workflow.adoc[Project workflow, testing, basic CI and reproducibility].
+. xref:workflow.adoc#reproducibility[Reproduce from a clean checkout].
 . xref:project.adoc[M1 semester project].
 
 The shared scientific target is xref:m2:feelpp-gaya.adoc[deploying {feelpp} on Gaya with Slurm and Apptainer]. M1 establishes the remote-computing and development skills needed to reach it.

@@ -49,7 +49,7 @@ c++ -std=c++17 -Wall -Wextra -Wpedantic -O2 mean.cpp -o mean
 
 Expected output: `20`. Explain the function, `const` reference, vector, accumulation and floating-point division. The function currently assumes a non-empty vector; define and test its empty-input behaviour as an exercise. This is a readiness check, not an introduction to all of {cpp}.
 
-For a multi-file project use xref:software:repo/organization.adoc[CMake/CTest repository organization] and xref:git-github:github-actions-cmake-eigen3.adoc[{cpp} testing in CI].
+Continue with xref:software:repo/organization.adoc[Organize and build a C++ program] to compile and link a multi-file project with CMake.
 
 == Common mistakes
 

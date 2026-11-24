@@ -249,38 +249,106 @@ EXPOSE 8888
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--no-browser"]
 ----
 
-=== Example 3: C++/CMake Mathematical Library
+[#cpp-docker]
+=== Example 3: Build and run a C++ image
+
+Use the Release preset and install rule from xref:m1:workflow.adoc#cpack[the CPack example]. First run the installed executable on the host as shown there. Then use Docker to reproduce the result.
+
+[#docker-image-container]
+.What is the difference between an image and a container?
+[%collapsible%open.proof]
+====
+An *image* contains the application, its runtime dependencies and the default command. A *container* is an instance of that image running on a Docker host. Here `docker build` creates an image of `vector-norm` and `docker run` starts a container to calculate one result. A *bind mount* makes a host directory available at a path inside the container.
+====
+
+==== Build an image
+
+Check `docker version`. If the Docker engine is unavailable, follow the xref:docker/docker-install.adoc[installation guide]. Add a `.dockerignore` at the root:
+
+[source,text]
+----
+.git
+.github
+build
+out
+CMakeUserPresets.json
+----
+
+The build context is the directory passed to `docker build`. Docker reads the source files from that directory. Excluding `build/` ensures compilation starts with the source and avoids copying binaries compiled on the host.
+
+Create a `Dockerfile` at the root of the practice repository:
 
 [source,dockerfile]
 ----
-# Dockerfile for C++ mathematical computing with Eigen
-FROM ubuntu:24.04
-
-# Install build tools and libraries
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    cmake \
-    git \
-    libeigen3-dev \
-    libboost-all-dev \
+FROM ubuntu:24.04 AS build
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends g++ cmake ninja-build libeigen3-dev \
     && rm -rf /var/lib/apt/lists/*
+WORKDIR /src
+COPY . .
+RUN cmake --preset release \
+    && cmake --build --preset release \
+    && ctest --preset release \
+    && cmake --install build/release --prefix /stage
 
-# Set working directory
-WORKDIR /project
-
-# Copy project files
-COPY CMakeLists.txt .
-COPY src/ ./src/
-COPY include/ ./include/
-
-# Build the project
-RUN mkdir build && cd build && \
-    cmake .. -DCMAKE_BUILD_TYPE=Release && \
-    make -j$(nproc)
-
-# Set the built executable as entry point
-ENTRYPOINT ["/project/build/mymath"]
+FROM ubuntu:24.04
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libstdc++6 \
+    && rm -rf /var/lib/apt/lists/*
+COPY --from=build /stage/bin/vector-norm /usr/local/bin/vector-norm
+ENTRYPOINT ["/usr/local/bin/vector-norm"]
 ----
+
+[#cpp-dockerfile-instructions]
+.Read the two stages of the Dockerfile
+[%collapsible.proof]
+====
+* `FROM ubuntu:24.04 AS build` starts a stage named `build` where the compiler, CMake, Ninja and Eigen are available.
+* `WORKDIR /src` sets the directory for the following instructions. `COPY . .` copies the project files into that directory, subject to `.dockerignore`.
+* The build stage configures, builds and tests Release, then runs the CMake install rule with `/stage` as its prefix.
+* The second `FROM` starts the final image. `COPY --from=build` takes only the installed executable from the first stage. The final image also installs the C++ runtime needed to run it.
+* `ENTRYPOINT` selects the default program. Arguments after the image name are passed to that program.
+====
+
+==== Run the image with local input and output
+
+[source,bash]
+----
+docker build -t vector-norm:example .
+mkdir -p container-out
+docker run --rm --user "$(id -u):$(id -g)" \
+  --mount "type=bind,source=$PWD/samples,target=/input,readonly" \
+  --mount "type=bind,source=$PWD/container-out,target=/output" \
+  vector-norm:example /input/vector.txt /output/norm.txt
+test "$(cat container-out/norm.txt)" = 5
+cmp out/norm.txt container-out/norm.txt
+----
+
+[#cpp-docker-run-options]
+.Read the Docker commands and mount options
+[%collapsible.proof]
+====
+* In `docker build -t vector-norm:example .`, `-t` gives the image a name and tag. The final `.` selects the current directory as the build context.
+* `--rm` removes the container after it exits. The result stays in the mounted host directory.
+* `--user` runs the program with your numeric user and group IDs so it can write the mounted output directory.
+* In each `--mount`, `source` is a path on the host and `target` is its path inside the container. The input mount is `readonly`. The output mount is writable.
+====
+
+The container sees the input at `/input/vector.txt` and writes into the host's `container-out/` directory. The commands check the known result and compare it with the host run. When using these commands in CI, use an empty output directory so an earlier file cannot mask a failed run. Add `/container-out/` to both ignore files. Try a missing input file and check that the container exits with an error.
+
+==== Verify in CI and prepare a release
+
+In your existing workflow, build the image after the C++ tests pass. Run the image with the sample input and check the output on the runner. This tests the final image as a user would run it.
+
+For a delivery tag, publish the image to GitHub Container Registry (GHCR) after the checks pass. To automate the publication, use a job restricted to a push of a delivery tag. Give that job `contents: read` and `packages: write` and authenticate with the workflow's `GITHUB_TOKEN`. Verify that your instructor can pull the package. Keep the package private for a private assignment. See the https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry[GitHub Container Registry guide].
+
+Keep run artifacts and release assets distinct. Attach PDFs to the workflow run for review and to the GitHub Release for a tagged delivery. Link the matching image tag or digest and give the exact command, input and expected output for one reproducible run. The xref:software:release-engineering-weather.adoc[release engineering lesson] shows the difference using a separate project.
+
+==== Exercise for the FEM project
+
+Open an issue for running a small FEM case in the final image. On a branch such as `package-fem-docker`, build with your Release preset and pass the mesh or configuration as an input, with a writable mount for results. Check your expected numerical result or output file. Open a PR linked to the issue with the Docker build and run commands, the result and the CI run. For the delivery, link the image from the release associated with the project version.
+
+Return to the xref:m1:project.adoc[M1 semester project and deliverables].
 
 == Building Images
 
