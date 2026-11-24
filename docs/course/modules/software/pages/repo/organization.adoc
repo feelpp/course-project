@@ -32,6 +32,13 @@ project/
 └── README.adoc          # Build, test and run instructions
 ----
 
+[#separate-public-headers]
+.Alternative layout for public headers
+[NOTE]
+====
+A project can keep public headers under `include/<project>/` and implementation files under `src/`. This layout is useful when other projects install and use the library because it makes the public interface easy to find and package. Private headers can stay beside the code that uses them.
+====
+
 As the FEM project grows, group related files by responsibility. For example, put mesh reading in `src/mesh/` and assembly in `src/assembly/`, with each component’s headers and implementations together. Create a separate CMake target when you need to build or reuse that component independently.
 
 [#build-outputs]
