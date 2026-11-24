@@ -9,15 +9,15 @@ Answer a scientific question while demonstrating autonomy in Linux, Python/{cpp}
 
 Maintain a repository with source, tests, small fixtures, environment instructions and a README. Use issues, branches, PRs, reviews, labels, milestones and a GitHub Project board. Record each member's contributions. Apply xref:workflow.adoc[testing/basic CI] to changes; use xref:gaya.adoc[Gaya] when remote execution is appropriate.
 
-[#cpp-project-labs]
-== C++ build, testing and Docker labs
+[#cpp-project-workflow]
+== C++ build, testing and delivery
 
-The FEM semester project is individual. Follow the labs in order on the practice example, then apply each step in your own FEM repository.
+The FEM semester project is individual. Work through the course examples below in order and apply each step in your own FEM repository.
 
-. xref:software:repo/cpp-build-lab.adoc[Organize and build a C++ program] using explicit CMake commands.
-. xref:software:repo/cpp-tests-ci-lab.adoc[Run numerical tests with CTest and GitHub Actions].
-. xref:software:repo/cmake-presets-lab.adoc[Record the working commands as Debug and Release presets].
-. xref:containers:docker/hands-on/cpp-docker-lab.adoc[Build, run and deliver the Docker image].
+. xref:software:repo/organization.adoc[Organize and build a C++ program] using explicit CMake commands.
+. xref:workflow.adoc#cpp-testing[Run numerical tests with CTest and GitHub Actions].
+. xref:workflow.adoc#cmake-presets[Record the working commands as Debug and Release presets].
+. xref:containers:docker/dockerfile-basics.adoc#cpp-docker[Build, run and deliver the Docker image].
 
 For each change in your FEM repository, open an issue with acceptance criteria, work on a branch and open a PR that links to the issue. Include the commands and results, then review your own diff. Use the FEM assignment brief and rubric for the required deliverables and milestones.
 
