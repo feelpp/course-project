@@ -169,7 +169,7 @@ cat out/norm.txt
 
 The first two compiler commands each produce an object file. The second uses `-Isrc` so `app/main.cpp` can find the library header. The last command links both objects into an executable. Try the link command without `build/vector_norm.o` and locate the missing symbol in the error message. Add `/build/` and `/out/` to `.gitignore` before committing.
 
-== Describe the targets with CMake
+== Build with CMake
 
 [#what-is-cmake]
 .What does CMake do?
@@ -180,29 +180,80 @@ CMake is a widely used tool for configuring C++ builds. You describe what to bui
 During *configuration*, CMake reads that description, detects the compiler and generates build rules for a tool such as Ninja. During the *build*, Ninja follows those rules and calls the compiler and linker. When you edit a source file, Ninja uses the dependencies to rebuild the affected files. The same `CMakeLists.txt` describes the build on your computer and in CI. See the https://cmake.org/cmake/help/v3.28/manual/cmake.1.html[CMake command reference].
 ====
 
-Create a single `CMakeLists.txt` at the root. It describes a library target and an executable that links to it:
+[#first-cmake-build]
+=== Build one executable
+
+Create `CMakeLists.txt` at the root of your practice project. Start with one target containing both source files, as in the manual build.
 
 [source,cmake]
 ----
-cmake_minimum_required(VERSION 3.22)                      # <1>
-project(VectorNorm LANGUAGES CXX)                         # <2>
-
-add_library(vector_norm STATIC src/vector_norm.cpp)       # <3>
-target_include_directories(vector_norm PUBLIC src)        # <4>
-target_compile_features(vector_norm PUBLIC cxx_std_17)    # <5>
-
-add_executable(vector-norm app/main.cpp)                  # <6>
-target_link_libraries(vector-norm PRIVATE vector_norm)    # <7>
+cmake_minimum_required(VERSION 3.22)                         # <1>
+project(VectorNorm LANGUAGES CXX)                            # <2>
+add_executable(vector-norm app/main.cpp src/vector_norm.cpp) # <3>
+target_include_directories(vector-norm PRIVATE src)          # <4>
+target_compile_features(vector-norm PRIVATE cxx_std_17)      # <5>
 ----
 <1> Require CMake 3.22 or later.
 <2> Name the project `VectorNorm` and enable the C++ language (`CXX`).
-<3> Build the static library `vector_norm` from `src/vector_norm.cpp`. On Linux the file is `libvector_norm.a`.
-<4> Search `src/` for headers. `PUBLIC` makes that directory available to the library itself and to any target that links it.
-<5> Require C++17 or newer for the library and for targets that link it. The `cxx_std_17` setting specifies a minimum language level.
-<6> Build the runnable `vector-norm` program from `app/main.cpp`.
-<7> Link the executable with the library. `PRIVATE` makes the library a dependency of this executable. CMake also uses the library's public requirements when compiling the executable.
+<3> Compile the two sources and link their object files into the `vector-norm` executable.
+<4> Add `src/` to the header search path for this target, just as `-Isrc` did in the manual command. `PRIVATE` applies the setting to this target.
+<5> Require C++17 or newer when building the executable.
 
-Call CMake from the source root:
+Configure, build and run from the directory containing `CMakeLists.txt`:
+
+[source,bash]
+----
+cmake -S . -B build/basic -G Ninja
+cmake --build build/basic
+./build/basic/vector-norm samples/vector.txt out/norm.txt
+cat out/norm.txt
+----
+
+Expected result: `5`, just as in the manual build.
+
+[#cmake-command-options]
+.Read the configure and build options
+[%collapsible.proof]
+====
+[cols="1,3",options="header"]
+|===
+|Option |What it does here
+
+|`-S .`
+|Use the current directory (`.`) as the source tree. This is where CMake reads `CMakeLists.txt`.
+
+|`-B build/basic`
+|Put generated build rules, object files and binaries in `build/basic/`, outside the source directories.
+
+|`-G Ninja`
+|Generate rules for Ninja, the build tool installed above.
+
+|`--build build/basic`
+|Run the build tool with the rules that were generated in `build/basic/`.
+|===
+====
+
+[#cmake-library-target]
+=== Give the calculation its own target
+
+The calculation will also be used in the tests. Keep the first two lines of `CMakeLists.txt` and replace the rest with a library target and an executable that links to it:
+
+[source,cmake]
+----
+add_library(vector_norm STATIC src/vector_norm.cpp)          # <1>
+target_include_directories(vector_norm PUBLIC src)           # <2>
+target_compile_features(vector_norm PUBLIC cxx_std_17)       # <3>
+
+add_executable(vector-norm app/main.cpp)                     # <4>
+target_link_libraries(vector-norm PRIVATE vector_norm)       # <5>
+----
+<1> Build the static library. On Linux its file is `libvector_norm.a`.
+<2> Make `src/` available to the library and to targets that use it. This is what `PUBLIC` means here.
+<3> Require C++17 or newer for the library and propagate that requirement to its callers.
+<4> Compile the application's entry point in the executable target.
+<5> Make `vector_norm` a dependency of the executable. The executable uses the library's public settings and links the library's compiled code.
+
+Use a different build directory for Debug. The added option `-DCMAKE_BUILD_TYPE=Debug` sets a CMake variable at configure time. With Ninja, this selects the Debug configuration, which includes information that helps a debugger match the executable to the source code.
 
 [source,bash]
 ----
@@ -212,43 +263,30 @@ cmake --build build/debug
 cat out/norm.txt
 ----
 
-[cols="1,3",options="header"]
-|===
-|Option |What it does here
+Verify that the result is still `5`. In the testing section, a test program will link against the same `vector_norm` library.
 
-|`-S .`
-|Read the source tree starting in the current directory (`.`), which contains `CMakeLists.txt`.
+.Observe what is rebuilt
+[TIP]
+====
+After changing `src/vector_norm.cpp`, run `cmake --build build/debug --verbose`. Read the compiler command for the changed file and the command that relinks the executable.
+====
 
-|`-B build/debug`
-|Put generated rules, objects and binaries in `build/debug/`. Keeping them in a separate directory lets you build another configuration elsewhere from the same sources.
-
-|`-G Ninja`
-|Generate rules for Ninja, the build tool installed above.
-
-|`-DCMAKE_BUILD_TYPE=Debug`
-|Set the `CMAKE_BUILD_TYPE` variable to `Debug` for this build directory. With Ninja this selects a build with debug information for tools such as GDB.
-
-|`--build build/debug`
-|Run the build tool using the configuration already generated in `build/debug/`.
-|===
-
-The last two commands run the executable and show the output file. Run the build again after editing `src/vector_norm.cpp` and observe which targets are rebuilt.
-
-== Declare Eigen as a dependency
+[#cmake-eigen]
+=== Declare Eigen as a dependency
 
 Add these lines after the library target is defined:
 
 [source,cmake]
 ----
-find_package(Eigen3 REQUIRED CONFIG)                      # <1>
-target_link_libraries(vector_norm PRIVATE Eigen3::Eigen)  # <2>
+find_package(Eigen3 REQUIRED CONFIG)                         # <1>
+target_link_libraries(vector_norm PRIVATE Eigen3::Eigen)     # <2>
 ----
 <1> Find the CMake configuration provided by the installed Eigen package (`CONFIG`). `REQUIRED` stops configuration if Eigen is missing.
 <2> Attach the `Eigen3::Eigen` target to `vector_norm`. Eigen is a header library, so this gives the compiler the include paths it needs. The `PRIVATE` setting keeps Eigen out of the library's public interface.
 
-See the https://libeigen.gitlab.io/eigen/docs-3.4/TopicCMakeGuide.html[Eigen CMake guide].
-
 Replace the implementation file's `<cmath>` include with `<Eigen/Core>` and change the function body to `return Eigen::Vector2d{x, y}.stableNorm();`. Configure, build and run again. The output for the sample remains `5`. Eigen is private to this target because the public header uses only built-in types.
+
+See the https://libeigen.gitlab.io/eigen/docs-3.4/TopicCMakeGuide.html[Eigen CMake guide].
 
 If configure cannot find Eigen, check that its development package is installed in the environment where CMake is running. Avoid hard-coding an include path from your laptop.
 

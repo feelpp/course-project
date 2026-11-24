@@ -26,6 +26,7 @@
 *** xref:m1:workflow.adoc#testing[Testing and basic CI]
 *** xref:m1:workflow.adoc#cpp-testing[C++ tests and CI]
 *** xref:m1:workflow.adoc#cmake-presets[CMake presets]
+*** xref:m1:workflow.adoc#cpack[CPack and binary packages]
 ** xref:containers:docker/dockerfile-basics.adoc#cpp-docker[Run and deliver a C++ program with Docker]
 ** xref:m1:gaya.adoc[Gaya and basic HPC operations]
 ** xref:m1:workflow.adoc#reproducibility[Reproducibility]

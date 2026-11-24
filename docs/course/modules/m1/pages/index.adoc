@@ -16,6 +16,7 @@ Keep one small scientific repository throughout the path. Each lesson should imp
 . xref:software:repo/organization.adoc[Organize and build a C++ program] with explicit CMake commands.
 . xref:workflow.adoc[Project workflow and basic CI], then xref:workflow.adoc#cpp-testing[C++ tests with CTest and GitHub Actions].
 . xref:workflow.adoc#cmake-presets[Share Debug and Release presets] after both configurations work.
+. xref:workflow.adoc#cpack[Package a C++ program with CPack].
 . xref:containers:docker/dockerfile-basics.adoc#cpp-docker[Run and deliver a C++ program with Docker].
 . xref:gaya.adoc[Gaya and basic HPC operations]: login node → scheduler → compute node.
 . xref:workflow.adoc#reproducibility[Reproduce from a clean checkout].

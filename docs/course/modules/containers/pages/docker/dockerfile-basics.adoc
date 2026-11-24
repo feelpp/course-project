@@ -252,30 +252,14 @@ CMD ["jupyter", "lab", "--ip=0.0.0.0", "--no-browser"]
 [#cpp-docker]
 === Example 3: Build and run a C++ image
 
-Package the executable from xref:m1:workflow.adoc#cmake-presets[the CMake presets exercise] and run the same sample on the host and in a container. By the end, a person with Docker and the sample input can reproduce the result.
+Use the Release preset and install rule from xref:m1:workflow.adoc#cpack[the CPack example]. First run the installed executable on the host as shown there. Then use Docker to reproduce the result.
 
-==== Install the Release executable
-
-Add this line after the executable target is declared in `CMakeLists.txt`:
-
-[source,cmake]
-----
-install(TARGETS vector-norm RUNTIME DESTINATION bin)
-----
-
-Run from the project root:
-
-[source,bash]
-----
-cmake --preset release
-cmake --build --preset release
-ctest --preset release
-cmake --install build/release --prefix "$PWD/build/stage"
-mkdir -p out
-./build/stage/bin/vector-norm samples/vector.txt out/norm.txt
-----
-
-The install rule gives the executable a predictable location that the Docker build can copy.
+[#docker-image-container]
+.What is the difference between an image and a container?
+[%collapsible%open.proof]
+====
+An *image* contains the application, its runtime dependencies and the default command. A *container* is an instance of that image running on a Docker host. Here `docker build` creates an image of `vector-norm` and `docker run` starts a container to calculate one result. A *bind mount* makes a host directory available at a path inside the container.
+====
 
 ==== Build an image
 
@@ -315,7 +299,16 @@ COPY --from=build /stage/bin/vector-norm /usr/local/bin/vector-norm
 ENTRYPOINT ["/usr/local/bin/vector-norm"]
 ----
 
-The first stage compiles and runs tests. The final stage contains the installed program and its runtime environment. The entry point receives the arguments passed after the image name.
+[#cpp-dockerfile-instructions]
+.Read the two stages of the Dockerfile
+[%collapsible.proof]
+====
+* `FROM ubuntu:24.04 AS build` starts a stage named `build` where the compiler, CMake, Ninja and Eigen are available.
+* `WORKDIR /src` sets the directory for the following instructions. `COPY . .` copies the project files into that directory, subject to `.dockerignore`.
+* The build stage configures, builds and tests Release, then runs the CMake install rule with `/stage` as its prefix.
+* The second `FROM` starts the final image. `COPY --from=build` takes only the installed executable from the first stage. The final image also installs the C++ runtime needed to run it.
+* `ENTRYPOINT` selects the default program. Arguments after the image name are passed to that program.
+====
 
 ==== Run the image with local input and output
 
@@ -330,6 +323,16 @@ docker run --rm --user "$(id -u):$(id -g)" \
 test "$(cat container-out/norm.txt)" = 5
 cmp out/norm.txt container-out/norm.txt
 ----
+
+[#cpp-docker-run-options]
+.Read the Docker commands and mount options
+[%collapsible.proof]
+====
+* In `docker build -t vector-norm:example .`, `-t` gives the image a name and tag. The final `.` selects the current directory as the build context.
+* `--rm` removes the container after it exits. The result stays in the mounted host directory.
+* `--user` runs the program with your numeric user and group IDs so it can write the mounted output directory.
+* In each `--mount`, `source` is a path on the host and `target` is its path inside the container. The input mount is `readonly`. The output mount is writable.
+====
 
 The container sees the input at `/input/vector.txt` and writes into the host's `container-out/` directory. The commands check the known result and compare it with the host run. When using these commands in CI, use an empty output directory so an earlier file cannot mask a failed run. Add `/container-out/` to both ignore files. Try a missing input file and check that the container exits with an error.
 

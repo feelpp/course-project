@@ -74,6 +74,13 @@ For projects with dependencies, install the recorded environment before running 
 
 Start with the example from xref:software:repo/organization.adoc[C++ repository organization and CMake]. A program that compiles can still calculate the wrong result. Use an independently known result, then make CTest and GitHub Actions report whether the program returns it.
 
+[#what-is-ctest]
+.What does CTest do?
+[%collapsible%open.proof]
+====
+Your test program checks the result and returns an exit code. `0` means the check passed. A nonzero code means it failed. CTest runs the programs registered with `add_test()` and reports their results. A user of the project can then run the whole test suite with one command.
+====
+
 === Write and register a numerical test
 
 Create `tests/test_vector_norm.cpp`. The expected result comes from the 3–4–5 right triangle. A tolerance accounts for rounding. The comparison also rejects a non-finite result.
@@ -100,13 +107,18 @@ This check remains active in Release builds. Add the following at the end of the
 
 [source,cmake]
 ----
-include(CTest)
-if(BUILD_TESTING)
-    add_executable(test_vector_norm tests/test_vector_norm.cpp)
-    target_link_libraries(test_vector_norm PRIVATE vector_norm)
-    add_test(NAME vector_norm_known_result COMMAND test_vector_norm)
+include(CTest)                                                       # <1>
+if(BUILD_TESTING)                                                    # <2>
+    add_executable(test_vector_norm tests/test_vector_norm.cpp)      # <3>
+    target_link_libraries(test_vector_norm PRIVATE vector_norm)      # <4>
+    add_test(NAME vector_norm_known_result COMMAND test_vector_norm) # <5>
 endif()
 ----
+<1> Load CTest support from CMake. It defines `BUILD_TESTING` and enables test registration when the option is on.
+<2> Create the test targets only when `BUILD_TESTING` is enabled. It is on by default.
+<3> Compile the test into a small executable.
+<4> Call the same library from the test and the application.
+<5> Register a named test. CTest will run `test_vector_norm` when it runs `vector_norm_known_result`.
 
 Reconfigure, build and run the tests:
 
@@ -117,9 +129,25 @@ cmake --build build/debug
 ctest --test-dir build/debug --output-on-failure --no-tests=error
 ----
 
+[#ctest-options]
+.Read the CTest command
+[%collapsible.proof]
+====
+* `--test-dir build/debug` picks the configured build directory.
+* `--output-on-failure` shows the test program's message when a check fails.
+* `--no-tests=error` makes CTest fail if it finds zero tests. This catches an incorrect directory or missing test registration in CI.
+====
+
 Temporarily change the calculation so it returns the wrong norm. Rebuild, verify that CTest reports the failing test, then restore the calculation. Add another case with negative coordinates. Run the executable separately with a missing input file and check the message and nonzero exit status.
 
 === Reuse the same commands in GitHub Actions
+
+[#what-is-ci]
+.What does GitHub Actions run?
+[%collapsible%open.proof]
+====
+Continuous integration (CI) runs your checks automatically when the repository changes. A *workflow* defines the events that start it. A *job* runs on a machine called a *runner*. A job's *steps* check out the code and run the same configure, build and test commands that you used locally.
+====
 
 Create `.github/workflows/ci.yml` in the practice repository, or add a build-and-test job to an existing workflow. This Ubuntu job installs the project tools and repeats the three local commands:
 
@@ -151,6 +179,17 @@ jobs:
         run: ctest --test-dir build/debug --output-on-failure --no-tests=error
 ----
 
+[#ci-workflow-fields]
+.Read the workflow YAML
+[%collapsible.proof]
+====
+* `on` runs the workflow on pushes to `main` and updates to pull requests targeting `main`.
+* `permissions: contents: read` gives the job's GitHub token read access to the repository contents.
+* `runs-on: ubuntu-24.04` selects an Ubuntu 24.04 runner.
+* `uses` runs a reusable action. Here checkout copies the Git revision to the runner.
+* `run` executes a shell command. Install dependencies before configuring, then build before running the tests.
+====
+
 On your feature branch, push a deliberately failing version to an open PR and find the failing test in the Actions log. Restore the correct calculation and push again. In each run, identify whether the failure happened during dependency installation, configuration, compilation, linking or testing.
 
 === Exercise for the FEM project
@@ -160,7 +199,12 @@ Open an issue for one scientific test and its CI run. Use a branch such as `test
 [#cmake-presets]
 == CMake presets
 
-A preset records options you can already set on the command line. Share these settings so you can use the same configure, build and test commands in the terminal and in CI.
+[#what-is-a-preset]
+.What is a CMake preset?
+[%collapsible%open.proof]
+====
+A preset gives a name to options that already work on the command line. The configure preset records the folder, generator and build type. The build and test presets point to that configuration. Commit `CMakePresets.json` so your terminal and CI use the same settings.
+====
 
 === Build and test Release explicitly
 
@@ -206,14 +250,29 @@ Start with Debug. The configure preset records the generator, build directory an
 }
 ----
 
-Add a Release entry to each of the three arrays. Use the name `release`, the directory `build/release` and the build type `Release`. Keep the test settings. Run both configurations from the repository root:
+[#preset-fields]
+.Read the preset fields
+[%collapsible.proof]
+====
+* `version` is the version of the JSON format. `cmakeMinimumRequired` records the CMake version expected by this file.
+* In `configurePresets`, `generator` replaces `-G`, `binaryDir` replaces `-B` and `cacheVariables` stores the options previously passed with `-D`. CMake expands `${sourceDir}` to the project root.
+* The `configurePreset` field connects each build and test preset to the right build directory.
+* `outputOnFailure` and `noTestsAction` preserve the CTest options from the explicit commands.
+====
+
+Run Debug from the project root and check that CTest still passes:
 
 [source,bash]
 ----
 cmake --preset debug
 cmake --build --preset debug
 ctest --preset debug
+----
 
+Then add a Release entry to each of the three arrays. Use the name `release`, the directory `build/release` and the build type `Release`. Keep the test settings and run:
+
+[source,bash]
+----
 cmake --preset release
 cmake --build --preset release
 ctest --preset release
@@ -224,6 +283,113 @@ Check from a clean checkout that the presets produce working executables and run
 === Exercise for the FEM project
 
 Open an issue to replace the explicit Debug and Release commands with shared presets. On a branch such as `build-cmake-presets`, update your README and switch the CI configure, build and test steps to the Debug presets. Run both presets locally and check that CI still runs the same tests. Link the issue in your PR and explain which previous command each preset replaces.
+
+Continue with <<cpack>>.
+
+[#cpack]
+== Package a C++ program with CPack
+
+[#what-is-cpack]
+.What does CPack package?
+[%collapsible%open.proof]
+====
+CMake can describe which files to install and where to put them. CPack takes those install rules and produces a distributable file. A compressed archive is easy to unpack. A Debian package also records information such as its version, architecture and dependencies for the system package manager.
+====
+
+=== Install into a staging directory
+
+Append this rule to `CMakeLists.txt`:
+
+[source,cmake]
+----
+install(TARGETS vector-norm RUNTIME DESTINATION bin) # <1>
+----
+<1> Install the executable (`RUNTIME`) under `bin/` relative to the chosen installation prefix.
+
+Build and test Release before installing. Use a prefix inside `build/` so you can check the layout from your own account:
+
+[source,bash]
+----
+cmake --preset release
+cmake --build --preset release
+ctest --preset release
+cmake --install build/release --prefix "$PWD/build/stage"
+./build/stage/bin/vector-norm samples/vector.txt out/norm.txt
+cat out/norm.txt
+----
+
+Here `--install build/release` runs the install rules for the already built Release tree. `--prefix` puts the staged program under `build/stage/`. The installed executable should still produce `5`.
+
+=== Create a compressed archive
+
+Add these settings at the end of `CMakeLists.txt`:
+
+[source,cmake]
+----
+set(CPACK_PACKAGE_NAME "vector-norm")                   # <1>
+set(CPACK_PACKAGE_VERSION "0.1.0")                      # <2>
+set(CPACK_PACKAGE_CONTACT "VectorNorm maintainers")     # <3>
+include(CPack)                                        # <4>
+----
+<1> Give the binary package a name.
+<2> Set its release version.
+<3> Set the package contact. This also supplies the Debian maintainer by default.
+<4> Generate `CPackConfig.cmake` from these settings when CMake configures the project.
+
+Configure again and package the Release build:
+
+[source,bash]
+----
+cmake --preset release
+cmake --build --preset release
+cpack --config build/release/CPackConfig.cmake -G TGZ -B build/packages
+tar -tzf build/packages/vector-norm-0.1.0-*.tar.gz
+----
+
+[#cpack-command-options]
+.Read the CPack options
+[%collapsible.proof]
+====
+* `--config` points CPack to the settings for the Release build tree.
+* `-G TGZ` creates a compressed tar archive. `-G ZIP` creates a ZIP archive and `-G DEB` creates a Debian package.
+* `-B build/packages` writes the packages there.
+====
+
+Find `bin/vector-norm` in the archive listing. Unpack it into a fresh directory and run it with the sample input. This archive contains a binary built for your operating system and architecture. See the https://cmake.org/cmake/help/v3.28/cpack_gen/archive.html[CPack archive reference].
+
+=== Create a Debian package on Ubuntu
+
+Build on Ubuntu 24.04 for this step. Install `dpkg-dev` so CPack can use `dpkg-shlibdeps` to calculate runtime dependencies:
+
+[source,bash]
+----
+sudo apt install dpkg-dev
+----
+
+Add the following settings *before* `include(CPack)`:
+
+[source,cmake]
+----
+set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
+set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+----
+
+`DEB-DEFAULT` uses the Debian filename convention. `SHLIBDEPS` fills in runtime dependencies from the shared libraries used by the executable.
+
+[source,bash]
+----
+cmake --preset release
+cmake --build --preset release
+cpack --config build/release/CPackConfig.cmake -G DEB -B build/packages
+dpkg-deb --info build/packages/vector-norm_0.1.0_*.deb
+dpkg-deb --contents build/packages/vector-norm_0.1.0_*.deb
+----
+
+Check the package name, version, architecture and dependencies without installing it. Compare the files with the archive. Try `-G ZIP` to see how the file format changes while the install rules stay the same. See the https://cmake.org/cmake/help/v3.28/cpack_gen/deb.html[CPack Debian package reference].
+
+=== Exercise for the FEM project
+
+Open an issue for packaging the FEM executable. Work on a branch such as `package-fem-cpack`. Stage the executable, generate an archive, unpack it and reproduce a small case. If your project targets Ubuntu, also inspect the Debian package and its dependencies. In the PR link the issue and show the package contents and the command that reproduced the case.
 
 Continue with xref:containers:docker/dockerfile-basics.adoc#cpp-docker[Build and run a C++ image with Docker].
 

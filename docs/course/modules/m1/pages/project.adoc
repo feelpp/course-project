@@ -17,6 +17,7 @@ The FEM semester project is individual. Work through the course examples below i
 . xref:software:repo/organization.adoc[Organize and build a C++ program] using explicit CMake commands.
 . xref:workflow.adoc#cpp-testing[Run numerical tests with CTest and GitHub Actions].
 . xref:workflow.adoc#cmake-presets[Record the working commands as Debug and Release presets].
+. xref:workflow.adoc#cpack[Package an executable as an archive or Debian package].
 . xref:containers:docker/dockerfile-basics.adoc#cpp-docker[Build, run and deliver the Docker image].
 
 For each change in your FEM repository, open an issue with acceptance criteria, work on a branch and open a PR that links to the issue. Include the commands and results, then review your own diff. Use the FEM assignment brief and rubric for the required deliverables and milestones.
