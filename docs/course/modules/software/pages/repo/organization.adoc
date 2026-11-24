@@ -171,20 +171,36 @@ The first two compiler commands each produce an object file. The second uses `-I
 
 == Describe the targets with CMake
 
+[#what-is-cmake]
+.What does CMake do?
+[%collapsible%open.proof]
+====
+CMake is a widely used tool for configuring C++ builds. You describe what to build in `CMakeLists.txt`. A *target* is a named item in that description, such as the `vector_norm` library or the `vector-norm` executable. Each target records its source files and requirements, including dependencies and the C++ standard.
+
+During *configuration*, CMake reads that description, detects the compiler and generates build rules for a tool such as Ninja. During the *build*, Ninja follows those rules and calls the compiler and linker. When you edit a source file, Ninja uses the dependencies to rebuild the affected files. The same `CMakeLists.txt` describes the build on your computer and in CI. See the https://cmake.org/cmake/help/v3.28/manual/cmake.1.html[CMake command reference].
+====
+
 Create a single `CMakeLists.txt` at the root. It describes a library target and an executable that links to it:
 
 [source,cmake]
 ----
-cmake_minimum_required(VERSION 3.22)
-project(VectorNorm LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.22)                      # <1>
+project(VectorNorm LANGUAGES CXX)                         # <2>
 
-add_library(vector_norm STATIC src/vector_norm.cpp)
-target_include_directories(vector_norm PUBLIC src)
-target_compile_features(vector_norm PUBLIC cxx_std_17)
+add_library(vector_norm STATIC src/vector_norm.cpp)       # <3>
+target_include_directories(vector_norm PUBLIC src)        # <4>
+target_compile_features(vector_norm PUBLIC cxx_std_17)    # <5>
 
-add_executable(vector-norm app/main.cpp)
-target_link_libraries(vector-norm PRIVATE vector_norm)
+add_executable(vector-norm app/main.cpp)                  # <6>
+target_link_libraries(vector-norm PRIVATE vector_norm)    # <7>
 ----
+<1> Require CMake 3.22 or later.
+<2> Name the project `VectorNorm` and enable the C++ language (`CXX`).
+<3> Build the static library `vector_norm` from `src/vector_norm.cpp`. On Linux the file is `libvector_norm.a`.
+<4> Search `src/` for headers. `PUBLIC` makes that directory available to the library itself and to any target that links it.
+<5> Require C++17 or newer for the library and for targets that link it. The `cxx_std_17` setting specifies a minimum language level.
+<6> Build the runnable `vector-norm` program from `app/main.cpp`.
+<7> Link the executable with the library. `PRIVATE` makes the library a dependency of this executable. CMake also uses the library's public requirements when compiling the executable.
 
 Call CMake from the source root:
 
@@ -196,7 +212,27 @@ cmake --build build/debug
 cat out/norm.txt
 ----
 
-Configure creates the build files in `build/debug`. Build invokes the compiler and linker. Running the executable is a separate step. Marking `src/` as a `PUBLIC` include directory tells CMake to pass it to targets that link to `vector_norm`, including the executable and the tests.
+[cols="1,3",options="header"]
+|===
+|Option |What it does here
+
+|`-S .`
+|Read the source tree starting in the current directory (`.`), which contains `CMakeLists.txt`.
+
+|`-B build/debug`
+|Put generated rules, objects and binaries in `build/debug/`. Keeping them in a separate directory lets you build another configuration elsewhere from the same sources.
+
+|`-G Ninja`
+|Generate rules for Ninja, the build tool installed above.
+
+|`-DCMAKE_BUILD_TYPE=Debug`
+|Set the `CMAKE_BUILD_TYPE` variable to `Debug` for this build directory. With Ninja this selects a build with debug information for tools such as GDB.
+
+|`--build build/debug`
+|Run the build tool using the configuration already generated in `build/debug/`.
+|===
+
+The last two commands run the executable and show the output file. Run the build again after editing `src/vector_norm.cpp` and observe which targets are rebuilt.
 
 == Declare Eigen as a dependency
 
@@ -204,9 +240,13 @@ Add these lines after the library target is defined:
 
 [source,cmake]
 ----
-find_package(Eigen3 REQUIRED CONFIG)
-target_link_libraries(vector_norm PRIVATE Eigen3::Eigen)
+find_package(Eigen3 REQUIRED CONFIG)                      # <1>
+target_link_libraries(vector_norm PRIVATE Eigen3::Eigen)  # <2>
 ----
+<1> Find the CMake configuration provided by the installed Eigen package (`CONFIG`). `REQUIRED` stops configuration if Eigen is missing.
+<2> Attach the `Eigen3::Eigen` target to `vector_norm`. Eigen is a header library, so this gives the compiler the include paths it needs. The `PRIVATE` setting keeps Eigen out of the library's public interface.
+
+See the https://libeigen.gitlab.io/eigen/docs-3.4/TopicCMakeGuide.html[Eigen CMake guide].
 
 Replace the implementation file's `<cmath>` include with `<Eigen/Core>` and change the function body to `return Eigen::Vector2d{x, y}.stableNorm();`. Configure, build and run again. The output for the sample remains `5`. Eigen is private to this target because the public header uses only built-in types.
 
