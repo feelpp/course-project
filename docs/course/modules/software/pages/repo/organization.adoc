@@ -309,21 +309,42 @@ After changing `src/vector_norm.cpp`, run `cmake --build build/debug --verbose`.
 [#cmake-eigen]
 === Declare Eigen as a dependency
 
-Add these lines after the library target is defined:
+[#why-find-package]
+.Why use `find_package` for Eigen?
+[%collapsible%open.proof]
+====
+Eigen provides C++ types and functions for linear algebra. We can use it to compute the norm of a vector. When the code says `#include <Eigen/Core>`, the compiler needs to know where to look for that header, just as it needed `-Isrc` to find `vector_norm.hpp` in the manual build.
+
+The Eigen headers might be in a different directory on your laptop, in CI and in Docker. Install Eigen in each build environment. During configuration, `find_package` lets CMake read the package's description and discover how to use that installation. For Eigen, that description makes the *imported target* `Eigen3::Eigen` available. The target carries the header search path. A package for a compiled library can also describe which library files to link.
+
+`target_link_libraries` tells CMake which of our targets needs those settings. Eigen is header-only, so here that means passing an include directory to the compiler. The package name is `Eigen3`, the CMake target is `Eigen3::Eigen`, and the header is `Eigen/Core`.
+====
+
+Add these lines after the `vector_norm` library target is defined.
 
 [source,cmake]
 ----
 find_package(Eigen3 REQUIRED CONFIG)                         # <1>
 target_link_libraries(vector_norm PRIVATE Eigen3::Eigen)     # <2>
 ----
-<1> Find the CMake configuration provided by the installed Eigen package (`CONFIG`). `REQUIRED` stops configuration if Eigen is missing.
-<2> Attach the `Eigen3::Eigen` target to `vector_norm`. Eigen is a header library, so this gives the compiler the include paths it needs. The `PRIVATE` setting keeps Eigen out of the library's public interface.
+<1> `CONFIG` tells CMake to look for the description shipped with Eigen, typically `Eigen3Config.cmake`. `REQUIRED` makes configuration fail immediately if CMake cannot find the package.
+<2> Apply the settings from `Eigen3::Eigen` to `vector_norm`. Use `PRIVATE` because only `vector_norm.cpp` uses Eigen. The public header exposes only built-in types.
 
-Replace the implementation file's `<cmath>` include with `<Eigen/Core>` and change the function body to `return Eigen::Vector2d{x, y}.stableNorm();`. Configure, build and run again. The output for the sample remains `5`. Eigen is private to this target because the public header uses only built-in types.
+Replace the implementation file's `<cmath>` include with `<Eigen/Core>` and change the function body to `return Eigen::Vector2d{x, y}.stableNorm();`. Configure, build and run again.
 
-See the https://libeigen.gitlab.io/eigen/docs-3.4/TopicCMakeGuide.html[Eigen CMake guide].
+[source,bash]
+----
+cmake -S . -B build/debug -G Ninja -DCMAKE_BUILD_TYPE=Debug
+cmake --build build/debug --verbose
+./build/debug/vector-norm samples/vector.txt out/norm.txt
+cat out/norm.txt
+----
 
-If configure cannot find Eigen, check that its development package is installed in the environment where CMake is running. Avoid hard-coding an include path from your laptop.
+Look for the Eigen include directory in the command that compiles `vector_norm.cpp`. GCC and Clang commonly show it with `-isystem`. The sample still produces `5`.
+
+See the https://libeigen.gitlab.io/eigen/docs-3.4/TopicCMakeGuide.html[Eigen CMake guide] and the https://cmake.org/cmake/help/v3.28/command/find_package.html[CMake find_package reference].
+
+If configuration fails at `find_package`, check that the Eigen development package is installed where CMake runs. For a custom installation, add `-DCMAKE_PREFIX_PATH=/path/to/eigen-prefix` to the configure command, using the directory under which Eigen was installed.
 
 == Exercise and self-check
 
